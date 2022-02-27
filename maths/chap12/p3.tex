@@ -1,0 +1,176 @@
+\part{Corps}
+
+\begin{exm}[Problème]
+	\begin{itemize}
+		\item 
+			avec $A = \Z / 9 \Z$, résoudre $\overline{x}^2 = \overline{0}$ \\
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$\overline{x}$&$\overline{0}$& $\overline{1}$ &$\overline{2}$&$\overline{3}$ &$\overline{4}$ &$\overline{5}$ &$\overline{6}$ &$\overline{7}$ &$\overline{8}$& $\overline{9}$ \\
+					\hline
+					$\overline{x}^2$&$\overline{0}$ &$\overline{1}$ &$\overline{4}$ &$\overline{0}$ &$\overline{7}$ &$7$ &$\overline{0}$ &$\overline{4}$ &$\overline{1}$&$\overline{0}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+			On a trouvé 3 solutions: $\overline{0}$, $\overline{3}$, $\overline{6}$.
+		\item $\Z / 8\Z$
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$\overline{x}$& $\overline{0}$& $\overline{1}$& $\overline{2}$& $\overline{3}$& $\overline{4}$& $\overline{5}$& $\overline{6}$& $\overline{7}$\\
+					\hline
+					$\overline{x^2}$& $\overline{0}$& $\overline{1}$& $\overline{4}$& $\overline{1}$& $\overline{0}$& $\overline{1}$& $\overline{4}$& $\overline{1}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+			$\overline{x}^2=7$ a 4 solutions: $\overline{1}, \overline{7}, \overline{3},\text{ et } \overline{5}$
+		\item $A = \mathbbm{H} = \{a + bi + cj + dk  \mid  (a,b,c,d) \in \R^4\}$ \\
+			$i^2 = j^2 = k^2 = -1$ 
+			\begin{align*}
+				\begin{array}{c c c}
+					ij = k & jk = i & ji = j\\
+					ji = -k & kj = -i & ik = -j
+				\end{array}
+			\end{align*}
+			Dans cet anneau, $-1$ a 6 racines!
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $(\mathbbm{K}, +, \times)$ un ensemble muni de deux lois de composition internes. On dit que c'est un corps si
+	 \begin{enumerate}
+		\item $(\mathbbm{K}, \times)$ est un groupe abélien
+		\item $(\mathbbm{K}, \times)$ est un monoïde commutatif
+		\item $\forall x \in \mathbbm{K}\setminus \{0_\mathbbm{K}\}, \exists y \in \mathbbm{K}, xy = 1_\mathbbm{K}$
+		\item $0_\mathbbm{K} \neq  1_\mathbbm{K}$
+	\end{enumerate}
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $(\C, +, \times)$ est un corps
+		\item $(\R, +, \times)$ est un corps
+		\item $(\Q, +, \times)$ est un corps
+		\item $(\Z, +, \times)$ n'est pas un corps
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	$(\Z / n\Z, +, \times)$ est un corps si et seulement si $n$ est premier.
+\end{prop}
+
+\begin{prv}
+	\[
+		\left( \Z / n\Z \right)^\times = \left\{ \overline{k}  \mid k \wedge n = 1 \right\}
+	\] 
+\end{prv}
+
+
+\begin{prop}
+	Tout corps est un anneau intègre.
+\end{prop}
+
+\begin{prv}
+	Soit $(\mathbbm{K}, +, \times)$ un corps. Soient $(a,b) \in \mathbbm{K}^2$ tel que $a \times b = 0_\mathbbm{K}$.\\
+	On suppose $a \neq  0_\mathbbm{K}$. Alors, $a$ est inversible et donc \[
+		b = a^{-1} \times a \times b = a^{-1} \times 0_\mathbbm{K} = 0_\mathbbm{K}
+	\] 
+\end{prv}
+
+\begin{exm}
+	Soit $(\mathbbm{K},+,\times)$ un corps.\\
+	Résoudre \[
+		\begin{cases}
+			x^2 = 1_\mathbbm{K}\\
+			x \in \mathbbm{K}
+		\end{cases}
+	\]
+
+	\begin{align*}
+		x^2 = 1_\mathbbm{K} &\iff x^2 - 1_\mathbbm{K} = 0_\mathbbm{K}\\
+		&\iff (x - 1_\mathbbm{K})(x+1_\mathbbm{K}) = 0_\mathbbm{K}\\
+		&\iff x - 1_\mathbbm{K} = 0_\mathbbm{K} \text{ ou } x + 1_\mathbbm{K} = 0_\mathbbm{K}\\
+		&\iff x = 1_\mathbbm{K} \text{ ou } x = -1_\mathbbm{K}
+	\end{align*}
+
+	Il y a au plus 2 solutions.
+\end{exm}
+
+\begin{prop}
+	Soit $(\mathbbm{K},+,\times )$ un corps et $P$ un polynôme à coefficients dans $\mathbbm{K}$ de degré $n$. Alors, l'équation $P(x) = 0_{\mathbbm{K}}$ a au plus $n$ solutions dans $\mathbbm{K}$ 
+	\qed
+\end{prop}
+
+\begin{crlr}[(Théorème de Wilson)]
+	voir exercice 16 du TD 12
+\end{crlr}
+
+
+\begin{defn}
+	Soit $(\mathbbm{K}, +, \times)$ un corps et $L\subset \mathbbm{K}$.\\
+	On dit que $L$ est un \underline{sous corps} de $\mathbbm{K}$ si
+	\begin{enumerate}
+		\item $L$ est un anneau de $(\mathbbm{K}, +, \times)$ non nul
+		\item $\forall x \in L\setminus \{0_\mathbbm{K}\}, x^{-1} \in L$ 
+	\end{enumerate}
+	\vspace{2mm}
+	en d'autres termes si
+	\begin{enumerate}
+		\item $\forall (x,y) \in L^2, x - y \in L$
+		\item $\forall (x,y) \in L^2, x \times y^{-1} \in L$
+	\end{enumerate}
+	\vspace{5mm}
+	On dit aussi que $\mathbbm{K}$ est une \underline{extension} de $L$.
+\end{defn}
+
+\begin{prop}
+	Tout sous corps est un corps. \qed
+\end{prop}
+
+\begin{defn}
+	Soient $(\mathbbm{K}_1,+,\times )$ et $(\mathbbm{K}_2,+, \times)$ deux corps et $f: \mathbbm{K}_1 \to \mathbbm{K}_2$.\\
+	On dit que $f$ est un \underline{morphisme de corps} si $f$ est un morphisme d'anneaux.\\
+	i.e. si
+	\[
+		\begin{cases}
+			\forall (x,y) \in {\mathbbm{K}_1}^2,& f(x+y) = f(x) + f(y)\\
+			\forall (x,y) \in {\mathbbm{K}_1}^2,& f(x \times y) = f(x) \times f(y)\\
+		\end{cases}
+	\] 
+\end{defn}
+
+\begin{prop}
+	Tout morphisme de corps est injectif.
+\end{prop}
+
+\begin{prv}
+	Soit $f: \mathbbm{K}_1 \to \mathbbm{K}_2$ un morphisme de corps.\\
+	\begin{itemize}
+		\item $\Ker(f)$ est un sous groupe de $(\mathbbm{K}_1, +)$ 
+		\item Soit $x \in \Ker(f)$ et $y \in \mathbbm{K}_1$ \[
+				f(x \times y) = f(x) \times f(y) = 0_{\mathbbm{K}_2} \times f(y) = 0_{\mathbbm{K}_2}
+			\]
+		\item Soit $x \in \Ker(f) \setminus \{0_{\mathbbm{K}_1}\}$.\\
+			Alors, $x$ est inversible.\\
+			\begin{align*}
+				\begin{rcases*}
+					x \in \Ker(f)\\
+					x^{-1} \in \mathbbm{K}_1
+				\end{rcases*}& \text{ donc } x \times x ^{-1} \in \Ker(f)\\
+				&\text{ donc } 1_{\mathbbm{K}_1} \in \Ker(f)\\
+				&\text{ donc } f(1_{\mathbbm{K}_1}) = 0_{\mathbbm{K}_2}
+			\end{align*}
+			Or, $f(1_{\mathbbm{K}_1}) = 1_{\mathbbm{K}_2} \neq 0_{\mathbbm{K}_2}$
+	\end{itemize}
+	Donc, $\Ker(f) = \{0_{\mathbbm{K}_1}\}$ donc $f$ est injective.
+\end{prv}
+
+\begin{exm}
+	$\begin{array}{cc}
+		\C &\longrightarrow \C\\
+		z &\longmapsto \overline{z}\\
+	\end{array}$ est un morphisme de corps
+\end{exm}
+
+

@@ -1,0 +1,47 @@
+\part{Exercice 12}
+
+\[
+	\forall y \in [0,1], \varphi(y) = \lim_{\substack{x \to y\\\neq}} f(x)
+\] 
+
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		axes(EndArrow);
+
+		real g(real x){return -cos(x) + 1.5 + sin(3x)/6;}
+
+		draw(graph(g,-1,pi), deepcyan);
+
+		real a = 1; real b = 2;
+		
+		dot((a,g(a)),white+10);
+		dot((b,g(b)),white+10);
+
+		dot((a,g(a)),magenta);
+		dot((b,g(b)),magenta);
+
+		draw((a,0)--(a,g(a)), dashed+magenta);
+		draw((b,0)--(b,g(b)), dashed+magenta);
+	\end{asy}
+\end{center}
+\begin{enumerate}
+	\item 
+		Soit $y \in [0,1]$. Soit $\varepsilon>0$. Il existe $\eta_1>0$ tel que \[
+			\forall x \in [0,1] \cap ]y-\eta_1, y+\eta_1[ \setminus \{y\},
+			-\frac{\varepsilon}{2} \le -f(x) + \varphi(y) \le \frac{\varepsilon}{2}
+		\]
+	\item
+		Soit $z \in [0,1] \cap \left]y - \frac{\eta_1}{2}, y + \frac{\eta_1}{2}\right[$. Il exite $\eta_2 >0$ tel que \[
+			\forall x \in [0,1]\cap ]z-\eta_2,z+\eta_2[\setminus \{z\} 
+			-\frac{\varepsilon}{2}\le f(x) - \varphi(z) \le \frac{\varepsilon}{2}
+		\]
+	\item Soit $x \in [0,1] \cap ]z-\eta,z+\eta[ \setminus \{y,z\}$ où $\eta = \frac{1}{2}\min(\eta_1,\eta_2)$.\[
+		\left| x-y \right| \le \left| x-z \right| +\left| z-y \right| \le \eta+\frac{\eta_1}{2}\le \frac{\eta_1}{2}+\frac{\eta_1}{2}=\eta_1
+	\]
+	\[
+		\varphi(y) - \varphi(z) = \underbrace{\varphi(y) - f(x)}_{\in \left[ -\frac{\varepsilon}{2}, \frac{\varepsilon}{2} \right]} \underbrace{f(x) - \varphi(z)}_{\in \left[ -\frac{\varepsilon}{2}, \frac{\varepsilon}{2} \right]} \in [-\varepsilon,\varepsilon]
+	\]
+\end{enumerate}

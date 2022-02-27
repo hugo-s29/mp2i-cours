@@ -1,0 +1,345 @@
+\part{Théorie naïve des ensembles}
+
+\begin{defn}
+	Un \underline{ensemble} est une collection finie ou infinie d'objets de même nature ou non. L'ordre de ces objets n'a pas d'importance.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $\left\{ 1, x\mapsto x^2, \{1\} \right\}$ est un ensemble: ses éléments dont l'entier 1, la fonction $x\mapsto x^2$ et un ensemble contenant uniquement 1 (un \underline{singleton}).
+		\item $\N$ est un ensemble infini
+	\end{enumerate}
+\end{exm}
+
+\begin{rmk}
+	[Notation]
+	Soit $E$ un ensemble et $x$ un objet de $E$.\\
+	On écrit $x \in E$ ou bien $x \ni E$.
+\end{rmk}
+
+\begin{rmk}
+	[\danger Paradoxe]
+	On note $\Omega$ l'ensemble de tous les ensembles. Alors, $\Omega \in \Omega$.\\
+	Ce n'est pas le cas de tous les ensembles: \[
+		\N \not\in \N \text{ car $\N$ n'est pas un entier}
+	\] On distingue donc 2 types d'ensembles:
+	\begin{itemize}
+		\item ceux qui vérifient $E \not\in E$, on dit qu'ils sont \underline{ordinaires}
+		\item ceux qui vérifient $E \in E$, on dit qu'ils sont \underline{extra-ordinaires}
+	\end{itemize}
+	On note $O$ l'ensemble de tous les ensembles ordinaires.
+	\begin{itemize}
+		\item Supposons $O$ ordinaire. Alors, $O\not\in O$ \\
+			Or, $O$ est ordinaire et donc $O \in O$ $\lightning$ 
+		\item Supposons $O$ extra-ordinaire.\\
+			Alors $O \in O$ et donc $O$ ordinaire $\lightning$
+	\end{itemize}
+
+	\color{red}\fbox{C'est un paradoxe}
+\end{rmk}
+
+Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui explique quelles sont les opérations permettant de combiner des ensembles pour en faire un autre.
+\vspace{1cm}
+
+\begin{defn}
+	Soit $E$ un ensemble et $F$ un autre ensemble. On dit que $E$ et $F$ sont \underline{égaux} (noté $E = F$) si $E$ et $F$ contiennent les mêmes objets.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $E = \{1,2,3\}$ et $F = \{3,2,1,2\}$ \\
+			On a bien $E = F$.
+		\item $\N \neq \Z$ car $\begin{cases}
+				-1 \in \Z\\
+				-1 \not\in \N
+			\end{cases}$ 
+		\item $E = \left\{ 0, \{0\}  \right\} \neq \{0\} = F$\\
+			car $\begin{cases}
+				\{0\} \in E\\
+				\{0\} \not\in F
+			\end{cases}$ \\
+			mais, $F \in E$
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	L'ensemble \underline{vide}, noté $\O$ est le seul ensemble à n'avoir aucun élément.
+\end{defn}
+
+\begin{defn}
+	Soient $E$ et $F$ deux ensembles. On dit que $F$ est \underline{inclus} dans $E$, noté $F\subset E$ ou $E \supset F$ si tous les éléments de $F$ sont aussi des éléments de $E$.\\
+	\begin{wrapfigure}{l}{0.7\textwidth}
+		\centering
+		\vspace{-1cm}
+		\incfig{inclusion-ensemble}
+	\end{wrapfigure}
+	\begin{align*}
+		\forall x\in F, x \in E
+	\end{align*}
+	\vspace{3cm}
+\end{defn}
+
+\begin{prop}
+	Pour tout ensemble $E$, $\O \subset E$
+\end{prop}
+
+\begin{prv}
+	[par l'absurde]
+	Si $\O \not\subset E$ alors $\exists x \in \O, x \not\in E$: une contradiction $\lightning$ \\
+\end{prv}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $E = \{1,2,3\}$ et $F = \{1,3\}$ \\
+			On a $F \subset E$ mais pas $E \subset F$ car $\begin{cases}
+				2 \in E\\
+				2\not\in F
+			\end{cases}$ 
+		\item $F = \{0\}$ et $E = \{0, \{0\} \}$ \\
+			\begin{itemize}
+				\item  $F \in E$ car $\{0\} \in E$ 
+				\item $F \subset  E$ car $0 \in E$
+			\end{itemize}
+		\item $E = \left\{ \{0\}  \right\}; F = \{0\}$ 
+			\begin{itemize}
+				\item $F \not\subset E$ car $0 \not\in E$
+				\item $F \in E$
+			\end{itemize}
+		\item $E = \{\{\{0\} \} \}; F = \{0\}$ 
+			\begin{itemize}
+				\item $F\not\in E$
+				\item $F\not\subset E$ 
+				\item $\O \subset F$ 
+				\item $\O\subset E$
+			\end{itemize}
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $E$ un ensemble. On peut former \underline{l'ensemble de toutes les parties de $E$}
+	(une \underline{partie} de $E$ est un ensemble $F$ avec $F\subset E$). On le note $\mathcal{P}(E)$\\
+	\[
+		A \in \mathcal{P}(E) \iff A \subset E
+	\]
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $E = \{42\}$ \\
+			Les sous-ensembles de $E$ sont $\O$ et $\{42\} = E$ donc \[
+				\mathcal{P}(E) = \{\O, \{42\} \} 
+			\] 
+		\item $\mathcal{P}(\O) = \{\O\}$ 
+		\item $E = \{0,1\}$ donc $\mathcal{P}(E) = \{\O, \{0\}, \{1\}, \{0, 1\} \}$ 
+		\item $E = \{\O, \{\O\}\}$ donc $\mathcal{P}(E) = \{\O, \{\O\}, \{\{\O\}\}, \{\O, \{\O\} \} \} $ 
+		\item $E = \{\O, \{\O\}\}$ \\
+			\begin{align*}
+				\mathcal{P}(\mathcal{P}(E)) &= \mathcal{P}(\{\O, \{\O\}, \{\{\O\}\}, E)\\
+				&= \{\O, \{\O\}, \{\{\O\}\}, \{\{\{\O\}\}\}, \{E\}, \{\O, \{\O\}\}, \{\O, \{\{\O\}\}\}, \{\O, E\}, \{\{\O\},\\
+				&\quad\{\{\O\}\}\}, \{\{\O\}, E\}, \{\{\{\O\}\}, E\}, \{\O, \{\O\}, \{\{\O\}\}\}, \{\O, \{\O\}, E\},\\
+				&\quad\{\O, \{\{\O\}\}, E\}, \{\{\O\}, \{\{\O\}\}, E\}, \{\O, \{\O\}, \{\{\O\}\}, E\}\}\
+			\end{align*}
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $E$ un ensemble et $A, B \in \mathcal{P}(E)$
+	\begin{enumerate}
+		\item ~\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}{l}{3cm}
+					\centering
+					\vspace{-7mm}
+					\begin{asy}
+						import patterns;
+						add("hatch",hatch(1mm, cmyk(0, 0, 1, 0.5)));
+						size(3cm);
+
+						guide main_set = (-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle;
+						guide set_a = (-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle;
+						guide set_b = (0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle;
+
+						draw(main_set, magenta); label("$E$", (0.8,0.9),magenta, align=NE);
+						draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+						draw(set_b, heavygreen); label("$B$", (0.8,-0.6), heavygreen, align=SE);
+
+						fill(set_a, pattern("hatch"));
+						fill(set_b, pattern("hatch"));
+					\end{asy}
+				\end{wrapfigure}
+				La \underline{réunion} de $A$ et $B$ est \[
+					A \cup B = \{x \in E  \mid x \in A \ou x \in B\}
+				\]
+			\end{minipage}
+			\vspace{2cm}
+		\item ~\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}{l}{3cm}
+					\centering
+					\vspace{-7mm}
+					\begin{asy}
+						import patterns;
+						add("hatch",hatch(1mm, cmyk(0, 0, 1, 0.5)));
+						size(3cm);
+
+						guide main_set = (-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle;
+						guide set_a = (-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle;
+						guide set_b = (0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle;
+
+						draw(main_set, magenta); label("$E$", (0.8,0.9),magenta, align=NE);
+						draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+						draw(set_b, heavygreen); label("$B$", (0.8,-0.6), heavygreen, align=SE);
+
+						picture p;
+						fill(p, set_a, pattern("hatch"));
+						clip(p, set_b);
+
+						add(p);
+					\end{asy}
+				\end{wrapfigure}
+				L'\underline{intersection} de $A$ et $B$ est \[
+					A \cap B = \{x \in E  \mid x \in A \et x \in B\}
+				\]
+			\end{minipage}
+			\vspace{2cm}
+		\item ~\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}{l}{3cm}
+					\centering
+					\vspace{-7mm}
+					\begin{asy}
+						import patterns;
+						add("hatch",hatch(1mm, cmyk(0, 0, 1, 0.5)));
+						size(3cm);
+
+						guide main_set = (-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle;
+						guide set_a = (-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle;
+						guide set_b = (0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle;
+
+						draw(main_set, magenta); label("$E$", (0.8,0.9),magenta, align=NE);
+						draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+
+						picture p;
+						fill(p, main_set, pattern("hatch"));
+						unfill(p, set_a);
+
+						add(p);
+					\end{asy}
+				\end{wrapfigure}
+				Le \underline{complémentaire} de $A$ dans $E$ est \[
+					E \setminus A = \{x \in E \mid x \not\in A\} = C_E A
+				\]
+			\end{minipage}
+			\vspace{2cm}
+		\item ~\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}{l}{3cm}
+					\centering
+					\vspace{-7mm}
+					\begin{asy}
+						import patterns;
+						add("hatch",hatch(1mm, cmyk(0, 0, 1, 0.5)));
+						size(3cm);
+
+						guide main_set = (-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle;
+						guide set_a = (-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle;
+						guide set_b = (0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle;
+
+						draw(main_set, magenta); label("$E$", (0.8,0.9),magenta, align=NE);
+						draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+						draw(set_b, heavygreen); label("$B$", (0.8,-0.6), heavygreen, align=SE);
+
+						picture p2;
+						fill(p2, set_a, pattern("hatch"));
+						unfill(p2, set_b);
+
+						picture p;
+						fill(p, set_b, pattern("hatch"));
+						unfill(p, set_a);
+
+						add(p);
+						add(p2);
+					\end{asy}
+				\end{wrapfigure}
+				La \underline{différence symétrique} de $A$ et $B$ est
+				\begin{align*}
+					A \Delta B &= \left\{ x \in E  \mid (x \in A\et x \not\in B)\ou(x\not\in A\et x \in B) \right\}\\
+					&= (A\cup B)\setminus(A\cap B) \\
+				\end{align*}
+			\end{minipage}
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	Soit $E$ un ensemble et $A,B,C \in \mathcal{P}(E)$
+	
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $A\cap A = A$
+			\item $B \cap A = A\cap B$ 
+			\item $A \cap (B\cap C) = (A\cap B)\cap C$ 
+			\item $A \cap \O = \O$ 
+			\item $A\cap E = A$ 
+			\item $A \cup A = A$ 
+			\item $B \cup A = A\cup B$ 
+			\item $A \cup (B\cup C) = (A\cup B) \cup C$
+			\item $A \cup \O = A$ 
+			\item $A\cup E = E$ 
+			\item $(E\setminus A)\setminus A = E\setminus A$
+			\item $E \setminus(E\setminus A) = A$
+			\item $E\setminus\O = E$ 
+			\item $E\setminus E = \O$ 
+			\item $A \cup (B \cap C) = (A\cup B) \cap (A \cup C)$
+			\item $A \cap (B \cup C) = (A\cap B) \cup (A \cap C)$
+			\item $E \setminus (A\cup B) = (E\setminus A) \cap (E\setminus B)$
+			\item $E \setminus (A \cap B) = (E\setminus A) \cup  (E\setminus B)$
+		\end{enumerate}
+	\end{multicols}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[16.] $A \cap (B \cup C)= (A\cap B)\cup (A\cap C)$ 
+			\begin{itemize}
+				\item Soit $x \in A \cap (B \cup C)$ donc $x \in A$ et $x \in B \cup C$ \\
+					\begin{itemize}
+						\item[\underline{\sc Cas 1}] $x \in B$, alors $x \in A \cap B$ et donc $x \in (A\cap B)\cup (A\cap C)$ 
+						\item[\underline{\sc Cas 2}] $x \in C$, alors $x \in A \cap C$ et donc $x \in (A\cap B)\cup (A\cap C)$
+					\end{itemize}
+					On a prouvé \[
+						A \cap (B \cup C) \subset (A \cap B) \cup (A \cap C)
+					\]
+				\item Soit $x \in (A \cap B) \cup (A \cap C)$ 
+					\begin{itemize}
+						\item[\underline{\sc Cas 1}]$x \in A\cap B$ donc $x \in A$ et $x \in B$ donc $x \in B \cup C$ et donc $x \in A \cap (B\cup C)$
+						\item[\underline{\sc Cas 2}]$x \in A\cap C$ donc $x \in A$ et $x \in C$ donc $x \in B \cup C$ et donc $x \in A \cap (B\cup C)$
+					\end{itemize}
+					On a prouvé \[
+						A \cap (B \cup C) \supset (A \cap B) \cup (A \cap C)
+					\]
+			\end{itemize}
+		\item[17.] $E \setminus (A\cup B) = (E\setminus A) \cap (E\setminus B)$ 
+			\begin{itemize}
+				\item Montrons que $x \in E\setminus(A\cup B) \implies x \in (E\setminus A)\cap (E\setminus B)$ \\
+					Soit $x \in  E\setminus(A\cup B)$ donc $x \not\in A \cup B$
+					\begin{itemize}
+						\item Si $x \in A$, alors $x \in A \cup B$ $\lightning$\\
+							donc $x \not\in A$ i.e. $x \in E\setminus A$ 
+						\item Si $x \in B$ alors, $x \in A\cup B$ $\lightning$ \\
+							Donc $x \not\in B$ i.e. $x \in E\setminus B$
+					\end{itemize}
+					On en déduit que $x \in (E\setminus A)\cap (E\setminus B)$
+				\item $x \in (E\setminus A) \cap (E\setminus B)$. Montrons que $x \in  E \setminus(A\cup B)$ \\
+					On suppose que $x \not\in E \setminus (A\cup B)$ donc $x \in A\cup B$ 
+					\begin{itemize}
+						\item Si $x \in A$, on a une contradiction car $x \in E\setminus A$
+						\item Si $x \in B$, on a une contradiction car $x \in E\setminus B$
+					\end{itemize}
+					donc $x \in E \setminus(A\cup B)$
+			\end{itemize}
+	\end{enumerate}
+\end{prv}

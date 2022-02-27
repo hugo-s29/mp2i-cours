@@ -1,0 +1,776 @@
+\part{Groupes}
+
+\underline{Principe de symétrie} (Pierre Curie)\\
+La symétrie des causes se retrouvent dans les effets.
+
+On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propage. 
+
+\begin{figure}[H]
+	\center
+	\begin{asy}
+		size(4cm);
+
+		draw((-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle);
+		dot("$O$", (0,0));
+
+		for(int i = 1; i < 10; ++i) {
+			real r = (i/10) * 0.75;
+
+			draw(circle((0,0), r), gray(i/11));
+		}
+	\end{asy}
+\end{figure}
+
+\begin{itemize}
+	\item \underline{Symétries des "causes"}\\
+		(conserver $O$ en place)
+		\vspace{2mm}
+
+		\begin{itemize}
+			\item translation de vecteur $\vec{0}$
+			\item rotations de centre $O$ d'angle quelconque	
+			\item symétries d'axe passant par $O$ 
+				\begin{figure}[H]
+					\center
+					\begin{asy}
+						size(4cm);
+
+						draw((-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle);
+						dot("$O$", (0,0));
+					\end{asy}
+				\end{figure}
+		\end{itemize}
+
+		\vspace{5mm}
+
+	\item \underline{Symétries des "effets"}\\
+		(conserver les ondes en place)
+		\vspace{2mm}
+
+		\begin{itemize}
+			\item translation de vecteur $\vec{0}$
+			\item rotations de centre $O$ d'angle quelconque
+			\item symétries d'axe passant par $O$
+		\end{itemize}
+		\begin{figure}[H]
+			\center
+			\begin{asy}
+				size(4cm);
+
+				draw((-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle);
+
+				for(int i = 1; i < 10; ++i) {
+					real r = (i/10) * 0.75;
+
+					draw(circle((0,0), r), gray(i/11));
+				}
+			\end{asy}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\center
+			\begin{asy}
+				size(4cm);
+
+				draw((-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle);
+				dot("$O$", (0,0));
+
+				for(int i = 1; i < 10; ++i) {
+					real r = (i/10) * 0.75;
+
+					draw((-r,-r)--(r,-r)--(r,r)--(-r,r)--cycle, gray(i/11));
+				}
+
+				real a = 1.5;
+				real b = sqrt(2) * a;
+
+				draw((b,0)--(-b,0), dashed + red);
+				draw((0,b)--(0,-b), dashed + red);
+				draw((a,a)--(-a,-a), dashed + red);
+				draw((-a,a)--(a,-a), dashed + red);
+			\end{asy}
+		\end{figure}
+		\begin{itemize}
+			\item translation de vecteur  $\vec{0}$
+			\item 4 rotations de centre $O$ d'angle $0, \frac{\pi}{2}, \pi, \frac{3\pi}{2}$
+			\item 4 symétries axiales
+		\end{itemize}
+\end{itemize}
+
+\vspace{2mm}
+
+\begin{itemize}
+	\item \underline{Causes}
+		\begin{itemize}
+			\item translations de vecteur $\vec{u} \in \vec{D}$ 
+			\item rotations d'axe $D$
+		\end{itemize}
+
+		\begin{figure}[H]
+			\center
+			\begin{asy}
+				import solids;
+				settings.render=0;
+				settings.prc=false;
+
+				size(4cm);
+
+				revolution r = cylinder(O, 0.5, 1.75, Z);
+
+				draw(r,1,longitudinalpen=nullpen);
+				draw(r.silhouette());
+
+				draw((-0.7 * Z) -- (2 * Z), dashed + red);
+
+				draw((1,2) -- (1,1), arrow=Arrow(TeXHead));
+				label("$\vec{P}$", (1.2,1.5));
+
+				label("$D$", -0.6 * Z + (-0.5,0,0), red);
+
+			\end{asy}
+		\end{figure}
+
+		\vspace{2mm}
+	\item \underline{Effet}
+		\begin{figure}[H]
+			\center
+			\begin{asy}
+				size(4cm);
+
+				pair D = (0,-1);
+				pair R = (1,0);
+				pair L = (-1,0);
+
+				pair A = 2 * D;
+				pair B = 0.7 * L;
+				pair C = -2 * D;
+
+				draw((1.2 * A) -- (1.2 * C), dashed + red);
+				label("$D$", R * 0.5, red);
+				
+
+				draw((A + 0.25 * L) .. (B + 0.25 * L) .. (C + 0.25 * L));
+				draw((A - 0.25 * L) .. (B - 0.25 * L) .. (C - 0.25 * L));
+			\end{asy}
+		\end{figure}
+\end{itemize}
+
+\begin{defn}
+	Soit $G$ un ensemble, muni d'une loi de composition \underline{interne} $\diamond$.\\
+	On dit que $\left( G, \diamond  \right) $ est un \underline{groupe} si:
+	 \begin{itemize}
+		\item $\diamond $ est associative
+		\item $\diamond$ a un neutre $e \in G$ 
+		\item $\forall x \in G, \exists y \in G, x\diamond y = y \diamond x = e$
+	\end{itemize}
+\end{defn}
+
+\begin{exm}[(À connaître)]
+	\begin{enumerate}
+		\item $E$ un ensemble. $S(E)$ l'ensemble des bijections de $E$ dans $E$.\\
+			$\left( S(E), \circ \right)$ est un groupe appelé \underline{groupe symétrique} de $E$.\\
+			Si, $E = \left\llbracket 1, n \right\rrbracket$, alors noté $S(E)$ est noté $S_n$ (ou parfois $\mathfrak{S}_n$)
+		\item $(\Z, +)$ est un groupe mais $(\N,+)$ n'est pas un groupe.
+		\item $(\Q, +)$, $(\R, +)$, $(\C, +)$ sont des groupes
+		\item $(\R, \times)$ n'est pas un groupe car $0$ n'a pas d'inverse.\\
+			$(\Q_*,\times)$, $(\R_*, \times)$, $(\C_*, \times)$ sont des groupes.\\
+			$(\Z_*, \times)$ n'est pas un groupe.
+		\item $(\mathcal{M}_n(\C), +)$ est un groupe\\
+			$(\mathcal{M}_n(\C), \times)$ n'est pas un groupe
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	On dit que $(G,\diamond)$ est un groupe \underline{commutatif} ou \underline{abélien} si c'est un groupe et $\diamond$ est une loi commutative.
+\end{defn}
+
+\begin{defn}
+	Soit $(G, \cdot)$ un groupe (d'élément neutre $e$) et $H \subset G$. On dit que $H$ est un \underline{sous groupe} de $G$ si
+	\begin{enumerate}
+		\item $\forall (x,y) \in H^2, x\cdot y \in H$
+		\item $e \in H$ 
+		\item $\forall x \in H, x^{-1} \in H$
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	Soit $H$ un sous groupe de $(G, \cdot)$. Alors, $(H, \cdot)$ est un groupe.
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soit $(G, \cdot)$ un groupe et $H \subset G$.\\
+	\begin{align*}
+		H \text{ est un sous groupe de } G \iff
+		\begin{cases}
+			\forall (x,y) \in H, x \cdot  y^{-1} \in H\\
+			H \neq \O
+		\end{cases}
+	\end{align*}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item["$\implies$"] $e \in H$ donc $H \neq \O$.\\
+			Soit $(x,y)\in H^2$.\\
+			$y \in H$ donc $y^{-1}\in H$. \\
+			$x \in H$ donc $x \cdot y^{-1}\in H$. \\
+		\item["$\impliedby$"] $H \neq \O$.\\
+			Soit $a \in H$, $(a,a) \in H^2$ donc $a \cdot a^{-1} \in H$ donc $e \in H$.\\
+			Soit $x \in H$, $(e, x) \in H^2$ donc $e\cdot e^{-1} \in H$ donc $x^{-1}\in H$.\\
+			Soit $(x,y) \in H^2$. Comme $y \in H$, $y \in y^{-1} \in H$ donc $(x, y^{-1}) \in H^2$.\\
+			Donc, $x \cdot \left( y^{-1} \right) ^{-1} \in H$. \\
+			Donc, $x \cdot y \in H$.
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$2\Z$ est un sous groupe de $(\Z,+)$.\\
+	En effet,
+	\begin{itemize}
+		\item $2 \in 2\Z$ donc $2\Z \neq \O$
+		\item Soit $(x,y) \in \left( 2\Z \right) ^2, \begin{cases}
+			x \equiv 0~[2]\\
+			y \equiv 0~[2]\\
+		\end{cases}$ \\
+	\end{itemize}
+	donc $x - y \equiv 0 ~[2]$ donc $x-y \in 2\Z$
+\end{exm}
+
+\begin{prop}
+	Soit $(G, \cdot)$ un groupe et $(H_i)_{i\in I}$ une famille non vide de sous groupes de $G$. Alors, $\bigcap_{i \in  I} H_i$ est un sous groupe de $G$.
+\end{prop}
+
+\begin{prv}
+	On sait que $\forall i \in I, e \in H_i$ et $I \neq \O$\\
+	Donc, $e \in \bigcap_{i \in  I} H_i$ donc $\bigcap_{i \in  I} H_i \neq \O$\\
+	Soit $(x,y) \in \left( \bigcap_{i \in  I} H_i \right)^2 $.\\
+	\begin{align*}
+		\forall i \in I, \begin{cases}
+			x \in H_i\\
+			y \in H_i
+		\end{cases}
+	\end{align*}
+	donc, \[
+	\forall  i \in I, x \cdot y^{-1} \in H_i
+	\] 
+	donc \[
+	x\cdot y^{-1} \in \bigcap_{i \in  I} H_i
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soit $(G, \cdot)$ un groupe.\\
+	$\{e\}$ et $G$ sont des sous groupes de $G$
+\end{prop}
+
+\begin{rmk}
+	Une réunion de sous groupes n'est pas nécessairement un sous groupe.\\\[
+	(G,\cdot) = (\Z, +)
+	\] $2\Z \cup 3\Z = A$\\
+	$2 \in A$ et $3 \in A$ mais $2 + 3 = 5 \not\in A$.\\
+	Donc, $A$ n'est pas un sous groupe de $\Z$
+\end{rmk}
+
+\begin{prop-defn}
+	Soit $(G, \cdot)$ un groupe et $A \subset G$. Alors, \[
+	\bigcap_{\begin{array}{c}
+		H \text{ sous groupe de } G\\
+		A \subset H
+	\end{array} } H
+	\]  est le plus petit (au sens de l'inclusion) sous groupe de $G$ qui contient $A$. On dit que c'est le \underline{sous groupe engendré} par $A$ et on le note $\left<A\right>$\\
+\end{prop-defn}
+
+\begin{prv}
+	On pose $\mathcal{G} = \{H \in \mathcal{P}(G)  \mid  H \text{ sous groupe contenant } A\}$.\\
+	$G \in \mathcal{G}$ donc $\mathcal{G} \neq \O$ donc $\bigcap_{H \in \mathcal{G}} H$ est un sous groupe de $G$.\\
+	Soit $a \in A$. Alors \[
+	\forall H \in \mathcal{G}, a \in A \subset H
+	\] et donc $a \in \bigcap_{H \in \mathcal{G}} H$.\\
+	Donc, $A \subset \bigcap_{H \in \mathcal{G}} H$.\\
+	Soit $H$ un sous groupe de $G$ qui contient $A$.\\
+	Alors, $H \in \mathcal{G}$ alors $H \supset \bigcap_{H \in \mathcal{G}} H$
+\end{prv}
+
+\begin{exm}
+	$(G, \cdot) = (\Z, +)$\\
+	$A = 2\Z \cup 3\Z$ \\
+	$\left<A \right> =\Z $ (d'après le théorème de Bézout).\\
+	On généralise $\left<a\Z\cup b\Z\right> = (a \wedge b)\Z$
+\end{exm}
+
+\begin{defn}
+	Soit $(G, \cdot)$ un groupe et $A \subset G$.\\
+	On dit que $A$ est une \underline{partie génératrice} de $G$ ou que $A$ \underline{engendre} $G$ si $G = \left<A\right>$
+\end{defn}
+
+\begin{exm}[Rubik's cube]
+\end{exm}
+
+\begin{exm}
+	Soit $(G, \cdot)$ un groupe.\\
+	\begin{itemize}
+		\item $\left<\O\right> = \{e\}$\\ $\left<G\right> = G$
+		\item Soit $a \in G\setminus \{e\}$.\\
+			$\left<a\right> = \left< \{a\} \right> = \{a^n  \mid n \in \Z\} $ 
+		\item Soit $a \neq b$ deux éléments de $G \setminus \{e\}$\\
+			\begin{align*}
+				\left<\{a,b\}\right> &= 
+				\left\{x \in G \mid 
+				\exists n \in \N, 
+				\exists \left( a_1,a_2,\ldots,a_n \right) \in \left\{ a,b \right\} ^n,\right.\\
+				&\left.\exists \left( \varepsilon_1,\varepsilon_2, \ldots, \varepsilon_n \right) \in \left\{ -1,1 \right\}^n, 
+				x = a_1^{\varepsilon_1}\times a_2^{\varepsilon_2}\times  \ldots \times a_n^{\varepsilon_n} 
+			\right\}
+		\end{align*}
+	\end{itemize}
+\end{exm}
+
+\begin{rmk}[Notation]
+	Soit $(G, \cdot)$ un groupe et $a \in G$.\\
+	Pour $n \in \N_*$, on pose $a^n = \underbrace{a \cdot a \cdot \ldots \cdot a}_\text{$n$ fois}$.\\
+	On pose $a^0=e$ et pour $n \in Z_*^-$, \[
+	a^n = \left( a^{-1} \right) ^{-n}
+	\] 
+\end{rmk}
+
+\begin{rmk}
+	Si le groupe est noté additivement. On note $na$ ($n\in \Z, a \in G$) à la place de $a^n$
+\end{rmk}
+
+\begin{defn}
+	On dit qu'un groupe $(G, \cdot)$ est \underline{monogène} s'il existe $a \in G$ tel que \[
+	G = \left<a \right>
+	\] 
+	On dit alors que $a$ est un \underline{générateur} de $G$
+\end{defn}
+
+\begin{exm}
+	$(\Z,+)$ est engendré par $1$.\\
+	$(2\Z,+)$ est engendré par $2$\\
+\end{exm}
+
+\begin{defn}
+	Un groupe monogène fini est \underline{cyclique}
+\end{defn}
+
+\begin{prop}
+	Soit $(G, \cdot)$ un groupe monogène fini. Soit $a$ un générateur de $G$. Il existe $k \in \N$ tel que \[
+	G = \{e, a, a^2, \ldots a^{k-1}\} 
+	\] 
+\end{prop}
+
+\begin{prv}
+	$G$ est fini donc il existe $p < q$ tels que $a^p = a^q$. On a alors $e = a ^{q - p}$.\\
+	On pose alors, $k = \min \left\{ n \in \N_* \mid a^n = e \right\} $.\\
+	Soit $x \in G = \left<a \right>$. Il existe $n\in \Z$ tel que $x = a^n$. On fait la division de $n$ par $k$  \[
+	\begin{cases}
+		n = kq + r\\
+		q \in \Z, 0 \le r < k
+	\end{cases}
+	\] 
+
+	\[
+	x = a^n = a^{kq+r} = \left( a^k \right) ^q \times a^r = a^r
+	\] 
+	On a prouvé \[
+	G \subset \left\{ e, a, \ldots, e^{k-1} \right\} 
+	\] 
+	On sait déjà que $\left\{ e, a, \ldots, a^{k-1} \right\}  \subset G$.
+\end{prv}
+
+\begin{exm}
+	$\left( \Z / n\Z, + \right) $ est un groupe cyclique: \[
+	\Z/n\Z = \{\overline{0}, \overline{1}, \overline{2}, \ldots, \overline{n-1}\} 
+	\] 
+\end{exm}
+
+\begin{defn}
+	Soit $(G, \cdot)$ un groupe et $a \in G$.\\
+	Si $\left<a \right>$ est fini, le cardinal de $\left<a \right>$ est appelé \underline{ordre} de $a$: c'est le plus petit entier strictement positif $n$ tel que $a^n = e$
+\end{defn}
+
+\begin{exm}
+	$\left( S\left( \C_* \right), \circ \right) $ est un groupe\\
+	$z \mapsto \overline{z}$ est d'ordre de 2\\
+	$z \mapsto -z$ est d'ordre de 2\\
+	$z \mapsto \frac{1}{z}$ est d'ordre de 2\\
+\end{exm}
+
+\begin{exm}
+	\begin{itemize}
+		\item 
+			$G_1 = \left( \mathbbm{U}_4, \times \right)$ où
+			\begin{align*}
+				\mathbbm{U}_4 &= \{z \in \C \mid z^4 = 1\}\\
+				&= \{1, i, -1, -i\}  \\
+			\end{align*}
+			
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|}
+					\hline
+					\diagbox{$y$}{$x$} & $1$ & $i$ & $-1$ & $-i$\\\hline
+					$ 1$ & \color{orange}{$1$} & \color{green}{$i$} & \color{cyan}{$-1$} & \color{magenta}{$-i$}\\\hline
+					$ i$ & \color{green}{$i$} & \color{cyan}{$-1$} & \color{magenta}{$-i$} & \color{orange}{$1$}\\\hline
+					$ -1$ & \color{cyan}{$-1$} & \color{magenta}{$-i$} & \color{orange}{$1$} & \color{green}{$i$}\\\hline
+					$ -i$ & \color{magenta}{$-i$} & \color{orange}{$1$} & \color{green}{$i$} & \color{cyan}{$-1$}\\\hline
+				\end{tabular}
+			\end{center}
+
+			\begin{figure}[H]
+				\center
+				\begin{asy}
+					size(5cm);
+
+					real a = 0.7;
+
+					draw((-1,-1)--(-1,1)--(1,1)--(1,-1)--cycle, white);
+					draw((-a,-a)--(-a,a)--(a,a)--(a,-a)--cycle);
+					dot("$O$", (0,0));
+				\end{asy}
+			\end{figure}
+
+		\item $G_2$ l'ensemble des rotations planes qui laissent globalement invariant un carré.
+			\[
+				G_2 = \left\{ id, \rho_{\frac{\pi}{2}}, \rho_{\pi}, \rho_{\frac{3\pi}{2}} \right\}
+			\] 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|}
+					\hline
+					\diagbox{$y$}{$x$} & id & $\rho_\frac{\pi}{2}$ & $\rho_\pi$ & $\rho_\frac{3\pi}{2}$\\\hline
+					id & \color{orange}{id} & \color{green}{$\rho_\frac{\pi}{2}$} & \color{cyan}{$\rho_\pi$} & \color{magenta}{$\rho_\frac{3\pi}{2}$}\\\hline
+					$\rho_\frac{\pi}{2}$ & \color{green}{$\rho_\frac{\pi}{2}$} & \color{cyan}{$\rho_\pi$} & \color{magenta}{$\rho_\frac{3\pi}{2}$} & \color{orange}{id}\\\hline
+					$ \rho_\pi$ & \color{cyan}{$\rho_\pi$} & \color{magenta}{$\rho_\frac{3\pi}{2}$} & \color{orange}{id} & \color{green}{$\rho_\frac{\pi}{2}$}\\\hline
+					$ \rho_\frac{3\pi}{2}$ & \color{magenta}{$\rho_\frac{3\pi}{2}$} & \color{orange}{id} & \color{green}{$\rho_\frac{\pi}{2}$} & \color{cyan}{$\rho_\pi$}\\\hline
+				\end{tabular}
+			\end{center}
+
+		\item \[
+		G_3 = (\Z / 2\Z) \times (\Z / 2\Z)
+		\]\[
+		(x_1,x_2)+(y_1,y_2) = (x_1+y_1,x_2+y_2)
+		\] 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|}
+					\hline
+					&$\left(\overline{0},\overline{0}\right)$&$\left(\overline{0},\overline{1}\right)$&$\left(\overline{1},\overline{0}\right)$&$\left(\overline{1},\overline{1}\right)$\\
+					\hline
+					$\left(\overline{0},\overline{0}\right)$&$\color{orange}{\left(\overline{0},\overline{0}\right)}$&$\left(\overline{0},\overline{1}\right)$&$\left(\overline{1},\overline{0}\right)$&$\left(\overline{1},\overline{1}\right)$\\\hline
+					$\left(\overline{0},\overline{1}\right)$&$\left(\overline{0},\overline{1}\right)$&$\color{orange}{\left(\overline{0},\overline{0}\right)}$&$\left(\overline{1},\overline{1}\right)$&$\left(\overline{1},\overline{0}\right)$\\\hline
+					$\left(\overline{1},\overline{0}\right)$&$\left(\overline{1},\overline{0}\right)$&$\left(\overline{1},\overline{1}\right)$&$\color{orange}{\left(\overline{0},\overline{0}\right)}$&$\left(\overline{0},\overline{1}\right)$\\\hline
+					$\left(\overline{1},\overline{1}\right)$&$\left(\overline{1},\overline{1}\right)$&$\left(\overline{1},\overline{0}\right)$&$\left(\overline{0},\overline{1}\right)$&$\color{orange}{\left(\overline{0},\overline{0}\right)}$\\\hline
+				\end{tabular}
+			\end{center}
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soient $(G_1, \cdot)$ et $(G_2, *)$ deux groupes et $f: G_1 \to G_2$. On dit que $f$ est un \underline{(homo)morphisme de groupes} si \[
+	\forall (x,y) \in G_1, f(x\cdot y) = f(x) * f(y)
+	\] 
+\end{defn}
+
+\begin{exm}
+	$\exp: (\R, +) \to (\R_*^+, \times)$ est un morphisme de groupes
+\end{exm}
+
+\begin{prop}
+	Avec les notations précédentes,
+	\begin{itemize}
+		\item l'image directe d'un sous groupe de $G_1$ est un sous groupe de $G_2$
+		\item l'image réciproque d'un sous groupe de $G_2$ est un sous groupe de $G_1$
+	\end{itemize}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soit $H_1$ un sous groupe de $G_1$.\\
+			$e_1 \in H_1$ donc $f(e_1) \in f(H_1)$ donc $H_1 \neq \O$
+			Soient $x \in f(H_1)$ et $y \in f(H_2)$.\\
+			On pose $\begin{cases}
+				x = f(u) \text{ avec } u \in H_1\\
+				y = f(v) \text{ avec } v \in H_1\\
+			\end{cases}$
+
+			\begin{align*}
+				x * y^{-1} &= f(u) * f(v) ^{-1} \\
+				&= f(u) * f\left( v^{-1} \right) \\
+				&= f\left(u \cdot v^{-1}\right) \\
+			\end{align*}
+
+			$\begin{cases}
+				u \in H_1\\
+				v \in H_1
+			\end{cases}$ donc $u \cdot v^{-1} \in H_1$ donc $x * ^{-1} \in f(H_1)$
+		\item Soit $H_2$ un sous groupe de $G_2$. \[
+				(x,y) \in f^{-1}\left( H_2 \right) ^2
+		\] 
+
+		\begin{align*}
+			x \cdot y ^{-1} \in f^{-1}(H_2) &\iff f\left(x \cdot y^{-1}\right) \in H_2\\
+				&\iff f(x) * f\left( y^{-1} \right) \in H_2\\
+				&\iff f(x) * f(y) ^{-1} \in H_2
+		\end{align*}
+		Or, $\begin{cases}
+			f(x) \in H_2\\
+			f(y) \in H_2
+		\end{cases}$ \\
+		Comme $H_2$ est un sous groupe de $G_2$, \[
+			f(x) * f(y) ^{-1} \in H_2
+		\] et donc, \[
+			x \cdot y ^{-1} \in f^{-1}\left( H_2 \right)
+		\]
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	\[
+	\begin{cases}
+		f(e_1) = e_2\\
+		\forall u \in G_1, f\left(u^{-1}\right) = \left( f(u) \right) ^{-1}
+	\end{cases}
+	\] 
+\end{lem}
+
+\begin{prv}
+	\[
+	f(e_1) = f(e_1 \cdot e_1) = f(e_1) * f(e_1)
+	\] On multiplie par $f(e_1)^{-1}$ (possible car $G_2$ est un groupe) et on trouve $f(e_1) = e_2$.\\
+	Soit $u \in G_1$. \[
+	f(u) * f(u ^{-1}) = f(u \cdot u^{-1}) = f(e_1) = e_2\\
+	f(u^{-1}) * f(u) = f(u^{-1} \cdot u) = f(e_1) = e_2\\
+	\] Donc, $f\left(u^{-1}\right) = \left( f(u) \right) ^{-1}$
+\end{prv}
+
+\begin{crlr}
+	Soit $f: (G_1, \cdot) \to (G_2, *)$ un morphisme de groupes. Alors, $\mathrm{Im}(f)$ est un sous groupe de $G_2$. \[
+	\Ker(f) =\{x \in G_1  \mid f(x) = e_2	\} = f^{-1}(\{e_2\}) 
+	\] est un sous groupe de $G_1$.
+	\qed
+\end{crlr}
+
+\begin{thm}
+	Avec les notations précédentes, \[
+		f\text{ injective } \iff \Ker(f) = \{e_1\} 
+	\] 
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item["$\implies$"] On suppose $f$ injective.
+			\begin{align*}
+				f(e_1) = e_2 &\text{ donc }e_1 \in \Ker(f) \\
+										 & \text{ donc } \{e_1\} \subset \Ker(f) \\
+			\end{align*}
+			Soit $x \in \Ker(f)$. On a alors $f(x) = e_2 = f(e_1)$ \\
+			Comme $f$ injective, $x = e_1$.
+		\item["$\impliedby$"] On suppose $\Ker(f) = \{e_1\}$\\
+			Soient $\begin{cases}
+				x \in G_1\\
+				y \in G_1
+			\end{cases}$. On suppose $f(x) = f(y)$
+			\begin{align*}
+				 f(x) = f(y) &\implies f(x) * f(y) ^{-1} = e_2\\
+										 &\implies f(x) * f\left( y ^{-1} \right) = e_2\\
+										 &\implies f\left(x \cdot y^{-1}\right)
+										 &\implies x \cdot y^{-1} \in \Ker(f) = \{e_1\} \\
+										 &\implies x \cdot y^{-1} = e_1\\
+										 &\implies x = y
+			\end{align*}
+			Donc, $f$ est injective
+	\end{itemize}
+\end{prv}
+
+\begin{exm}[(équation diophantienne)]
+	\[
+	\begin{cases}
+		2x+5y = 1\\
+		(x,y) \in \Z^2
+	\end{cases}
+	\] 
+
+	On trouve une solution particulière (Bézout): $(-1,1) = (x_0,y_0)$
+
+	\begin{align*}
+		2x+5y = 1 &\iff 2x + 5y = 2x_0 + 5y_0\\
+							&\iff 2(x - x_0) + 5(y - y_0) = 0\\
+							&\iff 2(x - x_0) = 5(y_0- y)
+	\end{align*}
+	
+	\begin{center}
+		\begin{tabular}{ccc}
+			\phantom{(Gauss)aa}&
+			\raisebox{5mm - 0.75em}{\longvdots{1cm}}&
+			(Gauss)\\
+		\end{tabular}
+	\end{center}
+
+	\begin{align*}
+		f:\Z^2 &\longrightarrow \Z \\
+		(x,y) &\longmapsto 2x + 5y
+	\end{align*}
+
+	$(\Z^2, +)$ est un groupe avec $+$ qui est l'addition composante par composante.\\
+	$f$ est un morphisme de groupes.
+	\begin{align*}
+		f(x,y) = 1 = f(x_0, y_0) &\iff f(x,y) - f(x_0,y_0) = 0\\
+														 &\iff f(x - x_0, y - y_0) = 0\\
+														 &\iff (x - x_0, y - y_0) \in \Ker(f)
+	\end{align*}
+\end{exm}
+
+\begin{thm}
+	Soit $f: (G_1, \cdot) \to (G_2, *)$ un morphisme de groupes, $y \in G_2$ et $(\mathcal{E})$ l'équation \[
+	f(x) = y
+	\] d'inconnue $x \in G_1$.\\
+	Si $y \not\in \mathrm{Im}(f)$, alors $(\mathcal{E})$ n'a pas de solution.\\
+	Sinon, soit $x_0 \in G_1$ tel que $f(x_0) = y$ ($x_0$ est une solution particulière de $(\mathcal{E})$) \[
+	f(x) = y \iff \exists h \in \Ker(f) , x = x_0\cdot h
+	\] 
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		f(x) = y &\iff f(x) = f(x_0)\\
+						 &\iff f(x_0)^{-1} * f(x) = e_2\\
+						 &\iff f\left( x_0^{-1} \right) * f(x) = e_2\\
+						 &\iff f\left( x_0^{-1} \cdot x \right) = e_2\\
+						 &\iff x_0^{-1}\cdot x \in \Ker(f)\\
+						 &\iff\exists h \in \Ker(f), x_0^{-1} \cdot x = h\\
+						 &\iff \exists h \in \Ker(f), x = x_0 \cdot h
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soient $f: G_1 \to G_2$ et $g: G_2 \to G_3$ deux morphisme de groupes.
+	Alors, $g \circ f$ est un morphisme de groupes.
+\end{prop}
+
+\begin{prv}
+	Soient $x \in G_1$ et $y \in G_2$.
+	\begin{align*}
+		g \circ f(x \cdot y) &= g(f(x) * f(y)) = g(f(x)) \times g(f(y)) \\
+		&= g \circ f (x) \times g \circ f (y) \\
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $G$ un groupe. \\
+	\begin{itemize}
+		\item Un \underline{endomorphisme} de  $G$ est un morphisme de groupes de $G$ dans $G$.\\
+		\item Un \underline{isomorphisme} de  $G$ dans $H$ un morphisme de groupes $f: G \to H$ bijectif.\\
+		\item Un \underline{automorphisme} de $G$ est un endomorphisme de $G$ bijectif.
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	Soit $f: G \to H$ un isomorphisme de groupes.\\
+	Alors, $f^{-1}: H \to G$ est aussi un isomorphisme.
+\end{prop}
+
+\begin{prv}
+	Soit $(x,y) \in H^2$. On pose $\begin{cases}
+		f(u) = x, u \in G\\
+		f(v) = y, v \in G
+	\end{cases}$\\
+	\begin{align*}
+		f\left(f^{-1}\left( x \cdot y^{-1} \right) \right) &= x \cdot y^{-1}\\
+			&= f(u) \cdot f(v)^{-1}\\
+			&= f\left( u \cdot v^{-1} \right)  \\
+	\end{align*}
+	Comme $f$ injective, \[
+	f^{-1}\left( x \cdot y ^{-1} \right) = u \cdot v ^{-1} = f^{-1}(x)\left( f^{-1}(y) \right) ^{-1}
+	\] 
+\end{prv}
+
+\begin{crlr}
+	On note $\Aut(G)$ l'ensemble des automorphismes de $G$.\\
+	$\Aut(G)$ est un sous groupe de $\left( S(G), \circ \right)$.
+\end{crlr}
+
+\begin{defn}
+	Soit $(G, \cdot)$ un groupe et $g \in G$. L'application
+	\begin{align*}
+		c_g: G &\longrightarrow G \\
+		x &\longmapsto g x g^{-1}
+	\end{align*}
+	est appelée \underline{conjugaison par $g$}. On dit aussi que c'est un \underline{automorphisme intérieur}.
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, \[
+		c_g \in \Aut(G)
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soient $x \in G$ et $y \in G$.
+	\begin{align*}
+		c_g(xy) &= g \cdot xy \cdot g ^{-1}\\
+		c_g(x)\cdot c_g(y) &= gxg^{-1}gyg^{-1} = gxyg^{-1}=c_g(xy)
+	\end{align*}
+	Donc, $c_g$ est un morphisme de groupes.\\
+	
+	De plus, \[
+	\forall x \in G, c_{g^{-1}} \circ c_g (x) = g^{-1}\left( gxg^{-1}g \right) = x
+	\] 
+	Donc, $c_{g^{-1}} \circ c_g = id_G$.\\
+	De même, $c_g \circ c_{g^{-1}} = id_G$ \\
+	Donc, $c_g$ bijective et $\left( c_g \right) ^{-1} = c_{g^{-1}}$
+\end{prv}
+
+\begin{crlr}
+	\[
+	\forall x \in G, \forall n \in \Z, c_g(x^n) = \left( c_g(x) \right) ^n
+	\] 
+	\qed
+\end{crlr}
+
+\begin{prop}
+	L'application
+	\begin{align*}
+		G &\longrightarrow \Aut(G) \\
+		g &\longmapsto c_g
+	\end{align*}
+	est un morphisme de groupes.
+\end{prop}
+
+\begin{prv}
+	Soient $(g,h)\in G^2$.\\
+	\begin{align*}
+		\forall x \in G, c_g \circ c_h(x) &= g\left( hxh^{-1} \right) g^{-1} \\
+		&= (gh)x(gh)^{-1} \\
+		&= c_{gh}(x) \\
+	\end{align*}
+	Donc, $c_g \circ c_h = c_{gh}$
+\end{prv}
+
+\begin{prop}
+	[Rappel]
+	\[
+	\forall g,h \in G, (gh)^{-1} = h^{-1} g^{-1}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		(gh)\left( h^{-1}g^{-1} \right) &= e\\
+		\left( h^{-1}g^{-1} \right) (gh) &= e
+	\end{align*}
+\end{prv}
+
+\begin{prop-defn}
+	Soient $(G_1, *)$ et $(G_2, *)$ deux groupes. On définit une loi sur $G_1\times G_2$ en posant \[
+		\left(x_1,x_2\right) \cdot \left( y_1,y_2 \right) = \left( x_1y_1,x_2y_2 \right)
+	\] 
+	Alors, $G_1\times G_2$ est un groupe pour cette loi appelée \underline{groupe produit}
+\end{prop-defn}
+
+\begin{prv}
+	\begin{itemize}
+		\item 
+			Soient $(x_1,y_1) \in {G_1}^2$ et $(x_2, y_2) \in {G_2}^2$.\\
+			On sait que $x_1 * y_1 \in G_1$ et que $x_2 * y_2 \in G_2$.\\
+			Donc, $(x_1,x_2) \cdot (y_1, y_2) = (x_1x_2, y_1y_2) \in G_1\times G_2$
+	\end{itemize}
+\end{prv}

@@ -1,0 +1,31 @@
+\part{Exercise 10}
+
+We need to show that $F \subset G$. Let $n \in \N$. \[
+	\forall x \in \R, \cos(nx) = T_n(\cos x)
+\] where $T_n$ is the $n$-th Tchebychev polynomial.\\
+Thus, \[
+	\big(x \mapsto \cos(nx)\big) \in G
+\]. In fact,
+\begin{align*}
+	\forall x \in \R, \cos(nx) &= \Re\left(e^{inx}\right)\\
+	&= \Re\left( \left(e^{ix}\right)^n \right)  \\
+	&= \Re\left( (\cos x + i \sin x)^n \right)  \\
+	&= \Re\left( \sum_{k=0}^{n} i^k \sin^k x \cos^{n-k}x {n \choose k} \right)\\
+	&= \sum_{\substack{0 \le k \le n\\ k \text{ even}}} {n \choose k} \cos^{n-k} x  \sin ^{k} x i^k\\
+	&= \sum_{0 \le p \le \frac{n}{2}} {n \choose 2p} \cos^{n-2p}x \left(\sin^2 x\right)^p (-1)^p\\
+	&= \sum_{0 \le p \le \frac{n}{2}} (-1)^p {n \choose 2p} \cos^{n-2p} x \left( 1 - \cos^2x \right) ^p \\
+\end{align*}
+
+And, \[
+	T_n: u \mapsto \sum_{0 \le p \le \frac{n}{2}} (-1)^p {n \choose 2p} u^{n-2p} \left( 1-u^2 \right) ^p
+\]
+
+\begin{align*}
+	\forall x \in \R, \cos^n x &= \left( \frac{e^{ix} + e^{-ix}}{2} \right)^n \\
+	&= \frac{1}{2^n} \sum_{k=0}^n {n \choose k} e^{ikx} e^{-i(n-k)x}\\
+	&= \frac{1}{2^n} \sum_{k=0}^n {n\choose k} e^{i(2k-n)x} \\
+	&= \Re\left( \frac{1}{2^n} \sum_{k=0}^n {n\choose k} e^{i(2k-n)x} \right)  \\
+	&= \frac{1}{2^n}\sum_{k=0}^n {n\choose k} \cos\big( | 2k-n| x \big)\\
+\end{align*}
+
+So, $\left( x \mapsto \cos^n x \right) \in F$.

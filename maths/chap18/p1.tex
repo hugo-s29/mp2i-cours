@@ -1,0 +1,283 @@
+\part{Définition}
+
+\begin{defn}
+	\begin{itemize}
+		\item Un \underlin{polynôme à coefficiants dans $\mathbbm{K}$} est une suite presque nulle de $\mathbbm{K}^\N$\\
+		\item Le \underline{polynôme nul}, noté $0$ est la suite nulle.\\
+		\item Soit $P = (a_n)_{n\in\N}$ un polynôme non nul.\\
+			$\{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$ est non-vide et majoré. Le \underline{degré} de $P$ est $\max \{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$, et on le note $\deg(P)$ et $a_{\deg(P)}$ est le \underline{coefficiant dominant} de $P$, il est noté $\dom(P)$. \\
+		\item Le degré du polynôme nul est $-\infty$\\
+	\end{itemize}
+\end{defn}
+
+\begin{prop-defn}
+	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficiants dans $\mathbbm{K}$. Alors, $P + Q = \left( a_n + b_n \right)_{n\in\N}$ est un polynôme appelé \underline{somme de $P$ et $Q$}
+\end{prop-defn}
+
+\begin{prv}
+	\begin{align*}
+		\exists  N_1 \in \N, \forall n \ge N_1, a_n = 0\\
+		\exists  N_2 \in \N, \forall n \ge N_2, b_n = 0\\
+	\end{align*}
+
+	On pose $N = \max(N_1, N_2)$ donc \[
+	\forall n \ge N, a_n + b_n = 0 + 0 = 0
+\] donc $P+Q$ est une suite presque nulle.
+\end{prv}
+
+\begin{prop-defn}
+	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficiants dans $\mathbbm{K}$. On pose \[
+		\forall n \in \N, c_n = \sum_{k=0}^n a_k b_{n-k}
+	\]
+	La suite $(c_n)_{n\in\N}$ est presque nulle. Ce polynôme est appelé \underline{produit de $P$ et $Q$} et noté $PQ$.
+\end{prop-defn}
+
+\begin{prv}
+	\begin{align*}
+		\exists N_1 \in \N, \forall n \ge N_1, a_n = 0\\
+		\exists N_2 \in \N, \forall n \ge N_2, b_n = 0\\
+	\end{align*}
+	On pose $N = N_1 + N_2$ \[
+		\forall n \ge N, c_n = \sum_{k=0}^n a_k b_{n-k} = \sum_{k=0}^{N_1} a_k b_{n-k} + \sum_{k=N_1 + 1}^n a_k b_{n-k}
+	\]
+	$\forall k \ge N_1 + 1$, $a_k = 0$ donc $\sum_{k=N_1+1}^n a_k b_{n-k} = 0$ \\
+	$\forall k \le N_1$, $b-k \ge n - N_1 \ge  N_1 + N_2 - N_1 \ge N_2$ donc $\forall k \le N_1, b_{n-k} = 0$ et donc $\sum_{k=0}^{N_1}a_k b_{n-k} = 0$ \\
+	Donc \[
+		\forall n \ge N, c_n = 0
+	\]
+\end{prv}
+
+\begin{rmk}
+	[Notation]
+	Soit $P = (a_n)_{n\in\N}$, un polynôme à coefficiants dans $\mathbbm{K}$ et $\lambda \in \mathbbm{K}$. Le polynôme $(\lambda a_n)_{n\in\N}$ est noté $\lambda P$
+\end{rmk}
+
+
+\begin{rmk}
+	[Notation]
+	On pose $X = (0_\mathbbm{K}, 1_\mathbbm{K}, 0_\mathbbm{K}, \ldots) = (\delta_{1,n})_{n\in\N}$
+\end{rmk}
+
+\begin{exm}
+	\begin{align*}
+		X^2 &= X X\\
+		&= (0\times 0, 0\times 1 + 1\times 0, 0\times 0 + 1\times 1 + 0\times 0, 0, \ldots) \\
+		&= (0, 0, 1, 0, \ldots) \\
+	\end{align*}
+\end{exm}
+
+\begin{thm}
+	Soit $P = (a_n)_{n\in\N}$ un polynôme non nul à coefficiants dans $\mathbbm{K}$. Alors \[
+		P = \sum_{k=0}^n a_k X^k \quad \text{ où } n = \deg(P) \text{ et } X^0 = (1,0,\ldots)
+	\]
+\end{thm}
+
+\begin{prv}
+	Pour $k \in \N$, $\mathcal{P}(n): ``X^k = (\delta_{k,n})_{\in\N}"$ où $\delta_{k,n}= \begin{cases}
+		1 &\text{ si } n = k\\
+		0 &\text{ si } n \neq k
+	\end{cases}$\\
+	\begin{itemize}
+		\item $\delta_{0, n} = (1,0,\ldots) = X^0$ donc $\mathcal{P}(0)$ est vrai
+		\item Soit $k \in \N$. On suppose $\mathcal{P}(k)$ vraie. \[
+				X^{k+1} = X^k \, X = (c_n)_{n\in\N}
+			\] où \[
+				\forall n \in \N, c_n = \sum_{j=0}^{n} \delta_{k,j} \delta_{1,n-j}
+			\]
+			Donc, pour tout $n \in \N$ et pour tout $j \in \left\llbracket 0,n \right\rrbracket$
+			\begin{align*}
+				\delta_{k,j} \delta_{1,n-j} \neq 0 &\iff \begin{cases}
+					 k = j\\
+					 1 = n-j
+				\end{cases}\\
+				&\iff \begin{cases}
+					k=j\\
+					n=k+1
+				\end{cases}
+			\end{align*}
+			Donc, si $n \neq k+1$, alors \[
+				\forall j \in \left\llbracket 0,n \right\rrbracket, \delta_{k,j} \delta_{1,n-j} = 0
+			\] et donc $c_n = 0$ \[
+				c_{k+1} = \sum_{j=0}^{k+1}\delta_{k,j} \delta_{1, j+1-j} = \delta_{k,k} \delta_{1,1} = 1
+			\] Donc \[
+				\forall n \in \N, c_n = \delta_{k+1, n}
+			\] donc $\mathcal{P}(k+1)$ est vraie
+	\end{itemize}
+	Ainsi, $\mathcal{P}(k)$ est vraie pour tout $k \in \N$.
+	Soit $P = (a_0, \ldots, a_n, 0, \ldots)$ un polynôme de degré $n$.
+	\begin{align*}
+		\sum_{k=0}^n a_k X^k &= a_0 (1,0,0,0,\ldots)\\
+		&+a_1 (0,1,0,0,\ldots)\\
+		&+a_2 (0,0,1,0,\ldots)\\
+		&\vdots\\
+		&+a_n (0, \ldots, 0, 1, 0, \ldots)\\
+		&= (a_0, a_1, \ldots, a_n, 0, \ldots) \\
+		&= P \\
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	[Notation]
+	On note $\mathbbm{K}[X]$ l'ensemble des polynômes à coefficiants dans $\mathbbm{K}$ dont l'indéterminée $(0, 1, 0, \ldots)$ est notée $X$.
+\end{rmk}
+
+\begin{prop}
+	$\big(\mathbbm{K}[X],+,\times,\cdot\big)$ est une \underlin{$\mathbbm{K}$-algèbre commutative} i.e.
+	\begin{enumerate}
+		\item $\big(\mathbbm{K}[X], +, \times\big)$ est un anneau commutatif
+		\item $\big(\mathbbm{K}[X], +, \cdot\big)$ est un $\mathbbm{K}$-espace vectoriel
+		\item $\forall \lambda \in \mathbbm{K}, \forall (P,Q) \in \big(\mathbbm{K}[X]\big)^2, \lambda \cdot (P \times Q) = (\lambda \cdot P) \times Q = P \times (\lambda \cdot Q)$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $(\mathbbm{K}[X], +)$ est un groupe abélien car $(\mathbbm{K}[X], +, \cdot)$ est un $\mathbbm{K}$-espace vectoriel\\
+			\begin{itemize}
+				\item $X^0 = (1, 0, \ldots)$ est le neutre de $\times$\\
+					En effet, $\forall P = (a_n)_{n\in\N} \in \mathbbm{K}[X]$, en posant $(c_n)_{n\in\N} = PX^0$ on a \[
+						\forall n \in \N, c_n = \sum_{k=0}^n a_k \delta_{k, n-k} = a_,
+					\] donc $PX^0 = P$
+				\item $\times$ est commutative: $\forall P = (a_n)_{n\in\N} \in \mathbbm{K}[X], \forall Q = (b_n)_{n\in\N} \in \mathbbm{K}[X]$, on pose $R = (c_n)_{n\in\N} = PQ$, $S = (d_n)_{n\in\N} = QP$ alors
+					\begin{align*}
+						\forall n \in \N, 
+						c_n &= \sum_{k=0}^n a_k b_{n-k} \\
+						&= \sum_{j=0}^n a_{n-j}b_{j} \qquad (j = n-k) \\
+						&= \sum_{j=0}^n b_j a_{n-j} \\
+						&= d_n \\
+					\end{align*}
+					donc $PQ = QP$
+				\item Soient  \[
+						\begin{cases}
+							P = (a_n)_{n\in\N} \in \mathbbm{K}[X]\\
+							Q = (b_n)_{n\in\N} \in \mathbbm{K}[X]\\
+							R = (c_n)_{n\in\N} \in \mathbbm{K}[X]\\
+						\end{cases}
+					\] On pose \[
+						\begin{cases}
+							S = (d_n)_{n\in\N} = PQ\\
+							T = (e_n)_{n\in\N} = SR = (PQ)R\\
+							U = (f_n)_{n\in\N} = QR\\
+							V = (g_n)_{n\in\N} = PU = P(QR)
+						\end{cases}
+					\] Donc,
+					\begin{align*}
+						\forall n \in \N,
+						e_n &= \sum_{k=0}^n d_k c_{n-k}  \\
+						&= \sum_{k=0}^n\left( \sum_{j=0}^k a_{j} b_{k-j} \right)c_{n-k} \\
+						&= \sum_{j=0}^n \sum_{k=j}^n a_j b_{k-j} c_{n-k} \\
+						&= \sum_{j=0}^n a_{j} \sum_{k=j}^n b_{k-j} c_{n-k} \\
+						&= \sum_{j=0}^na_j \sum_{\ell = 0}^{n-j} b_{\ell} c_{n-j-\ell} \qquad (\ell = k - j) \\
+						&= \sum_{j=0}^n a_j f_{n-j} \\
+						&= g_n \\
+					\end{align*}
+					Donc $T = V$ 
+				\item Soient $P = (a_n)_{n\in\N}, Q = (b_n)_{n\in\N}, R = (C_n)_{n\in\N}$ trois polynômes et $P(Q+R) = (d_n)_{n\in\N}$ et $PQ + PR = (e_n)_{n\in\N}$.
+					\begin{align*}
+						\forall n \in \N, 
+						d_n &= \sum_{k=0}^n a_k (b_{n-k} + c_{n-k}) \\
+						&= \sum_{k=0}^n a_k b_{n-k}  + \sum_{k=0}^n a_k c_{n-k}\\
+						&= e_n \\
+					\end{align*}
+			\end{itemize}
+			Donc, $\big(\mathbbm{K}[X], +, \times\big)$ est un anneau commutatif
+		\item $\mathbbm{K}[X] \subset  \mathbbm{K}^\N$\\
+			$\left( \mathbbm{K}^\N, +, \cdot  \right)$ est un $\mathbbm{K}$-espace vectoriel. D'après la propriété précédente, \[
+				\mathbbm{K}[X] = \Vect\big((X^n  \mid n \in \N)\big)
+			\] donc $\mathbbm{K}[X]$ est un sous-espace vectoriel de $\mathbbm{K}^\N$
+		\item Soit $\lambda \in \mathbbm{K}, P = (a_n)_{n\in\N}, Q = (b_n)_{n\in\N}$ deux polynômes. On pose $(c_n)_{n\in\N} = PQ, R  = (d_n)_{n\in\N} = \lambda (PQ), S=(e_n)_{n\in\N} = (\lambda P) Q, T = (f_n)_{n\in\N} = P(\lambda Q)$.
+			\begin{align*}
+				\forall n\in \N,
+				d_n &= \lambda c_n = \lambda \sum_{k=0}^n a_k b_{n-k} \\
+				&= \sum_{k=0}^n (\lambda a_k) b_{n-k} = e_n \\
+				&= \sum_{k=0}^n a_k (\lambda b_{n-k}) = f_n \\
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	$\left(\mathcal{M}_{n}(\mathbbm{K}), +, \times, \cdot\right)$ est une $\mathbbm{K}$-algèbre non commutative (si $n > 1$)
+\end{rmk}
+
+\begin{prop}
+	$i: \begin{array}{rcl}
+		\mathbbm{K} &\longrightarrow& \mathbbm{K}[X] \\
+		\lambda &\longmapsto& \lambda\,X^0
+	\end{array}$ est un morphisme d'algèbre injectif, i.e. \[
+		\forall \lambda, \mu \in  \mathbbm{K}, \begin{cases}
+			i(\lambda+\mu) = i(\lambda)+i(\mu)\\
+			i(\lambda\cdot\mu) = i(\lambda)\times i(\mu)\\
+		\end{cases}
+	\] et $i$ est injective.
+\end{prop}
+
+\begin{rmk}
+	[Notation]
+	On identifie $\lambda \in \mathbbm{K}$ avec $\lambda\,X^0 \in \mathbbm{K}[X]$. Ainsi, on peut écrire $X^0 = 1$, on peut écrire $2+X+3X^2$ au lieu de $2X^0 + X + 3X^2$
+\end{rmk}
+
+\begin{prop}
+	Soient $P,Q \in \mathbbm{K}[X]$ \\
+	\begin{itemize}
+		\item $\deg(P+Q) \le \max\big(\deg(P), deg(Q)\big)$
+		\item Si $\deg(P) \neq \deg(Q)$, alors
+			\begin{itemize}
+				\item $\deg(P+Q) = \max\big(\deg(P), \deg(Q)\big)$
+				\item $\dom(P+Q) = \begin{cases}
+						\dom(P) & \text{ si } \deg(P) > \deg(Q)\\
+						\dom(Q) & \text{ si } \deg(P) < \deg(Q)\\
+				\end{cases}$
+			\end{itemize}
+		\item Si $\deg(P) = \deg(Q)$ et $\dom(P) + \dom(Q) \neq 0$, \\
+				alors $\begin{cases}
+				\deg(P + Q) = \deg(P) = \deg(Q)\\
+				\dom(P + Q) = \dom(P) + \dom(Q)\\
+			\end{cases}$ 
+		\item Si $\deg(P) = \deg(Q)$ et $\deg(P) + \deg(Q) = 0$, alors $\deg(P+Q) < \deg(P)$
+	\end{itemize}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Si $P = 0$, alors $\deg(P+Q) = \deg(Q)$ et donc $\max\big(\deg(P), \deg(Q)\big) = \max\big(-\infty, \deg(Q)\big)$\\
+			On a bien $\deg(P+Q) \le \max\big(\deg(P), \deg(Q)\big)$
+		\item De même avec $Q = 0$
+		\item On suppose $P \neq 0$ et $Q \neq 0$ \\
+			On pose $\begin{cases}
+				P = \sum_{k=0}^p a_k X^k \qquad p = \deg(P)\\
+				Q = \sum_{k=0}^q b_k X^k \qquad q = \deg(Q)\\
+			\end{cases}$ \\
+			On peut supposer $p\ge q$. On pose $b_{q+1} = \ldots = b_p = 0$ si $p > q$ \\
+			Ainsi, $Q = \sum_{k=0}^p b_kX^k$\\
+			$P+Q = \sum_{k=0}^p (a_k + b_k) X^k$ donc $\deg(P+Q) \le p$ et $p = \max\big(\deg(P), \deg(Q)\big)$\\
+			De plus, $a_p + b_p = \begin{cases}
+				\dom_{\neq 0}(P) &\text{ si } p > q\\
+				\dom(P) + \dom(Q) \text{ si } p = q
+			\end{cases}$
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $P, Q \in \mathbbm{K}[X]$. Alors \[
+		\deg(PQ) = \deg(P) + \deg(Q)
+	\] 
+\end{prop}
+
+\begin{prv}
+	Si $P$ ou $Q$ est nul, alors la formule est vraie car \[
+		\begin{cases}
+			\deg(PQ) = -\infty\\
+			\deg(P) + \deg(Q) = \begin{cases}
+				\mathrm{cste} - \infty = -\infty\\
+				-\infty + \mathrm{cste} = -\infty\\
+				-\infty - \infty = -\infty
+			\end{cases}
+		\end{cases}
+	\] On suppose $P \neq 0$ et $Q \neq 0$. On pose $P = \sum_{k=0}^p a_k X^k$ avec $a_p \neq 0$ et $Q = \sum_{k=0}^q b_k X^k$ avec $b_q \neq 0$
+	\begin{align*}
+		PQ &= \left( \sum_{k=0}^p a_k X^k \right) \left( \sum_{\ell=0}^q b_\ell X^\ell \right) \\
+		&= \sum_{k=0}^p \sum_{\ell=0}^q a_k b_{\ell} X^{k+\ell} \\
+	\end{align*}
+	donc $\deg(PQ) \le p+q$ et le coefficiant devant $X^{p+q}$ est $a_p b_q \neq 0$ (car $\mathbbm{K}$ est intègre)\\
+	donc $\deg(PQ) = p+q$
+\end{prv}

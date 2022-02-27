@@ -1,0 +1,29 @@
+\part{Exercice 1}
+
+On pose $E = \{f_1, f_2, f_3, f_4\}$.
+
+\begin{itemize}
+	\item On sait que $\circ$ est associatif.
+	\item $\circ$ admet un élément neutre $id_{\R_*}$ ($\forall f \in E, id_{\R_*} \circ f = f \circ id_{\R_*} = f$) et $id_{\R_*}(x) = x$ donc $id_{\R_*} \in E$.
+	\item Montrons que $\forall f \in E, \exists g \in E f \circ g = f_1$.
+		\begin{itemize}
+			\item $f_1\circ f_1 = f_1$
+			\item $f_2\circ f_2 = f_1$
+			\item $f_3\circ f_3 = f_1$
+			\item $f_4\circ f_4 = f_1$
+		\end{itemize}
+	\item Montrons que $\forall (f,g) \in E^2, f\circ g \in E$
+		\begin{itemize}
+			\item $\forall f \in E, f_1 \circ f = f \in E$
+			\item $\forall f \in E, f \circ f_1 = f \in E$
+			\item $f_2\circ f_3 = f_4 \in E$
+			\item $f_3\circ f_2 = f_4 \in E$
+			\item $f_3\circ f_4 = f_2 \in E$
+			\item $f_4\circ f_3 = f_2 \in E$
+			\item $f_2\circ f_4 = f_3 \in E$
+			\item $f_4\circ f_2 = f_3 \in E$
+		\end{itemize}
+		Donc, $\forall (f,g) \in E^2, f\circ g \in E$
+\end{itemize}
+
+Donc, $(E, \circ)$ est un groupe

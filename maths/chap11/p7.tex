@@ -1,0 +1,119 @@
+\part{Annexe}
+
+\begin{prop}
+	Soit $f: I \to I$ continue et $(u_n)_{n\in\N}$ définie par \[
+	\begin{cases}
+		u_0 \in I\\
+		\forall n \in \N, u_{n+1} = f(u_n)
+	\end{cases}
+	\] 
+	{\bf Si} $(u_n)$ converge vers $\ell\in \R$\\
+	alors  $f(\ell) = \ell$ i.e. ($\ell$ est un point fixe de $f$)
+\end{prop}
+
+\begin{prv}
+	On suppose que $(u_n)$ converge vers $\ell$.\\
+	$\lim_{n\to +\infty} u_{n+1} = \ell$ car $(u_{n+1})$ est une sous suite de $(u_n)$. \[
+	\forall n \in \N, u_{n+1} = f(u_n)
+	\]
+	Comme $f$ est continue alors $f(u_n) \tendsto{n\to +\infty} f(\ell)$. Par unicité de la limite, $\ell = f(\ell)$
+\end{prv}
+
+\begin{rmk}
+	Soit $u \in \R^\N$ et $f: \R \to \R$ dérivable telle que $u_{n+1} = f(u_n)$.\\
+	Soit $\ell \in \R$ un point fixe de $f$. Donc, $f(\ell) = \ell$.\\
+
+	$\left| f'(\ell) \right| > 1$:\\
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+
+			xaxis(EndArrow);
+			draw((-1,0)--(1,0));
+
+			dot("{}", (0,0), magenta);
+			label("$\ell$", (0,0.15), magenta);
+			
+
+			draw((-.45,.1)--(-.4,.1)--(-.4,-.1)--(-.45,-.1), solid+1);
+			draw((.45,.1)--(.4,.1)--(.4,-.1)--(.45,-.1), solid+1);
+
+			draw((.15,.05)--(.2,0)--(.15,-.05), solid+1);
+			draw((-.15,.05)--(-.2,0)--(-.15,-.05), solid+1);
+
+			draw((-.4,-.25)--(.4,-.25),Arrows);
+			label("répulsion", (0, -.4));
+		\end{asy}
+	\end{center}
+	$\left| f'(\ell) \right| < 1$:\\
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+
+			xaxis(EndArrow);
+			draw((-1,0)--(1,0));
+
+			dot("{}", (0,0), magenta);
+			label("$\ell$", (0,0.15), magenta);
+			
+
+			draw((-.45,.1)--(-.4,.1)--(-.4,-.1)--(-.45,-.1), solid+1);
+			draw((.45,.1)--(.4,.1)--(.4,-.1)--(.45,-.1), solid+1);
+
+			draw((.2,.05)--(.15,0)--(.2,-.05), solid+1);
+			draw((-.2,.05)--(-.15,0)--(-.2,-.05), solid+1);
+
+			draw((-.4,-.25)--(.4,-.25),Arrows);
+			label("bassin d'attraction", (0, -.4));
+		\end{asy}
+	\end{center}
+
+	Par contre, si $\left| f'(\ell) \right| =1$, on ne sait pas.
+\end{rmk}
+
+\begin{rmk}
+	[Suite arithético-géométrique]
+	\[
+		(*): \forall n \in \N, u_{n+1} = au_n + b = f(u_n)
+	\]
+	\begin{itemize}
+		\item[\sc Méthode 1]~\\
+			\begin{itemize}
+				\item On cherche $v$ une suite constante solution de $(*)$ : \[
+					\exists C \in \R, \forall n \in \N, v_n = C
+				\] donc \[
+					\forall n \in \N, C = aC + b = f(C)
+				\] Si $a \neq 1$: $C = \frac{b}{1-a}$ 
+			\item Soit $u$ qui vérifie $(*)$. On pose $w = u - v$.
+				\begin{align*}
+					\forall n \in \N, w_{n+1} &= u_{n+1} - v_{n+1} \\
+					&= au_n + b - av_n - b \\
+					&= a(u_n - v_n) \\
+					&= aw_n\\
+				\end{align*}
+				Donc $\forall n \in \N, w_{n+1} = aw_n + 0$ : équation homogène associée à $(*)$
+			\end{itemize}
+			$(w_n)$ est géométrique donc \[
+				\forall n \in \N, w_n = w_0 a^n
+			\] et donc \[
+				\forall n \in \N, u_n = w_0a^n + \frac{b}{1-a}
+			\]
+		\item[\sc Méthode 2]~\\
+			\begin{align*}
+				\varphi: \R^\N &\longrightarrow \R^\N \\
+				(u_n) &\longmapsto (u_{n+1} - au_n)
+			\end{align*}
+			$\varphi$ morphisme de groupes additifs \[
+				\varphi(u) = (b) \iff u = v + w \text{ avec } w \in \Ker(\varphi)
+			\]
+			\begin{align*}
+				w \in \Ker(\varphi) &\iff \varphi(w) = 0\\
+														&\iff \forall n \in \N, w_{n+1} - aw_n = 0\\
+														&\iff \forall n \in \N, w_{n+1} = aw_n
+			\end{align*}
+	\end{itemize}
+\end{rmk}

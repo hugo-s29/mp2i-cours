@@ -1,0 +1,765 @@
+\part{}
+\begin{exm}
+	Soit $f: x \mapsto \begin{cases}
+		\frac{1}{x} &\text{ si } x \neq  0\\
+		0 &\text{ si } x = 0
+	\end{cases}$.\\
+
+	$\lim_{x \to 0}f(x)$ n'existe pas.
+	\[
+		\ell = \bigcap_{V \in \mathcal{V}_\ell} V
+	\]
+	Si $\ell$ existe, alors $\ell = f(0)$.\\
+	Or, $0 \neq \lim_{x \to 0} f(x)$
+
+	\begin{center}
+		\begin{asy}
+			size(5cm);
+			import graph;
+
+			real f(real x) {
+				return 1/x;
+			}
+
+			draw(graph(f, 0.3, 5), deepcyan);
+			draw(graph(f, -5, -0.3), deepcyan);
+
+			dot((0,0),deepcyan);
+
+			axes(EndArrow);
+
+			real w = 0.1;
+
+			void t(real epsilon) {
+				real eta = f(epsilon);
+
+				draw((epsilon,w)--(epsilon,-w));
+				draw((-epsilon,w)--(-epsilon,-w));
+
+				draw((w,eta)--(-w,eta));
+				draw((w,-eta)--(-w,-eta));
+			}
+
+			t(4);
+			t(2);
+			t(1);
+
+			draw((1.5,0)--(0.25,0), Arrow(TeXHead));
+			draw((1.5,0)--(0.5,0), Arrow(TeXHead));
+			draw((-1.5,-0)--(-0.25,-0), Arrow(TeXHead));
+			draw((-1.5,-0)--(-0.5,-0), Arrow(TeXHead));
+
+			pair O = (0,0);
+			draw(O--(0,2), Arrow(TeXHead));
+			draw(O--(0,-2), Arrow(TeXHead));
+			draw(O--(0,2.25), Arrow(TeXHead));
+			draw(O--(0,-2.25), Arrow(TeXHead));
+		\end{asy}
+	\end{center}
+\end{exm}
+
+\begin{prv}
+	[de la proposition 1.10]
+
+	$\ell = \lim_{x \to a}$ et $a \in \mathcal{D}$ \\
+	On sait que  \[
+		\forall V \in \mathcal{V}_{\ell}, \exists W \in \mathcal{V}_a, \forall x \in W \cap \mathcal{D}, f(x) \in V
+	\]
+	Soit $V \in \mathcal{V}_\ell$. Alors, $f(a) \in V$.\\
+	\[
+		f(a) \in \bigcap_{V \in \mathcal{V}_\ell} V = \begin{cases}
+			\{\ell\} &\text{ si } \ell \in \R\\
+			\O &\text{ si } \ell = \pm\infty
+		\end{cases}
+	\]
+	Donc $\ell \in \R$ et $\ell = f(a)$
+\end{prv}
+
+\begin{rmk}
+	De même si $a \in \mathcal{D}$ et si $\lim_{\substack{
+			x\to a\\
+			 \le	
+	}} f(x)$ existe (resp. $\lim_{\substack{
+			x\to a\\
+			 \le	
+	}} f(x)$) alors $f(a) = \lim_{\substack{
+		x \to a\\
+		\le 
+	}} f(x)$ (resp $f(a) = \lim_{\substack{
+		x \to a\\
+		\ge 
+	}} f(x)$ )
+\end{rmk}
+
+\begin{exm}
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+
+			dot((0,1),magenta);
+
+			draw((-5,0) -- (5,0), magenta);
+
+			axes(EndArrow);
+
+			dot((0,2), white + 0);
+		\end{asy}
+	\end{center}
+
+	$\lim_{x \to 0} \sigma(x)$ n'existe pas\\
+	$\lim_{x \to 0^+} \sigma(x)$ et $\lim_{x \to 0^-}$ n'existent pas non plus.\\
+
+	$\lim_{\substack{
+		x \to 0\\
+		\neq
+	}} \sigma(x)$\\
+
+	$\lim_{\substack{
+		x \to  0\\
+		<
+	}} \sigma(x) = 0$, $\lim_{\substack{
+		x \to 0\\
+		>
+	}} \sigma(x) = 0$\\
+
+	\[
+		\lim_{x \to a}\frac{f(x) - f(a)}{x-a} = \lim_{\substack{
+			x \to a\\
+			\neq
+		}} \frac{f(x) - f(a)}{x - a}
+	\]
+\end{exm}
+
+\begin{defn}
+	Soit $f$ définie sur $\mathcal{D}$ et $a \in \mathcal{D}$. On dit que $f$ est \underline{continue en $a$} si $\lim_{x \to a} f(x)$ existe ou si $\lim_{\substack{
+		x \to a\\
+		\neq 
+	}}f(x) = f(a)$.
+\end{defn}
+
+\begin{exm}
+	Soit $f: x \mapsto \begin{cases}
+		\frac{\sin(x)}{x} & \text{ si } x\neq 0\\
+		1 &\text{ si } x = 0
+	\end{cases}$\\
+
+	$\lim_{\substack{
+		x \to 0\\
+		\neq
+	}} f(x) = \lim_{x \to  0} \frac{\sin(x)}{x} = 1 = f(0)$ \\
+	Donc $f$ est continue en $0$.
+\end{exm}
+
+\begin{prop}
+	$f$ est continue en $a$ si et seulement si \[
+		\lim_{\substack{
+			x \to a\\
+			<
+		}} f(x) = \lim_{\substack{
+			x \to a\\
+			>
+		}} = f(a)
+	\]
+\end{prop}
+
+\begin{prv}
+	[unicité de la limite]
+	On suppose que $f(x) \tendsto{x \to u}a$, $f(x) \tendsto{x \to u}b$ avec $a \neq b$.\\
+	Soient $V$ et $W$ conne dans le lemme (suivant), \[
+		\begin{cases}
+			\exists W_1 \in \mathcal{V}_u, \forall x \in W_1 \cap  \mathcal{D}, f(x) \in V\\
+			\exists W_2 \in \mathcal{V}_u, \forall x \in W_2 \cap  \mathcal{D}, f(x) \in W\\
+		\end{cases}
+	\] 
+	Donc \[
+		\forall x \in \underbrace{W_1 \cap W_2 \cap \mathcal{D}}_{\neq \O \text{ car } W_1\cap W_2 \in \mathcal{V}_u} f(x)  \in V \cap W = \O
+	\] 
+\end{prv}
+
+\begin{lem}
+	Soient $a \neq  b$ deux éléments de $\overline{\R}$ \\
+	Alors $\exists V \in \mathcal{V}_a, \exists W \in \mathcal{V}_b, V \cap W = \O$
+\end{lem}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Cas 1] $(a,b) \in \R^2$. On suppose que $a < b$.\\
+			On pose $\varepsilon = \frac{b-a}{2}$, \[
+				\begin{cases}
+					V = ]a-\varepsilon;a+\varepsilon[\\
+					W = ]b-\varepsilon;b+\varepsilon[
+				\end{cases}
+			\] 
+			On vérifie que $V \cap W = \O$
+
+			\begin{center}
+				\begin{asy}
+					import graph;
+
+					xaxis(EndArrow);
+					size(5cm);
+
+					dot((-10,1), white+0);
+					dot((10,-1), white+0);
+
+					real a = -3;
+					real b = 3;
+
+					dot("$a$", (a,0), green, align=N);
+					dot("$b$", (b,0), magenta, align=N);
+
+					real eps = 1.6;
+
+					pair a1 = (a - eps, 0);
+					pair a2 = (a + eps, 0);
+
+					pair b1 = (b - eps, 0);
+					pair b2 = (b + eps, 0);
+					
+					real w = 0.4;
+					void t(pair z) {draw((z.x, w) -- (z.x, -w));}
+
+					t(a1); t(a2);
+					t(b1); t(b2);
+
+					pair s = (0, -1.8);
+					draw(brace(a2 + s, a1 + s, .65));
+					draw(brace(b2 + s, b1 + s, .65));
+
+					label("$V$", (a1+a2)/2 + 2 * s);
+					label("$W$", (b1+b2)/2 + 2 * s);
+
+					draw((a, -0.8)--(a+eps, -0.8), heavycyan, Arrows(TeXHead));
+					draw((b, -0.8)--(b+eps, -0.8), heavycyan, Arrows(TeXHead));
+					label("$\varepsilon$", (a+eps/2, -1.35), heavycyan);
+					label("$\varepsilon$", (b+eps/2, -1.35), heavycyan);
+				\end{asy}
+			\end{center}
+
+		\item[\sc Cas 2] $a \in \R$ et $b = +\infty$ \\
+			\[
+				\begin{cases}
+					V = ]a-1;a+1[\\
+					W = ]a+2;+\infty[
+				\end{cases}
+			\]
+
+			\begin{center}
+				\begin{asy}
+					import graph;
+
+					xaxis(EndArrow);
+					size(5cm);
+
+					dot((-10,1), white+0);
+					dot((10,-1), white+0);
+
+					real a = -3;
+					real b = 7;
+
+					dot("$a$", (a,0), green, align=N);
+
+					real eps = 2.3;
+
+					pair a1 = (a - eps, 0);
+					pair a2 = (a + eps, 0);
+
+					pair b1 = (b - eps, 0);
+					pair b2 = (b + eps, 0);
+					
+					real w = 0.8;
+					void t(pair z, real k=-0.2) {draw((z.x+k,w)--(z.x, w)--(z.x, -w)--(z.x+k,-w));}
+
+					t(a1); t(a2,k=0.2);
+					t(b1);
+
+					pair s = (0, -2.3);
+					draw(brace(a2 + s, a1 + s, .65));
+					draw(brace((10, s.y), b1 + s, .65));
+
+					label("$V$", (a1+a2)/2 + 2 * s);
+					label("$W$", (b1+(10,0))/2 + 2 * s);
+
+					draw((a, -1.2)--(a+eps, -1.2), heavycyan, Arrows(TeXHead));
+					label("$1$", (a+eps/2, -1.8), heavycyan+fontsize(7pt));
+				\end{asy}
+			\end{center}
+		\item[\sc Cas 3] $a = -\infty$, $b = +\infty$ \\
+			\[
+				\begin{cases}
+					V = ]-\infty; 0[\\
+					W = ]0;+\infty[
+				\end{cases}
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	Soit $f$ définie sur $\mathcal{D}$ et $a \in \overline{\mathcal{D}}$, $\ell \in \overline{\R}$ \[
+		f(x) \tendsto{x \to a} \ell \iff \forall (x_n) \in \mathcal{D}^\N \left( x_n \tendsto{n\to +\infty} a \implies f(x_n) \tendsto{n \to +\infty} \ell \right) 
+	\]
+\end{thm}
+
+\begin{prv}
+	 \begin{itemize}
+		\item[$``\implies"$] On suppose que $f(x) \tendsto{x \to a} \ell$.\\
+			Soit $(x_n) \in \mathcal{D}^\N$ telle que $x_n \tendsto{n\to +\infty} \ell$\\
+			Soit $V \in \mathcal{V}_\ell$. Soit $W \in \mathcal{V}_a$ tel que \[
+				\forall x \in W \cap \mathcal{D}, f(x) \in V
+			\] $x_n \tendsto{n \to +\infty} a$ donc il existe $N \in \N$ tel que \[
+				\forall n \ge N, x_n \in W \cap \mathcal{D}
+			\] Donc  \[
+				\forall n \ge  N, f(x_n) \in V
+			\] D'où, $f(x_n) \tendsto{n \to +\infty} \ell$\\
+		\item[$``\impliedby"$ ] On suppose que $f(x) \centernot{\tendsto{x \to a}} \ell$\\
+			\[
+				\exists V \in \mathcal{V}_\ell, \forall W \in \mathcal{V}_a, \exists x \in W \cap  \mathcal{D}, f(x) \not\in V
+			\] Soit $V$ comme ci dessus. Soit $W_1 \in \mathcal{V}_a$.\\
+			\begin{itemize}
+				\item[\sc Cas 1] $a \in \mathcal{D}$ et $\forall x \in W \cap \mathcal{D} \setminus \{a\}, f(x)  \in V$.\\
+					On le prouve par la contraposée. On suppose $f(x) \centernot{\tendsto{x\to a}} \ell \in \R$\\
+					Donc, \[
+						\exists \varepsilon > 0, \forall \eta > 0, \exists x \in ]a-\eta, a+\eta[, \left| f(x) - \ell \right| > \varepsilon
+					\] On considère un tel $\varepsilon$ donc \[
+						\forall n \in \N_*, \exists x_n \in \left]a-\frac{1}{n}, a+\frac{1}{n}\right[, \left| f(x_n) - \ell \right| > \varepsilon
+					\] Par encadrement, $x_n \tendsto{n\to +\infty} a$ et $f(x_n) \centernot{\tendsto{n\to +\infty}} \ell$
+				\item[\sc Cas 2]
+					Soit $x_1 \in W_1 \cap \mathcal{D}$ tel que $f(x_1) \not\in V$ \\
+					$\begin{cases}
+						x_1\in \mathcal{D}\\
+						a \not\in \mathcal{D}
+					\end{cases}$ donc $x_1 \neq a$ \\
+				\item[\sc Cas 3] $\exists x \in W_1 \cap  \mathcal{D}\setminus \{a\}, f(x) \not\in V$\\
+					Soit $x_1$ un tel élément:
+					\begin{align*}
+						&x_1 \in W_1 \cap \mathcal{D}\\
+						&x_1 \neq a\\
+						&f(x_1) \not\in V
+					\end{align*}
+			\end{itemize}
+			Dans les cas 2 et 3, on pose $W_2 \in \mathcal{V}_a$ tel que \[
+				W_2 \subset W_1 \setminus \{x_1\}
+			\] En itérant ce procédé, on construit une suite $(x_n)$ qui tend vers $a$ et telle que \[
+				\forall n \in \N, f(x_n) \not\in V
+			\] et donc $f(x_n) \centernot{\tendsto{n\to +\infty}} \ell$
+	\end{itemize}
+\end{prv}
+
+
+\begin{prop}
+	Si  $f(x) \tendsto{x \to a} \ell$ et $g(x) \tendsto{x \to a} \ell_2$\\
+	alors
+	\begin{enumerate}
+		\item $f(x) + g(x) \tendsto{x \to a} \ell_1 + \ell_2$\\
+		\item $f(x) \times g(x) \tendsto{x \to a} \ell_1 \times \ell_2$\\
+		\item Si $\ell_2 \neq 0$, $\frac{f(x)}{g(x)} \tendsto{x \to a} \frac{\ell_1}{\ell_2}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $(x_n)$ une suite qui tends vers $a$ alors $f(x_n) \tendsto{n \to +\infty} \ell_1$ et $g(x_n) \tendsto{n \to +\infty} \ell_2$\\
+			Donc, $f(x_n) + g(x_n) \tendsto{n \to +\infty} \ell_1 + \ell_2$ \\
+			Donc $f(x) + g(x) \tendsto{n \to +\infty} \ell_1 + \ell_2$
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Si $f(x) \tendsto{x \to a} \ell_1$ et $g(x)\tendsto{x \to \ell_1} \ell_2$ alors $g(f(x)) \tendsto{x \to a} \ell_2$
+\end{prop}
+
+\begin{prv}
+	Soit $(x_n)$ une suite qui tend vers $a$. Alors, $f(x_n) \tendsto{n \to +\infty} \ell_1$ donc $g(f(x_n)) \tendsto{n \to +\infty} \ell_2$ donc $g(f(x)) \tendsto{x \to a} \ell_2$
+\end{prv}
+
+\begin{crlr}
+	Une somme, un produit, une composée de fonctions continues sont continues.
+	\qed
+\end{crlr}
+
+\begin{rmk}
+	Pour démontrer que $f(x)$ n'a pas de limite quands $x$ tend vers $a$. On cherche deux suites $(x_n)$ et $(y_n)$ de limite $a$ avec \[
+		\begin{cases}
+			f(x_n) \longrightarrow \ell_1\\
+			f(y_n) \longrightarrow \ell_2\\
+			\ell_1\neq \ell_2
+		\end{cases}
+	\]
+\end{rmk}
+
+\begin{exm}
+	\begin{align*}
+		\forall n \in \N, &\sin(2\pi n) = 0 \tendsto{n \to +\infty} 0\\
+		&\sin\left(\frac{\pi}{2} + 2\pi n\right) = 1 \tendsto{n \to +\infty} 1\\
+	\end{align*}
+	Or,
+	\begin{align*}
+		2\pi n \tendsto{n \to +\infty} +\infty\\
+		\frac{\pi}{2} + 2\pi n \tendsto{n \to +\infty} +\infty\\
+	\end{align*}
+
+	Donc, $\sin$ n'a pas de limite en $+\infty$
+\end{exm}
+
+\begin{thm}
+	[Limite monotone]
+	Soit $f$ une fonction croissante sur $]a,b[$ avec $a \neq b \in \overline{\R}$.
+	 \begin{enumerate}
+		\item Si $f$ est majorée, \[
+				\exists M \in \R, \forall x \in ]a,b[, f(x) \le M
+			\] alors $\lim_{\substack{
+				x \to b\\
+				<
+			}}f(x) = \sup_{x \in ]a,b[}f(x) \in \R$ 
+		\item Si $f$ n'est pas majorée, \[
+				\lim_{\substack{
+					x \to b\\
+					<
+				}} f(x) = +\infty
+			\]
+		\item Si $f$ est minorée, \[
+				\exists  m \in \R, \forall x \in ]a,b[, f(x) \le m
+			\] alors $\lim_{\substack{
+				x \to a\\
+				>
+			}} f(x) = \inf_{]a,b[}f \in \R$ 
+		\item Si $f$ n'est pas minorée, $\lim_{\substack{
+			x \to a\\
+			>
+		}} f(x) = -\infty$
+	\end{enumerate}
+\end{thm}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\sup_{]a,b[}f$ existe\\
+			\[
+				\forall \varepsilon>0, \exists x \in ]a,b[, f(x) > \sup_{]a,b[}(f) - \varepsilon
+			\] donc \[
+				\forall \varepsilon >0, \exists x \in ]a,b[, \forall y \in [x,b[, \sup_{]a,b[}(f) - \varepsilon < f(y) \le \sup_{]a,b[}(f) < \sup_{]a,b[}(f) + \varepsilon
+			\] donc $f(x) \tendsto{\substack{
+				x \to b\\
+				<
+			}} \sup_{]a,b[}(f)$ 
+		\item $f$ n'est pas majorée \[
+			\forall M \in \R, \exists x \in ]a,b[, f(x) > M
+		\] donc \[
+			\forall M \in \R, \exists x \in ]a,b[, \forall  y \in [x,b[, f(y) \in [M, +\infty[
+		\]
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	Avec les hypothèses ci-dessus, pour tout $x \in ]a,b[$,\\
+	$f$ est croissante sur $]a,x[$, et majorée par  $f(x)$ donc $\lim_{\substack{
+		t \to x\\
+		<
+	}}f(t) \in \R$ \\
+	$f$ est croissante sur $]x,b[$ et minorée par $f(x)$ donc $\lim_{\substack{
+		t \to x\\
+		>
+	}} f(t) \in \R$\\
+	$
+	\lim_{\substack{
+		t \to x\\
+		<
+	}} f(t)\le 
+	f(x)
+	\le \lim_{\substack{
+		t \to x\\
+		>
+	}} f(t)$
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+
+			axes(EndArrow);
+
+			real f(real x) {
+				return (5/24)*x^5 - (11/4)*x^4 + (101/8)*x^3 - (93/4)*x^2 + (91/6)*x;
+			}
+
+			real x = 2.8;
+			real eps = 0.06;
+			draw(graph(f,0, x-eps), magenta);
+			draw(graph(f,x+eps,5), magenta);
+			
+			dot((x, f(x)), magenta);
+
+			dot((-0.4,-0.4), white+0);
+		\end{asy}
+	\end{center}
+\end{rmk}
+
+\begin{thm}
+	[Théorème des valeurs intermédiaires]
+
+	Soit $f$ une fonction continue sur un intervalle $I$, $a<b$ deux éléments de $I$. \[
+		\forall y \in \left[ f(a),f(b) \right] \cup \left[ f(b),f(a) \right],~
+		\exists x \in [a,b],~ y = f(x)
+	\] 
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+			
+			axes(EndArrow);
+
+			real a = 1.5;
+			real b = 8;
+
+			real f(real xe) {
+				real x = xe - 6.5;
+				return (x^3+5*x^2)/3+2;
+			}
+
+			path f_graph = graph(f,a,b);
+
+			draw(f_graph, magenta);
+
+			real y = 5;
+			path y_line = (0,y)--(10,y);
+
+			draw(y_line, dashed+red);
+			label("$y$", (10,y), align=E, red);
+
+			draw((a,0)--(a,f(a)), dashed+deepcyan);
+			draw((b,0)--(b,f(b)), dashed+deepcyan);
+
+			label("$a$", (a,0), align=S, deepcyan);
+			label("$b$", (b,0), align=S, deepcyan);
+
+			pair[] roots = intersectionpoints(y_line, f_graph);
+
+			for(int i=0; i < 3; ++i) {
+				real x = roots[i].x;
+				draw((x,0)--(x,y), dashed+heavygreen);
+				label("$x$", (x,0), heavygreen, align=S);
+			}
+		\end{asy}
+	\end{center}
+\end{thm}
+
+\begin{lem}
+	Soit $f$ une fonction continue sur un intervalle $I$, $a<b$ deux éléments de $I$ tels que $f(a) \le 0 \le f(b)$.
+	Alors, \[
+		\exists x \in [a,b], f(x) = 0
+	\]
+\end{lem}
+
+\begin{prv}
+	[du lemme]
+	On pose $A = \left\{x \in [a,b]  \mid  f(x) \le 0 \right\} $ \\
+	$A \neq \O$ car $a \in A$ et $A$ est majorée par $b$.\\
+	On pose $u = \sup(A)$. Soit $(x_n) \in A^\N$ qui converge vers $u$.\\
+	$\forall n \in \N, x_n \in A$ donc $\forall n \in \N, \begin{cases}
+		a \le x_n \le b\\
+		f(x_n) \le 0
+	\end{cases}$ \\
+	On sait que $x_n \longrightarrow u$ et $f(x_n) \longrightarrow f(u)$ par continuité de $f$.\\
+	Donc, $\begin{cases}
+		a \le u \le b\\
+		f(u) \le 0
+	\end{cases}$ (donc $u = \max(A)$)\\
+	De plus, \[
+		\forall x \in ]u,b], f(x) > 0
+	\] donc \[
+		\begin{cases}
+			\lim_{\substack{x \to u\\>}}f(x) = f(u)\\
+			\\
+			\lim_{\substack{x \to u\\>}}f(x) \ge 0\\
+		\end{cases}
+	\]
+	Donc, $f(u) \ge 0$ donc $f(u) = 0$ \\
+\end{prv}
+
+\begin{prv}
+	[du théorème]
+
+	On pose $g: x \mapsto f(x) - y$. $g$ est continue sur $I$.\\
+
+	\underline{Si} $f(a) < f(b)$ alors $\begin{cases}
+		g(a) \le 0\\
+		g(b) \ge 0
+	\end{cases}$ \\
+	D'après le lemme, il existe $x \in [a,b]$ tel que $g(x) = 0$ et donc $f(x) = y$ \\
+	\vspace{4mm}
+
+	\underline{Si} $f(a) < f(b)$ alors $\begin{cases}
+		h(a) \le 0\\
+		h(b) \ge 0
+	\end{cases}$ où $h: x\mapsto -g(x) = y - f(x)$ est continue\\
+	D'après le lemme, il existe $x \in [a,b]$ tel que $h(x) = 0$ et donc $f(x) = y$
+\end{prv}
+
+\begin{crlr}
+	Soit $f$ continue sur un intervalle $I$. Alors, $f(I)$ est un intervalle.
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+			
+			axes(EndArrow);
+
+			real a = 1.7;
+			real b = 8;
+
+			real f(real xe) {
+				real x = xe - 6.5;
+				return (x^3+5*x^2)/3+2;
+			}
+
+			path f_graph = graph(f,a,b);
+
+			draw(f_graph, magenta);
+
+			draw((a,0)--(a,f(a)), dashed+deepcyan);
+			draw((b,0)--(b,f(b)), dashed+deepcyan);
+
+			draw((0,f(a))--(a,f(a)), dashed+deepcyan);
+			draw((0,f(b))--(b,f(b)), dashed+deepcyan);
+
+			label("$a$", (a,0), align=S, deepcyan);
+			label("$b$", (b,0), align=S, deepcyan);
+
+			label("$f(a)$", (0,f(a)), align=W, deepcyan);
+			label("$f(b)$", (0,f(b)), align=W, deepcyan);
+
+			draw(brace((a-0.5,-1.2),(b+0.5,-1.2), -0.6));
+			label("$I$", ((a+b)/2, -1.7), align=S);
+
+			dot((b+2,0),white+0);
+		\end{asy}
+	\end{center}
+\end{crlr}
+
+\begin{prv}
+	Montrons que $f(I)$ est convexe\\
+	Soit $\alpha \in f(I), \beta\in f(I)$ avec $\alpha<\beta$. Montrons que \[
+		\forall \gamma \in [\alpha,\beta], f(\gamma) \in f(I)
+	\] Or, $\begin{cases}
+		\alpha \in f(I) ~~ \exists  a \in I, \alpha = f(a)\\
+		\beta \in f(I) ~~ \exists  b \in I, \beta = f(b)
+	\end{cases}$ \\
+	D'après le théorème des valeurs intermédiaires, il existe $x \in [a,b]$ tel que $\gamma = f(x)$ donc, $f(\gamma) \in f(I)$
+\end{prv}
+
+\begin{crlr}
+	On peut généraliser le théorème des valeurs intermédiaires au cas où $\begin{cases}
+		a \in \overline{R}\\
+		b \in \overline{\R}
+	\end{cases}$ en remplaçant $f(a)$ par $\lim_{\substack{x \to a\\>}}f(x)$ et $f(b)$ par $\lim_{\substack{x \to b\\<}}f(x)$ \\
+	\qed
+\end{crlr}
+
+\begin{thm}
+	[Théorème de la bijection]
+
+	Soit $f$ continue, strictement monotone sur un intervalle $I$.
+	Alors, $J = f(I)$ est un intervalle de même nature (ouvert, semi-ouvert ou fermé) et $f$ établit une bijection de $I$ sur $J$.
+\end{thm}
+
+\begin{prv}
+	D'après le théorème des valeurs intermédiaires, $J$ est un intervalle.
+	$f$ est strictement monotone donc $f$ injective.
+	Donc $f$ établit une bijection de $I$ sur $J$.\\
+
+	\begin{itemize}
+		\item[\sc Cas 1] $I = [a,b]$ et $f$ croissante\\
+			$\forall x \in I, a \le x \le b$\\
+			donc  $\forall x \in I, f(a) \le f(x) \le f(b)$ \\
+			donc $J \subset [f(a), f(b)]$\\
+			Or, $[f(a), f(b)] \subset J$ d'après le théorème des valeurs intermédiaires\\
+			Donc $J = [f(a), f(b)]$
+	\end{itemize}
+	~~~~ Les autres cas se démontrent de la même façon.
+\end{prv}
+
+\begin{thm}
+	Soit $f$ continue sur un segment $[a,b]$. Alors, $f$ est bornée et atteint ses bornes, i.e. \[
+		\exists (m,M) \in \R^2, f([a,b]) = [m,M]
+	\]\\
+	\danger On peut avoir $m \neq f(a)$ et $M \neq f(b)$
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+			
+			axes(EndArrow);
+
+			real a = 1.7;
+			real b = 8;
+
+			real f(real xe) {
+				real x = xe - 6.5;
+				return (x^3+5*x^2)/3+2;
+			}
+
+			path f_graph = graph(f,a,b);
+
+			draw(f_graph, magenta);
+
+			draw((a,0)--(a,f(a)), dashed+deepcyan);
+			draw((b,0)--(b,f(b)), dashed+deepcyan);
+
+			draw((0,f(a))--(a,f(a)), dashed+deepcyan);
+			draw((0,f(b))--(b,f(b)), dashed+deepcyan);
+
+			label("$a$", (a,0), align=S, deepcyan);
+			label("$b$", (b,0), align=S, deepcyan);
+
+			label("$f(a)$", (0,f(a)), align=W, deepcyan);
+			label("$f(b)$", (0,f(b)), align=W, deepcyan);
+
+			dot((b+2,0),white+0);
+
+			real M = max(f_graph).y;
+			real m = min(f_graph).y;
+			pair Mp = intersectionpoint(f_graph, (0,M)--(10,M));
+			pair mp = intersectionpoint(f_graph, (0,m)--(10,m));
+
+			draw(Mp--(0,M), heavyred + dashed);
+			draw(mp--(0,m), heavyred + dashed);
+			label("$M$", (0,M), heavyred, align=W);
+			label("$m$", (0,m), heavyred, align=W);
+
+			dot((0,M+2),white+0);
+		\end{asy}
+	\end{center}
+\end{thm}
+
+\begin{prv}
+	On suppose que $f$ n'est pas majorée: \[
+		\forall M \in \R, \exists x \in [a,b], f(x) \ge M
+	\] En particulier, \[
+		\forall n \in \N, \exists x_n \in [a,b], f(x_n) \ge n
+	\] Donc, $f(x_n) \tendsto{n \to +\infty} +\infty$ \\
+	La suite $(x_n)_{n\in\N}$ est minorée apr $a$ et majorée par $b$ donc bornée.\\
+	D'après le théorème de Bolzano-Weierstrass, il existe $\varphi: \N \longrightarrow \N$ strictement croissante telle que $(x_{\varphi(n)})_{\in\N}$ converge. On pose $\ell = \lim_{n \to +\infty} x_{\varphi(n)}$. On a bien $\ell \in [a,b]$ et $f(\ell) = \lim_{n \to +\infty} f\left(x_{\varphi(n)}\right)$ par continuité de $f$.\\
+	Or, $\left( f\left( x_{\varphi(n)} \right)  \right) _{n \in \N}$ est une sous-suite de $\left( f(x_n) \right)$  donc $f\left( x_{\varphi(n)} \right) \tendsto{n \to +\infty}+\infty$: une contradiction\\
+	Donc $f$ est majorée et on pose \[
+		M = \sup_{a \le x \le b}f(x)
+	\] On prouve de même que $f$ est minorée. On pose donc \[
+		m = \inf_{a \le x \le b} f(x)
+	\]
+
+	Soit $(y_{n}) \in [a,b]^\N$ telle que $f(y_{n}) \tendsto{n \to +\infty} M$.\\
+	$(y_{n})$ est bornée donc il existe une sous-suite $\left( y_{\psi(n)} \right)$ de $(y_n)$ convergente. On pose $y = \lim_{n \to +\infty} y_{\psi(n)} \in [a,b]$ \\
+	Comme $f$ continue sur $y$, \[
+		f(y) = \lim_{n \to +\infty} f\left( y_{\psi(n)} \right) 
+	\] Or, $\left( f\left( y_{\psi(n)} \right)  \right) $ est une sous-suite de $\left( f(y_n) \right)$ donc \[
+		M = \lim_{n \to +\infty} f\left(y_{\psi(n)}\right)
+	\] Par unicité de la limite, $M = f(y)$\\
+	Donc, $M = \max_{a \le x \le b} f(x)$. De même, $m \in f([a,b])$ \\
+	Enfin, en posant $\begin{cases}
+		M = f(y) &\text{ avec } y \in [a,b]\\
+		m = f(z) &\text{ avec } z \in [a,b]\\
+	\end{cases}$, on obtient \[
+		[m,M] = [f(z),f(y)] \underbrace{\subset}_{\mathllap{\text{théorème des valeurs intermédiaires}}} f([a,b]) \underbrace{\subset}_{\mathclap{\substack{m \text{ minimum}\\ \\ M \text{ maximum}}}} [m,M]
+	\] donc $f([a,b]) = [m,M]$
+\end{prv}

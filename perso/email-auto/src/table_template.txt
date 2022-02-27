@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>
+          {{ matiere }}
+        </p>
+        <p>{{ salle }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

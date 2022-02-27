@@ -1,0 +1,173 @@
+\part{Définition et premières propriétés}
+
+\begin{defn}
+	Soit $E$ un ensemble muni d'une loi \underline{interne} $+$ et d'une loi $\cdot$ définie sur $\mathbbm{K}\times E$ à valeurs dans $E$ où $\mathbbm{K}$ est un corps.\\
+	On dit que $(E,+,\cdot)$ est un \underlin{$\mathbbm{K}$-espace vectoriel} (ou un \underlin{espace vectoriel sur $\mathbbm{K}$}) si
+	\begin{enumerate}
+		\item $(E,+)$ est un groupe abélien
+		\item
+			\begin{enumerate}
+				\item
+					\begin{align*}
+						\forall u \in E, \forall (\lambda,\mu) \in \mathbbm{K}^2, \\
+						\mu\cdot (\lambda\cdot u) = (\mu\underbrace{\times}_{\mathclap{\times \text{ de } \mathbbm{K}}}\lambda)\cdot u
+					\end{align*}
+				\item $\forall u \in E, 1_\mathbbm{K} \cdot u = u$
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item 
+					\begin{align*}
+						\forall u \in E, \forall (\lambda,\mu) \in \mathbbm{K}^2\\
+						(\lambda\cdot u)\underbrace{+}_{\mathclap{+ \text{ de } E}} (\mu\cdot u) = (\lambda \underbrace{+}_{\mathclap{+ \text{ de } \mathbbm{K}}} \mu) \cdot u
+					\end{align*}
+				\item
+					\begin{align*}
+						\forall \lambda \in \mathbbm{K}, \forall (u,v) \in E^2,\\
+						\lambda \cdot (u+v) = (\lambda \cdot u) + (\lambda \cdot v)
+					\end{align*}
+			\end{enumerate}
+	\end{enumerate}
+
+	Les éléments de $E$ sont alors appelés \underline{vecteurs} et les éléments de $\mathbbm{K}$ sont dits \underline{scalaires}.\\
+	Par convention, $\cdot$ est prioritaire sur $+$.
+\end{defn}
+
+\begin{exm}
+	Soit $\mathbbm{K}$ corps, $\mathbbm{K}$ est un $\mathbbm{K}$-espace vectoriel
+\end{exm}
+
+\begin{exm}
+	Soit $\vec{\mathcal{P}}$ l'ensemble des vecteurs du plan. $\vec{\mathcal{P}}$ est un $\R$-espace vectoriel.
+\end{exm}
+
+\begin{exm}
+	$\C$ est un $\R$-espace vectoriel.\\
+	En généralisant, tout corps $\mathbbm{K}$ est un $\mathbbm{L}$-espace vectoriel pour $\mathbbm{L}$ un sous-corps de $\mathbbm{K}$
+\end{exm}
+
+\newcommand{\red}[1]{{\color{red} ~#1~}}
+\begin{exm}
+	$\left( \mathbbm{K}^n,\red+,\red\cdot\right)$ avec
+	\begin{align*}
+		(x_1, \ldots, x_n) + (y_1, \ldots, y_n) &= (x_1\red+y_1, \ldots, x_n \red+ y_n)\\
+		\lambda \cdot (y_1, \ldots, y_n) &= (\lambda \red\cdot y_1, \ldots, \lambda \red\cdot y_n)
+	\end{align*}
+	est un espace vectoriel.
+\end{exm}
+
+\begin{exm}
+	Soient $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $\mathcal{D}$ un ensemble non vide.\\
+	$(E^\mathcal{D},+,\cdot)$ est un $\mathbbm{K}$-espace vectoriel où pour $f,g \in E^\mathcal{D}$ et $\lambda\in \mathbbm{K}$ 
+	\begin{align*}
+		f+g: \mathcal{D} &\longrightarrow E \\
+		x &\longmapsto f(x) + g(x)
+	\end{align*}
+	\begin{align*}
+		\lambda f: \mathcal{D} &\longrightarrow \mathbbm{K} \\
+		 x &\longmapsto \lambda \cdot f(x) 
+	\end{align*}
+
+	Par exemple, $\C^\N$ est un $\R$-espace vectoriel\\
+	$\mathcal{C}^0(\mathcal{D},\R)$ est un $\R$-espace vectoriel
+\end{exm}
+
+\begin{exm}
+	\begin{itemize}
+		\item $\R^+$ n'est pas un $\R$-espace vectoriel
+		\item $\left\{ (x,0)  \mid x \in \R \right\} \cup \left\{ (0,y)  \mid y \in \R \right\} $ n'est pas un $\R$-espace vectoriel pour les lois usuelles
+			\begin{center}
+				\begin{asy}
+					import graph;
+					size(3cm);
+
+					axes(EndArrow);
+
+					dot((-0.5,-0.5),white+0);
+					dot((4,4),white+0);
+
+					dot((2,3),red);
+
+					draw((2,3)--(-0.15,3),dashed+red);
+					draw((2,3)--(2,-0.15),dashed+red);
+				\end{asy}
+			\end{center}
+
+			\begin{center}
+				\begin{asy}
+					import graph;
+					import patterns;
+					size(5cm);
+
+					axes(EndArrow);
+					add("hatch",hatch(red));
+
+					dot((-4,4),white+0);
+					dot((4,-4),white+0);
+
+					filldraw(circle((0,0),2), pattern("hatch"), red);
+					
+					pair A = (1,1);
+					pair B = (3,2);
+					
+					dot(A, blue);
+					dot(B, blue);
+
+					draw(A -- B, blue);
+				\end{asy}
+			\end{center}
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	Soit $(E,+,\cdot )$ un $\mathbbm{K}$-espace vectoriel.\\
+	\begin{enumerate}
+		\item $\forall u \in E, 0_\mathbbm{K}\cdot u = 0_E$ 
+		\item $\forall  \lambda \in \mathbbm{K}, \lambda \cdot 0_E = 0_E$ 
+		\item $\forall \lambda \in \mathbbm{K}, \forall u \in E, \lambda \cdot u = 0_E \implies\lambda = 0_\mathbbm{K} \text{ ou } u = 0_E$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $u \in E$.
+			\begin{align*}
+				0_\mathbbm{K} \cdot u &= (0_\mathbbm{K}+0_\mathbbm{K}) \cdot  u\\
+															&= 0_\mathbbm{K} \cdot u + 0_\mathbbm{K} \cdot u \\
+			\end{align*}
+			$(E,+)$ est un groupe donc $0_E = 0_\mathbbm{K} \cdot u$ 
+		\item Soit $\lambda \in \mathbbm{K}$.
+			\begin{align*}
+				\lambda \cdot 0_E = \lambda\cdot (0_E+0_E) = \lambda \cdot 0_E + \lambda\cdot 0_E
+			\end{align*}
+			$\lambda\cdot 0_E$ est régulier pour $+$ : \[
+				0_E = \lambda \cdot 0_E
+			\]
+		\item Soit $\lambda \in \mathbbm{K}$ et $u \in E$ tel que $\lambda \cdot u = 0_E$\\
+			\begin{itemize}
+				\item[\sc Cas 1] $\lambda = 0_\mathbbm{K}$
+				\item[\sc Cas 2] $\lambda \neq 0_\mathbbm{K}$
+					Alors, $\lambda^{-1} \in \mathbbm{K}$ et donc
+					\begin{align*}
+						\lambda \cdot u = 0_E &\implies \lambda^{-1}(\lambda\cdot u) = \lambda^{-1}\\
+																	&\implies(\lambda^{-1}\times \lambda)\cdot u = 0_E \text{ d'après 2.}\\
+																	&\implies 1_\mathbbm{K} \cdot u = 0_E\\
+																	&\implies u = 0_E
+					\end{align*}
+			\end{itemize}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $u \in E$. Alors, $-u = (-1_\mathbbm{K})\cdot u$
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		u + (-1_{\mathbbm{K}})\cdot u&= (1_\mathbbm{K}\cdot u) + (-1_{\mathbbm{K}})\cdot u \\
+		&= (1_\mathbbm{K} + (-1_{\mathbbm{K}}))\cdot u \\
+		&= 0_\mathbbm{K} u  \\
+		&= 0_E \\
+	\end{align*}
+	Donc $-u = (-1_\mathbbm{K}) \cdot u$
+\end{prv}

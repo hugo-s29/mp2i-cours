@@ -1,0 +1,168 @@
+\part{}
+
+\begin{defn}
+	Une \underline{équation différentielle} est une égalité faisant intervenir une fonction inconnue $y$ ainsi que ses dérivées successives $y', y'', y^{(3)}, \ldots, y^{(n)}$.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $y^{(3)} + \ln\left( y' \right) = e^{y}$ 
+		\item ~\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}
+					{l}{0.3\linewidth}
+					\vspace{-1.5cm}
+					\centering
+					\begin{asy}
+						size(4cm);
+						real theta = 30;
+						real r = 5;
+
+						pair M = r * dir(theta) * (-I);
+						pair O = (0,0);
+
+						dot(O);
+						fill(circle(M, 0.2));
+						draw(O--M);
+
+						pair B = (r+0.3) * (-I);
+						draw(O--B, gray);
+
+						draw(B-(0.5, 0)--B+(0.55, 0), gray);
+						for(real x = -0.5; x <= 0.55; x += 0.15) {
+							pair A = B + (x, 0);
+							pair A2 = A + (-0.1, -0.3);
+							draw(A--A2, gray);
+						}
+
+						draw(arc(O, r/3, 270, 270+theta), deepcyan, Arrow(TeXHead));
+						label("$\theta$", dir(270+theta/2) * r/3, deepcyan, align=S + E/2);
+					\end{asy}
+				\end{wrapfigure}
+
+				\vspace{1cm}
+				On a $\ddot\theta + \sin(\theta) = 0$ i.e. $\frac{d^2\theta}{dt^2} + \sin(\theta) = 0$\\
+				Pour les ``petits angles'', $\sin(\theta) \simeq 0$. On résout donc \[
+					\ddot\theta = -\theta
+				\] 
+				\vspace{1cm}
+			\end{minipage}
+		\item
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}
+					{r}{0.3\linewidth}
+					\vspace{-1cm}
+					\begin{circuitikz}
+						\draw (0,0) to[american, isource, l=$e(t)$] (0,2) to[R=$R$] (3,2) to[C=$C$] (3,0) to[L=$L$] (0,0);
+					\end{circuitikz}
+				\end{wrapfigure}
+				\begin{align*}
+					L\frac{d^2q}{dt^2} + R \frac{dq}{dt} + \frac{1}{C} q = e(t)\\
+					L\ddot q + R \dot q + \frac{1}{C}q = e(t)
+				\end{align*}
+			\end{minipage}
+		\item Modèle de population : $\frac{dN}{dt} = \lambda N (1-N)$
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Une \underline{équation différentielle linéaire d'ordre $n$} est de la forme \[
+		a_n y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_0y = b(t)
+	\] où $b, a_0, a_1, \ldots, a_n$ sont des fonctions connues et continues sur un intervalle $I$. On dit que $b$ est le \underline{second membre} de l'équation.
+\end{defn}
+
+\begin{exm}
+	[$\cos(t)y'' + \sin(t)y' = \tan(t)$]
+\end{exm}
+
+\begin{prop}
+	[Principe de superposition]
+	Soient $b_1$ et $b_2$ continues sur $I$. Soient $a_0, a_1, \ldots, a_n$ également continues sur $I$.
+	\begin{align*}
+		(E_1):&\quad\sum_{k=0}^{n} a_k y^{(k)} = b_1\\
+		(E_2):&\quad\sum_{k=0}^{n} a_k y^{(k)} = b_2\\
+	\end{align*}
+	Soient $(\lambda_1, \lambda_2) \in \C^2$. \[
+		(E): \quad \sum_{k=1}^{n} a_k y^{(k)} = \lambda_1b_1 + \lambda_2b_2
+	\] 
+	\[
+		\begin{rcases*}
+			y_1 \text{ solution de } (E_1)\\
+			y_2 \text{ solution de } (E_2)\\
+		\end{rcases*} \implies \lambda_1 y_1 + \lambda_2 y_2 \text{ solution de } (E)
+	\] 
+\end{prop}
+
+\begin{prv}
+	On pose $y = \lambda_1 y_1 + \lambda_2 y_2$ dérivable $n$ fois car c'est le cas de $y_1$ et $y_2$
+	Donc, \[
+		\forall k \in \left\llbracket 0, n \right\rrbracket, y^{(k)} = \lambda_1 y_1^{(k)} + \lambda_2 y_2^{(k)}
+	\]
+	D'où,
+	\begin{align*}
+		\sum_{k=0}^{n} a_ky^{(k)}
+		&= \sum_{k=0}^{n} a_k \left( \lambda_1 y_1^{(k)} + \lambda_2 y_2^{(k)} \right) \\
+		&= \lambda_1 \sum_{k=1}^{n} a_ky_1^{(k)} + \lambda_2 \sum_{k=1}^{n} a_ky_2^{(k)} \\
+		&= \lambda_1 b_1 + \lambda_2 b_2 \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $(E)$ l'équation différentielle $\sum_{k=0}^{n} a_k y^{(k)} = b$ où $a_0, a_1, \ldots, a_n$ sont des fonctions homogènes. L'\underline{équation homogène} associée à $(E)$ est \[
+		(H): \sum_{k=0}^{n} a_k y^{(k)} = 0
+	\] 
+	Les solutions de $(E)$ sont toutes de la forme $h + y_0$ où $h$ est solution de $(H)$ et $y_0$ solution de $(E)$.
+\end{prop}
+
+\begin{prv}
+	Soit $y$ une solution de $(E)$ et $y_0$ une solution particulière de $(E)$. On pose $h = y - y_0$.\\
+	D'après le principe de superposition, $h$ est une solution de $(H)$.\\
+	Réciproquement, si  $h$ est une solution de $(H)$ et $y_0$ une solution de $(E)$ alors $h+y_0$ est aussi solution de $(E)$.
+\end{prv}
+
+\begin{thm}
+	[Théorème de Cauchy]
+	Soit $(E)$ une équation linéaire différentielle. \[
+		(E): \quad y^{(n)} + \sum_{k=0}^{n-1} a_k y^{(k)} = b
+	\] où $a_0, a_1, \ldots, a_n$ sont \underline{continues} sur un \underline{intervalle} $I$.\\
+	Soit $t_0 \in I$ et $\left( \alpha_0, \alpha_1, \ldots, \alpha_n \right) \in \C^{n}$.\\
+	Il existe {\bf une et une seule} fonction $y$ telle que \[
+		\begin{cases}
+			y \text{ solution de } (E)\\
+			\forall i \in \left\llbracket 0,n-1 \right\rrbracket, y^{(i)}(t_0) = \alpha_i
+		\end{cases}
+	\] 
+\end{thm}
+
+\begin{exm}
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}
+			{l}{0.3\linewidth}
+			\centering
+			\begin{asy}
+				import solids;
+				settings.render=0;
+				settings.prc=false;
+
+				size(4cm);
+				revolution r = cylinder(O, 0.5, 1, Z);
+
+				draw(r,1);
+
+				draw(circle((0,0,0), 0.5), cyan);
+				draw(circle((0,0,0.5), 0.5), cyan);
+
+				draw(r.silhouette());
+
+				draw(circle((0,0), 0.05));
+				draw((0,0.01)--(0,-0.4), cyan, Arrow(TeXHead));
+			\end{asy}
+		\end{wrapfigure}
+		On ne peut pas déduire le passé d'un sceau percé, son équation est non-linéaire. \[
+			h' = -c\sqrt{h} \text{ avec } c \in \R_*^+
+		\] 
+	\end{minipage}
+\end{exm}

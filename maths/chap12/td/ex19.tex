@@ -1,0 +1,25 @@
+\part{Exercice 19}
+
+Soit $a \in A\setminus \{0\}$ 
+\begin{align*}
+	f: A &\longrightarrow A \\
+	x &\longmapsto ax
+\end{align*}
+
+$1 \in \mathrm{Im}(f)~ ?$\\
+\begin{itemize}
+	\item Soient $x,y \in A$ \\
+		\begin{align*}
+			f(x+y) = a(x+y)  ax + ay = f(x) + f(y)
+		\end{align*}
+		donc $f$ est un endomorphisme de $(A,+)$
+	\item Soit $x \in A$ \\
+		\begin{align*}
+			x \in \Ker(f) &\iff f(x) = 0\\
+										&\iff ax = 0\\
+										&\iff a = 0 \text{ ou } x = 0\\
+										&\iff x = 0
+		\end{align*}
+		$\Ker(f) = \{0\}$ donc $f$ est injective.\\
+		Comme $A$ est \underline{fini}, $f$ est bijective donc $\mathrm{Im} = A \ni 1$
+\end{itemize}

@@ -1,0 +1,341 @@
+\part{Continuité uniforme}
+
+\let\cancel\relax
+
+\begin{rmk}
+	$f: \R \to \R$ continue, \[
+		\forall x \in \R, \forall \varepsilon > 0, \exists \eta > 0, \forall y \in ]x - \eta, x + \eta[, \left| f(x) - f(y) \right| \le \varepsilon
+	\] Ici, $\eta$ dépend de $\varepsilon$ et de $x$
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+			axes(EndArrow);
+
+			real f(real xe) {
+				real x = xe - 6.5;
+				return (x^3+5*x^2)/18+1;
+			}
+
+			path f_graph = graph(f, 1.7, 8);
+			draw(f_graph, magenta);
+
+			real w = 0.2;
+
+			void put(real x, real eta, pen p) {
+				dot("$x$", (x,0), p, align=S);
+				
+				draw((x-eta,0)--(x+eta,0),p);
+				draw((x-eta,w)--(x-eta,-w),p);
+				draw((x+eta,w)--(x+eta,-w),p);
+
+				real k = 0.7;
+
+				draw(brace((x,-k),(x-eta,-k)), p);
+				label("$\eta$", (x-eta/2, -k), p, align=S);
+
+				draw((x,0)--(x,f(x)), dashed + p);
+				draw((x+eta,0)--(x+eta,f(x+eta)), dotted + p);
+				draw((x-eta,0)--(x-eta,f(x-eta)), dotted + p);
+
+				draw((x-eta, f(x)) -- (x+eta, f(x)), p);
+				draw((x-eta, f(x)) -- (x+eta, f(x)), p);
+
+				real eps = max(abs(f(x) - f(x-eta)), abs(f(x) - f(x+eta)));
+
+				draw((x-eta, f(x) + eps) -- (x+eta, f(x) + eps), p + dashed);
+				draw((x-eta, f(x) - eps) -- (x+eta, f(x) - eps), p + dashed);
+			}
+
+			put(3.2, 0.6, deepcyan);
+			put(6, 1.1, blue);
+		\end{asy}
+	\end{center}
+
+	Dans certaines situations, il serait préférable d'avoir \[
+		\forall \varepsilon >0, \exists \eta > 0, \forall (x,y) \in \R^2,
+		\left| x-y \right| \le \eta \implies \left| f(x) - f(y) \right| \le \varepsilon
+	\] 
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+			axes(EndArrow);
+
+			real eps = 0.6;
+
+			real f(real x) { return sqrt(x); }
+			real fa(real x) { return sqrt(x) + eps; }
+			real fb(real x) { return sqrt(x) - eps; }
+
+			draw(graph(f, 1.7, 6), magenta);
+			draw(graph(fa, 1.7, 6), deepcyan);
+			draw(graph(fb, 1.7, 6), deepcyan);
+
+			dot((8,f(8)), white+0);
+
+			real eta = 0.6;
+			real w = 0.2;
+
+			pair put(real x, real y) {
+				real m = (x+y)/2;
+
+				real a = m+eta;
+				real b = m-eta;
+
+				draw((a,0)--(b,0), red);
+				draw((a,w)--(a,-w), red);
+				draw((b,w)--(b,-w), red);
+
+				draw((x,0)--(x,f(x)), dashed+red);
+				draw((y,0)--(y,f(y)), dashed+red);
+
+				dot((x,f(x)),red);
+				dot((y,f(y)),red);
+
+				return (a,b);
+			}
+
+			put(2.2, 2.7);
+			pair ab = put(4.8, 5.3);
+
+			draw(brace((ab.x - 0.1,-0.5),(ab.y + 0.1, -0.5)));
+			label("$\eta$", ((ab.x+ab.y)/2, -0.5), align=S);
+
+			draw(brace((6.1,fa(6)),(6.1,f(6))));
+			label("$\varepsilon$", (6.1,(f(6)+fa(6))/2), align=E);
+		\end{asy}
+	\end{center}
+\end{rmk}
+
+\begin{lem}
+	Soit $f$ uniformément continue sur un intervalle $I$. Soient $(x_n)_{n\in\N}, (y_n)_{n\in\N}$ deux suites d'éléments dans $I$ telles que $x_n - y_n \tendsto{n \to +\infty} 0$.\\
+	Alors, $\lim_{n \to +\infty}\left( f\left( x_n \right) - f\left( y_n \right)\right) = 0$
+	\qed
+\end{lem}
+
+\begin{exm}
+	\begin{align*}
+		f: \R^+ &\longrightarrow \R \\
+		x &\longmapsto x^2
+	\end{align*}
+
+	\begin{center}
+		\begin{asy}
+			import graph; size(5cm);
+
+			axes(EndArrow);
+
+			real f(real x) { return x * x; }
+
+			path box(pair center, real w, real h) {
+				pair offset = (w/2,h/2);
+				return box(center-offset,center+offset);
+			}
+
+			draw(graph(f, 0, 1.2), magenta);
+
+			void put(real x) {
+				draw(box((x, f(x)), 0.15, 0.15), red);
+				dot((x,f(x)),deepcyan);
+				dot((x,0),deepcyan);
+
+				draw((x,0)--(x,f(x)), dashed+deepcyan);
+			}
+
+			put(0.4);
+			put(1);
+		\end{asy}
+	\end{center}
+
+	On pose $\forall n \in \N_*, \begin{cases}
+		x_n = n\\
+		y_n = n + \frac{1}{n}
+	\end{cases}$. On a bien $\forall n \in \N_*, x_n - y_n = \frac{1}{n} \tendsto{n \to +\infty} 0$. \\
+	\[
+		\forall n \in \N_*, {x_n}^2 - {y_n}^2 = \cancel{n^2} - \cancel{n^2} - \frac{1}{n^2} - 2\tendsto{n\to +\infty} -2 \neq O
+	\]
+	Donc, $f$ n'est pas uniformément continue.
+\end{exm}
+
+\begin{thm}
+	[Théorème de Heine]
+
+	Soit $f$ une function continue sur $[a,b]$. Alors, $f$ est uniformément continue sur $[a,b]$.
+\end{thm}
+
+\begin{prv}
+	On suppose $f$ continue sur $[a,b]$ mais pas uniformément continue. \[
+		\exists \varepsilon > 0, \forall \eta > 0, \exists (x,y) \in [a,b]^2 \text{ avec } \left| x-y \right| \le  \eta \text{ et } \left| f(x) - f(y) \right| > \varepsilon
+	\] Soit $\varepsilon>0$ comme ci-dessus. Alors, \[
+		\forall n \in \N, \exists (x_n,y_n) \in [a,b]^2 \text{ avec } \left| x_n-y_n \le \frac{1}{n+1} \right| \text{ et } \left| f(x_n) - f(y_n) \right| >\varepsilon
+	\]
+	$(x_n)$ est bornée donc il existe une sous-suite $\left( x_{\varphi(n)} \right)$ de $(x_n)$ convergente. On note $\ell = \lim_{n\to +\infty}x_{\varphi(n)} \in [a,b]$
+	$\left( y_{\varphi(n)} \right)$ est bornée, $\left( y_{\varphi(n)} \right)$ a une sous-suite $\left( y_{\varphi(\psi(n))} \right)$ convergente. On pose $\ell' = \lim_{n \to +\infty} y_{\varphi(\psi(n))}$. $\left( x_{\varphi(\psi(n))} \right)_{n\in \N}$ est une autre sous-suite de $\left( x_{\varphi(n)} \right)$ donc $x_{\varphi(\psi(n))} \tendsto{n \to +\infty} \ell$.\\
+	De plus, \[
+		\forall n \in \N, \left| x_{\varphi(\psi(n))} - y_{\varphi(\psi(n))} \right| \le \frac{1}{\varphi(\psi(n))+1}
+	\] On a vu que \[
+		\forall n \in \N, \varphi(\psi(n)) \ge n
+	\] car $\varphi \circ \psi$ est strictement croissante à valeurs dans $\N$.\\
+	Donc, $x_{\varphi(\psi(n))} - y_{\varphi(\psi(n))} \tendsto{n \to +\infty} 0$.\\
+	On en déduit que $\ell - \ell' = 0$. De plus \[
+		\forall n \in \N, \left| f\left(x_{\varphi(\psi(n))}\right) - f\left( x_{\varphi(\psi(n))} \right)  \right| > \varepsilon
+	\] En passant à la limite, \[
+		0 = \left| f(\ell) - f(\ell) \right| > \varepsilon > 0
+	\] car $f$ continue en $\ell$\\
+	On a obtenu une contradiction. $\lightning$
+\end{prv}
+
+\begin{rmk}
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+
+			axes(EndArrow);
+
+			real f(real x) { return 0.04 * (x - 2) * (x - 3) * (x - 4.5) * (x - 5.5) * (x - 1) + 2.5; }
+
+			draw(graph(f, 1, 5.7));
+
+			real x = 2;
+
+			dot("$x$", (x,0), deepcyan, align=S);
+			dot((x,f(x)), deepcyan);
+			
+			draw((x,0)--(x,f(x)), dashed+deepcyan);
+
+			real eps = 0.3;
+			real eta = 0.55;
+
+			draw(box((x-eta, f(x)-eps),(x+eta,f(x)+eps)), red);
+
+			draw((x,f(x)-eps-0.1)--(x+eta,f(x)-eps-0.1), red, Arrows(TeXHead));
+			draw((x-eta-0.1,f(x))--(x-eta-0.1,f(x)-eps), red, Arrows(TeXHead));
+
+			label("$\eta$", (x+eta/2,f(x)-eps-0.1), align=S, p=red);
+			label("$\varepsilon$", (x-eta-0.1,f(x)-eps/2), align=W, p=red);
+
+			real x2 = 5;
+
+			dot("$x$", (x2,0), deepcyan, align=S);
+			dot((x2,f(x2)), deepcyan);
+			
+			draw((x2,0)--(x2,f(x2)), dashed+deepcyan);
+
+			real eps2 = 0.2;
+			real eta2 = 0.5;
+			real eps3 = 0.4;
+			real eta3 = 0.55;
+
+			draw(box((x2-eta2, f(x2)-eps2),(x2+eta2,f(x2)+eps2)), red);
+			draw(box((x2-eta3, f(x2)-eps3),(x2+eta3,f(x2)+eps3)), deepgreen);
+		\end{asy}
+	\end{center}
+
+	\[
+		\begin{array}{c}
+			\begin{cases}
+				\eta>0\\
+				\varepsilon>0
+			\end{cases}\\
+			\begin{cases}
+				\left| x-y \right| \le \eta\\
+				\left| f(x)-f(y) \right| \le \varepsilon
+			\end{cases}
+		\end{array}
+	\]
+\end{rmk}
+
+\begin{defn}
+	Soit $f: I \to \R$ où $I$ est un intervalle et $k \in \R$. On dit que $f$ est \underline{$k$-lipschitzienne} si \[
+		\forall (x,y) \in I^2, \left| f(x) - f(y) \right| \le k\left| x-y \right| 
+	\] 
+	On dit que $f$ est \underline{lipschitzienne} s'il existe $k\in \R$ tel que $f$ soit $k$-lipschitzienne.
+\end{defn}
+
+\begin{prop}
+	Soit $f$ une fonction lipschitzienne sur $I$. Alors, $f$ est uniformément continue sur $I$ donc continue sur $I$.
+\end{prop}
+
+\begin{prv}
+	Soit $k \in \R$ tel que \[
+		\forall (x,y) \in I^2, \left| f(x) - f(y) \right| \le k\left| x-y \right| 
+	\] Soit $\varepsilon>0$.\\
+	Si $k = 0$ alors $f$ est constante donc uniformément continue.\\
+	On suppose $k \neq 0$. Soit $\varepsilon>0$. On pose $\underbrace{\eta = \frac{\varepsilon}{k}}_{\mathclap{\text{ne dépend pas de } x}} >0$ car $k > 0$.\\
+	Soit $(x,y) \in I^2$. On suppose $\left| x-y \le \eta \right|$. Alors, \[
+		\left| f(x)-f(y) \right| \le k\left| x-y \right| \le k\eta = \varepsilon
+	\]
+\end{prv}
+
+\begin{exm}
+	$x \mapsto \left| x \right|$ est $1$-lipschitzienne sur $\R$. \[
+		\forall (x,y) \in \R^2,
+		\left| \left| x \right| - \left| y \right|  \right| \le \left| x - y \right| 
+	\] (inégalité triangulaire)
+\end{exm}
+
+\begin{thm}
+	Soit $f: I \to \R$ dérivable sur $I$ telle qu'il existe $M \in \R$ vérifiant \[
+		\forall x \in I, \left| f'(x) \right| \le M
+	\] Alors \[
+		\forall (a,b) \in I^2, \left| f(a) - f(b) \right| \le M\left| a-b \right| 
+	\] donc $f$ est $M$-lipschitzienne.
+\end{thm}
+
+\begin{crlr}
+	Soit $f$ de classe $\mathcal{C}^1$ sur $[a,b]$. Alors $f$ est lipschitzienne.
+\end{crlr}
+
+\begin{prv}
+	$f'$ est continue sur un segment donc bornée.
+\end{prv}
+
+\begin{exm}
+	\begin{align*}
+		f: \R^+ &\longrightarrow \R^+ \\
+		x &\longmapsto \sqrt{x}
+	\end{align*}
+
+	\[
+		\forall x > 0, \left| f'(x) \right| = \frac{1}{2\sqrt{x}} \tendsto{x \to 0^+}+\infty
+	\] Par contre, \[
+		\forall x \ge 1, \left| f'(x) \right| \le \frac{1}{2}
+	\] Donc $f$ est $\frac{1}{2}$-lipschitzienne sur $[1, +\infty[$ donc uniformément continue sur $[1, +\infty[$.\\
+	$f$ est continue sur $[0,1]$ donc uniformément continue sur $[0,1]$ (théorème de Heine).\\
+	Soit $\varepsilon>0$. Soient $\eta_1, \eta_2 \in \R_*^+$ tels que 
+	\[
+		\begin{cases}
+			\forall (x,y) \in [0,1]^2, \left| x-y \right| \le \eta_1 \implies\left| \sqrt{x} - \sqrt{y}  \right| \le \frac{\varepsilon}{2}\\
+			\forall (x,y) \in [1,+\infty[^2, \left| x-y \right| \le \eta_2 \implies\left| \sqrt{x} -\sqrt{y}  \right| \le \frac{\varepsilon}{2}
+		\end{cases}
+	\]
+	On pose $\eta = \min(\eta_1,\eta_2)$. Soient $(x,y) \in \left( \R^+ \right) ^2$. On suppose $\left| x-y \right| \le \eta$ 
+	\begin{itemize}
+		\item[\sc Cas 1] $\begin{cases}
+				x\le 1\\
+				y\le 1
+			\end{cases}$ \\
+			Alors, $\left| x-y \right| \le \eta \le \eta_1$ donc $\left| \sqrt{x} -\sqrt{y} \le \varepsilon_2 \right| \le \varepsilon$ \\
+		\item[\sc Cas 2] $\begin{cases}
+				x \ge 1\\
+				y \ge 1
+			\end{cases}$\\
+			Alors,  $\left| x - y \right| \le \eta\le \eta_2$ donc $\left| \sqrt{x} -\sqrt{y} \le \frac{\varepsilon}{2}\le \varepsilon \right|$\\
+		\item[\sc Cas 3] $x \le 1 \le y$ \\
+			\begin{align*}
+				\left| \sqrt{x} -\sqrt{y}  \right| &= \left| \sqrt{x} -\sqrt{1} +\sqrt{1} -\sqrt{y}  \right|  \\
+																					 &\le \left| \sqrt{x} -\sqrt{1}  \right| + \left| \sqrt{y} -\sqrt{1}  \right| 
+			\end{align*}
+			\begin{align*}
+				\left| x-1 \right| \le \left| x - y \right| \le \eta \le \eta_1 \text{ donc } \left| \sqrt{x}  - \sqrt{1}  \right| \le \frac{\varepsilon}{2}\\
+				\left| y-1 \right| \le \left| x - y \right| \le \eta \le \eta_2 \text{ donc } \left| \sqrt{y}  - \sqrt{1}  \right| \le \frac{\varepsilon}{2}
+		\end{align*}
+		Donc $\left| \sqrt{x} - \sqrt{y} \right| \le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$
+	\end{itemize}
+\end{exm}
+

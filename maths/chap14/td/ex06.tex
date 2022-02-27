@@ -1,0 +1,28 @@
+\part{Exercice 6}
+
+\begin{itemize}
+	\item
+		\[
+			\forall x \in \R, \left| f(x) \right| \le x^2\left| x-2 \right| \tendsto{\substack{x \to 0\\x \to 2}}0
+		\]
+		Par encadrement, \[
+			\begin{cases}
+				f(x) \tendsto{\substack{x \to 0\\\neq }}0 &= f(0)\\
+				f(x) \tendsto{\substack{x \to 2\\\neq }}0 &= f(2)
+			\end{cases}
+		\] 
+
+		Donc $f$ est continue en $0$ et en $2$\\
+	\item Soit $a \in \R\setminus \{0,2\}$.\\
+		$\Q$ est dense dans $\R$ dnc il existe $(x_n) \in \Q^\N$ telle que $x_n \tendsto{n \to +\infty} a$\\
+		$\R\setminus\Q$ est dense dans $\R$ donc il existe $(y_n) \in \left( \R\setminus\Q \right) ^\N$ telle que $y_n\tendsto{n \to +\infty} a$
+		\[
+			\begin{cases}
+				\forall n \in \N,
+				\begin{cases}
+					f(x_n) = {x_n}^2 (x_n - 2) \times 0 = 0 \tendsto{n\to +\infty} 0\\
+					f(y_n) = {y_n}^2 (y_n - 2) \times 1 \tendsto{n\to +\infty} a^2(a-2)\\
+				\end{cases}
+			\end{cases}
+		\] Comme $a \not\in \{0,2\}, a^2(a-2) \neq 0$ donc $f$ n'est pas continue en $a$
+\end{itemize}

@@ -1,0 +1,348 @@
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel. On dit que $E$ est de \underline{dimension finie} si $E$ a au moins une famille génératrice finie. On dit que $E$ est de \underline{dimension infinie} sinon.
+\end{defn}
+
+\begin{thm}
+	[Théorème de la base extraite]
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel non nul de dimension finie. Soit $\mathcal{G}$ une famille génératrice finie de $E$. Alors, il existe une base $\mathcal{B}$ de $\mathcal{E}$ telle que $\mathcal{B} \subset \mathcal{G}$.
+\end{thm}
+
+\begin{prv}
+	[par récurrence sur $\#G = \Card(G)$]
+	\begin{itemize}
+		\item Soit $E$ un $\mathbbm{K}$-espace vectoriel non nul engendré par $\mathcal{G} = (u)$.\\
+			Si $u = 0_E$, alors $E = \{0_E\}$: une contradiction $\lightning$ \\
+			Donc $u \neq 0_E$ donc $(u)$ est libre. En effet, \[
+				\forall \lambda \in \mathbbm{K}, \lambda u = 0_E \implies \lambda = 0_\mathbbm{K}
+			\] Donc $\mathcal{G}$ est une base de $E$.\\
+		\item Soit $n \in \N_*$. Soit $E$ un $\mathbbm{K}$-espace vectoriel. On suppose que si $E$ a une famille génératrice constituée de $n$ vecteurs, alors on peut extraire de cette famille une base de $E$.\\
+			Soit $\mathcal{G}$ une famille génératrice de $E$ avec $n+1$ vecteurs.\\
+			Si $\mathcal{G}$ est libre, alors $\mathcal{G}$ est une base de $E$. \\
+			Si $\mathcal{G}$ n'est pas libre, alors il existe $u \in \mathcal{G}$ tel que $u \in \Vect(\mathcal{G}\setminus \{u\})$ \\
+			Donc $\mathcal{G}\setminus \{u\}$ engendre $E$. Or, $\mathcal{G}\setminus \{u\}$ possède $n$ vecteurs. D'après l'hypothèse de récurrence, il existe une base $\mathcal{B}$ de $E$ telle que \[
+				\mathcal{B} \subset \mathcal{G} \setminus \{u\} \subset \mathcal{G}
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Tout espace de dimension finie a une base.
+	\qed
+\end{crlr}
+
+\begin{thm}
+	[Théorème de la base incomplète]
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie, $\mathcal{G}$ une famille génératrice finie de $E$. $\mathcal{L}$ une famille libre de $E$. Alors, il existe une base $\mathcal{B}$ de $E$ telle que \[
+		\mathcal{L} \subset \mathcal{B} \text{ et } \mathcal{B}\setminus \mathcal{L} \subset \mathcal{G}
+	\] 
+\end{thm}
+
+\begin{prv}
+	[par récurrence sur $\#(\mathcal{G}\setminus\mathcal{L})$]
+	\begin{itemize}
+		\item Avec les notations précédentes, on suppose que $\mathcal{G}\setminus\mathcal{L} \neq \O$ \[
+				\forall u \in \mathcal{G}, u \in \mathcal{L}
+			\] Donc $\mathcal{G} \subset \mathcal{L}$ donc $\mathcal{L}$ est génératrice donc $\mathcal{L}$ est une base de $E$. On pose $\mathcal{B} = \mathcal{L}$ et alors \[
+				\mathcal{L} \subset  \mathcal{B} \text{ et } \mathcal{B}\setminus\mathcal{L} = \O \subset  \mathcal{G}
+			\] 
+		\item Soit $n \in \N$. On suppose que si $\mathcal{G}$ est génératrice et $\mathcal{L}$ libre avec $\#(\mathcal{G}\setminus\mathcal{L}) = n$ alors il existe une base $\mathcal{B}$ de $E$ telle que \[
+			\mathcal{L}\subset \mathcal{B} \text{ et } \mathcal{B}\setminus\mathcal{L}\subset \mathcal{G}
+		\] Soient à présent $\mathcal{G}$ une famille génératrice de $E$ et $\mathcal{L}$ une famille libre de $E$ telles que $\#(\mathcal{G}\setminus\mathcal{L}) = n+1 > 0$\\
+		Si $\mathcal{L}$ engendre $E$, alors $\mathcal{L}$ est une base de $E$. On pose $\mathcal{B} = \mathcal{L}$ et on a bien \[
+			\mathcal{L} \subset  \mathcal{B} \text{ et } \mathcal{B} \setminus \mathcal{L} = \O \subset  \mathcal{G}
+		\] On suppose que $\mathcal{L}$ n'engendre pas $E$. Il existe $u \in \mathcal{G}$ tel que $u \not\in \Vec(\mathcal{L})$ (car sinon, $\mathcal{G} \subset \Vect(\mathcal{L})$ et donc $\underbrace{\Vect(\mathcal{G})}_{= E} \subset  \underbrace{\Vect(\mathcal{L})}_{ \subset E}$\\
+		Donc $\mathcal{L} \cup \{u\} $ est libre. On pose $\mathcal{L}' = \mathcal{L} \cup \{u\} $ \[
+			\mathcal{G}\setminus \mathcal{L}' = \mathcal{G}\setminus (\mathcal{L} \cup \{u\}) = (\mathcal{G}\setminus\mathcal{L})\setminus \{u\} 
+		\] donc $\#(\mathcal{G}\setminus\mathcal{L}') = n+1 -1 = n$\\
+		D'après l'hypothèse de récurrence, il existe $\mathcal{B}$ une base de $E$ telle que \[
+			\mathcal{L} \subset  \mathcal{L}' \subset \mathcal{B} \text{ et } \mathcal{B}\setminus \mathcal{L}' \subset \mathcal{G}
+		\] \[
+			\mathcal{B} \setminus \mathcal{L} = \underbrace{\mathcal{B}\setminus\mathcal{L}'}_{\subset \mathcal{G}} \cup \underbrace{\{u\}}_{\subset \mathcal{G} \text{ car } u \in \mathcal{G}}
+		\] On a $\mathcal{B}\setminus\mathcal{L}\subset \mathcal{G}$
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie. Toutes les bases de $E$ ont le même cardinal.
+\end{thm}
+
+\begin{prv}
+	Soit $\mathcal{G}$ une famille génératrice finie de $E$ et $\mathcal{B} \subset  \mathcal{G}$ une base de $E$. On note $n = \#\mathcal{B}$ \\
+	Soit $\mathcal{B}'$ une base de $E$. On pose $p = n - \#(\mathcal{B} \cap  \mathcal{B}')$. Montrons par récurrence sur  $p$ que $\#\mathcal{B} = \#\mathcal{B}'$ 
+	\begin{itemize}
+		\item On suppose que $p = 0$. Alors, $\#(\mathcal{B} \cap \mathcal{B}') = n$ \\
+			Or, $\mathcal{B}' \cap \mathcal{B} \subset \mathcal{B}$ donc $\mathcal{B} \cap \mathcal{B}' = \mathcal{B}$ donc $\mathcal{B} \subset  \mathcal{B}'$ et donc $\mathcal{B} = \mathcal{B}'$ 
+		\item Soit $p \in \N$. On suppose que si $\mathcal{B}'$ est une base de $E$ telle que $n - \#(\mathcal{B} \cap \mathcal{B}') = p$, alors $\#\mathcal{B}' = n$ \\
+			Aoit $\mathcal{B}'$ une base de $E$ telle que $n - \#(\mathcal{B}\cap \mathcal{B}') = p+1 > 0$ \\
+			Donc $\mathcal{B} \cap \mathcal{B}' \neq \mathcal{B}$. Soit $u \in \mathcal{B}' \setminus \mathcal{B}$. D'après le lemme d'échange, il existe $v \in \mathcal{B}\setminus \mathcal{B}'$ tel que $\mathcal{B}' \setminus \{u\} \cup \{v\}$ est une base de $E$. On pose $\mathcal{B}'' = \mathcal{B}' \setminus \{u\} \cup \{v\}$ 
+			\begin{align*}
+				\mathcal{B}'' \cap \mathcal{B} &= \left( (\mathcal{B}' \setminus \{u\})  \cap \mathcal{B} \right) \cup \{v\} \\
+				&= (\mathcal{B}' \cap \mathcal{B}) \cup \{v\} \\
+			\end{align*}
+			donc,
+			\begin{align*}
+				n - \#(\mathcal{B}'' \cap \mathcal{B}) &= n - (\#(\mathcal{B}' \cap \mathcal{B}) + 1) \\
+				&= p+1- 1 \\
+				&= p \\
+			\end{align*}
+			D'après l'hypothèse de récurrence, \[
+				\#\mathcal{B}'' = n
+			\] Or, $\#\mathcal{B}'' = \#\mathcal{B}'$
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	Soient $\mathcal{B}$ et $\mathcal{B}'$ deux bases de $E$ telles que $\mathcal{B}\subset \mathcal{B}'$. Alors, $\mathcal{B} = \mathcal{B}'$.
+\end{lem}
+
+\begin{prv}
+	On suppose $\mathcal{B}' \neq \mathcal{B}$. Soit $u \in \mathcal{B}' \setminus \mathcal{B}$
+	$u \in E = \Vect(\mathcal{B})$ donc $\mathcal{B} \cup \{u\}$ n'est pas libre.
+	Donc $\mathcal{B}\cup \{u\} \subset \mathcal{B}'$ et $\mathcal{B}'$ est libre donc $\mathcal{B}\cup \{u\}$ est libre: une contradiction $\lightning$
+\end{prv}
+
+\begin{lem}
+	[Lemme d'échange] Soient $\mathcal{B}_1$ et $\mathcal{B}_2$ deux bases de $E$ et $u \in \mathcal{B}_1 \setminus \mathcal{B}_2$. Alors, il existe $v \in \mathcal{B}_2$ tel que $(\mathcal{B}_1 \setminus \{u\}) \cup \{v\}$ soit une base de $E$.
+\end{lem}
+
+\begin{prv}
+	[1${}^\text{nde}$ méthode]
+	On suppose que pout tout $v \in \mathcal{B}_2$, $(\mathcal{B}_1\setminus \{u\}) \cup \{v\}$ n'est pas une base de $E$
+	Soit $v \in \mathcal{B}_2$.
+	\begin{itemize}
+		\item Supposons $(\mathcal{B}_1\setminus \{u\})\cup \{v\}$ non libre. $\mathcal{B}_1 \setminus \{u\}$ est libre. Donc $v \in \Vect(\mathcal{B}_1 \setminus \{u\})$
+		\item Supposons $(\mathcal{B}_1\setminus \{u\}) \cup \{v\}$ non génératrice.
+			Comme $\mathcal{B}_1$ engendre $E$, $u \not\in \Vect(\mathcal{B}_1\setminus \{v\})$.
+			On suppose que $\mathcal{B}_1 \neq \mathcal{B}_2$.
+			$\forall v \in \mathcal{B}_2 \setminus \mathcal{B}_1, \Vect(\mathcal{B}_1 \setminus \{v\}) = \Vect(\mathcal{B}_1) = E \ni u$ 
+			donc, $(\mathcal{B}_1\setminus \{u\}) \cup \{v\}$ engendre $E$ et donc \[
+				v \in \Vect(\mathcal{B}_1 \setminus \{u\})
+			\] On a aussi \[
+				\forall v \in \mathcal{B}_1 \setminus \{u\}, v \in \Vect(\mathcal{B}_1\setminus \{u\})
+			\] Comme $u \not\in \mathcal{B}_2$, on a \[
+				\forall v \in \mathcal{B}_2, v \in \Vect(\mathcal{B}_1\setminus \{u\})
+			\] docn \[
+				E = \Vect(\mathcal{B}_2) \subset \Vect(\mathcal{B}_1\setminus \{u\})
+			\] donc $\mathcal{B}_1\setminus \{u\}$ engendre $E$ donc $\mathcal{B}_1\setminus \{u\}$ est une base de $E$. Or, $\mathcal{B}_1 \setminus \{u\}  \subset  \mathcal{B}_1$, donc $\mathcal{B}_1\setminus \{u\} = \mathcal{B}_1$
+	\end{itemize}
+\end{prv}
+
+\begin{prv}
+	[2${}^\text{nde}$ méthode]
+	On suppose que pout tout $v \in \mathcal{B}_2$, $(\mathcal{B}_1\setminus \{u\}) \cup \{v\}$ n'est pas une base de $E$
+	\begin{itemize}
+		\item Comme $u \in \mathcal{B}_1 \setminus \mathcal{B}_2$, nécéssairement $\mathcal{B}_1 \neq \mathcal{B}_2$ donc $\mathcal{B}_2 \not\subset \mathcal{B}_1$, donc $\mathcal{B}_2\setminus\mathcal{B}_1 \neq \O$ 
+		\item Soit $v \in \mathcal{B}_2\setminus\mathcal{B}_1$. Il existe $(\lambda_w)_{w\in\mathcal{B}_1}$ une famille de scalaires presque nulle telle que \[
+				v = \sum_{w \in \mathcal{B}_1} \lambda_w w - \lambda_u u + + \sum_{w \in \mathcal{B}_1\setminus \{u\}}\lambda_w w
+			\]
+			Si $\lambda_u \neq 0_E$, alors
+			\begin{align*}
+				u &= \lambda_u^{-1}\left( v - \sum_{w \in \mathcal{B}_1 \setminus \{u\}} \lambda_w w \right)\\
+					&\in \Vect(\mathcal{B}_1\setminus \{u\} \cup v)
+			\end{align*}
+			 donc $\mathcal{B}_1 \subset \Vect(\mathcal{B}_1\setminus \{u\} \cup \{v\})$\\
+			 et donc $E \subset  \Vect(\mathcal{B}_1 \setminus \{u\} \cup \{v\})$ \\
+			 et donc $\mathcal{B}_1 \setminus \{u\} \cup \{v\}$ engendre $E$ \\
+			 donc $\mathcal{B}_1 \setminus \{u\} \cup \{v\}$ n'est pas libre\\
+			 donc $v \in \Vect(\mathcal{B}_1\setminus \{u\})$ (car $\mathcal{B}_1 \setminus \{u\}$ est libre\\
+			 donc $\lambda_u = 0_\mathbbm{K}$ $\lightning$\\`
+
+			 Donc, $\lambda_u = 0_\mathbbm{K}$, docn $v \in \Vect(\mathcal{B}_1\setminus \{u\})$ \\
+			 On vient de prouver que
+			 \begin{align*}
+			 	\mathcal{B}_2 \setminus \mathcal{B}_1 \subset \Vect(\mathcal{B}_1 \setminus \{u\})\\
+			 	\mathcal{B}_1 \setminus \{u\} \subset \Vect(\mathcal{B}_1 \setminus \{u\})\\
+			 \end{align*}
+			 Comme $u \not\in \mathcal{B}_2$, \[
+			 	\mathcal{B}_2 \subset \Vect(\mathcal{B}_1 \setminus \{u\})
+			 \] donc \[
+			 	E = \Vect(\mathcal{B}_2) \subset  \Vect(\mathcal{B}_1 \setminus \{u\})
+			 \] donc $\mathcal{B}_1 \setminus \{u\}$ engendre $E$. Donc,  $\mathcal{B}_1 \setminus \{u\}$ est une base de $E$.\\
+			 Or, $\mathcal{B}_1 \setminus \{u\} \subset  \mathcal{B}_1$, donc $\mathcal{B}_1 \setminus \{u\} = \mathcal{B}_1$
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie. Le cardinal commun à toutes les bases de $E$ est appelé \underline{dimension} de $E$ est notée $\dim(E)$ ou $\dim_\mathbbm{K}(E)$\\
+	C'est donc aussi le nombre de coordonnées de n'importe quel vecteur dans n'importe quelle base.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $\dim_\R(\C) = 2$ et $\dim_\C(\C) = 1$ 
+		\item $\dim_\mathbbm{K}(\mathbbm{K}^{n}) = n$ 
+		\item $\dim_{\mathbbm{K}}(\mathcal{M}_{n,p}(\mathbbm{K})) = np$
+	\end{enumerate}
+\end{exm}
+
+\begin{crlr}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie, $\mathcal{L}$ une famille libre de $E$, $\mathcal{G}$ une famille génératrice de $E$. On note $n = \dim(E)$
+	\begin{enumerate}
+		\item $\#\mathcal{G} \ge n$ et $(\#\mathcal{G} = n \implies \mathcal{G} \text{ est une base de } E$)
+		\item $\#\mathcal{L} \le n$ et $(\#\mathcal{L} = n \implies \mathcal{L} \text{ est une base de } E$)
+	\end{enumerate}
+\end{crlr}
+
+\begin{crlr}
+	$\R^{\R}$ est de dimension infinie.
+	$\forall i \in \N, e_i: x \mapsto x^i$\\
+	$(e_i)_{i\in\N}$ est libre dans $\R^\R$
+\end{crlr}
+
+\begin{prop}
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels de dimension finie. Alors $E\times F$ est de dimension finie et $\dim(E\times F) = \dim(E) + \dim(F)$
+\end{prop}
+
+\begin{prv}
+	Soit $(e_1,\ldots, e_n)$ une base de $E$, $(f_1, \ldots, f_p)$ une base de $F$.
+	On pose \[
+		\left\{\begin{array}
+			{r c l}
+			u_1 &=& (e_1,0_F)\\
+			u_2 &=& (e_2,0_F)\\
+					&\vdots&\\
+			u_n &=& (e_n,0_F)\\
+			u_{n+1} &=& (0_E, f_1)\\
+			u_{n+2} &=& (0_E, f_2)\\
+					&\vdots&\\
+			u_{n+p} &=& (0_E,f_p)\\
+		\end{array}\right.
+	\]
+	Soit $(x,y) \in E\times F$. \[
+		\begin{cases}
+			\exists (x_1,\ldots,x_n)\in \mathbbm{K}^n, x = \sum_{i=1}^{n} x_ie_i
+			\exists (y_1,\ldots,y_n)\in \mathbbm{K}^n, x = \sum_{j=1}^{p} y_jf_j
+		\end{cases}
+	\] 
+	\begin{align*}
+		(x,y) &= \left( \sum_{i=1}^{n} x_ie_i, \sum_{i=1}^{p} y_jf_j \right)  \\
+		&= \sum_{i=1}^{n} x_i (e_i + 0_F) + \sum_{j=1}^{p} y_j (0_E, f_j) \\
+		&= \sum_{i=1}^{n} x_i u_i + \sum_{j=1}^{p} y_j u_{n+j} \\
+	\end{align*}
+	Donc, $E\times F = \Vect(u_1, \ldots, u_{n+p})$ donc $E\times F$ est de dimension finie.\\
+	Soit $(\lambda_1, \ldots, \lambda_{n+p}) \in \mathbbm{K}^{n+p}$ tel que \[
+		(*): \quad \sum_{k=1}^{n+p} \lambda_ku_k = 0_{E\times F} = (0_E, 0_F)
+	\]
+	\begin{align*}
+		(*) &\iff \sum_{k=1}^{n} \lambda_k (e_k, 0_F) + \sum_{k=n+1}^{p} \lambda_k(0_E, f_{k-n}) = (0_E, 0_F)\\
+				&\iff \begin{cases}
+					\sum_{k=1}^{n} \lambda_k e_k = 0_E\\
+					\sum_{k=n+1}^{p} \lambda_k f_{k-n} = 0_F
+				\end{cases}\\
+				&\iff \begin{cases}
+					\forall k \in \left\llbracket 1,n \right\rrbracket, \lambda_k = 0_\mathbbm{K} \qquad&(\text{car $(e_1,\ldots,e_n)$ est libre})\\
+					\forall k \in \left\llbracket n+1,n+p \right\rrbracket, \lambda_k = 0_\mathbbm{K} \qquad&(\text{car $(f_1,\ldots,f_n)$ est libre})\\
+				\end{cases}
+	\end{align*}
+	Donc $(u_1, \ldots, u_{n+p})$ est une base de $E\times F$. Donc, $\dim(E\times F) = n + p = \dim(E) + \dim(F)$
+\end{prv}
+
+\begin{rmk}
+	[Convention]
+	\[\dim\big(\{0_E\}\big) = 0\]
+\end{rmk}
+
+\begin{thm}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie, $F$ un sous-espace vectoriel de $E$. Alors, $F$ est de dimension finie et  $\dim(F) \le \dim(E)$\\
+	Si $\dim(F) = \dim(E)$, alors $F = E$
+\end{thm}
+
+\begin{prv}
+	On considère \[
+		A = \{k \in \N \mid \text{il existe une famille libre de $F$ à $k$ éléments}\} 
+	\]
+	On suppose $F \neq \{0_E\}$.
+	\begin{itemize}
+		\item Soit $u \in F\setminus \{0_E\}$. $(u)$ est libre donc $1 \in A$ et donc $A \neq \O$
+		\item Soit $\mathcal{L}$ une famille libre de $F$. Alors, $\mathcal{L}$ est une famille libre de $E$ \\
+			donc $\#\mathcal{L} \le \dim(E)$\\
+			Donc $A$ est majorée par $\dim(E)$ \\
+			On en déduit que $A$ a un plus grand élément $p$.
+		\item Soit $\mathcal{L}$ une famille libre de $F$ avec $p$ éléments.\\
+			Si $\mathcal{L}$ n'engendre pas $F$, alors il existe $u\in F$ tel que $u\not\in \Vect(\mathcal{L})$ et donc $\mathcal{L} \cup \{u\}$ est une famille libre de $F$, donc $p+1 \in A$ en contradiction avec la maximalité de $p$.\\
+			Donc $\mathcal{L}$ est une base de $F$ donc $F$ est de dimension finie et $\dim(F) = p \le \dim(E)$\\
+	\end{itemize}
+
+	Soit $\mathcal{B}$ une base de $F$. Alors, $\mathcal{B}$ est aussi une famille de libre de de $E$. Donc $\#\mathcal{B} \le \dim(E)$ donc $\dim(F) = \dim(E)$ \\
+	Si $\dim(F) = \dim(E)$, alors $\mathcal{B}$ est une base de $E$, et donc $F = \Vect(\mathcal{B}) = E$
+\end{prv}
+
+\begin{prop}
+	[Formule de Grassmann]
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie, $F$ et $G$ deux sous-espace vectoriels de $E$. Alors, \[
+		\dim(F+G) = \dim(F) + \dim(G) - \dim(F\cap G)
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soit $(e_1, \ldots, e_p)$ une base de $F\cap G$. $(e_1,\ldots,e_p)$ est une famille libre de $F$.\\
+	On complète $(e_1, \ldots, e_p)$ en une base $(e_1, \ldots, e_p, u_1, \ldots, u_q)$ de $F$.\\
+	De même, on complète $(e_1, \ldots, e_p)$ en une base $(e_1, \ldots, e_p, v_1, \ldots, v_r)$ de $G$.\\
+	On pose  $\mathcal{B} = (e_1, \ldots, e_p, u_1, \ldots, u_q, v_1, \ldots, v_r)$. Montrons que $\mathcal{B}$ est une base de $F+G$
+	\begin{itemize}
+		\item Soit $u \in F+G$ \\
+			On pose $u = v+w$ avec $\begin{cases}
+				v\in F\\
+				w \in G
+			\end{cases}$.\\
+			On pose $v = \sum_{i=1}^p \lambda_i e_i + \sum_{i=1}^q \mu_i u_i$ avec $(\lambda_1, \ldots, \lambda_p, \mu_1, \ldots, \lambda_q) \in \mathbbm{K}^{p+q}$\\
+			On pose aussi $w = \sum_{i = 1}^p \lambda'_ie_i + \sum_{j=1}^r \nu_j v_j$ avec $(\lambda_1',\ldots,\lambda_p', \nu_1, \ldots, \nu_r) \in \mathbbm{K}^{p+r}$\\
+			D'où, \[
+				u = \sum_{i=1}^p (\lambda_i + \lambda'_i)e_i + \sum_{j=1}^q \mu_j u_j + \sum_{k=1}^r \nu_k v_k \in \Vect(\mathcal{B})
+			\]
+		\item Soient $(\lambda_1, \ldots, \lambda_p, \mu_1, \ldots, \mu_q, \nu_1, \ldots, \nu_r) \in \mathbbm{K}^{p+q+r}$.\\
+			On suppose \[
+				(*)\quad \sum_{i=1}^{p}\lambda_ie_i + \sum_{j=1}^q\mu_ju_j + \sum_{k=1}^r \nu_k v_k = 0_E
+			\] 
+			D'où, \[
+				\underbrace{\sum_{i=1}^p\lambda_i e_i + \sum_{j=1}^q \mu_ju_j}_{\in F} = \underbrace{-\sum_{k=1}^r\nu_jv_k}_{\in G}
+			\] 
+			Donc, \[
+				f = \sum_{i=1}^p \lambda_i e_i + \sum_{j=1}^q \mu_j u_j \in F\cap G
+			\] Comme $(e_1, \ldots, e_p)$ est une base de $F\cap G$, $\exists ! (\lambda_1', \ldots, \lambda_p') \in \mathbbm{K}^p$ tel que \[
+				f = \sum_{i=1}^p \lambda'_i e_i = \sum_{i=1}^p \lambda'_i e_i + \sum_{j=1}^q 0_\mathbbm{K}u_j
+			\] Comme $(e_1, \ldots, e_p, u_1, \ldots, u_q)$ est une base de $F$, \[
+				\forall k \in \left\llbracket 1, q \right\rrbracket, \mu_j = 0_\mathbbm{K}
+			\] De même, \[
+				\forall k \in \left\llbracket 1,r \right\rrbracket , \nu_k = 0_\mathbbm{K}
+			\] On remplace dans $(*)$ pour trouver \[
+				\sum_{i=1}^p \lambda_ie_i = 0_E
+			\] Comme $(e_1, \ldots, e_p)$ est libre, \[
+				\forall i \in \left\llbracket 1,p \right\rrbracket, \lambda_i = 0_\mathbbm{K}
+			\] Donc $\mathcal{B}$ est libre.\\
+			Donc, 
+			\begin{align*}
+				\dim(F+G) &=  p +q + r \\
+				&= (p+q)+ (p+r) - p \\
+				&= \dim(F) + \dim(G) - \dim(F\cap G) \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Avec les hypothèse précédentes, \[
+		E = F \oplus G \iff \begin{cases}
+			F \cap  G = \{0_E\} \\
+			\dim(E) = \dim(F) + \dim(G)
+		\end{cases}
+	\] 
+\end{crlr}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $E = F \oplus G$ \\
+			Comme la somme est directe, $F \cap G = \{0_E\}$ 
+			\begin{align*}
+				\dim(E) &= \dim(F)\\
+				&= \dim(F) + \dim(G) - \dim(F\cap G)\\
+				&= \dim(F) + \dim(G)\\
+			\end{align*}
+		\item[``$\impliedby$''] On suppose $F\cap G = \{0_E\}$ et $\dim(E) = \dim(F) + \dim(G)$.\\
+			On sait déjà que $F+G = F \oplus G$\\
+			 \begin{align*}
+				\dim(F+G) = \dim(F) + \dim(G) - \dim(F \cap G) = \dim(E)
+			\end{align*}
+			Donc $F + G = E$
+	\end{itemize}
+\end{prv}
+

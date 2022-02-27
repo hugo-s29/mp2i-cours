@@ -1,0 +1,214 @@
+\part{Suites extraites}
+
+\begin{defn}
+	Soit $u\in \R^\N$ et $\varphi: \N \to \N$ \underline{strictement croissante}. \\
+	On dit que $\left( u_{\varphi(n)} \right) $ est une {\bf suite extraite} de $u$ ou une {\bf sous suite} de $u$. On dit alors que  $\varphi$ est une extractrice
+\end{defn}
+
+\begin{exm}
+	$u_0$ \fbox{$u_1$} $u_2$ $u_3$ \fbox{$u_4$} \fbox{$u_5$} $u_6$ $u_7$ $\ldots$\\
+
+	\[
+		\begin{cases}
+			\varphi(0) = 1\\
+			\varphi(1) = 4\\
+			\varphi(2)=5
+		\end{cases}
+	\]
+\end{exm}
+
+\begin{lem}
+	Soit $\varphi: \N\to\N$ strictement croissante. Alors,\[
+	\forall n\in \N, \varphi(n) \ge  n
+	\] 
+\end{lem}
+
+\begin{prv}[par récurrence]
+	\begin{itemize}
+		\item $\varphi(0) \in \N$ donc $\varphi(0) \ge  0$ 
+		\item Soit $n\in \N$. On suppose $(\varphi(n) \ge n$.\\
+			$n+1>n$ donc $\varphi(n+1) > \varphi(n) \ge n$ donc $\varphi(n+1) > n$ \\
+			Comme $\varphi(n+1)\in \N$, $\varphi(n+1) \ge  n+1$
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $u\in \R^\N$ de limite $\ell\in \overline{\R}$ et $\varphi:\N\to \N$ strictement croissante\\
+	alors $u_{\varphi(n)} \tendsto{n\to +\infty}\ell$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Cas 1] $\ell \in \R$\\
+			Soit $\varepsilon>0$ on sait qu'il existe $N \in \N$ tel que \[
+			\forall n\ge N, \left| u_n-\ell \right| \le \varepsilon
+			\]
+			Soit $n \ge N$ alors $\varphi(n) \ge  n \ge N$ donc \[
+			\left| u_{\varphi(n)} - \ell \right|  \le \varepsilon
+			\] 
+			Donc, $u_{\varphi(n)} \tendsto{n\to +\infty} \ell$
+		\item[\sc Cas 2] $\ell=+\infty$ \\
+			Soit $M\in \R$ et soit $N\in \N$ tel que \[
+			\forall n \ge  N, u_n \ge M
+			\] Soit $n \ge N$, on a $\varphi(n) \ge  n \ge N$ donc \[
+			u_{\varphi(n)} \ge M
+			\] Donc $u_{\varphi(n)} \tendsto{n \to  +\infty} +\infty$
+		\item[\sc Cas 3] $\ell=-\infty$ similaire au {\sc Cas 2}
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$\forall n \in \N, u_n = (-1)^n$\\
+	\begin{align*}
+		u_{2n} = 1 \tendsto{n \to +\infty} &1\\
+																			 &\vrt{\neq}\\
+		u_{2n+1} = -1 \tendsto{n \to +\infty} -&1
+	\end{align*}
+	donc $u_n$ n'a pas de limite.
+\end{exm}
+
+\begin{prop}
+	Si $(u_{2n})$ et $(u_{2n+1})$ ont la même limite $\ell$ alors $u_n \tendsto{n\to +\infty}\ell$
+\end{prop}
+
+
+\begin{prv}
+	\begin{itemize}
+		\item [\sc Cas 1]	$\ell \in \R$\\
+			Soit $\varepsilon>0$. Soit $N_1\in \N$ tel que \[
+			\forall n\ge N_1, \left| u_{2n} - \ell \right| \le \varepsilon
+			\] Soit $N_2\in \N$ tel que \[
+			\forall n\ge N_2, \left| u_{2n+1} - \ell \right|  \le \varepsilon
+			\]
+
+			On pose $N=\max(2N_1,2N_2+1)$. Soit $n\ge N$.\\
+			Si $n$ pair alors $n = 2k$ avec $k \ge N_1$ et donc, $\left| u_{2k} - \ell \right| \le  \varepsilon$, i.e. $\left| u_n -\ell \right| \le \varepsilon$\\
+			Si $n$ impair alors $n = 2k+1$ avec $k \ge N_2$ et donc, $\left| u_{2k+1} - \ell \right| \le  \varepsilon$, i.e. $\left| u_n -\ell \right| \le \varepsilon$ \\
+			Donc, \[
+			\forall n\ge N, \left| u_n -\ell \right|  \le  \varepsilon
+			\] Donc $u_n \tendsto{n\to +\infty} \ell$
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	[Théorème de Bolzano-Weierstrass]
+
+	Soit $\left( u_n \right)$ une suite réelle bornée. Alors, il existe $\varphi:\N\to \N$ strictement croissante telle que $\left( u_{\varphi(n)} \right)$ converge.
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Méthode 1] par dichotomie\\
+			Soitent $m,M\in \R$ tel que \[
+			\forall n\in \N, m \le u_n \le M
+			\] On pose
+			\begin{align*}
+				A_1 &= \left\{n\in \N \mid m \le u_n \le \frac{m+M}{2}\right\}  \\
+				A_2&= \left\{n\in \N \mid \frac{m+M}{2}\le u_n \le  M\right\}  \\
+			\end{align*}
+			Comme $A_1\cup A_2=\N$, $A_1$ et $A_2$ ne peuvent pas être finis tous les deux.\\
+			On pose \[
+			B_0 = \begin{cases}
+				A_1 &\text{ si } A_1 \text{ est infini}\\
+				A_2 &\text{ sinon}
+			\end{cases}
+			\]
+
+			$B_0$ est infini donc non vide. On pose $\varphi(0) = \min(B_0)$\\
+			On pose aussi \[
+			m_0 = \begin{cases}
+				m &\text{ si } B_0=A_1 \\
+				\frac{m+M}{2} &\text{ si } B_0=A_2
+			\end{cases}
+			\] et \[
+			M_0 = \begin{cases}
+				\frac{m+M}{2} &\text{ si } B_0 = A_1\\
+				M &\text{ si } B_0 = A_2\\
+			\end{cases}
+			\]
+			Ainsi, $B_0 = \{n\in \N \mid m_0\le u_n\le M_0\}$. On pose 
+			\begin{align*}
+				B_1'&= \left\{n\in B_0 \mid n > \varphi(0) \text{ et } m_0\le u_n \le \frac{M_0+m_0}{2}\right\} \\
+				B_2'&= \left\{n\in B_0 \mid n > \varphi(0) \text{ et } \frac{m_0+M_0}{2} \le u_n \le M_0\right\} \\
+			\end{align*}
+			\[
+			B_1'\cup B_2' = \{n\in B \mid n > \varphi(0)\} = B_0\setminus \{\varphi(0)\} 
+			\]
+			$B_0\setminus \{\varphi(0)\}$ est infini donc $B_1'$ ou $B_2'$ est infini. On pose \[
+			B_1= \begin{cases}
+				B_1' &\text{ si } B_1' \text{ est infini}\\
+				B_2' &\text{ sinon}
+			\end{cases}
+			\] $B_1$ est infini donc non vide et admet un plus petit élément: \[
+			\varphi(1) = \min(B_1)
+			\]
+			$\varphi(1) \in B_1$ donc $\varphi(1) > \varphi(0)$\\
+			On pose
+			\begin{align*}
+				m_1&=\begin{cases}
+					m_0 &\text{ si } B_1=B_1'\\
+					\frac{m_0+M_0}{2} &\text{ si } B_1 = B_2'
+				\end{cases}\\
+				M_1 &= \begin{cases}
+					\frac{m_0+M_0}2 &\text{ si } B_1=B_1'\\
+					M_0 &\text{ si } B_1=B_2'\\
+				\end{cases}
+			\end{align*}
+
+			On construit une suite décroissante $(B_n)$, deux suites de réels $(m_n)$ et $(M_n)$ et une suite d'entiers $(\varphi(n))$ telles que \[
+			\forall n\in \N, \begin{cases}
+				B_{n+1} = \{k\in B_n \mid k > \varphi(n) \text{ et } m_{n+1} \le  u_k \le M_{n+1}\} \\
+				\varphi(n+1) = \min(B_{n+1}) > \varphi(n)\\
+				M_{n+1} - m_{n+1} = \frac{1}{2}(M_n-m_n)
+			\end{cases}
+			\] 
+
+			La suite $(m_n)$ est croissante, $(M_n)$ est décroissante et \[\lim_{n\to +\infty} M_n-m_n = \lim_{n\to +\infty} \left( \frac{1}{2} \right)^n (M_0-m_0) = 0\]
+			Donc, $(m_n)$ et $(M_n)$ sont adjacentes donc convergentes avec la même limite $\ell\in \R$ \[
+			\forall n\in \N, m_n \le u_{\varphi(n)} \le M_n
+			\] Par encadrement, $u_{\varphi(n)} \tendsto{n\to +\infty} \ell$
+			\qed
+
+		\item[\sc Méthode 2]
+			On pose $A = \{n \in \N \mid \forall k>n, u_n>u_k\}$
+			\begin{itemize}
+				\item [\sc Cas 1] On suppose $A$ infini.\\
+					On pose $\varphi(0) = \min(A)$. Soit $n\in \N$. On suppose $\varphi(0), \varphi(1),\ldots,\varphi(n)$ soient déjà construits. On pose \[
+					\varphi(n+1) = \min(A\setminus \{\varphi(0),\varphi(1),\ldots,\varphi(n)\})
+					\] 
+					Soit $n\in \N_*$ \[
+					\varphi(n+1) \in A\setminus \{\varphi(0),\varphi(1),\ldots,\varphi(n)\}
+					\] donc \[
+					\varphi(n+1) \in A\setminus \{\varphi(0),\varphi(1),\ldots,\varphi(n-1)\}
+					\] donc \[
+					\varphi(n+1) \ge \varphi(n)
+					\] Or, par définition, $\varphi(n+1)\neq \varphi(n)$ donc $\varphi(n+1)>\varphi(n)$\\
+					On a aussi $\varphi(1) \in A$ donc $\varphi(1) \ge  \varphi(0)$ Or, on sait que $\varphi(1) \neq \varphi(0)$. Donc, $\varphi(1) > \varphi(0)$
+					Soit $n \in \N$, $\varphi(n) \in A$ donc \[
+					\forall k > \varphi(n), u_k < u_{\varphi(n)}
+					\] or $\varphi(n+1)>\varphi(n)$ donc $u_{\varphi(n+1)}<u_{\varphi(n)}$.\\
+					La sous suite $\left( u_{\varphi(n)} \right)$ est décroissante et minorée (car $u$ est minorée) donc elle converge
+				\item[\sc Cas 2] On suppose $A$ fini. Soit $N = \max(A)$, \[
+				\forall n > N, n \not\in A
+				\] Donc $\forall n>N,\exists k>n,u_n \le u_k$. \\
+				Par exemple, en posant $\varphi(0) = N+1$, on a \[
+				A_1=\{k>N+1 \mid u_{N+1}\le u_k\} \neq \O 
+				\] On pose $\varphi(1) = \min(A_1)$ donc $\begin{cases}
+					\varphi(1) > N+1 = \varphi(0)\\
+					u_{\varphi(0)} < u_{\varphi(1)}
+				\end{cases}$\\
+				Avec $n = \varphi(1)$ \[
+				\exists k>n, u_{\varphi(1)} \le u_k
+				\] Donc, $A_2 = \{k\in \N \mid k >\varphi(1) \text{ et } u_{\varphi§1)} \le u_k\} \neq \O$\\
+				On pose $\varphi(2) = \min(A_2)$. On a alors $\varphi(2) > \varphi(1)$. Soit $n\in \N$, on suppose $\varphi(n)$ déjà construit avec  $\varphi(n) > N$. On sait alors que \[
+				A_{n+1} = \{k\in \N \mid k > \varphi(n) \text{ et } u_{\varphi(n)} \le u_k\} \neq \O
+				\] On pose $\varphi(n+1) = \min(A_{n+1)}$. Donc, \[
+				\begin{cases}
+					\varphi(n+1) > \varphi(n) > N\\
+					u_{\varphi(n)} \le u_{\varphi(n+1)}
+				\end{cases}
+				\]
+				On vient de construire une sous suite croissante majorée (car $u$ est majorée) donc convergente.
+			\end{itemize}
+	\end{itemize}
+\end{prv}

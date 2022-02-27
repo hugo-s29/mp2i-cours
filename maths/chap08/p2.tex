@@ -1,0 +1,310 @@
+\part{Applications}
+
+\begin{defn}
+	Une \underline{application} $f$ est la donnée de
+	\begin{itemize}
+		\item un ensemble $E$ appelé \underline{ensemble de départ}
+		\item un ensemble $F$ appelé \underline{ensemble d'arrivée}
+		\item une fonction qui associe à tout élément $x$ de $E$ un unique élément de $F$ noté $f(x)$
+	\end{itemize}
+	L'application est notée \begin{align*}
+		f: E &\longrightarrow F \\
+		x &\longmapsto f(x)
+	\end{align*}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Soit $\mathcal{P}$ le plan (affine) et $A \in \mathcal{P}$. Soit $\mathcal{D}$ l'ensemble des droites.\\
+			\begin{align*}
+				f: \mathcal{P}\setminus\{A\} &\longrightarrow \mathcal{D} \\
+				B &\longmapsto (AB)
+			\end{align*}
+		\item $E = \mathcal{C}^1\left( [0,1], \R \right)$ l'ensemble des fonctions à valeurs réelles de classe $\mathcal{C}^1$ sur $[0,1]$ \\
+			$F = \mathcal{C}^0([0,1], \R)$\\
+			\begin{align*}
+				\varphi: E &\longrightarrow F \\
+				f &\longmapsto f'
+			\end{align*}
+		\item $E = \mathcal{C}^1([0,1], \R)$ et $F = \R$ 
+			\begin{align*}
+				\varphi: E &\longrightarrow F \\
+				f &\longmapsto f'\left(\frac{1}{2}\right)
+			\end{align*}
+		\item $E = [0,1]$ et $F = \mathcal{C}^0([0,1], \R)$ 
+			\begin{align*}
+				\varphi: E &\longrightarrow F \\
+				x &\longmapsto \int_{a}^{x} t^2\ln(t)~dt 
+			\end{align*}
+		\item~\\
+			\begin{center}
+				\begin{asy}
+					import math;
+
+					size(5cm);
+					pair N = (0, 1);
+					pair M = dir(-70-90);
+					pair A = (0,-1.5); pair B = (1,-1.5);
+					
+					draw(circle((0,0), 1), gray);
+					
+					dot("$N$", N, align=NW);
+					dot("$M$", M, align=NW);
+
+					drawline(N, M, red);
+					drawline(A,B);
+
+					real det(pair a, pair b) { return a.x * b.y - a.y * b.x; }
+					pair xdiff = (M.x-N.x,A.x-B.x);
+					pair ydiff = (M.y-N.y,A.y-B.y);
+					real div = det(xdiff, ydiff);
+
+					pair d = (det(M,N), det(A,B));
+					real x = det(d, xdiff) / div;
+					real y = det(d, ydiff) / div;
+
+					pair M2 = (x,y);
+					dot("$M'$", M2, align=SE);
+
+					dot(M2 + (-0.25, -0.25), white+0);
+					dot(-M2 + (0.25, 0), white+0);
+
+					label("$\mathcal{C}$", (1,0), gray, align=E);
+					label("$(d)$", (0.25-M2.x, M2.y), align=N);
+				\end{asy}
+			\end{center}
+			\begin{align*}
+				\varphi: \mathcal{C}\setminus \{N\}  &\longrightarrow (d) \\
+				M &\longmapsto M'
+			\end{align*}
+		\item~\\
+			\begin{center}
+				\begin{asy}
+					import solids;
+					import math;
+					import three;
+
+					settings.render = 0;
+					settings.prc = false;
+					size(8cm);
+
+					revolution r = sphere(O, 1);
+					guide3 p = (-1.5,-1.5,0)--(1.5,-1.5,0)--(1.5,1.5,0)--(-1.5,1.5,0)--cycle;
+
+					draw(r, 1, longitudinalpen=nullpen);
+					draw(r.silhouette());
+					draw(p);
+
+					dot("$N$", (0,0,1), align=N);
+					triple N = (0,0,1);
+
+					real phi = 3pi/8; real theta = -pi/4;
+					triple M = (sin(phi)*cos(theta), sin(phi)*sin(theta), cos(phi));
+
+					dot("$M$", M, align=NW);
+
+					real t = intersect(N, M, Z, O);
+					triple M2 = (1-t)*N + t * M;
+					dot("$M'$", M2, align=SE);
+
+					draw(N--M2, red);
+				\end{asy}
+			\end{center}
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $f: E \to F$ une application. On dit que $f$ est
+	\begin{itemize}
+		\item \underline{injective} si tout élément de $F$ a au plus un antécédant par $f$
+		\item \underline{bijective} si tout élément de $F$ a un unique antécédant par $f$
+		\item \underline{surjective} si tout élément de $F$ a au moins un antécédant par $f$
+	\end{itemize}
+\end{defn}
+
+\begin{exm}
+	[suite des exemples précédents]
+	\begin{enumerate}
+		\item L'application n'est ni injective ni surjective\\
+			\begin{center}
+				\begin{asy}
+					import math;
+
+					size(3cm);
+					dot("$A$", (0,0));
+
+					pair B1 = (1,1);
+					pair B2 = 2B1;
+
+					drawline((0,0), B1);
+					dot("$B_1$", B1);
+					dot("$B_2$", B2);
+					dot(-B1/2, white+0);
+					label("$d_1$", B2+B1/2, align=NW);
+				\end{asy}
+				$\qquad$
+				\begin{asy}
+					import math;
+
+					size(3cm);
+					dot("$A$", (0,0));
+
+					pair B1 = (0,1);
+					pair B2 = (1,2);
+
+					drawline(B2, B1);
+					dot((-2,-2), white+0);
+					dot((3,3), white+0);
+					label("$d_2$", B2+B1/2, align=N);
+				\end{asy}
+			\end{center}
+			$B_1$ et $B_2$ sont deux antécédants de $d_1$\\
+			$d_2$ n'a pas d'antécédant par $f$
+		\item L'application n'est pas injective:
+			\begin{itemize}
+				\item $f: x\mapsto x$ est continue
+				\item $x \mapsto \frac{x^2}{2}$ et $x \mapsto \frac{x^2}{2} + 42$ sont deux antécédants de $f$.
+			\end{itemize}
+			Mais, l'application est surjective d'après le théorème fondamental de l'analyse
+		\item L'application n'est pas injective ($x\mapsto 0$ et $x\mapsto 42$ sont deux antécédants de 0) mais elle est surjective ($\forall x \in \R, x \mapsto ax$ est un antécédant de $a$).
+		\item L'application est injective mais pas surjective (les images sont des primitives de $x \mapsto x^2\ln(x)$)
+		\item et 6. sont bijectives
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $f: E \to F$ et $g: F \to G$. L'application notée $g \circ f$ est définie par \begin{align*}
+		g \circ f: E &\longrightarrow G \\
+		x &\longmapsto g(f(x))
+	\end{align*}
+	On dit que c'est la \underline{composée} de $f$ et $g$.
+\end{defn}
+
+\begin{prop}
+	Soient $f: E\to F, g:F\to G, h: G\to G$.
+	Alors, $h \circ (g \circ f) = (h \circ g) \circ f$
+\end{prop}
+
+\begin{prv}
+	Par définition, $g \circ f: E \to F$ donc $h \circ (g \circ f): E \to H$\\
+	et $h \circ g: F \to H$ donc $(h \circ g) \circ f: E \to H$
+	Soit $x \in E$.
+	\begin{align*}
+		h \circ (g \circ f)(x) &= h(g \circ f(x))\\
+		&= h(g(f(x))) \\
+	\end{align*}
+	\begin{align*}
+		(h \circ g)  \circ f(x) &= h \circ g(f(x)) \\
+		&= h(g(f(x))) \\
+	\end{align*}
+	Donc, $h \circ (g \circ f)(x) = (h \circ g) \circ f(x)$
+\end{prv}
+
+\begin{rmk}
+	[\danger Attention]
+	En général, $g \circ f \neq f \circ g$\\[5mm]
+	Par exemple,  $f: \begin{array}{r c l}
+		\R &\longrightarrow& \R^+ \\
+		x &\longmapsto& x^2
+	\end{array}$ et $g:\begin{array}{r c l}
+		\R^+ &\longrightarrow& \R \\
+		x &\longmapsto& \sqrt{x} 
+	\end{array}$\\[5mm]
+	Alors,  $f \circ g: \begin{array}{r c l}
+		\R^+ &\longrightarrow& \R^+ \\
+		x &\longmapsto& x
+	\end{array}$ et $g \circ f:\begin{array}{r c l}
+		\R &\longrightarrow& \R \\
+		x &\longmapsto& \left| x \right| 
+	\end{array}$\\[5mm]
+	donc $f \circ g \neq g \circ f$
+\end{rmk}
+
+\begin{prop}
+	Soient $f: E\to F$ et $g: F \to G$ 
+	\begin{enumerate}
+		\item Si $g \circ f$ est injective, alors $f$ est injective
+		\item Si $g \circ f$ est surjective, alors $g$ est surjective
+		\item Si $f$ et $g$ sont surjectives, alors $g \circ f$ est surjective
+		\item Si $f$ et $g$ sont injectives, alors $g \circ f$ est injective
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose $g \circ f$ injective. On veut montrer que $f$ est injective. Soient $(x,y)\in E^2$. On suppose $f(x)= f(y)$. Montrons que $x=y$.\\
+			Comme $f(x) = f(y)$, $g(f(x)) = g(f(y))$ i.e.  $g \circ f(x) = g \circ f(y)$\\
+			Or, $g \circ f$ injective donc $x = y$ 
+		\item On suppose $g \circ f$ surjective. On veut montrer que $g$ est surjective. Soit $y \in G$. On cherche $x \in F$ tel que $g(x) = y$.\\
+			Comme $g \circ f: E\to G$ surjective, $y$ a un antécédant $z \in E$ par $g \circ f$.\\
+			On pose $x = f(z) \in F$ et on a bien $g(x) = y$ 
+		\item On suppose $f$ et $g$ injectives. Montrons que $g \circ f$ injective. Soient $x,y \in E$. On suppose $g \circ f(x) = g \circ f(y)$. Montrons $x = y$\\
+			On sait que  $g(f(x)) = g(f(y))$. Comme $g$ est injective, $f(x) = f(y)$ et comme  $f$ est injective, $x = y$
+		\item On suppose  $f$ et $g$ surjectives. Soit $y \in G$. On cherche $x \in E$ tel que $g \circ f(x) = y$\\
+			Comme $g$ est surjective, $y$ a un antécédant $z \in F$ par $g$ \\
+			Comme $f$ est surjectives, $z$ a un antécédant $x \in E$ par $f$ \\
+			On en déduit $g \circ f(x) = g(f(x)) = g(z) = y$
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	$f: E \longrightarrow F$  \[
+		f \text{ injective } \iff \bigg( \forall (x,y) \in E^2, f(x) = f(y) \implies x = y \bigg) 
+	\] 
+\end{rmk}
+
+\begin{defn}
+	Soit $f: E\to F$ une \underline{bijection}.
+	L'application $\left\{\begin{array}{rcl}
+			F &\longrightarrow& E \\
+			y &\longmapsto& \text{l'unique antécédant de $y$ par $f$}
+	\end{array}\right.$ est la \underline{réciproque} de $f$ notée $f^{-1}$
+\end{defn}
+
+\begin{defn}
+	L'\underline{identité de $E$} est $\id_E : \begin{array}{rcl}
+		E &\longrightarrow& E \\
+		x &\longmapsto& x
+	\end{array}$
+\end{defn}
+
+\begin{prop}
+	Soient $f: E \to F$ et $g: F \to E$ \\
+	\[
+		\begin{rcases*}
+			f \circ g = \id_F\\
+			g \circ f = \id_E
+		\end{rcases*}
+		\iff \begin{cases}
+			f \text{ bijective}\\
+			f^{-1}=g
+		\end{cases}
+	\] 
+\end{prop}
+
+\begin{prv}
+	[déjà faite]
+\end{prv}
+
+\begin{defn}
+	Soit $f: E \to F$ 
+	\begin{enumerate}
+		\item Soit $A \in \mathcal{P}(E)$. L'\underline{image directe} de $A$ par $f$ est \[
+				f(A) = \{f(x)  \mid x \in A\} 
+			\]
+			\vspace{-1.5cm}
+			\begin{center}
+				\incfig{image-directe}
+			\end{center}
+			\vspace{-2cm}
+
+		\item Soit $B \in \mathcal{P}(F)$. L'\underline{image réciproque} de $B$ par $f$ est \[
+				f^{-1}(B) = \{x \in E | f(x) \in B\}
+			\]
+			\vspace{-1.5cm}
+			\begin{center}
+				\incfig{image-reciproque}
+			\end{center}
+			\vspace{-2cm}
+	\end{enumerate}
+\end{defn}

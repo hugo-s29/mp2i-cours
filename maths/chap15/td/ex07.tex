@@ -1,0 +1,38 @@
+\part{Exercise 7}
+Let $(\lambda, \mu, \nu) \in \R^3$ such that \[
+	\lambda (u_n) + \mu (v_n) + \nu (w_n) = (0) 
+\] Thus, \[
+	\forall n \in \N, \lambda 2^n + \mu 3^n + \nu 4^n = 0
+\]
+\newcommand{\tsup}[1]{${}^\text{\rm #1}$}
+
+\begin{itemize}
+	\item[\sc\underlin{1\tsup{st} method}]
+		In particular, with $n \in \{0,1,2\}$, we have \[
+			(S): \quad \begin{cases}
+				\lambda+\mu+\nu = 0\\
+				2 \lambda + 3\mu + 4\nu = 0\\
+				4\lambda + 9\mu + 16\nu = 0
+			\end{cases}
+		\]
+		\begin{align*}
+			(S) &\iff \begin{cases}
+				\lambda + \mu + \nu = 0\\
+				\mu + 2\nu = 0\\
+				5\mu + 12\nu = 0
+			\end{cases}\\
+			&\iff \begin{cases}
+				\lambda + \mu + \nu = 0\\
+				\mu + 2\nu = 0\\
+				2\nu =0
+			\end{cases}\\
+			&\iff \lambda = \mu = \nu = 0
+		\end{align*}
+		Therefore,  $u, v$ and $w$ are linearly independant.
+	\item[\sc\underlin{2\tsup{nd} method}]
+		Suppose $\nu \neq 0$. Then, \[
+			0 = \lambda u_n + \mu v_n + \nu w_n \sim \nu 4^n \tendsto{n\to +\infty} \pm \infty
+		\] Hence, $\nu = 0$.\\
+		Suppose $\nu \neq 0$, then $0 = \lambda 2^n + \mu 3^n \sim \mu 3^n \tendsto{n\to +\infty} \pm\infty$\\
+		Thus, $\mu = 0$. Also,  $\lambda = 0$
+\end{itemize}

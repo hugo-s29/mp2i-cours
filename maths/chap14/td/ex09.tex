@@ -1,0 +1,19 @@
+\part{Exercice 9}
+
+\begin{enumerate}
+	\item Récurrence:
+		\begin{itemize}
+			\item $f\left( a^{\frac{1}{a^0}} \right) = f(a)$ 
+			\item $f\left( a^{\frac{1}{2^{n+1}}} \right) = f\left( \left( a^{\frac{1}{2^{n}}} \right)^2 \right) = f\left(a^{\frac{1}{2n}} \right) = f(a) $
+		\end{itemize}
+	\item $\forall a > 0, a^{\frac{1}{2^n}} \tendsto{n \to +\infty} 1$\\
+		$f$ est continue donc
+		\begin{align*}
+			f\left( a^{\frac{1}{2^n}} \right)& \tendsto{n \to +\infty} f(1)\\
+			\vrt{=}\qquad&\\
+			f(a)\quad& \tendsto{n \to +\infty} f(a)
+		\end{align*}
+		Donc $f(a) = f(1)$\\
+		$f(0) = \lim_{\substack{a\to 0\\>}} f(a) = f(1)$ car $f$ est continue en $0$ \\
+		donc $\forall a \in \R^+, f(a) = f(1)$, $f$ est constant
+\end{enumerate}

@@ -1,0 +1,75 @@
+%% Creator: Inkscape 1.1.1 (c3084ef, 2021-09-22), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'image-reciproque.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{680.31496063bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.5)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{image-reciproque.pdf}}%
+    \put(0.26807896,0.40317752){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$E$\end{tabular}}}}%
+    \put(0.21718629,0.37187888){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\times$\end{tabular}}}}%
+    \put(0.17260706,0.34367491){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$+$\end{tabular}}}}%
+    \put(0.238843,0.33796692){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\circ$\end{tabular}}}}%
+    \put(0.21003288,0.30204042){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\cdot$\end{tabular}}}}%
+    \put(0.2326869,0.27887287){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\square$\end{tabular}}}}%
+    \put(0.18955326,0.24081561){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\diamond$\end{tabular}}}}%
+    \put(0.40880785,0.41765785){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f$\end{tabular}}}}%
+    \put(0.62132231,0.41064269){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{image-reciproque.pdf}}%
+    \put(0.276771,0.31762021){\color[rgb]{0.88235294,0,0.79607843}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f^{-1}(B)$\end{tabular}}}}%
+    \put(0.57638613,0.35990194){\color[rgb]{0.88235294,0,0.79607843}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$B$\end{tabular}}}}%
+    \put(0.64944439,0.33549239){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\blacksquare$\end{tabular}}}}%
+    \put(0.56179231,0.35211741){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$*$\end{tabular}}}}%
+    \put(0.56538347,0.31418591){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\odot$\end{tabular}}}}%
+    \put(0.65100466,0.29392408){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\triangle$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{image-reciproque.pdf}}%
+  \end{picture}%
+\endgroup%

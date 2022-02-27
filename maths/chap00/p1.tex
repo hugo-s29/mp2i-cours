@@ -1,0 +1,173 @@
+\part{Algèbre de Boole}
+
+\begin{defn}
+	Soient $A$ et $B$ deux propositions. La proposition \underline{$A$ et $B$} est définie par la table de vérité suivante:\\
+	\begin{center}
+		\begin{tabular}
+			{c|c|c}
+			$A$&$B$&$A$ et $B$ \\ \hline
+			$V$&$V$&$V$ \\ \hline
+			$V$&$F$&$F$ \\ \hline
+			$F$&$V$&$F$ \\ \hline
+			$F$&$F$&$F$ \\
+		\end{tabular}
+	\end{center}
+\end{defn}
+
+\begin{defn}
+	Soient $A$ et $B$ deux propositions. La proposition \underline{$A$ ou $B$} est définie par la table de vérité suivante:\\
+	\begin{center}
+		\begin{tabular}
+			{c|c|c}
+			$A$&$B$&$A$ ou $B$ \\ \hline
+			$V$&$V$&$V$ \\ \hline
+			$V$&$F$&$V$ \\ \hline
+			$F$&$V$&$V$ \\ \hline
+			$F$&$F$&$F$ \\
+		\end{tabular}
+	\end{center}
+\end{defn}
+
+\begin{defn}
+	Soit $A$ une proposition. La \underline{négation} de $A$, notée non($A$) est définie par:\\
+	\begin{center}
+		\begin{tabular}
+			{c|c}
+			$A$ &non($A$)\\ \hline
+			$V$ & $F$\\ \hline
+			$F$ & $V$\\
+		\end{tabular}
+	\end{center}
+\end{defn}
+
+\begin{defn}
+	Deux propositions $A$ et $B$ sont \underline{équivalentes} si elles ont la même table de vérité. Dans ce cas, on note $A \iff B$
+\end{defn}
+
+\begin{prop}
+	Soient $A$, $B$ et $C$ trois propositions.\\
+	\begin{enumerate}
+		\item $(A\et B)\et C \iff A \et (B \et C)$
+		\item $A \et A \iff A$
+		\item $A \et B \iff B \et A$ 
+		\item $(A \ou B) \ou C \iff A \ou (B \ou C)$
+		\item $A \ou A \iff A$ 
+		\item $A \ou B \iff B \ou A$ 
+		\item $\non(\non(A)) \iff A$ 
+		\item $A \et (B \ou C) \iff A \et B \ou A \et C$ 
+		\item $A \ou (B \et C) \iff (A \ou B) \et (A \et C)$
+		\item $\non(A\et B) \iff \non(A) \ou \non(B)$
+		\item $\non(A\ou B) \iff \non(A)\et\non(B)$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	8.\\
+	\begin{adjustwidth}{-0.5cm}{-2cm}
+		$\begin{NiceArray}
+			{c|c|c|c|c|c|c|c}
+			A&B&C&B\ou C&A\et(B\ou C)&A\et B&A\et C&(A\et B)\ou(A\et C)\\ \hline
+			V&V&V&V&V&V&V&V\\ \hline
+			V&V&F&V&V&F&F&V\\ \hline
+			V&F&V&V&V&F&V&V\\ \hline
+			V&F&F&F&F&F&F&F\\ \hline
+			F&V&V&V&F&F&F&F\\ \hline
+			F&V&F&V&F&F&F&F\\ \hline
+			F&F&V&V&F&F&F&F\\ \hline
+			F&F&F&F&F&F&F&F\\
+		\end{NiceArray}$
+	\end{adjustwidth}
+	\vspace{5mm}
+	10.\\
+	\begin{adjustwidth}{-0.25cm}{0cm}
+		$\begin{NiceArray}
+			{c|c|c|c|c|c|c}
+			A&B&A\et B&\non(A\et B)&\non(A)&\non(B)&\non(A)\ou\non(B)\\ \hline
+			V&V&V&F&F&F&F\\ \hline
+			V&F&F&V&F&V&V\\ \hline
+			F&V&F&V&V&F&V\\ \hline
+			F&F&F&V&V&V&V\\ 
+		\end{NiceArray}$
+	\end{adjustwidth}
+\end{prv}
+
+\begin{defn}
+	Soient $A$ et $B$ deux propositions. La proposition \underline{$A \implies B$} ($A$ implique $B$) est définie par :\\
+	\begin{center}
+		$
+		\begin{NiceArray}
+			{c|c|c}
+			A&B&A\implies B\\ \hline
+			V&V&V\\ \hline
+			V&F&F\\ \hline
+			F&V&V\\ \hline
+			F&F&V\\
+		\end{NiceArray}
+		$
+	\end{center}
+\end{defn}
+
+\begin{defn}
+	Soient $A$ et $B$ deux propositions telles que $A\implies B$ est vraie. On dit que $A$ est une \underline{condition suffisante} pour que $B$ soit vraie. On dit que $B$ est une \underline{condition nécessaire} pour que $A$ soit vraie.
+\end{defn}
+
+\begin{prop}
+	[Contraposée]
+	Soient $A$ et $B$ deux propositions. \[
+		(A \implies B) \iff (\non B \implies \non A)
+	\] 
+\end{prop}
+
+\begin{prv}
+	\vspace{-5mm}
+	\begin{center}
+		$
+		\begin{NiceArray}
+			{c|c|c|c|c|c}
+			A&B&\non A&\non B&\non B \implies \non A&A \implies B\\ \hline
+			V&V&F&F&V&V\\ \hline
+			V&F&F&V&F&F\\ \hline
+			F&V&V&F&V&V\\ \hline
+			F&F&V&V&V&V\\
+		\end{NiceArray}
+		$
+	\end{center}
+\end{prv}
+
+\begin{prop}
+	Soient $A$ et $B$ deux propositions. \[
+		(A \implies B) \iff \big((A \implies B) \et (B \implies A)\big)
+	\] 
+\end{prop}
+
+\begin{prv}
+	\vspace{-5mm}
+	\[
+		\begin{NiceArray}
+			{c|c|c|c|c|c}
+			A&B&A\iff B&A\implies B&B\implies A&(A\implies B) \et (B\implies A)\\ \hline
+			V&V&V&V&V&V\\ \hline
+			V&F&F&F&V&F\\ \hline
+			F&V&F&V&F&F\\ \hline
+			F&F&V&V&V&V\\
+		\end{NiceArray}
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soient $A$ et $B$ deux propositions. \[
+		(A \implies B) \iff (B \ou \non(A))
+	\]
+\end{prop}
+
+\begin{prv}
+	On obtient par contraposée \[
+		\non(A \implies B) \iff (A \et \non(B))
+	\] donc 
+	\begin{align*}
+		(A \implies B) &\iff \non(A \et\non(B))\\
+									 &\iff\non(A)\ou\non(\non(B))\\
+									 &\iff\non(A)\ou B\\
+									 &\iff B \ou\non(A)
+	\end{align*}
+\end{prv}

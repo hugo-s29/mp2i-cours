@@ -1,0 +1,27 @@
+\part{Exercice 1}
+
+Soit $f$ la fonction donnant la distance parcourue (en km) en fonction du temps $t$ (en heure).\\
+Comme la personne ne se téléporte pas, $f$ est continue et croissante.\\
+On pose \begin{align*}
+	g: \left[0,\frac{1}{2}\right] &\longrightarrow \R \\
+	t &\longmapsto f\left( t + \frac{1}{2} \right) - f(t)
+\end{align*}
+
+\begin{align*}
+	g(0) = f\left( \frac{1}{2} \right) - f(0) = f\left( \frac{1}{2} \right) \ge 0\\
+	g\left( \frac{1}{2} \right) = f(1) - f\left( \frac{1}{2} \right) = 4 - f\left(\frac{1}{2}\right) \le 4
+\end{align*}
+
+On pose $k = f\left( \frac{1}{2} \right) \in [0,4]$\\
+
+On sait que $[k,4-k] \cup [4-k,k] \ni 2$.
+Si $k < 2$, $4-k > 2 > k$.
+Si $k > 2$, $4-k < 2 < k$.
+
+On sait que $g$ est continue donc il existe $x \in \left[0,\frac{1}{2}\right]$ tel que \[
+	g(x) = 2
+\]
+
+Donc, il existe $x \in \left[0,\frac{1}{2}\right]$ tel que \[
+	f\left( x + \frac{1}{2} \right) = f(x) + 2 
+\] 

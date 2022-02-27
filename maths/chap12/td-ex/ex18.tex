@@ -1,0 +1,51 @@
+\part{Exercice 18}
+
+Montrons que 
+\begin{itemize}
+	\item $(\R,\oplus)$ est un groupe abélien
+	\item $(\R,\otimes)$ est un monoïde commutatif
+	\item $\forall x \in \R \setminus \{0_\R\}, \exists y \in \R, x \otimes y = 1_\R$
+	\item $1_\R \neq  0_\R$
+\end{itemize}\vspace{2mm}
+
+Trouvons $1_{\R}$ et $0_\R$ :\\
+Soit $a \in \R$
+\begin{align*}
+	0_\R \oplus a = a &\iff 0_\R + a - 1 = a\\
+										&\iff 0_\R = 1
+\end{align*}
+\begin{align*}
+	1_\R \otimes a = a &\iff 1_\R + a - 1_\R a = a\\
+										 &\iff 1_\R (1-a) = 0\\
+										 &\iff a = 1 \text{ ou } 1_\R = 0
+\end{align*}
+
+Or, $1_\R \otimes a = a$ est vrai pour toutes valeures de $a$ donc $1_\R = 0$ \\
+
+\fbox{$1_\R \neq  0_\R$}\\
+
+Soient $(x,y,z) \in \R^3$.
+Montrons que $(x \oplus y) \oplus z = x \oplus (y \oplus z)$
+\[
+	\begin{array}{c r c l}
+		&(x \oplus y) \oplus z &=& x \oplus (y \oplus z) \\
+		\iff& (x + y - 1) \oplus z &=& x \oplus (y + z - 1)\\
+		\iff& (x+y-1) + z - 1 &=& x + (y + z -1) -1 \\
+		\iff& x+y+z-2 &=& x+y+z-2
+	\end{array}
+\]
+Donc, $\oplus$ est associative.
+
+Montrons que $x \oplus y = y \oplus x$ i.e. $x + y -1 = y + x - 1$
+Donc  $\oplus$ est commutative.
+
+On sait que $0_\R = 1 \in \R$
+
+Soit $x \in \R$.
+Trouvons $y \in \R$ tel que $x \oplus y = 0_{\R} = 1$ \\
+\begin{align*}
+	x \oplus y = 1 &\iff x + y - 1 = 1\\
+								 &\iff y = 2-x \in \R
+\end{align*}
+
+\fbox{Donc $(\R,\oplus)$ est un groupe abélien}

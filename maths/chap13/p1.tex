@@ -1,0 +1,841 @@
+\newcommand{\bx}[1]{\fbox{$#1$}}
+\let\larr\leftarrow
+
+\begin{exm}
+	\begin{align*}
+		(S_1): &\left\{\begin{array}{c c c c c}
+			\quad \overbrace{\fbox{$x$}}^{\text{pivot}} &+ y &+ z &- t &= 1\\
+			\quad x &+ 2y &+ 3z &+ t &= 0 \\
+			\quad x &&+ z &= 2 \\
+			\quad
+		\end{array}\right.\\
+		\begin{array}{c}
+			\iff\\
+			L_2 \leftarrow L_2 - L_1\\
+			L_3 \leftarrow L_3 - L_1
+		\end{array}
+		&\left\{\begin{array}{c c c c c}
+			\fbox{$x$} &+ y &+ z &- t &= 1\\
+			&y &+2z &+2t = -1\\
+		\end{array}\right.\\
+		\begin{array}{c}
+			\iff\\
+			L_1 \leftarrow L_1 - L_2\\
+			L_3 \leftarrow L_3 + L_2
+		\end{array}
+		&\left\{
+		\begin{array}
+			{c c c c c}
+			\fbox{$x$} &&-z &-3t &=2\\
+			& \fbox{$y$} &+2z &+2t &=-1\\
+			&&2z &+3t &= 0\\
+		\end{array}
+		\right.\\
+		\begin{array}{c}
+			\iff\\
+			L_1 \leftarrow L_1 + L_3\\
+			L_2 \leftarrow L_2 + \frac{2}{3} L_3
+		\end{array}
+		&\begin{cases}
+			\fbox{$x$} + z = 2\\
+			\fbox{$y$} + \frac{2}{3}z = -1\\
+			\fbox{$3t$} + 2z = 0\\
+		\end{cases}
+		&\iff \begin{cases}
+			x = 2 - z\\
+			y - -1 - \frac{2}{3}z\\
+			t = -\frac{2}{3}z
+		\end{cases}
+	\end{align*}
+	L'ensemble des solutions est 
+	\[
+		\left\{ \left( 2-z, -1-\frac{2}{3}z, z, -\frac{2}{3}z \right) \mid z \in \mathbbm{K} \right\} 
+	\] 
+	\begin{align*}
+		&\begin{cases}
+			x + y + z - t = 1\\
+			x + 2y + 3z + t = 0\\
+			x + \bx{z} = 2
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_1 \larr L_1 - L_3\\
+			L_2 \larr L_2 - 3L_3\\
+		\end{array}&
+		\begin{cases}
+			\bx{y} - t = -1\\
+			-2x + 2y +t = -6\\
+			x + \bx{z} = 2
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_2 \larr \frac{L_2 - 2L_1}{-2}
+		\end{array}&
+		\begin{cases}
+			\bx{y} - t = -1\\
+			\bx{x} - \frac{3}{2}t = 2\\
+			x + \bx{z} = 2
+		\end{cases}\\
+		\begin{array}{c}
+			\iff \\
+			L_3 \larr L_3 - L_2
+		\end{array}&
+		\begin{cases}
+			\bx{y} - t = -1\\
+			\bx{x} - \frac{3}{2}t = 2\\
+			\bx{z} + \frac{3}{2}t = 0
+		\end{cases}\\
+		\iff&
+		\begin{cases}
+			y = -1+t\\
+			x = 2 + \frac{3}{2}t\\
+			z = -\frac{3}{2}t
+		\end{cases}
+	\end{align*}
+
+	\begin{align*}
+		\mathcal{S} &= \left\{(2+\frac{3}{2}t, -1+t, -\frac{3}{2}t, t \mid  t \in \mathbbm{K}\right\}  \\
+		&= \{\underbrace{(2, -1, 0, 0)}_{A} + t\underbrace{\left( \frac{3}{2}, 1, -\frac{3}{2}, 1 \right)}_{u}  \mid  t \in \mathbbm{K}\}  \\
+	\end{align*}
+	% Ajouter graphique
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		&\begin{cases}
+			x + y +z = 0\\
+			x - y + z = 1\\
+			2x - y + z = 2\\
+			x - y - z = 3\\
+			y + 3z = 1
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_2\larr \frac{L_2-L_1}{-2}\\
+			L_3\larr L_3 - 2L_1\\
+			L_4\larr L_4 - L_1\\
+		\end{array}&
+		\begin{cases}
+			\bx{x} + y + z = 0\\
+			\bx{y} = \frac{1}{2}\\
+			-3y - z = 2\\
+			-2y -2z = 3\\
+			y + 3z = 1
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_1\larr L_1-L_2\\
+			L_3 \larr -\left( L_3 - 3L_2 \right)\\
+			L_4 \larr L_4 +3 L_2\\
+			L_5 \larr L_5 - L_2
+		\end{array} &
+		\begin{cases}
+			\bx{x} + z = \frac{1}{2}\\
+			\bx{y} = -\frac{1}{2}\\
+			\bx{z} = -\frac{1}{2}\\
+			-2z = 2\\
+			3z = \frac{3}{2}
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_1 \larr L_1 - L_3\\
+			L_4 \larr L_4 + 2L_3\\
+			L_5 \larr L_5 - 3L_3
+		\end{array} &
+		\begin{cases}
+			\bx{x} = 1\\
+			\bx{y} = -\frac{1}{2}\\
+			\bx{z} = -\frac{1}{2}\\
+			\begin{array}{|c|}
+				\hline
+				0 = 1\\
+				0 = 3\\
+				\hline
+			\end{array} 
+			\text{ incompatibilité }
+		\end{cases}
+	\end{align*}
+	Il n'y a pas de solution!
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		(S_2): &\begin{cases}
+			\bx{x} + y - z = 1\\
+			y + z = 0\\
+			x + 2y = 0
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_3 \larr L_3 - L_1
+		\end{array}&
+		(S_2'): \begin{cases}
+			\bx{x} + y - z = 1\\
+			\bx{y} + z = 0\\
+			y + z = -1
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_1 \larr L_1 - L_2\\
+			L_3 \larr L_3 - L_2
+		\end{array}&
+		\begin{cases}
+			\bx{x} - 2z = 1\\
+			\bx{y} + z = 0\\
+			\bx{0 = -1}
+		\end{cases}
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		(S_1) &\iff 
+		\underbrace{\begin{pmatrix}
+			1 & 1 & 1\\
+			1 & -1 & 1\\
+			2 & -1 & 1\\
+			1 & -1 & -1\\
+			0 & 1 & 3
+		\end{pmatrix}} _{A}
+		\underbrace{\begin{pmatrix}
+			x\\y\\z
+		\end{pmatrix}}_{X} =
+		\underbrace{\begin{pmatrix}
+			0\\1\\2\\3\\1
+		\end{pmatrix}}_{B}\\
+		&\iff AX = B
+	\end{align*}
+
+	\begin{align*}
+		(S_2) \iff 
+		\underbrace{\begin{pmatrix}
+			1&1&-1\\
+			0&1&1\\
+			1&2&0
+		\end{pmatrix}}_{A}
+		\begin{pmatrix}
+			x\\y\\z
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1\\0\\0
+		\end{pmatrix} 
+	\end{align*}
+
+	\begin{align*}
+		(S_2') \iff \underbrace{
+			\begin{pmatrix}
+				1&1&-1\\
+				0&1&1\\
+				0&1&1\\
+			\end{pmatrix} 
+		}_{A'}
+		\begin{pmatrix}
+			x\\y\\z
+		\end{pmatrix} =
+		\begin{pmatrix}
+			1\\0\\-1
+		\end{pmatrix} 
+	\end{align*}
+	\begin{align*}
+		\begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			-1&0&1
+		\end{pmatrix}
+		\underbrace{\begin{pmatrix}
+			1&1&-1\\
+			0&1&1\\
+			1&2&0
+		\end{pmatrix}}_{A} = 
+		\underbrace{\begin{pmatrix}
+			1&1&-1\\
+			0&1&1\\
+			0&1&1
+		\end{pmatrix}}_{A'}
+	\end{align*}
+
+	\begin{align*}
+		\begin{pmatrix}
+			1&-1&0\\
+			0&1&0\\
+			0&-1&1
+		\end{pmatrix}
+		\begin{pmatrix}
+			1&1&-1\\
+			0&1&1\\
+			0&0&0
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 & 0 & -2\\
+			0 & 1 & 1\\
+			0 & 0 & 0
+		\end{pmatrix} 
+	\end{align*}
+
+	\begin{align*}
+		\underbrace{
+		\begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			-1&0&1
+		\end{pmatrix}
+		}_{\in~ \mathrm{GL}_3(\mathbbm{K})}
+		\underbrace{\begin{pmatrix}
+			1&-1&0\\
+			0&1&0\\
+			0&-1&1
+		\end{pmatrix}}_{\in~ \mathrm{GL}_3(\mathbbm{K})}
+		A = 
+		\begin{pmatrix}
+			1 & 0 & -2\\
+			0 & 1 & 1\\
+			0 & 0 & 0
+		\end{pmatrix}
+	\end{align*}
+	\begin{align*}
+		A  \in \mathrm{GL}_3(\mathbbm{K})
+		\iff
+		\begin{pmatrix}
+			1&0&-2\\
+			0&1&1\\
+			0&0&0
+		\end{pmatrix} \in \mathrm{GL}_3 (\mathbbm{K})
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\[
+		A = \begin{pmatrix}
+			\bx1&0&1\\
+			0&1&1\\
+			1&1&0
+		\end{pmatrix} 
+	\]
+
+	\begin{align*}
+		A
+		\begin{array}{c}
+			\sim\\
+			C_3 \larr C_3 - C_1
+		\end{array}
+		&
+		\begin{pmatrix}
+			\bx1 & 0 & 0\\
+			0&1&1\\
+			0&\bx1&-1
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_1 \larr C_1 - C_2\\
+			C_3 \larr \frac{C_3 - C_2}{2}
+		\end{array}&
+		\begin{pmatrix}
+			\bx 1&0&0\\
+			-1&1&\bx 1\\
+			0&\bx 1 & 0
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_1\larr C_1 + C_3\\
+			C_2 \larr C_2 - C_3
+		\end{array}&
+		\begin{pmatrix}
+			\bx 1 & 0&0\\
+			0&0&\bx 1\\
+			0&\bx 1&0
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_2 \leftrightarrow C_3
+		\end{array} & I_3
+	\end{align*}
+
+	\begin{align*}
+		\begin{pmatrix}
+			1&0&1\\
+			0&1&1\\
+			1&1&0
+		\end{pmatrix}
+		\begin{pmatrix}
+			1&0&-1\\
+			0&1&0\\
+			0&0&1
+		\end{pmatrix} = \begin{pmatrix}
+			1&0&0\\
+			0&1&1\\
+			1&1&-1
+		\end{pmatrix}
+	\end{align*}
+
+	\begin{align*}
+		I_3 = A
+		\underbrace{
+		\begin{pmatrix}
+			1&0&-1\\
+			0&1&0\\
+			0&0&1
+		\end{pmatrix}
+		\begin{pmatrix}
+			1&0&0\\
+			-1&1&\frac{1}{2}\\
+			0&0&\frac{1}{2}
+		\end{pmatrix}
+		\begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			1&-1&1
+		\end{pmatrix} 
+		\begin{pmatrix}
+			1&0&0\\
+			0&0&1\\
+			0&1&0
+		\end{pmatrix}}_{B}
+	\end{align*}
+	\begin{align*}
+		A \in \mathrm{GL}_3(\mathbbm{K})\text{ et } A^{-1} = I_3 \times B
+	\end{align*}
+
+	\begin{align*}
+		&\begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			0&0&1\\
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_3 \larr C_3 - C_1
+		\end{array}&
+		\begin{pmatrix}
+			1&0&-1\\
+			0&1&0\\
+			0&0&1
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_1 \larr C_1 - C_2\\
+			C_3 \larr \frac{C_3 + C_2}{2}
+		\end{array}&
+		\begin{pmatrix}
+			1&0&-\frac{1}{2}\\
+			-1&1&\frac{1}{2}\\
+			0&0&\frac{1}{2}
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_1 \larr C_1 + C_3\\
+			C_2 \larr C_2 - C_3
+		\end{array}&
+		\begin{pmatrix}
+			\frac{1}{2}&\frac{1}{2}&-\frac{1}{2}\\
+			-\frac{1}{2}&\frac{1}{2}&\frac{1}{2}\\
+			\frac{1}{2}&-\frac{1}{2}&\frac{1}{2}
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			C_2 \leftrightarrow C_3
+		\end{array}&
+		\underbrace{
+			\begin{pmatrix}
+				\frac{1}{2}&-\frac{1}{2}&\frac{1}{2}\\
+				-\frac{1}{2}&\frac{1}{2}&\frac{1}{2}\\
+				\frac{1}{2}&\frac{1}{2}&-\frac{1}{2}
+			\end{pmatrix}
+		}_{A^{-1}}
+	\end{align*}
+\end{exm}
+
+\begin{rmk}
+	[Résumé]
+	\begin{itemize}
+		\item Méthode du pivot: opérations sur les lignes:
+			\begin{enumerate}
+				\item $L_i \larr L_i + \lambda L_j$ ($\lambda \in \mathbbm{K}$ )
+				\item $L_i \larr \mu L_i$ ($\mu \in \mathbbm{K}\setminus \{0\}$ )
+				\item $L_i \leftrightarrow L_j$
+			\end{enumerate}
+
+			En appliquant la méthode du pivot on obtient
+			\[
+				(S) \iff \begin{cases}
+					x_{i_1} &= \ell_1(x_{j_1},\ldots,x_{j_n-r})\\
+					x_{i_2} &= \ell_2(x_{j_1},\ldots,x_{j_n-r})\\
+					\vdots & \vdots\\
+					x_{i_r} &= \ell_r(x_{j_1},\ldots,x_{j_n-r})\\
+					0 &= *
+				\end{cases}
+			\]
+
+			Les inconnues $x_{i_1}, \ldots, x_{i_r}$ sont les \underline{inconnues principales}, les autres sont appelées \underline{paramètre}.\\
+			On peut supprimer les équations $0 = 0$. S'il y a une équation $0 = \lambda$ avec $\lambda \neq 0$, il n'y a pas de solution: le système est \underline{incompatible}.\\
+			Les inconnues principales dépendent des choix de pivots!
+		\item Représentation matricielle
+			\[
+				(S) \iff AX = B
+			\] où $A$ est la \underline{matrice du système}, $X = \begin{pmatrix} x_1\\ \vdots\\ x_p \end{pmatrix}$ et $B$ est le \underline{second membre}\\
+			$(S)$ a $n$ équations et $p$ inconnues donc $A$ a $n$ lignes et $p$ colonnes.\\
+			La matrice $(A\mid B)$ est la \underline{matrice augmentée du système}.
+		\item Faire un opération $L$ sur les lignes d'une matrice $M$ revient à multiplier $M$ à gauche par une matrice $R$ où $R$ est obtenue en appliquant $L$ sur $I_n$.
+		\item La méthode du pivot matriciel par lignes:
+			\[
+				% A FAIRE
+			\]
+	\end{itemize}
+\end{rmk}
+
+\begin{exm}
+	$A = \begin{pmatrix}
+		5&1&4&4\\
+		2&1&0&0\\
+		7&2&3&4\\
+	\end{pmatrix}$
+
+	\begin{align*}
+		\begin{pmatrix}
+			5 & \bx 1 & 3 & 4\\
+			2 & 1 & 0 & 0\\
+			7 & 2 & 3 & 4
+		\end{pmatrix}
+		\begin{array}{c}
+			\sim \\
+			L_2 \leftarrow L_2 - L_1\\
+			L_3 \leftarrow L_3 - 2L_1
+		\end{array}&
+		\begin{pmatrix}
+			5&\bx 1 & 3 & 4\\
+			-3 & 0 & -3 & -4\\
+			-3 & 0 & -3 & -4\\
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_2 \leftarrow -\frac{1}{3} L_2
+		\end{array}&
+		\begin{pmatrix}
+			5&\bx 1&3&4\\
+			\bx 1&0&1&\frac{4}{3}\\
+			-3&0&-3&-4
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_1 \leftarrow L_1 - 5L_2\\
+			L_3 \leftarrow L_3 + 3L_2
+		\end{array} &
+		\begin{pmatrix}
+			0 & \bx 1 & -2 & -\frac{8}{3}\\
+			\bx 1 & 0 & 1 & \frac{4}{3}\\
+			0&0&0&0
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_1 \leftrightarrow L_2
+		\end{array}&
+		\underbrace{
+			\left(\begin{array}{c c c c c}
+				\multicolumn{1}{|c}1 & 0 & 1 & {4}/{3}\\ \cline{1-1}
+				0 & \multicolumn{1}{|c}1 & -2 & -{8}/{3}\\ \cline{2-4}
+				0&0&0&0\\
+			\end{array}\right)
+		}_{\text{matrice échelonnée réduite par lignes}}
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	[Rang d'une matrice]
+	Soit $M$ une matrice et $R$ la matrice échelonnée réduite par lignes associée à $M$. Le nombre de lignes non nulles de $R$ (le nombre de pivots) est appelée \underline{rang} de $M$.\\
+	Soit $S$ un système de matrice augmentée $(A \mid B)$. Le \underline{rang} de $S$ est le rang de la matrice $A$.\\
+	Le rang est noté $\rg$.
+\end{defn}
+
+\begin{prop}
+	[Interprétation]
+	\begin{itemize}
+		\item Soit $S$ un système de $n$ équations, $p$ inconnues de rang $r $.\\
+			$r$ est le nombre d'inconnues principales, il y a $p - r$ paramètres.
+		\item Soit $M \in \mathcal{M}_{n,p}(\mathbbm{K})$ de rang $r$.\\
+			$r$ est le nombre de lignes indépendantes: il y a $n - r$ lignes combinaisons linéaires des $r$ lignes indépendantes.
+	\end{itemize}
+\end{prop}
+
+\begin{crlr}
+	Soit $S$ un système de \underline{$n$ équations}, $p$ inconnues de \underline{rang $n$}. Alors $S$ a au moins une solution.\\
+	Si $n = p$ alors $S$ a exactement une solution.\\
+	Si $p > n$, il y a une infinité de solutions.\\
+	\qed
+\end{crlr}
+
+\begin{defn}
+	Soit $S$ un système à $n$ équations, $n$ inconnues et de rang $n$. On dit que $S$ est un \underline{système de Cramer} (il a une unique solution)
+\end{defn}
+
+\begin{prop}
+	Soit $S$ un système de $n$ équations, $p$ inconnues de rang $r$.
+	\begin{itemize}
+		\item Si $r < n$ alors le système peut-être incompatible: il y a $n - r$ équations de la forme $0 = *$ après la méthode du pivot.
+		\item Si $r < p$ alors il y a $p - r$ paramètres: si le système n'est pas incompatible, il y aura une infinité de solutions.
+	\end{itemize}
+	\qed
+\end{prop}
+
+\begin{exm}
+	 \[
+		A = \begin{pmatrix}
+			1 & 2 & 3\\
+			5 & 1 & 2\\
+			1 & 1 & 1
+		\end{pmatrix}
+	\] 
+
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			5 & \bx 1 & 2\\
+			1 & 1 & 1
+		\end{pmatrix}
+		\begin{array}{c}
+			\sim\\
+			L_1 \leftarrow L_1 - 2L_2\\
+			L_3 \leftarrow L_3 + L_2
+		\end{array}&
+		\begin{pmatrix}
+			-9&0&-1\\
+			5&\bx 1&2\\
+			4&0&\bx 1
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_1 \leftarrow L_1 + L_3
+		\end{array}&
+		\begin{pmatrix}
+			\bx {-5} & 0 & 0\\
+			5&\bx 1 &2\\
+			4 & 0 & \bx 1
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_1 \leftarrow -L_1/5
+		\end{array}&
+		\begin{pmatrix}
+			\bx 1 & 0 & 0\\
+			5 & \bx 1 & 2\\
+			4 & 0 & \bx 1
+		\end{pmatrix}\\
+		\begin{array}{c}
+			\sim\\
+			L_2 \leftarrow L_2 - 5L_1\\
+			L_3 \leftarrow L_3  - 4L_1\\
+			L_2 \leftarrow L_2 + 2 L_3
+		\end{array}&
+		\left(\begin{array}{c c c}
+			\multicolumn{1}{|c}1 & 0 & 0\\ \cline{1-1}
+			0 & \multicolumn{1}{|c}1 & 0\\ \cline{2-1}
+			0 & 0 & \multicolumn{1}{|c}1\\ \cline{3-1}
+		\end{array}\right)
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\[
+		(S): \begin{cases}
+			x + y + z + t = 1\\
+			x - y + z + 2t = 0\\
+			2y - t = 1\\
+			2x + 2z + 3t = 1
+		\end{cases}
+	\] 
+
+	\begin{align*}
+		\begin{cases}
+			\bx x + y + z + t = 1\\
+			x - y + z + 2t = 0\\
+			2y - t = 1\\
+			2x + 2z + 3t = 1
+		\end{cases}
+		\begin{array}{c}
+			\iff\\
+			L_2 \leftarrow L_2 - L_1\\
+			L_4 \leftarrow L_4 - 2L_1
+		\end{array}&
+		\begin{cases}
+			\bx x +y +z + t = 1\\
+			-2y + \bx t = -1\\
+			2y - t = 1\\
+			-2y + t = -1
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			L_3 \leftarrow L_3 + L_2\\
+			L_4 \leftarrow L_4 - L_2
+		\end{array}&
+		\fbox{$
+			\begin{cases}
+				\bx x + y + z + t = 1\\
+				-2y + \bx t = -1\\
+				0=0\\
+				0=0
+			\end{cases}
+		$} \text{ \underline{Système triangulaire} }\\
+		\iff& \begin{cases}
+			t = -1+2y\\
+			x = 2-3y -z
+		\end{cases}
+	\end{align*}
+
+	La matrice du système triangulaire est \[
+		\begin{pmatrix}
+			1 & 1 & 1 & 1\\
+			0 & -2 & 0 & 1\\
+			0 & 0 & 0 & 0\\
+			0 & 0 & 0 & 0\\
+		\end{pmatrix} 
+	\]
+	Elle n'est pas échelonnée réduite par lignes!
+\end{exm}
+
+\begin{prop}
+	Soit $A \in \mathcal{M}_{n,p}(\mathbbm{K})$ et $C$ une opération élémentaire sur les colonnes de $A$. On pose $A'$ la matrice obtenue en appliquant $C$ sur les colonnes de $A$.
+	\[
+		\rg(A) = \rg(A')
+	\] \qed
+\end{prop}
+
+\begin{exm}
+	\[
+		A = \begin{pmatrix}
+			1&2&3\\
+			5&1&2\\
+			1&1&1\\
+		\end{pmatrix}
+	\]
+
+	\begin{align*}
+		\begin{pmatrix}
+			1&2&3\\
+			5&1&2\\
+			\bx 1&1&1\\
+		\end{pmatrix}
+		\begin{array}{c}
+			\sim\\
+			C_2 \leftarrow C_2 - C_1\\
+			C_3 \leftarrow C_3 - C_1
+		\end{array}&
+		\begin{pmatrix}
+			1&\bx 1&2\\
+			5&-4&-3\\
+			\bx 1 & 0 & 0
+		\end{pmatrix} \\
+		\begin{array}{c}
+			\sim\\
+			C_3 \leftarrow C_3 - 2C_2
+		\end{array}&
+		\begin{pmatrix}
+			1&\bx 1 & 0\\
+			5 & -4 &\bx 5\\
+			\bx 1 & 0 & 0
+		\end{pmatrix} 
+	\end{align*}
+
+	Donc $\rg(A) = 3$
+\end{exm}
+
+\begin{exm}
+	\[
+		\rg \left( \begin{pmatrix}
+			1&1&1\\
+			1&1&1\\
+			1&1&1\\
+		\end{pmatrix} \right)  = 1
+	\] 
+\end{exm}
+
+\begin{prop}
+	Le rang d'une matrice est aussi le nombre de colonnes indépendantes.
+	\qed
+\end{prop}
+
+\begin{defn}
+	Une \underline{matrice triangulaire supérieure} est une matrice carrée avec des coefficients nuls sous sa diagonale: \[
+		T = 
+		\begin{pNiceArray}{>{\strut}cccc}[margin,extra-margin = 1pt]
+			* &\Ldots&& * \\
+			0 &\Ddots&&\Vdots\\
+			\Vdots & \Ddots&&\\
+			0 & \Ldots & 0 & * \\
+			\CodeAfter
+			\begin{tikzpicture}
+				\node [draw=red, rounded corners=2pt, inner ysep = 4pt,
+						 rotate fit=-42, fit = (1-1) (4-4)] {};
+				\draw[red, <-, bend right, thick] (4-4)+(0.15,-0.15) to (2,0);
+				\node[draw, red, above] at (2,0) {diagonale};
+			\end{tikzpicture}
+		\end{pNiceArray}
+	\]
+	et \underline{triangulaire inférieure} si les coefficients au-dessus de la diagonale sont nuls:
+	\[
+		T = 
+		\begin{pNiceArray}{>{\strut}cccc}[margin,extra-margin = 1pt]
+			* &0&\Ldots& 0 \\
+			\Vdots&\Ddots&\Ddots&\Vdots\\
+			&&&0\\
+			* & \Ldots && * \\
+		\end{pNiceArray}
+	\]
+
+	Un \underline{système triangulaire} est de la forme \[ 
+		\left\{\begin{array}
+			{c c c c c c c}
+			a_{11}x_1 &+ a_{12}x_2 &+ \ldots &+ a_{1p}x_p &=& b_1 &+ \ldots\\
+						&+ a_{22}x_2 &+ \ldots &+ a_{2p}x_p &=& b_2 &+ \ldots\\
+						&        &  \ddots &        &\vdots&  &  \\
+						&        &    & a_{pp}x_p  &=& b_p &+ \ldots\\
+						&        &    & 0      &=& \ldots
+		\end{array}\right.
+	\]
+\end{defn}
+
+\begin{rmk}
+	\begin{align*}
+		(S) &\iff \begin{cases}
+			AX = B\\
+			X \in \mathcal{M}_{p,1}(\mathbbm{K}), B \in \mathcal{M}_{n,1}(\mathbbm{K}), A \in \mathcal{M}_{n,p}(\mathbbm{K})
+		\end{cases}
+	\end{align*}
+
+	On pose \begin{align*}
+		\varphi: \mathcal{M}_{p,1}(\mathbbm{K}) &\longrightarrow \mathcal{M}_{n,1}(\mathbbm{K}) \\
+		X &\longmapsto AX
+	\end{align*}
+
+	On cherche $\varphi^{-1} \left( \left\{ B \right\}  \right) $ \\
+
+	On sait que
+	\begin{itemize}
+		\item $(\mathcal{M}_{p,1}(\mathbbm{K}), +)$ est un groupe
+		\item $(\mathcal{M}_{n,1}(\mathbbm{K}), +)$ aussi
+	\end{itemize}
+
+	Soient $X, Y \in \mathcal{M}_{p,1}(\mathbbm{K})$ \[
+		\varphi(X+Y) = A(X+Y) = AX + AY = \varphi(X) + \varphi(Y)
+	\]Donc $\varphi$ est un morphisme de groupes.\\
+	On peut résoudre $(S)$ de la façon suivante:
+	\begin{itemize}
+		\item On cherche $X_0 \in \mathcal{M}_{p,1}(\mathbbm{K})$ tel que $\varphi(X_0) = B$ 
+		\item On résout $\varphi(X) = 0$ ($X \in \Ker(\varphi)$)
+	\end{itemize}\vspace{5mm}
+
+	C'est le système homogène associé: \[
+		\varphi(X) = B \iff \exists H \in \Ker(\varphi), X = X_0+H
+	\]
+\end{rmk}
+
+\begin{prop}
+	\begin{align*}
+		A = \left(a_{i,j}\right)_{\substack{1 \le j\le n\\1\le j\le p}} \in \mathcal{M}_{n,p}(\mathbbm{K})\\
+		B = \left(b_{k,\ell}\right)_{\substack{1 \le k\le p\\1\le \ell\le q}} \in \mathcal{M}_{p,q}(\mathbbm{K})
+	\end{align*}
+
+	\begin{align*}
+		AB = \left( c_{i,\ell} \right) _{\substack{1\le i\le n\\1\le \ell\le q}} \in \mathcal{M}_{n,q}(\mathbbm{K})\\
+		c_{i,\ell} = \sum_{j = 1}^n = a_{i,j}b_{j,\ell}
+	\end{align*}
+\end{prop}

@@ -1,0 +1,173 @@
+\part{Exercice 1}
+
+\begin{enumerate}
+	\item $E_1 = \{f \in \mathcal{F}  \mid  f(a) = 0\}$ \\
+		\begin{itemize}
+			\item $E_1 \neq \O$ car $(x\mapsto 0) \in E_1$
+			\item Soient $u,v \in \R$ et $g, f \in E_1$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a) = 0 + 0 = 0$ donc $\varphi \in E_1$.
+		\end{itemize}
+		Donc $E_1$ est un sous-espace vectoriel de $\mathcal{F}$
+	\item $E_2 = \{f \in \mathcal{F} \mid  f(a) = 1\}$
+		\begin{itemize}
+			\item $E_2 \neq \O$ car $(x\mapsto 1) \in E_2$
+			\item Soient  $u,v \in \R$ et $g, f \in E_2$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a) = u + v$. Si  $u + v \neq 1$, on n'a pas $\varphi(a) = 1$.
+		\end{itemize}
+		Donc, $E_2$ n'est pas un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_3 = \{f \in \mathcal{F} \mid f(a) \in \R^+ \}$
+		\begin{itemize}
+			\item $E_3 \neq \O$ car $(x\mapsto \left| x \right|) \in E_3$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_3$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a)$. On n'a pas $\varphi(a) \in \R^+$ si $(u,v) \in \R^-$
+		\end{itemize}
+		Donc, $E_3$ n'est pas un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_4 = \{f \in \mathcal{F} \mid f(a) \in \Q \}$
+		\begin{itemize}
+			\item $E_4 \neq \O$ car $(x\mapsto \left\lfloor x \right\rfloor) \in E_4$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_4$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a)$. On n'a pas forcément $\varphi(a) \in \R^+$ si $(u,v) \not\in \Q$.
+				Par exemple, $u = \pi$ et $v = \sqrt{2}$, $\varphi = \pi\times g + \sqrt{2} \times f$ et $\varphi\not\in E_4$
+		\end{itemize}
+		Donc, $E_4$ n'est pas un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_5 = \{f \in \mathcal{F} \mid f(a) = f(b) = 0\}$
+		\begin{itemize}
+			\item $E_5 \neq \O$ car $(x\mapsto 0) \in E_5$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_5$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a) = 0$.
+		\end{itemize}
+		Donc, $E_5$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_6 = \{f \in \mathcal{F} \mid f(a) = 0 \text{ et } f(b) = 1\}$
+		Si $a = b$, on a $E_6 = \O$ car il n'existe pas $\psi \in \mathcal{F}$ tel que $0 = \psi(a) = \psi(b) = 1$.\\
+		On suppose donc $a \neq b$.\\
+		\begin{itemize}
+			\item $E_6 \neq \O$ car $\left(x\mapsto \frac{x-a}{b-a}\right) \in E_6$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_5$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(b) = ug(b) + vf(b) = u + v$ ce qui n'est pas forcémement égal à 1.
+		\end{itemize}
+		Donc, $E_6$ n'est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_7 = \{f \in \mathcal{F} \mid f(a) + f(b) = 0\}$
+		\begin{itemize}
+			\item $E_7 \neq \O$ car $(x\mapsto 0) \in E_7$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_7$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On remarque que $\begin{cases}
+					f(b) = -f(a)\\
+					g(b) = -g(a)
+				\end{cases}$
+				On a $\varphi(a) + \varphi(b) = ug(a) + vf(a) + ug(b) + vf(b) = 0$. Donc $\varphi \in E_7$
+		\end{itemize}
+		Donc, $E_7$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_8 = \{f \in \mathcal{F} \mid f(a) + f(b) = 0\}$
+		\begin{itemize}
+			\item $E_8 \neq \O$ car $(x\mapsto 0) \in E_8$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_8$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) = ug(a) + vf(a) = k\big(ug(b) + vf(b)\big) = k\varphi(b)$
+		\end{itemize}
+		Donc, $E_8$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_9 = \{f \in \mathcal{F} \mid f(a) + f(b) = 1\}$
+		\begin{itemize}
+			\item $E_9 \neq \O$ car $\left(x\mapsto \frac{1}{2}\right) \in E_9$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_9$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				On a $\varphi(a) + \varphi(b) = ug(a) + vf(a) + ug(b) + vf(b) = u + v$ qui n'est pas forcément égal à 1.
+		\end{itemize}
+		Donc, $E_9$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_{10} = \{f \in \mathcal{F} \mid f(a) + f(b) + f(c) = 0\}$
+		\begin{itemize}
+			\item $E_{10} \neq \O$ car $\left(x\mapsto 0\right) \in E_{10}$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_{10}$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				\begin{align*}
+					\varphi(a) + \varphi(b) + \varphi(c) &= ug(a) + vf(a) + ug(b) + vf(b) + ug(c) + vf(c)\\
+					&= u\big(g(a) + g(b) + g(c)\big) + v\big(f(a) + f(b) + f(c)\big) 
+					&= 0
+				\end{align*}
+		\end{itemize}
+		Donc, $E_{10}$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_{11} = \{f \in \mathcal{F} \mid f(a) + f(b) = kf(c)\}$
+		\begin{itemize}
+			\item $E_{11} \neq \O$ car $\left(x\mapsto 0\right) \in E_{11}$ 
+			\item Soient  $u,v \in \R$ et $g, f \in E_{11}$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				\begin{align*}
+					\varphi(a) + \varphi(b) &= ug(a) + ug(b) + vf(a) + vf(b) \\
+					&= k\big(ug(c) + vf(c)\big) \\
+					&= k\varphi(c) \\
+				\end{align*}
+		\end{itemize}
+		Donc, $E_{11}$ est un sous-espace vectoriel de $\mathcal{F}$.
+	\item $E_{12} = \{f: x\mapsto a\left| x \right| +bx\}$
+		\begin{itemize}
+			\item $E_{12} \neq \O$.
+			\item
+				\begin{itemize}
+					\item[\underlin{\sc Cas 1}] $a=b=0$\\
+						Donc $f: x \mapsto 0$.\\
+						Dans ce cas, $E_{12}$ est un sous-espace vectoriel de $\mathcal{F}$ (car $f + f \in E_{12}$ et $\forall \lambda \in \R, \lambda f = f$)
+					\item[\underlin{\sc Cas 2}] $a \neq b$\\
+						Alors $f \neq 0_\mathcal{F}$.\\
+						Si $E_{12}$ est un sous-espace vectoriel de $\mathcal{F}$,  \[
+							\forall \lambda \in \R, \lambda f \in E_{12}
+						\] Par exemple, pour $\lambda = 0$, on a $\lambda f = 0_\mathcal{F} \not\in E_{12}$
+						Donc, $E_{12}$ n'est pas un sous-espace vectoriel de $\mathcal{F}$.
+				\end{itemize}
+		\end{itemize}
+	\item $E_{13} = \{f \in \mathcal{F} \mid \forall x \in \R, f(x) = f(x + p)\}$
+		\begin{itemize}
+			\item $E_{13} \neq \O$ car $(x\mapsto 0) \in E_{13}$
+			\item Soient $u,v \in \R$ et $g,f \in E_{13}$.\\
+				On pose $\varphi : \begin{array}{rcl}
+					\R &\longrightarrow& \R \\
+					x &\longmapsto& ug(x) + vf(x)
+				\end{array}$\\
+				Soit $x\in \R$.
+				\begin{align*}
+					\varphi(x+p) &= ug(x+p) + vf(x+p)\\
+					&= ug(x) + vf(x) \\
+					&= \varphi(x) \\
+				\end{align*}
+		\end{itemize}
+
+		Donc $E_{13}$ est un sous-espace vectoriel de $\mathcal{F}$.
+\end{enumerate}

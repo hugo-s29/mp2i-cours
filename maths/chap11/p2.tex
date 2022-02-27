@@ -1,0 +1,361 @@
+\part{Limites et inégalités}
+
+\begin{prop}
+	Soient $u$ et $v$ deux suites réelles convergentes de limites respectives $\ell_1$ et $\ell_2$. On suppose que \[
+	\forall n \in \N, u_n \le  v_n
+	\]
+	Alors, $\ell_1\le\ell_2$
+\end{prop}
+
+\begin{prv}
+	On suppose $\ell_1<\ell_2$. On pose $\varepsilon = \frac{\ell_1 -\ell_2}{3} > 0$.\\
+	Il existe $N_1 \in \N$ tel que \[
+	\forall n \ge  N_1, u_n \ge  \ell_1-\varepsilon
+	\] Il existe $N_2\in \N$ tel que \[
+	\forall n \ge  N_2, v_n \le  \ell_2 + \varepsilon
+	\]\\
+	Ainsi, \[
+	\forall n \ge  \max(N_1,N_2), \ell_1 - \varepsilon \le  u_n \le  v_n\le  \ell_2 + \varepsilon
+	\] et donc \[
+	\ell_1-\varepsilon\le \ell_2+\varepsilon
+	\] donc, $\ell_1 - \ell_2 \le 2 \varepsilon$\\
+	donc, $1 \le \frac{2}{3}$ une contradiction
+\end{prv}
+
+\begin{rmk}
+	Si $\begin{cases}
+		u_n \to  \ell_1 \in \R\\
+		v_n \to  \ell_2 \in \R\\
+		\forall n \in \N, u_n < v_n
+	\end{cases}$\\ on n'a pas forcément $\ell_1 < \ell_2$\\
+	\ex $\forall n \in \N_*, \frac{1}{n+1}< \frac{1}{n}$ mais les deux convergent vers $0$
+\end{rmk}
+
+\begin{prop}
+	Soient $u$ et $v$ deux suites réelles telles que \[
+	\forall n\in \N, u_n < v_n
+	\]
+	\begin{enumerate}
+		\item si $u_n\to  +\infty$,$v_n \to +\infty$
+		\item si $v_n\to  -\infty$,$u_n \to -\infty$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose $u_n \to +\infty$. Soit $M \in \R$, il existe $N \in \N$ tel que \[
+		\forall n \ge  N, u_n \ge M
+		\] Donc \[
+		\forall n \ge N, v_n \ge u_n \ge  M
+		\] Donc $v_n \to  +\infty$
+	\end{enumerate}
+\end{prv}
+
+\begin{thm}
+	[Théorème des "gendarmes"]
+	Soient $u$, $v$ et $w$ trois suites réelles telles que \[
+	\forall n \in \N, u_n \le v_n \le w_n
+	\]
+	On suppose que $u$ et $w$ convergent vers la même limite $\ell\in \R$. Alors, $v$ converge vers $\ell$
+\end{thm}
+
+\begin{prv}
+	Soit $\varepsilon>0$. Il existe $N_1 \in \N$ tel que \[
+	\forall n \ge  N_1, w_n \le  \ell+ \varepsilon
+	\] Il existe $N_2 \in \N$ tel que \[
+	\forall n \ge N_2, u_n \le  \ell - \varepsilon
+	\] On pose $N = \max(N_1,N_2)$. D'où, \[
+	\forall n \ge  N, \ell- \varepsilon \le  u_n \le  v_n \le  w_n \le \ell+\varepsilon
+	\]
+
+	Donc, $v_n \tendsto{n \to +\infty} \ell$
+\end{prv}
+
+\begin{thm}
+	[Limite monotone]
+	\begin{enumerate}
+		\item Soit $u$ une suite croissante majorée par $M$.\\ Alors, $u$ converge et $\lim u_n \le M$
+		\item Soit $u$ une suite croissante non majorée.\\Alors, $u_n \tendsto{n \to +\infty}+\infty$
+		\item Soit $u$ une suite décroissante minorée par $m$.\\Alors, $u$ converge et $\lim u_n \ge m$
+		\item Soit $u$ une suite décroissante non minorée.\\Alors, $u_n \tendsto{n \to +\infty} -\infty$
+	\end{enumerate}
+\end{thm}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\{u_n  \mid n \in \N\}  \neq \O$ ($u_0$ y est) majorée (par hypothèse) par $M$.\\
+			On pose  $\ell = \sup_{n \in \N} (u_n)$. Soit $\varepsilon>0$ quelconque\\
+			$\ell-\varepsilon<\ell$ donc, $\exists N\in \N, u_N>\ell-\varepsilon$\\
+			$u$ est croissante donc \[
+			\forall n \ge N, u_n\ge u_N>\ell-\varepsilon
+			\] donc, \[
+			\forall n\ge N, \ell-\varepsilon\le u_n \le \ell \le \ell+\varepsilon
+			\]\\
+			Donc, $u_n\to \ell$ 
+		\item Soit $M\in \R$. $M$ n'est pas un majorant de l'ensemble $\{u_n \mid n \in \N\}$ donc \[
+		\exists N \in \N, u_N > M
+		\] Comme $u$ est croissante \[
+		\forall n \ge N, u_n \ge u_N \ge M
+		\] donc \[
+		u_n \tendsto{n \to +\infty} +\infty
+		\]
+	\end{enumerate}
+\end{prv}
+
+\begin{exm}
+	\[
+	\begin{cases}
+		u_0 = a \in \left]0, 1\right[\\
+		\forall n \in \N, u_{n+1} = u_n(1-u_n)
+	\end{cases}
+	\] 
+	\begin{center}
+		(suite logistique)
+	\end{center}
+	\[
+	 u_{n+1} = f(u_n) \text{ avec } f: x \mapsto x(1-x)
+	 \]
+
+	 \begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm);
+
+				real f(real x) {return x * (1 - x); }
+				real g(real x) {return x;}
+
+				draw(graph(g, 0, .3));
+				draw(graph(f, 0, 1), magenta);
+				axes("$x$", "$y$", EndArrow);
+
+				real a = 0.7;
+				real u = a;
+
+				draw((a,0)--(a,f(a)));
+
+				for (int i = 0; i < 20; ++i) {
+					real v = f(u);
+
+					draw((u,v)--(v,v)--(v,f(v)));
+
+					draw((v,v)--(v,0), dashed);
+					draw((v,v)--(0,v), dashed);
+					u = v;
+				}
+			\end{asy}
+		\end{center}
+		\caption{Courbe logistique}
+	 	\label{logistique-curve}
+	\end{figure}
+
+		\begin{itemize}
+			\item Soit $n\in \N$, 
+				\begin{align*}
+					u_{n+1} - u_n &= u_n (1-u_n) - u_n\\
+					&= -{u_n}^2 \le 0 \\
+				\end{align*}
+				Donc, $u$ est décroissante.
+			\item Montrons par récurrence que \[
+				\forall n\in \N, u_n \in [0,1]
+				\]
+				\begin{itemize}
+					\item $u_0 = a \in ]0,1[$ donc $u_0\in [0,1]$
+					\item Soit $n\in N$. On suppose $u_n \in [0,1]$ \[
+					\begin{cases}
+						0 \le  u_n \le 1\\
+						0 \le 1-u_n\le 1
+					\end{cases}
+					\] donc \[
+					0 \le u_{n+1} \le 1
+					\] 
+				\end{itemize}
+				donc $u$ minoré par $0$
+			\item D'après le théorème de la limite monotone, $u$ converge. On pose $\ell$ sa limite : \[
+			\ell=\lim_{n \to +\infty} u_n
+			\] Alors, $u_{n+1} \tendsto{n\to +\infty} \ell$
+			\[
+				u_n(1-u_n) \tendsto{n\to +\infty} \ell(1-\ell)
+			\]
+			Par unicité de la limite, 
+			\begin{align*}
+				&\ell = \ell(1-\ell)\\
+				\iff& 1= 1-\ell \\
+				\iff& 0 = -\ell \iff \ell = 0
+			\end{align*}
+		\end{itemize}
+\end{exm}
+
+\begin{exm}
+	\[
+	\begin{cases}
+		u_0 = a \in ]0,1[\\
+		u_{n+1} = 2u_n(1-u_n)
+	\end{cases}
+	\]
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm);
+
+				real f(real x) {return 2 * x * (1 - x); }
+				real g(real x) {return x;}
+
+				draw(graph(g, 0, .6));
+				draw(graph(f, 0, 1), magenta);
+				axes("$x$", "$y$", EndArrow);
+
+				real a = 0.7;
+				real u = a;
+
+				draw((a,0)--(a,f(a)));
+
+				for (int i = 0; i < 20; ++i) {
+					real v = f(u);
+
+					draw((u,v)--(v,v)--(v,f(v)));
+
+					draw((v,v)--(v,0), dashed);
+					draw((v,v)--(0,v), dashed);
+					u = v;
+				}
+			\end{asy}
+		\end{center}
+		\caption{Courbe logistique (2)}
+	 	\label{logistique-curve2}
+	\end{figure}
+\end{exm}
+
+\begin{exm}
+	\[
+	\begin{cases}
+		u_0 = a \in ]0,1[\\
+		u_{n+1} = 3u_n(1-u_n)
+	\end{cases}
+	\]
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm);
+
+				real f(real x) {return 3 * x * (1 - x); }
+				real g(real x) {return x;}
+
+				draw(graph(g, 0, .9));
+				draw(graph(f, 0, 1), magenta);
+				axes("$x$", "$y$", EndArrow);
+
+				real a = 0.3;
+				real u = a;
+
+				draw((a,0)--(a,f(a)));
+
+				for (int i = 0; i < 20; ++i) {
+					real v = f(u);
+
+					draw((u,v)--(v,v)--(v,f(v)));
+
+					draw((v,v)--(v,0), dashed);
+					draw((v,v)--(0,v), dashed);
+					u = v;
+				}
+			\end{asy}
+		\end{center}
+		\caption{Courbe logistique (3)}
+	 	\label{logistique-curve3}
+	\end{figure}
+\end{exm}
+
+\begin{exm}
+	\[
+	\begin{cases}
+		u_0 = a \in ]0,1[\\
+		u_{n+1} = 4u_n(1-u_n)
+	\end{cases}
+	\]
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm);
+
+				real f(real x) {return 4 * x * (1 - x); }
+				real g(real x) {return x;}
+
+				draw(graph(g, 0, 1.2));
+				draw(graph(f, 0, 1), magenta);
+				axes("$x$", "$y$", EndArrow);
+			\end{asy}
+		\end{center}
+		\caption{Courbe logistique (4)}
+	 	\label{logistique-curve4}
+	\end{figure}
+\end{exm}
+
+\begin{defn}
+	Soient $u$ et $v$ deux suites réelles. On dit que $u$ et $v $ sont adjacentes si
+	\begin{itemize}
+		\item $u$ est croissante
+		\item $v$ est décroissante
+		\item $u_n-v_n\tendsto{n \to +\infty} 0$
+	\end{itemize}
+\end{defn}
+
+\begin{thm}
+	Soient $u$ et $v$ deux suites adjacentes.
+	Alors, $u$ et $v$ convergent vers la même limite.
+\end{thm}
+
+\begin{prv}
+	$u-v$ est croissante donc, \[
+	\forall n \in \N, u_n - v_n \le  0
+	\] $v$ décroissante donc \[
+	\forall n\in \N, v_n \le v_0
+	\] donc $u$ majorée par $v_0$ donc $u$ converge.\\
+	$u$ est croissante donc, \[
+	\forall n\in \N, u_n \ge u_0
+	\] donc $v$ est minorée par $u_0$ donc $v$ converge.\\
+	Donc, $u_n-v_n\to\lim(u_n)-\lim(v_n)$
+	Par unicité de la limite,
+	\begin{align*}
+		&\lim(u_n)-\lim(v_n) = 0\\
+		\iff& \lim(u_n) = \lim(v_n)
+	\end{align*}
+\end{prv}
+
+\begin{thm}[Théorème des segments emboîtés]
+	Soit $(I_n)$ une suite de segments (non vide) décroissante  \[
+	\forall n\in \N, I_{n+1} \subset I_n
+	\] On note $\ell(I)$ la longueur d'un intervalle $I$.\\
+	Si $\ell(I_n)\tendsto{n\to+\infty}0$ alors $\bigcap_{n \in \N} I_n$ est un singleton.
+\end{thm}
+
+
+\begin{prv}
+	On pose $\forall n \in \N, I_n = [a_n,b_n]$ avec $\forall n \in \N, a_n \le  b_n$.
+	Soit $n\in \N$.\\
+	$I_{n+1} \subset I_n$ donc $a_{n+1} \in I_{n+1} \subset I_n$\\
+	donc $a_{n+1} \ge  a_n$. De même, $b_{n+1} \in I_{n+1}$ donc $b_{n+1} \in I_n$ donc $b_{n+1} \le  b_n$.\[
+	\forall n\in \N, b_n-a_n = \ell(I_n) \tendsto{n \to  +\infty} 0
+	\] donc $(a_n)$ et $(b_n)$ sont adjacentes, elles convergent donc vers la même limite $\ell\in \R$.\\
+	$(a_n)$ croissante de limite $\ell$ donc \[
+	\forall n \in \N, a_n \le \ell
+	\] $(b_n)$ est décroissante de limite $\ell$ donc \[
+	\forall n\in \N, b_n \ge  \ell
+	\] Donc, $\forall n\in \N, \ell\in I_n$ donc $\ell\in \bigcap_{n\in \N}  I_n$.\\
+	Soit $\ell' \neq \ell$.\\
+	\begin{itemize}
+		\item Si $\ell' < \ell = \sup_{n \in \N} (a_n)$ donc $\ell'$ ne majore pas $(a_n)$ \[
+			\exists N\in \N, a_N > \ell'
+			\] donc $\ell' \not\in I_N$ donc $\ell'\not\in \bigcap_{n \in \N} I_n$
+		\item Si $\ell' > \ell = \inf_{n \in \N}(b_n)$ donc $\ell'$ ne minore pas $(b_n)$ \[
+		\exists N' \in \N, b_{N'} < \ell'
+		\] et donc $\ell'\not\in I_{N'}$ donc $\ell'\not\in \bigcap_{n \in  \N}  I_n$
+	\end{itemize}
+\end{prv}

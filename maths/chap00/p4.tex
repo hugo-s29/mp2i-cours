@@ -1,0 +1,64 @@
+\part{Prédicat}
+
+\begin{defn}
+	Un \underline{prédicat} $\mathcal{P}(x)$ est un énoncé dont la valeur de vérité dépend de l'objet $x$, élément d'un ensemble $E$.\\
+	Le \underline{domaine de validité} de $\mathcal{P}$ est l'ensemble des valeurs $x$ de $E$ pour lequelles $\mathcal{P}(x)$ est vraie: \[
+		\{x \in E  \mid \mathcal{P}(x)\} 
+	\]
+\end{defn}
+
+\begin{rmk}
+	[Notation]
+	On écrit \[
+		\forall x \in E, \mathcal{P}(x)
+	\] pour dire que $\mathcal{P}(x)$ est vraie pour tous les $x$ de $E$.\\
+
+	On écrit \[
+		\exists x \in E, \mathcal{P}(x)
+	\] pour dire qu'il existe (au moints) un élément $x \in E$ pour lequels $\mathcal{P}(x)$ est vraie.\\
+
+	On écrit \[
+		\exists! x \in E, \mathcal{P}(x)
+	\] pour dire qu'il existe un \underline{unique} élément $x \in E$ tel que $\mathcal{P}(x)$ est vraie.
+\end{rmk}
+
+\vspace{5mm}
+~~\underlin{Comment démontrer $\forall x \in E, \mathcal{P}(x)$ ?}
+\marginpar{\fbox{$\forall x \in E, \mathcal{P}(x)$}}\\
+Soit $x \in E$ (fixé quelconque). Montrons $\mathcal{P}(x)$.\\
+
+\vspace{2mm}
+\underlin{Comment utiliser $\forall x \in E, \mathcal{P}(x)$ ?}\\
+On choisit (spécialise) une ou plusieurs (voir toutes) valeurs de $x$ et on exploite $\mathcal{P}(x)$.\\
+
+\vspace{8mm}
+
+\begin{exm}
+	Soient $a,b,c \in \R$.
+	On suppose que \[
+		\forall n \in \N, a + b \times 2^n + c \times 3^n
+	\] Montrons que $a = b= c = 0$.\\
+	On sait que $(S): \begin{cases}
+		a+b+c=0 &~~(n=0)\\
+		a+2b+3c=0 &~~(n=1)\\
+		a+4b+9c=0 &~~(n=2)\\
+	\end{cases}$\\
+	\[
+		(S) \iff
+		\begin{cases}
+			a + b + c = 0\\
+			b+2c = 0\\
+			3b + 8c=0\\
+		\end{cases} \iff
+		\begin{cases}
+			a+b+c = 0\\
+			b+2c = 0\\
+			2c = 0
+		\end{cases}\iff
+		\begin{cases}
+			c=0\\
+			b=0\\
+			a=0
+		\end{cases}
+	\] 
+\end{exm}

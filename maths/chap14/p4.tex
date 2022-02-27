@@ -1,0 +1,45 @@
+\part{Fonctions à valeurs dans $\C$}
+
+\begin{defn}
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			axes("$\Re$", "$\Im$", EndArrow);
+			size(5cm);
+
+			pair l = (2,3);
+			dot("$\ell$", l);
+
+			dot((-1/2,-1/2), white+0);
+			dot((6,6), white+0);
+
+			draw(circle(l, 1), deepcyan);
+			label("$D$", l + (-1,0), deepcyan, align=W);
+
+			draw((1,1)..(3,2)..(4,3)..(4,5)..(2,4.5)..(0,5)..(-1/2, 3)..(0,2.3)..cycle, red);
+			label("$V$", (1,1), red, align=S);
+		\end{asy}
+	\end{center}
+
+	$V$ est un \underline{voisinage} de $\ell$ s'il existe $r > 0$ tel que $V \supset D(\ell, r)$\\
+	où $D(l,r) = \left\{z \in \C \mid \left| z - \ell \right| < r \right\}$
+\end{defn}
+
+\begin{prop}
+	Soit $f: I \to \C$ et $a \in I$, $\ell \in \C$. \[
+		f(x) \tendsto{x \to a} \ell \iff \begin{cases}
+			\Re(f(x)) \tendsto{x \to a} \Re(\ell)\\
+			\Im(f(x)) \tendsto{x \to a} \Im(\ell)\\
+		\end{cases}
+	\] \qed
+\end{prop}
+
+\begin{rmk}
+	[Rappel]
+	On dit que $: I \to \C$ est \underline{bornée} s'il existe $M \in \R$ tel que \[
+		\forall x \in I, \left| f(x) \right| \le M
+	\]
+\end{rmk}
+

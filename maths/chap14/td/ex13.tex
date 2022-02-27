@@ -1,0 +1,36 @@
+\part{Exercice 13}
+
+\[
+	\forall x \in \R,
+	\varphi(x) = \sup_{t \in [a,b]} \left( f(t) + xg(t) \right) 
+\]
+Soit $x \in \R$. $t \mapsto f(t) + xg(t)$ est continue sur $[a,b]$ donc $\varphi(x)$ existe.  $\varphi$ est définie sur $\R$.
+On pose \[
+	\begin{cases}
+		m = \min_{t \in [a,b]}(g(t))\\
+		M = \max_{t \in [a,b]}(g(t))
+	\end{cases}
+\] 
+Soit $(x,y) \in \R^2$.
+\begin{align*}
+	\forall t \in [a,b],
+	\varphi(x) &\ge f(t) + xg(t)\\
+						 &\ge f(t) + yg(t) + (x-y)g(t)\\
+\end{align*}
+
+Si $x \ge y$, $g(t) \ge m$ donc $(x-y)g(t) \ge m(x-y)$ \\
+Si $x \le y$, $g(t) \le M$ donc $(x-y)g(t) \le M(x-y)$ \\
+
+Dans les deux cas, il exite $\mu\in \R$ tel que \[
+	\forall t \in [a,b], \varphi(x) - \mu(x-y) \ge f(t) + yg(t)
+\] donc \[
+	\varphi(x) - \mu(x-y) \ge \varphi(y)
+\] donc \[
+	\varphi(x) - \varphi(y) \ge \mu(x-y)
+\] En échangant les rôles de $x$ et $y$, il existe $\nu\in \R$ tel que \[
+	\varphi(y) - \varphi(x) \ge \nu(y-x)
+\] Donc \[
+	\mu(x-y) < \varphi(x) - \varphi(y) \le \nu(x-y)
+\] Par encadrement, $\varphi(x) - \varphi(y) \tendsto{\substack{x\to y\\\neq}} 0$\\
+donc $\varphi(x) \tendsto{\substack{x\to y\\\neq}} \varphi(y)$\\
+donc $\varphi$ est continue en $y$

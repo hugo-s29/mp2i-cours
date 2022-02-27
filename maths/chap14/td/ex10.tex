@@ -1,0 +1,26 @@
+\part{Exercice 10}
+
+\begin{itemize}
+	\item Soit $x \in E_f$.
+		$f(x) = x$ donc $x \in \mathrm{Im}(f)$
+	\item Soit $x \in \mathrm{Im}(f), x = f(u)$.\\
+		Alors, $f(x) = f(f(u)) = f(u) = x$ donc $x \in  E_f$ \\
+		D'ou \fbox{
+			$E_f = \mathrm{Im}(f) = f([0,1])$
+		}\\
+		Comme $f$ est continue, $f([0,1])$ est un segment non vide car $f(1) \in \mathrm{Im}(f) = E_f$ \\
+		% schema E
+		Soient $a \le b$ dans $[0,1]$ \\
+		$g: [0,a] \to [a,b]$ continue telle que $g(a) = a$\\
+		$h: [b,1] \to [a,b]$ continue telle que $h(b) = b$ \\
+		On pose 
+		\begin{align*}
+			f: [0,1] &\longrightarrow [0,1] \\
+			x &\longmapsto \begin{cases}
+				g(x) &\text{ si } x\le a\\
+				x &\text{ si } a \le x \le b\\
+				h(x) &\text{ si } x \ge b
+			\end{cases}
+		\end{align*}
+		Montrer que $f$ est continue est $f\circ f = f$
+\end{itemize}

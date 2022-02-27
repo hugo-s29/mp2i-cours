@@ -1,0 +1,37 @@
+\part{Exercice 10}
+
+\begin{enumerate}
+	\item On sait que \[
+	\forall \varepsilon>0, \exists N \in \N, \forall n \ge  N, \ell - \varepsilon \le \frac{u_{n+1}}{u_n} \le \ell + \varepsilon
+	\] 
+
+	\section{Méthode 1}
+
+	En particulier, avec $\varepsilon = \frac{1 - \ell}{2} > 0$.\\
+	Il existe $N \in \N$ tel que \[
+	\forall n \ge N, \frac{u_{n+1}}{u_n} \le \ell-\varepsilon = \frac{1+\ell}{2} < 1
+	\] \[
+	\forall  n \in \N, u_{n+1} \le 
+	\]
+	La suite $(u_n)_{n \ge N}$ est décroissante minorée par $0$ donc converge. \\
+	On pose $M = \lim_{n \to +\infty}u_n$. Alors, $u_{n+1} \tendsto{n\to +\infty} L$\\
+	Si $L \neq 0$ alors $\frac{u_{n+1}}{u_n} \tendsto{n \to +\infty} \frac{L}{L} = 1 \neq \ell$ : une contradiction \\
+	Donc $L = 0$ 
+
+	\section{Méthode 2}
+
+	On pose $\varepsilon = \frac{1 - \ell}{2} > 0$. Il existe $N \in \N$ tel que \[
+	\forall n \ge N, \frac{u_{n+1}}{u_n} \le \ell + \varepsilon = \frac{1 + \varepsilon}{2}
+	\] Donc \[
+	\forall n \ge N, \prod_{k=N}^{n} \frac{u_{k+1}}{u_k} \le \prod_{k=N}^{n} \frac{1+\ell}{2}
+	\] donc \[
+	\forall n \ge N, \frac{u_{n+1}}{u_n} \le \left( \frac{1+\ell}{2} \right) ^{n - N + 1}
+	\] et donc \[
+	\forall n \ge N, u_{n+1} \le  \left( \frac{1+\ell}{2} \right)^{n-N +1}u_n
+	\] 
+	$\frac{1+\ell}{2} \in ]0, 1[$ donc $\left( \frac{1+\ell}{2} \right)^{n-N+1} \tendsto{n \to +\infty} 0$.\\
+	Par encadrement, $u_n \tendsto{n \to +\infty} 0$ 
+\item
+\item $\forall n \in \N, u_n = n$, $\frac{n+1}{n} \tendsto{n\to +\infty}1$ mais $u_n \tendsto{} +\infty$.\\
+	$\forall n \in \N, u_n = \frac{1}{n}$, $\frac{\frac{1}{n+1}}{\frac{1}{n}} = \frac{n}{n+1} \tendsto{} 1$ mais $u_n \tendsto{} 0$
+\end{enumerate}

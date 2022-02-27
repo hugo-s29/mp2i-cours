@@ -1,0 +1,31 @@
+\part{Exercice 3}
+\begin{enumerate}
+	\item $0 \in F$.\\
+		Soit $P, Q \in F, \lambda, \mu \in \mathbbm{K}$. On pose $R = \lambda P + \mu Q$. Montrons que $R \in F$.
+		\begin{align*}
+			2R'(1) + R(0)
+			&= 2(\lambda P'(1) + \mu Q'(1)) + \lambda P(0) + \mu Q(0) \\
+			&= \lambda (2P'(1) + P(0)) + \mu (2Q'(1) + Q'(0)) \\
+			&= 0 \\
+		\end{align*}
+		Donc $R \in F$ et donc $F$ est un sous-espace vectoriel de $E$.
+	\item
+		\begin{align*}
+			P \in F &\iff 2P'(1) + P(0)\\
+							&\iff 2(b+2c) + a = 0\\
+							&\iff a+2b+4c = 0
+		\end{align*}
+	\item {\itshape Touver une famille génératrice de $E$}\\
+		\begin{align*}
+			P \in F &\iff a + 2b + 4c = 0\\
+							&\iff a = -2b - 4c\\
+							&\iff \forall x, P(x) = (-2b-4c)+bx+cx^2\\
+							&\iff \forall x, P(x) = b\underbrace{(-2+x)}_{\in E} + c\underbrace{(-4+x^2)}_{\in E}
+		\end{align*}
+		Donc, $F = \Vect(P_1, P_2)$ où $\begin{cases}
+			P_1: x\mapsto -2+x\\
+			P_2: x\mapsto -4 + x^2
+		\end{cases}$ \\
+	\item {\itshape Cette famille est-elle une base ?}\\
+		$P_1$ et $P_2$ ne sont pas colinéaires car ils n'ont pas le même degré donc $(P_1,P_2)$ est une base de $F$. On a $\dim(F) = 2$.
+\end{enumerate}

@@ -1,0 +1,26 @@
+\part{Actions de groupes}
+
+\begin{defn}
+	Soit $(G, \cdot)$ un groupe et $X$ un ensemble non vide. Une \underline{action} de $G$ sur $X$ est une application \begin{align*}
+		\varphi: G\times X &\longrightarrow X \\
+		(g,x) &\longmapsto \underbrace{g~\red\cdot x}_{\text{ce n'est pas la loi de $G$}}
+	\end{align*}
+	qui vérifie
+	\begin{enumerate}
+		\item $\forall x \in X, \varphi(e,x) = e \cdot x = x$
+		\item $\forall x \in X, \forall g,h \in G, g ~\red\cdot~ (h~\red\cdot~ x) = (g ~\blue\cdot~ h)~\red\cdot~ x$
+	\end{enumerate}
+	Dans ce cas,
+	$\begin{array}{c c c c}
+		G &\longrightarrow& S(X)&\\
+		g &\longmapsto& \varphi(g, \cdot)&:
+		\begin{array}{c c c}
+			X &\longrightarrow& X\\
+			x &\longmapsto& g\cdot x
+		\end{array}
+	\end{array}$ est un morphisme de groupes.\\
+\end{defn}
+
+\begin{prv}
+	$\forall g \in G \left( x\mapsto g\cdot x \right) ^{-1} = $
+\end{prv}

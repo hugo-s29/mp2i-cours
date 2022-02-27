@@ -1,0 +1,75 @@
+\part{Exercice 20}
+
+\underline{\large Analyse :}
+Soit $\mathbbm{K} = \left( \left\{ 0,1,a,b \right\},+,\times  \right)$ un corps à 4 éléments.\\
+
+\begin{center}
+	\begin{tabular}
+		{|c|c|c|c|c|}
+		\hline
+		$+$&$0$&$1$&$a$&$b$\\ \hline
+		$0$&$0$&$1$&$a$&$b$\\ \hline
+		$1$&$1$&\diagbox{$b$}{$0$}&\diagbox{$0$}{$b$}&\diagbox{$a$}{$a$}\\ \hline
+		$a$&$a$&\diagbox{$0$}{$b$}&\diagbox{$b$}{$1$}&\diagbox{$1$}{$\quad$}\\ \hline
+		$b$&$b$&\diagbox{$a$}{$a$}&\diagbox{$1$}{$\quad$}&\diagbox{$0$}{$\quad$}\\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\times$& $0$ & $1$& $a$ & $b$ \\ \hline
+		$0$ &$0$ &$0$ &$0$&$0$ \\ \hline
+		$1$ &$0$ &$1$ &$a$ &$b$ \\ \hline
+		$a$ &$0$ &$a$ &$b$ &$1$\\ \hline
+		$b$ &$0$ &$b$ &$1$ &$a$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{align*}
+	&a^2=b \neq 1\\
+	&b^2 = a \neq 1\\
+	\implies&-1\not\in \{0,a,b\} \\
+	\implies&-1=1\\
+	\implies&1+1=0
+\end{align*}
+
+\begin{align*}
+	a+a &= a(1+1) \\
+	&= a\times 0 \\
+	&= 0 \\
+\end{align*}
+
+Donc, $\mathbbm{K} = \left\{ 0,1,a,a^{-1} \right\}$ : le sous-corps engendré par $a$
+
+\begin{center}
+	\begin{tabular}
+		{|c|c|c|c|c|}
+		\hline
+		$+$&$0$&$1$&$a$&$a^{-1}$\\ \hline
+		$0$&$0$&$1$&$a$&$a^{-1}$\\ \hline
+		$1$&$1$&$0$&$a^{-1}$&$a$\\ \hline
+		$a$&$a$&$a^{-1}$&$0$&$1$\\ \hline
+		$a^{-1}$&$a^{-1}$&$a$&$1$&$0$\\ \hline
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$\times$& $0$ & $1$& $a$ & $a^{-1}$ \\ \hline
+		$0$ &$0$ &$0$ &$0$&$0$ \\ \hline
+		$1$ &$0$ &$1$ &$a$ &$a^{-1}$ \\ \hline
+		$a$ &$0$ &$a$ &$a^{-1}$ &$1$\\ \hline
+		$a^{-1}$ &$0$ &$a^{-1}$ &$1$ &$a$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\underline{\large Synthèse:}
+Il faut vérifier que
+\begin{itemize}
+	\item $+$ est associative
+	\item $\times$ est associative
+	\item la distributivité
+\end{itemize}

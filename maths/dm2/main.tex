@@ -1,0 +1,422 @@
+\documentclass[a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+%\everymath{\displaystyle}
+\pgfplotsset{compat=1.17} 
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+
+\usepackage{calrsfs}
+\usepackage{stmaryrd}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+
+%\binoppenalty=\maxdimen
+%\relpenalty=\maxdimen
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\ge\geqslant
+\let\le\leqslant
+
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\Q}{\mathbbm{Q}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\O}{\emptyset}
+
+\newcommand{\rel}{\preceq}
+\newcommand{\Rac}{\mathcal{R}ac}
+
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Alph{subsection}}
+
+\DeclareMathOperator{\Card}{Card}
+
+\pdfsuppresswarningpagegroup=1
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead[L]{DM\textsubscript{2} Maths}
+\fancyhead[R]{Hugo {\sc Salou} MP2I}
+
+\fancyhead[C]{\slshape \rightmark}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+	\begin{center}
+		{\Huge Maths DM\textsubscript2} \vspace{5mm} \\
+		{\Large H}ugo {\sc Salou} \vspace{2mm} \\
+		MP2I - Décembre 2021
+	\end{center}
+	
+	\begingroup
+	\let\clearpage\relax
+	\tableofcontents
+	\endgroup
+
+	\vspace{10mm}
+
+	\begin{section}{Des exemples}
+		\begin{subsection}{}
+			\begin{itemize}
+				\item $\Q^-_* \neq \O$
+				\item $\Q^+ \neq \O$
+				\item $\Q^-_* \cap \Q^+ = \O$
+				\item $\Q^-_* \cup  \Q^+ = \Q$
+				\item $\forall x \in \Q^-_*, \forall y \in \Q^+, x < y$
+					car $\forall x \in  \Q^-_*, x < 0$ et $\forall y \in \Q^+, y \ge 0$
+				\item $\Q^-_*$ est majorée par $0$ et c'est le plus petit majorant. Or,  $0 \not\in \Q^-_*$. Donc $\Q^-_*$ n'a pas de plus grand élément.
+			\end{itemize}
+			
+			\vspace{2mm}
+			
+			\fbox{Donc $\left( \Q^-_*, \Q^+ \right) $ est une coupure de $\Q$}
+		\end{subsection}
+		\begin{subsection}{}
+			Soient $q \in \Q$, $L_q = \{x\in \Q \mid x<q\} $ et $R_q = \{x\in \Q \mid x \ge q\}$.
+			
+			On pose $I(q) = \left( L_q, R_q \right) $\\
+			\begin{itemize}
+				\item $q-1\in L_q$ donc $L_q \neq \O$ et $q\in R_q$ donc $R_q \neq \O$
+				\item $L_q\cup R_q = \{x \in \Q \mid x < q ~ \text{ou} ~ x \ge q\} = \Q$
+				\item $L_q \cap R_q = \{x \in \Q \mid x < q ~ \text{et} ~ x \ge q\} = \O$
+				\item Soit $(x,y)\in L_q\times R_q$. Alors, $y \ge q > x$. Donc $y > x$.
+				\item $L_q$ est majorée par q et c'est le plus petit majorant. Or,  $q \not\in L_q$ donc $L_q$ n'a pas de plus grand élément.
+			\end{itemize}
+			
+			\vspace{2mm}
+
+			\fbox{Donc $\left( L_q, R_q \right)$ est une coupure de $\Q$}
+		\end{subsection}
+
+		\begin{subsection}{}
+			Soient $L = \{x \in \Q  \mid x \le 0~\text{ou}~x^2<2\}$ et $R = \{x \in \Q^+ \mid x^2 \ge 2\}$.\\
+			\begin{itemize}
+				\item $0 \in L$ donc $L \neq \O$
+				\item$2 \in \Q^+$, $2^2 = 4 \ge 2$ donc $2 \in R$ donc $R \neq \O$\\
+					$R = \{x \in \Q  \mid  x^2 \ge 2~\text{et}~x \ge 0\}$\\ 
+					Soit $x \in \Q$.
+				\begin{enumerate}
+					\item[\bf Cas 1] $x\le 0$ et $x^2<2$. Donc, $x \in L$.\\
+					Comme $x \le  0$, $x \not\in R$. Donc $x \in L\cup R$ mais $x \not\in L \cap R$.
+					\item[\bf Cas 2] $x > 0$ et $x^2<2$. Donc, $x \in L$.\\
+					Comme $x^2 < 2$, $x \not\in R$. Donc $x \in L\cup R$ mais $x \not\in L \cap R$.
+					\item[\bf Cas 3] $x \le 0$ et $x^2 \ge  2$. Donc, $x \in L$.\\
+						Comme $x \le 0$, $x \not\in R$ Donc $x \in  L \cup R$ mais $x \not\in L \cap R$.
+					\item[\bf Cas 4] $x > 0$ et  $x^2 \ge 2$. Donc,  $x \in R$.\\
+						Comme $x \ge 0$ et $x^2 \ge 2$, $x \not\in L$. Donc $x \in L \cup R$ mais $x \not\in L \cap R$.
+			\end{enumerate}
+			
+			\item Donc, $L\cap R = \O$ et $L \cup R = \Q$ 
+			\item Soient $x\in L$ et $y \in R$.
+				\\ Si $x \le 0$, alors $x \le 0 \le y$. Donc $x \le y$.\\
+				Si $x >  0$, alors $x^2 < 2 \le y^2$. Donc $x \le y$.
+				\vspace{2mm}\\
+				Donc, $x \le y$.
+			\item On pose l'ensemble $ A = \left\{x^2 \mid x \in L~\text{et}~x > 0\right\} = \left\{ x^2  \mid x^2<2 ~\text{avec}~ x \in \Q \right\}$. $A \neq  \O$ car $1 \in A$. Cet ensemble $A$ est majorée par 2 et c'est le plus petit majorant. Donc, l'ensemble $A$ n'a pas de plus grand élément.\\
+				Donc, $L$ n'a pas de plus grand élément. 
+		\end{itemize}
+		\vspace{3mm}
+		\fbox{Donc, $\left( L, R \right)$ est bien une coupure de $\Q$}
+		\end{subsection}
+	\end{section}
+	\begin{section}{}
+		Soient $\left( L, R \right)$ une coupure de $\Q$, $x\in L$ et $y \in \Q$. On suppose $y \le x$.\\
+		\\
+		Comme $L\cup R = \Q$ et $L \cap R =  \O$, $y \in L$ ou (exclusif) $y \in R$. \\Montrons que $y \not\in R$.\\
+		On suppose $y \in R$, alors $\forall u \in L, u \le y$. Notamment, pour $u = x$, on a  $x \le y$.\\
+		Si $x \neq y$, on a une contradiction.\\
+		Si $x = y$, on a $y \in L$ et $y \in R$, donc $L \cap R \neq \O$: une contradiction.
+		\\\vspace{2mm}\\
+		\fbox{Donc $y \in L$}
+	\end{section}
+	\begin{section}{Un ordre sur $\mathfrak{R}$}
+		On a $\left( L_1,R_1 \right) \rel \left( L_2,R_2 \right) \iff L_1 \subset L_2$.
+		\begin{subsection}{"$\rel$" est une relation d'ordre}
+			\begin{itemize}
+				\item[\bf Réflectivité] Soit $\left( L,R \right)$ une coupure de $\Q$. Montrons $\left( L,R \right) \rel \left( L,R \right)$.
+				\[
+					\left( L,R \right) \rel \left( L,R \right) \iff L \subset L
+				\]
+				Ce qui est toujours vrai. Donc $\rel$ est reflective.
+			\item[\bf Antisymétrie] Soient  $C_1 = \left( L_1,R_1 \right) \text{ et } C_2 = \left( L_2,R_2 \right) $ deux coupures de $\Q$. On suppose $C_1\rel C_2$ et $C_2\rel C_1$. Montrons $C_1 = C_2$, i.e. $L_1=L_2$ et $R_1=R_2$.
+				\begin{itemize}
+					\item $C_1\rel C_2$ donc $L_1\subset L_2$
+					\item $C_2\rel C_1$ donc $L_2\subset L_1$
+				\end{itemize}
+				On a donc $L_1=L_2$. \\
+				Comme $L_1\cup R_1=\Q$ et $L_1\cap R_1=\O$, on a $R_1=\Q\setminus L_1$. De même, $R_2=\Q\setminus L_2$.
+				Donc, $R_1 = \Q\setminus L_1 = \Q\setminus L_2= R_2$.\\
+				Donc, $
+				\begin{cases}
+					R_1=R_2\\
+					L_1=L_2
+				\end{cases}
+				$. Donc, $C_1=C_2$.
+			\item[\bf Transitivité] Soient $C_1=\left( L_1,R_1 \right)$, $C_2=\left(L_2,R_2\right)$, et $C_3 = \left( L_3,R_3 \right) $, trois coupures de $\Q$. On suppose \[
+			\begin{cases}
+				C_1 \rel C_2\\
+				C_2\rel C_3\\
+			\end{cases}
+			\iff
+				L_1\subset L_2 \subset L_3
+			\]. On en déduit que $L_1 \subset L_3$. Donc, $C_1\rel C_3$ 
+			\end{itemize}
+			\fbox{Donc, $\rel$ est une relation d'ordre.}
+		\end{subsection}
+		\begin{subsection}{"$\rel$" est un ordre total}
+			Soient $C_1=\left( L_1,R_1 \right)$ et $C_2 = \left( L_2,R_2 \right)$ deux coupures de $\Q$. $C_1$ et $C_2$ sont comparables avec $\rel$ si et seulement si $L_1$ et $L_2$ sont comparables avec $\subset$. Comme deux ensembles sont toujours comparables avec $\subset$, deux coupures de $\Q$ sont toujours comparables avec $\rel$.\\
+			\fbox{Donc, $\left( \Q,\rel \right)$ est totalement ordonné.}
+		\end{subsection}
+		\begin{subsection}{}
+			On a $I(0) = \left( L_0,R_0 \right)$ avec $L_0=\left\{ x \in \Q \mid x < 0 \right\}$ et $R_0 = \left\{ x \in \Q \mid x \ge 0 \right\}$.\\
+			On remarque  $L_0=\Q^-_*$ et $R_0=\Q^+$. On a $\Rac(2) = (L, R)$ \\avec $L = \left\{ x \in \Q  \mid x \le 0 ~\text{ou}~x^2<2 \right\}$ et $R = \left\{ x \in \Q^+  \mid x^2\ge 2 \right\}$.\\
+		\[ I(0) \rel \Rac(2) \iff \Q^-_* \subset L \]
+		Or, \[
+		L = \underbrace{\left\{ x \in \Q  \mid x < 0 \right\}}_{\Q^-_*} \cup \left\{ x \in \Q \mid x \le  0 \text{ ou } x^2 < 2 \right\} 
+		\]
+		\fbox{Donc, $\Q^-_* \subset L$. Donc $I(0) \rel \Rac(2)$}
+		\end{subsection}
+	\end{section}
+	\begin{section}{Propriété de la borne supérieure}
+		\begin{subsection}{}
+			\begin{itemize}
+				\item $\forall \left( L,R \right) \in A, \left(L\neq \O~\text{et}~R\neq \O\right)$; $A \neq  \O$ Donc, $\mathcal{L} \neq \O$
+				\item On pose $n \in \Q$ tel que $\forall (L,R) \in A, \forall x \in L, n > x$. Ce nombre existe car tous les éléments de $R$ associées à  $L$ seront toujours plus grand que n'importe quel élément de $L$. Donc, $\forall (L,R) \in A, n \not\in L$, donc $\forall (L,R) \in A, n \in R$. Donc, $n \in \mathcal{R}$, donc $\mathcal{R} \neq  \O$ car $\mathcal{R} = \bigcap_{(L,R) \in A} R$ (cf raisonnement après).
+				\item $\mathcal{L} \cap \left( \Q\setminus\mathcal{L} \right) = \O$
+				\item $\mathcal{L} \cup \left( \Q\setminus\mathcal{L} \right) = \Q$
+				\item
+					\begin{align*}
+						\mathcal{R} &= \Q \setminus \mathcal{L} \\
+						\mathcal{R} &= \Q \setminus \bigcup_{\left( L,R \right) \in A} L \\
+						\mathcal{R} &= \bigcap_{(L,R)\in A} \Q \setminus L\\
+						\mathcal{R} &= \bigcap_{(L,R) \in  A}R \\
+					\end{align*}
+					Or, \[
+						\forall (L,R) \in A, \forall (x,y) \in L \times R, x \le y
+					\]
+					Donc, \[
+					\forall y \in \mathcal{R}, \forall (L,R) \in A, \forall x \in L, x \le y
+					\]
+					Donc, \[
+					\forall y \in \mathcal{R}, \forall x \in \mathcal{L}, x \le y
+					\]
+				\item Comme pour tout $\left( L,R \right) \in A$, $L$ n'a pas de plus grand élément,  $\mathcal{L}$ n'en a pas non plus.
+			\end{itemize}
+			\fbox{Donc, $(\mathcal{L},\mathcal{R})$ est une coupure de $\Q$}
+		\end{subsection}
+		\begin{subsection}{}
+			Montrons que $(\mathcal{L},\mathcal{R})$ est majorant de $A$ puis que c'est le plus petit.
+				\begin{align*}
+					\forall (L,R) \in A, (L,R) \rel (\mathcal{L}, \mathcal{R}) &\iff \forall (L,R) \in A,L \subset \mathcal{L} \\
+																																		 & \iff \forall (L,R) \in A, L \subset \bigcup_{(L',R') \in A} L' \\
+																																		 & \iff \forall (L,R) \in A, (L,R) \in A
+				\end{align*}
+				Donc, $(\mathcal{L},\mathcal{R})$ majorant de $A$.\\
+				Montrons que $(\mathcal{L},\mathcal{R})$ est le plus petit majorant de $A$.\\
+				On suppose qu'il existe $(\mathcal{L}', \mathcal{R}') \in \mathfrak{R}$ majorant de $A$, et que $(\mathcal{L}',\mathcal{R}') \rel (\mathcal{L},\mathcal{R})$.\\
+				Montrons que $(\mathcal{L}',\mathcal{R}')=(\mathcal{L},\mathcal{R})$, i.e. $\mathcal{L}'=\mathcal{L}$ car $\mathcal{R}'=\Q\setminus\mathcal{L}'$ et $\mathcal{R}=\Q\setminus\mathcal{L}$.\\
+				Montrons que $\mathcal{L} \subset \mathcal{L}'$, on sait déjà que $\mathcal{L}' \subset \mathcal{L}$.\\
+				Soit $x \in \mathcal{L}$. % Montrons que x ∈ 𝓛 '
+				\fbox{Donc, $(\mathcal{L}, \mathcal{R})$ est le plus petit majorant de $A$.}
+				\reversemarginpar\marginpar{Je n'ai pas fini cette question}
+		\end{subsection}
+	\end{section}
+	\begin{section}{Injection de $\Q$ dans $\mathfrak{R}$}
+		Soit \begin{align*}
+			I: \Q &\longrightarrow \mathfrak{R} \\
+			q &\longmapsto I(q) 
+		\end{align*} Montrons que $I$ est une injective et croissante.
+
+		\begin{subsection}{$I$ injective}
+			Soient $(q,p) \in \Q$. On suppose $I(p) = I(q)$. Montrons $q = p$.\\
+			$I(p) = I(q)$ donc  $
+			\begin{cases}
+				\{x \in \Q  \mid x < q \} = \{x \in \Q  \mid x < p\}\\  
+				\{x \in \Q  \mid x \ge q \} = \{x \in \Q  \mid x \ge p\}\\
+			\end{cases}$\\
+			Donc, $\forall x \in \Q, \begin{cases}
+				x < q \iff x < p\\
+				x \ge q \iff x \ge p
+			\end{cases}$\\
+			Donc, $p = q$.
+			\underline{Donc $I$ injective}
+		\end{subsection}
+
+		\begin{subsection}{$I$ croissante}
+			Soient $(p,q) \in \Q$, on suppose $p \le q$. Montrons $I(p) \rel I(q)$ i.e. \\$\{x \in \Q  \mid x < p\} = P \subset \{x\in \Q  \mid x < q\} = Q$.\\
+			Soient $P = \{x \in \Q  \mid x < p\}$, $Q = \{x\in \Q  \mid x < q\}$ et $\Delta = \{x \in \Q  \mid x \in P~\text{et}~x \not\in Q\}$. Montrons donc que $\Delta = \O$.
+			On a $\Delta = \{x \in  \Q  \mid q \le x < p\}$. Comme $p \le q$, $\nexists x \in \Q, q \le x < p$.
+			Donc, $\Delta = \O$.\\
+			\underline{Donc $I$ croissante}
+		\end{subsection}
+
+		\fbox{Donc, $I$ est une injection croissante}
+	\end{section}
+	\begin{section}
+		{Somme de deux coupures}
+		\begin{subsection}{}
+			Soient $(L_1,R_1)$ et $(L_2,R_2)$ deux coupures de $\Q$. Montrons que $(L_1,R_1) + (L_2,R_2)$ est aussi une coupure de $\Q$.
+
+			Soit $(L,R) = (L_1,R_1) + (L_2,R_2)$. Donc, $L = \{x + y  \mid x \in L_1, y \in L_2\}$ et $R = \Q \setminus L$.
+			\\
+			\begin{itemize}
+				\item Comme $L_1 \neq \O$ et $L_2 \neq \O$, $L \neq \O$
+				\item Soient $m_1$ un majorant de $L_1$, et $m_2$ un majorant de $L_2$.\\
+					On sait que $m_1 \not\in L_1$ et $m_2 \not\in L_2$.
+					Donc, $m = m_1+m_2 \not\in L$\\
+					Donc, $m \in R$. Donc, $R \neq \O$
+				\item $L \cap R = L \cap (\Q \setminus L) = \O$
+				\item $L \cup R = L \cup (\Q \setminus L) = \Q$
+				\item $L_1$ et $L_2$ n'ont pas de plus grand élément. Donc, $L$ n'en a pas non plus.
+				\item Soient $(x_1,x_2)\in L_1\times L_2$ et $(y_1,y_2) \in R_1 \times R_2$.
+					\[
+						\begin{rcases*}
+							x_1 \le y_1\\
+							x_2 \le y_2
+						\end{rcases*} \iff
+							x_1 + x_2 \le y_1 + x_2 \le y_1 + y_2\\
+					\] 
+					Donc, $x_1+x_2 \le y_1+y_2$\\
+			\end{itemize}
+			\fbox{Donc, $(L,R)$ est une coupure de  $\Q$.}
+		\end{subsection}
+		
+		\begin{subsection}{}
+			Soient $C_1 = (L_1,R_1)$, $C_2 = (L_2,R_2)$ et $C_3 = (L_3,R_3)$ trois coupures de $\Q$.
+			Montrons que $C_1+C_2=C_2+C_1$ et que $(C_1+C_2)+C_3 = C_1 + (C_2+C_3)$.
+			\\
+			\begin{itemize}
+				\item Soient $(\mathcal{L}_1,\mathcal{R}_1) = C_1 + C_2$ et $(\mathcal{L}_2,\mathcal{R}_2) = C_2 + C_1$
+					\begin{align*}
+						C_1+C_2=C_2+C_1 \iff&
+						\begin{cases}
+							\mathcal{L}_1 = \mathcal{L}_2\\
+							\mathcal{R}_1 = \mathcal{R}_2\\
+						\end{cases}\\
+						\iff&
+						\begin{cases}
+							\mathcal{L}_1 = \mathcal{L}_2\\
+							\Q\setminus\mathcal{L}_1 = \Q\setminus\mathcal{L}_2
+						\end{cases}\\
+						\iff&
+						\{x + y  \mid x \in L_1, y \in L_2\} = 
+						\{ y + x  \mid  y \in L_2, x \in L_1\} 
+					\end{align*}
+					Donc, la loi "$+$" est commutative.
+				\item Soient $(\mathcal{L}_1, \mathcal{R}_1) = C_1+C_2$, $(\mathcal{L}_2, \mathcal{R}_2) = C_2+C_3$, $(\mathcal{L}_3,\mathcal{R}_3) = (C_1+C_2)+C_3$ et $(\mathcal{L}_4,\mathcal{R}_4) = C_1 + (C_2+C_3)$.\\
+					On a $\mathcal{L}_1 = \{x + y  \mid x \in L_1, y \in L_2\}$ et $\mathcal{L}_2 = \{y + z  \mid y \in L_2, z \in L_3\}$.\\
+					Donc, 
+					\begin{align*}
+						\mathcal{L}_3 &= \{u + z  \mid u \in \mathcal{L}_1, z \in L_3\}\\
+						&= \{(x + y) + z  \mid x \in L_1, y\in L_2, z \in L_3\}\\
+						&= \{x + y + z  \mid x \in L_1, y\in L_2, z \in L_3\}
+					\end{align*}
+					\begin{align*}
+							\mathcal{L}_4 &= \{x + v  \mid  x \in L_1, v \in \mathcal{L}_2\}\\
+							&= \{x + (y + z)  \mid x \in L_1, y \in L_2, z \in L_3\}  \\
+							&= \{x + y + z  \mid x \in L_1, y \in L_2, z \in L_3\}
+					\end{align*}
+					Donc, $(C_1+C_2)+C_3 = C_1+(C_2+C_3)$, la loi "$+$" est commutative.
+			\end{itemize}
+		\end{subsection}
+		\begin{subsection}{}
+			Soit $(L,R)$ une coupure de $\Q$. Montrons que $(L,R) + I(0) = (L,R)$.\\
+			On sait que $L_0 = \{x \in \Q  \mid x < 0\} = \Q^-_*$.
+			\[
+				(L,R) + I(0) = (L', \Q\setminus L') \text{ avec } L' = \{x + y  \mid x \in L, y \in \Q_*^-\}  \\
+			\] Montrons que $L' = L$ c'est à dire que $\forall x \in L, \forall y \in\Q_*^-, x+y \in L$.
+			Soient $x \in L$ et $y \in \Q_*^-$.
+			\[
+			x+y < x \text{ car } y < 0
+			\] Or, d'après II, \[
+			\forall x \in L, \forall z \in Q, \text{ si } z\le x \text{ alors } z \in L
+			\]
+			Donc, $(x+y) \in L$
+
+			\reversemarginpar\marginpar{Je n'ai pas fini cette question}
+
+			\fbox{Donc, $I(0)$ est un élément neutre de $+$ }
+		\end{subsection}
+		\begin{subsection}{}
+			Montrons que $\forall C \in \mathfrak{R}, \exists C' \in \mathfrak{R}, C + C' = I(0)$ c'est à dire montrons que $\forall (L,R) \in \mathfrak{R}, \exists (L',R') \in \mathfrak{R}, \{x+y \mid x\in L,y\in L'\} = L_0 = \Q_*^-$.\\
+			Soit $x \in L$. Trouvons $y \in \Q$ tel que $x + y < 0$ i.e. $x < -y$
+			On sait que $L$ a une borne supérieur. On pose $M = \sup(L)$. Donc,  $x < M$ donc $x - M < 0$
+		\end{subsection}
+		\begin{subsection}{}
+			Soient $q_1,q_2\in \Q$. On sait que $(L,R) = (L',R') \iff L = L'$. On pose $x \in L_{q_1}$ et $y \in L_{q_2}$. Montrons que $x + y \in L_{q_1+q_2}$.
+			\begin{align*}
+				x + y \in L_{q_1+q_2} &= \{x + y \in \Q \mid x + y < q_1+q_2\} \\
+				&\iff \begin{cases}
+					x+y \in \Q\\
+					x+y < q_1+q_2
+				\end{cases} \\
+			\end{align*} 
+			On a $x\in \Q$ et $y \in \Q$ donc on a bien $x + y \in \Q$.\\
+			On sait que $x \in L_{q_1}$ donc $x < q_1$.\\
+			On sait que $y \in L_{q_2}$ donc $y < q_2$.\\
+			Donc, $x+y<q_1+q_2$. Donc, $x+y \in L_{q_1+q_2}$\\
+			\fbox{Donc $\forall (q_1,q_2)\in Q^2, I(q_1+q_2)=I(q_1)+I(q_2)$}
+		\end{subsection}
+	\end{section}
+	\begin{section}{}
+		\begin{subsection}{}
+			On pose $C=(L,R)$ et $C'=(L',R')$ deux coupures positives. On a
+			\[
+				\begin{cases}
+					I(0) \rel C \implies Q^-_* \subset L\\
+					I(0) \rel C' \implies Q^-_* \subset L'\\
+				\end{cases}
+			\] 
+			On doit montrer que $\Q^-_* \subset L''$ avec $(L'',\Q\setminus L'')=C\times C'$.\\
+			Soit $x \in \Q_*^-$, montrons que $x \in L''$. Comme $x \in L''$, on sait que $x \le ab$ avec $a \in L\cap Q^+$ et $b \in L'\cap \Q^+$. Donc, $ab \in \Q^+$.\\
+			Comme $x < 0$,  $x < ab$ (avec $a \in L\cap Q^+$ et $b \in L'\cap Q^+$) donc  $x \in L''$\\
+		\fbox{Donc, le produit de deux coupures positive est aussi positive}
+		\end{subsection}
+		\begin{subsection}{}
+			Soient $(q_1,q_2)\in (\Q^+)^2$. On pose $(L',\Q\setminus L') = I(q_1q_2)$\\
+			\[
+			I(q_1)\times I(q_2) = (L,\Q\setminus L) \text{ avec } L = \{x \in \Q  \mid \exists a \in L_{q_1}\cap \Q^+, b \in L_{q_2}\cap \Q^+, x \le ab\} 
+			\] 
+			On veut montrer que $L = L'$.
+			\begin{align*}
+				L' = \{x \in \Q \mid x < q_1q_2\} \\
+			\end{align*}
+			\begin{itemize}
+				\item 
+					On pose $x \in L'$. On sait que $x < q_1q_2$. Or, $q_1 \in L_{q_1}\cap \Q^+$ et $q_2 \in L_{q_2}\cap \Q^+$. Donc,
+				\[
+					\exists (a,b) \in L_{q_1}^+\times L_{q_2}^+, x \le ab
+				\] Donc $x \in L$.
+			\item On pose $x \in L$. Montrons que $x \in L'$. On sait qu'il existe $(a,b) \in L_{q_1}^+\times L_{q_2}^+$ tels que $x \le ab$. On sait que  $0 \le a < q_1$ et $0 \le b < q_2$ donc $0 \le ab < q_1q_2$ donc $x < q_1q_2$ donc $x \in L'$
+
+		\end{itemize}
+		\fbox{Donc, $\forall (q_1,q_2)\in \Q^2, I(q_1q_2) = I(q_1)\times I(q_2)$}
+		\end{subsection}
+	\end{section}
+\end{document}

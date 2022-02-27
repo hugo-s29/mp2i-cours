@@ -1,0 +1,19 @@
+\part{Modes de définition}
+
+\begin{defn}
+	Une suite peut être définie
+	\begin{itemize}
+		\item \underline{Explicitement}
+			On dispose pour tout $n \in \N$ de l'expression de $u_n$ en fonction de $n$.\\
+			\ex $\forall n \in \N_*, u_n = \frac{\ln(n)}{n}e^{-n}$\\
+		\item \underline{Par récurrence}
+			On connait $u_{n+1}$ en fonction de  $u_0, u_1, \ldots, u_n$\\
+			\ex $\begin{cases}
+				u_0=1\\
+				\forall n \in \N, u_{n+1} = \sin(u_n)
+			\end{cases}$\\
+		\item \underline{Implicitement}
+			$\forall n \in \N, u_n$ est le seul nombre verifiant une certaine propriété\\
+			\ex $u_n$ est le seul réel vérifiant  $x^5 + nx - 1 = 0$
+	\end{itemize}
+\end{defn}

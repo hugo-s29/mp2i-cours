@@ -1,0 +1,73 @@
+\part{Logique douteuse}
+
+\newcommand{\ww}{\mathfrak{Y}}
+
+\begin{defn}
+	On définit $\varpi = \frac{e^{\pi - \sqrt{2}} - \ln 4 + \Upsilon}{\gamma}$ où $\Upsilon = \pi! = \Gamma(\pi+1) \approx 7.18$\\
+	On a $\varpi \approx 19.7979$
+\end{defn}
+
+\begin{defn}
+	Soit $P(x)$ un prédicat sur $E$.
+	On dit que $P(x)$ est \underline{quasi-vraie} (pour un certain $\varepsilon > 0$) si \[
+		 \ww_E(P) = \frac{\Card(F)}{\Card(V)}<\varepsilon
+	\] où $V = \{x \in E  \mid P(x) \text{ vrai}\} $
+	et $F = \{x \in E  \mid P(x) \text{ faux}\} $\\
+	Par convention, on choisit généralement $\varepsilon = \varpi$.
+\end{defn}
+
+\begin{exm}
+	Soit $x \in \R$.
+	Montrons que $P(x): ``\sqrt{x^2} = x"$.\\
+	On sait que $P(x)$ est vraie pour tout $x$ positif (ou nul).\\
+	Or, $\forall x \in \R^-, P(x)$ est faux ($\sqrt{x^2} = -x$)\\
+	Alors, $P(x)$ est quasi-vraie\\
+	On note $\infty = \Card(\R^+) = \Card(\R^-)$. On a donc $\ww_E(P) = \frac{\infty}{\infty} = 1$
+\end{exm}
+
+\begin{thm}
+	[Théorème du pipeau qui marche]
+	\begin{center}
+		\itshape `` C'est du pipeau \ldots mais ça marche ! ''
+	\end{center}
+	Toute proposition quasi-vraie est vraie. \qed
+\end{thm}
+
+\begin{rmk}
+	Ce théorème est très utile. On l'appèle aussi le théorème du marchand de tapis ou le théorème du random-bullshit.\\
+	La preuve de ce théorème est très complexe et utilise principalement des notions qui ne sont pas au programme. Malgrès cela, on peut tout de même comprendre la preuve.
+\end{rmk}
+
+\begin{prv}
+	[principe de la preuve]
+	On a une proposition $P(x)$ sur un ensemble $E$. On note $n = \Card(E)$. On pose $V$ et $F$ comme dans la définition d'une proposition quasi-vraie.\\
+	On montre que $F \tendsto{n\to +\infty} \O$ et donc que $V \tendsto{n \to +\infty} E$ en démontrant que $\Card{V} \tendsto{n\to +\infty} \Card{E}$.
+	\renewcommand{\qedsymbol}{}
+\end{prv}
+
+\begin{exm}
+	On pose $\forall x \in \R, P(x) : ``\frac{1}{x} \text{ existe}"$.
+	On sait que $\frac{1}{0}$ n'existe pas.
+	Cependant, $P$ est quand même quasi-vraie.
+	Donc d'après le théorème du pipeau qui marche, $P$ est vraie.
+\end{exm}
+
+\begin{prop}
+	Les équivalents autour d'un points sont des égalités à $\pm \varepsilon$.\qed
+\end{prop}
+
+\begin{exm}
+	Avec $\varepsilon = \frac{1}{2}$, $\sin\theta \approx \theta$, $\cos\theta \approx 1$
+\end{exm}
+
+\begin{crlr}
+	Toute notation en ``petit o'' est optionnelle avec l'utilisation de ``$\approx$''. Avec la valeur de $\varepsilon$ correspodante, \[
+		\forall x \in \R, \po(x) \approx 0
+	\] \qed
+\end{crlr}
+
+\begin{rmk}
+	[Notation]
+	Au lieu d'utiliser ``$\approx$'', on écrit ``$=$'' à la place.\\
+	On a donc $\sin(\theta) = \theta$ et $\cos(\theta) = 1$.
+\end{rmk}

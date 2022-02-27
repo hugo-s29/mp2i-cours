@@ -1,0 +1,30 @@
+\part{Exercice 11}
+
+On suppose $A \neq \O$ et on pose
+\begin{align*}
+	f: \R &\longrightarrow \R \\
+	x &\longmapsto \inf\left\{ \left| x-a \right|  \mid a \in A \right\} 
+\end{align*}
+
+\[
+	\forall x \in \R, \bigg( \forall a \in A, \left| x-a \right| \ge 0 \text{ donc } f(x) \text{ existe} \bigg) 
+\] 
+
+Soient $x,y \in \R$.
+\begin{align*}
+	\forall a \in A, f(x) &= \inf_{a\in A}\left( \left| x-a \right|  \right) \le \left| x-a \right| =\left| x-y+y-a \right| \\
+												&\le \left| x-y \right| + \left| y-a \right| 
+\end{align*}
+donc \[
+	\forall a \in A, \left| y-a \right| \ge f(x) - \left| x-y \right| 
+\] donc \[
+	f(y) \ge f(x) - \left| x - y \right| 
+\] donc \[
+	f(x) - f(y) \le \left| x -y \right|
+\] On peut prouver de même que \[
+	f(y) - f(x) \le \left| y-x \right|  = \left| x -y \right| 
+\] D'où, \[
+	-\left| x-y \right| \le f(x) - f(y) \le \left| x-y \right| 
+\] donc \[
+	\left| f(x) - f(y) \right| \le \left| x-y \right| 
+\] donc $f$ est $1$-lipschitzienne donc continue

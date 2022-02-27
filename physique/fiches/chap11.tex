@@ -1,0 +1,65 @@
+\documentclass[a4paper]{report}
+
+\input{../preamble.tex}
+
+\begin{document}
+	\begin{align*}
+		\ddot{x} + \frac{\omega_0}{Q} \dot{x} + \omega_0^2 x = \text{const}
+	\end{align*}
+
+	Si $Q\gg 1$,
+	\begin{align*}
+		\ddot{x} + \omega_0^2 x = \text{const}
+	\end{align*}
+
+	\begin{align*}
+		(\text{EH}): \ddot{s} + \frac{\omega_0}{Q} \dot{x} + \omega_0^2 x = 0\\
+		(\text{EC}): r^2 + \frac{\omega_0}{Q} r + \omega_0^2 = 0\\
+	\end{align*}
+
+	On a: $
+		\begin{cases}
+			\text{Apériodique si } Q < \frac{1}{2}\\
+			\text{Critique si } Q = \frac{1}{2}\\
+			\text{Pseudo périodique si } Q > \frac{1}{2}\\
+		\end{cases}
+	$
+
+	\begin{align*}
+		Q < \frac{1}{2} &\implies \Delta > 0 \text{ avec les racines } r_{\pm} < 0\\
+		Q > \frac{1}{2} &\implies \Delta < 0\\
+		Q = \frac{1}{2} &\implies \Delta = 0
+	\end{align*}
+
+	Pour $Q < \frac{1}{2}$
+	\begin{align*}
+		&\underbrace{\tau_{+} = -\frac{1}{r_+}}_\text{Temps caractéristique}
+		= \frac{2Q}{\omega_0} \times \frac{1}{1+\sqrt{1-4Q^2} }
+		\\
+		&\tau_{-} = -\frac{1}{r_-}\\
+	\end{align*}
+
+	Solution générale:
+	\begin{align*}
+		s(t) = \lambda e^{t \times r_+} + \mu e^{t \times r_-}
+	\end{align*}
+
+	Pour $Q = \frac{1}{2}$,
+
+	\[
+	r = -\omega_0
+	\] 
+
+	Solution générale: \[
+	s(t) = (\mu + \lambda t)e^{rt}
+	\] 
+
+	Temps caractéristique: $\tau = -\frac{1}{r} = \frac{1}{\omega_0}$. C'est le plus rapide des régimes apériodiques à atteindre le régime permanent.
+	
+
+	Pour $Q > \frac{1}{2}$,  \[
+	r_\pm = -\frac{\omega_0}{2Q}\left( 1 \pm j\sqrt{4Q^2-1} \right)
+	\]
+
+	On a $\Im(r_-) = \frac{\omega_0}{2Q} \sqrt{4Q^2 - 1} = \Omega$ : la pseudo pulsation
+\end{document}

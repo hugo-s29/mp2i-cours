@@ -1,0 +1,89 @@
+\part{Exercice 6}
+
+Pour $n \in \N$.
+On pose $P(n): ``2^n \in A"$
+\begin{itemize}
+	\item D'après l'énoncé, $2^0 = 1 \in A$\\
+		Donc $P(0)$ est vraie
+	\item Soit $n \in \N$, on suppose $P(n)$ vraie.\\
+		$2^n \in A$ donc $2 \times 2^n \in A$ donc $2^{n+1} \in A$\\
+		Donc $P(n+1)$ est vraie
+\end{itemize}
+
+On fixe $p \in A$.\\
+Pour $k \in \left\llbracket 0,p - 1 \right\rrbracket$,
+on pose $Q_p(k): ``p-k\in A"$
+
+\begin{itemize}
+	\item $p \in A$ par hypothèse donc $Q_p(0)$ est vraie
+	\item Soit $k \in \left\llbracket 0, p-2 \right\rrbracket$. On suppose $Q_p(k)$ vraie.\\
+		$p - k \in A$ donc $p - k - 1 \in A$ donc $p - (k + 1) \in A$ donc $P(n+1)$ vraie.
+	\item Soit $k \in \N_*$. On pose $n = \left\lfloor \log_2(k) \right\rfloor +1$ de sorte que $2^n > k$. On pose $p = 2^n \in A$. Or, $Q_p(k)$ est vraie donc $k \in A$.
+\end{itemize}
+
+Ainsi, $\N_* \subset  A \subset \N_*$ donc $A = \N_*$.
+
+Soit $P$ un prédicat sur $\N_*$ tel que
+\begin{itemize}
+	\item $P(1)$ vraie
+	\item $\forall n \in \N_*, P(n) \implies P(2n)$
+	\item $\forall n \ge 2, P(n) \implies P(n-1)$
+\end{itemize}
+On pose $A = \{ n \in \N_*  \mid  P(n) \text{ vrai}\}$.\\
+Alors, $A = \N_*$, et donc \[
+	\forall n \in \N_*, P(n) \text{ est vraie}
+\] 
+\[
+	P(n): "\forall (a_1,a_2, \ldots, a_n) \in \left( \R^+ \right) ^n,
+	\underbrace{\frac{1}{n}\sum_{i=1}^{n} a_i}_\text{Moyenne arithmétique} \ge \underbrace{\left( \prod_{i=1}^{n} a_i \right) ^{\frac{1}{n}}}_\text{moyenne géométrique} 
+\] 
+
+\begin{itemize}
+	\item $P(1)$ est vraie
+	\item  Soit $n \in \N_*$. On suppose $P(n)$ vraie. Montrons $P(2n)$.\\
+		Soient $(a_1,a_2, \ldots, a_{2n}) \in  \left( \R^+ \right) ^{2n}$ 
+		\begin{align*}
+			\frac{1}{2n}\sum_{i=1}^{2n} a_i &= \frac{1}{2} \left( \frac{1}{n} \sum_{i=1}^{n} a_i + \frac{1}{n} \sum_{i=n+1}^{2n} a_i \right)  \\
+																			&\le \frac{1}{2}\left( \left( \prod_{i=1}^{n} a_i  \right) ^{\frac{1}{n}} + \left( \prod_{i = n+1}^{2n} a_i  \right) ^{\frac{1}{n}} \right) \\
+		\end{align*}
+
+		Or, $P(2)$ est vraie: en effet, si $(a,b) \in \R^+$ : 
+		\begin{align*}
+			\frac{1}{2}(a+b) \ge \sqrt{ab} &\iff a+ b+2\sqrt{ab} \ge 0\\
+																		 &\iff \left( \sqrt{a} +\sqrt{b}  \right) ^2
+		\end{align*}
+
+		Donc, 
+		\begin{align*}
+			\frac{1}{2n} \sum_{i=1}^{2n} a_i &\ge \sqrt{\left( \prod_{i=1}^{n} a_i  \right) ^{\frac{1}{n}} \times \left( \prod_{i=n+1}^{2n} a_i  \right) ^{\frac{1}{n}}} \\
+			&\ge  \left( \left( \prod_{i=1}^{2n} a_i  \right) ^{\frac{1}{n}} \right) ^{\frac{1}{2}} \\
+			&= \left( \prod_{i=1}^{2n} a_i  \right) ^{\frac{1}{2n}}
+		\end{align*}
+		Donc $P(2n)$ est vraie
+	\item Soit $n \in \N_*$. On suppose $P(n+1)$ vraie. Soit $(a_1, \ldots, a_n) \in \left( \R^+_* \right) ^n$ \\
+		On pose $a_{n+1} = \frac{1}{n} \sum^n_{i=1} a_i$
+		On a alors
+		\begin{align*}
+			\frac{1}{n+1}\sum^{n+1}_{i=1} a_i &= \frac{1}{n+1}\left( \sum^{n}_{i=1} a_i + \frac{1}{n} \sum^{n}_{i=1} a_i \right)  \\
+			&= \frac{1}{n+1}\left( 1+\frac{1}{n} \right) \sum^{n}_{i=1} a_i \\
+			&= \frac{1}{n} \sum^{n}_{i=1} a_i \\
+		\end{align*}
+
+		Comme $P(n+1)$ est vraie \[
+		\frac{1}{n}\sum^{n}_{i=1} a_i = \frac{1}{n+1}\sum^{n+1}_{i=1} a_i \ge  \left( \prod_{i=1}^{n+1} a_i  \right) ^{\frac{1}{n+1}}
+		\] 
+		Il suffit de prouver  \[
+			(*): \left( \prod_{i=1}^{n+1} a_i  \right) ^{\frac{1}{n+1}} \ge  \left( \prod_{i=1}^{n} a_i  \right) ^{\frac{1}{n}}
+		\] 
+		\begin{align*}
+			(*) &\iff \frac{1}{n+1} \sum_{i=1}^{n+1} \ln(a_i) \ge \frac{1}{n} \sum_{i=1}^{n} a_i\\
+					&\iff \frac{1}{n+1}\sum_{i =1}^{n+1} \ln(a_i) \ge  \left( \frac{1}{n} - \frac{1}{n+1} \right) \sum_{i=1}^{n} \ln(a_i) \ge  \frac{1}{n(n+1)} \sum_{i=1}^{n} \ln(a_i)
+		\end{align*}
+		D'après l'inégalité de Jensen,\[
+			\ln\left( \frac{1}{n}\sum_{i=1}^{n} a_i \right) \ge \frac{1}{n} \sum_{i=1}^{n} \ln(a_i)
+		\] Donc \[
+		\frac{1}{n+1} \ln(a_{n+1}) \ge \frac{1}{n(n+1)} \sum_{i=1}^{n} \ln(a_i)
+		\] Donc $P(n)$ est vraie
+\end{itemize}
+
+\qed

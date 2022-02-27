@@ -1,0 +1,41 @@
+\part{}
+
+Soit $(E)$ l'équation $y' + ay = b$  où $a$ et $b$ sont continues sur un intervalle $I$.\\
+
+\begin{prop}
+	Soit $A$ une primitive de $a$ sur un intervalle $I$. \[
+		(H): \quad y' + ay = 0
+	\] Les solutions de $(H)$ sont $t \mapsto \lambda e^{-A(t)}$ avec $\lambda \in \C$
+\end{prop}
+
+\begin{prv}
+	Soit $y$ une fonction dérivable sur $I$. On pose \[
+		z: t \mapsto y(t) e^{A(t)}
+	\] dérivable sur $I$ et
+	\begin{align*}
+		\forall t \in I, z'(t)
+		&= y'(t)e^{A(t)} + y(t)A'(t) e^{A(t)} \\
+		&= \left( y'(t) + a(t)y(t) \right) e^{A(t)} \\
+	\end{align*}
+	\vspace{1mm}
+	\begin{align*}
+		y \text{ solution de } (H) &\iff \forall t \in I, y'(t) + a(t) y(t) = 0\\
+															 &\iff \forall t \in I, z'(t) = 0\\
+															 &\iff \exists \lambda \in \C, \forall t \in I, z(t) = \lambda\\
+															 &\iff \exists \lambda\in \C, \forall t\in I, y(t) = \lambda e^{-A(t)}
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	[pseudo preuve]
+	\begin{align*}
+		\frac{dy}{dt} + a(t) y = 0
+		&\iff \frac{dy}{y} = -a(t) dt\\
+		&\iff \int \frac{dy}{y} = \int -a(t) dt\\
+		&\iff \ln(y) = -A(t) + K\\
+		&\iff y = e^{-A(t) + K}\\
+		&\iff y = \lambda e^{-A(t)} \text{ avec } \lambda = e^{K}
+	\end{align*}
+\end{rmk}
+
+

@@ -1,0 +1,219 @@
+\part{Dérivées $n$-ièmes}
+
+\begin{defn}
+	On dit que $f$ est une fois dérivable si $f$ est dérivable. Dans ce cas, on note $f^{(1)}$ la fonction $f'$.\\
+	Pour $n \in \N_*$, on dit que $f$ est \underline{dérivable $n$ fois} si $f$ est dérivable $n-1$ fois et $f^{(n-1)}$ est dérivable une fois. Dans ce cas, $f^{(n)} = \left( f^{(n-1)} \right)'$.
+\end{defn}
+
+\begin{rmk}
+	[Convention]
+	\[
+		f^{(0)}=f
+	\]
+\end{rmk}
+
+\begin{defn}
+	$f$ est de \underlin{classe $\mathcal{C}^n$} si $f$ est dérivables $n$ fois et $f^{(n)}$ est continue.
+\end{defn}
+
+\begin{prop}
+	Soit $f$ dérivable $n$ fois et $k \le n$.\\
+	Alors $f$ est dérivables $k$ fois et $f^{(n)} = \left( f^{(k)} \right)^{(n-k)}$
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soit $f$ et $g$ deux fonctions dérivables $n$ fois en $a$.\\
+	Alors, $f+g$ est dérivable $n$ fois en $a$ et \[
+		\left( f+g \right) ^{(n)}(a) = f^{(n)}(a) + g^{(n)}(a)
+	\] 
+	Si $f$ et $g$ sont de classe $\mathcal{C}^n$, alors, $f+g$ est de classe $\mathcal{C}^n$
+\end{prop}
+
+\begin{prv}
+	[Récurrence immédiate sur $n$ ]
+\end{prv}
+
+\begin{prop} [Leibniz]
+	Soient $f$ et $g$ dérivables $n$ fois en $a$. Alors, $f\times g$ est dérivables $n$ fois en $a$. et 
+	\[
+		(*): \qquad (f\times g)^{(n)}(a) = \sum_{k=0}^{n} {n\choose k} f^{(n)}(a) g^{(n-k)}(a)
+	\] Si $f$ et $g$ sont de classe $\mathcal{C}^n$ alors $f\times g$ est de classe $\mathcal{C}^n$.
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $n$ ]
+	\begin{itemize}
+		\item Soient $f$ et $g$ deux fonctions
+			\[
+				\left( f\times g \right) ^{(0)}(a) = \left( f\times g \right) (a) = f(a) g(a)
+			\] et \[
+				\sum_{k=0}^0 {0\choose k} f^{(k)}(a) g^{(n-k)}(a) = f^{(0)}(a) g^{(0)}(a) = f(a) g(a)
+			\]
+		\item Soit $n \in \N$. On suppose $(*)$ vraie quelles que soient les fonctions $f$ et $g$ dérivables $n$ fois en $a$.\\
+			Soient $f$ et $g$ dérivables $n-1$ fois en $a$. En particulier, elles sont dérivables $n$ fois en $a$. Donc \[
+				(f\times g)^{(n)}(a) = \sum_{k=0}^{n} {n\choose k} f^{(k)}(a) g^{(n-k)}(a)
+			\]
+			\[
+				\forall k \in \left\llbracket 0,n \right\rrbracket,
+				\begin{cases}
+					f^{(k)} \text{ est dérivables en } a\\
+					g^{(n-k)} \text{ est dérivables en } a\\
+				\end{cases}
+			\] 
+			Donc, $(f\times g)^{(n)}$ est dérivable en $a$ donc $f\times g$ est dérivables $n+1$ fois en $a$.\\
+			\begin{align*}
+				(f\times g)^{(n+1)}(a)
+				&= \sum_{k=0}^{n} {n\choose k} \left( f^{(k+1)}(a) g^{(n-k)}(a) + f^{(k)}(a)g^{(n-k+1)}(a) \right)  \\
+				&= \sum_{k=1}^{n} {n\choose k-1} f^{(k)}(a) \times g^{(n-k+1)}(a)  + \sum_{k=0}^{n} {n \choose k} f^{(k)}(a) g^{(n-k+1)}(a)\\
+				&= \sum_{k=1}^{n} {n+1\choose k} f^{(k)}(a) g^{(n+1-k)}+f^{(n+1)}(a) g(a) + f(a)g^{(n+1)}(a) \\
+				&= \sum_{k=0}^{n+1} {n+1\choose k} f^{(k)}(a) g^{(n+1-k)}(a) \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $f$ et $g$ dérivables $n$ fois (resp. de classe $\mathcal{C}^n$). On suppose $g(a) \neq 0$.\\
+	Alors, $\frac{f}{g}$ est dérivables $n$ fois (resp. $\mathcal{C}^n$) en $a$.
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $n$]
+	Le résultat est vrai pour $n=0$ et $n=1$.\\
+	Soit $n \in \N$ tel que pour toutes fonctions $f$ et $g$ dérivables $n$ fois en $a$ avec $g(a) \neq 0$, $\frac{f}{g}$ est aussi dérivables $n$ fois en $a$.\\
+	Soient $f$ et $g$ dérivables $n+1$ fois en $a$ telles que $g(a) \neq 0$. Alors, $\frac{f}{g}$ dérivable en $a$. et \[
+		\left( \frac{f}{g} \right) '(a) = \frac{f'(a)g(a) - f(a) g'(a)}{g(a)^2}
+	\] 
+	\begin{itemize}
+		\item $f'$ est dérivables $n$ fois en $a$
+		\item $g$ est dérivables $n$ fois en $a$
+		\item $f$ est dérivables $n$ fois en $a$
+		\item $g'$ est dérivables $n$ fois en $a$
+	\end{itemize}
+
+	Donc, $f'\times g - f\times g'$ et $g^2$ sont dérivables $n$ fois en $a$ et $g(a)^2\neq 0$\\
+	D'après l'hypothèse de récurrence, $\frac{f'\times g-f\times g'}{g^2}$ est dérivable $n$ fois en $a$ donc $\frac{f}{g}$ dérivable $n+1$ fois en $a$
+\end{prv}
+
+\begin{prop}
+	Soit $f$ dérivable $n$ fois en $a$ et $g$ dérivable $n$ fois en $f(a)$ (resp. $f$ et $g$ de classe $\mathcal{C}^n$).\\
+	Alors, $g\circ f$ est dérivable $n$ fois en $a$ (resp. de classe $\mathcal{C}^n$).
+\end{prop}
+
+\begin{prv}
+	[similaire à la précédente]
+\end{prv}
+
+\begin{defn}
+	On dit que $f$ est de classe $\mathcal{C}^\infty$ si $f$ est de classe $\mathcal{C}^n$ pour tout $n\in \N$, i.e. $f$ est dérivable une infinité de fois.
+\end{defn}
+
+\begin{prop}[formule de Taylor avec reste intégral]
+	Soit $f: I \to \R$ de classe $\mathcal{C}^{n+1}$ et $a \in I$. Alors \[
+		(*)\qquad
+		\forall x \in I, f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!} (x-a)^{k} + \int_{a}^{x} f^{(n+1)}(t) \frac{(x-t)^n}{n!} ~dt  
+	\] 
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $n$]
+	\begin{itemize}
+		\item Soit $f: I \to \R$ de classe $\mathcal{C}^1$ et $a \in I$. Soit $x \in I$.
+			\begin{align*}
+				\sum_{k=0}^{0} \frac{f^{(k)}(a)}{k!}(x-a)^k + \int_{a}^{x} f^{(1)}(t) \frac{(x-t)^0}{0!} ~ dt
+				&= f(a) + \int_{a}^{x} f'(t)~dt \\
+				&= f(a) + f(x) - f(a) \\
+				&= f(x) \\
+			\end{align*}
+		\item Soit $n\in \N$ tel que $(*)$ est vraie pour toute fonction $f$ de classe $\mathcal{C}^{n+1}$ sur $I \ni a$.
+			Soit $f$ de classe $\mathcal{C}^{n+2}$. Alors, $f$ est de classe $\mathcal{C}^{n+1}$ donc \[
+				\forall x \in I, f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k
+				+ \int_{a}^{x} f^{(n+1)}(t) \frac{(x-t)^n}{n!}~ dt
+			\] Soit $x \in I$.
+			On pose $\begin{cases}
+				u: t \mapsto -\frac{(x-t)^{n+1}}{(n+1)!}\\
+				v = f^{(n+1)}
+			\end{cases}$\\
+			Les fonctions $u$ et $v$ sont de classe $\mathcal{C}^1$ donc \[
+				\int_{a}^{x} u'(t)v(t)~dt = \left[ u(t)v(t) \right]_a^x - \int_{a}^{x} u(t)v'(t)~dt  
+			\] donc  \[
+				\int_{a}^{x} f^{(n+1)}(t)~dt = \left[ -\frac{(x-t)^{n+1}}{(n+1)!} f^{(n+1)}(t)\right]^x_a + \int_{a}^{x} f^{(n+2)}(t) \frac{(x-t)^{n+1}}{(n+1)!}~dt
+			\]
+			D'où, \[
+				f(x) = \sum_{k=0}^{n} \frac{f^{(k)}}{k!}(x-a)^{k} + \frac{(x-a)^{n+1}}{(n+1)!} f^{(n+1)}(a) + \int_{a}^{x} f^{(x+2)}(t) \frac{(x-t)^{n+1}}{(n+1)!} ~dt 
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	[Inégalité de Taylor-Lagrange]
+	Soit $f: I \to \R$ de classe $\mathcal{C}^{n+1}$ et $M \in \R$ tel que \[
+		\forall x \in I, \left| f^{(n+1)}(x) \right| \le M
+	\] Alors, pour tout $a \in I$, \[
+		\forall x \in I, \left| f(x) - \sum_{k=0}^{n} \frac{(x-a)^k}{k!} f^{(k)}(a) \right| \le M \frac{\left| x-a \right|^{n+1}}{(n+1)!}
+	\]
+\end{prop}
+
+\begin{prv}
+	D'après la formule de Taylor avec reste intégral,
+	\begin{align*}
+		\forall x \in I,
+		\left| f(x) - \sum_{k=0}^{n} f^{(k)}(a)  \frac{(x-a)^{k}}{k!} \right| 
+		&= \left| \int_{a}^{x} f^{(n+1)}(t) \frac{(x-t)^{n}}{n!} ~dt  \right|  \\
+		&\le \left| \int_{a}^{x} \left| f^{(n+1)} \right| (t) \frac{\left| x-t \right|^n}{n!}~dt  \right| \\
+		&\le \left| \int_{a}^{x} M \frac{\left| x-t \right| ^{n}}{n!}~dt  \right| 
+	\end{align*}
+
+	On suppose $x \ge a$.
+	\begin{align*}
+		\left| f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!} (x-a)^{k} \right|
+		&\le M \int_{a}^{x} \frac{(x-t)^n}{n!}~dt = M \left[ -\frac{x-t)^{n+1}}{(n+1)!} \right] _a^x\\
+		&\le M \frac{(x-a)^{n+1}}{(n+1)!}
+	\end{align*}
+	\vspace{2mm}
+	On suppose $x \le a$.
+	\begin{align*}
+		\left| f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k \right| 
+		&\le M \int_{x}^{a} \frac{(t-x)^n}{n!}~dt\\
+		&\le M \left[ \frac{(t-x)^{n+1}}{(n+1)!} \right] ^a_x\\
+		&\le M \frac{(a-x)^{n+1}}{(n+1)!} = M \frac{\left| x-a \right| ^{n+1}}{(n+1)!}
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	\[
+		\forall x \in \R, e^x = \lim_{n\to +\infty} \sum_{k=0}^{n} \frac{x^k}{k!}
+	\] On pose \begin{align*}
+		f: \R &\longrightarrow \R \\
+		x &\longmapsto e^x
+	\end{align*}. Soit $n \in \N$ et $a = 0$.\\
+	$f$ est de classe $\mathcal{C}^1$ sur $\R$. Soit $x \in \R^+$ et $I = [0,x]$ \[
+		\forall t \in I, \left| f^{(n+1)}(t) \right| = \left| e^t \right|  = e^t \le e^x
+	\] \[
+		\forall t \in I, 
+		\left| e^t - \sum_{k = 0}^n \frac{t^k}{k!} \right| \le e^x \frac{t^{n+1}}{(n+1)!} \tendsto{n\to +\infty} 0
+	\] donc \[
+		\forall t \in I, \lim_{n \to +\infty} \sum_{k = 0}^n \frac{t^k}{k!}= e^t
+	\] donc \[
+		e^x = \lim_{n\to +\infty}\frac{x^k}{k!}
+	\]
+\end{exm}
+
+\begin{exo}
+	Montrer que $\ln 2 = \lim_{n\to +\infty} \sum_{k=1}^{n} \frac{(-1)^{k+1}}{k}$
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

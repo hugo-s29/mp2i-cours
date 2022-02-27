@@ -1,0 +1,24 @@
+\part{Exercice 9}
+Soit $(x,y,z,t)\in \R^4$.
+\begin{align*}
+	(x,y,z,t) \in H_2&\iff \begin{cases}
+		x+y+z+t = 0\\
+		x-y-z+t = 0
+	\end{cases}\\
+	&\iff \begin{cases}
+		x+y+z+t = 0\\
+		2y + 2z = 0
+	\end{cases}\\
+	&\iff \begin{cases}
+		y = -z\\
+		x = -t
+	\end{cases}\\
+	&\iff (x,y,z,t) = (-t, -z, z, t) = z(0,-1,1,0) + t(-1,0,0,1)\\
+	&\iff(x,y,z,t) \in \Vect(u_1,u_2)\\
+	&\qquad \qquad \text{où } \begin{cases}
+			u_1 = (0,-1,1,0)\\
+			u_2 = (-1,0,0,1)
+		\end{cases}
+\end{align*}
+$H_2 = \Vect(u_1, u_2)$ est un sous-espace vectoriel de $\R^4$ \\
+$u_1$ et $u_2$ ne sont pas colinéaires donc $(u_1,u_2)$ est une base de $H_2$.

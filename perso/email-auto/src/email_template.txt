@@ -1,0 +1,11 @@
+Bonjour {{&student_name_short}},
+
+Voici le planning pour la semaine {{&real_week_num}} ({{&week_start_day}}-{{&week_end_day}}).
+
+Vous avez {{&kholle_count}} khôlle{{&kholle_plural_s}}:
+{{&kholle_list_text}}
+
+{{&planning_table}}
+
+Bonne semaine,
+Hugo

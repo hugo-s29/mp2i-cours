@@ -1,0 +1,32 @@
+\part{Exercice 12}
+
+$G \cap  \R_*^+ \neq  \O$ minoré par $0$ donc $a$ existe
+
+\begin{enumerate}
+	\item $a = \min(G \cap \R_*^+)$. On adapte l'exercice 5. Soit $g \in G$ \\
+		On pose $q = \left\lfloor \frac{g}{a} \right\rfloor \in \Z$ et $r = g - qa \in G$\\
+		Or, $q \le \frac{g}{a}$ donc $aq \le g$ donc $r \ge 0$\\
+		$\frac{g}{a}< q+1$ donc $g < aq+a$ donc  $r < a$ \\
+		Si $r > 0$, alors $\begin{cases}
+			r \in G \cap \R_*^+\\
+			r < a \le r: \text{une contradiction } \lightning
+		\end{cases}$\\
+		Donc $r = 0$ donc $g = aq$ avec $q \in \Z$ donc $g \in a\Z$\\
+		Donc, $G \subset  a\Z$ \\
+		$a \in G$ donc $a\Z \subset G$\\
+		Donc $G = a\Z$
+	\item
+		Soit $g \in G\cap \R_*^+$. Comme $a \not\in \left( G \cap \R_*^+ \right)$, $g \neq a$ \\
+		Or, $g \ge  a$ donc $g > a$ donc $g$ ne minore pas $G \cap  \R_*^+$ donc il existe $g_1 \in G \cap \R_*^+$ tel que $g_1 < g$ \\
+		De cette façon, on fabrique une suite $(g_n)$ strictement décroissante minorée par $a$.
+		Donc $(g_n)$ converge. On pose $\ell = \lim_{n \to +\infty} g_n$ \\
+		Donc $\underbrace{g_{n+1}-g_n}_{\in G} \tendsto{n \to +\infty} \ell - \ell = 0$\\
+		On vient de trouver une suite $\left( g_{n+1} - g_n \right)_{n \in \N_*}$ de $G$ qui converge vers $0$. Donc $a = 0$\\
+		Soit  $I = ]a,b[$ et $g \in G$ tel que $0 < g < b - a$ \\
+		On pose $n = \left\lfloor \frac{a}{g} \right\rfloor$. On a donc \[
+			n \le \frac{a}{g} < n+1
+		\] donc $ng \le a < g(n+1)$.\\
+		Or, \[
+			g(n+1) = ng+g \le a+g < a+b-a < b
+		\] donc $(n+1) \in ]a,b[\cap G$
+\end{enumerate}

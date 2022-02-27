@@ -1,0 +1,100 @@
+\part{Exponentielle complexe}
+
+\begin{defn}
+	Pour $z \in \C$, on pose \[
+		\exp(z) = e^{\Re(z)}\times (\cos(\Im(z))+i\sin(\Im(z))
+	\] Ainsi, si $z = a+ib$ avec $(a,b)\in \R^2$, \[
+		\exp(z) = \exp(a+ib) = e^{a}\times (\cos(b)+i(\sin(b)) = e^{a}e^{ib}
+	\] 
+\end{defn}
+
+\begin{prop}
+	Soient $z_1, z_2 \in \C$. \[
+		\exp(z_1+z_2) = \exp(z_1)\times \exp(z_2)
+	\] 
+\end{prop}
+
+\begin{prv}
+	On pose $\begin{cases}
+		z_1 = a+ib\\
+		z_2 = c+id
+	\end{cases}$ avec $(a,b,c,d)\in \R^4$ \\
+	\begin{align*}
+		\exp(z_1)\times \exp(z_2) &= e^{a}\times e^{ib}\times e^{c}\times e^{id} \\
+		&= e^{a+c}e^{i(b+d)} \\
+		&= \exp(z_1+z_2) \\
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	[Notation]
+	On écrit $e^{z}$ à la place de $\exp(z)$ pour $z \in \C$.
+\end{rmk}
+
+\begin{prop}
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}
+			{r}{0.5\linewidth}
+			\centering
+			\begin{asy}[width=8cm]
+				import graph;
+				size(10cm);
+				defaultpen(fontsize(8pt));
+
+				pair A = (-6.5, 0);
+				pair B = (+6.5, 0);
+
+				real w = 5;
+				pair z = (3,1.4);
+
+				// input axes
+				draw((A - (w, 0)) -- (A + (w, 0)), Arrow);
+				draw((A - (0, w)) -- (A + (0, w)), Arrow);
+
+				// output axes
+				draw((B - (w, 0)) -- (B + (w, 0)), Arrow);
+				draw((B - (0, w)) -- (B + (0, w)), Arrow);
+
+				// input lines & point
+				dot("$z$", A + z, fontsize(11pt), align=NW);
+				draw(A+(-w, z.y)--A+(w, z.y), red); label("$y=\Im(z)$", A+(-w, z.y), red, align=W);
+				draw(A+(z.x, -w)--A+(z.x, w), blue); label("$x=\Re(z)$", A+(z.x, -w), blue, align=S);
+
+				// output line/circle & point
+				pair z2 = expi(z.y / 2) * length(z) * 0.6;
+				draw(circle(B, length(z) * 0.6), blue);
+				draw(B--B+4*sqrt(2)*unit(z2), red);
+				label("$e^{\Re(z)}$", B - (length(z) * 0.6, 0), blue, align=SE);
+				draw(B-(length(z2), 0)--B, blue, Arrows(TeXHead));
+				draw(arc(B, length(z2) + 1, 0, degrees(z2)), red, Arrow(TeXHead));
+				label("$\Im(z)$", B + unit(z2) * length(z2) + 1, red, align=E);
+				dot("$e^z$", B + z2, fontsize(11pt), align=N);
+
+				guide arr = A - (0, -w/2) .. (0, w) .. B - (0, -w/2);
+				real l = arctime(arr, arclength(arr));
+				draw(subpath(arr, 0.3l, 0.45l));
+				draw(subpath(arr, 0.55l, 0.7l), Arrow(TeXHead));
+				label("$e^z$", point(arr, 0.5l));
+			\end{asy}
+		\end{wrapfigure}
+		\[
+			\forall z\in \C, \begin{cases}
+				\left| e^z \right| = e^{\Re(z)}\\
+				\arg(e^{z}) \equiv \Im(z) \mod{2\pi}
+			\end{cases}
+		\] 
+	\end{minipage}
+\end{prop}
+
+\begin{rmk}
+	$\exp: \C \to \C$ n'est pas bijective:
+	\begin{itemize}
+		\item $\begin{cases}
+				\exp(0) = \exp(2i\pi) = 1\\
+				0 \neq 2i\pi
+			\end{cases}$ \\
+		\item 0 n'a pas d'antécédant
+	\end{itemize}
+	Il n'y a donc pas de logarithme complexe.
+\end{rmk}

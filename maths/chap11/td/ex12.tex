@@ -1,0 +1,14 @@
+\part{Exercice 12}
+
+\[
+\forall n \in \N_*, \forall k \in \N_*, 0 \le u_n \le \frac{1}{k} + \frac{k}{n}
+\] 
+Soit $\varepsilon >0$. Il existe $k \in \N_*$ tel que $\frac{1}{k} \le \frac{\varepsilon}{2}$ (par exemple $k = \left\lfloor \frac{2}{\varepsilon} \right\rfloor + 1$)\\
+La suite $\left(\frac{k}{n}\right)_{n\in\N_*}$ tends vers 0. Il existe $N \in \N$ tel que \[
+\forall n \ge N, \frac{k}{n} \le \frac{\varepsilon}{2}
+\] 
+
+Donc, \[
+\forall n \ge N, 0 \le u_n \le \frac{\varepsilon}{2}+\frac{\varepsilon}{2} = \varepsilon
+\] 
+Donc $u_n \tendsto{n \to +\infty} 0$

@@ -1,0 +1,123 @@
+\part{Définition et premières propriétés}
+
+Dans ce paragraphe, $f$ désigne une fonction définie sur un intervalle ouver non vide $I$ à valeurs réelles.
+\vspace{5mm}
+
+\begin{defn}
+	Soit $a \in I$. On dit que $f$ est \underline{dérivable} en $a$ si $\frac{f(x)-f(a)}{x-a}$ a une limite qui est finie quand $x \to a$.\\
+	Dans ce cas, cette limite est notée $f'(a)$ et est appelée \underline{nombre dérivée de $f$ en $a$}\\
+	On dit que $f$ est \underline{dérivable sur $I$} si $f$ est dérivable en tout $a \in I$.\\
+	L'application $\begin{array}{c}
+		I \longrightarrow \R\\
+		a \longmapsto f'(a)
+	\end{array}$ est la \underline{dérivée de $f$} et est notée $f'$
+\end{defn}
+
+\begin{prop}
+	\begin{align*}
+		f  \text{ est dérivable en } a \iff f \text{ a un développement limité d'ordre 1 au voisinage de } a
+	\end{align*}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] $f'(a) = \lim_{x\to a} \frac{f(x) - f(a)}{x-a}$\\
+			donc $\frac{f(x) - f(a)}{x-a} = f'(a) + \po_{x \to a}(1)$\\
+			donc $f(x) - f(a) = (x-a)f'(a) + \po_{x \to a}(x-a)$\\
+			donc $f(x) = f(a) + (x-a)f'(a) + \po_{x\to a}(x-a)$
+		\item [$``\impliedby"$]
+			$f(x) = a_0 + a_1(x-a) + \po_{x\to a}(x-a)$ \\
+			Alors, avec  $x = a$, $a_0 = f(a)$ et donc \[
+				\frac{f(x) - f(a)}{x-a} = \frac{a_1(x-a) + \po(x-a)}{x-a} = a_1 + \po(1) \tendsto{x\to a} a_1 \in \R
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Si $f$ est dérivable en $a$ alors $f$ est continue en $a$.
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall x, f(x) = f(a) + f'(a)(x-a) + \po_{x\to a}(x-a)
+	\] donc \[
+		\lim_{\substack{x \to a\\\neq }} f(x)  = f(a) + f'(a) \times 0 + 0 = f(a)
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soient $f$ et $g$ dérivables en $a$ 
+	\begin{enumerate}
+		\item $f+g$ est dérivable en $a$ et $(f+g)'(a) = f'(a) + g'(a)$ 
+		\item $f\times g$ est dérivable en $a$ et $(fg)'(a) = f'(a)g(a) + f(a)g'(a)$
+		\item Si $g(a) \neq 0$, alors $\frac{f}{g}$ est dérivable en $a$ et  \[
+				\left( \frac{f}{g} \right) '(a) = \frac{f'(a)g(a) - f(a)g'(a)}{\left( g(a) \right) ^2}
+		\] 
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\[
+		\begin{cases}
+			f(x) = f(a) + f'(a) (x-a) + \po(x-a)\\
+			g(x) = g(a) + g'(a) (x-a) + \po(x-a)\\
+		\end{cases}
+	\] 
+
+	\begin{enumerate}
+		\item
+			\[
+				f(x) + g(x) = f(a) + g(a) + (x-a)\underbrace{\left( f'(a) + g'(a) \right)}_{\left( f+g \right)'(a)} + \po(x-a)
+			\] 
+		\item \[
+				f(x)\times g(x) = f(a)g(a) + (x-a) \underbrace{\left( f(a)g'(a) + g(a)f'(a) \right) }_{(fg)'(a)} + \po(x-a)
+			\] 
+		\item On suppose $g(a) \neq 0$ \\
+			\begin{align*}
+				\frac{1}{g(x)} &= \frac{1}{g(a) + (x-a)g'(a) + \po(x-a)}\\
+				&= \frac{1}{g(a)} \times \frac{1}{1+(x-a)\frac{g'(a)}{g(a)} + \po(x-a)} \\
+				&= \frac{1}{g(a)}\times \left( 1  - (x-a)\frac{g'(a)}{g(a)} + \po(x-a) \right) \\
+			\end{align*}
+			D'où,
+			\begin{align*}
+				\frac{f(x)}{g(x)} &= \frac{1}{g(a)}\left( f(a) + (x-a) \left( -\frac{f(a)g'(a)}{g(a)} + f'(a) \right) \right) \po(x-a)\\
+				&= \frac{f(a)}{g(a)} + (x-a) \frac{-f(a)g'(a) + f'(a)g(a)}{\left( g(a) \right) ^2} + \po(x-a) \\
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $f$ dérivable en $a$ et $g$ dérivable en $f(a)$. Alors, $f \circ g$ est dérivable en $a$ et \[
+		\left(g\circ f\right)'(a) = g'(f(a)) f'(a)
+	\] 
+\end{prop}
+
+\begin{prv}
+	\[
+		\begin{cases}
+			\forall x, f(x) = f(a) + (x-a)f'(a) +\po_{x\to a}(x-a)\\
+			\forall y, g(y) = g(f(a)) + (y-f(a))g'(f(a)) + \po_{y\to f(a)}(y \to f(a))\\
+		\end{cases}
+	\] Donc, 
+	\begin{align*}
+		g(f(x)) &= g(f(a)) + (f(x) - f(a)) g'(f(a)) + \po_{x \to a} (f(x) - f(a)) \text{ car $f$ est continue en $a$} \\
+		&= g(f(a)) + (x-a)f'(a)g'(f(a)) + \po_{x\to a}\left( (x-a)f'(a) + \po_{x\to a}(x-a) \right)  \\
+		&= g(f(a)) + (x-a) f'(a)g'(f(a)) + \po_{x\to a}(x-a)
+	\end{align*}
+\end{prv}
+
+
+\begin{prop}
+	On suppose que $f$ est bijective dérivable en $a$ et $f'(a) \neq 0$. Si $f^{-1}$ est continue, alors $f^{-1}$ est dérivable en $f(a)$ et \[
+		\left( f^{-1} \right) ' \left( f(a) \right)  = \frac{1}{f'(a)}
+	\] 
+\end{prop}
+
+\begin{prv}
+	$\forall y \neq f(a)$ on pose $x = f^{-1}(y)$.\\
+	$y \tendsto{x \to a} f(a)$ et $x \tendsto{y \to f(a)} a$ \\
+	\begin{align*}
+		\frac{f^{-1}(y) - f^{-1}\left( f(a) \right) }{y - f(a)} = \frac{x-a}{f(x) - f(a)} = \frac{1}{\frac{f(x)-f(a)}{x-a}} \tendsto{x \to a} \frac{1}{f'(a)}
+	\end{align*}
+\end{prv}
+

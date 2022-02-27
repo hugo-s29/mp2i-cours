@@ -1,0 +1,245 @@
+\part{Fonctions de $\R$ dans $\C$}
+
+\begin{defn}
+	Soit $f$ définie sur $D \subset \R$ à valeurs dans $\C$ ($\forall x \in D, f(x) \in \C$)\\
+	On pose:
+	\begin{align*}
+		\Re(f): D &\longrightarrow \R \\
+		x &\longmapsto \Re(f(x))
+	\end{align*} et \begin{align*}
+		\Im(f): D &\longrightarrow \R \\
+		x &\longmapsto \Im(f(x))
+	\end{align*}
+\end{defn}
+
+\begin{exm}
+	\begin{align*}
+		f: [0,2\pi[ &\longrightarrow \C \\
+		x &\longmapsto e^{(1+i)x}
+	\end{align*}
+
+	On a: \begin{align*}
+		\Re(f): [0,2\pi[ &\longrightarrow \R \\
+		x &\longmapsto e^x\cos(x)
+	\end{align*} et \begin{align*}
+		\Im(f): [0,2\pi[ &\longrightarrow \R \\
+		x &\longmapsto e^x\sin(s)
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	Soit $f: D \to \C$.
+	On dit que
+	\begin{itemize}
+		\item $f$ est \underline{continue} si $\Re(f)$ et $\Im(f)$ sont continues
+		\item $f$ est \underline{dérivable} si $\Re(f)$ et $\Im(f)$ sont dérivables.\\
+			Dans ce cas, la dérivée de $f$ est \begin{align*}
+				f': D &\longrightarrow \C \\
+				x &\longmapsto \Re(f)'(x) + i\Im(f)'(x)
+			\end{align*}
+	\end{itemize}
+\end{defn}
+
+\begin{exm}
+	\begin{align*}
+		f: [0,2\pi[ &\longrightarrow \C \\
+		x &\longmapsto e^{(1+i)x}
+	\end{align*}
+	$x\mapsto e^x$ et $x\mapsto \cos(x)$ sont dérivables sur $[0,2\pi[$ donc $\Re(f)$ est dérivable.\\
+	$x\mapsto e^x$ et $x\mapsto \sin(x)$ sont dérivables sur $[0,2\pi[$ donc $\Im(f)$ est dérivable.\\
+	Donc $f$ est dérivable. \[
+		\forall x \in [0,2\pi[,
+		\begin{cases}
+			\Re(f)'(x) = e^x\cos(x) - e^x\sin(x)\\
+			\Im(f)'(x) = e^x\cos(x) + e^x\sin(x)\\
+		\end{cases}
+	\]  Donc, \[
+		\forall x \in [0,2\pi[, f'(x) = e^x (\cos(x) - \sin(x)) +ie^x(\sin(x) + \cos(x))
+	\] 
+\end{exm}
+
+\begin{rmk}
+	On peut représenter $f$ de la façon suivante.\\
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}
+			{l}{0.75\textwidth}
+			\centering
+			\begin{asy}
+				import graph;
+
+				size(7cm);
+				axes("$\Re$", "$\Im$", EndArrow);
+
+				dot((-3, -4), white+0);
+				dot(( 8,  3), white+0);
+
+				pair F(real x) {return exp(x * (0.3,1)); }
+
+				draw(graph(F, 0, 2pi), magenta + 1.4);
+				xtick(1); label("$1$", (1,0), align=S);
+				xtick(F(2pi).x); label("$e^{2\pi}$", F(2pi), align=N);
+			\end{asy}
+		\end{wrapfigure}
+		\begin{align*}
+			f: [0,2\pi[ &\longrightarrow \C \\
+			t &\longmapsto e^{(1+i)t}
+		\end{align*}
+		\vspace{3cm}
+	\end{minipage}
+\end{rmk}
+
+\begin{prop}
+	Soient $u$ et $v$ deux fonctions dérivables sur $D\subset \R$ à valeurs dans $\C$ 
+	\begin{enumerate}
+		\item $u+v$ dérivable et $(u+v)' = u' + v'$ 
+		\item $uv$ dérivable et $(uv)' = u'v + v'u$ 
+		\item Si $v \neq 0$, $\frac{u}{v}$ dérivable et $\left( \frac{u}{v} \right) = \frac{u'v-v'u}{v^2}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	On pose $\begin{cases}
+		a = \Re(u)\\
+		b = \Im(u)\\
+	\end{cases}$ et $\begin{cases}
+		c = \Re(v)\\
+		d = \Im(v)\\
+	\end{cases}$\\
+	\begin{enumerate}
+		\item $\begin{cases}
+				\Re(u+v) = a + c\\
+				\Im(u+v) = b + d\\
+			\end{cases}$ donc $\begin{cases}
+				\Re(u+v)' = a'+c'\\
+				\Im(u+v)' = b'+d'\\
+			\end{cases}$ Donc,
+			\begin{align*}
+				(u+v)' &= a'+c'+i(b'+d')\\
+				&= (a'+ib') + (c'+id') \\
+				&= u'+v' \\
+			\end{align*}
+		\item $\begin{cases}
+				\Re(uv) = ac-bd\\
+				\Im(uv) = ad+bc
+			\end{cases}$ donc $\Re(uv)$ et $\Im(uv)$ sont dérivables et \[
+				\begin{cases}
+					\Re(uv)' = a'c+c'a-b'd-d'b\\
+					\Im(uv)' = a'd+d'a+b'c+c'b\\
+				\end{cases}
+			\] Donc, \[
+				(uv)' = a'c+c'a-b'd-d'b + i(a'd+d'a+b'c+c'b)
+			\] 
+			Or, \[
+				\begin{cases}
+					u'v = (a'+ib')(c+id) = a'c - b'd + i(b'c + a'd)\\
+					v'u = (a+ib)(c'+id') = ac' - bd' + i(bc' + ad')\\
+				\end{cases}
+			\] Donc, \[
+			(uv)' = u'v + v'u
+			\]
+		\item On suppose que \[
+				\forall x \in D, v(x) \neq 0
+			\] 
+			On a donc \[
+				\forall x \in D, \frac{u}{v} = \frac{a+ib}{c+id} = \frac{(a+ib)(c-id)}{c^2+d^2} = \frac{ac + bd}{c^2+d^2} + i \frac{bc - ad}{c^2+d^2}
+			\]
+			C'est plus simple de voir $\frac{u}{v}$ comme le produit de $u$ et de $\frac{1}{v}$ 
+			\[
+				\frac{1}{v} = \frac{1}{c+id} = \frac{c-id}{c^2+d^2}
+			\]
+			$\underbrace{\frac{c}{c^2+d^2}}_{= \Re\left( \frac{1}{v} \right)}$ et $\underbrace{-\frac{d}{c^2+d^2}}_{= \Im\left( \frac{1}{v} \right)}$ sont dérivables donc $\frac{1}{v}$ aussi\\
+			\[
+				\begin{cases}
+					\Re\left( \frac{1}{v} \right)' = \left( \frac{c}{c^2+d^2} \right)' = \frac{c'(c^2+d^2) - c(2cc' + 2dd')}{\left(c^2+d^2\right)^2}\\
+					\Im\left( \frac{1}{v} \right)' = \left(-\frac{d}{c^2+d^2} \right)' = \frac{-d'(c^2+d^2) + d(2cc' + 2dd')}{\left(c^2+d^2\right)^2}\\
+				\end{cases}
+			\] Donc, d'une part,
+			\begin{align*}
+				\left( \frac{1}{v} \right) ' &= \frac{c'(c^2+d^2)-c(2cc'-2dd')-id'(c^2+d^2) + d(2cc' + 2dd')}{\left( c^2+d^2 \right) ^2}\\
+				&= \frac{(c^2+d^2)(c'-id') + (2cc' + 2dd')(-c+id)}{\left( c^2+d^2 \right) ^2} \\
+				&= \frac{-c'c^2+c'd^2-2cdd' + i(2cc'd-d'c^2+d^2d')}{\left( c^2+d^2 \right) ^2} \\
+			\end{align*}
+			D'autre part,
+			\begin{align*}
+				\frac{-v'}{v^2} &= \frac{-c'-d'i}{(c+di)^2}\\
+				&= \frac{-(c'+id')(c-id)^2}{\left( c^2+d^2 \right) ^2} \\
+				&= -\frac{(c'+id')(c^2-2icd-d^2)}{\left( c^2+d^2 \right) ^2} \\
+				&= \frac{-c'c^2+c'd^2-2cdd' + i(2cc'd - d'c^2+d'd^2)}{\left( c^2+d^2 \right) ^2} \\
+				&= \left( \frac{1}{v} \right)' \\
+			\end{align*}
+			Donc, $\frac{u}{v}$ dérivable et \[
+				\left( \frac{u}{v} \right)' = u'\left( \frac{1}{v} \right) +u\left( \frac{1}{v} \right)' = \frac{u'}{v} - \frac{uv'}{v^2} = \frac{u'v-uv'}{v^2}
+			\]
+	\end{enumerate}
+\end{prv}
+
+
+\begin{prop}
+	Soit $v: D \to \R$ et $u: \R\to \C$ deux fonctions dérivables (avec $D \subset \R$).\\
+	Alors, $u \circ v$ est dérivable et \[
+		(u \circ v)' = (u' \circ v)\times v'
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose $u = a+ib$ avec $\begin{cases}
+		a = \Re(u)\\
+		b = \Im(u)
+	\end{cases}$ donc, \[
+		\forall x \in \R, u(x) = a(x) + ib(x)
+	\] Donc, \[
+		\forall x \in D, (u \circ v)(x) = a(v(x)) + ib(v(x))
+	\] Donc,
+	\begin{align*}
+		\Re(u \circ v) = a \circ v\\
+		\Im(u \circ v) = b \circ v\\
+	\end{align*} Or,
+	\begin{align*}
+		\Re(u \circ v)' = (a \circ v)' = (a' \circ v)\times v'\\
+		\Im(u \circ v)' = (b \circ v)' = (b' \circ v)\times v'\\
+	\end{align*} D'où
+	\begin{align*}
+		(u \circ v)' &= (a' \circ v)\times v' + i(b' \circ v)\times v'\\
+		&= (a' \circ v + ib' \circ v) \times  v' \\
+		&= ((a'+ib')  \circ  v)\times v' \\
+		&= (u' \circ v) \times  v' \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $u: D \to \C$ et $f: \begin{array}{rcl}
+		D &\longrightarrow &\C \\
+		x &\longmapsto &e^{u(x)}
+	\end{array}$ \\
+	Alors, $f$ est dérivable sur $D$ et  \[
+		\forall x \in D, f'(x) = u'(x) e^{u(x)}
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose $\begin{cases}
+		 a = \Re(u)\\
+		 b = \Im(u)
+	\end{cases}$ donc
+	\begin{align*}
+		\forall x \in D, f(x) &= e^{u(x)} \\
+		&= e^{a(x)+ib(x)} \\
+		&= e^{a(x)} (\cos(b(x)) + i\sin(b(x))) \\
+	\end{align*}
+	Donc, $\begin{cases}
+		\Re(f): x\mapsto e^{a(x)}\cos(b(x))\\
+		\Im(f): x\mapsto e^{a(x)}\sin(b(x))\\
+	\end{cases}$ \\
+	$a$, $b$, $\cos$, $\sin$, $\exp$ sont dérivables donc $\Re(f)$ et $\Im(f)$ aussi donc $f$ est dérivable.\\
+\end{prv}
+
+
+
+
+
+
+
+
+
+

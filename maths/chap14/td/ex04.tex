@@ -1,0 +1,56 @@
+\part{Exercice 4}
+
+\begin{center}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		axes(EndArrow);
+
+		real f(real x){return  cos(x) + 1.5 - sin(3x + sqrt(2))/6;}
+		real g(real x){return -cos(x) + 1.5 + sin(3x)/6;}
+
+		draw(graph(f,-1,pi), magenta);
+		draw(graph(g,-1,pi), deepcyan);
+
+		real a = 1;
+		dot("$a$", (a,0), red, align=S);
+
+		dot((a,f(a)), red);
+		dot((a,g(a)), red);
+
+		draw((a,0)--(a,max(f(a),g(a))), dashed+red);
+
+		real eta = 0.2;
+
+		draw((a-0.4,f(a)-eta)--(a+0.4,f(a)-eta));
+		draw((a-0.4,f(a)+eta)--(a+0.4,f(a)+eta));
+
+		draw((a-0.4,g(a)-eta)--(a+0.4,g(a)-eta));
+		draw((a-0.4,g(a)+eta)--(a+0.4,g(a)+eta));
+	\end{asy}
+\end{center}
+
+On suppose, sans perte de généralité, $f(a) < g(a)$.\\
+On pose $\varepsilon=\frac{g(a) - f(a)}{3}>0$.\\
+$g(x) \tendsto{x\to a} g(a)$ donc il existe $\eta_1>0$ tel que \[
+	\forall x \in ]a-\eta_1, a+\eta_1[\cap I, \left| g(x) - g(a)\right| \le \varepsilon
+\] De même, il existe $\eta_2 > 0$ tel que \[
+	\forall x \in ]a-\eta_2, a+\eta_2[\cap I, \left| f(x)-f(a) \right| \le \varepsilon
+\] On suppose $a \in \mathring A$
+(sinon $J = \{a\}$ conviendrait\ldots)\\
+donc il existe $\eta_3 > 0$ tel que $]a-\eta_3,a+\eta_3[ \subset I$.\\
+On pose $J = ]a-\eta_1,a+\eta_1[\cap ]a-\eta_2,a+\eta_2[\cap ]a-\eta_3,a+\eta_3[$.\\
+$J$ est un intervalle ouvert non vide (car $a \in J$) inclus dans I.
+\begin{align*}
+	\forall x \in J,
+	f(x) \le f(a) + \varepsilon &= \frac{2f(a) + g(a)}{3}\\
+															&<\frac{f(a) +2g(a)}{3}\\
+															&\le g(a) -\varepsilon\\
+															&\le g(x)
+\end{align*}
+
+Donc, 
+\[
+	\forall x \in J, f(x) \neq g(x)
+\] 

@@ -1,0 +1,22 @@
+\part{Exercice 6}
+
+\begin{enumerate}
+	\item 
+		\begin{align*}
+			\forall n \in \N_*,
+			u_n &= \sqrt[n]{n} \\
+			&= n^{\frac{1}{n}} \\
+			&= e^{\frac{1}{n}\ln(n)} \\
+		\end{align*}
+		Or, $\frac{\ln n}{n} \tendsto{n \to +\infty} 0$.\\
+		Donc, $u_n = e^{\frac{\ln(n)}{n}} \tendsto{n \to  +\infty} e^0 = 1$
+	\item
+		\begin{align*}
+			\forall n \in \N,
+			u_n &= \left( \frac{n-1}{n+1} \right) ^{n+2}\\
+			&= \left( \frac{n + 1 - 2}{n + 1} \right)^{n+2}\\
+			&= \left( 1 - \frac{2}{n+1} \right) ^{n+2} \\
+			&= e^{(n+2) \ln\left( 1 - \frac{2}{n+1} \right) } \\
+			&= e^{(n+2)\left( \left( \frac{2}{n+1} \right) + o\left( \frac{2}{n+1} \right)\right) } \\
+		\end{align*}
+\end{enumerate}

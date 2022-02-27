@@ -1,0 +1,15 @@
+\part{Exercice 3}
+$\forall n \in \Z, x \mapsto \left\lfloor x \right\rfloor$ est constante sur $[n,n+1[$ donc $\begin{cases}
+	\text{continue sur } ]n,n+1[\\
+	\text{et continue à droite en } n
+\end{cases}$ \\
+Soit $f: x \mapsto \left( x - \left\lfloor x \right\rfloor  \right) ^2 + \left\lfloor x \right\rfloor $ \\
+Soit $n \in \Z$. $f$ est continue sur $]n,n+1[$\\
+Donc $f$ est continue sur $\R\setminus\Z$.\\
+\begin{align*}
+	f(n) = 0^2 + n &= n\\
+	\lim_{\substack{x\to n\\>}}f(x) = \lim_{\substack{x\to n\\>}}(x-n)^2+n &= n\\
+	\lim_{\substack{x \to n\\<}} f(x) = \lim_{\substack{x \to n\\<}}\left( x-(n-1) \right) ^2+(n-1) = 1 + n -1 &= n
+\end{align*}
+
+Donc $f$ est continue en $n$ donc $f$ est continue sur $\R$

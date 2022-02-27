@@ -1,0 +1,22 @@
+\part{Exercice 2}
+
+On pose $\begin{cases}
+	M: x \mapsto \max(f(x),g(x))\\
+	m: x \mapsto \min(f(x),g(x))\\
+\end{cases}$ \\
+On remarque que \[
+	\forall x \in \R,
+	\begin{cases}
+		M(x) + m(x) = f(x) + g(x)\\
+		M(x) - m(x) = \left| f(x) - g(x) \right| 
+	\end{cases}
+\]
+
+Donc \[
+	\forall x \in \R, M(x) = \frac{1}{2}\left( f(x) + g(x) + \left| f(x) - g(x) \right| \right)
+\] et \[
+	\bigg(
+	\forall x \in \R, m(x) = \frac{1}{2}\left( f(x) + g(x) - \left| f(x) - g(x) \right| \right)
+	\bigg)
+\]
+On a bien $M$ continue

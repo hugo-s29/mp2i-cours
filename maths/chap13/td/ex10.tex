@@ -1,0 +1,41 @@
+\part{Exercice 10}
+
+Soient $a,b,c,d$ différents de $-1$.
+
+\begin{align*}
+	(S):
+	\begin{cases}
+		x = by + cz + dt\\
+		y = cz + dt + ax\\
+		z + dt + ax + by\\
+		t = ax + by + cz
+	\end{cases}
+	\iff
+	&\begin{cases}
+		x = by + cz+dt\\
+		y-x = ax-by\\
+		z-y = by - cz\\
+		t-z = cz - dt
+	\end{cases}\\
+	\iff& \begin{cases}
+		z = \frac{d+1}{c+1}t\\
+		y = \frac{c+1}{b+1}z=\frac{d+1}{b+1}t\\
+		x = \frac{b+1}{a+1}y = \frac{d+1}{a+1}t\\
+		\frac{d+1}{a+1}t = \frac{b}{b+1}(d+1)t + \frac{c}{c+1}(d+1)t + dt
+	\end{cases}\\
+	\iff&
+	\begin{cases}
+		x = \frac{d+1}{a+1}t\\
+		y = \frac{d+1}{b+1}t\\
+		z = \frac{d+1}{c+1}t\\
+		t\left( \frac{b}{b+1}+\frac{c}{c+1}+\frac{d}{d+1}-\frac{1}{a+1} \right) =0
+	\end{cases}\\
+\end{align*}
+
+$(S)$ a des solutions non nulles ssi \[
+	\frac{b}{b+1}+\frac{c}{c+1}+\frac{d}{d+1}-\frac{1}{a+1} = 0
+\] ssi \[
+	\frac{b}{b+1}+\frac{c}{c+1}+\frac{d}{d+1}-\frac{a+1-a}{a+1} = 0
+\] ssi \[
+	\frac{a}{a+1}+\frac{b}{b+1}+\frac{c}{c+1}+\frac{d}{d+1} = 1
+\]

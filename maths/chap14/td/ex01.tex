@@ -1,0 +1,28 @@
+\part{Exercice 1}
+
+Pour $t \in [0,1]$, on note $d(t)$ la distance en km parcourue en $t$ heure.
+\[
+	d: [0,1] \longrightarrow \R^+
+\]
+On suppose $\begin{cases}
+	d(0) = 0\\
+	d(1) = 4\\
+	d \text{ continue et croissante}
+\end{cases}$ \\
+On veut prouver qu'il existe $t$ te lque \[
+	d\left( t+\frac{1}{2} \right) - d(t) = 2
+\]
+On pose $\delta: t \mapsto d\left( t+\frac{1}{2} \right) - d(t)$ continue.\\
+
+\[
+	\begin{cases}
+		\delta(0) = d\left( \frac{1}{2} \right)\\
+		\delta\left( \frac{1}{2} \right) = 4 - d\left( \frac{1}{2} \right) \le d(1)\\
+	\end{cases}
+\]
+\begin{itemize}
+	\item Si $d\left( \frac{1}{2} \right) > 2$, alors $\delta\left( \frac{1}{2} \right) < 2 < \delta(0)$ donc il existe $t$ tel que $\delta(t) = 2$ \\
+	\item Si $d\left( \frac{1}{2} \right) \le  2$, alors $\delta\left( \frac{1}{2} \right) \ge 2 \ge \delta(0)$ donc il existe $t$ tel que $\delta(t) = 2$ \\
+\end{itemize}
+
+Donc il exite $t$ tel que $\delta(t) = 2$ i.e. $d\left( t+\frac{1}{2} \right) = 2 + d(t)$

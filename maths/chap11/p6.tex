@@ -1,0 +1,172 @@
+\part{Suites complexes}
+
+\begin{defn}
+	Soit $(u_n) \in \C^\N$ et $\ell\in \C$. On dit que $(u_n)$ converge vers $\ell$ si \[
+		\forall \varepsilon>0, \exists N \in \N, \forall n \ge  N, \left| u_n-\ell \right| \le \varepsilon
+	\] 
+	
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm); srand(0);
+
+				axes("$\Re$", "$\Im$", EndArrow);
+
+				draw(circle((3,2), 1), dashed);
+
+				dot("$\ell$", (3,2), N+E);
+
+				draw(brace((4,2), (3,2), .1));
+				label("$\varepsilon$", (3.5, 2), 2 * S);
+
+				for(int i = 0; i < 15; ++i) {
+					real x = cos(i * 360 / 7) * exp(-i / 3) * 4 + 3;
+					real y = sin(i * 360 / 7) * exp(-i / 3) * 4.2 + 2;
+
+					dot((x,y), magenta);
+				}
+
+			\end{asy}
+		\end{center}
+		\caption{Suite complexe convergente}
+	 	\label{suite-complexe-convergente}
+	\end{figure}
+\end{defn}
+
+\begin{prop}
+	Si $\ell_1$ et $\ell_2$ sont deux limites de $u$ alors $\ell_1= \ell_2$ 
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(4cm); srand(0);
+
+				axes("$\Re$", "$\Im$", EndArrow);
+
+				draw(circle((1,3), 0.5), dashed);
+				dot("$\ell_1$", (1,3), N+E);
+
+				draw(circle((3,1), 0.5), dashed);
+				dot("$\ell_2$", (3,1), N+E);
+				
+				draw((1,3)--(3,1));
+			\end{asy}
+		\end{center}
+		\caption{Unicité de la limite de suites complexes}
+	 	\label{unicite-limite-complexe}
+	\end{figure}
+	\qed
+\end{prop}
+
+\begin{prop}
+	Les limites de somme, produit, quotient de suites complexes respectent les mêmes lois que pour les suites réelles.
+	\qed
+\end{prop}
+
+\begin{thm}
+	Soit $u \in \C^\N$ et $\ell\in \C$. \[
+	u_n \tendsto{n \to +\infty} \ell
+	\iff
+	\begin{cases}
+		\Re(u_n) \tendsto{n \to  +\infty} \Re(\ell)\\
+		\Im(u_n) \tendsto{n \to  +\infty} \Im(\ell)\\
+	\end{cases}
+	\] 
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$\implies$] On suppose $u_n \tendsto{} \ell$.\\
+			Soit $\varepsilon >0$. Soit $N \in \N$ tel que \[
+			\forall  n \ge  N, \left| u_n-\ell \right| \le  \varepsilon
+			\] Or, \[
+			\forall  n \ge  N, \begin{cases}
+				\Re(u_n) - \Re(\ell) = \Re(u_n - \ell) \le \left| u_n-\ell \right| \le \varepsilon\\
+				\Im(u_n) - \Im(\ell) = \Im(u_n - \ell) \le \left| u_n-\ell \right| \le \varepsilon
+			\end{cases}
+			\] donc \[
+			\begin{cases}
+				\Re(u_n) \tendsto{} \Re(\ell)\\
+				\Im(u_n) \tendsto{} \Im(\ell)\\
+			\end{cases}
+			\] 
+		\item[$\impliedby$] On suppose $\begin{cases}
+			\Re(u_n) \tendsto{} \Re(\ell)\\
+			\Im(u_n) \tendsto{} \Im(\ell)\\
+		\end{cases}$\\
+		Alors, \[
+		\forall n \in \N, u_n = \Re(u_n) + i \Im(u_n) \tendsto{} \Re(\ell) + i\Im(\ell) = \ell
+		\] 
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $u \in \C^\N$ et $\ell\in \C$.\\
+	Si $u_n \tendsto{} \ell$ alors $\left| u_n \right| \tendsto{} \left| \ell \right|$
+\end{prop}
+
+\begin{prv}
+	On suppose $u_n \tendsto{} \ell$\\
+	\[
+	\forall n \in \N, \left| u_n \right| = \sqrt{\Re^2(u_n) + \Im^2(u_n)} \tendsto{} \sqrt{\Re^2(\ell) + \Im^2(\ell)}  = \left| \ell \right| 
+	\] 
+\end{prv}
+
+\begin{prop}
+	Tous les résultats (sauf ceux avec des limites infinies !) concernant les suites extraites sont encore valables dans $\C$ y compris le théorème de Bolzano-Weierstrass (mais avec une autre preuve).
+\end{prop}
+
+\begin{defn}
+	Soit $u \in \C^\N$. On dit que $u$ est \underline{bornée} s'il existe $M \in \R^+$ tel que \[
+	\forall n \in \N, \left| u_n \right| \le M
+	\]
+
+	\begin{figure}[H]
+		\begin{center}
+			\begin{asy}
+				import graph;
+
+				size(8cm); srand(0);
+
+				axes("$\Re$", "$\Im$", EndArrow);
+
+				draw(circle((0,0), 1), dashed);
+
+				real k = 0.02;
+
+				for(int i = 0; i < 10; ++i) {
+					real r = unitrand();
+					real a = unitrand() * pi * 2;
+
+					pair coords = (r * cos(a), r * sin(a));
+					draw(coords - (k,0) -- coords -- coords + (k,0));
+					draw(coords - (0,k) -- coords -- coords + (0,k));
+				}
+
+			\end{asy}
+		\end{center}
+		\caption{Suite complexe bornée}
+	 	\label{suite-complexe-bornée}
+	\end{figure}
+\end{defn}
+
+\begin{thm}
+	[Bolzano Weierstrass]
+	Soit $u \in \C^\N$ bornée. Il existe $\varphi: \N \to \N$ strictement croissante telle que $\left( u_{\varphi(n)} \right) $ converge.
+\end{thm}
+
+\begin{prv}
+	Soit $M \in \R^+$ tel que \[
+	\forall n \in \N, \left| u_n \right| \le M
+	\] Donc, $\forall n \in \N, \left| \Re(u_n) \right| \le \left| u_n \right| \le M$ Donc $\left( \Re(u_n) \right) _{n \in \N}$ est bornée. Donc, il existe $\varphi: \N \to \N$ strictement croissante telle que $\left( \Re\left( u_{\varphi(n)} \right)  \right) $ converge.
+	\[
+	\forall n \in \N, \left| \Im \left( u_{\varphi(n)} \right)  \right| \le  \left| u_{\varphi(n)} \right| \le M
+	\] donc $\left( \Im(u_{\varphi(n)} \right)$ est bornée. Soit $\psi: \N\to\N$ strictement croissante telle que $\left( \Im\left( u_{\varphi(\psi(n))} \right)  \right) $ converge.
+	Or, $\left( \Re\left( u_{\varphi(\psi(n))} \right)  \right) $ est une sous suite de la suite convergente $\left( \Re\left( u_{\varphi(n)} \right)  \right) $ donc $\left( \Re\left( u_{\varphi(\psi(n))} \right)  \right) $ converge. \\
+	Donc, $\left( u_{\varphi(\psi(n))} \right) $ converge.\\
+	Comme  $\varphi \circ \psi$ est strictement croissante, $\left( u_{\varphi(\psi(n))} \right) $ est une sous suite de $(u_n)$
+\end{prv}
+

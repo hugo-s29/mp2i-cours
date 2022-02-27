@@ -1,0 +1,223 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{tkz-tab}
+\usepackage[inline]{asymptote}
+\usepackage{frcursive}
+\usepackage{verbatim}
+\usepackage{moresize}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{calligra}
+\usepackage{diagbox}
+\usepackage{centernot}
+\usepackage{multicol}
+\usepackage{nicematrix}
+\usepackage{stmaryrd}
+\usepackage{setspace}
+\usepackage{chngpage}
+\usepackage{cancel}
+\usepackage{esvect}
+\usepackage{wrapfig}
+\usepackage{floatflt}
+\usepackage{calligra}
+\usepackage[cuteinductors,european,straightvoltages,europeanresistors]{circuitikz}
+
+\usetikzlibrary{babel}
+\usetikzlibrary{tikzmark,calc,fit,arrows}
+
+\newif\ifsimple
+\simplefalse
+\let\underlin\underline
+
+\usepackage{graphicx}
+\newcommand\longvdots[1]{\raisebox{1em}{\rotatebox{-90}{\hbox to #1 {\dotfill}}}}
+
+\pgfplotsset{compat=1.17}
+\let\vec\vv
+
+\definecolor{green}{HTML}{60A917}
+
+\everymath{\displaystyle}
+\let\textstyle\displaystyle
+\let\scriptstyle\displaystyle
+\let\scriptscriptstyle\displaystyle
+
+\def\asydir{asy}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+
+\usepackage{calrsfs}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+\usepackage{float}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\ge\geqslant
+\let\le\leqslant
+
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\Q}{\mathbbm{Q}}
+\renewcommand{\O}{\emptyset}
+
+\renewcommand\Re{\expandafter\mathfrak{Re}}
+\renewcommand\Im{\expandafter\mathfrak{Im}}
+
+\renewcommand{\thepart}{\Roman{part}} 
+
+\DeclareMathOperator{\Arctan}{Arctan}
+\DeclareMathOperator{\Card}{Card}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\cotan}{cotan}
+\DeclareMathOperator*{\po}{\text{\cursive o}}
+\DeclareMathOperator*{\dom}{dom}
+
+\pdfsuppresswarningpagegroup=1
+\reversemarginpar
+
+\newcommand{\defblock}[5]{
+	\newenvironment{#1}[1][{}]
+		{
+			\if##1\empty\else
+				{#3 ##1 #5}
+			\fi
+			\marginpar{#2}
+			~\\
+		}
+		{
+			#4
+			\vspace{8mm}
+		}
+}
+
+\newcommand{\defoptblock}[6]{
+	\AtBeginDocument{
+		\ifsimple
+			\newenvironment{#1}[1][{}]
+				{
+					\expandafter\comment
+				}
+				{
+					\expandafter\endcomment
+					\vspace{-8mm}
+					#6
+					\vspace{8mm}
+				}
+		\else
+			\defblock{#1}{#2}{#3}{#4}{#5}
+		\fi
+	}
+}
+
+\defblock{defn}{\bf Definition}{\bf\hfill}{}{\hfill}
+\defblock{prop}{\bf Proposition}{\bf\hfill}{}{\hfill}
+\defblock{crlr}{\bf Corollaire}{\bf\hfill}{}{\hfill}
+\defblock{prop-defn}{\bf Proposition\\Définition}{\bf\hfill}{}{\hfill}
+\defblock{thm}{\bf Théorème}{\bf\hfill}{}{\hfill}
+\defblock{lem}{\bf Lemme}{\bf\hfill}{}{\hfill}
+
+\defoptblock{exm}{Exemple}{}{}{}{}
+\defoptblock{exo}{Exemple}{}{}{}{}
+
+\defblock{rmk}{\it Remarque}{\it}{}{}
+\defoptblock{prv}{\it Preuve}{\it}{\qed}{\hfill}{\hfill$\blacksquare$}
+
+% \AtBeginDocument{
+	% \newenvironment{cblk}[3][{}][{}]
+		% {
+			% \if#1\empty\else
+				% {#1}
+			% \fi
+			% \marginpar{#3}
+			% ~\\
+		% }
+		% {
+			% #2
+			% \vspace{8mm}
+		% }
+% }
+
+\makeatother
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead[R]{}
+\fancyhead[L]{\thepart}
+\fancyhead[C]{\parttitle}
+
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+
+\newcommand*\parttitle{}
+\let\origpart\part
+\renewcommand*{\part}[2][]{%
+   \ifx\\#1\\% optional argument not present?
+      \origpart{#2}%
+      \renewcommand*\parttitle{#2}%
+   \else
+      \origpart[#1]{#2}%
+      \renewcommand*\parttitle{#1}%
+   \fi
+}
+
+\makeatletter
+
+\newcommand{\tendsto}[1]{\xrightarrow[#1]{}}
+\newcommand{\danger}{{\large\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}\;}
+\newcommand{\ex}{\fbox{ex}\;}
+\renewcommand{\mod}[1]{~\left[ #1 \right]}
+
+\newcommand{\vrt}[1]{\rotatebox{90}{$#1$}}
+
+\DeclareMathOperator{\ou}{\text{ ou }}
+\DeclareMathOperator{\et}{\text{ et }}
+\DeclareMathOperator{\si}{\text{ si }}
+\DeclareMathOperator{\non}{\text{ non }}
+
+\renewcommand{\title}[2]{
+	\AtBeginDocument{
+		\begin{titlepage}
+			\begin{center}
+				\vspace{10cm}
+				{\Large \sc Chapitre #1}\\
+				\vspace{1cm}
+				{\HUGE \cursive #2}\\
+				\vfill
+				Hugo {\sc Salou} MP2I\\
+				{\ssmall Dernière mise à jour le \@date }
+			\end{center}
+		\end{titlepage}
+	}
+}

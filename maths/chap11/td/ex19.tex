@@ -1,0 +1,76 @@
+\part{Exercice 19}
+
+\begin{enumerate}
+	\item Soit $\varepsilon > 0$. On sait qu'il existe $N \in \N$ tel que \[
+			\forall n \ge N, \left| u_n - \ell \right| \le  \frac{\varepsilon}{2}
+		\] Soient $p \ge N$ et $q \ge N$.
+		\begin{align*}
+			\left| u_p - u_q \right| &= \left| u_p - \ell + \ell - u_q \right|  \\
+															 &\le  \left| u_p - \ell \right| + \left| u_q - \ell \right| \\
+															 &\le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+		\end{align*}
+	\item Soit $u$ une suite de Cauchy.\\
+		On sait qu'il existe $N \in \N$ tel que \[
+			\forall p > N, \forall q > N, \left| u_p - u_q \right| \le 1
+		\] En particulier, \[
+		\forall n > N, \left| u_n - u_{N+1} \right| \le 1
+		\] donc  \[
+		\forall n > N, u_{N+1} - 1 \le u_n \le 1 + u_{N+1}
+		\]
+		donc $(u_n)_{n > N}$ est bornée. Il existe $M_1 \in \R$ tel que \[
+			\forall n > N, \left| u_n \right| \le M_1
+		\] La famille $(u_n)_{n \le N}$ est finie. On pose \[
+		M_2 = \max_{n \in \left\llbracket 0,N \right\rrbracket} \left| u_n \right|
+		\] On pose $M = \max(M_1, M_2)$. \[
+		\forall n \in \N, \left| u_n \right| \le M
+		\] Donc $(u_n)$ est bornée.
+	\item Comme $a$ est bornée, $(b_n)$ est bien définie.
+		\begin{enumerate}
+			\item Soit $n \in \N$. \[
+						\begin{cases}
+							b_{n+1} = \sup \{a_p  \mid  p \ge n+1\} \\
+							b_n = \sup \{a_p  \mid  p \ge n\} 
+						\end{cases}
+				\]\[
+					\forall p \ge n+1, a_p \le b_n (\text{car } p \ge n)
+				\]
+				Donc, $b_n$ majore $\{a_p  \mid  p \ge n+1\}$ donc $b_{n+1} \le b_n$ \\
+				La suite $(b_n)$ est décroissante.\\
+				Comme $(a_n)$ est bornée, il existe $m \in \R$ tel que \[
+					\forall n \in \N, m \le a_n
+				\]
+				En particulier, \[
+					\forall p \ge n, b_n \le a_p \ge m
+				\] Ainsi, $(b_n)$ est minorée.\\
+				Donc, $(b_n)$ converge.
+			\item
+				Comme $(b_n)$ converge vers $a$, il existe donc $N_1 \in \N$ tel que \[
+					\forall n \ge N_1, \left| b_n - a \right| \le \varepsilon
+				\] et donc \[
+				\forall n \ge N_1, b_n \le a + \varepsilon
+				\]
+				Comme $(a_n)$ est de Cauchy, il existe $N_2 \in \N$ tel que \[
+					\forall p > N_2, \forall n > N_2, \left| a_p - a_n \right| \le \frac{\varepsilon}{2}
+				\] et donc \[
+				\forall p > N_1, \forall n > N_2, a_p \le a_n + \frac{\varepsilon}{2}
+				\] On pose $N = \max(N_1, N_2) + 1$.\\
+				Comme $N \ge N_1$, on a \fbox{$b_n \le a + \varepsilon$}\\
+				De plus, \[
+					\forall n \ge N, n > N_2
+				\] et donc \fbox{$\forall n \ge N, \forall p \ge  N, a_p \le a_n + \frac{\varepsilon}{2}$}
+			\item On sait déjà que $b_N \le  a + \varepsilon$ \\
+				Soit $n \ge N$ 
+				\begin{itemize}
+					\item $b_n = \sup \{a_p  \mid p \ge N\} \ge a_n$ 
+					\item $\forall p \ge N, a_p \le a_n + \frac{\varepsilon}{2}$
+				\end{itemize}
+				donc $a_n + \frac{\varepsilon}{2}$ majore $\{a_p  \mid p \ge N\}$.\\
+				donc $a_n + \frac{\varepsilon}{2} \ge  b_N$ \\
+
+				Enfin, $(b_n)$ est décroissante de limite $a$ donc $b_N \ge a$ donc $b_N - \frac{\varepsilon}{2} \ge a - \frac{\varepsilon}{2} > a- \varepsilon$.\\
+				En particulier \[
+					\forall n \ge N, a - \varepsilon \le a_n \le a+\varepsilon
+				\] Donc $(a_n)$ converge vers $a$ par définition de la limite
+		\end{enumerate}
+\end{enumerate}
+

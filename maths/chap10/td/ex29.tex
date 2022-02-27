@@ -1,0 +1,85 @@
+\part{Exercice 29}
+
+\begin{enumerate}
+	\item Soit $n \in \N_*$.\\
+		Si $n = 1$,  $f(1)$ est connu car $1 = 2^0$.\\
+		Si $n \ge 2$, $n = p_1^{\alpha_1}\ldots p_k^{\alpha_k}$ avec \[
+		\begin{cases}
+			\forall i \neq j, p_i \neq p_j\\
+			\alpha_i \in \N\\
+			p_i \in \mathcal{P}
+		\end{cases}
+		\]
+		\[
+		\forall i \neq j, p_i^{\alpha_i} \wedge p_j^{\alpha_j}
+		\] 
+		Donc, $f(n) = f\left( p_1^{\alpha_1} \right) \ldots f\left( p_k^{\alpha_k} \right) $.
+	\item On pose \[
+	\begin{cases}
+		a = \prod_{p \in \mathcal{P}} p^{\alpha(p)}  \\
+		b = \prod_{p \in \mathcal{P}} p^{\beta(p)}  \\
+	\end{cases}
+	\] 
+
+	\begin{align*}
+		f(a)f(b) &= \prod_{p \in \mathcal{P}} f(p^{\alpha(p)}) \prod_{p \in \mathcal{P}} \\
+		&= \prod_{p \in \mathcal{P}} f(p^{\alpha(p)})f(p^{\beta(b)}) \\
+	\end{align*}
+
+	\begin{align*}
+		f(a\wedge b)f(a\vee b) &= \prod_{p \in \mathcal{P}} f\left( p^{\min(\alpha(p), \beta(p))} \right) \times \prod_{p \in \mathcal{P}} f\left( p^{\max(\alpha(p), \beta(p))} \right)  \\
+		&= \prod_{p \in \mathcal{P}} f\left( p^{\min(\alpha(p), \beta(p))} \right) f\left( p^{\max(\alpha(p), \beta(p))} \right)  \\
+	\end{align*}
+	
+	\begin{align*}
+		\forall p \in \mathcal{P},
+		f\left( p^{\min(\alpha(p), \beta(p))} \right) f\left( p^{\max(\alpha(p), \beta(b))} \right) &= \begin{cases}
+			f\left( p^{\alpha(p)} \right) f\left( p^{\beta(p)} \right) &\text{ si } \alpha(p) \le \beta(p)\\
+			f\left( p^{\beta(p)} \right) f\left( p^{\alpha(p)} \right)  & \text{ sinon}
+		\end{cases} \\
+		&= f\left( p^{\alpha(p)} \right) f\left(p^{\beta(b)}\right) \\
+	\end{align*}
+	
+	Donc, $f(a)f(b) = f(a\wedge b)f(a\vee b)$.
+	\item
+		\begin{enumerate}
+			\item \[
+				\sigma(o) = \sum_{\begin{array}{c}
+						d  \mid p\\
+						d > 0
+				\end{array} } d = 1 + p
+				\] 
+			\item
+				$\alpha = 0$, $\sigma(1) = 1$.\\
+				$\alpha>0$ les diviseurs positifs de $p^\alpha$ sont $1, p, p^2, \ldots, p^\alpha$ donc 
+				\begin{align*}
+					\sigma(p^\alpha) = \sum_{k=0}^{\alpha} p^k &= \frac{1 - p^{\alpha+1}}{1 - p}\\
+					&= \frac{p^{\alpha+1} - 1}{p - 1} \\
+				\end{align*}
+			\item On pose $a = \prod_{q \in \mathcal{P}} q^{\alpha(q)}$\\
+				$p\nmid a$  donc  $\alpha(p) = 0$\\
+				Les diviseurs positifs de $a$ sont $\prod_{p \in \mathcal{P}}q^{\beta(q)}$ avec $0 \le \beta(q) \le \alpha(q)$ pour tout $q  \in \mathcal{P}$\\
+				Les diviseurs positifs de $ap^{\alpha}$ sont $\{dp^\beta \text{ avec } \beta \le \alpha \text{ et } d \mid a\}$.
+				\begin{align*}
+					\sigma(ap^\alpha) &= \sum_{\beta=0}^{\alpha} dp^\beta\\
+					\sum_{\beta=0}^{\alpha} p^\beta \sum_{\begin{array}{c}
+						d \mid a\\
+						d > 0
+					\end{array}} d
+					&= \sigma(p^\alpha)\sigma(a)
+				\end{align*}
+
+			\item $(a,b) \in \N^2$ avec $a \wedge b = 1$ \\
+				$b = p_1^{\alpha_1}\ldots p_n^{\alpha_n}$ avec \[
+				\begin{cases}
+					p_i \neq  p_j \text{ si } i \neq j\\
+					p_i \text{ premier }
+				\end{cases}
+				\] 
+				$ab = ap_1^{\alpha_1}\ldots p_n^{\alpha_n}$.\\
+				On prouve le résultat par récurrence sur $n$.\\
+				\begin{center}
+					$\vdots$
+				\end{center}
+		\end{enumerate}
+\end{enumerate}

@@ -1,0 +1,102 @@
+\part{Exercice 7}
+
+\marginpar{\underline{Idée de la solution}}
+
+\[
+	f(2x) = f(x) + ax + \po(x)
+\]
+\begin{align*}
+	f(x) \xleftarrow[n \to +\infty]{} f(x)
+	&= f\left( \frac{x}{2} \right) a\frac{x}{2} + \po(x)\\
+	&= f\left( \frac{x}{4} \right) + a \frac{x}{2} + a \frac{x}{4} + \po(x) \\
+	&= f\left( \frac{x}{2^n} \right) + a\sum_{k = 1}^n \frac{x}{2^k} + \po(x) \\
+	&\tendsto{n\to +\infty} f(0) + ax + \po(x)
+\end{align*}
+
+Donc, $f(x) = f(0) + ax + \po(x)$
+
+\marginpar{\underline{Solution}}
+
+$\varepsilon(x) \to 0$
+\[
+	f(2x) = f(x) + ax + x\varepsilon(x)
+\]
+\begin{align*}
+	f(x) \xleftarrow[n \to +\infty]{} f(x)
+	&= f\left( \frac{x}{2} \right) a\frac{x}{2} + \frac{x}{2}\varepsilon\left( \frac{x}{2} \right) \\
+	&= f\left( \frac{x}{4} \right) + a \frac{x}{2} + a \frac{x}{4} + \frac{x}{4}\varepsilon\left( \frac{x}{4} \right) + \frac{x}{2} \varepsilon\left( \frac{x}{2} \right) \\
+	&= f\left( \frac{x}{2^n} \right) + a\sum_{k = 1}^n \frac{x}{2^k} + \underbrace{x\sum_{k = 1}^n \frac{1}{2^k} \varepsilon\left( \frac{x}{2^k} \right)}_{\tendsto{n\to +\infty} ?}\\
+	&\tendsto{n\to +\infty} f(0) + ax + ?
+\end{align*}
+
+On pose \[
+	\forall x >0,  \varepsilon(x) = \frac{f(2x) - f(x)}{x}-a
+\] D'après l'énoncé, $\varepsilon(x) \tendsto{\substack{x \to 0\\>}}$ et \[
+	(\mathcal{E}):\quad \forall x > 0, f(2x) = f(x) + ax + x\varepsilon(x)
+\] On en déduit par récurrence que
+\begin{align*}
+	\forall n \in \N_*, P(n) \text{ est vraie, avec }\\
+	P(n): ``\forall x > 0, f(x) = f\left( \frac{x}{2^n} \right) + ax \sum_{k=1}^n \frac{1}{2^k} + x\sum_{k=1}^n \frac{1}{2^k} \varepsilon\left( \frac{x}{2^k} \right)"
+\end{align*}
+
+\begin{itemize}
+	\item D'après $(\mathcal{E})$, \[
+			\forall x>0, f(x) = f\left( \frac{x}{2} \right)  + \frac{ax}{2} + \frac{x}{2}\, \varepsilon\left( \frac{x}{2} \right)
+		\] donc $P(1)$ est vraie
+	\item Soit $n\in \N_*$. On suppose $P(n)$ vraie.
+		\begin{align*}
+			\forall x >0,
+			f(x) &= f\left( \frac{x}{2^n} \right) + ax\sum_{k=1}^n \frac{1}{2^k} +x\sum_{k=1}^n \frac{1}{2^k} \varepsilon\left( \frac{x}{2^k} \right)\\
+			&= f\left( \frac{x}{2^{n+1}} \right) + a \frac{x}{2^{n+1}} + \frac{x}{2^{n+1}}\, \varepsilon\left( \frac{x}{2^{n+1}} \right) \\
+			&+ ax \sum_{k=1}^n \frac{1}{2^k} + x\sum_{k=1}^n \frac{1}{2^k} \varepsilon\left( \frac{x}{2^k} \right) \\
+			&= f\left( \frac{x}{2^{n+1}} \right) + ax\sum_{k=1}^{n+1}\frac{1}{2^k} + x\sum_{k=1}^{n+1} \frac{1}{2^{k}} \varepsilon\left( \frac{x}{2^k} \right) \\
+		\end{align*}
+		Donc, $P(n+1)$ est vraie
+\end{itemize}
+
+On fixe $x > 0$. \[
+	f\left( \frac{x}{2^n} \right) \tendsto{n\to +\infty} f(0) \text{ car $f$ est continue en $0$}
+\] 
+\begin{align*}
+	\forall n \in \N_*, \sum_{k=1}^n \frac{1}{2^k} &= \frac{1}{2} \times  \frac{1- \left( \frac{1}{2} \right)^n}{1 - \frac{1}{2}}
+	&= 1 - \frac{1}{2^n} \tendsto{n \to +\infty} 1 \\
+\end{align*}
+
+Comme $\lim_{\substack{x\to 0\\>}} \varepsilon(x)  0$, on sait que \[
+	\forall \varepsilon >0, \exists \eta > 0, \forall x \in ]0,\eta[, \left| \varepsilon(x) \right| \le \varepsilon
+\]
+
+Soit $\varepsilon>0$. On considère $\eta>0$ tel que \[
+	\forall x \in ]0,\eta[, \left| \varepsilon(x) \right| \le \varepsilon
+\]
+Soit $x \in ]0,\eta[$. \[
+	\forall k \in \N, \frac{x}{2^k} \le x
+\] donc \[
+	\forall k \in \N, \frac{x}{2^k} \in ]0,\eta[
+\] donc \[
+	\forall x \in \N, \left| \varepsilon\left( \frac{x}{2} \right)  \right| \le \varepsilon
+\]  Donc 
+\begin{align*}
+	\forall n \in \N_*, \left| \sum_{k=1}^n \frac{1}{2^k}\varepsilon\left( \frac{x}{2^k} \right) \right|
+	&\le \sum_{k=1}^n \frac{1}{2^k} \left| \varepsilon\left( \frac{x}{2^k} \right) \right|\\
+	&\le  \sum_{k=1}^n \frac{1}{2^k} \varepsilon\\
+	&\le \left( 1 - \frac{1}{2^n} \right) \varepsilon\\
+	&\le \varepsilon
+\end{align*}
+
+De plus, pour tout $x >0$, il existe $N'_x \in \N_*$ tel que \[
+	\forall n \in \N_*', \left| f\left( \frac{x}{2^n} \right) - f(0) \right| \le \varepsilon x
+\] et il existe $N_x \in \N_*$ tel que \[
+	\forall n \ge N_x, \left| a\sum_{k=1}^n \frac{1}{2^k} - a \right| \le \varepsilon
+\] donc \[
+	\forall n \ge N, ax - \varepsilon x \le ax \sum_{k=1}^n \frac{1}{2^k} \le ax + \varepsilon x
+\]
+\begin{align*}
+	\forall x \in ]0,\eta''[, \forall n \ge \max(N, N'_x), \\
+	f(0) - \varepsilon x + ax - \varepsilon x - \varepsilon x \le f(x) \le f(0) + \varepsilon x + ax + \varepsilon x + \varepsilon x
+\end{align*}
+donc \[
+	-3\varepsilon \le \frac{f(x) - f(0)}{x} - a \le 3\varepsilon
+\]
+Donc $\lim_{\substack{x\to 0 \\ >}} \frac{f(x) - f(0)}{x}-a = 0$
+et donc $f$ est dérivable à droite en 0 et $f'(0) = a$

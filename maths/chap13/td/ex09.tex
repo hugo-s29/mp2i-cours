@@ -1,0 +1,41 @@
+\part{Exercice 9}
+
+\newenvironment{amat}{\left(\begin{array}{c c c|c}}{\end{array}\right)}
+\newcommand{\bx}[1]{\fbox{$#1$}}
+
+\begin{align*}
+	\begin{amat}
+		\bx 1 & a & -a^2 & a^4\\
+		1 & b & -b^2 & b^4\\
+		1 & c & -c^2 & c^4
+	\end{amat}
+	\begin{array}{c}
+		\sim\\
+		\scriptstyle L_2 \leftarrow \frac{L_2 - L_1}{b-a}\\
+		\scriptstyle L_3 \leftarrow \frac{L_3 - L_1}{c-a}
+	\end{array}&
+	\begin{amat}
+		\bx 1 & a & -a^2 & a^4\\
+		0 & \bx 1 & -(a+b) & b^3 + ab^2 + a^2b+a^3\\
+		0 & 1 & -(a+c) & c^3 + ac^2 + a^2c + a^3
+	\end{amat}\\
+	\begin{array}{c}
+		\sim\\
+		L_3 \leftarrow \frac{L_3 - L_2}{b-c}\\
+	\end{array}&
+	\begin{amat}
+		\bx 1 & a & -a^2 & a^4\\
+		0 & \bx 1 & -(a+b) & b^3 + ab^2 + a^2b + a^3\\
+		0 & 0 & \bx 1 & -c^2 - bc - b^2 - ac -ab -a^2
+	\end{amat}\\
+	\begin{array}{c}
+		\sim\\
+		L_2\leftarrow L_2+(a+b)L_3\\
+		L_1\leftarrow L_1-aL_2+a^2L_3
+	\end{array}&
+	\begin{amat}
+		1&0&0&\cdots\\
+		0&1&0&\cdots\\
+		0&0&1&\cdots
+	\end{amat}
+\end{align*}

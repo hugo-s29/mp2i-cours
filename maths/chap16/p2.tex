@@ -1,0 +1,253 @@
+\part{Théorème de Rolle et accroissements finis}
+
+\begin{thm}
+	[Théorème de Rolle]
+	Soit $f: [a,b] \to \R$ continue sur $[a,b]$ et dérivable sur $]a,b[$. On suppose que $f(a) = f(b)$.\\
+	Alors, \[
+		\exists c \in ]a,b[, f'(c) = 0
+	\]
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+
+			axes(EndArrow);
+
+			real g(real x){return -cos(x) + 1.5 + sin(3x)/6;}
+
+			draw(graph(g,-1,2pi), deepcyan);
+
+			real a = 1.7; real b = 4.884;
+
+			real c = 2.834;
+			
+			dot((a,g(a)),white+10);
+			dot((b,g(b)),white+10);
+
+
+			dot((a,g(a)),magenta);
+			dot((b,g(b)),magenta);
+
+			draw((a,0)--(a,g(a)), dashed+magenta);
+			draw((b,0)--(b,g(b)), dashed+magenta);
+
+			draw((c-0.5,g(c))--(c+0.5,g(c)), Arrows(TeXHead));
+		\end{asy}
+	\end{center}
+\end{thm}
+
+\begin{prv}
+	$f$ est continue sur le segment $[a,b]$. On pose \[
+		\begin{cases}
+			M = \max_{[a,b]}(f)\\
+			m = \min_{[a,b]}(f)\\
+		\end{cases}
+	\] 
+
+	\begin{itemize}
+		\item[\sc Cas 1] \[
+				\exists c \in ]a,b[, M = f(c)
+			\] 
+			\begin{align*}
+				f'(c) &= \lim_{\substack{x \to c\\<}}\frac{f(x)-f(c)}{x-c} \ge 0 \text{ car } \forall x < c, \begin{cases}
+					f(x) - f(c) \le 0\\
+					x - c < 0
+				\end{cases} \\
+				&= \lim_{\substack{x \to c\\>}}\frac{f(x)-f(c)}{x-c} \le 0 \text{ car } \forall x > c, \begin{cases}
+					f(x) - f(c) \le 0\\
+					x - c > 0
+				\end{cases} \\
+			\end{align*}
+			Donc, $f'(c) = 0$ 
+		\item[\sc Cas 2]
+			\[
+				\exists c \in ]a,b[, m = f(c)
+			\]
+			\begin{align*}
+				f'(c) &= \lim_{\substack{x \to c\\<}}\le 0 \text{ car } \forall x < c \begin{cases}
+					f(x) - f(c) \ge 0\\
+					x - c <0
+				\end{cases} \\
+				&= \lim_{\substack{x\to c\\>}} \frac{f(x) - f(c)}{x-c}\ge 0 \\
+			\end{align*}
+			Donc $f'(c) = 0$ 
+		\item[\sc Cas 3] \[
+				\forall c \in ]a,b[, f(c) \not\in \{m,M\}
+			\] Alors \[
+				\begin{cases}
+					M \in \{f(a), f(b)\} \\
+					m \in \{f(a), f(b)\} 
+				\end{cases}
+			\] Or, $f(a) = f(b)$ donc $M = m$ donc $f$ est constante donc \[
+			\forall x \in [a,b], f'(x) = 0
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	On dit que $f$ présente un \underline{maximum local} en $a$ s'il existe $\eta>0$ tel que \[
+		\forall x \in ]a-\eta,a+\eta[, f(x) \le f(a)
+	\] et un \underline{minimum local} en $a$ s'il existe $\eta >0$ tel que \[
+		\forall x \in ]a-\eta, a+\eta[, f(x) \ge f(a)
+	\]\\
+	Un \underline{extremum local} est un minimum local ou un maximum local.
+\end{defn}
+
+\begin{prop}
+	Soit $a \in I$ tel que $f(a)$ est un extremum local de $f$ où $f$ est dérivable en $a$. Alors, $f'(a) = 0$
+	\qed
+\end{prop}
+
+\begin{defn}
+	Soit $f$ dérivable et $a \in I$. On dit que $a$ est un \underline{point critique} de $f$ si $f'(a) = 0$. On dit que $f(a)$ est une \underline{valeur critique}
+\end{defn}
+
+\begin{exm}
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(3cm);
+
+			axes(EndArrow);
+			real f(real x){return x^3;}
+
+			draw(graph(f, -1, 1), magenta);
+		\end{asy}
+	\end{center}
+	$x \mapsto x^3$\\
+	$f'(0) = 0$ mais $0$ n'est pas un extremum local
+\end{exm}
+
+\begin{thm}
+	[Théorème des accroissements finis]
+
+	Soit $f: [a,b] \to \R$ continue sur $[a,b]$ et dérivable sur $]a,b[$.\\
+	Alors, il existe $c \in ]a,b[$ tel que \[
+		\frac{f(b) - f(a)}{b-a} = f'(c)
+	\] 
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+
+			axes(EndArrow);
+
+			real f(real xa) {
+				real x = xa + 1;
+				return cos(x-pi) + 1 + sin(4x) / 3;
+			}
+
+			real a = 0.5; real b = 3;
+
+			draw(graph(f, a, b), magenta);
+
+			draw((a,f(a))--(b,f(b)), red);
+
+			real c = 1.077;
+			real offset = 0.782;
+			draw((a,f(a) + offset)--(b,f(b) + offset), red);
+
+			dot((3.5,2.5), white+0);
+
+			dot((a, f(a)), deepcyan); dot("$a$", (a, 0), deepcyan, align=S);
+			draw((a, f(a)) -- (a, 0), deepcyan + dashed);
+			dot((b, f(b)), deepcyan); dot("$b$", (b, 0), deepcyan, align=S);
+			draw((b, f(b)) -- (b, 0), deepcyan + dashed);
+
+			dot((c, f(c)), deepcyan); dot("$c$", (c, 0), deepcyan, align=S);
+			draw((c, f(c)) -- (c, 0), deepcyan + dashed);
+		\end{asy}
+	\end{center}
+\end{thm}
+
+\begin{prv}
+	On pose $\tau = \frac{f(b) - f(a)}{b-a}$\\
+	$g: x\mapsto f(x) - \tau x$ continue sur $[a,b]$ et dérivable sur $]a,b[$.\\
+	$g(a)-g(b) = f(a) - f(b) - \tau(a-b) = 0$\\
+	D'après le théorème de Rolle, il existe $c \in ]a,b[$ tel que $g'(c) = 0$. \[
+		\forall x, g'(x) = f'(x) - \tau
+	\] Donc, $f'(c) = \tau$
+\end{prv}
+
+\begin{prop}
+	Soit $f: I \to \R$ dérivable avec $I$ un intervalle non vide.
+	\begin{enumerate}
+		\item $f$ est croissante sur $I$ $\iff \forall x \in I, f'(x) \ge 0$
+		\item $f$ est décroissante sur $I$ $\iff \forall x \in I, f'(x) \le 0$ 
+		\item $\forall x \in I, f'(x) > 0 \implies f$ strictement croissante
+		\item $\forall x \in I, f'(x) < 0 \implies f$ strictement décroissante
+		\item $f$ constante $\iff \forall x \in I, f'(x) = 0$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item
+			\begin{itemize}
+				\item[$``\implies"$ ] On suppose $f$ croissante.\\
+					Soit $x \in I$. \[
+						f'(x) = \lim_{y \to x} \frac{f(y) - f(x)}{y-x}
+					\] Or, $\forall y, f(y) - f(x)$ et $y - x$ sont de même signe donc $\frac{f(y) - f(x)}{y - x} \ge 0$.\\
+					Et donc $f'(x) \ge 0$.
+				\item[$``\impliedby"$] On suppose que \[
+					\forall x \in I, f'(x) \ge 0
+				\] Soit $(a,b) \in I^2$. On suppose que $a\le b$.\\
+				$f$ est continue sur $[a,b]$\\
+				$f$ est dérivable sur $]a,b[$\\ 
+				donc, d'après le théorème des accroissements finis, il existe $c \in ]a,b[$ tel que \[
+					f(a) - f(b) = \underbrace{f'(c)}_{\ge 0}\underbrace{(a-b)}_{\le 0} \le 0
+				\] donc $f(a) \le f(b)$ \\
+				Donc $f$ est croissante.
+			\end{itemize}
+	\end{enumerate}
+	On procède de la même manière pour les autres propositions
+\end{prv}
+
+\begin{thm}
+	[Théorème de la limite de la dérivée]
+	Soit $f : I \to \R$ continue (sur $I$), $a \in I$. On suppose $f$ dérivable sur $I \setminus \{a\}$ et que $\lim_{\substack{x\to a\\\neq}}f'(x)$ existe.\\
+	Alors,  \[
+		\frac{f(x) - f(a)}{x-a}\tendsto{\substack{x\to a\\\neq }} \lim_{\substack{x \to a\\\neq }}f'(a)
+	\] 
+\end{thm}
+
+\begin{prv}
+	On pose $\ell = \lim_{\substack{x \to a\\\neq}} f'(x) \in \overline{\R}$.\\
+	Soit $x \in I\setminus \{a\}$.\\
+	$f$ est continue sur $I$ donc sur $[a,x]$ si $x \ge a$ et sur $[x,a]$ si $x < a$ \\
+	$f$ est dérivable sur $I\setminus \{a\}$ donc sur $]a,x[$ si $x >a$ et sur $]x,a[$ si $x<a$ \\
+	D'après le théorème des accroissements finis, il existe $c_x \in ]a,x[ \cup ]x,a[$ tel que
+	\[
+		\frac{f(x) - f(a)}{x-a} = f'(c_x)
+	\]
+	\begin{itemize}
+		\item $\forall x < a$, on a $x < c_x < a$ \\ Par encadrement, $c_x \tendsto{\substack{x \to a\\<}} a$
+		\item $\forall x > a$, on a $x > c_x > a$ \\ Par encadrement, $c_x \tendsto{\substack{x \to a\\>}} a$
+	\end{itemize}
+	Donc, \[
+		\lim_{\substack{x \to a\\\neq}} c_x = a
+	\] donc \[
+		f'(c_x) \tendsto{\substack{x \to a\\\neq}} \ell
+	\] 
+	\begin{center}
+		(compositions des limites)
+	\end{center}
+\end{prv}
+
+\begin{prop}
+	Soit $f: I \to \R$ dérivable. On suppose qu'il existe $M \in \R$ tel que \[
+		\forall x \in I, \left| f'(x)\right| \le M 
+	\] Alors $f$ est $M$-lipschitzienne sur $I$.
+\end{prop}
+
+\begin{prv}
+	Soient $(a,b) \in I^2$.\\
+	D'après le théorème des accroissements finis, il existe $c \in I$ tel que \[
+		f(a) - f(b) = f'(c) (a-b)
+	\] donc
+	\begin{align*}
+		\left| f(a)-f(b) \right| &= \left| f'(c) \right| \left| a-b \right| \\
+														 &\le M \left| a-b \right| 
+	\end{align*}
+\end{prv}

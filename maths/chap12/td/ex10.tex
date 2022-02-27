@@ -1,0 +1,68 @@
+\part{Exercice 10}
+
+\[
+	\Z[i] = \{a+ib  \mid (a,b) \in \Z^2\} 
+\]
+
+\begin{itemize}
+	\item $\Z[i] \subset  \C$ 
+	\item Soient $u,v \in \Z[i]$. On pose $u = a + ib$ et $v = c+id$ avec $(a,b,c,d) \in \Z^4$.\\
+		\begin{align*}
+			u+v &= \underbrace{(a+c)}_{\in \Z} + i\underbrace{(b+d)}_{\in \Z} \in \Z[i]\\
+			uv &= \underbrace{(ac-bd)}_{\in \Z} + i\underbrace{(ad+bc)}_{\in \Z} \in \Z[i]\\
+		\end{align*}
+
+		\begin{align*}
+			- u &= -a - ib  \in \Z[i]\\
+			0 &= 0 + i \times 0 \in \Z[i]
+			1 &= 1 + i \times 0 \in \Z[i]
+		\end{align*}
+	\item Soit $u \in \Z[i]^\times$. On sait qu'il existe $v \in \Z[i]$ tel que $uv = 1$.\\
+		Donc, $\left| u \right|^2\left| v \right| ^2 = \left| uv \right| ^2 = 1^2=1$ \\
+		Comme $u \in \Z[i]$, $\left| u \right| ^2 = \Re(u)^2 + \Im(u)^2 \in \N$ \\
+		De même, $\left| v \right| ^2 \in \N$ \\
+		Donc, $\left| u \right| ^2 = 1$.
+
+		% schema 1
+
+		On pose $u = a+ib, (a,b) \in \Z^2$. On a $a^2 + b^2 = 1$\\
+		donc $\begin{cases}
+			0 \le a^2 \le 1\\
+			0 \le b^2 \le 1\\
+		\end{cases}$ \\
+		Donc, $\begin{cases}
+			a^2 \in \{0,1\} \\
+			b^2 \in \{0,1\}\\
+			a^2+b^2 = 1
+		\end{cases}$ \\
+		Donc, $u \in \{\pm i, \pm 1\}$ \\
+	\item
+		\begin{align*}
+			1^{-1} = 1 \in \Z[i]\\
+			(-1)^{-1} = -1 \in \Z[i]\\
+			i^{-1} = -i \in \Z[i]\\
+			(-i)^{-1} = i \in \Z[i]\\
+		\end{align*}
+	\item[\sc Autre méthode] $u \in \Z[i]\setminus \{0\}$. $u = a+ib$ avec $a,b \in \Z$.\\
+		\begin{align*}
+			\frac{1}{u} \in \Z[i] &\iff \frac{1}{a+ib}\in \Z[i]\\
+														&\iff \frac{a-ib}{a^2-b^2} \in \Z[i]\\
+														&\iff \begin{cases}
+															\frac{a}{a^2+b^2} \in \Z\\
+															\frac{-b}{a^2+b^2} \in \Z
+														\end{cases}
+														&\iff \begin{cases}
+															a^2+b^2 \mid a\\
+															a^2+b^2 \mid b\\
+														\end{cases}\\
+														&\implies \begin{cases}
+															a^2+b^2 \le \left| a \right|\\
+															a^2+b^2 \le \left| b \right|\\
+														\end{cases}
+														&\implies \begin{cases}
+															a \in \{0,1,-1\}\\
+															b \in \{0,1,-1\}\\
+															a^2 + b^2 = 1
+														\end{cases}
+		\end{align*}
+\end{itemize}

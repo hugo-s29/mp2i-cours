@@ -1,0 +1,50 @@
+\part{Exercice 11}
+
+\begin{enumerate}
+\item Soit $\varepsilon>0$ (quelconque fixé). On cherche $N \in \N_*$ tel que \[
+\forall n \ge N, \left| \frac{1}{n} \sum_{i=1}^{n} u_i \right| \le \varepsilon
+\]
+
+Soit $\varepsilon' = \frac{\varepsilon}{2}>0$ Il existe $N' \in \N_*$ tel que \[
+\forall n \ge N', \left| u_n \right| \le \varepsilon'
+\] 
+La suite $\left( \frac{1}{n}\sum_{i=1}^{N' -1}  \left| u_i \right|\right)$ converge vers 0.\\
+
+Il existe $N'' \in \N$ tel que \[
+\forall n \ge N'', \frac{1}{n}\sum_{i=1}^{N'-1} \left| u_i \right| \le \frac{\varepsilon}{2}
+\] 
+
+On pose $N = \max(N', N'') \in \N$
+
+\begin{align*}
+	\forall n \ge N,
+	\left| \frac{1}{n}\sum_{i=1}^{n} u_i \right| &\le \frac{1}{n}\sum_{i = 1}^{n} \left| u_i \right| = \frac{1}{n}\left( \sum_{i=1}^{N-1} \left| u_i \right| + \sum_{i=1}^{n} \left| u_i \right| \right) \\
+	&\le \frac{1}{n} \sum_{i=1}^{N'-1} \left| u_i \right| + \frac{n-N'+1}{n}\varepsilon'  \\
+	&\le \varepsilon' + \frac{1}{n} \sum_{i=1}^{N' -1} \left| u_i \right| \\
+	&\le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+\item
+On pose \[
+\forall n \in \N, w_n = u_n - \ell \tendsto{n\to +\infty} 0
+\] D'après la 1. , \[
+\frac{1}{n} \sum_{i=1}^{n} w_i \tendsto{n \to +\infty} 0
+\] 
+Or,
+\begin{align*}
+	\forall n \in \N_*, \frac{1}{n} \sum_{i=1}^{n} w_i &= \frac{1}{n} \sum_{i=1}^{n} (u_i - \ell) \\
+	&= \frac{1}{n} \sum_{i=1}^{n} u_i - \frac{1}{n}\sum_{i=1}^{n} \ell \\
+	&= \frac{1}{n}\sum_{i=1}^{n} u_i - \ell \\
+\end{align*}
+
+Donc $\frac{1}{n} \sum_{i=1}^{n} u_i = \ell + \frac{1}{n}\sum_{i=1}^{n} w_i \tendsto{n \to +\infty} \ell$ 
+
+\item
+La réciproque est fausse: contre exemple \[
+\forall n \in \N_*, u_n = (-1)^n
+\] 
+
+\[
+\forall n \in \N_*, \left| \frac{1}{n} \sum_{i=1}^{n} u_i \right| = \frac{1}{n}\left| \sum_{i=1}^{n} (-1)^i \right| \le \frac{1}{n} \tendsto{n \to +\infty} 0
+\] 
+donc $\frac{1}{n}\sum_{i=1}^{n} u_i \tendsto{n \to +\infty} 0$
+\end{enumerate}

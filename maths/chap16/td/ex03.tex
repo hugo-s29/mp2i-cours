@@ -1,0 +1,16 @@
+\part{Exercice 3}
+
+Soit $x \ge 1$. $f$ est continue sur $[x, x+1]$ et dérivable sur $]x,x+1[$. Donc \[
+	\exists c \in]x,x+1[, f(x+1)-f(x) = f'(c) < f'(x)
+\] 
+De même, \[
+	\exists d \in ]x-1,x[, f(x) - f(x-1) = f'(d) > f'(x)
+\] 
+
+On pose $\ell = \lim_{x\to +\infty} f(x) \in \R$ donc 
+\begin{itemize}
+	\item $f(x+1)-f(x) \tendsto{x\to +\infty} \ell - \ell = 0$
+	\item $f(x)-f(x-1) \tendsto{x\to +\infty} \ell - \ell = 0$
+\end{itemize}
+
+Par encadrement, $f'(x) \tendsto{x\to +\infty} 0$

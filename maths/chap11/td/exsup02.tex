@@ -1,0 +1,71 @@
+\part{Exercice}
+
+\[
+	\begin{cases}
+		u_0 > 0\\
+		\forall n\in \N, u_{n+1} = \frac{1}{2}\left( u_n + \frac{a}{u_n} \right)
+	\end{cases}
+\]
+On pose \begin{align*}
+	f: \R_*^+ &\longrightarrow \R \\
+	x &\longmapsto \frac{1}{2} \left( x + \frac{a}{x} \right) 
+\end{align*}
+
+$f$ est définie et dérivable sur $\R^+_*$ et \[
+	\forall x > 0, f'(x) = \frac{1}{2}\left( 1- \frac{a}{x^2} \right)
+\] 
+
+\begin{center}
+	\begin{tikzpicture}
+		\tkzTabInit{$x$ /1, $f$ /2, $f(x)-x$/1}{$0$, $\sqrt{a}$, $+\infty$}
+		\tkzTabVar{D+/$+\infty$, -/$\sqrt{a}$, +/$+\infty$}
+		\tkzTabLine{d,+,z,-,}
+	\end{tikzpicture}
+\end{center}
+
+On pose \begin{align*}
+	f: \R &\longrightarrow \R \\
+	x &\longmapsto f(x) - x
+\end{align*}
+
+\[
+	\forall x > 0, g'(x) = f'(x) - 1 = -\frac{1}{2} - \frac{a}{2x^2} < 0
+\] 
+
+\begin{center}
+	\begin{tikzpicture}
+		\tkzTabInit{$x$/1, $g$ /2}{$0$, $\sqrt{a}$, $+\infty$}
+		\tkzTabVar{+/$+\infty$, R, -/$-\infty$}
+		\tkzTabVal13{0.5}{}{$0$}
+	\end{tikzpicture}
+\end{center}
+\[
+	\forall x > 0, g(x) = -\frac{x}{2} + \frac{a}{2x}
+\]
+
+\begin{itemize}
+	\item Pour $n \in \N$, $\mathcal{P}(n): ``u_n \text{ existe et } u_n > 0"$ 
+		\begin{itemize}
+			\item D'après l'énoncé, $u_0$ existe et $u_0 > 0$. Donc, $\mathcal{P}(0)$ est vraie.
+			\item Soit $n \in \N$, on suppose $\mathcal{P}(n)$ vraie.\\
+				$u_n > 0$ donc $u_n$ appartient au domaine de définition de $f$ donc $u_{n+1}$ existe. De plus, $u_{n+1} = f(u_n) \ge  \sqrt{a} > 0$\\
+				Donc, $\mathcal{P}(n+1)$ est vraie
+		\end{itemize}
+	\item Pour $n \in \N_*$, $\mathcal{Q}(n): ``u_n \ge \sqrt{a}"$ 
+		\begin{itemize}
+			\item $u_1 = f(u_0) \ge \sqrt{a}$
+			\item Soit  $n \in \N_*$ tel que $u_n \ge \sqrt{a}$. Alors, $u_{n+1} = f(u_n) \ge \sqrt{a}$
+		\end{itemize}
+\end{itemize}
+\vspace{5mm}
+
+De plus, \[
+	\forall n \in \N_*, u_n \ge \sqrt{a}
+\] donc, \[
+\forall n \in \N_*, u_{n+1} - u_n = g(u_n) \le 0
+\]
+Donc, $(u_n)$ est décroissante, minorée par $\sqrt{a}$ donc $(u_n)$ converge vers un point fixe de $f$ (car $f$ est continue).\\
+Or, $\sqrt{a}$ est le seul point fixe de $f$. Donc, \[
+	u_n \tendsto{n \to +\infty} \sqrt{a}
+\]
+

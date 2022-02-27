@@ -1,0 +1,26 @@
+\part{Exercice 8}
+Soit $P \in E$. On pose \[
+	P : x \mapsto  ax^2 + bx + c
+\] avec $(a,b,c) \in \R^3$ 
+\begin{align*}
+	P \in F &\iff \begin{cases}
+		P(1) = 0\\
+		\int_{0}^{1} P(t)~dt = 0
+	\end{cases}\\
+	&\iff \begin{cases}
+		a+b+c = 0\\
+		\frac{a}{3}+ \frac{b}{2}+ c = 0
+	\end{cases}\\
+	&\iff \begin{cases}
+		a+b+c = 0\\
+		\frac{2}{3}a+\frac{1}{2}b = 0
+	\end{cases}\\
+	&\iff \begin{cases}
+		a=  -\frac{3}{4}b\\
+		c = -\frac{1}{4}b
+	\end{cases}\\
+	&\iff\forall x\in \R, P(x) = -\frac{3}{4}bx^2 + bx - \frac{1}{4}b = b\left( -\frac{3}{4}x^2 + x - \frac{1}{4} \right)\\
+	&\iff P \in \Vect(Q)
+\end{align*}
+où $Q: x \mapsto -\frac{3}{4}x^2 + x - \frac{1}{4}$ \\
+Donc, $F = \Vect(Q)$ est un sous-corps vectoriel de $E$. De plus, $Q \neq 0$ donc $(Q)$ est une base de $F$.

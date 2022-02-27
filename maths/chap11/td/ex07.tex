@@ -1,0 +1,25 @@
+\part{Exercice 7}
+
+ \[
+\forall n \in \N, a^n - 1 < \left\lfloor a^n \right\rfloor \le a^n
+\] 
+\begin{itemize}
+	\item[\sc Cas 1: $a > 1$]
+		Alors, $a^n - 1 > 0$ et donc, \[
+			\left( a^n-1 \right) ^{\frac{1}{n}} < u_n \le a
+		\]
+		\begin{align*}
+			\left( a^n - 1 \right)^{\frac{1}{n}} &= e^{\frac{1}{n}\ln\left( a^n-1 \right)} \\
+															 &= e^{\frac{1}{n}\ln\left( a^n\left( 1-\frac{1}{a^n} \right)  \right) } \\
+															 &= \ln(a) + \frac{1}{n} \ln\left( 1 - \frac{1}{a^n} \right)  \\
+															 &\tendsto{n \to +\infty} e^{\ln a} = a
+		\end{align*}
+	\item[\sc Cas 2: $a=1 $]
+		$\forall n \in \N_*, u_n = 1 \tendsto{n\to +\infty} 1 = a$ 
+	\item[\sc Cas 3: $0 < a < 1 $] donc \[
+		\forall n \in \N_*, a^n \in ]0,1[
+	\] donc \[
+		\forall n \in \N_* \left\lfloor a^n \right\rfloor = 0
+	\] donc $u_n$ n'existe pas (car $\forall n \in \N_*, u_n = e^{\frac{1}{n}\ln\left( \left\lfloor a^n \right\rfloor \right) }$ et $\ln(0)$ n'existe pas)
+
+\end{itemize}

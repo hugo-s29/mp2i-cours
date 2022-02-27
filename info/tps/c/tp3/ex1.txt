@@ -1,0 +1,33 @@
+SORTIE:
+
+Tableau1 avant affecations
+  ALEATOIRE   ALEATOIRE
+
+Tableau1 après affecations
+  1   2
+
+Tableau2
+  9   ALEATOIRE
+
+Tableau2
+  9   ALEATOIRE
+
+Tableau3
+  3   1
+
+Tableau4
+  0   1
+  1   2
+
+Tableau5
+  ALEATOIRE   ALEATOIRE
+  ALEATOIRE   ALEATOIRE
+
+Tableau6
+  2   2
+  5   5
+
+Tableau7
+  3   ALEATOIRE
+  7   ALEATOIRE
+

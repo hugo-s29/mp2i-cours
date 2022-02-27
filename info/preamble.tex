@@ -1,0 +1,163 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{bbm}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{tkz-tab}
+\usepackage[inline]{asymptote}
+\usepackage{frcursive}
+\usepackage{verbatim}
+\usepackage{moresize}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{titlesec}
+\usepackage{mdframed}
+
+\titleformat{\section}
+  {\normalfont\normalsize\rmseries}{}{1em}{\begin{mdframed}}[\end{\mdframed}]
+
+\newif\ifsimple
+\simplefalse
+
+\pgfplotsset{compat=1.17}
+
+\everymath{\displaystyle}
+\let\textstyle\displaystyle
+\let\scriptstyle\displaystyle
+\let\scriptscriptstyle\displaystyle
+
+\def\asydir{asy}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+	\def\svgwidth{\columnwidth}
+	\import{./figures/}{#1.pdf_tex}
+}
+
+
+\usepackage{calrsfs}
+\usepackage{stmaryrd}
+\usepackage{float}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\ge\geqslant
+\let\le\leqslant
+
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\Q}{\mathbbm{Q}}
+\renewcommand{\O}{\emptyset}
+
+\renewcommand\Re{\expandafter\mathfrak{Re}}
+\renewcommand\Im{\expandafter\mathfrak{Im}}
+
+\renewcommand{\thepart}{\Roman{part}} 
+
+\DeclareMathOperator{\Card}{Card}
+
+\pdfsuppresswarningpagegroup=1
+\reversemarginpar
+
+\newcommand{\defblock}[5]{
+	\newenvironment{#1}[1][{}]
+		{
+			\if##1\empty\else
+				{#3 ##1 #5}
+			\fi
+			\marginpar{#2}
+			~\\
+		}
+		{
+			#4
+			\vspace{8mm}
+		}
+}
+
+\newcommand{\defoptblock}[5]{
+	\AtBeginDocument{
+		\ifsimple
+			\newenvironment{#1}[1][{}]
+				{
+					\expandafter\comment
+				}
+				{
+					\expandafter\endcomment
+				}
+		\else
+			\defblock{#1}{#2}{#3}{#4}{#5}
+		\fi
+	}
+}
+
+\defblock{defn}{\bf Definition}{\bf\hfill}{}{\hfill}
+\defblock{prop}{\bf Proposition}{\bf\hfill}{}{\hfill}
+\defblock{thm}{\bf Théorème}{\bf\hfill}{}{\hfill}
+\defblock{lem}{\bf Lemme}{\bf\hfill}{}{\hfill}
+
+\defoptblock{exm}{Exemple}{}{}{}
+
+\defblock{rmk}{\it Remarque}{\it}{}{}
+\defoptblock{prv}{\it Preuve}{\it}{\qed}{\hfill}
+
+\makeatother
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead[R]{}
+\fancyhead[L]{\thepart}
+\fancyhead[C]{\parttitle}
+
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+
+\newcommand*\parttitle{}
+\let\origpart\part
+\renewcommand*{\part}[2][]{%
+   \ifx\\#1\\% optional argument not present?
+      \origpart{#2}%
+      \renewcommand*\parttitle{#2}%
+   \else
+      \origpart[#1]{#2}%
+      \renewcommand*\parttitle{#1}%
+   \fi
+}
+
+\makeatletter
+
+\newcommand{\tendsto}[1]{\xrightarrow[#1]{}}
+\newcommand{\danger}{{\large\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}\;}
+\newcommand{\ex}{\fbox{ex}\;}
+
+\newcommand{\vrt}[1]{\rotatebox{90}{$#1$}}
+
+\renewcommand{\title}[1]{
+	\AtBeginDocument{
+		\begin{titlepage}
+			\begin{center}
+				\vspace{10cm}
+				{\HUGE \cursive #1}\\
+				\vfill
+				Hugo {\sc Salou} MP2I\\
+				{\ssmall Dernière mise à jour le \@date }
+			\end{center}
+		\end{titlepage}
+	}
+}

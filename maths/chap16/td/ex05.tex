@@ -1,0 +1,26 @@
+\part{Exercice 5}
+
+\begin{enumerate}
+	\item On pose $\varepsilon_1 = \frac{1}{2}\big(z - f'(a) \big) > 0$.\\
+		Il existe $\eta_1 > 0$ tel que \[
+			\forall k \in ]-\eta_1, \eta_1[ \setminus \{0\}, a+h \in I,
+			\left| \frac{f(a+h)- f(a)}{h} - f'(a)\right| \le \varepsilon_1
+		\]
+		En particulier, \[
+			\forall k h \in ]0,\eta_1[, \frac{f(a+h) - f(a)}{h} \le f'(a) + \varepsilon_1 < z
+		\] De même, il existe $\eta_2 >0$ tel que \[
+			\forall h \in ]0,\eta_2[, \left| \frac{f(b+h) - f(b)}{h} - f'(b) \right| 
+			\le \varepsilon_2 = \frac{1}{2}\big(f'(b) - z\big)
+		\] donc \[
+			\forall h \in ]0, \eta_2[, \frac{f(b + h) - f(b)}{h} \ge  f'(b) - \varepsilon_2 > z
+		\] On pose $\eta = \min(\eta_1, \eta_2) >0$, \[
+			\forall h \in ]0,\eta[, \frac{f(a+h)-f(a)}{h} < z < \frac{f(b + h) - f(b)}{h}
+		\]
+	\item On fixe $h \in ]0,\eta[$ et $g_h: x \mapsto \frac{f(x + h) - f(x)}{h}$ \\
+		$g_h$ est continue sur son domaine de définition, et d'après 1., \[
+			g_h(a) < z < g_h(b)
+		\] D'après le théorème des valeurs intermédiaires, il existe $y \in I$ tel que $y + h \in I$ et $z = g_h(y) = \frac{f(y+h) - f(y)}{h}$ \\
+		D'après le théorème des accroissements finis, \[
+			\exists  x \in ]y, y+h[, f'(x) = \frac{f(y +h) - f(y)}{h} = z
+		\]
+\end{enumerate}

@@ -1,0 +1,245 @@
+\part{Trigonométrie}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\centering
+	\vspace{2cm}
+	\begin{asy}
+		import graph;
+		size(5cm);
+
+		axes(EndArrow);
+		
+		pair O = (0,0);
+
+		draw(circle(O, 1));
+		draw(circle(O, 1.2), white+0);
+
+		real theta = 1;
+		pair m = (cos(theta), sin(theta));
+		dot(m);
+
+		draw(arc(O, 0.5, 0, theta * 180 / pi), deepcyan, Arrow(TeXHead));
+		label("$\theta$", (cos(theta / 2), sin(theta / 2)) / 2, deepcyan, align=SW);
+		
+		draw(O--(1,tan(theta)));
+
+		draw(O -- (0, sin(theta)), heavygreen);
+		draw(m -- (0, sin(theta)), heavygreen + dashed);
+
+		label("$\sin(\theta)$", (0, sin(theta)/2), heavygreen, align=W);
+		label("$\cos(\theta)$", (cos(theta)/2, 0), heavymagenta, align=S);
+
+		draw(O -- (cos(theta), 0), heavymagenta);
+		draw(m -- (cos(theta), 0), heavymagenta + dashed);
+
+		label("$\tan(\theta)$", (1, tan(theta)/2), mediumblue, align=E);
+		draw((1,0)--(1,tan(theta)), mediumblue);
+
+		draw((0,1)--(1/tan(theta), 1), mediumred);
+		label("$\cotan(\theta)$", (1/(2*tan(theta)), 1), mediumred, align=N);
+	\end{asy}
+\end{wrapfigure}
+
+\begin{defn}
+	On définit, pour 
+	\begin{align*}
+		&\theta \in \bigcup_{k \in \Z} \left]-\frac{\pi}{2}+k\pi, \frac{\pi}{2}+k\pi\right[\\
+		\iff &\theta \in \R \setminus \left\{ \frac{\pi}{2} +2\pi k  \mid k \in \Z \right\} 	
+	\end{align*} la \underline{tangente} de $\theta$ par \[
+		\tan \theta = \frac{\sin\theta}{\cos\theta}
+	\] 
+\end{defn}
+
+\begin{defn}
+	Pour $\theta \in \bigcup_{k\in \Z} ]-k\pi, (k+1)\pi[$, on définit la \underline{contangente} de $\theta$	par \[
+		\cotan\theta = \frac{\cos\theta}{\sin\theta}
+	\] 
+\end{defn}
+
+\begin{prop}
+	Soient $(a,b)\in \R^2$.
+	\begin{enumerate}
+		\item $\cos(-a) = \cos(a)$ 
+		\item $\cos(a + 2\pi) = \cos(a)$
+		\item $\cos(a+\pi) = -\cos(a)$ 
+		\item $\cos(\pi - a) = -\cos(a)$ 
+		\item $\sin(-a) = -\sin(a)$ 
+		\item $\sin(a+2\pi) = \sin(a)$ 
+		\item $\sin(a + \pi) = -\sin(a)$ 
+		\item $\sin(\pi-a) = \sin(a)$ 
+		\item $\cos(a+b) = \cos(a)\cos(b) - \sin(a)\sin(b)$
+		\item $\sin(a+b) = \cos(a)\sin(b) + \sin(a)\cos(b)$
+		\item $\cos\left( \frac{\pi}{2}-a \right) = \sin(a)$
+		\item $\sin\left( \frac{\pi}{2}-a \right) = \cos(a)$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[8.] 
+			Soient $\vec{u} = (\cos(a), \sin(a))$ et $\vec{v} = (\cos(b), \sin(b))$\\
+			\begin{minipage}{\linewidth}
+				\begin{wrapfigure}{r}{1cm}
+					\centering
+					\begin{asy}
+						import graph;
+						axes(EndArrow);
+						size(3.5cm);
+
+						real a = 0.4;
+						real b = 0.6;
+
+						pair u = (cos(a), sin(a));
+						pair v = (cos(b + a), sin(b + a));
+						pair o = (0,0);
+
+						draw(o--u, mediumred, Arrow(TeXHead));
+						draw(o--v, mediumblue, Arrow(TeXHead));
+
+						draw(circle(o, 1));
+						draw(circle(o, 1.5), white + 0);
+
+						label("$\vec{u}$", u, mediumred, align=NE);
+						label("$\vec{v}$", v, mediumblue, align=NE);
+
+						draw(arc(o, 0.6, 0, degrees(a)), Arrow(TeXHead));
+						label("$a$", (cos(a/2), sin(a/2)) * 0.6, align=E);
+
+						draw(arc(o, 0.4, degrees(a), degrees(b+a)), Arrow(TeXHead));
+						label("$b$", (cos(a + b/2), sin(a + b/2)) * 0.4, align=NE);
+
+					\end{asy}
+				\end{wrapfigure}
+				D'une part, $\vec{u}\cdot \vec{v} = \cos(a)\cos(b) + \sin(a)\sin(b)$ \\
+				D'autre part, $\vec{u} \cdot \vec{v} = \|\vec{u}\|\times \|\vec{v}\| \times \cos(\widehat{\vec{u}, \vec{v}}) = \cos(a-b)$ \\
+				On a montré que
+				\begin{align*}
+					&\forall (a,b) \in \R^2, \cos(a-b) = \cos(a)\cos(b) + \sin(a)\sin(b)\\
+					\text{d'où }& \forall (a,b) \in \R^2, \cos(a+b) = \cos(a)\cos(b) - \sin(a)\sin(b)
+				\end{align*}
+			\item[11.] $\forall a \in \R, \cos\left( \frac{\pi}{2}-a \right) = \overbrace{\cos\left( \frac{\pi}{2} \right)}^{=0}\cos(a) + \overbrace{\sin\left( \frac{\pi}{2} \right)}^{=1}\sin(a) = \sin(a)$
+			\item[12.] $\forall a \in \R, \cos(a) = \cos\left( -a + \frac{\pi}{2} + \frac{\pi}{2} \right) =  \sin\left( \frac{\pi}{2} - a \right)$
+			\item[10.]
+				\begin{align*}
+					\forall (a,b) \in \R^2,
+					\sin(a+b) &= \cos\left( \left( \frac{\pi}{2}-a \right) -b \right) \\
+					&= \cos\left( \frac{\pi}{2}-a \right) \cos(b) + \sin\left( \frac{\pi}{2}-a \right) \sin(b) \\
+					&= \sin(a)\cos(b) + \cos(a) \sin(b) \\
+				\end{align*}
+			\end{minipage}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soient $a$ et $b$ deux réels tels que $a\not\equiv \frac{\pi}{2} \mod \pi$ et $b\not\equiv \frac{\pi}{2}\mod\pi$.
+	\begin{enumerate}
+		\item $\tan(a+\pi) = \tan(a)$
+		\item $\tan(-a) = -\tan(a)$ 
+		\item Si $a+b \not\equiv \frac{\pi}{2} \mod\pi$, alors, $\tan(a+b) = \frac{\tan(a) + \tan(b)}{1-\tan(a)\tan(b)}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[3.] On suppose $a+b \not\equiv \frac{\pi}{2} \mod \pi$\\
+			\begin{align*}
+				\tan(a+b) &= \frac{\sin(a+b)}{\cos(a+b)}\\
+				&= \frac{\sin(a)\cos(b)+\sin(b)\cos(a)}{\cos(a)\cos(b)-\sin(a)\sin(b)} \\
+				&= \frac{\frac{\sin(a)\cos(b)}{\cos(a)\cos(b)} + \frac{\sin(b)\cos(a)}{\cos(a)\cos(b)}}{\frac{\cos(a)\cos(b) - \sin(a)\sin(b)}{\cos(a)\cos(b)}} \\
+				&= \frac{\tan(a) + \tan(b)}{1-\tan(a)\tan(b)} \\
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $a \in \R$.
+	\begin{enumerate}
+		\item Si $a \not\equiv \frac{\pi}{2}\mod \pi$, alors, $1+\tan^2(a) = \frac{1}{\cos^2(a)}$ 
+		\item Si $a \not\equiv \pi \mod{2\pi}$ 
+			\begin{itemize}
+				\item $\cos(a) = \frac{1-\tan^2\left( \frac{a}{2} \right)}{1+\tan\left( \frac{a}{2} \right) }$ 
+				\item $\sin(a) = \frac{2\tan\left( \frac{a}{2} \right) }{1+\tan^2\left( \frac{a}{2} \right) }$ 
+				\item Si $a\not\equiv \frac{\pi}{2}\mod \pi$,
+					$\tan(a) = \frac{2\tan\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right) }$
+			\end{itemize}
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose que $a\not\equiv \frac{\pi}{2}\mod\pi$\\
+			\[
+				1+\tan^2(a) = 1+\frac{\sin^2(a)}{\cos^2(a)} = \frac{\cos^2(a) + \sin^2(a)}{\cos^2(a)} = \frac{1}{\cos^2(a)}
+			\]
+		\item 
+			On peut le prouver par le calcul avec les formules de la tangeante mais on peut également le prouver géométriquement.\\
+			\begin{minipage}
+				{\linewidth}
+				\begin{wrapfigure}{l}{0.5\linewidth}
+					\begin{asy}
+						import graph;
+						import math;
+
+						size(5cm);
+						axes(EndArrow);
+
+						pair O = (0,0);
+						real a = 0.6 * 180 / pi;
+
+						draw(circle(O, 1), gray);
+						label("$\mathcal{C}$", unit((-1,1)), gray, align=NW);
+
+						pair A = (-1,0);
+						pair M = dir(a);
+
+						dot("$A$", A, align=SW);
+						dot("$M$", M);
+
+						drawline(A, M);
+						
+						draw(O -- M);
+
+						draw((M.x, 0) -- M, dashed);
+						draw((0, M.y) -- M, dashed);
+
+						draw((M.x, 0) -- O, red);
+						draw((0, M.y) -- O, blue);
+						label("$\cos(a)$", (M.x/2, 0), red, align=S);
+						label("$\sin(a)$", (0, M.y/2), blue, align=NW);
+						
+						draw(arc(O, 0.5, 0, a), deepcyan, Arrow(TeXHead));
+						draw(arc(A, 0.5, 0, a / 2), deepcyan, Arrow(TeXHead));
+
+						label("$\frac{a}{2}$", dir(a/4) * 0.5 + A, deepcyan, align=E);
+						label("$a$", dir(a/2) * 0.5, deepcyan, align=E);
+
+						label("$H$", (M.x,0), align=SE);
+						draw((M.x, 0) -- (M.x - 0.05, 0) -- (M.x - 0.05, 0.05) -- (M.x, 0.05) -- cycle);
+					\end{asy}
+				\end{wrapfigure}
+				Soit $M(x_0,y_0) \neq A$ sur le cercle trigonométrique $\mathcal{C}$. On note $t$ la pente de la demi-droite $[AM)$.\\
+				On en déduit que l'équation de la droite $(AM)$ est \[
+					y = tx + t = t(x+1)
+				\]
+				On sait que $M \in (AM)$ donc \[
+					y_0 = t(x_0+1)
+				\] On sait aussi que ${x_0}^2 + {y_0}^2 = 1$ \\
+				Donc, \[
+					x_0 + t^2(x_0+1)^2 = 1
+				\] et donc \[
+					{x_0}^2 \underbrace{(1+t^2)}_{\neq 0} + 2t^2x_0	+ t^2 - 1 = 0
+				\] On résout cette équation du second degré et on trouve deux racines: $x_0 = -1$ et $x_0 = \frac{1-t^2}{1+t^2}$.\\
+				Comme $M \neq A$, $x_0 = \frac{1-t^2}{1+t^2}$ et $y_0 = t\left( \frac{1-t^2}{1+t^2} + 1 \right) = \frac{2t}{1+t^2}$ \\
+				Enfin,  \[
+					t = \frac{\left| HM \right| }{\left| AH \right|} = \tan\left( \frac{a}{2} \right) 
+				\] car $AHM$ est rectangle en $H$ (d'après le théorème de Thalès)\\
+				Donc, \[
+					\begin{cases}
+						\cos(a) = \frac{1-\tan^2\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right)}\\
+						\sin(a) = \frac{2\tan\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right) }
+					\end{cases}
+				\] 
+			\end{minipage}
+	\end{enumerate}
+\end{prv}
+

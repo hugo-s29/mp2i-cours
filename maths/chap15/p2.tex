@@ -1,0 +1,532 @@
+\part{Sous-espaces vectoriels}
+
+\begin{defn}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel. Soit $F \subset E$.\\
+	On dit que $F$ est un \underlin{sous-$\mathbbm{K}$-espace vectoriel} de $E$ si
+	\begin{enumerate}
+		\item $F \neq \O$
+		\item $\forall (u,v) \in F^2, u + v \in F$ 
+		\item $\forall \lambda \in \mathbbm{K}, \forall u \in F, \lambda u \in F$
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, $(F,+,\cdot)$ est un $\mathbbm{K}$-espace vectoriel
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item D'après 2., $+$ est interne dans $F$ 
+		\item $(E,+)$ est un groupe abélien donc $+$ est associative et commutative dans $E$ donc dans $F$
+		\item  $F \neq \O$. Soit $u \in F$. D'après 3., \[
+				0_\mathbbm{K} \cdot u \in F
+			\] Comme $u \in E$ et $(E, +, \cdot )$ est un $\mathbbm{K}$-espace vectoriel, \[
+			0_\mathbbm{K} \cdot u = 0_E
+			\] Donc, $0_E \in F$ 
+		\item Soit $u \in F$. Comme $u \in E$, \[
+				-u = -\left( 1_\mathbbm{K} \right) \cdot u \in F \text{ d'après 3.}
+			\]
+		\item Les autres axiomes sont aisément vérifiés.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $F\subset E$.\\
+	$F$ est un sous-espace vectoriel de $(E,+,\cdot)$ si et seulement si
+	\begin{enumerate}
+		\item $F \neq \O$
+		\item $\forall (\lambda,\mu) \in \mathbbm{K}^2, \forall (u,v) \in F^2, \lambda\cdot u + \mu\cdot v \in F$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] On sait déjà que $F$ est non vide.
+			\[
+				\forall u,v \in F, \forall \lambda,\mu \in \mathbbm{K},
+				~~
+				\begin{rcases*}
+					\lambda u \in F\\
+					\mu v \in F
+				\end{rcases*} \text{ donc } \lambda u + \mu v \in F
+			\] 
+		\item[$``\impliedby"$]
+			\begin{itemize}
+				\item On sait déjà que $F$ est non-vide
+				\item Soient $u,v \in F$ \[
+						u + v = 1_\mathbbm{K}\cdot u + 1_\mathbbm{K}\cdot v \in F
+					\] 
+				\item Soit $u \in F, \lambda \in \mathbbm{K}$. \[
+					\lambda\cdot u = \lambda\cdot u + 0_\mathbbm{K} \cdot u \in F
+				\] 
+			\end{itemize}
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soient $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $(u_1, \ldots, u_n) \in E^n$.
+	Une \underline{combinaison linéaire} de $(u_1, \ldots, u_n)$ est un vecteur de $E$ de la forme $\sum_{i=1}^{n} \lambda_i u_i$ où $(\lambda_1, \ldots, \lambda_n) \in \mathbbm{K}^n$
+\end{defn}
+
+\begin{rmk}
+	On peut aussi démontrer que $F$ est un sous-espace vectoriel de $E$ si et seulement si  \[
+		F \neq  \O \text{ et } \forall u,v \in F, \forall \lambda \in \mathbbm{K}, \lambda u + v \in F
+	\]
+\end{rmk}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $F = \left\{z \in \C  \mid  \Re(z) + \Im(z) = 1\right\} \subset \C$\\
+			$F$ est un sous-$\R$-espace vectoriel de $\C$ ?\\
+			Non car $0 \not\in F$ 
+		\item $F = \left\{ z \in \C  \mid  \Re(z) + \Im(z) = 0 \right\}$ est un sous-$\R$-espace vectoriel de $\C$ mais pas un sous-$\C$-espace vectoriel.\\
+			En effet, $1 - i \in F$ $i (1-i) = i + 1 \not\in F$
+		\item $E = \R^\N$ est un $\R$-espace vectoriel.\\
+			$F = \left\{ u \in \R^\N  \mid  \forall n \in \N, u_{n+1} = 3u_n \right\}$ est un sous-espace vectoriel de $E$.\\
+			$G = \left\{u \in \R^\N \mid  \forall n \in \N, u_{n+1} = 3u_n + 2 \right\}$ n'est pas un sous-espace vectoriel de $E$ puique $0_E \not\in G$.
+		\item $E = \R^D$ est un $\R$-espace vectoriel\\
+			$F = \mathcal{C}^0(D,\R)$ est un sous-espace vectoriel de $E$ (fonctions continues)\\
+			$G = \mathcal{D}(D,\R)$ est un sous-espace vectoriel de $E$ (fonctions dérivables)\\
+			Si $D = ]-a,a[$ avec $a \in \R$,
+			$H = \left\{ f \in E  \mid f \text{ impaire }\right\}$ est un sous-espace vectoriel de $E$ \\
+			Si $D = \R$, $L = \left\{ f \in E \mid f \text{ 1-périodique } \right\}$ est un sous-espace vectoriel de $E$\\
+			$M = \left\{ f \in E \mid f \text{ périodique } \right\} $ n'est pas un sous-ensemble vectoriel de $E$ 
+		\item L'ensemble des solutions sur un intervalle $I$ d'une équation différentielle linéaire est un sous-espace vectoriel de $\R^I$
+	\end{enumerate}
+\end{exm}
+
+
+\begin{exo}
+	[Exercice]
+	Trouver tous les sous-$\R$-espaces vectoriels de $\R^2$ \\
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(5cm);
+			
+			axes(EndArrow);
+
+			dot("$O$", (0,0), align=SW);
+
+			pair O = (0,0);
+
+			draw(O--(1,2), EndArrow, p=orange); // infinite line 
+			draw(O--(2,1), EndArrow, p=orange); // infinite line 
+
+			draw(O--(1,5), EndArrow, p=orange+yellow);
+
+			dot((8,-8), white+0);
+			dot((-8,8), white+0);
+		\end{asy}
+	\end{center}
+
+	\begin{itemize}
+		\item $\{(0,0)\}$ est un sous-espace vectoriel de $\R^2$
+		\item Les droites passant par $O$ sont des sous-espaces vectoriels de $\R^2$
+		\item $\R^2$ est un sous-espace vectoriel de $\R^2$
+	\end{itemize}
+	et rien d'autre !
+\end{exo}
+
+\begin{prop}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $\mathcal{F}$ une famille non vide de sous-espaces vectoriels de $E$. Alors $\bigcap_{F \in  \mathcal{F}} F$ est un sous-espace vectoriel de $E$.
+\end{prop}
+
+\begin{prv}
+	On pose $G = \bigcap_{F \in \mathcal{F}} F$.\\
+	\begin{itemize}
+		\item $\forall F \in \mathcal{F}, 0_E \in F$ car $F$ est un sous espace vectoriel de $E$ donc $0_E \in G$.
+		\item Soient $u,v \in G$ et $\lambda,\mu\in \mathbbm{K}$. On pose $w = \lambda u + \mu v$. \[
+			\forall F \in \mathcal{F},~~
+			\begin{rcases*}
+				u \in F\\
+				v \in F
+			\end{rcases*} \text{ donc } w \in F
+		\] donc $w \in G$
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	[Attention \danger]
+	Une réunion de sous-espaces vectoriels n'est pas un sous-espace vectoriel en général.
+\end{rmk}
+
+\begin{exo}
+	$F \cup G$ est un sous-espace vectoriel de $E$
+	$\iff F \subset G$ ou $G \subset F$
+\end{exo}
+
+\begin{defn}
+	Soient $F$ et $G$ deux sous-espaces vectoriels de $E$. On définit leur \underline{somme} $F+G$ par \[
+		F+G = \left\{ x + y  \mid x \in F, y \in G \right\} 
+	\]
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, $F+G$ est le plus petit sous-espace vectoriel de $E$ contenant $F \cup G$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item 
+			\begin{itemize}
+				\item $0_E = \underbrace{0_E}_{\in F} + \underbrace{0_E}_{\in G} \in F + G$
+				\item Soient $u \in F + G, v \in F + G, \lambda,\mu \in \mathbbm{K}$\\
+					On pose \[
+						\begin{cases}
+							u = x+y \text{ avec } \begin{cases}
+								x \in F\\
+								y \in G
+							\end{cases}\\~\\
+							v = a+b \text{ avec } \begin{cases}
+								a \in F\\
+								b \in G
+							\end{cases}
+						\end{cases}
+					\]
+					Donc,
+					\begin{align*}
+						\lambda u + \mu v &= \lambda(x+y) + \mu(a+b)\\
+						&= \lambda x + \lambda y + \mu a + \mu b \\
+						&= \underbrace{(\lambda x + \mu a)}_{\in F} + \underbrace{\lambda y + \mu b}_{\in G} \in F+G \\
+					\end{align*}
+			\end{itemize}
+			Ainsi $F + G$ est un sous-espace vectoriel de $E$.
+		\item Soit $x \in F \cup G$.\\
+			Si $x \in F$ alors $x = \underbrace{x}_{\in F} + \underbrace{O_E}_{\in G} \in F+G$ \\
+			Si $x \in G$ alors $x = \underbrace{0_E}_{\in F} + \underbrace{x}_{\in G} \in F+G$ \\
+			Donc, $F \cup G \subset  F +G$ 
+		\item Soit $H$ un sous-espace vectoriel de $E$ tel que $F\cup G \subset  H$ \\
+			Soit $u \in F + G$. On pose $u = x + y$ avec $\begin{cases}
+				x \in F\\
+				y \in G
+			\end{cases}$ \\
+			\[
+				\begin{cases}
+					x \in F \subset  F\cup G \subset  H\\
+					y \in G \subset  F\cup G \subset H
+				\end{cases}
+			\] 
+			$H$ est un sous-espace vectoriel de $E$ donc $x+y \in H$.\\
+			On a montré que $F+G \subset  H$
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $\left( F_i \right) _{i \in I}$ une famille quelconque non vide de sous-espaces vectoriels de $E$. On définit $\sum_{i \in I} F_i$ par 
+	\begin{align*}
+		\sum_{i \in I} F_i
+		&= \left\{ \sum_{i \in I} x_i  \mid  \left(x_i\right)_{i \in I} \in \prod_{i \in I}F_i; (x_i) \text{ presque nulle } \right\} \\
+		&= \left\{ \sum_{i \in I} x_i  \mid  \left(x_i\right) \in \prod_{i \in I}F_i; \left\{ i \in I  \mid  x_i \neq 0_E \right\} \text{ est fini } \right\} \\
+	\end{align*}
+	$\sum_{i \in I} F_i$ est l'ensemble de sommes \underline{finies} obtenues à partir d'éléments de $\prod _{i \in I}F_i$
+\end{defn}
+
+\begin{exm}
+	$E = \R^\R$ \\
+	$\forall  i \in \N, F_i = \{x \mapsto ax^i  \mid a \in \R\}$\\
+	$\sum_{i \in \N} F_i$ est l'ensemble des fonctions polynomiales
+\end{exm}
+
+\begin{prop}
+	Une somme quelconque de sous-espaces vectoriels est le plus petit sous-espace vectoriel contenant leur réunion.
+	\qed
+\end{prop}
+
+\begin{defn}
+	Soient $F$ et $G$ deux sous-espaces vectoriels de $E$. On dit qu'ils sont en \underline{somme directe} si \[
+		\forall u \in F+G, \exists! (x,y)  \in F\times G, u = x+y
+	\]
+	Dans ce cas, l'espace $F+G$ est noté $F \oplus G$
+\end{defn}
+
+\begin{exm}
+	$E = \R^3$ \\
+	$F = \{(x,0,x)  \mid  x \in \R\}$ \\~\\
+	$G = \left\{(x,y,z)  \mid  (S): \begin{cases}
+		x+y+z = 0\\
+		y - z = 0
+	\end{cases} \right\}$ \\~\\
+	$F \oplus G ?$\\
+	\begin{itemize}
+		\item $(0,0,0) \in F$ car $0 \in \R$ \\
+			Soient $x,y \in \R$, $\begin{cases}
+				 u = (x,0,x)\\
+				 v = (y,0,y)
+			\end{cases}$\\
+			Soient $\lambda, \mu \in \R$ \\
+			\begin{align*}
+				\lambda u + \mu v &= \lambda(x,0,0) + \mu(y,0,y) \\
+				&= (\lambda x, 0, \lambda x) + (\mu y, 0, \mu y) \\
+				&= (\lambda x + \mu y, 0, \lambda x + \mu y) \in F \\
+			\end{align*}
+			Donc $F$ est un sous-espace vectoriel de $E$ 
+		\item $(0,0,0) \in G$ car $(S)$ est homogène\\
+			$\begin{cases}
+				u = (x,y,z) \in G\\
+				v = (a,b,c) \in G
+			\end{cases}$ \\
+			Soient $\lambda, \mu \in \R$ \\
+			\begin{align*}
+				\lambda u + \mu v \in G &\iff \lambda(x,y,z) + \mu(a,b,c) \in G\\
+																&\iff (\lambda x + \mu a, \lambda y + \mu b, \lambda z + \mu c) \in G\\
+																&\iff \begin{cases}
+																	(\lambda x + \mu a) + (\lambda y + \mu b) + (\lambda z + \mu c) = 0\\
+																	(\lambda y + \mu b) - (\lambda z + \mu c) = 0\\
+																\end{cases}\\
+																&\iff \begin{cases}
+																	\lambda\overbrace{(x+y+z)}^{ = 0} + \mu\overbrace{(a+b+c)}^{ = 0}\\
+																	\lambda\underbrace{(y - z)}_{=0} + \mu\underbrace{(b-c)}_{= 0} = 0
+																\end{cases}\\
+																&\iff \begin{cases}
+																	0 = 0\\
+																	0 = 0
+																\end{cases}
+			\end{align*}
+		\item Soit $w \in E$. On pose $w = (x,y,z)$ \\
+			\begin{align*}
+				w \in F + G &\iff \exists (u,v) \in F\times G, w = u+v\\
+										&\iff \exists x' \in \R, \exists (a,b,c) \in \R^3, \begin{cases}
+											w= (x',0,x') + (a,b,c)\\
+											a+b+c = 0\\
+											b-c = 0
+										\end{cases}\\
+										&\iff\exists \left( x', a,b,c \right) \in \R^4, \begin{cases}
+											(x,y,z) = (a+x', b, c+x')\\
+											a+b+c = 0\\
+											b-c = 0
+										\end{cases}\\
+										&\iff \exists \left( x', a,b,c \right) \in \R^4, (S'):\begin{cases}
+											a+ x' = x\\
+											b = y\\
+											c + x' = z\\
+											a+b+c = 0\\
+											b-c = 0
+										\end{cases}
+			\end{align*}
+			$(S')$ est un système linéaire à 4 inconnues  $(x',a,b,c)$, 5 équations, 3 paramètres $(x,y,z)$ \\
+			\begin{align*}
+				(S') \iff \begin{cases}
+					b = y\\
+					c = y\\
+					x' = z - y\\
+					a = x - z + y\\
+					x + 3y - z = 0
+				\end{cases}
+			\end{align*}
+			Si $x + 3y - z \neq 0$ alors $(S')$ n'a pas de solutions et donc $w \not\in F + G$\\
+			Si $x + 3y - z = 0$ alors $(S')$ a une unique solution alors \[
+				\exists!(u,v) \in F\times G, w = u + v
+			\] 
+			On a montré que  \[
+				F \oplus G = \left\{ (x,y,z) \in \R^3  \mid x + 3y - z = 0 \right\}
+			\]
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	Soient $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel, $F$ et $G$ deux sous-espaces vectoriels de $E$\\
+	$F$ et $G$ sont en somme directe si et seuelement si $F \cap G = \{0_E\}$
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] On suppose la somme directe.\\
+			Soit $x \in F \cap G$.\\
+			D'une part, $0_E = \underbrace{0_E}_{\in F} + \underbrace{0_E}_{\in G}$\\
+			D'autre part, $0_E = \underbrace{x}_{\in F} + \underbrace{(-x)}_{\in G}$ \\
+			Par unicité, $x = 0_E$ 
+		\item[$``\impliedby"$] On suppose $F \cap G = \{0_E\}$ \\
+			Soit $x \in F + G$ et on supoise que $x$ a deux décompositions: \[
+				\begin{cases}
+					x = u + v, &u \in F, v \in G\\
+					x = u' + v', &u'\in F, v' \in G\\
+				\end{cases}
+			\]
+			D'où, $u - u' = v' - v$ \\
+			Or, $\begin{cases}
+				 u - u' \in F\\
+				 v - v' \in G
+			\end{cases}$\\
+			Donc, $u - u' \in F \cap G = \{0_E\}$ \\
+			donc $u - u' = 0_E$ donc $u = u'$ donc $v' = v$
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	Ce résultat est inutile pour l'instant (en l'absence d'arguments dimensionnels) pour prouver un resultat de la forme $E = F \oplus G$ \\
+\end{rmk}
+
+\begin{exm}
+	$E = \R^\R$ \\
+	$F = \{f \in E \mid f \text{ paire}\}$ et $F = \{f \in E \mid f \text{ impaire}\}$\\
+	Prouvons que $E = F \oplus G$ \\
+	{
+		\color{gray}
+		Soit $f \in F \cap G$ donc \[
+			\forall x \in \R, f(-x) = f(x) = -f(x)
+		\] Donc \[
+			\forall x \in \R, f(x) = -f(x)
+		\] et donc \[
+			\forall x \in \R, f(x) = 0
+		\] donc $f = 0_E$\\
+		Ainsi, la somme de  $F$ est $G$ est directe \[
+			F + G = F \oplus G
+		\] 
+	}
+	Montrons que $E = F + G$. Soit $f \in E$.\\
+	\begin{itemize}
+		\item[\sc \underline{Analyse}]
+			Soient $g \in G$ et $g \in F$ telles que \[
+				f = g+h
+			\] Donc \[
+				\forall x \in \R, \begin{cases}
+					f(x) = g(x) + h(x)\\
+					f(-x) = -g(x) + h(x)
+				\end{cases}
+			\] et donc \[
+				\begin{cases}
+					h(x) = \frac{1}{2}(f(x) + f(-x))\\~\\
+					g(x) = \frac{1}{2}(f(x) - f(-x))\\
+				\end{cases}
+			\] Donc $F + G = F \oplus G$.
+		\item[\sc \underline{Synthèse}] On pose \[
+			\begin{cases}
+				g: x \longmapsto &\frac{1}{2} (f(x) - f(-x))\\
+				h: x \longmapsto &\frac{1}{2} (f(x) + f(-x))\\
+			\end{cases}
+		\] On vérifie que $\begin{cases}
+			g \in F\\
+			h \in F\\
+			g + h = f
+		\end{cases}$ \\
+		On a prouvé que $E = F + G$
+	\end{itemize}
+\end{exm}
+
+\begin{exm}
+	$E = \mathcal{M}_{2}(\C)$ \\
+	$F = S_2(\C) = \left\{ \begin{pmatrix}
+			a&b\\
+			b&c
+	\end{pmatrix}  \mid a,b,c \in \C \right\}$\\
+
+	\[ 
+		\begin{pNiceArray}{c c c c c}
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&(u)&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&(u)&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\CodeAfter
+			\tikz \draw (1-1) -- (5-5);
+			\tikz \draw (2-1) -- (5-4) -- (5-1) -- (2-1);
+			\tikz \draw (1-2) -- (4-5) -- (1-5) -- (1-2);
+		\end{pNiceArray}
+	\] 
+
+	$G = A_2(\C) = \left\{ \begin{pmatrix}
+			0&a\\
+			-a&0
+	\end{pmatrix}  \mid a \in \C \right\}$\\
+	\[ 
+		\begin{pNiceArray}{c c c c c}
+			0&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&(u)&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&(-u)&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&0\\
+			\CodeAfter
+			\tikz \draw[dotted] (1-1) -- (5-5);
+			\tikz \draw (2-1) -- (5-4) -- (5-1) -- (2-1);
+			\tikz \draw (1-2) -- (4-5) -- (1-5) -- (1-2);
+		\end{pNiceArray}
+	\]
+	$E = F\oplus G$
+\end{exm}
+
+\begin{defn}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel. On dit que $F$ et $G$ sont \underline{supplémentaires} dans $E$ si \[
+		E = F \oplus G
+	\] en d'autres termes, \[
+		\forall x \in E, \exists !(y,z) \in F\times G, x = y + z
+	\]
+\end{defn}
+
+\begin{exm}
+	$E = \R^2$ \\
+	$F = \{(x,y) \in \R^2, y = x\} $ 
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			axes(EndArrow);
+			size(5cm);
+
+			draw((-10,-10)--(10,10), red);
+			draw((-10,10)--(10,-10), deepcyan);
+			draw((0,10)--(0,-10), magenta);
+			
+			label("$F$", (10,10), red, align=NE);
+			label("$G_2$", (10,-10), deepcyan, align=SE);
+			label("$G_1$", (0,10), magenta, align=NW);
+		\end{asy}
+	\end{center}
+
+	$G_1\oplus F = E$ et $G_2\oplus F = E$\\
+	Soit $(x,y) \in E$ \\
+	\begin{align*}
+		(x,y) &= \underbrace{(x,x)}_{\in F} + \underbrace{(0,y-x)}_{\in G_1}\\
+		&= \underbrace{\left( \frac{x+y}{2},\frac{x+y}{2} \right)}_{ \in F} + \underbrace{\left( \frac{x+y}{2},\frac{x+y}{2} \right) }_{\in G_2}\\
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	Soit $(F_i)_{i \in I}$ une famille non vide de sous-espaces vectoriels de $(E,+,\cdot)$. On dit qu'ils sont en somme directe si \[
+		\forall x \in \sum_{i \in I}F_i, \exists! (x_i)_{i \in I} \in \prod_{i \in I} F_i \text{ presque nulle telle que } x = \sum_{i \in I}x_i
+	\]
+	Dans ce cas, on écrit $\bigoplus_{i \in I} F_i$ à la place de $\sum_{i \in I}F_i$
+\end{defn}
+
+\begin{exm}
+	$E$: l'espace des fonctions polynomiales\\
+	\[
+		\forall i \in \N, F_i = \{x \mapsto ax^i  \mid a \in \mathbbm{K}\}
+	\] 
+	 $E = \bigoplus_{i \in \N} F_i$
+\end{exm}
+
+\begin{exm}
+	$E = \R^2$
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+
+			axes(EndArrow);
+			size(5cm);
+
+			draw((-10,-10)--(10,10), red);
+			draw((-10,10)--(10,-10), deepcyan);
+			draw((0,10)--(0,-10), magenta);
+			
+			label("$F$", (10,10), red, align=NE);
+			label("$G_2$", (10,-10), deepcyan, align=SE);
+			label("$G_1$", (0,10), magenta, align=NW);
+		\end{asy}
+	\end{center}
+	\[
+		\begin{cases}
+			F = \{(x,x)  \mid  x \in \R\} \\
+			G = \{(0,x)  \mid  x \in \R\} \\
+			F = \{(x,-x)  \mid  x \in \R\} \\
+		\end{cases}
+	\] 
+	On a $F \cap G \cap H = \{0_E\}$ mais leur somme n'est pas directe\\
+
+	\begin{align*}
+		(0,0) &= \overbrace{(1,1)}^{\in F} + \overbrace{(0, -2)}^{\in G} + \overbrace{(-1,1)}^{\in H}\\
+		&= \underbrace{(2,2)}_{\in F} + \underbrace{(0, -4)}_{\in G} + \underbrace{(-2,2)}_{\in H}\\
+	\end{align*}
+\end{exm}

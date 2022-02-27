@@ -1,0 +1,67 @@
+\part{Fonctions à valeurs complexes}
+
+\begin{defn}
+	Soient $f: I \to \C$, ($I$ intervalle de $\R$) et $a \in I$.\\
+	$f$ est \underline{dérivable en $a$} si $\lim_{\substack{x\to a\\\neq}} \frac{f(x)-f(a)}{x-a}\in \C$
+\end{defn}
+
+\begin{prop}
+	\begin{align*}
+		f \text{ est dérivable en } a
+		\iff \Re(f) \text{ et } \Im(f) \text{ sont dérivables en } a
+	\end{align*}
+	Dans ce cas, $f'(a) = \Re(f)'(a) + i\Im(f)'(a)$
+	\qed
+\end{prop}
+
+\begin{prop}
+	La somme, le produit, de fonctions dérivables sont dérivables; le quotient également si le dénominateur ne s'annule pas.
+	\qed
+\end{prop}
+
+\begin{prop}
+	idem avec les dérivées $n$-ièmes\qed
+\end{prop}
+
+\begin{rmk}
+	[Attention \danger]
+	Le théorème de Rolle n'est plus vraie.
+
+	\begin{center}
+		\begin{asy}
+			import graph;
+			size(6cm);
+			
+			axes("$\Re$", "$\Im$", EndArrow);
+
+			draw(circle((0,0), 1));
+			draw(circle((0,0), 1.5), white+0);
+
+			dot("1", (1,0), align=SE);
+
+			real t = 1;
+			pair z = (cos(t), sin(t));
+			pair zp = z * (0,1);
+			pair z2 = z + zp / 3;
+
+			dot("$f(t)$", z, align=SW);
+			draw(z--z2, red + 0.5, Arrow(TeXHead));
+			label("$f'(t)$", (z+z2)/2, red, align=NE);
+
+			draw(arc((0,0), 1, 0, 10), red, Arrow(TeXHead));
+		\end{asy}
+	\end{center}
+
+	\begin{align*}
+		f: \R &\longrightarrow \C \\
+		t &\longmapsto e^{it}
+	\end{align*}
+
+	$f(0) = f(2\pi) = 1$\\
+	$f$ est continue sur $[0,2\pi]$ et dérivable sur $]0,2\pi[$ \\
+	$\forall t, f'(t) = ie^{it} \neq 0$ \\
+\end{rmk}
+
+\begin{prop}
+	La formule de Taylor avec reste intégral et l'inégalité de Taylor-Lagrange sont aussi vrais dans $\C$.\qed
+\end{prop}

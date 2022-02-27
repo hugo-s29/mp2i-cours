@@ -1,0 +1,23 @@
+\part{Exercice 7}
+
+% schema D
+
+\begin{itemize}
+	\item[\underline{\sc Cas 1}] $\forall x \ge a, f(x) = 0$\\
+		Alors, \[
+			0 = f(a) = \max_{[a,+\infty[}f
+		\]
+	\item[\underline{\sc Cas 2}] $\exists x_0 \ge a, f(x_0) > 0$.\\
+		On pose $\varepsilon = \frac{f(x_0)}{2}>0$ \\
+		Il existe $\eta \ge x_0$ tel que \[
+			\forall x \ge \eta, f(x) \le \varepsilon
+		\] $f$ est continue sur $[a,\eta]$ donc elle a un maximum \[
+			\max_{[a,\eta]}f = f(b) \text{ avec } b \in [a,\eta]
+		\]
+		D'où, \[
+			\forall x \ge a, f(x) \le \begin{cases}
+				\varepsilon < f(x_0) \underbrace{\le}_{\mathclap{\text{car } x_0 \in [a,\eta]}} f(b) & \text{ si } x \ge \eta\\
+				f(b) &\text{ si } x \le \eta
+			\end{cases}
+		\]
+\end{itemize}

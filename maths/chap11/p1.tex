@@ -1,0 +1,344 @@
+\part{Limites}
+
+\begin{defn}
+	Soit $u$ une suite réelle et  $\ell \in \R$. On dit que 
+	\begin{itemize}
+		\item $u$ converge vers  $\ell$
+		\item $u_n$ tends vers  $\ell$ quand  $n$ tends vers  $+\infty$
+		\item $\ell$ est une limite de  $u$
+	\end{itemize}
+	si \[
+	\forall \varepsilon>0, \exists N \in \N, \forall n\ge N, 
+	\underset{\displaystyle \left( \ell - \varepsilon \le u_n \le \ell + \varepsilon \right)}{\lvert u_n - \ell \rvert \le \varepsilon}
+	\]
+	\begin{figure}[H]
+			\centering
+			\incfig{limite}
+			\caption{Définition de la limite}
+			\label{fig:limite.svg}
+	\end{figure}
+\end{defn}
+
+\begin{exm}
+	Montrer que $\left( \frac{1}{n} \right)_{n \in \N} $ converge vers 0.\\
+	Soit $\varepsilon>0$ quelconque. On cherche $N \in \N$ tel que \[
+	\forall n \ge N, -\varepsilon \le \frac{1}{n} \le \varepsilon
+	\]
+	\begin{itemize}
+		\item[Analyse]
+			Soit $N \in \N^*$ tel que $\forall n\ge N, -\varepsilon\le \frac{1}{n} \le \varepsilon$.\\
+			En particulier, $\frac{1}{N} \le \varepsilon$ donc $N \ge \frac{1}{\varepsilon}$.\\
+		\item[Synthèse]
+			On pose $N = \left\lfloor \frac{1}{\varepsilon} \right\rfloor +1 \in \N^*$ et $N > \frac{1}{\varepsilon}$.
+			Soit $n \ge N$. \[
+			\frac{1}{n}>0> -\varepsilon \text{ donc } \frac{1}{n} \ge  -\varepsilon
+			\]
+			$n \ge  N > \frac{1}{\varepsilon}$ donc $n \ge  \frac{1}{\varepsilon} \iff \frac{1}{n}\le \varepsilon$
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $u$ une suite réelle. \\
+	On dit que  $u$ tends vers  $+\infty$ si \[
+	\forall M \in \R, \exists N \in \N, \forall n \ge  N, u_n \ge M
+	\]
+
+	On dit que $u$ tends vers  $-\infty$ si \[
+	\forall m \in \R, \exists N \in \N, \forall n \ge  N, u_n \le m
+	\]
+	\begin{figure}[H]
+			\centering
+			\incfig{limites-infinies}
+			\caption{Limites infinies}
+			\label{fig:limites-infinies}
+	\end{figure}
+\end{defn}
+
+\begin{exm}
+	Montrons que  $n^2 \tendsto{n \rightarrow +\infty} +\infty$.\\
+	Soit $M \in \R$, on cherche $N \in \N$ tel que  $\forall n \ge  N, n^2 \ge M$.\\
+	\begin{itemize}
+		\item [Analyse] Soit $N \in \N$ tel que $\forall n \ge  N, n^2\ge M$.\\
+			En particulier, $N^2\ge M$ et dont $N \ge  \sqrt{M} $ si $M \ge 0$
+			\\
+		\item[Synthèse]
+			On pose $N = \begin{cases}
+				0 &\text{ si } M \le 0\\
+				\left\lfloor \sqrt{M} \right\rfloor +1 &\text{ sinon }
+			\end{cases}$\\
+
+			Ainsi $N \in \N$ et $N^2 \ge  M$. Soit $n \ge N$. On a $n^2 \ge N ^2 \ge  M$.
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Une suite qui ne converge pas est dite divergente (on dit qu'elle diverge). C'est le cas si cette suite n'a pas de limite quand elle tends vers $\pm \infty$.
+\end{defn}
+
+\begin{thm}[Unicité de la limite (réelle)]
+	Soit $u \in \R^\N, (\ell_1, \ell_2) \in \overline{\R}^2$\\
+	Si $\begin{cases}
+		u_n \tendsto{n \rightarrow +\infty} \ell_1\\
+		u_n \tendsto{n \rightarrow +\infty} \ell_2\\
+	\end{cases}$ alors $\ell_1 = \ell_2$
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc\bf Cas 1] $(\ell_1, \ell_2) \in \R^2$.\\
+				On suppose $\begin{cases}
+				\ell_1 \neq \ell_2\\
+				u_n \rightarrow l_1\\
+				u_n \rightarrow l_2\\
+			\end{cases}$\\
+			Sans perte de généralité, on peut supposer $\ell_1 < \ell_2$
+
+			\begin{figure}[H]
+					\centering
+					\incfig{preuve-unicité-de-la-limite}
+					\caption{Preuve unicité de la limite (cas 1)}
+					\label{fig:preuve-unicité-de-la-limite}
+			\end{figure}
+			
+			On pose $\varepsilon = \frac{\ell_2-\ell_1}{3} > 0$. On sait qu'il existe $N_1 \in \N$ tel que \[
+			\forall n \ge  N_1, \ell_1- \varepsilon \le u_n \le  \ell_1 + \varepsilon
+			\] et il existe $N_2 \in \N$ tel que \[
+			\forall n \ge N_2, \ell_2 - \varepsilon \le u_n \le  \ell_2 + \varepsilon
+			\]
+			On pose $N = \max(N_1, N_2)$. On a alors \[
+				u_n \le  \ell_1 + \varepsilon < \ell_2+ \varepsilon \le u_n
+			\] une contradiction ($u_n < u_n$).
+			En effet,
+			\begin{align*}
+				\ell_1+\varepsilon < \ell_2+\varepsilon &\iff 2\varepsilon < \ell_2-\ell_1\\
+																								&\iff \frac{2}{3}(\ell_2-\ell_1) < \ell_2-\ell_1\\
+																								&\iff \frac{2}{3} < 1
+			\end{align*}
+			Ainsi $\ell_1 = \ell_2$ \\
+		\item[\sc\bf Cas 2] $\ell_1\in \R, \ell_2=+\infty$ 
+			\begin{figure}[H]
+					\centering
+					\incfig{preuve-unicité-de-la-limite-2}
+					\caption{Preuve unicité de la limite (cas 2)}
+					\label{fig:preuve-unicité-de-la-limite-2}
+			\end{figure}
+
+			$u_n \to \ell_1$ donc il existe $N_1 \in \N$ tel que \[
+			\forall n \ge  N_1, \ell_1 - 1 \le u_n \le \ell_1+1
+			\]
+			$u_n \to +\infty$ donc il existe $N_2\in \N$ tel que \[
+			\forall n \ge  N_2, u_n \ge  \ell_1+2
+			\] 
+			On pose $N = \max(N_1, N_2)$. Ainsi \[
+			u_n \ge  \ell_1+2 > \ell_1+1\ge u_n
+			\] une contradiction\\
+
+		\item[] De la même manière, on peut prouver pour $(\R, -\infty)$ et $(+\infty, -\infty)$
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	Si $u_n$ tends vers  $\ell$ quand $n$ tends vers  $+\infty$, on écrit $u_n \tendsto{n \to +\infty} \ell$ ou $\lim_{n\to+\infty} u_n = \ell$ ou $\lim u_n = \ell$
+\end{rmk}
+
+\begin{prop}
+	Toute suite convergente est bornée
+\end{prop}
+
+\begin{prv}
+	On pose $\ell = \lim u_n \in \R$. Il existe $N \in \N$ tel que \[
+	\forall n \ge  N, \ell-1 \le  u_n \le  \ell+1
+	\]
+
+	L'ensemble $\{ u_n  \mid n \le N\}$ est fini, il a donc un plus grand élément et un plus petit élément. On pose \[
+		\begin{cases}
+			M_1 = \max \{u_n  \mid n \le N\} \\
+			m_1 = \min \{u_n  \mid n \le N\} 
+		\end{cases}
+	\] et \[
+	\begin{cases}
+		M = \max(\ell_1+1, M_1)\\
+		m = \min(\ell_1-1, m_1)
+	\end{cases}
+	\]
+	Ainsi, \[
+	\forall n \in \N, \begin{cases}
+		m \le m_1\le u_n \le  M_1 \le M &\text{ si } n \le N\\
+		m \le \ell_1 - 1\le u_n \le \ell_1+1 \le M &\text{ si } n > N
+	\end{cases}
+	\]
+	Donc \[
+	\forall n \in \N, m \le  u_n \le  M
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soient $u \in \R^\N$ et $v \in \R^\N$. On pose $\ell_1=\lim u_n$ et $\ell_2 = \lim v_n$ 
+	\begin{enumerate}
+		\item si $\ell_1\in \R$ et $\ell_2\in \R$ alors $u_n + v_n \to \ell_1+ \ell_2$
+		\item si $\ell_1\in \R$ et $\ell_2 = +\infty$ alors $u_n + v_n \to +\infty$
+		\item si $\ell_1\in \R$ et $\ell_2 = -\infty$ alors $u_n + v_n \to -\infty$
+		\item si $\ell_1=\ell_2=+\infty$, alors $u_n + v_n \to +\infty$
+		\item si $\ell_1=\ell_2=-\infty$, alors $u_n + v_n \to -\infty$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose $(\ell_1, \ell_2)\in \R^2$, on pose $\ell = \ell_1+\ell_2$.\\
+			Soit $\varepsilon > 0$ quelconque. On cherche $N \in \N$ tel que  \[
+			\forall n \ge  N, \ell-\varepsilon\le u_n + v_n\le \ell+\varepsilon
+			\]
+			$\frac{\varepsilon}{2} > 0$ donc il existe $N_1\in \N$ tel que \[
+			\forall n \ge  N_1, \ell_1 - \frac{\varepsilon}{2} \le  u_n \le \ell_1+\frac{\varepsilon}{2}
+			\]
+			Il existe $N_2\in \N$ tel que \[
+			\forall n \ge  N_2, \ell_2 - \frac{\varepsilon}{2} \le v_n \le  \ell_2 + \frac{\varepsilon}{2}
+			\]
+
+			On pose $N = \max(N_1,N_2)$. Soit $n \ge N$ quelconque.\[
+			n \ge N \ge N_1 \text{ donc } \ell_1-\frac{\varepsilon}{2}\le u_n\le \ell_1+\frac{\varepsilon}{2}
+			\]
+
+			\[
+			n \ge  N \ge N_2 \text{ donc } \ell_2- \frac{\varepsilon}{2} \le  v_n\le \ell_2+\frac{\varepsilon}{2}
+			\] 
+
+			D'où, en additionnant les inégalités \[
+			\ell-\varepsilon=\ell_1+\ell_2-\varepsilon \le  u_n + v_n \le  \ell_1+\ell_2+\varepsilon = \ell+\varepsilon
+			\]
+		\item On suppose $\ell_1 \in \R$ et $\ell_2 = +\infty$. Soit $M \in \R$ quelconque.\\
+			Il existe $N_1 \in \N$ tel que \[
+			\forall n \ge N_1, \ell_1-1 \le u_n \le  \ell_1+1
+			\] et il existe $N_2 \in \N$ tel que \[
+			\forall n\ge N_2, v_n \ge M - \ell_1 + 1
+			\] On pose $N = \max(N_1, N_2)$. Soit $n \ge N$ quelconque \[
+			\begin{cases}
+				n \ge N_1 \text{ donc } u_n \ge  \ell_1-1\\
+				n \ge N_2 \text{ donc } v_n \ge  M - \ell_1 + 1
+			\end{cases}
+			\]
+			D'où, $u_n+v_n \ge  M$
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soient $u$ et $v$ deux suites réelles. On pose $\ell_1 = \lim u_n$ et $\ell_2=\lim v_n$
+	\begin{enumerate}
+		\item si $\ell_1\in \R$ et $\ell_2 \in \R$, alors $u_nv_n \to \ell_1\ell_2$
+		\item si $\begin{cases}
+			\ell_1 \in \R^+_*, \ell_2 = +\infty \text{ alors } u_nv_n \to  +\infty\\
+			\ell_1 \in \R^-_*, \ell_2 = +\infty \text{ alors } u_nv_n \to  -\infty\\
+		\end{cases}$
+		\item si $\begin{cases}
+			\ell_1 \in \R^+_*, \ell_2 = -\infty \text{ alors } u_nv_n \to  -\infty\\
+			\ell_1 \in \R^-_*, \ell_2 = -\infty \text{ alors } u_nv_n \to  +\infty\\
+		\end{cases}$
+		\item si $\begin{cases}
+			\ell_1 = -\infty, \ell_2 = +\infty \text{ alors } u_nv_n \to  -\infty\\
+			\ell_1 = -\infty, \ell_2 = -\infty \text{ alors } u_nv_n \to  +\infty\\
+			\ell_1 = +\infty, \ell_2 = +\infty \text{ alors } u_nv_n \to  +\infty\\
+		\end{cases}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $(\ell_1,\ell_2)\in \R^2$\\
+			Soit $\varepsilon > 0$ quelconque. On cherche $N \in \N$ tel que \[
+			\forall n\ge N, |u_nv_n-\ell_1\ell_2| \le \varepsilon
+			\]
+			\begin{align*}
+				\forall n \in \N,
+				|u_nv_n-\ell_1\ell_2| &= \left| (u_n-\ell_1)v_n + \ell_1(v_n-\ell_2) \right|\\
+															& \le \left| v_n \right| \left| u_n - \ell_1 \right| +\left| \ell_1 \right| \left| v_n-\ell_2 \right| 
+			\end{align*}
+			Comme $v_n$ converge, elle est bornée, \[
+			\exists M \in \R, \forall n \in \N, \left| v_n \right| \le M
+			\] donc \[
+			\left| u_nv_n-\ell_1\ell_2 \right| \le  M\times \left| u_n-\ell_1 \right| + \left| \ell_1 \right| \left| v_n-\ell_2 \right|
+			\]
+
+			\begin{itemize}
+				\item[\sc \bf Cas 1] On suppose $M\neq  0$ et $\ell_1\neq  0$. Il existe $N_1\in \N$ tel que \[
+				\forall n \ge  N_1, \left| u_n- \ell_1 \right| \le  \frac{\varepsilon}{2M}
+				\] Il existe $N_2\in \N$ tel que \[
+				\forall n\ge N_2, \left| v_n-\ell_2 \right| \le \frac{\varepsilon}{2\left| \ell_1 \right| }
+				\] On pose $N = \max(N_1, N_2)$.\[
+				\forall n \ge N, \left| u_nv_n-\ell_1\ell_2 \right| \le \frac{\varepsilon}{2M} \times M + \left| \ell_1 \right| \times \frac{\varepsilon}{2\left| \ell_1 \right| } = \varepsilon
+				\]
+			\item[\sc \bf Cas 2] $M = 0$, ($\ell_1\neq 0$)\\
+				Alors, $\forall n\in \N, v_n = 0$ \\
+				Donc \[
+				\begin{cases} 
+					\forall n \in \N, u_nv_n = 0\\
+					\ell_2=0\\
+					\ell_1\ell_2 = 0 = \lim_{n \to  +\infty} u_nv_n
+				\end{cases}
+				\] 
+			\item[\sc\bf Cas 3] $M \neq 0$ et $\ell_1=0$\\
+				Alors, $\forall n \in \N, \left| u_nv_n-0 \right| \le  M \left| u_n \right| $ \\
+				$\frac{\varepsilon}{M}>0$ donc il existe $N \in \N$ tel que  \[
+				\forall  n\ge N, \left| u_n \right|  \le \frac{\varepsilon}{M}
+				\] Donc, \[
+				\forall n \ge  N, \left| u_nv_n \right| \le  M \times \frac{\varepsilon}{M}= \varepsilon
+				\] Donc, $u_nv_n \tendsto{n \to +\infty} 0 = \ell_1\ell_2$
+			\end{itemize}
+		\item $l_1>0$ et $l_2=+\infty$\\
+			Soit $M \in \R^+_*$ On cherche $N \in \N$ tel que \[
+			\forall n \ge  N, u_nv_n \ge M
+			\] On pose $\varepsilon = \frac{\ell_1}{2} > 0$. Il existe $N_1\in \N$ tel que \[
+			\forall n\ge  N_1, u_n \ge  \ell_1-\varepsilon=\frac{\ell_1}{2}>0
+			\] et il existe $N_2 \in \N$ tel que \[
+			\forall n \ge  N_2, v_n \ge \frac{2M}{\ell_1}>0
+			\]
+			On pose $N = \max(N_1,N_2)$. Alors, \[
+			\forall n\ge N, u_nv_n\ge  \frac{2M}{\ell_1} \times  \frac{\ell_1}{2} = M
+			\]
+			Donc $u_nv_n\tendsto{n \to  +\infty} +\infty$
+	\end{enumerate}
+\end{prv}
+
+
+\begin{prop}
+	Soit $(u_n)_{n\in \N}$ une suite de $\R_*$.Donc, $\forall n \in \N, u_n \neq  0$\\
+	On pose $\ell=\lim u_n$ (si elle existe).
+	\begin{enumerate}
+		\item si $\ell = +\infty$ alors, $\frac{1}{u_n}\to 0$
+		\item si $\ell=0$ alors, $\left| \frac{1}{u_n} \right|  \to  +\infty$\\
+			\danger Si le signe de  $u_n$ ne se stabilise pas $\frac{1}{u_n}$ n'a pas de limite\\
+			\ex $u_n = \frac{(-1)^n}{n}$
+		\item si $\ell\in \R^*$, alors $\frac{1}{u_n} \tendsto{n\to+\infty} \frac{1}{\ell}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[3.]
+			\[
+			\forall n\in \N, \left| \frac{1}{u_n} - \frac{1}{\ell} \right| = \frac{\left| \ell-u_n \right|}{\left| u_n \right| \left| \ell \right|}\\
+			\] 
+			On pose $\varepsilon = \frac{\left| \ell\right|}{2} > 0 $. Il existe $N \in \N$ tel que \[
+			\forall n \ge  N, \ell- \varepsilon \le  u_n \le  \ell+\varepsilon
+			\]
+
+			Si $\ell >0$ alors \[
+			 \forall n \ge  N, u_n \ge  \ell- \varepsilon = \frac{\ell}{2} >0
+			\] et donc  \[
+			 \forall n\ge N, \left| u_n \right|  \ge \frac{\left| \ell \right|}{2}
+			\]\\
+			Si $\ell < 0$ alors \[
+			\forall n\in \N, u_n \le  \ell + \varepsilon = \frac{\ell}{2} < 0
+			\] et donc \[
+			\forall n \in \N, \left| u_n \right| \ge  \frac{\left| \ell \right|}{2}
+			\]\\
+
+			Donc, \[
+			\forall n \ge N, \left| \frac{1}{u_n} - \frac{1}{\ell} \right| \le \frac{\left| u_n \right|  - \ell}{\left| \ell \right| \times  \frac{\left| \ell \right| }{2}} = \frac{2\left| u_n-\ell \right| }{\left| \ell \right| ^2}
+			\]\\
+			Soit $\varepsilon'>0$ quelconque. $\frac{\varepsilon'\left| \ell \right| ^2}{2}$ donc il existe $N' \in \N$ tel que \[
+			\forall n \ge N', \left| u_n - \ell \right| \le  \frac{\varepsilon'}{2}\left| \ell \right| ^2
+			\]
+			On pose $N'', \left| \frac{1}{u_n}-\frac{1}{\ell} \right|  \le \frac{\varepsilon'}{2} \left| \ell \right| ^2 \times \frac{2}{\left| \ell \right| ^2} = \varepsilon'$
+	\end{enumerate}
+\end{prv}

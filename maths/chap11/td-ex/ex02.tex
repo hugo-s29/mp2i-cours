@@ -1,0 +1,38 @@
+\part{Exercice 2}
+\section{}
+
+
+\begin{comment}
+	
+On sait que $0 \le x \le 1$.\\
+
+\begin{align*}
+	I_n = \int_{0}^{1} \frac{x^n}{1+x} dx &= \lim_{h \to 1} \int_{0}^{h} \frac{x^n}{1+x} dx  \\
+\end{align*}
+
+Or, $0 \le x \le h < 1$ donc $\lim_{n\to +\infty}x^n=0$.\\
+Donc,
+\begin{align*}
+	\lim_{n \to +\infty} \lim_{h\to 1} \int_{0}^{h} \frac{x^n}{1+x} dx = 0 \\
+\end{align*}
+
+\end{comment}
+
+\begin{align*}
+	\forall n\in \N,\\
+	&\left(\forall x \in [0,1], x^n \ge \frac{x^n}{1+x} \ge -x^n\right)\\
+	&\iff \int_{0}^{1} x^n dx \ge \int_{0}^{1} \frac{x^n}{1 + x} dx \ge - \int_{0}^{1} x^ndx\\
+	&\iff \left[ \frac{x^{n+1}}{n+1} \right] _0^1 \ge I_n \ge -\left[ \frac{x^{n+1}}{n+1} \right] ^1_0\\
+	&\iff \frac{1^{n+1}}{n+1}\ge I_n \ge -\frac{1^{n+1}}{n+1}\\
+\end{align*}
+
+Or,  \[
+\frac{1^{n+1}}{n+1} \tendsto{n\to +\infty} 0
+\] 
+
+Donc, par le théorème des gendarmes, \[
+I_n \tendsto{n\to +\infty} 0
+\]
+
+
+

@@ -1,0 +1,34 @@
+\part{Exercice 4}
+
+Soit \[
+	g_M: x\mapsto f(x) - f(a) - \frac{x-a}{2}\big(f'(x) + f'(a)\big) - (x-a)^3M
+\] 
+$g_M$ est continue sur $[a,b]$ et dérivable sur $]a,b[$ \\
+$g_M(a) = 0$ \\
+$g_M(b) = f(b) - f(a) - \frac{b-a}{2}\big(f'(b) - f'(a)\big) - (b-a)^3M$ \\
+On pose $M = \frac{1}{(b-a)^3}\left( f(b) - f(a) - \frac{b-a}{2} \big(f'(b) + f'(a)\big) \right) $ \\
+Ainsi, $g_M (b) = 0$\\
+D'après le théorème de Rolle, il existe $\gamma \in ]a,b[$ tel que $g'_M(\gamma) = 0$ \\
+D'où, 
+\begin{align*}
+	0 
+	&= f'(\gamma) - \frac{1}{2}\big(f'(\gamma) + f'(a)\big) - \frac{\gamma - a}{2}f''(\gamma) - 3 (\gamma-a)^2M\\
+	&= \frac{1}{2}\big(f'(\gamma)  -f'(a)\big) - \frac{\gamma-a}{2}f''(\gamma) - 3(\gamma - a) ^2M \\
+\end{align*}
+
+Or, \[
+	g'_M(a) = 0
+\]
+\begin{itemize}
+	\item $g'_M$ est continue sur $[a,\gamma]$
+	\item $g'_M$ est dérivable sur $]a,\gamma[$ 
+	\item $g'_M(a) = g'_M(\gamma)$
+\end{itemize}
+Donc, il existe $c \in ]a,\gamma[ \subset ]a,b[$ tel que \[
+	g''_M(c) = 0
+\] d'où $M = -\frac{1}{12} f^{(3)}(c)$ \\
+On en déduit \[
+	f(b) = f(a) + \frac{b-a}{2}\big(f'(b) + f'(a) \big) - \frac{(b-a)^3}{12} f^{(3)}(c)
+\]
+
+

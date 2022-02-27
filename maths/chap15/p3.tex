@@ -1,0 +1,422 @@
+\part{Familles de vecteurs}
+
+\begin{defn}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $A \in \mathcal{P}(E)$. Le \underline{sous-espace vectoriel engendré} par $A$ est le plus petit sous espace vectoriel $V$ de $E$ tel que $A \subset  V$.\\
+	On le note $\Vect(A)$
+\end{defn}
+
+\begin{exm}
+	$E$ un $\mathbbm{K}$-espace vectoriel.
+	\begin{itemize}
+		\item $\Vect\left( \left\{ 0_E \right\}  \right)  = \left\{ 0_E \right\}$ 
+		\item $\Vect(\O) = \{0_E\}$ 
+		\item $\Vect(E) = E$ 
+		\item Soit $ u \in E \setminus \{0_E\}$ \\
+			$\Vect(\{u\}) = \{\lambda u  \mid  \lambda \in \mathbbm{K}\} = \mathbbm{K}u$ 
+		\item Soient $u, v \in \exists \setminus \{0_E\}$\\
+			$\Vect(\{u,v\}) = \left\{ \lambda u + \mu v  \mid (\lambda,\mu) \in \mathbbm{K}^2 \right\} = \mathbbm{K}u + \mathbbm{K}v $
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $u \in E\setminus \{0_E\}$.
+	La \underline{droite (vectorielle) engendrée} par $u$ est $\mathbbm{K}u = \Vect(u) = \Vect\left( \{u\}  \right)$.
+	Soit $v \in E$. On dit que $u$ et $v$ sont \underline{colinéaires} si $v \in \mathbbm{K}u$.
+	Si $v$ n'est pas colinéaire à $u$ alors,  $\Vect(u,v) = \mathbbm{K}u + \mathbbm{K}v$ est appelé \underline{plan (vectoriel) engendré} par $u$ et $v$.
+\end{defn}
+
+\begin{exm}
+	L'ensemble des solutions d'une équation différentielle linéaire homogène d'ordre~1 est une droite vectorielle.\\[5mm]
+	L'ensemble des solutions d'une équation différentielle linéaire homogène d'ordre~2 à coefficiants constants est un plan vectoriel.
+	\[
+		\left\{ y \in \mathcal{C}^2(\R)  \mid y'' + y = 0 \right\}  = \Vect(\cos,\sin)
+	\] 
+\end{exm}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ un famille non vide de vecteurs d'un $\mathbbm{K}$-espace vectoriel $(E,+,\cdot)$. Alors,
+	\begin{align*}
+		\Vect\left( (e_i)_{i \in I} \right)
+		&= \left\{ \sum_{i \in I} \lambda_i e_i  \mid (\lambda_i)_{i \in I} \in \mathbbm{K}^I \text{ et } (\lambda_i) \text{ presque nulle } \right\} \\
+		&= \sum_{i \in I} \mathbbm{K}e_i \\
+	\end{align*}
+\end{prop}
+
+\begin{prv}
+	On pose $F = \sum_{i \in I}\mathbbm{K}e_i$\\
+	$F$ est un sous espace vectoriel de $E$.\\
+	\begin{align*}
+		\forall i \in I, e_i = \underbrace{\sum_{j \in I} \lambda_j e_j}_{\in F} \text{ où }
+		\lambda_j &= \begin{cases}
+			0 &\text{ si } i \neq j\\
+			1 &\text{ si } i = j
+		\end{cases}\\
+		&= \delta_{i,j} \text{ (symbole de Kronecker) }
+	\end{align*}
+
+	Soit $G$ un sous espace vectoriel de $E$ tel que \[
+		\forall i \in I, e_i \in G
+	\] Soit $u \in F$.
+	Soit $(\lambda_i)_{i\in I}$ une famille presque nulle de scalaires telle que $ u = \sum_{ii \in I} \lambda_i e_i$\\
+	Soit $\{i_1,\ldots,i_k\} = \{i \in I  \mid  \lambda_i \neq 0_\mathbbm{K}\}  $\\
+	Donc, \[
+		u = \sum_{j = 1}^k \underbrace{\lambda_{ij}e_{ij}}_{\in G} \in G
+	\] 
+
+	Donc $F \subset G$
+\end{prv}
+
+\begin{defn}
+	On dit que $(e_i)_{i\in I}$ est une famille génératrice de $E$ si \[
+		E = \Vect\left( (e_i)_{i \in I} \right) 
+	\]
+\end{defn}
+
+\newcommand{\bx}[1]{\fbox{$#1$}}
+
+\begin{exm}
+	\[E = \R^3\] \\
+	\begin{align*}
+		\begin{cases}
+		e_1 &= (1,0,1)\\
+		e_2 &= (0,1,1)\\
+		e_3 &= (1,1,1)\\
+		e_4 &= (1,0,0)\\
+		e_5 &= (0,1,2)\\
+		\end{cases}
+	\end{align*}
+	Soit $(x,y,z) \in \R^3$. On cherche $(\lambda_1,\ldots,\lambda_5) \in \R^{5}$ tels que \[
+		(E): \quad (x,y,z) = \sum_{i = 1}^{5}\lambda_ie_i
+	\]
+	\begin{align*}
+		(E) &\iff (x,y,z) = (\lambda_1 + \lambda_3 + \lambda_4, \lambda_2 + \lambda_3 + \lambda_5, \lambda_1+\lambda_2 + \lambda_3 + 2\lambda_5)\\
+				&\iff \begin{cases}
+					\lambda_1 + \lambda_3 + \bx{\lambda_4} = x\\
+					\lambda_2 + \bx{\lambda_3} + \lambda_5 = y\\
+					\bx{\lambda_1} + \lambda_2 + \lambda_3 + 2\lambda_5 = z	
+				\end{cases}\\
+				&\iff
+				\begin{cases}
+					\lambda_4 = x - \lambda_1 - \lambda_3\\
+					\lambda_3 = y - \lambda_2 - \lambda_5\\
+					\lambda_1 = z - \lambda_2 - \lambda_3 - 2\lambda_5
+				\end{cases}
+	\end{align*}
+	Par exemple, $(\lambda_1 = z-y, \lambda_2=0, \lambda_3 = y, \lambda_4 = x-z,\lambda_5=0)$ est solution
+
+	Donc \[
+		\Vect(e_1,e_2,e_3,e_4,e_5) = E
+	\] 
+\end{exm}
+
+\begin{exm}
+	$E = \R^4$ \\
+	\[
+		\begin{cases}
+			e_1 = (1,0,1,0)\\
+			e_2 = (0,1,0,1)\\
+			e_3 = (1,1,1,1)\\
+			e_4 = (1,-1,1,-1)\\
+			e_5 = (1,1,0,0)\\
+		\end{cases}
+	\]
+	Soit $(x,y,z,t) \in \R^4$, $(\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5) \in \R^5$\\
+	\begin{align*}
+		(E)\quad(x,y,z,t) = \sum_{i = 1}^5 \lambda_ie_i
+		\iff&\begin{cases}
+			x = \lambda_1 + \lambda_3 + \lambda_4 + \lambda_5\\
+			y = \lambda_2 + \lambda_3 - \lambda_4 + \lambda_5\\
+			z = \lambda_1 + \lambda_3 + \lambda_4\\
+			t = \lambda_2 + \lambda_3 - \lambda_4
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\
+			\substack{
+				L_2 \leftarrow L_2 - L_4\\
+				L_1\leftarrow L_1 - L_3
+			}
+		\end{array}&
+		\begin{cases}
+			\lambda_5 = x - z\\
+			\lambda_5 = y-t\\
+			\lambda_1 + \lambda_3 + \lambda_4 = z\\
+			\lambda_2 + \lambda_3 - \lambda_4 = t\\
+		\end{cases}\\
+		\begin{array}{c}
+			\iff\\L_2 \leftarrow L_2 - L_1
+		\end{array}&
+		\begin{cases}
+			\lambda_5 = x-z\\
+			\bx{0 = y - t - x + z}\\
+			\lambda_1 + \lambda_3 + \lambda_4 = z\\
+			\lambda_1 + \lambda_3 - \lambda_4 = t
+		\end{cases}
+	\end{align*}
+	Par exemple; $(1,0,0,0) \not\in \Vect\left(e_1,e_2,e_3,e_4,e_5  \right)$
+\end{exm}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ une famille génératrice de $E$ et $(u_j)_{j\in J}$ une surfamille de $(e_i)_{i \in I}$ constituée de vecteurs de $E$ : \[
+		\forall i \in I, \exists j \in J, e_i = u_j
+	\]
+	Alors, $(u_j)_{j\in J}$ engendre $E$. \qed
+\end{prop}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ une famille génératrice de $E$ et $i_0 \in I$ \\
+	\begin{align*}
+		(e_i)_{i\in I \setminus \{i_0\}} \text{ engendre } E
+		&\iff e_{i_0} \in \Vect\left( (e_i)_{i\in I\setminus \{i_0\} } \right) \\
+		&\iff e_{i_0} \text{ est une combinaison linéaire des } e_i~(i\in I, i\neq i_0)
+	\end{align*}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] $E = \Vect\left( (e_i)_{i \neq i_0} \right)$ et $e_{i_0} \in E$
+		\item[$`` \impliedby"$] Soit $u \in E$. Soit $(\lambda_i)_{i\in I}$ une famille presque nulle de scalaires telle que \[
+				u = \sum_{i \in I}\lambda_i e_i
+			\]
+			Soit $(\mu_i)_{i \neq i_0}$ une famille de scalaires telle que \[
+				e_{i_0} = \sum_{i \in I \setminus \{i_0\}} \mu_i e_i
+			\] D'où,
+			\begin{align*}
+				u &= \lambda_{i_0}e_{i_0} + \sum_{i \in I\setminus \{i_0\}} \lambda_i e_i\\
+				&= \lambda_{i_0}\sum_{i \in I\setminus \{i_0\}}\mu_{i}e_{i} + \sum_{i \in I\setminus \{i_0\} }\lambda_i e_i \\
+				&= \sum_{i \in I \setminus \{i_0\}} \left( \lambda_{i_0}\mu_i + \lambda_i \right)e_i  \\
+				&\in \Vect\left( (e_i)_{i\in I\setminus \{i_0\} } \right) 
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ une famille génératrice de $E$, $i_0 \in I$.
+	\begin{enumerate}
+		\item On pose $u_i = \begin{cases}
+				e_i &\text{ si } i \neq i_0\\
+				\lambda e_{i_0} &\text{ sinon}
+			\end{cases}$ où $\lambda \in \mathbbm{K}\setminus \{0_\mathbbm{K}\}$ \\
+			Alors, $(u_i)_{i\in I}$ engendre $E$
+		\item Soit $v \in \Vect\left( (e_i)_{i\in I \setminus \{i_0\}} \right)$.\\
+			On pose $u_i = \begin{cases}
+				e_i &\text{ si } i \neq i_0\\
+				e_{i_0} + v &\text{ sinon}
+			\end{cases}$ où $\lambda \in \mathbbm{K}\setminus \{0_\mathbbm{K}\}$ \\
+			Alors, $(u_i)_{i\in I}$ engendre $E$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $u \in  E$. On pose \[
+				u = \sum_{i \in I} \lambda_i e_i
+			\] où $(\lambda_i) \in \mathbbm{K}^I$ presque nulle\\
+			\begin{align*}
+				u &= \lambda_{i_0}e_{i_0} + \sum_{i \in I\setminus \{i_0\}} \lambda_i e_i\\
+				&= \lambda_{i_0}\lambda^{-1}u_{i_0} + \sum_{i \in I \setminus \{i_0\} }\lambda_iu_i \\
+				&\in \Vect\left( (u_i)_{i\in I} \right) 
+			\end{align*}
+		\item Soit $u = \sum_{i \in I} \lambda_ie_i \in E$ \\
+			\begin{align*}
+				u &= \lambda_{i_0}e_{i_0} + \sum_{i \in I\setminus \{i_0\} \lambda_ie_i} \\
+				&= \lambda_{i_0}\left( u_{i_0}-v \right) + \sum_{i \in I\setminus \{i_0\}} \lambda_i u_i \\
+			\end{align*}
+			Or, $v = \sum_{i \in I \setminus \{i_0\}} \mu_i e_i = \sum_{i \in I\setminus \{i_0\}} \mu_i u_i$ où $(\mu_i)_{i\in I} \in \mathbbm{K}^I$ presque nulle\\
+			Donc, $u = \lambda_{i_0}+ \sum_{i \in I \setminus \{i_0\} } \left( \lambda_i - \lambda_{i_0}\mu_i \right) u_i \in \Vect\left( (u_i)_{i\in I} \right)$
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	Soit $(e_i)_{i\in I}$ une famille de vecteurs. On dit que $(e_i)_{i\in I}$ est \underline{libre} si aucun vecteur de cette famille n'est une combinaison linéaire des autres vecteurs de cette famille: \[
+		\forall i \in I, e_{i} \not\in \Vect\left( (e_j)_{j\in I \setminus \{i\}} \right) 
+	\] On dit aussi que les  $e_i$ sont \underline{linéairement indépendants}
+\end{defn}
+
+\begin{prop}
+	\[
+		(e_i)_{i\in I} \text{ est libre} \iff
+		\forall (\lambda_i) \in \mathbbm{K}^I \text{ presque nulle },
+		\left( \sum_{i \in I} \lambda_i e_i = 0_E \implies \forall i \in I, \lambda_i = O_\mathbbm{K} \right) 
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] Soit $(\lambda_i) \in \mathbbm{K}^I$ presque nulle. On suppose que \[
+				\sum_{i \in I} \lambda_i e_i = 0_E
+			\] On suppose aussi qu'il existe $i_0 \in I$ tel que $\lambda_{i_0} \neq 0_\mathbbm{K}$\\
+			On a alors \[
+				\lambda_{i_0}e_{i_0} = -\sum_{i \in I \setminus \{i_0\}} \lambda_i e_i
+			\]
+			$\lambda_{i_0} \neq 0_\mathbbm{K}$ donc il a un inverse $\lambda^{-1}_{i_0}$ donc \[
+				e_{i_0} = \sum_{i \in I\setminus \{i_0\}} \left(-\lambda_i\lambda^{-1}_{i_0}\right)
+				e_i \in \Vect\left( (e_i)_{i\in I\setminus \{i_0\} } \right) 
+			\] une contradiction $\lightning$
+		\item[$``\impliedby"$] On suppose que $(e_i)_{i\in I}$ n'est pas libre. On considère $i_0 \in I$ tel que $e_{i_0}$ soit une combinaison linéaire des $e_i, i \in I \setminus \{i_0\}$
+			\[
+				e_{i_0} = \sum_{i \in I\setminus \{i_0\}} \mu_i e_i
+			\] avec $(\mu_i)_{i\in I \setminus \{i_0\}}$ famille presque nulle de scalaires.\\
+			Alors, $1_{\mathbbm{K}}e_{i_0} - \sum_{i \in I\setminus \{i_0\}} \mu_ie_i = 0_E$
+			Par hypothèse \[
+				\begin{cases}
+					1_\mathbbm{K} = 0_\mathbbm{K}\\
+					\forall i \neq i_0, -\mu_i = 0_\mathbbm{K}
+				\end{cases}
+			\] une contradiction $\lightning$
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$E = \R^3$ On pose $\begin{cases}
+		e_1 = (1,1,0)\\
+		e_2 = (1,0,1)\\
+	\end{cases}$ \\
+	Soit $(\lambda_1, \lambda_2) \in \R^2$.
+	\begin{align*}
+		\lambda_1e_1 + \lambda_2e_2 = 0_E
+		&\iff (\lambda_1+ \lambda_2, \lambda_1, \lambda_2) = (0,0,0)\\
+		&\iff \begin{cases}
+			\lambda_1 + \lambda_2 = 0\\
+			\lambda_1 = 0\\
+			\lambda_2 = 0
+		\end{cases}\\
+		&\iff \lambda_1 = \lambda_2 = 0
+	\end{align*}
+	Donc, $(e_1,e_2)$ est libre.
+\end{exm}
+
+\begin{exm}
+	$E = \R^\R, e_1 = \cos, e_2 = \sin$\\
+	Soit $(\lambda_1,\lambda_2) \in \R^2$.
+	\begin{align*}
+		\lambda_1 e_1 + \lambda_2 e_2 = 0_E
+		&\iff
+		\forall x \in \R, \lambda_1\cos(x) + \lambda_2\sin(x) = 0\\
+		&\implies \begin{cases}
+			\lambda_1 = 0 \quad&(x = 0)\\
+			\lambda_2 = 0 \quad&(x = 0 \text{ dans la dérivée})
+		\end{cases}
+	\end{align*}
+	Donc $(e_1,e_2)$ est libre.
+\end{exm}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ une famille libre de $E$. Alors \[
+		\sum_{i \in I}\mathbbm{K}e_i = \bigoplus_{i \in I}\mathbbm{K}e_i
+	\] i.e. \[
+		\forall u \in \sum_{i \in I} \mathbbm{K}e_i, \exists! (\lambda_i) \in \mathbbm{K}^I \text{ presque nulle telle que } u = \sum_{i \in I}\lambda_i e_i
+	\]
+	En d'autres termes, tout vecteur de $E$ a \underline{au plus} une décomposition en combinaisons linéaires des $e_i, i \in I$
+\end{prop}
+
+\begin{prv}
+	Soit $u \in \sum_{i \in I} \mathbbm{K}e_i$\\
+	On suppose que $u$ a au plus 2 décompositions \[
+		u = \sum_{i \in I} \lambda_i e_i = \sum_{i \in I} \mu_ie_i
+	\] avec $(\lambda_i)$ et $(\mu_i)$ presque nulles.\\
+	Alors, \[
+		0_E = u - u = \sum_{i \in I}\lambda_ie_i - \sum_{i \in I}\mu_ie_i = \sum_{i \in I}(\lambda_i - \mu_i)e_i
+	\] 
+	Or, $(e_i)_{i\in I}$ est libre donc \[
+		\forall i \in I,\lambda_i \mu_i = 0_\mathbbm{K}
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soit $(e_i)_{i\in I}$ une famille libre de $E$. 
+	\begin{enumerate}
+		\item Toute sous famille de $(e_i)$ est encore libre
+		\item Soit $u \in E$, $\mathcal{F} = (e_i \mid i \in I) \cup \{u\}$.\\
+			\[
+				\mathcal{F} \text{ est libre } \iff u \not\in \Vect(e_i  \mid i \in I)
+			\]
+		\item
+			\begin{enumerate}
+				\item Quand on remplace un vecteur $e_i$ par $\lambda e_i$ avec $\lambda \neq 0_\mathbbm{K}$, la famille obtenue est libre.
+				\item Quand on remplace un vecteur $e_i$ par $v + e_i$ avec $v \in \Vect(e_j  \mid j \neq i)$, la famille obtenue est libre.
+			\end{enumerate}
+	\end{enumerate}
+\end{prop}
+
+\begin{defn}
+	Soit $(e_i)_{i\in I}$ une famille de vecteurs de $E$. On dit que $(e_i)$ est une \underline{base} de $E$ si c'est à la fois une famille libre et génératrice de $E$; i.e. si \[
+		E = \bigoplus_{i \in I} \mathbbm{K}e_i
+	\] i.e. si \[
+		\forall u \in E, \exists ! (\lambda_i) \in \mathbbm{K}^I \text{ presque nulle telle que } u = \sum_{i \in I} \lambda_i e_i
+	\] Dans ce cas, on dit que les $\lambda_i$ sont les coordonnées de $u$ dans la base $(e_i)_{i\in I}$
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $(1,i)$ est une base de $\C$ en tant que $\R$-espace vectoriel
+		\item $(1)$ est une base de $\C$ en tant que $\C$-espace vectoriel
+		\item \[
+				\begin{cases}
+					u = 1+i\\
+					v = 1-i
+				\end{cases}
+			\] $(u,v)$ est une $\R$-base de $\C$ \\
+			En effet, soit $z = a+ib \in \C$ avec $(a,b) \in \R^2$. Soient $\lambda,\mu \in \R$.\\
+			\begin{align*}
+				z = \lambda u + \mu v
+				&\iff a+ ib = \lambda + \mu + i(\lambda - \mu)\\
+				&\iff \begin{cases}
+					a = \lambda + \mu\\
+					b = \lambda - \mu
+				\end{cases}\\
+				&\iff \begin{cases}
+					\lambda = \frac{a+b}{2}\\
+					\mu = \frac{a-b}{2}\\
+				\end{cases}
+			\end{align*}
+			\underline{\sc Autre méthode}
+			\begin{align*}
+				&(1,i) \text{ base}\\
+				\text{donc } & (1,1+i) \text{ base}\\
+				\text{donc } & (1-(1+i),1+i) \text{ base}\\
+				\text{donc } & (-2i,1+i) \text{ base}\\
+				\text{donc } & (1+i-2i,1+i) \text{ base}\\
+				\text{donc } & (1-i,1+i) \text{ base}\\
+			\end{align*}
+	\end{enumerate}
+\end{exm}
+
+\begin{exm}
+	[Bases canoniques]
+	\begin{enumerate}
+		\item La \underline{base canonique} de $\mathbbm{K}^n$ est $(e_1, \ldots, e_n)$ où $\forall i, e_i = (0_\mathbbm{K}, \ldots, 0_\mathbbm{K}, \underbrace{1_\mathbbm{K}}_{\mathclap{ \text{ en } i \text{ème} position}}, 0_\mathbbm{K}, \ldots, 0_\mathbbm{K})$ car
+			\begin{align*}
+				\forall u \in \mathbbm{K}^n, \exists !(x_1,\ldots,x_n) \in \mathbbm{K}^n,
+				u = (x_1, \ldots, x_n)
+				&= x_1(1_\mathbbm{K},0_\mathbbm{K},\ldots,0_\mathbbm{K}) \\
+				&+ x_2(0_\mathbbm{K},1_\mathbbm{K},\ldots,0_\mathbbm{K})\\
+				&\;\,\vdots\qquad\qquad\vdots\\
+				&+x_n (0_\mathbbm{K}, 0_\mathbbm{K}, \ldots, 1_\mathbbm{K})\\
+				&= \sum_{i=1}^{n} x_ie_i \\
+			\end{align*}
+		\item $E$ l'ensemble des fonctions polynomiales de $\mathbbm{K}$ dans $\mathbbm{K}$ à coefficiants dans $\mathbbm{K}$ où $\mathbbm{K}$ est \underline{infini}.\\
+			La \underline{base canonique} de $E$ est $\left( x \mapsto x^n \right)_{n \in \N}$ car \[
+				\forall P \in E, \exists ! n \in \N, \exists! (a_0, \ldots, a_n) \in \mathbbm{K}^{n+1}, \forall x \in \mathbbm{K}, P(x) = \sum_{i=0}^{n} a_i x^i
+			\] 
+		\item $E = \mathcal{M}_{n,p}(\mathbbm{K})$\\
+			La \underline{base canonique} de $E$ est $\left( E_{i,j} \right) _{\substack{1 \le i \le n\\1\le j\le p}}$ où \[
+				\forall i \in \left\llbracket 1,n \right\rrbracket,
+				\forall j \in \left\llbracket 1,p \right\rrbracket,
+				E_{i,j} = \left( \sigma_{i,j}^{k,\ell} \right) _{\substack{1\le k\le n\\1\le \ell\le p}}
+			\] i.e. \[
+				E_{i,j} =
+				\begin{pNiceMatrix}[first-row,last-col]
+					& \substack{j\\\downarrow}& &\\
+					0_\mathbbm{K} & \Ldots & 0_\mathbbm{K}&\\
+					\Vdots & 1_\mathbbm{K} & \Vdots& \leftarrow i\\
+					0_\mathbbm{K} & \Ldots & 0_\mathbbm{K}&\\
+
+				\end{pNiceMatrix}
+			\] 
+			\[
+				\forall A = \left( a_{i,j} \right) \in \mathcal{M}_{n,p},
+				A = \sum_{\substack{1\le i\le n\\1\le j\le p}}a_{i,j}E_{i,j}
+			\] 
+	\end{enumerate}
+\end{exm}
+

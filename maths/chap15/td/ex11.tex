@@ -1,0 +1,133 @@
+\part{Exercice 11}
+\section*{Partie 1}
+
+\begin{enumerate}
+	\item En replacant $t$ par $0$, par  $\frac{\pi}{8}$ et par $-\frac{\pi}{\sqrt{3}}$, on obtient \[
+				(S): \quad \begin{cases}
+					a+b =0\\
+					ae^{\frac{\pi}{\sqrt{3}}} + be^{-\frac{\pi}{2\sqrt{3}}} = 0\\
+					ae^{-\frac{\pi}{\sqrt{3}}} - be^{\frac{\pi}{2\sqrt{3}}} = 0
+				\end{cases}
+		\]
+		\[
+			\begin{vmatrix}
+				e^{\frac{\pi}{\sqrt{3}}}&e^{-\frac{\pi}{2\sqrt{3}}}\\
+				e^{-\frac{\pi}{\sqrt{3}}}&-e^{-\frac{\pi}{2\sqrt{3}}}
+			\end{vmatrix}
+			= -e^{\frac{3\pi}{2\sqrt{3}}} - e^{-\frac{3\pi}{2\sqrt{3}}} \neq 0
+		\] donc \[
+			\begin{pmatrix}
+				e^{\frac{\pi}{\sqrt{3}}}&e^{-\frac{\pi}{2\sqrt{3}}}\\
+				e^{-\frac{\pi}{\sqrt{3}}}&-e^{-\frac{\pi}{2\sqrt{3}}} 
+			\end{pmatrix}  \in  \mathrm{GL}_2(\R)
+		\]  donc le système $\begin{cases}
+			ae^{\frac{\pi}{\sqrt{3}}}be^{-\frac{\pi}{2\sqrt{3}}} = 0\\
+			ae^{-\frac{\pi}{\sqrt{3}}}-be^{-\frac{\pi}{2\sqrt{3}}} = 0
+		\end{cases}$ est de Cramer. Son unique solution est $\begin{cases}
+			a = 0\\
+			b= 0
+		\end{cases}$
+	\item 
+		\begin{align*}
+			af_1(t) = bf_2(t) + cf_3(c) &= a \left( 1+t+\frac{t^2}{2}+\po(t^2) \right)\\
+																	& + b\left( 1-\frac{t}{2}+\po(t) \right) \left( \frac{t\sqrt{3}}{2} + \po(t^2) \right) \\ 
+																	& + c\left( 1-\frac{t}{2}+\frac{t^2}{8} + \po(t^2) \right) \left( 1-\frac{3t^2}{8} + \po(t^2) \right) \\
+																	&= (a+c) + t\left( a+\frac{b\sqrt{3}}{2} -\frac{c}{2} \right) + t^2\left( \frac{a}{2}-\frac{b\sqrt{3}}{2} - \frac{c}{4} \right) + \po(t^2) \\
+		\end{align*}
+		Par unicité du développement limité, \[
+			(S): \quad \begin{cases}
+				a+c= 0\\
+				a+\frac{b\sqrt{3}}{2} - \frac{c}{2} = 0\\
+				a-\frac{b\sqrt{3}}{2} - \frac{c}{2} = 0\\
+			\end{cases}
+		\]
+		\[
+			A = \begin{pmatrix}
+				1&0&1\\
+				1&\frac{\sqrt{3}}{2}&-\frac{1}{2}\\
+				1&-\frac{\sqrt{3}}{2}&-\frac{1}{2}\\
+			\end{pmatrix} 
+			\begin{array}{c}
+				\sim\\
+				L_3 \leftarrow -L_3 + L_2
+			\end{array} 
+			\begin{pmatrix}
+				1&0&1\\
+				1&\frac{\sqrt{3}}{2}&\frac{1}{2}\\
+				0&\sqrt{3} &0
+			\end{pmatrix} 
+		\] 
+		$\rg(A) = 3$ donc $A \in \mathrm{GL}_3(\R)$ donc $S$ est de Cramer donc $a = b = c = 0$
+	\item \[
+			\forall t, \left| f_2(t) \right| \le e^{-\frac{t}{2}}\tendsto{t\to +\infty} 0
+		\] donc $f_2(t) \tendsto{t\to +\infty} 0$ \\
+		De même, $f_3(t) \tendsto{t \to +\infty} 0$ et $f_1(t) \tendsto{t\to +\infty} = 0$\\
+		Si $a \neq 0$, alors, $0 = af_1(t) + bf_2(t) + cf_3(t) \tendsto{n\to +\infty} \pm \infty$\\
+		Donc $a = 0$. \[
+			\forall t, b\sin\left( \frac{t\sqrt{3}}{2} \right) + c \cos\left( \frac{t\sqrt{3}}{2} \right) = 0
+		\]
+		Si $c \neq 0$, \[
+			\forall t \not\equiv \frac{\pi}{\sqrt{3}} \mod{\frac{2\pi}{\sqrt{3}}}, \frac{b}{c}\tan\left( \frac{t\sqrt{3}}{2} \right) =1
+		\] donc $c = 0$ et donc $b = 0$ 
+	\item $f_1' = f_1 \in G$
+		\begin{align*}
+			\forall t, f_2'(t) &= -\frac{1}{2}e^{-\frac{t}{2}}\sin\left( \frac{t\sqrt{3}}{2} \right) + \frac{\sqrt{3}}{2} e^{-\frac{t}{2}} \cos\left( \frac{t\sqrt{3}}{2}  \right)\\
+			&= -\frac{1}{2} f_2(t) + \frac{\sqrt{3}}{2} f_3(t) \\
+		\end{align*}
+		donc $f'_2 \in \Vect(\mathcal{B}) = G$ \[
+			\forall t, f_3'(t) = -\frac{1}{2}e^{-\frac{t}{2}}\cos\left( \frac{t\sqrt{3}}{2}  \right) - \frac{\sqrt{3}}{2} e^{-\frac{t}{2}} \sin\left( \frac{t\sqrt{3} }{2} \right) 
+		\] Soit $f: t \mapsto af_1(t) + bf_2(t) + cf_3(t)$ \\
+		\begin{align*}
+			f' &= af_1-\frac{b}{2}f_2 + b\frac{\sqrt{3}}{2}f_3 - \frac{c}{2}f_3 - c\frac{\sqrt{3}}{2}f_2 \\
+			&= af_1-\left( \frac{b}{2} - \frac{c\sqrt{3}}{2} f_2 \right) + \left( \frac{b\sqrt{3}}{2}- \frac{c}{2} \right) f_3 \in G \\
+		\end{align*}
+	\item Les coordonnées de $f$ est dans la base $\mathcal{B}$ sont $\left( a, -\frac{b}{2}, -\frac{c\sqrt{3}}{2}, \frac{b\sqrt{3}}{2}, -\frac{c}{2} \right)$ \\
+		Les coordonnées de $f_1$ sont $(1,0,0)$\\
+		Les coordonnées de $f_2$ sont $\left(0,-\frac{1}{2},\frac{\sqrt{3}}{2}\right)$\\
+		Les coordonnées de $f_2$ sont $\left(0,\frac{\sqrt{3}}{2},-\frac{1}{2}\right)$\\
+\end{enumerate}
+
+\section*{Partie 2}
+\begin{enumerate}
+	\item[3.]
+		\begin{itemize}
+			\item $ 0 \in \mathcal{S}$ d'après 2.
+			\item Soient $f,g \in \mathcal{S}$, et $\lambda, \mu \in \R$ \\
+				$\lambda f + \mu g$ est dérivable 3 fois, 
+				\begin{align*}
+					(\lambda f+ \mu g)^{(3)} &= \lambda f^{(3)}+ \mu g^{(3)}\\
+					&= \lambda f + \mu g \\
+				\end{align*}
+				donc $\lambda f + \mu g \in \mathcal{S}$ \\
+				Donc $\mathcal{S}$ est un sous-espace vectoriel de $\R^\R$
+		\end{itemize}
+		$f_1' = f_1$ donc $f_1^{(3)} = f_1$ donc $f_1 \in \mathcal{S}$ \\
+		\begin{align*}
+			f_2' &= -\frac{1}{2}f_2 + \frac{\sqrt{3}}{2} f_3 \\
+			f_2'' &= -\frac{1}{2}\left( -\frac{1}{2}f_2 + \frac{\sqrt{3}}{2}f_3 \right) + \frac{\sqrt{3}}{2\left( -\frac{1}{2} f_3 - \frac{\sqrt{3}}{2}f_2 \right)} \\
+			&= -\frac{1}{2}f_2 - \frac{\sqrt{3}}{2}f_3 \\
+			f_2^{(3)} &= -\frac{1}{2}\left( -\frac{1}{2}f_2 + \frac{\sqrt{3}}{2}f_3 \right) - \frac{\sqrt{3}}{2}\left( -\frac{1}{2}f_3 + \frac{\sqrt{3}}{2} f_2 \right)  \\
+			&= f_2 \\
+		\end{align*}
+		De même, $f_3^{(3)} = f_3$ 
+		$\mathcal{S}$ est stable par combinaison linéaire donc \[
+			G = \Vect(f_1, f_2, f_3) \subset \mathcal{S}
+		\]
+	\item[4.] $g' = f'+ f'' + f^{(3)} = f + f' + f'' = g$ 
+	\item[5.]
+		 \begin{align*}
+			 y' - y = 0 &\iff \exists \lambda \in \R, \forall t, y(t) = \lambda e^{t}\\
+									&\iff y \in \Vect(f_1)
+		\end{align*}
+	\item[6.]
+		$(f_1,f_2)$ car $j$ et $j^2$ sont toujours solutions de $1+z+z^2$ 
+	\item[7.] $\frac{\lambda}{3}f_1$ est une solution particulière \[
+			\frac{\lambda}{3}f_1 + \Vect(f_2, f_3)
+		\]
+	\item[8.]
+		\begin{align*}
+			f \in \mathcal{S} &\implies f + f' + f'' \in \Vect(f_1)\\
+												&\implies \exists \lambda, f+f'+f'' = \lambda f_1\\
+												&\implies \exists (\lambda,a,b), f = \frac{\lambda}{3}f_1 + af_2 + bf_3 \in G
+		\end{align*}
+\end{enumerate}

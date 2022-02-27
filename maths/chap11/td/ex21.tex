@@ -1,0 +1,44 @@
+\part{Exercice 21}
+
+\begin{enumerate}
+	\item $\{\lim u_n\}$ 
+	\item  $\forall n \in \N, u_n = \begin{cases}
+			1 &\text{ si } n \text{ pair}\\
+			n &\text{ si } n \text{ impair}
+		\end{cases}$\\
+
+		$(u_n)$ diverge car $u_{2n+1} \tendsto{n \to +\infty} +\infty$ \\
+		$1$ est la valeur d'adhérence de $(u_n)$ car $u_{2n} \tendsto{n \to +\infty} 1$\\
+
+		Soit $\ell \neq 1$ un autre valeur d'adhérence.\\
+		Soit $\varphi : \N \to \N$ strictement croissante telle que $u_{\varphi(n)} \tendsto{n \to +\infty} \ell$ \\
+		Comme $\ell \neq 1$, il existe $\varepsilon > 0$ tel que \[
+			1 \not\in [\ell - \varepsilon, \ell + \varepsilon]
+		\]\\
+		\[
+			\exists N \in \N, \forall n \ge N, u_{\varphi(n)} \in [\ell-\varepsilon, \ell + \varepsilon]
+		\] Donc \[
+		\forall n \ge N,  \varphi(n) \text{ impair}
+		\] Donc, \[
+		\forall n \ge  N, u_{\varphi(n)} = \varphi(n) \ge n \tendsto{n \to +\infty} +\infty
+		\] Donc $u_{\varphi(n)} \tendsto{n \to +\infty} \ell$
+	\item Soit $u$ bornée divergente. D'après le théorème de Bolzano Weierstrass, $u$ a au moins une valeur d'adhérence $\ell$.\\
+		$u$ diverge donc $u_n \centernot{\tendsto{n \to +\infty}} \ell$
+		donc \[
+			\exists  \varepsilon > 0, \forall N \in \N, \exists n \ge  N, \left| u_n - \ell \right| > \varepsilon
+		\] Ainsi,
+		\begin{align*}
+			(N = 1): & \exists n_1 \ge 1, \left| u_{n_1} - \ell \right| > \varepsilon\\
+			(N = n_1 + 1): & \exists n_2 \ge n_1+1, \left| u_{n_2} - \ell \right| > \varepsilon\\
+			(N = n_2 + 1): & \exists n_3 \ge n_2+1, \left| u_{n_3} - \ell \right| > \varepsilon\\
+		\end{align*}
+
+		On construit de cette façon $(n_k)_{k}$ strictement croissante telle que \[
+			\forall k, \left| u_{n_k} - \ell \right| > \varepsilon
+		\]
+		$(u_{n_k})$ est une sous suite de $u$ donc bornée.\\
+		D'après le théorème de Bolzano Weierstrass, $\left(u_{n_k}\right)_k$ a une sous suite $\left( u_{n_{\varphi(k)}} \right)_k$ convergente vers $\ell'$ ($\varphi: \N \to \N$ strictement croissante).\\
+		Or, $\forall k, \left| u_{n_{\varphi(k)}} -\ell \right| > \varepsilon$ \\
+		Donc, $u_{n_{\varphi(k)}} \tendsto{k \to +\infty} \ell$. Donc, $\ell' \neq \ell$.\\
+		Or, $\left( u_{n_{\varphi(k)}} \right)$ est une sous suite de $(u_n)$ donc $\ell'$ est une valeur d'adhérence de $u$.
+\end{enumerate}

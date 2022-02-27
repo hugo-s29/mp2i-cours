@@ -1,0 +1,130 @@
+\documentclass[a4paper]{report}
+\input{../../preamble.tex}
+
+\title{??}{\'Energie}{Hugo \sc Salou}
+
+\begin{document}
+	\begin{align*}
+		\text{PFD: } \bigg( m \frac{d \vec{v}}{dt} &= \vec{F} \bigg) \cdot \vec{v}\\
+		m\frac{d}{dt}\left[ \frac{1}{2} \|\vec{v}\|^2 \right] &= \mathcal{P}(\vec{F})\\
+		\frac{d \mathcal{E}_c}{dt} = \mathcal{P}(\vec{F})
+	\end{align*}
+
+	force $\vec{F}$ motrice: $\mathcal{P}(\vec{F}) > 0 \iff \frac{d \mathcal{E}_c}{dt} > 0$ \\
+
+	\begin{align*}
+		\int_{t_1}^{t_2} \frac{d \mathcal{E}_c}{dt} \; dt &= \int_{t_1}^{t_2} \mathcal{P}(\vec{F}) \;dt\\
+		&= \int_{M_1 \to M_2} \delta W(\vec{F})  \\
+		&= W_{M_1M_2}(\vec{F}) \\
+	\end{align*}
+	Or,  \[
+		\int_{t_1}^{t_2} \frac{d \mathcal{E}_c}{dt}\; dt = \left[ \mathcal{E}_c \right]_{t_1}^{t_2} = \mathcal{E}_c(t_2) - \mathcal{E}_c(t_1) = \Delta \mathcal{E}_c
+	\] Donc, \[
+		\Delta \mathcal{E}_c = W_{M_1M_2}(\vec{F})
+	\]
+
+	\begin{center}
+		\begin{asy}
+			size(5cm);
+
+			pair pol(real a, real r) {return (cos(a) * -r, sin(a) * -r);}
+
+			pair O = (0,0);
+			real t = 5 * pi / 7;
+			real l = 3;
+
+			pair M = pol(t, l);
+
+			dot(O);
+			dot("$M$", M);
+			draw(O -- M, black + 1);
+			draw(O -- (0, -l), dashed);
+
+			draw((0, -1) .. pol(t, 1), EndArrow);
+			label("$\theta$", ((0, -1) + pol(t, 1)) / 2 + (0,-0.2));
+
+			draw(M -- M + (0, -1), red, EndArrow);
+			label("$\vec{P}$", M + (-0.3,-0.4), red);
+
+			draw(M -- 2.5 * M / 4 , deepcyan, EndArrow);
+			label("$\vec{T}$", (6.5/8) * M + (-0.3, 0), deepcyan);
+
+			draw(M -- M + M / 3, purple, EndArrow);
+			label("$\vec{u_{r}}$", 3.5/3 * M + (0.2,0),purple);
+
+			draw(M -- M + pol(t + pi/2, l/3), pink, EndArrow);
+			label("$\vec{u_{\theta}}$", M + pol(t + pi/2, l/6) + (0, 0.2), pink);
+
+			draw(M + (0, -0.5) .. (3.5/3) * M, EndArrow);
+			label("$\theta$", M + ((0, -1) + pol(t, 1)) / 4 + (0,-0.2));
+		\end{asy}
+	\end{center}
+
+	\begin{align*}
+		\mathcal{P}(m \vec{g}) &= \left(mg\cos\theta \vec{u_r} - mg\sin\theta \vec{u_{\theta}}\right) \cdot \ell\dot{\theta} \vec{u_\theta} \\
+		&= -mg\ell\dot{\theta}\sin\theta \\
+	\end{align*}
+
+	\[
+		\mathcal{E}_c = \frac{1}{2}mv^2 = \frac{1}{2} m\ell^2 \dot{\theta}^2
+	\] \[
+		\frac{d \mathcal{E}_c}{dt} = \mathcal{P}(m \vec{g}) + \underbrace{\mathcal{P}(\vec{T})}_{= 0}
+	\] Donc \[
+	\frac{1}{2}m\ell^2 \times 2 \dot{\theta} \ddot{\theta} = -mg\ell\dot{\theta}\sin(\theta)
+	\] \[
+		\dot{\theta} \neq 0: \qquad \fbox{$\ddot{\theta} + \frac{g}{\ell}\sin\theta = 0$}
+	\]
+
+	\begin{align*}
+		\mathcal{E}_c(M_2) - \mathcal{E}_c(M_1) &= W_{M_1M_2}(\vec{F}) \\
+		\frac{1}{2}mv_2^2 - \frac{1}{2} m v_1^2 &= W_{M_1M_2}(m \vec{g}) + \underbrace{W_{M_1M_2}(\vec{T})}_{ = 0}\\
+		W_{M_1M_2}(m \vec{g}) &= mg(z_1-z_2)\\
+		v_2^2 &= v_1^2 + 2g(z_1- z_2)
+	\end{align*}
+
+	\[
+		\frac{d \mathcal{E}_p}{dx} dx = -f dx \implies f = -\frac{d \mathcal{E}_p}{dx}
+	\] La force dérive l'énergie potentielle.
+	\[
+		\int_{M_0}^{M} d \mathcal{E}_p = -\int_{M_0}^{}f\; dx
+	\]
+	On a $\begin{cases}
+		M_0: x_0\\
+		M: x
+	\end{cases}$ \\
+	\[
+		\mathcal{E}_p(M) - \mathcal{E}_p(M_0) = -(x - x_0)
+	\] \[
+		\vec{f} = -k \vec{u_r}
+	\] 
+
+	\begin{asy}
+		import spring;
+
+		size(3cm);
+
+		real r = 8;
+		real t1 = -pi;
+		real t2 = 10*pi;
+
+		real lambda = (t2 - t1 + 1) / (t2 - t1);
+
+		pair O = coilpoint(lambda,r,t1) - 20;
+		pair M = coilpoint(lambda,r,t2) + 20;
+
+		drawspring(1, "$r$");
+
+		dot("$O$", O, left);
+		dot("$M$", M);
+	\end{asy}
+
+	\[
+		\delta W = \vec{f} \cdot \mathrm{d} \vec{OM} = \vec{f} \cdot \left(\mathrm{d}r \; \vec{u_r} + r \mathrm{d}\theta \; \vec{u_\theta} + \mathrm{d}z \; \vec{u_z} \right) = -kr\; \mathrm{d}r
+	\] 
+
+	\begin{align*}
+		\mathrm{d}\mathcal{E}_p &= -\delta W = kr\mathrm{d}r\\
+		\int_{M_0}^{M} \mathrm{d}\mathcal{E}_p &= \mathcal{E}_p(M) - \mathcal{E}_p(M_0) \\
+		&= \int_{r_0}^{r} kr\;\mathrm{d}r = \frac{k}{2}(r^2 - r_0^2)  \\
+	\end{align*}
+\end{document}

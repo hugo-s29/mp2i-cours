@@ -1,0 +1,23 @@
+\part{Exercice 8}
+\begin{center}
+	{\it Preuve du $``\impliedby"$ de la proposition 2.10 du cours}
+\end{center}
+
+Soit $y \in ]a,b[$. $f$ est croissante sur $]a,y[$ et majorée par $f(y)$ donc \[
+	\lim_{\substack{x\to y\\<}}f(x) = \sup_{]a,y[}f \le f(y)
+\]
+$f$ est croissante sur $]y,b[$ minorée par $f(b)$ donc \[
+	\lim_{\substack{x \to y\\>}}f(x) = \inf_{]y,b[}f \ge f(y)
+\] Supposons $\sup_{]a,y[}f < f(y)$.\\
+Soit $t \in ]a,y[$, $f(t) \le \sup_{]a,y[}f <f(y)$ \\
+donc $\sup_{]a,y[}f \in [f(t),f(y)] \subset [f(a),f(b)] = f([a,b])$\\
+donc \[
+	\exists u \in ]a,b[, \sup_{]a,y[}f = f(u)
+\] 
+Donc $f(u) < f(y)$ \\
+Soit $w \in ]f(u),f(y)[ \subset [f(a),f(b)] = f([a,b])$ donc $w = f(r)$ avec $r \in [a,b]$.
+\begin{align*}
+	f(r) > f(u) \text{ donc } r> u\\
+	f(r) < f(y) \text{ donc } r< y\\
+\end{align*}
+donc $r \in ]a,y[$ donc $f(u) < w = f(r) \le f(u)$ $\lightning$

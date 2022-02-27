@@ -1,0 +1,56 @@
+\part{Exercice 1}
+
+On a $A = \begin{pmatrix}
+	a&1\\
+	0&a
+\end{pmatrix}$ 
+
+\begin{enumerate}
+	\item
+		On a $A^2 = \begin{pmatrix}
+			a^2&2a\\
+			0&a^2
+		\end{pmatrix}$, $A^3 = \begin{pmatrix}
+			a^3&3a^2\\
+			0&a^3
+		\end{pmatrix}$, $A^4 = \begin{pmatrix}
+			a^4&4a^3\\
+			0&a^4
+		\end{pmatrix}$.
+	\item On pose $\forall n \in \N, \mathcal{P}(n): ``A^n = \begin{pmatrix}
+			a^n&na^{n-1}\\
+			0&a^n
+		\end{pmatrix}"$ \\
+
+		\begin{itemize}
+			\item Pour $n = 0$, $\begin{pmatrix}
+					a^0&0\\
+					0&a^0
+				\end{pmatrix} = \begin{pmatrix}
+					1&0\\
+					0&1
+				\end{pmatrix} = I_2 = A^0$\\
+				Donc $\mathcal{P}(0)$ est vraie
+			\item Soit $n \in \N$, on suppose $\mathcal{P}(n)$ vraie. On a donc $A^n = \begin{pmatrix}
+				a^n&na^{n-1}\\
+				0&a^n
+			\end{pmatrix}$. Montrons $\mathcal{P}(n+1)$.\\
+			\begin{align*}
+				A^{n+1} = A^n \times A &= \begin{pmatrix}
+					a^n&na^{n-1}\\
+					0&a^n
+				\end{pmatrix} \times \begin{pmatrix}
+					a&1\\
+					0&a
+				\end{pmatrix}\\
+				&= \begin{pmatrix}
+					a^{n+1}&(n+1)a^n\\
+					0&a^{n+1}
+				\end{pmatrix}  \\
+			\end{align*}
+		\end{itemize}
+		Donc, $\forall n \in \N, A^n = \begin{pmatrix}
+			a^n&na^{n-1}\\
+			0&a^n
+		\end{pmatrix}$
+\end{enumerate}

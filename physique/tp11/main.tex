@@ -1,0 +1,123 @@
+\documentclass[a4paper]{report}
+\input{../preamble.tex}
+
+\fancyhead[R]{Hugo {\sc Salou} \& Iwan {\sc Derouet}}
+\fancyhead[L]{MP2I}
+\fancyhead[C]{Physique TP11}
+
+
+\title{TP 11}{Modélisation des appareils électriques}
+{
+	Hugo {\sc Salou}\\
+	Iwan {\sc Derouet}
+}
+
+\begin{document}
+		
+	Les enceintes, casques et autres appareils HiFi possèdent une résistance intérieure. Afin de pouvoir les modéliser, nous devons trouver la valeur de cette résistance. Par exemple, un ampli de chaine HiFi a une résistance entre $3$ et $6~\Omega$ et une enceinte a une réistance entre $4$ et $5~\Omega$.\\
+
+	Nous pouvons déterminer la valeur de cette résistance en réalisant le circuit suivant:
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) to[short, i=$i$] (0,3) to[R=$R_S$] (5,3) to[R=$R_E$] (5,0) -- (0,0);
+		\end{circuitikz}
+	\end{center}
+
+	Ici, $R_S$ représente la résistance de sortie d'un appareil (par exemple la résistance de l'ampli) et $R_E$ représente la résistance d'entrée d'un appareil (par exemple la résistance l'enceinte).\\
+	Dans le cadre du TP, on mesure la résistance d'un casque puis celle de la carte son de l'ordinateur.\\
+	Pour mesurer la résistance du casque $R_E$, on utilise une résistance variable pour $R_S$ comme montré sur le circuit suivant.
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) to[short, i=$i$] (0,3) to[vR=$R_S$] (5,3) to[R=$R_E$, v=$u_R$] (5,0) -- (0,0);
+		\end{circuitikz}
+	\end{center}
+	
+	On peut déterminer la valeur de $u_R$ en fonction de $E$, $R_S$ et $R_E$ à l'aide de la formule du pont diviseur de tension: \[
+		u_R = \frac{R_E}{R_S + R_E}
+	\]
+	On peut simplifier cette expression si $R_S = R_E = R$:  \[
+		u_R = \frac{\cancel{R}}{2\cancel{R}}E = \frac{1}{2}E
+	\]
+
+	On mesure donc $E$ en branchant un voltmètre en parallèle du générateur de tension et on mesure $u_R$ en branchant un second voltmètre en parallèle de la résistance $R_E$ (dans le cadre du TP, on branche le voltmètre en dérivation du casque).\\
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) to[short, i=$i$] (0,3) to[vR=$R_S$] (5,3) to[R=$R_E$, v=$u_R$] (5,0) -- (0,0);
+			\draw (5,3) -- (7,3) to[rmeter, t=$\mathbf{V}$] (7,0) -- (5,0);
+			\draw (0,0) -- (-2,0) to[rmeter, t=$\mathbf{V}$] (-2,3) -- (0,3);
+		\end{circuitikz}
+	\end{center}
+
+	On fait varier la valeur de $R_S$ afin d'obtenir $u_R = \frac{1}{2}E$.\\
+
+	On a mesuré:
+	\begin{itemize}
+		\item $E = 1,53~\mathrm{V}$
+		\item $u_R = 0,772~\mathrm{V}$ avec $R_S = 30~\Omega$
+	\end{itemize}
+
+	\vspace{5mm}
+
+	En mesurant la résistance du casque à l'aide d'un ohmmètre, on sait que $R_E = 33~\Omega$. Cette différence de résistance peut-être due à plusieurs facteurs:
+	\begin{itemize}
+		\item Les branchements: en déplaçant un des cables pendant la mesure, la valeur de $u_R$ et même celle de $E$ peut varier
+		\item Les mesures des voltmètre: il n'y a qu'une précision limitée sur les voltmètres
+		\item Le courant est alternatif, ce qui change légèrement les valeures notamment celle de $E$
+		\item La résistance du casque n'est pas forcément constante en fonction de la fréquence du courant (expliqué après)
+	\end{itemize}
+
+	\vspace{5mm}
+
+	La fréquence $f$ du courant a un effet sur les mesures.
+	
+	\begin{center}
+		\begin{tabular}{c|c|c|c|c}
+			$f~(\mathrm{Hz})$ & $E~(\mathrm{V})$ & $u_R~(\mathrm{V})$ & $R_S~(\Omega)$ & $R_E~(\Omega)$\\
+			\hline
+			240&1,55&0,727&30&27\\
+			440&1,53&0,772&30&30\\
+			640&1,54&0,709&30&26\\
+		\end{tabular}
+	\end{center}
+
+	On peut maintenant mesurer la résistance de sortie (résistance interne de la carte son de l'ordinateur).
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) to[short, i=$i$] (0,3) to[R=$R_S$] (5,3) to[vR=$R_E$] (5,0) -- (0,0);
+			\draw[red, thick] (-1, 3.8) rectangle (3.5,-0.5);
+			\draw[red] (-0.5, 3.7) node[below]{PC};
+		\end{circuitikz}
+	\end{center}
+
+	On ne peut pas procéder de la même manière que pour le casque: la valeur de $E$ n'est pas mesurable directement (on ne peut pas brancher un voltmètre dans le PC). Mais on peut quand même la mesurée. On met $R_E$ à la valeur maximale de la résisance variable ($10~\mathrm{M}\Omega$). Dans cette situation, le circuit se comporte comme s'il avait une discontinuité à l'emplacement de la réistance. En mesurant $u_R$, on mesure $E$ car dans cette situation, $u_R = E$.
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) -- (0,3) to[R=$R_S$] (5,3) -- (5,2.5);
+			\draw (5,0.5) -- (5,0) -- (0,0);
+			\draw (5,3) -- (7,3) to[rmeter, t=$\mathbf{V}$] (7,0) -- (5,0);
+		\end{circuitikz}
+	\end{center}
+
+	On mesure $E = 1,109~\mathrm{V}$. En conservant le même circuit, on réalise la même procédure que la mesure de la résistance du casque: on fait varier  $R_E$ jusqu'à ce que $u_R = \frac{1}{2}E$, et on a donc $R_E = R_S$
+
+	\begin{center}
+		\begin{circuitikz}
+			\draw (0,0) to[american, isource, l=$E$] (0,2) to[short, i=$i$] (0,3) to[R=$R_S$] (5,3) to[vR=$R_E$, v=$u_R$] (5,0) -- (0,0);
+			\draw (5,3) -- (7,3) to[rmeter, t=$\mathbf{V}$] (7,0) -- (5,0);
+		\end{circuitikz}
+	\end{center}
+
+	Pour $R = 75~\Omega$, on obtient $u_R = 0,551~\mathrm{V}$.\\
+	\vspace{5mm}
+	Cette différence de résistance peut-être due à plusieurs facteurs:
+	\begin{itemize}
+		\item Les branchements: en déplaçant un des cables pendant la mesure, la valeur de $u_R$ et même celle de $E$ peut varier
+		\item Les mesures des voltmètre: il n'y a qu'une précision limitée sur le voltmètre
+		\item Le courant est alternatif, ce qui change légèrement les valeures notamment celle de $E$
+		\item La résistance du casque n'est pas forcément constante en fonction de la fréquence du courant (la mesure a été faite avec $f = 440~\mathrm{Hz}$
+	\end{itemize}
+
+\end{document}

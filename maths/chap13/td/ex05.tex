@@ -1,0 +1,29 @@
+\part{Exercice 5}
+
+\[
+	(S): AX = 0 \text{ où } X = \begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix}
+\]
+\begin{align*}
+	A = \mathrm{GL}_n(\C) &\iff \rg(A) = n\\
+							 &\iff \rg(S) = n\\
+							 &\iff S \text{ est de Cramer}\\
+							 &\iff X = 0 \text{ est la seule solution de } (S)
+\end{align*}
+
+On suppose $X \neq 0$ tel que $AX = 0$ et on cherche une contradiction.\\
+
+\begin{align*}
+	(S) &\iff \forall i \in \left\llbracket 1,n \right\rrbracket , \sum_{j=1}^{n} a_{ij} x_j=0\\
+			&\implies \forall i \in \left\llbracket 1,n \right\rrbracket -a_{ii}x_i = \sum_{j \neq i} a_{ij}x_j\\
+			&\implies \forall i \in \left\llbracket 1,n \right\rrbracket, \left| a_{ii} \right| \left| x_i \right| =\left| \sum_{j\neq i}a_{ij}x_j \right| \\
+			&\implies\forall i \in \left\llbracket 1,n \right\rrbracket \left| a_{ii} \right| \left| x_i \right| \le \sum_{j \neq i} \left| a_{ij} \right| \left| x_j \right| 
+\end{align*}
+
+Soit $i_0$ tel que $\left| x_{i_0} \right| = \max_{i\le j\le n}\left( \left| x_j \right|  \right)$ ($i_0 = \argmax{1\le j\le n}\left( \left| x_j \right|  \right)$)\\
+Comme $X \neq 0$, $x_{i_0}>0$, donc \[
+	\left| a_{i_0,i_0} \right| \le \sum_{j \neq i_0} \left| a_{i_0,j} \right| \frac{\left| x_j \right| }{\left| x_{i_0} \right| } \le \sum_{j \neq i_0}\left| a_{i_0,j} \right| 
+\] une contradiction $\lightning$\\

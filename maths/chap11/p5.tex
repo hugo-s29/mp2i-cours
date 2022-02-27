@@ -1,0 +1,193 @@
+\part{Comparaison de suites}
+
+\begin{defn}
+	Soient $u$ et $v$ deux suites réelles. On dit que $u$ est \underline{dominée} par  $v$ si \[
+	\exists M\in \R, \exists N\in \N,\forall n\ge N,\left| u_n \right| \le M \left| v_n \right| 
+	\] Dans ce cas, on note $u = O(v)$ ou $u_n = O(v_n)$ et on dit que "$u$ est un grand o de $v$"
+\end{defn}
+
+\begin{exm}
+	En informatique, on dit qu'un alogirithme a une \underline{complexité linéaire} si son temps d'éxécution est un $O(n)$ 
+	Par exemple, on calcule $a^n$ 
+
+	\begin{itemize}
+		\item Approche naïve
+			\begin{algorithm}
+				\begin{algorithmic}[1]
+					\State $p \gets 1$
+					\For{$i \in \left\llbracket 0,n-1 \right\rrbracket$}
+						\State $p \gets p \times a$
+					\EndFor
+					\State \Return p
+				\end{algorithmic}
+			\end{algorithm}
+			Complexité linéaire $O(n)$
+		\item Exponentiation rapide\\
+			On écrit $n$ en binaire: \begin{align*}
+				n &= \overline{a_k a_{k-1}\ldots a_0}^{(2)}\\
+					&= \sum_{i=0}^{k} a_i 2^i
+			\end{align*} avec $(a_i) \in \left\{ 0,1 \right\} ^{k+1}$
+			\begin{align*}
+				a^n &= a^{\sum_{i=0}^{k} a_i 2^i} \\
+				&= \prod_{i=0}^{k} a^{a_i 2^i}  \\
+			\end{align*}
+			
+			\begin{algorithm}
+				\begin{algorithmic}
+					[1]
+
+					\State $s \gets 0$
+					\State $p \gets a$
+					\For{ $i \in \left\llbracket 0, \log_2(n) \right\rrbracket$}
+						\State $p \gets p \times p$
+						\If{$a[i] = 1$}
+							\State $s \gets s + p$
+						\EndIf
+					\EndFor
+					\State \Return s
+				\end{algorithmic}
+			\end{algorithm}
+			Compléxité logarithmique $O(\log_2(n))$
+	\end{itemize}
+\end{exm}
+
+
+\begin{prop}
+	$O$ est une relation réfléctive et transitive.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soit $u$ une suite. On pose $M = 1$ et \[
+			\forall n \in \N, \left| u_n \right| \le M \left| u_n \right|
+			\] Donc $u = O(u)$.
+		\item Soient $u, v, w$ trois suites telles que  \[
+		\begin{cases}
+			u = O(v)\\
+			v = O(w)
+		\end{cases}
+		\] Soient $M_1,M_2 \in \R$ et $N_1,N_2\in \N$ tels que \[
+		\begin{cases}
+			\forall n \ge  N_1, \left| u_n \right| \le M_1 \left| v_n \right| \\
+			\forall n \ge  N_2, \left| v_n \right| \le M_2 \left| w_n \right| \\
+		\end{cases}
+		\] 
+
+		Nécéssairement, $M_1\ge 0$ et $M_2\ge 0$.\\
+		Soit $N = \max(N_1,N_2)$. \[
+		\forall n \ge  N, \left| u_n \right| \le M_1 \left| v_n \right| \le  M_1M_2 \left| w_n \right| 
+		\] Donc $u = O(w)$
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soient $u$ et $v$ deux suites. On dit que $u$ est \underline{négligeable} devant $v$ si \[
+	\forall \varepsilon>0, \exists N\in \N, \forall n\ge N, \left| u_n \right| \le \varepsilon \left| v_n \right| 
+	\] Dans ce cas, on note $u = o(v)$ ou $u_n = o(v_n)$ ou on le lit "$u$ est un petit o de $v$"
+\end{defn}
+
+\begin{prop}
+	$o$ est une relation transitive, non-réfléctive
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soient $u$, $v$ et $w$ trois suites telles que \[
+			\begin{cases}
+				u = o(v)\\
+				v = o(w)
+			\end{cases}
+			\] Soit $\varepsilon>0$. Soit $N_1\in \N$ tel que \[
+			\forall n \ge N_1, \left| u_n \right| \le \sqrt{\varepsilon}  \left| v_n \right| 
+			\] Soit $N_2\in \N$ tel que \[
+			\forall n \ge N_2, \left| v_n \right| \le \sqrt{\varepsilon}  \left| w_n \right| 
+			\] On pose $N = \max(N_1,N_2)$, alors \[
+			\forall n \ge N, \left| u_n \right| \le \sqrt{\varepsilon}  \left| v_n \right| \le \underbrace{\sqrt{\varepsilon} \times \sqrt{\varepsilon}} _\varepsilon \left| w_n \right| 
+			\] donc $u = o(w)$
+		\item Soit $u$ une suite tel qu'il existe $N \in \N$ tel que \[
+		\forall n \ge N, u_n > 0
+		\] On suppose que $u = o(u)$, alors \[
+		\forall \varepsilon>0,\exists N \in \N, \forall n \ge N, \left| u_n \right| \le \varepsilon \left| u_n \right| 
+		\] On pose $\varepsilon = \frac{1}{2}$ alors \[
+		\exists N \in \N, \forall n \ge N, \left| u_n \right| \le \frac{1}{2} \left| u_n \right| 
+		\] une contradiction
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $u$ et $v$ deux suites.
+	\begin{itemize}
+		\item $o(u) + o(u) = o(u)$
+		\item $v \times o(u) = o(uv)$
+		\item $o(u) \times o(v) = o(uv)$
+		\item $o(o(u)) = o(u)$
+	\end{itemize}
+	\qed
+\end{prop}
+
+\begin{defn}
+	Soient $u$ et $v$ deux suites. On dit que $u$ et $v$ sont \underline{équivalentes} si \[
+	u = v + o(v)
+	\] i.e. \[
+	\forall \varepsilon >0, \exists N \in \N, \forall n \ge N, \left| u_n-v_n \right| \le \varepsilon\left| v_n \right| 
+	\] Dans ce cas, on le note $u \sim v$
+\end{defn}
+
+\begin{prop}
+	$\sim$ est une relation d'équivalence \qed
+\end{prop}
+
+\begin{prop}
+	Soient $(u,v) \in \R^\N$. On suppose que $v$ ne s'annule pas à partir d'un certain rang
+	\begin{enumerate}
+		\item $u = o(v) \iff \left( \frac{u_n}{v_n} \right)$ bornée
+		\item $u = o(v) \iff \frac{u_n}{v_n} \tendsto{n \to  +\infty} 0$
+		\item $u \sim v \iff \frac{u_n}{v_n} \tendsto{n \to  +\infty} 1$
+	\end{enumerate}
+	\qed
+\end{prop}
+
+\begin{prop}
+	[Suites de références]
+	\begin{enumerate}
+		\item $\ln^\alpha(n) = o(n^\beta)$ avec $(\alpha,\beta) \in \left( \R^+_* \right) ^2$ 
+		\item $n^\beta = o(a^n)$ avec $\beta > 0$ et $a > 1$ 
+		\item $a^n = o(n!)$ avec $a >1$ 
+		\item $n! = o(n^n)$
+	\end{enumerate}
+\end{prop}
+
+
+\begin{lem}
+	[Exercice 10 du TD]
+	Soit $u \in \left(\R^+_*\right)^\N$\\
+	Si $\frac{u_{n+1}}{u_n} \tendsto{n \to +\infty} \ell < 1$ avec $\ell\in \R$,\\ alors $u_n \tendsto{n \to +\infty} 0$
+\end{lem}
+
+\begin{prv} [de la proposition]
+	\begin{enumerate}
+		\item par croissance comparée
+		\item On pose $\forall n \in \N^*, u_n = \frac{n^\beta}{a^n}$. 
+			\begin{align*}
+				\forall  n \in \N^*, \frac{u_{n+1}}{u_n} &= \left( \frac{n+1}{n} \right) ^\beta \times \frac{1}{a} \\
+				&= \frac{1}{a}\left( 1+\frac{1}{n} \right) ^\beta \\
+				&\tendsto{n \to +\infty} \frac{1}{a} < 1
+			\end{align*}
+			Donc, $u_n \tendsto{n \to  +\infty} 0$
+		\item On pose $\forall n \in \N, u_n = \frac{a^n}{n!}$ \[
+			\forall n \in \N, \frac{u_{n+1}}{u_n} = \frac{a}{n+1} \tendsto{n \to +\infty} 0 < 1
+			\] donc $u_n \tendsto{n \to +\infty} 0$
+		\item On pose $\forall  n\in \N^*, u_n = \frac{n!}{n^n}$.
+			\begin{align*}
+				\forall n \in \N^*, \frac{u_{n+1}}{u_n}
+				&= (n+1) {\frac{n^n}{(n+1)^{n+1}}} \\
+				&= \left( \frac{n}{n+1} \right) ^n \\
+				&= e^{n \ln\left( \frac{n}{n+1} \right) } \\
+				&= e^{n \ln\left( 1+\frac{1}{n+1} \right)} \\
+				&= e^{n(-\frac{1}{n} + o(\frac{1}{n})} \\
+				&= e^{-1 + o(1)} \\
+				&\tendsto{n \to  +\infty} e^{-1}<1
+			\end{align*}
+			donc $u_n \tendsto{n\to +\infty} 0$
+	\end{enumerate}
+\end{prv}

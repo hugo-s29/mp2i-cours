@@ -1,0 +1,32 @@
+\part{Exercice 14}
+
+\begin{center}
+	\underline{Méthode 1}
+\end{center}
+
+Soit $n\in \N_*$
+\begin{align*}
+	u_n &= \sqrt{n^2 + 3n + 7}  - \sqrt{n^2 + an + b} \\
+	&= n\sqrt{1 + \frac{3}{n} + \frac{7}{n^2}} - n\sqrt{1 + \frac{a}{n} + \frac{b}{n^2}} \\
+	&= n\left( 1+\frac{1}{2}\left( \frac{3}{n}+\frac{7}{n^2} \right) - \frac{1}{8}\times \frac{9}{n^2} + o\left( \frac{1}{n^2} \right)  \right) \\
+	&- n\left( 1 + \frac{1}{2}\left( \frac{a}{n}+\frac{b}{n^2} \right) - \frac{1}{8} \times \frac{a^2}{n^2} +o\left( \frac{1}{n^2} \right) \right)  \\
+	&= \frac{3-a}{2} + \left( \frac{7}{2} - \frac{9}{8} - \frac{b}{2}+\frac{a^2}{8} \right) \times \frac{1}{n} + o\left( \frac{1}{n} \right)  \\
+	&\tendsto{n \to +\infty} \frac{3-a}{2}
+\end{align*}
+
+\begin{center}
+	\underline{Méthode 2}
+\end{center}
+
+\begin{align*}
+	u_n &= \frac{(n^2 + 3n + 7) - (n^2 + an + b)}{\sqrt{n^2 + 3n + 7} + \sqrt{n^2 + an + b}}\\
+	&\sim \begin{cases}
+		\frac{(3-a)n}{2n} &\text{ si } a \neq 3 \tendsto{} \frac{3-a}{2}\\
+		\frac{7-b}{2n} &\text{ si } a = 3 \tendsto{} 0 = \frac{3-a}{2}
+	\end{cases}
+\end{align*}
+
+$\sqrt{n^2 + 3n + 7} = n + o(n)$ car $\frac{\sqrt{n^2 + 3n + 7}}{n} = \sqrt{1 + \frac{3}{n} + \frac{7}{n^2}} \tendsto{} 1$ \\
+pour la même raison, $\sqrt{n^2 + an + b}  = n + o(n)$ \\
+
+Donc, $\sqrt{n^2 + 3n + 7} + \sqrt{n^2 + an + b} = 2n + o(n) \sim 2n$

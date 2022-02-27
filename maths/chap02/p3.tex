@@ -1,0 +1,531 @@
+\part{Géométrie des nombres complexes}
+
+Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère orthonormé $(O, \vec{\imath}, \vec{\jmath})$\\
+
+\begin{defn}
+	\begin{wrapfigure}
+		{r}{0.5\textwidth}
+		\centering
+		\begin{asy}
+			import graph;
+			axes(); size(7cm);
+
+			dot("$O$", (0,0), align=SW);
+
+			draw((0,0)--(1,0), red, Arrow(TeXHead));
+			draw((0,0)--(0,1), red, Arrow(TeXHead));
+
+			label("$\vec\imath$", (0.5, 0), red, align=S);
+			label("$\vec\jmath$", (0, 0.5), red, align=W);
+
+
+			pair M = (3,2);
+			dot("$M$", M);
+			draw(M--(M.x,0), dashed);
+			draw(M--(0,M.y), dashed);
+
+			draw(brace((M.x,0), (0,0)), deepmagenta);
+			draw(brace((0,0), (0,M.y)), deepcyan);
+
+			label("$x$", (M.x/2, -0.4), deepmagenta, align=S);
+			label("$y$", (-0.3,M.y/2), deepcyan, align=W);
+
+			pair w1 = (1.5, -2.5);
+			pair w2 = (2.5, -1);
+
+			draw(w1--w2, deepgreen, Arrow(TeXHead));
+			label("$\vec{w}$", (w1+w2)/2, deepgreen, align=NW);
+			
+			pair w12 = (w2.x, w1.y);
+			draw(w1--w12--w2, dashed);
+			label("$a$", (w1+w12)/2, align=S);
+			label("$b$", (w2+w12)/2, align=E);
+		\end{asy}
+	\end{wrapfigure}
+	Soit $M \in \mathcal{P}$. On note $(x,y)$ les coordonnées du point $M$ par rapport au repère $(O, \vec{\imath}, \vec{\jmath})$\\
+	\underline{L'affixe} de $M$ est le nombre \[
+		z_M = x+iy \in \C
+	\]
+	Soit $\vec{w} \in \vec{\mathcal{P}}$ (le plan des vecteurs) et $(a,b)$ les coordonées de $\vec{w}$.\\
+	\underline{L'affixe} de $\vec{w}$ est \[
+		z_{\vec{w}} = a+ib \in \C
+	\]
+\end{defn}
+
+\vspace{2cm}
+
+\begin{prop}
+	Soit $(A,B) \in \mathcal{P}^2$ et $(\vec{w_1}, \vec{w_2}) \in \vec{\mathcal{P}}^2$\\
+	\begin{enumerate}
+		\item $z_{\vec{AB}} = z_B - z_A$
+		\item $z_{\vec{w_1} + \vec{w_2}} = z_{\vec{w_1}} + z_{\vec{w_2}}$
+	\end{enumerate}
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soit $(\vec{w_1}, \vec{w_2}) \in \vec{\mathcal{P}}^2$ avec $\vec{w_1} \neq \vec{0}$ et $\vec{w_2}\neq \vec{0}$\\
+	Alors, $\left| \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right| = \frac{\|\vec{w_1}\|}{\|\vec{w_2}\|}$ et~ $\arg\left( \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right) = \underbrace{(\widehat{\vec{w_1}, \vec{w_2}})}_{\mathrlap{\text{l'angle entre } \vec{w_1} \text{ et } \vec{w_2}}}$
+\end{prop}
+
+\begin{prv}
+	Soient $(r_1,r_2)\in \left( \R^+ \right) ^2$ et $(\theta_1,\theta_2)\in \left( [0, 2\pi[ \right) ^2$ tels que \[
+		z_{\vec{w_1}} = r_1e^{i\theta_1} \text{ et }
+		z_{\vec{w_2}} = r_2e^{i\theta_2}
+	\] Alors, \[
+	\frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} = \frac{r_1}{r_2}e^{i\left( \theta_1-\theta_2 \right)}
+	\] donc \[
+		\begin{cases}
+			\left| \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right| = \frac{r_1}{r_2} = \frac{\|\vec{w_1}\|}{\|\vec{w_2}\|}\\
+			\arg\left( \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right) \equiv \theta_1 - \theta_2 \mod {2\pi}
+		\end{cases}
+	\] car $\theta_1-\theta_2$ est l'angle entre $\vec{w_1}$ et $\vec{w_2}$
+\end{prv}
+
+\begin{crlr}
+	Avec les hypothèses et notations précédentes, 
+	\begin{enumerate}
+		\item $\vec{w_1}$ et $\vec{w_2}$ sont collinéaires $\iff \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \in \R$
+		\item $\vec{w_1}$ et $\vec{w_2}$ sont orthogonaux $\iff \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \in i\R$
+	\end{enumerate}
+\end{crlr}
+
+\begin{prv}
+	\begin{enumerate}
+		\item
+			\begin{align*}
+				\vec{w_1} \text{ et } \vec{w_2} \text{ sont colinéaires}
+				&\iff \widehat{\left( \vec{w_1}, \vec{w_2} \right)} \equiv 0\mod\pi\\
+				&\iff \arg\left( \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right) \equiv 0 \mod \pi\\
+				&\iff \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \in \R
+			\end{align*}
+		\item
+			\begin{align*}
+				\vec{w_1} \text{ et } \vec{w_2} \text{ sont orthogonaux}
+				&\iff \widehat{\left( \vec{w_1}, \vec{w_2} \right)} \equiv \frac{\pi}{2}\mod\pi\\
+				&\iff \arg\left( \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \right) \equiv \frac{\pi}{2} \mod \pi\\
+				&\iff \frac{z_{\vec{w_1}}}{z_{\vec{w_2}}} \in i\R
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	\begin{wrapfigure}
+		{r}{0.5\textwidth}
+		\centering
+		\begin{asy}
+			import graph;
+			axes(); size(7cm);
+
+			dot("$O$", (0,0), align=SW);
+
+			void plane(pair O, real x1, real x2, real y1, real y2) {
+				for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+				for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+			}
+
+			plane((0,0), -3, 7, -1, 5);
+			pair w = (1,2);
+
+			draw((0,0)--w, red, Arrow(TeXHead));
+			label("$\vec{w}$", w/2, red, align=SE);
+
+			pair M = (3, 2);
+			pair M2 = M + w;
+
+			dot("$M$", M);
+			dot("$M'$", M2);
+
+			draw(M--M2, heavyred, Arrow(TeXHead));
+			label("$\vec{w}$", M + w/2, red, align=SE);
+		\end{asy}
+	\end{wrapfigure}
+	Soit $\vec{w} \in \vec{\mathcal{P}}$. La \underline{translation} de vecteur $\vec{w}$ est l'application
+	\begin{align*}
+		t_{\vec{w}}: \mathcal{P} &\longrightarrow \mathcal{P} \\
+		M &\longmapsto M'
+	\end{align*} où $M'$ vérifie $\vec{MM'} = \vec{w}$
+\end{defn}
+
+\begin{prop}
+	Soit $\vec{w} \in \vec{\mathcal{P}}$ et $(M,M') \in \mathcal{P}^2$ \[
+		M' = t_{\vec{w}}(M) \iff z_{M'} = z_M + z_{\vec{w}}
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		M' = t_{\vec{w}}(M) &\iff \vec{MM'} = \vec{w}\\
+												&\iff z_M - z_{M'} = z_{\vec{w}}\\
+												&\iff z_{M'} = z_M + z_{\vec{w}}
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	[Décrire l'ensemble {$E = \left\{M \in \mathcal{P} \mid \exists t \in \R, z_M = 1+e^{it}\right\}$}]
+	L'ensemble $\mathcal{C} = \left\{M \in \mathcal{P} \mid \exists t \in \R,  z_M = e^{it}\right\} $ est le cercle trigonométrique.
+	La translation $t_{\vec{u}}$ a pour expression complexe $z \mapsto z + 1$ 
+	Donc, $E=t_{\vec{u}}(\mathcal{C})$ est le cercle de rayon 1 et de centre le point d'affixe 1.
+\end{exm}
+
+\begin{prop}
+	Soient $\vec{w_1}, \vec{w_2}\in \vec{\mathcal{P}}$. \[
+		t_{\vec{w_2}} \circ t_{\vec{w_1}} = t_{\vec{w_1} + \vec{w_2}}
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soit $M \in \mathcal{P}$ d'affixe $z$. On pose $M_1 = t_{\vec{w_1}}(M)$ et $M' = t_{\vec{w_1}}(M_1)$ et on note également $M'' = t_{\vec{w_1}+\vec{w_2}} (M)$
+	\begin{align*}
+		z_{M'}
+		&= z_{M_1} + z_{\vec{w_2}}\\
+		&= (z + z_{\vec{w_1}}) + z_{\vec{w_2}}\\
+		&= z + z_{\vec{w_1} + \vec{w_2}} \\
+	\end{align*}
+	Donc, $M' = M''$\\
+\end{prv}
+
+\begin{defn}
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}
+			{r}{0.5\textwidth}
+			\centering
+			\begin{asy}
+				import graph;
+				size(7cm);
+
+				dot("$\Omega$", (0,0), align=SW);
+
+				void plane(pair O, real x1, real x2, real y1, real y2) {
+					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+				}
+
+				plane((0,0), -3, 7, -1, 5);
+				real t = 100;
+
+				draw(arc((0,0), 1.5, 0, t), red, Arrow(TeXHead));
+				label("$\theta$", dir(t/2) * 1.5, red, align=NE);
+
+				pair M = (3,0);
+				pair M2 = dir(t) * M;
+
+				dot("$M$", M);
+				dot("$M'$", M2);
+
+				draw(M2--(0,0)--M, dotted + 1);
+
+				draw(circle((0,0), length(M)), dashed + deepcyan);
+
+				xlimits(-3, 7);
+				ylimits(-1, 5);
+				crop();
+			\end{asy}
+		\end{wrapfigure}
+		Soit $\Omega \in \mathcal{P}$ et $\theta\in \R$.\\
+		La \underline{rotation} de centre $\Omega$ et d'angle $\theta$ est l'application \begin{align*}
+			\rho_{\Omega, \theta}: \mathcal{P} &\longrightarrow \mathcal{P} \\
+			M &\longmapsto M'
+		\end{align*} où  $M'$ vérifie  \[
+			\begin{cases}
+				\|\vec{\Omega M}\| = \|\vec{\Omega M'}\|\\
+				\widehat{(\vec{\Omega M}, \vec{\Omega M'}}) = \theta
+			\end{cases}
+		\]
+	\end{minipage}
+\end{defn}
+
+\begin{prop}
+	Soit $\Omega \in \mathcal{P}$ d'affixe $\omega$, $\theta \in \R	$ et $(M, M') \in \mathcal{P}^2$ \[
+		(*): \qquad M' = \rho_{\Omega, \theta}(M) \iff z_{M'} = \omega + e^{i\theta}(z_M - \omega)
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Cas 1]
+			On suppose $M \neq  \Omega$.
+			\begin{align*}
+				M' = \rho_{\Omega, \theta}(M)
+				&\iff
+				\begin{cases}
+					\| \vec{\Omega M} \| = \|\vec{\Omega M'}\|\\
+					\widehat{(\vec{\Omega M}, \vec{\Omega M'})} = \theta
+				\end{cases}\\
+				&\iff \begin{cases}
+					\left| z_{\vec{\Omega M}} \right| = \left| z_{\vec{\Omega M'}} \right|\\
+					\arg\left( \frac{z_{\vec{\Omega M}}}{z_{\vec{\Omega M'}}} \right)  = \theta
+				\end{cases}\\
+				&\iff e^{i\theta} = \frac{z_{\vec{\Omega M}}}{z_{\vec{\Omega M'}}}\\
+				&\iff z_{\vec{\Omega M'}} = e^{i\theta}z_{\vec{\Omega M}}\\
+				&\iff z_{M'} - \omega	 = e^{i\theta} (z_M - \omega)\\
+				&\iff z_{M'} = \omega + e^{i\theta}(z_M - \omega)
+			\end{align*}
+		\item[\sc Cas 2]
+			On suppose $M = \Omega$.\\
+			Alors,
+			 \begin{align*}
+				 M' = \rho_{\Omega, \theta}(M) &\iff M' = M\\
+																			 &\iff z_{M'} = z_M\\
+																			 &\iff z_{M'} = z_{M} + e^{i\theta} (z_{M} - z_{M})\\
+																			 &\iff z_{M'} = \omega + e^{i\theta} (z_{M} - \omega)\\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	[Cas particulier]
+	Si $\Omega = O$ alors  \[
+		(*) \iff z_{M'} = e^{i\theta}z_M
+	\] 
+\end{rmk}
+
+\begin{crlr}
+	Soit $\Omega\in \mathcal{P}$ d'affixe $\omega$ et $\theta \in \R$.
+	\begin{align*}
+		\rho_{\Omega,\theta} &= t_{\vec{O\Omega}}  \circ \rho_{O,\theta} \circ t_{\vec{\Omega O}}\\
+		&= t_{\vec{O\Omega}}  \circ \rho_{O,\theta} \circ (t_{\vec{O\Omega}})^{-1}\\
+	\end{align*}
+\end{crlr}
+
+\begin{prop}
+	Soient $(\Omega_1,\Omega_2)\in \mathcal{P}^2$ et $(\theta_1,\theta_2)\in \R^2$ \[
+		\rho_{\Omega_1,\theta_1} \circ \rho_{\Omega_1,\theta_2} =  \rho_{\Omega_1,\theta_1 + \theta_2} = \rho_{\Omega_1,\theta_2} \circ \rho_{\Omega_1,\theta_1}
+	\]
+	Si $\begin{cases}
+		\Omega_1 \neq \Omega_2\\
+		\theta_1 + \theta_2 \not\equiv 0\mod{2\pi}
+	\end{cases}$ alors $\rho_{\Omega_1,\theta_1} \circ \rho_{\Omega_2,\theta_2}$ est une rotation d'angle $\theta_1+\theta_2$\\
+
+	Si $\begin{cases}
+		\Omega_1 \neq \Omega_2\\
+		\theta_1 + \theta_2 \equiv 0\mod{2\pi}
+	\end{cases}$ alors $\rho_{\Omega_1,\theta_1} \circ \rho_{\Omega_2,\theta_2}$ est une translation
+\end{prop}
+
+\begin{prv}
+	On note $\omega_1$ l'affixe de $\Omega_1$ et $\omega_2$ l'affixe de $\Omega_2$. On pose $\rho_1 = \rho_{\Omega_1, \theta_1}$ et $\rho_2 = \rho_{\Omega_2, \theta_2}$\\
+	Soit $M \in \mathcal{P}$ d'affixe $z$. On pose
+	\begin{align*}
+		&M_2 = \rho_2(M)\\
+		&M' = \rho_1 \circ \rho_2(M) = \rho_1(M_2)
+	\end{align*}
+	et on note $z_2$ et $z'$ les affixes de $M_2$ et $M'$\\
+	On a
+	\begin{align*}
+		z' &= \omega_1 + e^{i\theta_1}(z_2-\omega_1)\\
+		&= \omega_1 + e^{i\theta_1}(\omega_2 + e^{i\theta_2}(z-\omega_2)-\omega_1) \\
+		&= \omega_1 + \omega_2e^{i\theta_1}-\omega_1e^{i\theta_1}+ e^{i(\theta_1+\theta_2)}(z-\omega_2) \\
+	\end{align*}
+
+	\begin{enumerate}
+		\item On suppose $\Omega_1 = \Omega_2$ donc $\omega_1 = \omega_2$. On a donc \[
+				z' = \omega_1 + e^{i(\theta_1 + \theta_2)}(z-\omega_1)
+			\]On reconnaît l'expression d'une rotation de centre $\Omega_1$ et d'angle $\theta_1+\theta_2$
+		\item On suppose $\Omega_1 \neq \Omega_2$ et $\theta_1 + \theta_2 \equiv 0 \mod{2\pi}$.
+			On a donc
+			\begin{align*}
+				z' &= \underbrace{\omega_1 + \omega_2e^{i\theta_1}-\omega_1e^{i\theta_1} - \omega_2}+z\\
+				&= z + \omega \\
+			\end{align*} On reconnaît l'expression d'une translation de vecteur $\omega$.
+		\item On suppose $\Omega_1\neq \Omega_2$ et $\theta_1+\theta_2 \not\equiv 0\mod{2\pi}$ \\
+			On cherche $\omega \in \C$ tel que
+			\begin{align*}
+				&\forall z \in \C, \omega + e^{i(\theta_1 + \theta_2)}(z-\omega) = \omega_1 + \omega_2e^{i\theta_1}-\omega_1e^{i\theta_1}+ e^{i(\theta_1+\theta_2)}(z-\omega_2)\\
+				\iff& \omega - e^{i(\theta_1 +\theta_2)}\omega = \omega_1 + \omega_2e^{i\theta_1}-\omega_1e^{i\theta_1}-\omega_2 e^{i(\theta_1+\theta_2)}\\
+				\iff& \omega= \frac{\omega_1+\omega_2e^{i\theta_1}-\omega_1e^{i\theta_1}-\omega_2e^{i(\theta_1+\theta_2)}}{1-e^{i(\theta_1+\theta_2)}}
+			\end{align*}
+			On reconnait l'expression complexe d'une rotation d'angle $\theta_1+\theta_2$ de centre $\Omega$ d'affixe $\omega$\\
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $\Omega\in \mathcal{P}$ d'affixe $\omega$, $\vec{w} \in \vec{\mathcal{P}}$ d'affixe $u$. Soit $\theta\in \R$ avec $\theta\not\equiv 0\mod{2\pi}$.
+	\begin{itemize}
+		\item $t_{\vec{w}} \circ \rho_{\Omega,\theta}$ est une rotation d'angle $\theta$
+		\item $\rho_{\Omega,\theta} \circ t_{\vec{w}}$ est aussi une rotation d'angle $\theta$
+	\end{itemize}
+\end{prop}
+
+\begin{prv}
+	Soit $M \in \mathcal{P}$ d'affixe $z$ et $M' = t_{\vec{w}} \circ \rho_{\Omega, \theta}(M)$ d'affixe $z'$ \\
+	On a alors: \[
+		z' = (\omega + e^{i\theta}(z-\omega))+u
+	\]
+	On cherche $\omega' \in \C$ tel que
+	\begin{align*}
+		&\forall z \in \C, \omega+u+e^{i\theta}(z-\omega) = \omega' + e^{i\theta}(z-\omega')\\
+		\iff& \omega+u-e^{i\theta}\omega = \omega' - e^{i\theta}\omega'\\
+		\iff& \omega' = \frac{\omega + u - e^{i\theta}\omega}{1-e^{i\theta}}
+	\end{align*}
+	On reconnaît l'expression complexe d'une rotation d'angle $\theta$
+\end{prv}
+
+\begin{defn}
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}{r}
+			{0.5\linewidth}
+			\centering
+			\begin{asy}
+				import graph;
+				size(7cm);
+
+				dot("$\Omega$", (0,0), align=SW);
+
+				void plane(pair O, real x1, real x2, real y1, real y2) {
+					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+				}
+
+				plane((0,0), -3, 7, -1, 5);
+				real k = 2.5;
+
+				pair M = (2,1);
+				pair M2 = k * M;
+
+				dot("$M$", M, align=S);
+				dot("$M'$", M2);
+
+				pair eps = (0,-0.03);
+
+				draw(eps -- M2 + eps, blue, Arrow(TeXHead));
+				label("$\lambda\times\vec{\Omega M}$", M2/2, blue, align=SE);
+
+				draw((0,0) -- M, red, Arrow(TeXHead));
+				label("$\vec{\Omega M}$", M/2, red, align=NW);
+
+				xlimits(-3, 7);
+				ylimits(-1, 5);
+				crop();
+			\end{asy}
+		\end{wrapfigure}
+
+		Soit $\Omega\in \mathcal{P}$ et $\lambda\in \R$.\\
+		L'\underline{homothétie} de centre $\Omega$ et de rapport $\lambda$ est l'application \begin{align*}
+			h_{\Omega,\lambda}: \mathcal{P} &\longrightarrow \mathcal{P} \\
+			M &\longmapsto M'
+		\end{align*} où $M'$ vérifie $\vec{\Omega M'} = \lambda \vec{\Omega M}$
+	\end{minipage}
+\end{defn}
+
+\begin{prop}
+	Soit $\Omega \in \mathcal{P}$ d'affixe $\omega$, $\lambda \in \R$. Soient $M \in \mathcal{P}$ d'affixe $z$ et $M' \in \mathcal{P}$ d'affixe $z'$. \[
+		M' = h_{\Omega,\lambda}(M) \iff z' = \omega + \lambda(z-\omega)
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		M' = h_{\Omega, \lambda}(M)
+		&\iff \vec{\Omega M'} = \lambda \vec{\Omega M}\\
+		&\iff z_{\vec{\Omega M'}} = z_{\lambda \vec{\Omega M}}\\
+		&\iff z' - \omega = \lambda (z-\omega)\\
+		&\iff z' = \omega + \lambda (z-\omega)
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soient $(\Omega_1, \Omega_2) \in \mathcal{P}^2$ et $(\lambda_1, \lambda_2) \in \mathcal{P}^2$ \\
+	\begin{enumerate}
+		\item Si $\Omega_1 = \Omega_2$ alors, $h_{\Omega_1, \lambda_1} \circ h_{\Omega_2, \lambda_2} = h_{\Omega_1, \lambda_1\lambda_2}$
+		\item Si $\Omega_1 \neq \Omega_2$ et $\lambda_1\lambda_2\neq 1$, alors, $h_{\Omega_1, \lambda_1} \circ h_{\Omega_2, \lambda_2}$ est une homotéthie de rapport $\lambda_1\lambda_2$
+		\item Si $\Omega_1 \neq \Omega_2$ et $\lambda_1\lambda_2 = 1$, alors, $h_{\Omega_1, \lambda_1} \circ h_{\Omega_2, \lambda_2}$ est une translation.
+	\end{enumerate}
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soit $\Omega \in \mathcal{P}$, $\lambda \in \R\setminus \{1\}$, $\vec{w} \in \vec{\mathcal{P}}$.\\
+	Alors, $t_{\vec{w}} \circ h_{\Omega, \lambda}$ et $h_{\Omega, \lambda} \circ t_{\vec{w}}$ sont homothéties de rapport $\lambda$.
+	\qed
+\end{prop}
+
+\begin{rmk}
+	[Cas particulier]
+	Soit $M \in \mathcal{P}$ d'affixe $z$, $\lambda\in \R$ et $M' = h_{O, \lambda}(M)$ d'affixe $z'$ \\
+	On a $z' = \lambda z$
+\end{rmk}
+
+\begin{defn}
+	\begin{minipage}
+		{\linewidth}
+		\begin{wrapfigure}[10]{r}
+			{0.5\linewidth}
+			\centering
+			\begin{asy}
+				import graph;
+				size(7cm);
+
+				dot("$\Omega$", (0,0), align=SW);
+
+				void plane(pair O, real x1, real x2, real y1, real y2) {
+					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+				}
+
+				plane((0,0), -3, 7, -1, 5);
+				real k = 2.5;
+				real t = 30;
+
+				pair M = (2,1);
+				pair Ma = k * M;
+				pair M2 = k * dir(t) * M;
+
+				dot("$M$", M, align=N);
+				dot("$M'$", M2);
+
+				draw((0,0) -- Ma, blue, Arrow(TeXHead));
+				label("$\times\lambda$", Ma/2, blue, align=SE);
+
+				draw((0,0) -- M2, magenta, Arrow(TeXHead));
+
+				draw(arc((0,0), length(Ma) / 1.5, degrees(M), degrees(M2)), green, Arrow(TeXHead));
+				label("$\theta$", length(Ma) * dir(t/2 + degrees(M)) / 1.5, green, align=NE);
+
+				draw((0,0) -- M, red, Arrow(TeXHead));
+				label("$\vec{\Omega M}$", M/2, red, align=SE);
+
+				xlimits(-3, 7);
+				ylimits(-1, 5);
+				crop();
+			\end{asy}
+		\end{wrapfigure}
+
+		Soient $\Omega\in \mathcal{P}$, $(\theta,\lambda)\in \R^2$.
+		La \underline{similitude (directe)} de centre $\Omega$, d'angle $\theta$ et de rapport $\lambda$ est \[
+			S_{\Omega,\theta,\lambda} = h_{\Omega,\lambda} \circ \rho_{\Omega, \theta}
+		\] 
+	\end{minipage}
+\end{defn}
+
+\begin{prop}
+	\begin{minipage}
+		{0.5\linewidth}
+		Avec les notations précédentes, \[
+			S_{\Omega,\theta,\lambda} = \rho_{\Omega, \theta} \circ h_{\Omega,\lambda}
+		\] 
+	\end{minipage}
+\end{prop}
+
+\begin{prv}
+	On note $\omega$ l'affixe de $\Omega$.
+	L'expression complexe de $S_{\Omega, \theta, \lambda}$ est
+	\begin{align*}
+		z' &= \omega + \lambda(\omega + e^{i\theta}(z-\omega) - \omega)\\
+		&= \omega + \lambda e^{i\theta}(z-\omega) \\
+	\end{align*}
+	L'expression complexe de $\rho_{\Omega, \theta} \circ h_{\Omega, \lambda}$ est
+	\begin{align*}
+		z' &= \omega + e^{i\theta}(\omega+\lambda(z-\omega) -\omega)\\
+		&= \omega + \lambda e^{i\theta}(z-\omega) \\
+	\end{align*}
+	Les deux expressions sont identiques.
+\end{prv}
+
+\begin{prop}
+	L'expression complexe de $S_{\Omega,\theta,\lambda}$ est \[
+		z' = \omega + \lambda e^{i\theta}(z-\omega)
+	\] 
+\end{prop}

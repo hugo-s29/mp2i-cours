@@ -1,0 +1,81 @@
+\part{Exercice 12}
+
+\[
+	\begin{array}
+		{c|c|c}
+		a_{11}&a_{12}&a_{13}\\ \hline
+		a_{21}&a_{22}&a_{23}\\ \hline
+		a_{31}&a_{32}&a_{33}\\
+	\end{array}
+\]
+\[
+	\frac{S}{3}
+		\underbrace{\left(\begin{array}
+			{c|c|c}
+			1&1&1\\\hline
+			1&1&1\\\hline
+			1&1&1\\
+		\end{array}
+	\right)}_{C_1}
+\]
+\[
+	\left.
+	\begin{array}{c}
+		\begin{cases}
+		a_{11}+a_{12}+a_{13} = 0\\
+		\vdots\\
+		a_{11}+a_{22}+a_{33} = 0\\
+		\end{cases}\\
+	\end{array} \right)
+	\begin{array}{c}
+		8 \text{ équations}\\
+		9 \text{ inconnues}
+	\end{array} 
+\] 
+
+\begin{align*}
+	\begin{array}
+		{c|c|c}
+		a&-a-b&b\\ \hline
+		b-a&0&-b+a\\ \hline
+		-b&a+b&-a\\
+	\end{array}
+	&= a
+	\left(\begin{array}
+		{c|c|c}
+		1&-1&0\\ \hline
+		-1&0&1\\ \hline
+		0&1&-1\\
+	\end{array}\right)
+	+b
+	\left(\begin{array}{c|c|c}
+		0&-1&1\\ \hline
+		1&0&-1\\ \hline
+		-1&1&0\\
+	\end{array}\right)\\
+\end{align*}
+
+L'ensemble $\mathcal{C}$ des carrés magiques est $\left\{ \frac{S}{3}C_1+aC_2+bC_3 \mid (a,b,S) \in \mathbbm{K} \right\} = \Vect(C_1,C_2,C_3)$.\\
+
+Montrons que $(C_1,C_2, C_3)$ est libre. Soit $(\lambda, a,b)\in \mathbbm{K}^3$\\
+\begin{align*}
+	&\lambda C_1 + a C_2 + b C_3 = 0\\
+	&\iff
+	\begin{array}
+		{c|c|c}
+		\lambda+a&\lambda-a-b&\lambda+b\\ \hline
+		\lambda+b-a&\lambda&\lambda-b + a\\ \hline
+		\lambda-b&\lambda+a+b&\lambda-a\\
+	\end{array} = 
+	\begin{array}
+		{c|c|c}
+		0&0&0\\ \hline
+		0&0&0\\ \hline
+		0&0&0\\
+	\end{array}\\
+	&\iff \begin{cases}
+		\lambda = 0\\
+		a = 0\\
+		b = 0
+	\end{cases}
+\end{align*}

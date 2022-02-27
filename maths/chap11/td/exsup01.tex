@@ -1,0 +1,74 @@
+\part{Exercice}
+Pour $n \in \N$, \[
+	(E_n): x^{5} + nx - 1 = 0
+\] 
+On pose $\forall n \in \N, f_n: x \mapsto x^{5} + nx - 1$.\\
+$\forall n \in \R, f'_n(x) = 5x^{4}+ n > 0$ sauf si $\begin{cases}
+	 x = 0\\
+	 n = 0
+\end{cases}$ \\
+
+$u_n$ est le seul réel tel que $f_n(u_n) = 0$.
+
+\begin{center}
+	\begin{tikzpicture}
+		\tkzTabInit{$x$ /1, $f_n$/ 2}{$-\infty$,$+\infty$}
+		\tkzTabVar{-/$-\infty$,+/$+\infty$ } 
+		\tkzTabVal{1}{2}{0.33}{0}{-1}
+		\tkzTabVal{1}{2}{0.66}{$u_n$}{0}
+	\end{tikzpicture}
+\end{center}
+
+Soit $n \in \N$.
+\begin{align*}
+	f_n(u_{n+1}) &= u_{n+1}^{5} + nu_{n+1} -1\\
+	&= \underbrace{u_{n+1}^5 (n+1)u_{n+1} - 1}_{f_{n+1}(u_{n+1})} - u_{n+1} \\
+	&= -u_{n+1} < 0 \\
+\end{align*}
+
+Donc $u_{n+1} < u_n$.\\
+Les suites $(u_n)$ est décroissante minorée par $0$ donc \fbox{elle converge}.\\
+
+On pose $\ell = \lim_{n\to +\infty} u_n$.\\
+On sait que  \[
+\forall n \in \N, u_n^5 + nu_n - 1 = 0
+\] 
+Or,
+\begin{align*}
+	u_n^5 &\tendsto{n \to +\infty} \ell^5\\
+	nu_n &\tendsto{n \to +\infty} \begin{cases}
+		-\infty \text{ si } \ell < 0\\
+		+\infty \text{ si } \ell > 0\\
+	\end{cases}
+\end{align*}
+
+Si, $\ell < 0$ alors $u_n^5 + nu_n -1 \tendsto{} -\infty \neq 0$.\\
+Si, $\ell > 0$ alors $u_n^5 + nu_n -1 \tendsto{} +\infty \neq 0$.\\
+Donc, \fbox{$\ell = 0$}\\
+
+Or, \[
+	\forall n \in \N, nu_n = 1 - u_n^5 \tendsto{n \to +\infty} 1
+\] donc \fbox{$u_n \sim_{n\to +\infty} \frac{1}{n}$}\\
+
+$u_n = \frac{1}{n} + o_{n\to +\infty}\left(\frac{1}{n}\right)$\\
+Donc, 
+\begin{align*}
+	\forall n \in \N, nu_n &= 1 - \left( \frac{1}{n} + o\left( \frac{1}{n} \right)  \right)  \\
+	&= 1 - \frac{1}{n^5}(1+o(1))^5 \\
+	&= 1 - \frac{1}{n^5}(1 + o(1)) \\
+	&= 1 - \frac{1}{n^5}+ o\left( \frac{1}{n^5} \right) \\
+\end{align*}
+Donc, \[
+u_n = \frac{1}{n} - \frac{1}{n^6} + o\left( \frac{1}{n^6} \right) 
+\] 
+
+\begin{align*}
+	\forall n \in \N_*, nu_n &= 1 - \left( \frac{1}{n} - \frac{1}{n^6} + o\left( \frac{1}{n^6} \right)  \right) ^5 \\
+	&= 1 - \frac{1}{n^5}\left( 1 - \frac{1}{n^5} + o\left( \frac{1}{n^5} \right) \right) ^5 \\
+	&= 1 - \frac{1}{n^5}\left( 1 - \frac{5}{n^5}+o\left( \frac{1}{n^5} \right)  \right)  \\
+	&= 1 - \frac{1}{n^5} + \frac{5}{n^{10}} + o\left( \frac{1}{n^10} \right)  \\
+\end{align*}
+
+Donc, \[
+	u_n = \frac{1}{n} - \frac{1}{n^6} + \frac{5}{n^{11}} + o\left( \frac{1}{n^{11}} \right) 
+\] 

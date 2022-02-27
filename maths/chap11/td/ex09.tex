@@ -1,0 +1,81 @@
+\part{Exercice 9}
+
+\begin{center}
+	\Large Hyper classique!
+\end{center}
+
+\begin{enumerate}
+	\item $f: x \mapsto \frac{1}{x}$ \\
+		\begin{center}
+			\begin{asy}
+				import graph;
+				import patterns;
+
+				add("hatch1",hatch(2mm, heavycyan));
+				add("hatch2",hatch(2mm, magenta));
+
+				size(5cm);
+
+				real f(real x) {return 1/x;}
+
+				real a = 3;
+				real k = 2.5;
+
+				draw(graph(f, 1/a, a + 2));
+				axes(EndArrow);
+
+				label("\small $k$", (k,-0.25));
+				label("\small $k-1$", (k-1,-0.25));
+				label("\small $k+1$", (k+1,-0.25));
+
+				draw((k,0) -- (k, f(k)), dotted);
+				draw((k-1,0) -- (k-1, f(k-1)), dotted);
+				draw((k+1,0) -- (k+1, f(k+1)), dotted);
+
+				filldraw((k-1, 0) -- (k-1,f(k)) -- (k,f(k)) -- (k,0) -- cycle, pattern("hatch1"), heavycyan);
+				filldraw((k+1, 0) -- (k+1,f(k)) -- (k,f(k)) -- (k,0) -- cycle, pattern("hatch2"), magenta);
+			\end{asy}
+		\end{center}
+		\[
+			\forall k > 2,
+			\int_{k}^{k+1} \frac{1}{x} dx \le \frac{1}{k} \le \int_{k-1}^{k} \frac{1}{x} dx
+		\]
+
+		Or, \[
+			\ln(k+1) - \ln(k) \le \frac{1}{k} \le \ln(k) - \ln(k-1)
+		\] donc \[
+			\forall k \ge  2,
+			\ln\left( \frac{k-1}{k} \right) \le \frac{1}{k}
+		\] et  \[
+			\forall k \ge 1, \frac{1}{k+1}\le \ln\left( \frac{k+1}{k} \right)
+		\]
+	\item Soit $n \in \N_*$ \\
+		\begin{align*}
+			u_{n+1} - u_n &= \sum_{k=1}^{n+1} \frac{1}{k} - \ln(n+1) - \sum_{k=1}^{n}\frac{1}{k} + \ln(n)\\
+			&= \frac{1}{n+1} - \ln\left( \frac{n+1}{n} \right) \le 0\\
+		\end{align*}
+		\begin{align*}
+			v_{n+1} - v_n &= \sum_{k=1}^{n+1}\frac{1}{k}- \ln(n+2) + \sum_{k=1}^n \frac{1}{k} + \ln(n+1)\\
+			&= \frac{1}{n+1} - \ln\left( \frac{n+2}{n+1} \right)  \\
+		\end{align*}
+		\[
+			u_n - v_n = -\ln(n+1) +\ln(n) = \ln\left( \frac{n}{n+1} \right) \tendsto{n\to +\infty} 0
+		\] 
+	\item $(u_n)$ converge, on note $\gamma$ sa limite: \[
+			u_n = \gamma + o(1)
+		\] 
+		donc \[
+			\sum_{k=1}^n \frac{1}{k} - \ln(n) = \gamma + o(1)
+		\] donc
+		\begin{center}
+			\fbox{$\sum_{k=1}^n \frac{1}{k} = \ln(n) + \gamma + o(1)$}
+		\end{center}
+	\item $S_n \sim \ln(n) \tendsto{n \to +\infty} +\infty$
+	\item
+		\begin{align*}
+			\sum_{k=n}^{2n}\frac{1}{k} &= \sum_{k=1}^{2n}\frac{1}{k} - \sum_{k=1}^{n-1} \frac{1}{k} \\
+			&= \ln(2n) + \gamma + o(1) - \ln(n-1) - \gamma + o(1)\\
+			&= \ln\left( \frac{2n}{n-1}+o(1) \right) \\
+			&\tendsto{n \to +\infty} \ln 2
+		\end{align*}
+\end{enumerate}

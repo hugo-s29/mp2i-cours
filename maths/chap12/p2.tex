@@ -1,0 +1,355 @@
+\part{Anneaux}
+
+\begin{defn}
+	Un \underline{anneau} $(A,+,\times)$ est un ensemble $A$ muni de deux lois de compositions \underline{internes} notées $+$ et $\times$ vérifiant
+	\begin{enumerate}
+		\item $(A,+)$ est un groupe commutatif (son neutre est noté $0_A$)
+		\item $(A,\times)$ est un \underline{monoïde}
+			\begin{enumerate}
+				\item $\times$ est associative
+				\item  $\times$ a un neutre $1_A \in A$
+			\end{enumerate}
+		\item distributivité à gauche et à droite: \[
+			 \forall (a,b,c) \in A^3, 
+			 \begin{cases}
+				 a\times (b + c) = (a\times b) + (a\times c)\\
+				 (b+c) \times a = (b \times a) + (c \times a)
+			 \end{cases}
+		\]
+	\end{enumerate}
+\end{defn}
+
+\begin{rmk}
+	[Convention]
+
+	Soit $(A, +, \times)$ un anneau.\\
+	On convient que la multiplication est prioritaire sur l'addition. \[
+		(a\times b) + (a\times c) = a\times b + a \times c
+	\]
+	et l'exponentiation est prioritaire sur la multiplication ($n \in \N$)
+	\begin{align*}
+		a \times b^n &= a \times (\underbrace{b \times b \times \cdots \times b}_{n \text{ fois}})\\
+								 &\neq (a\times b)^n 
+	\end{align*}
+\end{rmk}
+
+\begin{prop}
+	Soit $(A, +, \times)$ un anneau. Alors, $0_A$ est absorbant \[
+		\forall  a \in A, a \times 0_A = 0_A \times a = 0_A
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $a \in A$. On pose $b = a \times 0_A \in A$.
+	\begin{align*}
+		b = a \times 0_A &= a \times (0_A + 0_A) = a \times 0_A + a \times 0_A \\
+		&= b + b~(= 2b) \\
+	\end{align*}
+	Donc, \[
+		-b + b = -b + b + b
+	\] donc $0_A = b$\\
+	De même, $0_A \times  a = 0_A$.
+\end{prv}
+
+\begin{rmk}
+	On peut imaginer  $\begin{cases}
+		a \times b = 0_A\\
+		a \neq 0_A\\
+		b \neq 0_A
+	\end{cases}$
+\end{rmk}
+
+\begin{exm}
+	\begin{itemize}
+		\item $(\Z / 4\Z, +, \times)$ est un anneau \[
+				\begin{cases}
+					\overline{2} \times \overline{2} = \overline{0} &\text{ car } 4 \equiv 0~[4]\\
+					\overline{2} \neq \overline{0} &\text{ car } 2 \not\equiv 0 ~ [4]
+				\end{cases}
+			\] 
+		\item $(\mathcal{M}_2(\C), +, \times)$ est un anneau (non commutatif)
+			\begin{align*}
+				A &= \begin{pmatrix} 0&1\\0&0 \end{pmatrix} \neq \begin{pmatrix} 0&0\\0&0 \end{pmatrix} = 0_A \\
+				A^2 &= \begin{pmatrix} 0&0\\0&0 \end{pmatrix} \\
+			\end{align*}
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	On dit qu'un anneau $(A, +, \times)$ est \underline{intègre} si \[
+		\forall (a,b) \in A^2, \left( a \times b = 0_A \implies a = 0_A \text{ ou } b = 0_A \right) 
+	\]\\
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $(\Z,+,\times)$ est intègre\\
+		\item $\forall p$ premier, $(\Z / p\Z, +, \times)$ est intègre (car tout élément non nul de $\Z / p\Z$ est inversible donc simplifiable)
+	\end{itemize}
+\end{exm}
+
+\begin{exm}
+	Soit $(A, +, \times)$ un anneau et $(a,b) \in A^2$.
+	\begin{align*}
+		(a+b)^2 &= (a+b)\times (a+b) \\
+		&= (a+b) \times a + (a+b) \times b \\
+		&= a^2 + b\times a + a\times b + b^2 \\
+	\end{align*}
+	Si $a$ et $b$ commutent, alors, $a\times b = b\times a$ et donc $(a+b)^2 = a^2+b^2+2ab$\\
+	\vspace{3mm}
+	\begin{align*}
+		(a+b)^3 &= (a+b)\times (a+b)\times (a+b)\\
+		&= a^3 + a^2\times b  + a \times b \times a + b\times a^2\\
+		& + b^2\times a+ b\times a\times b + a\times b^2 + b^3\\
+	\end{align*}
+	Si $a$ et $b$ commutent, \[
+		(a+b)^3 = a^3+3a^2b+3ab^2+b^3
+	\] 
+\end{exm}
+
+\begin{prop}
+	Soient $(A, +, \times)$ un anneau, $(a,b) \in A^2$, $n \in \Z$. Alors, \[
+		n(a\times b) = (na)\times b = a\times (nb)
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item \'Evident si $n = 0$
+		\item On suppose $n > 0$.
+			\begin{align*}
+				(n (a\times b) &= \underbrace{a\times b + \cdots + a\times b}_{n \text{ fois}} \\
+				&= \sum_{k=1}^{n} (a\times b) \\
+				&= a\times \sum_{k=1}^n = a \times (nb) \\
+				&= \left( \sum_{k=1}^n a \right) \times b = (na) \times b \\
+			\end{align*}
+		\item On suppose $n < 0$. On pose $n = -p$ avec $p = \N_*$.
+			\begin{align*}
+				n(a\times b) &= (-p)(a\times b) = -\left( p(a\times b) \right) \\
+				&= -\left( (pa)\times b \right) = (-p)a \times b =  (na)\times b\\
+				&= -\left( a\times (pb) \right) = a \times (-pb) =  a\times (nb)\\
+			\end{align*}
+			En effet,  \[\forall (a',b') \in A^2
+				(-a')\times b' + a'\times b' = (-a'+a')\times b' = 0_A \times b' = 0_A
+			\] donc $-\left( a'\times b' \right) = \left( -a' \right) \times b'$
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	[Formule du binôme de Newton]
+	Soient $(A,+,\times)$ un anneau, $(a,b) \in A^2$, $n \in \N$.\\
+	Si $a$ et $b$ commutent alors \[
+		(a + b)^n = \sum_{k=0}^n {n \choose k} a^k b^{n-k}
+	\]
+\end{thm}
+
+\begin{prv}
+	[par récurrence sur $n$]
+\end{prv}
+
+\begin{prop}
+	Soient $(A,+,\times)$ un anneau, $(a,b) \in A^2$ et $n \in \N_*$.\\
+	Si $a$ et $b$ commutent, alors \[
+		a^n - b^n = (a-b) \sum_{k=0}^{n-1} a^kb^{n-1-k}
+	\] \qed
+\end{prop}
+
+\begin{prop}
+	On note $A^\times$ l'ensemble des éléments inversibles d'un anneau $(A,+,\times)$.\\
+	$(A^\times,\times)$ est un groupe.
+	\qed
+\end{prop}
+
+\begin{exm}
+	\begin{itemize}
+		\item $\Z^\times = \{-1,1\}$ 
+		\item $\mathcal{M}_n(\C)^\times = GL_n(\C)$ 
+		\item $\left( \Z / 4\Z \right) ^\times = \left\{ \overline{1}, \overline{3} \right\}$
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $(A,+,\times)$ un anneau \underline{commutatif}.
+	\begin{enumerate}
+		\item Soient $(a,b) \in A^2$. On dit que $a$ \underline{divise} $b$ s'il existe $k \in A$ tel que $b = a\times k$. On dit aussi que $a$ est un \underline{diviseur} de $b$ et que $b$ est un \underline{multiple} de $a$.
+		\item On dit que $a$ et $b$ sont \underline{associés} s'il existe $k \in A^\times$ tel que $ak = b$ (dans ce cas, $a \mid b$ et $b \mid a$)
+	\end{enumerate}
+\end{defn}
+
+\begin{rmk}
+	Le théorème des deux carrés peut se démontrer en exploitant les propriétés arithmétiques de l'anneau $(Z[i],+,\times)$ où $Z[i] = \{a+ib  \mid a\in \Z, b\in \Z\}$.\\
+	$\Z[i]^\times = \{1,-1,i,-i\}$
+
+	\begin{center}
+		\underline{Théorème des deux carrés:}
+	\end{center}
+	\begin{enumerate}
+		\item Soit $p$ un nombre premier. \[
+				\exists (a,b)\in \N^2, p = a^2+b^2 \iff p \equiv 1 ~[4]
+			\]
+		\item Soit $n \in \N_*$, $n = \prod_{p \in \mathcal{P}} p^{\alpha(p)}$ \[
+				\exists (a,b)\in \N^2, n = a^2 + b^2 \iff\forall p \in \mathcal{P} \text{ tel que }\alpha(p) \neq 0, p \equiv 1~[4]
+			\] 
+	\end{enumerate}
+\end{rmk}
+
+\begin{defn}
+	Soit $(A,+,\times)$ un anneau et $B \subset A$. On dit que $B$ est un \underline{sous anneau} de $A$ si
+	\begin{enumerate}
+		\item $B$ est un sous groupe de $(A,+)$ 
+		\item $\forall (a,b) \in B^2, a\times b \in B$
+		\item $1_A \in B$
+	\end{enumerate}
+\end{defn}
+
+\begin{exm}
+	$Z[i]$ est un sous anneau de $(\C, +, \times)$
+\end{exm}
+
+\begin{prop}
+	Soit $(A, +, \times)$ un anneau et $B$ un sous anneau de $A$. Alors, $(B,+,\times)$ est un anneau.
+	\qed
+\end{prop}
+
+\begin{exo}[Exercice à connaître]
+	Soit $(A, +, \times)$ un anneau. Le \underline{centre} de $A$ est \[
+		Z(A) = \left\{x \in A  \mid \forall a \in A, a\times x = x \times a \right\} 
+	\] $Z(A)$ est un sous anneau de $A$.
+\end{exo}
+
+\begin{prop}
+	Soit $(A,+,\times)$ un anneau.\\
+	Si $0_A=1_A$ alors $A = \{0_A\}$. On dit alors que $A$ est l'anneau nul.
+\end{prop}
+
+\begin{prv}
+	Soit $a \in A$. \[
+		a = a \times 1_A = a \times 0_A = 0_A
+	\] 
+\end{prv}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+
+\begin{defn}
+	Soient $(A, \blue+, \blue\times)$ et $(B, \red+, \red\times)$ deux anneaux (les lois notés de la même façon mais ne sont pas forcément les mêmes!).\\
+	Soit $f: A \to B$. On dit que $f$ est un \underline{(homo)morphisme d'anneaux} si
+	\begin{enumerate}
+		\item $\forall (a,b) \in A^2, f(a ~\blue+~ b) = f(a) ~\red+~ f(b)$
+		\item $\forall (a,b) \in A^2, f(a ~\blue\times~ b) = f(a) ~\red\times~ f(b)$
+		\item $f(1_A) = 1_B$
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, {\bf si}  $a \in A^\times$ alors $f(a) \in B^\times$ et dans ce cas,  \[
+		f(a)^{-1} = f\left( a^{-1} \right) 
+	\] 
+\end{prop}
+
+\begin{prv}
+	On suppose $a \in A^\times$. \[
+	\begin{cases}
+		f\left( a^{-1} \right) ~\red\times~ f(a) = f\left( a^{-1} ~\blue\times~ a \right) = f(1_A) = 1_B\\
+		f(a) ~\red\times~ f\left( a^{-1} \right)= f\left(a ~\blue\times~  a^{-1} \right) = f(1_A) = 1_B\\
+	\end{cases}
+	\]
+	Donc, $f(a) \in B^\times$ et $f(a)^{-1}= f\left( a^{-1} \right)$
+\end{prv}
+
+\begin{defn}
+	Soient $(A,\blue+, \blue\times)$ et $(B, \red+, \red\times)$ deux anneaux et $f: A \to B$ un morphisme d'anneaux.\\
+	On dit que $f$ est un
+	\begin{itemize}
+		\item \underline{isomorphisme d'anneaux} si $f$ est bijective
+		\item \underline{endomorphisme d'anneaux} si $\begin{cases}
+				A = B\\
+				\red+ = \blue+\\
+				\red\times = \blue\times 
+			\end{cases}$ 
+		\item \underline{automorphisme d'anneaux} si $f$ est à la fois un isomorphisme et un endomorphisme d'anneaux
+	\end{itemize}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Soit $a \in \Z$ et \begin{align*}
+				f: \Z &\longrightarrow \Z \\
+				x &\longmapsto ax
+			\end{align*}
+			$f$ endomorphisme d'anneaux $\iff a = 1$ 
+		\item \begin{align*}
+				f: \mathcal{M}_n(\C) &\longrightarrow \mathcal{M}_n(\C) \\
+				A &\longmapsto A^2
+			\end{align*}
+			$f$ n'est pas un morphisme d'anneaux car \[
+				(A+B)^2 \neq A^2 + B^2
+			\] 
+		\item \begin{align*}
+				f: \C &\longrightarrow \C \\
+				z &\longmapsto \overline{z}
+			\end{align*} est un automorphisme d'anneaux
+		\item  \begin{align*}
+				f: \Z &\longrightarrow \R \\
+				x &\longmapsto x
+			\end{align*}
+			$f$ est un morphisme d'anneaux mais ce n'est pas un endomorphisme.
+		\item  \begin{align*}
+				f: \Z &\longrightarrow \Z / n\Z \\
+				k &\longmapsto \overline{k}
+			\end{align*}
+			$f$ est un morphisme d'anneaux surjectif.
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	La composée de deux morphismes d'anneaux est un morphisme d'anneaux.
+	\qed
+\end{prop}
+
+\begin{prop}
+	La réciproque d'un isomorphisme d'anneaux est un isomorphisme d'anneaux.
+	\qed
+\end{prop}
+
+\begin{prop}
+	L'ensemble des automorphismes d'anneaux de $A$ est un sous groupe de $(S(A), \circ)$.
+	\qed
+\end{prop}
+
+\begin{prop}
+	L'image directe ou réciproque d'un sous anneau par un morphisme d'anneaux est un sous anneaux.
+\end{prop}
+
+\begin{defn}
+	Soi $f: A \to B$ un morphisme d'anneaux. Le \underline{noyau} de $f$ est \[
+		\Ker(f) = \{a \in A \mid f(a) = 0_B\} 
+	\]  
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédents, \[
+		f \text{ injective } \iff \Ker(f) = \{0_A\} 
+	\] 
+	\qed
+\end{prop}
+
+\begin{rmk}
+	$\Ker(f)$ n'est pas un sous anneau en général (car $1_A \not\in \Ker(f)$ sauf si $A = \{0_A\}$)
+\end{rmk}
+
+\begin{defn}
+	Soit $(A,+,\times)$ un anneau et $a \in A\setminus \{0_A\}$.\\
+	On dit que $a$ est un \underline{diviseur de zéro} s'il existe $b \in A \setminus \{0_A\} $ tel que $a\times b = b\times a = 0_A$
+\end{defn}
+
+\begin{prop}
+	Les diviseurs de zéro ne sont pas inversibles.
+	\qed
+\end{prop}
+
+\begin{exm}
+	$A = \mathcal{M}_2(\C)$ \\
+	$M=\begin{pmatrix} 0&1\\0&0 \end{pmatrix}$ est un diviseur de zéro\\
+	car $M \times M = \begin{pmatrix} 0&0\\0&0 \end{pmatrix} $
+\end{exm}

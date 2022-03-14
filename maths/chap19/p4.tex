@@ -1,0 +1,416 @@
+\part{Formes linéaires}
+
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel. Une \underline{forme linéaire} sur $E$ est une application linéaire de $E$ dans $\mathbbm{K}$.\\
+	L'ensemble des formes linéaires est noté $E^* = \mathcal{L}(E, \mathbbm{K})$. $E^*$ est appelé \underline{espace dual} de $E$.
+\end{defn}
+
+\begin{prop}
+	Toute forme linéaire est soit nulle, soit surjective.
+\end{prop}
+
+\begin{prv}
+	Soit $f \in E^*$.\\
+	$\mathrm{Im}(f)$ est un sous-espace vectoriel de $\mathbbm{K}$ donc $\rg(f) \le \dim(\mathbbm{K}) = 1$.\\
+	Si $\rg(f) = 0$, alors $\mathrm{Im}(f) = \{0\}$ et donc \[
+		\forall x \in E, f(x) = 0
+	\]
+	Si $\rg(f) = 1$, alors $\mathrm{Im}(f) = \mathbbm{K}$ et donc $f$ est surjective.
+\end{prv}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie $n$ et $f \in E^* \setminus \{0\}$. Alors $\Ker(f)$ est de dimension $n-1$.
+\end{prop}
+
+\begin{prv}
+	Comme $f \neq 0$, donc $\rg(f) = 1$ \\
+	D'après le théorème du rang, \[
+		\dim\big(\Ker(f)\big) = \dim(E) - \rg(f) = n - 1
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie $n$ et $H$ un sous-espace vectoriel de $E$ de dimension $n-1$. Alors, \[
+		\exists f \in E^*, \Ker(f) = H
+	\]
+
+	\begin{center}
+		\begin{asy}
+			import three;
+			import labelpath3;
+
+			settings.render = 0;
+			settings.prc = false;
+
+			size(12cm);
+
+			draw((1,1,0)--(1,-1,0)--(-1,-1,0)--(-1,1,0)--cycle);
+			draw((0,0,0)--(0,0.5,0), deepcyan, Arrow3(TeXHead2));
+			label("$h$", (0, 0.25, 0), deepcyan, align=N);
+
+			draw((0, 0, 0) -- (1, 0, -1), blue);
+			draw((-0.4, 0, 0.4) -- (-1, 0, 1), blue);
+			draw((0, 0, 0) -- (-0.4, 0, 0.4), red, Arrow3(TeXHead2));
+			label("$\lambda u$", (-0.2, 0, 0.2), red, align=W);
+
+			triple x = (-0.4, 0.5, 0.4);
+			draw((0,0,0)--x, magenta, Arrow3(TeXHead2));
+			label("$x$", x / 2, magenta, align=SE);
+
+			dot((-2, 2, 0), white + 0);
+			dot((-3, 3, 0), white + 0);
+
+			draw((1.8,0)--(2.05,0), black+1, Arrow(TeXHead));
+			label("$f$", (2,0.1), align=N);
+			draw((2.05,0)--(2.2,0), black+1);
+
+			draw((2.5, 0) -- (4, 0));
+			dot("$0$", (3, 0), align=S);
+			dot("$\lambda$", (3.6, 0), align=S);
+			label("$\mathbbm{K}$", (4,0), align=NE);
+		\end{asy}
+	\end{center}
+\end{prop}
+
+\begin{prv}
+	Soit $D$ un supplémentaire de $H$ dans $E$: \[
+		E = H \oplus D
+	\]
+	Nécessairement, \[
+		\dim(D) = \dim(E) - \dim(H) = 1
+	\]
+	Soit $u \in D \setminus \{0\}$.  $D = \Vect(u)$\\
+	On pose $f : \begin{array}{rcl}
+		E &\longrightarrow& \mathbbm{K} \\
+		\begin{array}{r}
+			\fontsize{5pt}{5pt}\selectfont
+			x = h + \lambda u\\
+			(h \in H, \lambda \in \mathbbm{K})
+		\end{array} &\longmapsto& \lambda
+	\end{array}$\\
+	Montrons que $f \in E^*$.\\
+	Soient $(x,y) \in E^2, (\alpha, \beta) \in \mathbbm{K}^2$.\\
+	On pose \[
+		\begin{cases}
+			x = h + \lambda u, \qquad h \in H, \lambda \in \mathbbm{K}\\
+			y = h' + \lambda' u, \qquad h' \in H, \lambda' \in \mathbbm{K}\\
+		\end{cases}
+	\] D'où,
+	\begin{align*}
+		\alpha x + \beta y &=  \alpha (h + \lambda u) + \beta (h' + \lambda'u) \\
+		&= \underbrace{(\alpha h + \beta h')}_{\in H} + \underbrace{(\alpha \lambda + \beta \lambda')}_{\in \mathbbm{K}} u \\
+	\end{align*}
+	Donc,
+	\begin{align*}
+		f(\alpha x + \beta y) &= \alpha \lambda + \beta \lambda' \\
+		&= \alpha f(x) + \beta f(y) \\
+	\end{align*}
+	Soit $x \in E$. On pose $x = h + \lambda u$ avec $h \in H$ et $\lambda \in \mathbbm{K}$ \\
+	\begin{align*}
+		x \in \Ker(f) \iff& f(x) = 0\\
+		\iff& \lambda = 0\\
+		\iff& x = y\\
+		\iff& x \in H
+	\end{align*}
+	Donc, $H = \Ker(f)$.\\
+\end{prv}
+
+\begin{exm}
+	$E = \R^4$, $H = \Vect\big((1,0,0,1), (1,1,0,0), (0,1,1,0)\big)$ \\
+	Soit $u = (1, 2, 1, 1) \not\in H$.\\
+	Soit $(x,y,z,t) \in E$. On cherche $(\alpha, \beta, \gamma, \lambda)\in \R^4$ tels que \[
+		(*) \qquad (x,y,z,t) = \alpha (1,0,0,1) + \beta (1,1,0,0) + \gamma(0,1,1,0) + \lambda(1,2,1,1)
+	\] Plus précisément, on cherche à exprimer $\lambda$ en fonction de $x,y,z,t$.
+	\begin{align*}
+		(*) &\iff \begin{cases}
+			\alpha + \beta + \gamma = x\\
+			\beta + \gamma + 2\lambda = y\\
+			\gamma +\lambda = z\\
+			\alpha + \lambda = t
+		\end{cases}\\
+		&\iff \begin{cases}
+			\bx \alpha + \beta + \lambda = x\\
+			\beta + \gamma + 2\lambda = y\\
+			\bx \gamma + \lambda = z\\
+			-\beta = t - x
+		\end{cases}\\
+		&\iff \begin{cases}
+			\bx \alpha + \beta + \lambda = x\\
+			\beta + \lambda = y - z\\
+			\bx\gamma + \lambda = z\\
+			\beta = x - t
+		\end{cases}\\
+		&\iff \begin{cases}
+			\lambda = y - z - x + t\\
+			~~\vdots
+		\end{cases}
+	\end{align*}
+
+	Donc, \[
+		(x,y,z,t) \in H \iff y - z - x + t = 0
+	\]
+
+	Soit $f : \begin{array}{rcl}
+		\R^4 &\longrightarrow& \R \\
+		(x,y,z,t) &\longmapsto& x - y + z - t
+	\end{array}$ et $H = \Ker(f)$
+\end{exm}
+
+\begin{prop}
+	Avec les notations précédentes, \\
+	$\{f \in E^* \mid \Ker(f) = H\}$ est une droite de $E^*$ privée de l'application nulle. En d'autres termes, les équations de $H$ sont 2 à 2 proportionelles.
+\end{prop}
+
+\begin{prv}
+	Soient $f, g \in E^*$ telles que \[
+		\Ker(f) = \Ker(g)
+	\] On pose $H = \Ker(f)$. Soit $u \not\in H$ de sorte que \[
+		H \oplus \Vect(u) = E
+	\] $u \not\in H$ donc $f(u) \neq 0$.\\
+	On pose $\alpha = \frac{g(u)}{f(u)}$. Montrons que $g = \alpha f$.\\
+	Soit $x \in E$. On pose $x = h + \lambda u$ avec $\begin{cases}
+		h \in H\\
+		\lambda \in \mathbbm{K}
+	\end{cases}$ \\
+	\begin{align*}
+		g(x) = g(h) + \lambda g(u) = 0\ +&\ \lambda \alpha f(u)\\
+		&\vrt=\\
+		\alpha f(x) = \alpha\big(f(h) + \lambda f(u)\big) = \lambda&\alpha f(u)
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel et $H$ un sous-espace vectoriel de $E$. On dit que $H$ est un \underline{hyperplan} de $E$ s'il existe une droite $D$ de $E$ telle que \[
+		H \oplus D = E
+	\]
+\end{defn}
+
+En reprenant les démonstrations précédentes, on a encore les résultats suivants: \\[3mm]
+
+\begin{prop}
+	Soit $H$ un hyperplan de $E$. Alors, $\{f \in E^* \mid \Ker(f) = H\}$ est une droite de $E^*$ privée de l'application nulle. \qed
+\end{prop}
+
+\begin{prop}
+	Soit $f \in E^*$ non nulle. Alors $\Ker(f)$ est un hyperplan de $E$.
+\end{prop}
+
+\begin{prv}
+	$f$ non nulle. Soit $x \in E$ tel que \[
+		f(x) \neq 0
+	\] On pose $H = \Ker(f)$ et $D = \Vect(x)$. Montrons que $H \oplus D = E$.\\
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $y \in E$. On suppose $y = h + \lambda x$ avec $h \in H$ et $\lambda \in \mathbbm{K}$. Alors, $f(y) = f(h) + \lambda f(x) = \lambda f(x)$ donc $\begin{cases}
+			\lambda = f(y) f(x)^{-1}\\
+			h = y - f(y) f(x)^{-1} x
+		\end{cases}$\\
+	\item[\underline{\sc Synthèse}] Soit $y\in E$. On pose $\begin{cases}
+		\lambda = f(y) f(x)^{-1}\\
+		h = y - \lambda x
+	\end{cases}$.\\
+	Évidemment, $\begin{cases}
+		h + \lambda x = y\\
+		\lambda \in \mathbbm{K}
+	\end{cases}$ 
+	\begin{align*}
+		f(h) &= f(y - \lambda x) \\
+		&= f(y) - \lambda f(x) \\
+		&= f(y) - f(y)f(x)^{-1} f(x) \\
+		&= 0 \\
+	\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{center}
+	\sc\LARGE\underline{Hors-Programme}
+\end{center}
+
+\[
+	\mathbbm{P}^3 (\mathbbm{K}) = \{D \setminus \{0\}  \mid  D \text{ droite vectorielle de }\mathbbm{K}^3\}
+\] 
+
+Une \underline{droite} projective de $\mathbbm{P}^3(\mathbbm{K})$ est un plan vectoriel de $\mathbbm{K}^3$ privé de $0$.
+
+\todo{schéma A}
+
+\begin{center}
+	\begin{asy}
+		import three;
+
+		settings.render = 0;
+		settings.prc = false;
+		size(4cm);
+		transform3 r = rotate(45, (0,1,1));
+
+		guide3 p = (1,1,0)--(1,-1,0)--(-1,-1,0)--(-1,1,0)--cycle;
+
+		draw(r * p);
+
+		draw(r * rotate(-30, Z) * (-X -- X), red);
+		draw(r * rotate(10, Z) * (-Y -- Y), deepcyan);
+
+		draw(((-1, 0, 0) -- (1, 0, 0)), Arrow3(TeXHead2));
+		draw(((0, -1, 0) -- (0, 1, 0)), Arrow3(TeXHead2));
+		draw(((0, 0, -1) -- (0, 0, 1)), Arrow3(TeXHead2));
+
+		label("$P$", r * (1, 1, 0), align = NW);
+		label("$D$", r * rotate(-30, Z) * (-X), red, align = N);
+		label("$\Delta$", r * rotate(10, Z) * Y, deepcyan, align = E);
+
+		label("$\longleftrightarrow$", (2, 0));
+
+		dot((2.5 ,0), white+0);
+	\end{asy}
+	\begin{asy}
+		import math;
+		size(4cm);
+
+		pair D = (0, 0);
+		pair Dt = (1, 0.5);
+
+		drawline(D, Dt);
+
+		label("$P$", 2Dt, align=N);
+
+		dot("$D$", D, red, align=NW);
+		dot("$\Delta$", Dt, deepcyan, align=SE);
+
+		dot(-Dt/2, white+0);
+	\end{asy}
+\end{center}
+
+\vspace{5mm}
+
+\begin{center}
+	\begin{asy}
+		import three;
+
+		settings.render = 0;
+		settings.prc = false;
+		size(4cm);
+		transform3 r = rotate(30, (0,1,1));
+
+		guide3 p = (1,1,0)--(1,-1,0)--(-1,-1,0)--(-1,1,0)--cycle;
+
+		draw(r * p);
+		draw(p);
+
+		triple n1 = r * Z;
+		triple n2 = Z;
+		triple v = cross(n1, n2);
+
+		triple a = unit(v);
+		triple b = -a;
+
+		draw(a -- b, red);
+
+		label("$\longleftrightarrow$", (2, 0));
+
+		dot((2.5, -1.5), white+0);
+	\end{asy}
+	\begin{asy}
+		import math;
+		size(4cm);
+
+		drawline((1,1), (-1, -1));
+		drawline((1,-1), (-1, 1));
+
+		dot((-1,-1), white+0);
+		dot((+1,+1), white+0);
+
+		label("$P$", (0.5, -0.5), align=N);
+		label("$P'$", (0.5, 0.5), align=S);
+
+		dot("$D$", (0,0), red);
+	\end{asy}
+\end{center}
+
+\begin{center}
+	\begin{asy}
+		import three;
+		import math;
+
+		settings.render = 0;
+		settings.prc = false;
+
+		size(15cm);
+
+		dot((-10, -10, -10),white+0);
+		dot((-10, -10, +10),white+0);
+		dot((-10  +10, -10),white+0);
+		dot((-10, +10, +10),white+0);
+		dot((+10, -10, -10),white+0);
+		dot((+10, -10, +10),white+0);
+		dot((+10, +10, -10),white+0);
+		dot((+10, +10, +10),white+0);
+
+		triple O1 = (0, 0, -10);
+		draw(O1 -- (O1 + 4X), Arrow3(TeXHead2));
+		draw(O1 -- (O1 + 4Y), Arrow3(TeXHead2));
+		draw(O1 -- (O1 + 4Z), Arrow3(TeXHead2));
+
+		draw(shift(O1) * shift(Z+Y+X) * rotate(70, Y-X) * (2X -- 2Y -- -2X -- -2Y -- cycle), red);
+
+		triple A1 = shift(O1) * shift(Z+Y+X) * rotate(70, Y-X) * 2X;
+		triple A2 = shift(O1) * shift(Z+Y+X) * rotate(70, Y-X) * 2Y;
+		triple A3 = shift(O1) * shift(Z+Y+X) * rotate(70, Y-X) * -2X;
+		triple A4 = shift(O1) * shift(Z+Y+X) * rotate(70, Y-X) * -2Y;
+		triple A = (A1+A2+A3+A4)/4;
+
+		draw(shift(A) * scale3(1.5) * shift(-A) * ((A1 + A4) / 2 -- (A2 + 2*A3) / 3), blue);
+
+		currentprojection = oblique;
+
+		triple O2 = (0, 12.5, 15);
+		draw(O2 -- (O2 + 4X), Arrow3(TeXHead2));
+		draw(O2 -- (O2 + 4Y), Arrow3(TeXHead2));
+		draw(O2 -- (O2 + 4Z), Arrow3(TeXHead2));
+
+		draw(shift(O2) * shift(Z+Y+X) * rotate(60, Y-X) * (2X -- 2Y -- -2X -- -2Y -- cycle), blue);
+
+		triple B1 = shift(O2) * shift(Z+Y+X) * rotate(60, Y-X) * 2X;
+		triple B2 = shift(O2) * shift(Z+Y+X) * rotate(60, Y-X) * 2Y;
+		triple B3 = shift(O2) * shift(Z+Y+X) * rotate(60, Y-X) * -2X;
+		triple B4 = shift(O2) * shift(Z+Y+X) * rotate(60, Y-X) * -2Y;
+		triple B = (B1+B2+B3+B4)/4;
+		draw(shift(B) * scale3(1.5) * shift(-B) * ((B1 + B4) / 2 -- (2*B2 + B3) / 3), red);
+
+		label("$\big(\mathbbm{K}^3\big)^*$", (7.5,10));
+		label("$\mathbbm{K}^3$", (-7.5,10));
+		label("$\mathbbm{P}^3\big(\mathbbm{K}\big)$", (-7.5,-3.5));
+		label("$\mathbbm{P}^3\big(\mathbbm{K}\big)^*$", (7.5,-3.5));
+
+		draw((-2.5, 7.5) -- (2.5, 7.5), Arrow);
+		draw((7.5, 2.5) -- (7.5, -2.5), Arrow);
+		draw((-7.5, -2.5) -- (-7.5, 2.5), Arrow);
+
+		pair O3 = (-7.5, -5.5);
+		draw(O3 + (-2, -2) -- O3 + (2, 2), blue);
+		dot(O3 + (1/2, -1/2), red);
+
+		pair O4 = (7.5, -6.5);
+		draw(rotate(30, O4) * (O4 + (-2, 2) -- O4 + (2, -2)), red);
+		dot(O4 + (1/2, 1/2), blue);
+	\end{asy}
+\end{center}
+
+\todo{schémas B et C}
+
+\begin{center}
+	\begin{asy}
+		import math;
+		size(10cm);
+
+		pair hM = (0.5, 0);
+		pair hN = (-0.5, 0);
+
+		draw(hM + (3,0.5) -- hN + (-3,0.5), blue);
+		draw(hM - (-3,0.5) -- hN - (3,0.5), deepcyan);
+
+		dot("$h(M)$", hM, align=NE);
+		dot("$h(N)$", hN, align=NW);
+		label("$h(D)$", hM + (2.5, 0.5), blue);
+		label("$h(\Delta)$", hM + (2.5, -0.5), deepcyan);
+		label("$h(O)~\longrightarrow$", hM + (2.5, 0));
+	\end{asy}
+\end{center}

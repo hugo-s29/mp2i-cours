@@ -1,0 +1,43 @@
+\part{Exercice 19 (supplémentaire)}
+
+{\itshape
+	Trouver tous les $P \in \R[X]$ tels que \[
+		XP(X+1) = (X+4)P(X)
+	\]
+}
+
+\begin{itemize}
+	\item[\underline{\sc Analyse}] Soit $P \in \R[X]$ tel que \[
+			X P(X+1) = (X+4) P(X)
+		\] En remplaçant $X$ par 0, on obtient \[
+			4P(0) = 0
+		\] donc $0$ est racine de $P$. \\
+		En replaçant $X$ par $-4$, on obtient \[
+			-4P(-3) = 0
+		\] donc $-3$ est une racine de $P$.\\
+		En remplaçant $X$ par $-3$, on obtient \[
+			-3 P(-2) = -P(-3) = 0
+		\] donc $-2$ est racine de $P$.\\
+		En replaçant $X$ par $-2$, on obtient \[
+			-2P(-1) = -2P(-2) = 0
+		\] donc $-1$ est racine de $P$. \\
+		D'où, \[
+			P = X(X+1)(X+2)(X+3)\,Q(X)
+		\] avec $Q \in \R[X]$.\\
+		Donc,
+		\begin{align*}
+			X (X+1)(X+2)(X+3)(X+4)\,Q(X+1)\\
+			= (X+4)X(X+1)(X+2)(X+3)\,Q(X).
+		\end{align*}
+		Comme $\R[X]$ est intègre, \[
+			Q(X) = Q(X+1).
+		\] Si $Q$ n'est pas constant, alors $Q$ a au moins une racine $a \in \C$ et alors \[
+			\forall k \in \N, Q(a+k) = Q(a) = 0.
+		\] Donc, $Q$ a une infinité de racines donc $Q = 0$.\\
+		Donc $Q$ est constant.
+	\item[\underline{\sc Synthèse}] Soit $\lambda \in \R$ et \[
+			P = \lambda X (X+1) (X+2) (X+3).
+		\] On vérifie aisément que \[
+			X P(X+1) = (X+4)P(X).
+		\]
+\end{itemize}

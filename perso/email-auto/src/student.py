@@ -14,6 +14,7 @@ class Student:
     option="info",
   ):
     self.kholle_group = kholle_group
+    self.tp_info_group = None
     self.name = name
     self.mail = mail
     self.ap_physique = ap_physique

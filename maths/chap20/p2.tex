@@ -1,0 +1,249 @@
+\part{Décomposition en éléments simples}
+
+\marginpar{\bf Définition\\[-1mm]}
+\begin{lem}
+	\[
+		\forall F \in \mathbbm{K}(X), \exists! (E,G) \in \mathbbm{K}[X] \times \mathbbm{K}(X),
+		\begin{cases}
+			F = E + G\\
+			\deg(G) < 0
+		\end{cases}
+	\]
+	On dit que $E$ est la \underline{partie entière} de $F$.
+\end{lem}
+
+\begin{prv}
+	On pose $F = \frac{P}{Q}$ avec $P \in \mathbbm{K}[X], Q \in \mathbbm{K}[X]\setminus \{0\}$.
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $E \in \mathbbm{K}[X]$ et $G \in \mathbbm{K}(X)$ tels que \[
+				F = E + G\\
+				\deg(G) < 0.
+			\]
+
+			On pose $G = \frac{A}{Q}$ avec $A \in \mathbbm{K}[X]$.
+			\begin{align*}
+				F = E + G &\iff \frac{P}{Q} = E + \frac{A}{Q}\\
+				&\iff P = EQ + A.
+			\end{align*}
+			$\deg G < 0, \deg A < \deg Q$.
+
+			Don $E$ est le quotient de la division euclidienne de $P$ par $Q$ et $A$ sont reste.
+		\item[\underline{\sc Synthèse}] Soient $E$ le quotient et $A$ le reste de la division euclidienne de $P$ par $Q$. On a alors \[
+			\begin{cases}
+				P = EQ + A\\
+				\deg(A) < \deg(Q)
+			\end{cases}
+		\] et donc \[
+			F = E + \frac{A}{Q}\\
+			\deg\left( \frac{A}{Q} \right) < 0.
+		\]
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$F = \frac{X^3 + X - 1}{X^2+2}$, $\deg F = 1$.\\
+	\begin{center}
+		\begin{tabular}{D|D}
+			X^3 + X - 1 & X^2 + 2\\ \cline{2-2}
+			\raisesign{-}
+			X^3 + 2X & X\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			-X - 1\\
+		\end{tabular}
+	\end{center}
+	Donc, \[
+		F = \frac{X(X^2+2) - (X+1)}{X^2+2} = X - \frac{X+1}{X^2+2}.
+	\]
+\end{exm}
+
+\begin{lem}
+	Soit $F = \frac{P}{AB}$ avec \[
+		\begin{cases}
+			(P, A, B) \in \mathbbm{K}[X]^3;\\
+			A\neq 0; B\neq 0;\\
+			A\wedge B = 1;
+			\deg F < 0.
+		\end{cases}
+	\] Alors, \[
+		\exists! (U,V) \in \mathbbm{K}[X]^2, \begin{cases}
+			F = \frac{U}{A} + \frac{V}{B}\\
+			\deg\left( \frac{U}{A} \right) < 0 \et \deg\left( \frac{V}{R} \right).
+		\end{cases}
+	\]
+\end{lem}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] On suppose que \[
+				\begin{cases}
+					F = \frac{U}{A} + \frac{V}{B}\\
+					U \in \mathbbm{K}[X], \deg U < \deg A\\
+					V \in \mathbbm{K}[X], \deg V < \deg B.
+				\end{cases}
+			\] D'où \[
+				\frac{P}{AB} = \frac{UB+VA}{AB}
+			\] et donc $P = UB + VA$. D'après le théorème de Bézout, il existe $(R,S) \in \mathbbm{K}[X]^2$ tel que \[
+				RB+SA = P.
+			\] On a alors \[
+				0 = B(R-U) + A(S-V)
+			\] donc \[
+				A (S-V) = B(U-R)
+			\] donc \[
+				A  \mid  B(U-R) \qquad \text{ dans }\mathbbm{K}[X].
+			\] D'après le théorème de Gauss, \[
+				A  \mid U - R
+			\] 
+			Donc $U-R = AT$ avec $T \in \mathbbm{K}[X]$ donc \[
+				A(S-V) = BAT
+			\] donc \[
+				S-V = BT
+			\] donc \[
+				\begin{cases}
+					R = -AT + U\\
+					S = BT + V
+				\end{cases}.
+			\]
+			On a \[
+				\begin{cases}
+					S = BT+V\\
+					\deg V < \deg B
+				\end{cases}
+			\] donc $V$ est le reste de la division euclidienne de $S$ par $B$ et $U$ est le reste de la division euclidienne de $R$ par $A$.
+
+		\item[\underline{\sc Synthèse}] Soit $(R,S) \in \mathbbm{K}[X]^2$ tel que \[
+				P = RB + SA.
+			\] Soit $V$ le reste de la division euclidienne de $S$ par $B$. \[
+				\begin{cases}
+					S = BT + V, T \in \mathbbm{K}[X]\\
+					\deg V < \deg B
+				\end{cases}
+			\] D'où, \[
+				\frac{P}{AB} = \frac{R}{A} + T + \frac{V}{B} = \frac{R+AT}{A}+\frac{V}{B}
+			\] et \[
+				\deg\left( \frac{V}{B} \right) = \deg(V) - \deg(B) < 0.
+			\]
+			Si  $\deg\left( \frac{R+AT}{A} \right) \ge 0$, alors \[
+				\deg\left( \frac{R+AT}{A} \right) > \deg\left( \frac{V}{B} \right)
+			\] et alors \[
+				\deg\left( \frac{P}{AB} \right) = \deg\left( \frac{R+AT}{A} \right) \ge 0.
+			\] Or, \[
+				\deg\left( \frac{P}{AB} \right) < 0.
+			\] Donc \[
+				\deg\left( \frac{R+AT}{A} \right) < 0.
+			\] On pose $U = R + AT$. On a bien \[
+				\frac{P}{AB} = \frac{U}{A} + \frac{V}{B} \text{ avec } \deg\left( \frac{U}{V} \right) < 0 \et \deg\left( \frac{V}{R} \right) < 0.
+			\]
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	Soit $H \in \mathbbm{K}[X]$ irréductible, $n \in \N_*$, $P \in \mathbbm{K}[X]$, $F = \frac{P}{H^n}$ et $\deg F < 0$. Alors, \[
+		\begin{cases}
+			\exists ! (U,V) \in \mathbbm{K}[X]^2, F = \frac{U}{H^n} + \frac{V}{H^{n-1}};\\
+			\deg U < \deg H;\\
+			\deg\left( \frac{V}{H^{n+1}} \right) < 0.
+		\end{cases}
+	\]
+\end{lem}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] $F = \frac{U}{H^n} + \frac{V}{H^{n-1}}$ avec \[
+				\begin{cases}
+					\deg U < \deg H,\\
+					U \in \mathbbm{K}[X], V \in \mathbbm{K}[X],\\
+					\deg\left( \frac{V}{H^{n-1}} \right) < 0.
+				\end{cases}
+			\] D'où \[
+				P = U + VH,\\
+				\deg U < \deg H.
+			\] Donc $V$ est le quotient et $U$ le reste de la division euclidienne de $P$ par $H$.
+		\item[\underline{\sc Synthèse}] Soient $V$ et $U$ le quotient et le reste de la division euclidienne de $P$ par $H$ : \[
+				\begin{cases}
+					P = U + VH\\
+					\deg U < \deg H.
+				\end{cases}
+			\] D'où \[
+				F = \frac{U}{H^n} + \frac{V}{H^{n-1}}
+			\] \[
+				\deg U < \deg H
+			\] Si $\deg\left( \frac{V}{H^{n-1}} \right) \ge 0$, alors $\deg F = \deg\left( \frac{V}{H^{n-1}} \right)\ge 0$ : une contradiction. Donc $\deg\left( \frac{V}{H^{n-1}} \right) < 0$.
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	[Théorème de décomposition en éléments simples sur $\mathbf{\C}$]
+	Soit $F \in \mathbbm{K}(X)$, $F = \frac{P}{Q}$ la forme irréductible de $F$. On note $(z_1, \ldots, z_p)$ les racines complexes de $Q$ et $(\mu_1, \ldots, \mu_p)$ leur multiplicité.
+
+	Alors,
+	\begin{align*}
+		&\exists!(E, a_{1,1}, \ldots, a_{1, \mu_1}, a_{2,1}, \ldots, a_{2, \mu_2}, \ldots, a_{p, 1}, \ldots, a_{p, \mu_p}) \in \C[X] \times \C^{\deg Q},\\
+		&F = E + \sum_{i=1}^p \left( \sum_{j=1}^{\mu_i} \frac{a_{i,j}}{(X- z_i)^j} \right).
+	\end{align*}
+\end{thm}
+
+\begin{exm}
+	$F = \frac{X^7 - 1}{X^5 + 2X^3 + X} \in \C(X)$
+
+	\begin{center}
+		\begin{tabular}{D|D}
+			X^7 - 1 & X^5 + 2X^3 + X\\ \cline{2-2}
+			\raisesign{-}
+			X^7 + 2X^5 + X^3 & X^2 - 2\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			-2X^5 - X^3 - 1\\
+			\raisesign{-}
+			-2X^5 -4X^3 -2X\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			3X^3 + 2X - 1
+		\end{tabular}
+	\end{center}
+	\[
+		F = (X^2-2) + \frac{3X^3 + 2X - 1}{X^5 + 2X^3 + X}
+	\]
+	\begin{align*}
+		X^5 + 2X^3 + X &= X(X^4 + 2X^2+1) \\
+		&= X(X^2 + 1)^2 \\
+		&= X(X-i)^2(X+i)^2 \\
+	\end{align*}
+	D'après le 2\eme lemme, \[
+		\frac{3X^3 + 2X - 1}{X^5 + 2X^3 + X} = \frac{a}{X} + \frac{bX+c}{(X-i)^2}
+	\] D'après le 3\eme lemme,
+	\begin{align*}
+		\frac{bX + c}{(X-i)^2} = \frac{f}{(X-i)^2} + \frac{g}{X-i}\\
+		\frac{dX +e}{(X+i)^2} = \frac{h}{(X+i)^2}+\frac{h}{X+i}
+	\end{align*}
+	\[
+		F = (X^2-2) + \frac{a}{X} + \frac{f}{(X-i)^2}+\frac{g}{X-i}+\frac{h}{(X-i)^2}+\frac{k}{X+i}.
+	\] 
+	On multiplie par $X$ : \[
+		\frac{X^7 - 1}{X^4 + 2X^2+1} = a + X\left( X^2 - 2 + \frac{f}{(X-i)^2} + \frac{g}{X-i} + \frac{h}{(X-i)^2}+ \frac{k}{X+1} \right).
+	\] En remplaçant $X$ par $0$, on obtient \[
+		a = \frac{-1}{1} = -1.
+	\] On multiplie par $(X-i)^2$ et on remplace $X$ par $i$ : \[
+		\frac{3i^2+2i - 1}{i(2i)^2} = f.
+	\]Donc, \[
+		f = \frac{-i - 1}{-4i} = \frac{1}{4} - \frac{i}{4}
+	\] De même, \[
+		h = \frac{3(-i)^3 + 2(-i) - 1}{-i (-2i)^2} = \overline{f} = \frac{1}{4} + \frac{i}{4}
+	\]
+	\begin{landscape}
+		\[
+			\frac{3X^2 + 2X - 1}{X^5 + 2X^3} +\frac{1}{X} - \left( \frac{1}{4} - \frac{i}{4} \right) \frac{1}{(X-i)^2} - \left( \frac{1}{4} + \frac{i}{4} \right) \frac{1}{(X+i)^2}
+			 = \frac{g}{X-i} + \frac{h}{X+i}
+		\]
+		\begin{align*}
+			\frac{g}{X-i} + \frac{h}{X+i} &= \frac{3X^3 + 2X - 1 + X^4 + 2X^2 + 1 + X(X+i)^2\left( -\frac{1}{4}+\frac{i}{4} \right) - X(X-i)^2\left( \frac{1}{4} -\frac{i}{4} \right)}{X^5 + 2X^3+ X}\\
+			&= \frac{12X^3 + 8X - 4 + 4X^4 + 8X^2 + 4 + X^3 (-1 + i) + (1-i)X - X^3(1+i)  - 2X^2(1-i) + X(1+i)}{4(X^5 + 2X^3 + X)} \\
+			&= \frac{4X^4 + 10X^3 + 8X^2 + 10X}{4\left( X^5 + 2X^3 + X \right)} \\
+			&= \frac{2X^3 + 5X^2 + 2X + 5}{2(X^4 + 2X^2 + 1)} \\
+			&= \frac{(X-i)(X+i)(2X+5)}{2(X-i)^2(X+i)^2} \\
+			&= \frac{2X+5}{2(X-i)(X+i)} \\
+		\end{align*}
+	\end{landscape}
+
+	Donc, \[
+		\begin{cases}
+			g = \frac{2i + 5}{2\times 2i} = \frac{(2i+5)i}{-4} = \frac{2 - 5i}{4}\\
+			~\\
+			h = \frac{2(-i) + 5}{2(-2i)} = \frac{2 + 5i}{4}
+		\end{cases}
+	\]
+\end{exm}

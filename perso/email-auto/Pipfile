@@ -9,6 +9,8 @@ unidecode = "*"
 python-dotenv = "*"
 yagmail = "*"
 yag = "*"
+icalendar = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.8"

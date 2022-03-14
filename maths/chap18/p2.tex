@@ -126,3 +126,115 @@
 		\] 
 	\end{itemize}
 \end{exm}
+
+\begin{defn}
+	Soit $P \in \mathbbm{K}[X]$, \[
+		P = \sum_{k=0}^{n} a_k X^k
+	\] Le \underline{polynôme dérivé} de $P$ est \[
+		P' = \sum_{k=0}^{n} k a_k X^{k-1} = \sum_{k=1}^n k a_k X^{k-1}
+	\] où \[
+		\forall k \in \left\llbracket 1,n \right\rrbracket, ka_k = \underbrace{a_k + \cdots + a_k}_{k \text{ fois}}
+	\] \[
+		0_\N a_k = 0_\mathbbm{K}
+	\]
+\end{defn}
+
+\begin{rmk}
+	Si $P \in \R[X]$, $f_p : \begin{array}{rcl}
+		\R &\longrightarrow& \R \\
+		x &\longmapsto& P(x)
+	\end{array}$\\
+	$f_{P'} : \begin{array}{rcl}
+		\R &\longrightarrow& \R \\
+		x &\longmapsto& P'(x)
+	\end{array}$ alors $f_{P'} = f'_P$
+\end{rmk}
+
+\begin{prop}
+	\[
+		\forall P \in \mathbbm{K}[X], \deg(P') = \begin{cases}
+			\deg(P) - 1 &\text{ si } \deg(P) > 0\\
+			-\infty &\text{ sinon}
+		\end{cases}
+	\] 
+\end{prop}
+
+\begin{prop}
+	Soient $P,Q \in \mathbbm{K}[X]$ et $\lambda \in \mathbbm{K}$.
+	\begin{enumerate}
+		\item $(P+Q)' = P' + Q'$ 
+		\item $(PQ)' = P'Q + PQ'$ 
+		\item $(\lambda P)' = \lambda P'$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	On pose
+	\begin{align*}
+		P = \sum_{k=0}^{p} a_k X^k&\qquad&
+		Q = \sum_{k=0}^{q} b_k X^k
+	\end{align*}
+	\begin{enumerate}
+		\item On peut supposer $p \ge q$ \\
+			Si $p > q$, on pose $b_{q+1} = \cdots = b_p = 0$ \\
+			\[
+				P + Q = \sum_{k=0}^p (a_k + b_k) X^k
+			\] donc 
+			\begin{align*}
+				(P+Q)' &= \sum_{k=0}^p k(a_k + b_k) X^{k-1} \\
+				&= \sum_{k=0}^p ka_kX^{k-1} + \sum_{k=0}^p kb_kX^{k-1} \\
+				&= P' + Q' \\
+			\end{align*}
+		\item \[
+				PQ = \sum_{k=0}^p \sum_{\ell=0}^q a_k b_\ell X^{k+\ell}
+			\] D'après $1.$, 
+			\begin{align*}
+				(PQ)' &= \sum_{k=0}^p \sum_{\ell = 0}^q \left(a_k b_\ell X^{k+\ell}\right)'\\
+				&= \sum_{k=0}^p \sum_{\ell = 0}^q a_k b_\ell (k+\ell) X^{k+\ell - 1}\\
+				&= \sum_{k=0}^p \sum_{\ell=0}^q ka_k b_\ell X^{k-1+\ell} + \sum_{k=0}^p \sum_{\ell=0}^q \ell a_k b_\ell X^{k+\ell-1} \\
+				&= \sum_{k=0}^p k_k X^{l-1}\sum_{\ell=0}^q b_\ell X^{\ell} + \sum_{k=0}^p a_k X^k \sum_{\ell=0}^q \ell b_\ell X^{\ell-1} \\
+				&= P'Q+ PQ' \\
+			\end{align*}
+		\item \[
+			\lambda P = \sum_{k=0}^p \lambda a_k X^{k}
+		\] donc \[
+			(\lambda P)' = \sum_{k=0}^p \lambda a_k k X^{k-1} = \lambda \sum_{k=0}^p k a_k X^{k-1} = \lambda P'
+		\]
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	Pour $k\in \N$, on définit la dérivée $k$-ième d'un polynôme $P \in \mathbbm{K}[X]$ par
+	\begin{itemize}
+		\item si $k=0$, $P^{(k)} = P$ 
+		\item si $k=1$, $P^{(1)} = P'$ 
+		\item si $k>1$, $P^{(k)} = \left( P^{(k-1)} \right)'$
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	\[
+		\forall k,j \in \N^2,
+		\left(X^{k}\right)^{(j)} = \begin{cases}
+			0 &\text{ si } j > k\\
+			k(k-1) \cdots (k-j+1)X^{k-j} = \frac{k!}{(k-j)!}X^{k} &\text{ si } j \le k\\
+		\end{cases}
+	\] 
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $j$ à $k$ fixé]
+\end{prv}
+
+\begin{prop}
+	Soient $P,Q \in \mathbbm{K}[X]$, $\lambda \in \mathbbm{K}$
+	\begin{enumerate}
+		\item $\forall k \in \N, (P+Q)^{(k)} = P^{(k)} + Q^{(k)}$ 
+		\item $\forall k \in \N, (PQ)^{(k)} = \sum_{i=0}^k {k\choose i} P^{(i)} Q^{(k-i)}$ 
+		\item $\forall k \in \N, (\lambda P)^{(k)} = \lambda P^{(k)}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $k$]
+\end{prv}

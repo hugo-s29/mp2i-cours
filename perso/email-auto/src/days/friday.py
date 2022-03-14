@@ -4,7 +4,7 @@ from meal import Meal
 
 
 class Friday(Day):
-  def add_tp_info(self, start, end):
+  def add_tp_info(self, start, end, i):
     tp = Subject(name="Informatique", room="I204", time=(start, end), optional=True)
 
     if self.spots[start] is None:
@@ -16,9 +16,9 @@ class Friday(Day):
     subjects = [
       Subject(name="EPS", time=(8, 10), room=""),
       Subject(name="Mathématiques", time=(10, 12), room="K201"),
-      self.add_tp_info(13,14),
-      self.add_tp_info(14,15),
-      self.add_tp_info(15,16),
+      self.add_tp_info(13, 14, 0),
+      self.add_tp_info(14, 15, 1),
+      self.add_tp_info(15, 16, 2),
     ]
 
     return subjects

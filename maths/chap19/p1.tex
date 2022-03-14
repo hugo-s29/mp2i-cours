@@ -1,0 +1,210 @@
+\part{Premières propriétés}
+
+\begin{defn}
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels et $f: E \to F$. On dit que $f$ est \underline{linéaire} si \[
+		\forall (x,y) \in E^2, \forall (\alpha, \beta) \in \mathbbm{K}^2,
+		f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)
+	\] 
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $E = \mathcal{C}^0([a,b],\C)$
+			\begin{align*}
+				\varphi: E &\longrightarrow \C \\
+				f &\longmapsto \int_{a}^{b} f(t)~dt
+			\end{align*}
+			$\varphi$ est linéaire
+		\item $E = \mathcal{D}(I, \C)$ et $F = \C^I$
+			\begin{align*}
+				\varphi: E &\longrightarrow F \\
+				f &\longmapsto f'
+			\end{align*}
+			$\varphi$ est linéaire
+		\item $f: \begin{array}{rcl}
+				\R &\longrightarrow& \R \\
+				 x &\longmapsto& ax
+			\end{array}$ est linéaire.
+			\[
+				f(\alpha x + \beta y) = \alpha a x + \beta a y = \alpha f(x) + \beta f(y)
+			\] 
+		\item $E = \mathcal{C}^1(I,\C)$ et $F = \mathcal{C}^0(I, \C)$. $a \in F$\\
+			$\varphi : \begin{array}{rcl}
+				E &\longrightarrow& F \\
+				y &\longmapsto& y' + ay
+			\end{array}$ est linéaire\\
+			\[
+				y' + a(x) y = b(x) \iff \varphi(y) = b
+			\] 
+		\item $E = \C^\N = F$\\
+			$\varphi : \begin{array}{rcl}
+				E &\longrightarrow& F \\
+				(u_n) &\longmapsto& (u_{n+2}-u_{n+1}-u_n)
+			\end{array}$
+			\[
+				\forall n, u_{n+2} = u_{n+1} + u_n \iff \varphi(u) = 0
+			\]
+		\item $E = \mathcal{M}_{p,1}(\mathbbm{K})$, $F = \mathcal{M}_{n,1}(\mathbbm{K})$, $A \in \mathcal{M}_{n,p}(\mathbbm{K})$ \\
+			\begin{align*}
+				\varphi: E &\longrightarrow F \\
+				X &\longmapsto AX
+			\end{align*}
+			$AX = B \iff \varphi(X) = B$
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	On dit qu'un problème est \underline{linéaire} s'il se présente sous la forme:
+	\begin{center}
+		Résoudre $\varphi(x) = y$
+	\end{center}
+	où l'inconnue est $x \in E$, $y$ est un paramètre de $F$ avec $\varphi: E \to F$ linéaire.
+\end{defn}
+
+\begin{exm}
+	Trouver toutes les fonctions $f: \R \to \R$ telles que \[
+		\forall x \in \R, f(x + 1) - f(x - 1) = \lambda
+	\] où $\lambda \in \R$ est fixé.\\
+	On pose $E = \R^\R$, \begin{align*}
+		\varphi: E &\longrightarrow E \\
+		f &\longmapsto \varphi(f) : \begin{array}{rcl}
+			\R &\longrightarrow& \R \\
+			x &\longmapsto& f(x+1) - f(x - 1)
+		\end{array}
+	\end{align*} et \begin{align*}
+		y: \R &\longrightarrow \R \\
+		x &\longmapsto \lambda
+	\end{align*} Le problème est équivalent à \[
+		\begin{cases}
+			\varphi(f) = y\\
+			f \in E
+		\end{cases}
+	\] 
+	Soient $f, g \in E$, $\lambda, \mu \in \R$.\\
+	\begin{align*}
+		\forall x \in \R,
+		\varphi(\lambda f + \mu g) (x) &= (\lambda f + \mu g)(x+1) - (\lambda f + \mu g)(x-1)\\
+		&= \lambda f(x+1) - \mu g(x+1) - \lambda f(x-1) - \mu g(x-1) \\
+		&= \lambda\big(f(x+1) - f(x - 1)\big) + \mu \big(g(x+1) - g(x-1)\big) \\
+		&= \lambda \varphi(f)(x) + \mu \varphi(g)(x) \\
+	\end{align*}
+	Donc, $\varphi(\lambda f+ \mu g) = \lambda \varphi(f) + \mu \varphi(g)$
+\end{exm}
+
+\begin{rmk}
+	[Notation]
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels.\\
+	L'ensemble des applications linéaires de $E$ dans $F$ est $\mathcal{L}(E, F)$.\\
+	Si $F = E$, alors on note plus simplement $\mathcal{L}(E)$ à la place de $\mathcal{L}(E,E)$.\\
+	Les éléments de $\mathcal{L}(E)$ sont appelés \underline{endomorphismes (linéaires)} de $E$.
+\end{rmk}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E, F)$, $g \in \mathcal{L}(F, G)$. Alors $g \circ f \in \mathcal{L}(E, G)$.
+\end{prop}
+
+\begin{prv}
+	Soient $u,v \in E$ et $\alpha, \beta \in \mathbbm{K}$.
+	\begin{align*}
+		(g \circ f)(\alpha u + \beta v) &= g\big(f(\alpha u + \beta v)\big) \\
+		&= g\big(\alpha f(u) + \beta f(v)\big) \\
+		&= \alpha g\big(f(u)\big) + \beta g\big(f(v)\big) \\
+		&= \alpha (g \circ f)(u) + \beta (g \circ f)(v) \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	$\mathcal{L}(E,F)$ est un sous-espace vectoriel de $F^E$.
+\end{prop}
+
+\begin{prv}
+	Soient $f, g \in \mathcal{L}(E,F)$ et $\lambda, \mu \in \mathbbm{K}$. Montrons que $\lambda f + \mu g \in \mathcal{L}(E, F)$.\\
+	Soient $u,v \in E$, $\alpha, \beta \in \mathbbm{K}$.
+	\begin{align*}
+		(\lambda f + \mu g) (\alpha u + \mu v) &= \lambda f(\alpha u + \beta v) + \mu g(\alpha u + \beta v) \\
+		&= \lambda\big(\alpha f(u) + \beta f(v) \big) + \mu\big(\alpha g(u) + \beta g(v) \big) \\
+		&= \alpha \big(\lambda f(u) + \mu g(u)\big) + \beta\big(\lambda f(v) + \mu g(v)\big) \\
+		&= \alpha \big( (\lambda f + \mu g)(u) \big) + \beta \big((\lambda f + \mu g)(v)\big)\\
+	\end{align*}
+	De plus, $\tilde0 : \begin{array}{rcl}
+		E &\longrightarrow& F \\
+		x &\longmapsto& 0_F
+	\end{array}$ est linéaire donc $\mathcal{L}(E, F) \neq \O$.
+\end{prv}
+
+\begin{prop}
+	$\big(\mathcal{L}(E), +,  \circ, \cdot\big)$ est une $\mathbbm{K}$-algèbre (non commutative en général).
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item $\big(\mathcal{L}(E), +, \cdot \big)$ est un $\mathbbm{K}$-espace vectoriel d'après la proposition précédente.
+		\item $\big(\mathcal{L}(E), +\big)$ est un groupe abélien.\\
+			$``\circ"$ est associative et interne sur $\mathcal{L}(E)$.\\
+			$\id_E \in \mathcal{L}(E)$.\\
+			Soient $f, g, h \in \mathcal{L}(E)$.
+			\begin{align*}
+				\forall x \in E,
+				f \circ (g + h)(x) &= f\big((g+h)(x)\big) \\
+				&= f\big(g(x) + h(x)\big)\\
+				&= f\big(g(x)\big) + f\big(h(x)\big) \text{ car $f$ est linéaire}\\
+				&= (f \circ g + f \circ h) (x) \\
+			\end{align*}
+			Donc, \[
+				f \circ (g+h) = f \circ g + f \circ h
+			\]
+			\begin{align*}
+				\forall x \in E,
+				(g+h) \circ f(x) &= (g+h)\big(f(x)\big) \\
+				&= g\big(f(x)\big) + h\big(f(x)\big) \\
+				&= (g \circ f + h \circ f)(x) \\
+			\end{align*}
+			Donc, \[
+				(g+h) \circ f = g \circ f + h \circ f
+			\]
+			Donc, $\big(\mathcal{L}(E), +,  \circ \big)$ est un anneau
+		\item Soit $\lambda \in \mathbbm{K}$, $f,g \in \mathcal{L}(E)$.
+			\begin{align*}
+				\forall x \in E, 
+				\lambda \cdot (f \circ g)(x) = \lambda f\big(g(x)\big)\\
+				(\lambda \cdot f) \circ g(x) = \lambda f\big(g(x)\big)
+			\end{align*}
+			\begin{align*}
+				f \circ (\lambda \cdot g) (x) &= f\big(\lambda g(x)\big) \\
+				&= \lambda f\big(g(x)\big) \text{ car } f \in \mathcal{L}(E)
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Soit $P \in \mathbbm{K}[X]$ et $ u \in \mathcal{L}(E)$. On peut former $P(u) \in \mathcal{L}(X)$ : on dit que $P(u)$ est un polynôme d'endomorphisme.
+\end{crlr}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E,F)$ bijective. Alors $f^{-1} \in \mathcal{L}(F,E)$.
+\end{prop}
+
+\begin{prv}
+	Soit $u,v\in F$, $\alpha, \beta \in \mathbbm{K}$.
+	\begin{align*}
+		&f^{-1}(\alpha u + \beta v) = \alpha f^{-1}(u) + \beta f^{-1}(v)\\
+		\iff& \alpha u + \beta v = f\big(\alpha f^{-1}(u) + \beta f^{-1}(v)\big)\\
+		\iff& \alpha u + \beta v = \alpha f\left( f^{-1}(u) \right) + \beta f\left( f^{-1}(v) \right) \\
+		\iff& \alpha u + \beta v = \alpha u + \beta v
+	\end{align*}
+	Donc, $f^{-1} \in \mathcal{L}(F,E)$
+\end{prv}
+
+\begin{rmk}
+	[Notation]
+	On note $\mathrm{GL}(E)$ l'ensemble des endomorphismes de $E$ bijectifs, $\mathrm{GL}(E,F)$ l'ensemble des applications linéaires de $E$ dans $F$ bijectives.\\
+	Les éléments de $\mathrm{GL}(E)$ sont appelés \underline{automorphismes (linéaires)} de $E$.
+\end{rmk}
+
+\begin{crlr}
+	$\mathrm{GL}(E)$ est un sous-groupe de $\big(S(E),  \circ\big)$
+\end{crlr}
+
+\begin{defn}
+	$\mathrm{GL}(E)$ est dit `` le \underline{groupe linéaire} de $E$ ''
+\end{defn}

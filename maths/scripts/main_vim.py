@@ -3,7 +3,7 @@ import subprocess as sp
 import tkinter as tk
 from tkinter import simpledialog
 import shutil
-
+import unicodeit
 
 def input(text, val = ""):
     master = tk.Tk()
@@ -58,6 +58,29 @@ def get_chapter_name(chapter):
         title = part_line[start:end]
         return f'Chapitre {int(chapter[4:])} : {title}'
 
+def unicode_tex(title):
+    parts = title.split('$')
+    out = ''
+
+    replace = {
+        "\\mathbbm": "\\mathbb",
+        "\\R": "\\mathbb{R}",
+        "\\C": "\\mathbb{C}",
+        "\\Z": "\\mathbb{Z}",
+        "\\Q": "\\mathbb{Q}",
+        "\\N": "\\mathbb{N}",
+    }
+
+    for i, part in enumerate(parts):
+        if i % 2 == 0:
+            out += part
+        else:
+            for old, new in replace.items():
+                part = part.replace(old, new)
+            out += unicodeit.replace(part)
+
+    return out
+
 def get_part_name(file, offset=2):
     if file == '--NEW--':
         return 'Nouvelle partie'
@@ -72,7 +95,7 @@ def get_part_name(file, offset=2):
             return f'Exercice {int(file[offset:-4])}'
     
     else:
-        title = content[6:-2]
+        title = unicode_tex(content[6:-2])
         if offset == 1:
             return f'Partie {file[offset:-4]} : {title}'
         else:
@@ -288,6 +311,8 @@ elif section == 'Fiches':
         choices.append('TD')
     if os.path.exists('main.pdf'):
         choices.append('Cours')
+    if os.path.exists('simple-main.pdf'):
+        choices.append('Cours simple')
 
     choice = choose(*choices)
     
@@ -299,3 +324,5 @@ elif section == 'Fiches':
         os.system('open main.pdf')
     elif choice == 'TD':
         os.system('open td/main.pdf')
+    elif choice == 'Cours simple':
+        os.system('open simple-main.pdf')

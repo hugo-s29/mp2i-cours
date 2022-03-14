@@ -1,0 +1,399 @@
+\part{L'espace vectoriel $\mathbbm{K}[X]$}
+
+\begin{rmk}
+	[Rappel]
+	$(\mathbbm{K}[X], +, \cdot)$ est un $\mathbbm{K}$-espace vectoriel engendré par $(1, X, X^2, \ldots)$
+\end{rmk}
+
+\begin{prop}
+	La famille $(X^n)_{n\in\N}$ est libre.
+\end{prop}
+
+\begin{prv}
+	Soit $(\lambda_n)_{n\in\N}$ une famille presque nulle de scalairees telle que $\sum_{n \in \N} \lambda_n X^n = 0$ \\
+	$(\lambda_n)_{n\in\N}$ est un polynôme de $\mathbbm{K}[X]$: on le note $P$.\\
+	Or, \[
+		\sum_{n\in \N} \lambda_n X^n = (\lambda_0, \lambda_1, \ldots, \lambda_n, \ldots) = P
+	\] 
+	Donc $P = 0$ donc \[
+		\forall n \in \N, \lambda_n = 0
+	\] 
+\end{prv}
+
+\begin{crlr}
+	\[
+		\dim\big(\mathbbm{K}[X]\big) = +\infty
+	\]\qed
+\end{crlr}
+
+\begin{defn}
+	Pour $n \in \N$, on note \[
+		\mathbbm{K}_n[X] = \big\{  P \in \mathbbm{K}[X] \mid \deg(P) \le n \big\} 
+	\] 
+\end{defn}
+
+\begin{thm}
+	$\mathbbm{K}_n[X]$ est un sous-espace vectoriel de $\mathbbm{K}[X]$ de dimension $n+1$
+\end{thm}
+
+\begin{prv}
+	$\mathbbm{K}_n[X] = \Vect\big(1, X, \ldots, X^n\big)$
+\end{prv}
+
+\begin{prop}
+	Soit $(P_i)_{i\in I}$ une famille de polynômes non nuls telle que \[
+		\forall  i \neq j, \deg(P_i) \neq \deg(P_j)
+	\] Alors $(P_i)_{i\in I}$ est libre.
+\end{prop}
+
+\begin{prv}
+	Soit $n \in \N$ et $i_1, \ldots, i_n$ des éléments distincts de $I$ \\
+	Soient $\lambda_1, \ldots, \lambda_n \in \mathbbm{K}$. On suppose \[
+		\lambda_1 P_{i_1} + \cdots + \lambda_n P_{i_n} = 0
+	\] Quitte à renuméroter les polynômes, on peut supposer que \[
+		\forall k \in \left\llbracket 1,n \right\rrbracket,
+		\deg\left( P_{i_n} \right) > \deg\left( P_{i_k} \right)
+	\] 
+
+	Si $\lambda_n \neq 0$,
+	\begin{align*}
+		\deg\left( \lambda_1 P_{i_1} + \cdots + \lambda_n P_{i_n} \right)  = \deg\left( P_{i_n} \right)  \neq -\infty
+	\end{align*}
+	Donc $\lambda_n = 0$\\
+	Donc $\lambda_1 P_{i_1} + \cdots + \lambda_{n-1} P_{i_{n-1}} = 0$ \\
+	
+	On conclut par récurrence sur $n$.
+\end{prv}
+
+\begin{thm}
+	[Formule de Taylor]
+	Soit $P \in \mathbbm{K}_n[X]$ et $a \in \mathbbm{K}$. \[
+		P(X) = \sum_{k=0}^n \frac{P^{(k)}(a)}{k!} (X-a)^{k}
+	\] 
+\end{thm}
+
+\begin{prv}
+	$\big(1, X-a, \ldots, (X-a)^{n}\big)$ est libre.\\
+	Comme $\dim\big(\mathbbm{K}_n[X]\big) = n+1$, c'est une base de $\mathbbm{K}_n[X]$.\\
+	Donc, il existe $(\lambda_0, \ldots, \lambda_n) \in \mathbbm{K}^{n+1}$ tel que \[
+		P = \sum_{k=0}^n \lambda_k (X-a)^k
+	\] On remarque que \[
+		P(a) = \lambda_0
+	\]
+	\begin{align*}
+		\forall i \in \left\llbracket 1,n \right\rrbracket,
+		P^{(i)}(a) &= \sum_{k=0}^n \lambda_k \underbrace{\left( (X-a)^k \right)^{(i)}}_{\mathrlap{\fontsize{7pt}{7pt}\selectfont = \begin{cases}
+				0& \text{ si } k  < i\\
+				i!& \text{ si } k = i\\
+				\frac{k!}{(k-i)!} (X-a)^{k+1} &\text{ si } k > i
+		\end{cases}}}(a)\\
+		&= \lambda_i i! \\
+	\end{align*}
+
+	Donc $\lambda_i = \frac{P^{(i)}(a)}{i!}$
+\end{prv}
+
+\begin{prop}
+	Soit $P \in \mathbbm{K}[X]$ et $a \in \mathbbm{K}$. \[
+		\left.\begin{array}{r}
+			a \text{ est une racine de } P\\
+			\text{ de multiplicité } \mu
+		\end{array}\right\} \iff \left\{\begin{array}{l}
+			\forall k \le \mu-1, P^{(k)}(a) = 0\\[1mm]
+			P^{(\mu)}(a) \neq 0
+		\end{array}\right.
+	\] 
+\end{prop}
+
+\begin{prv}
+	On pose $n = \deg(P)$\\
+	 \begin{itemize}
+		\item[$``\impliedby"$ ]
+			\begin{align*}
+				P &= \sum_{k=0}^n \frac{P^{(k)}(a)}{k!}(X-a)^{k}\\
+				&= \sum_{k=\mu}^n \frac{P^{(k)}(a)}{k!} (X-a)^k \\
+				&= (X-a)^\mu \underbrace{\sum_{k=\mu}^n \frac{P^{(k)}(a)}{k!} (X-a)^{k-\mu}}_{Q \in \mathbbm{K}[X]} \\
+			\end{align*}
+			Donc $\begin{cases}
+				(X-a)^\mu  \mid  P\\
+				Q(a) = \frac{P^{(\mu)}(a)}{\mu!} \neq 0
+			\end{cases}$ 
+		\item[$``\implies"$]~\\
+			$\begin{cases}
+				 P = (X-a)^{\mu} Q\\
+				 Q(a) \neq 0
+			\end{cases}$ 
+
+			\begin{align*}
+				\forall k \le \mu - 1, 
+				P^{(k)}(a) &= \sum_{j=0}^k {k \choose j} \left( (X-a)^\mu \right)^{(j)} (a) Q^{(k-j)}(a) \\
+				&= \sum_{j=0}^k {k \choose j} \frac{\mu!}{(\mu-j)!} \underbrace{(a-a)^{\mu-j}}_{ = 0} Q^{(k-j)}(a) \\
+				&= 0 \\
+			\end{align*}
+
+			\begin{align*}
+				P^{(\mu)}(a) &= {\mu \choose \mu} \times \mu! \times 1 \times Q^{(0)}(a) \\
+				&= Q(a) \\
+				&\neq 0
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Avec les notations précédentes, si $a$ est une racine de $P$ de multiplicité $\mu$, alors $a$ est une racine de $P'$ de multiplicité $\mu-1$ \\
+	\qed
+\end{crlr}
+
+\begin{defn}
+	On dit qu'un polynôme $P$ est \underline{scindé} sur $\mathbbm{K}$ si $P$ est un produit de polynômes de $\mathbbm{K}[X]$ de degré 1, i.e. toutes les racines de $P$ sont dans $\mathbbm{K}$
+\end{defn}
+
+\begin{exo}
+	\begin{enumerate}
+		\item Soit $P \in \R[X]$ scindé sur $\R$ à racines simples avec $\deg(P) \ge 2$. Montrer que $P'$ est scindé sur $\R$ à racines simple.
+		\item Soit $P \in \R[X]$ scindé avec $\deg(P) \ge 2$. Montrer que $P'$ est scindé.
+	\end{enumerate}
+	\vspace{5mm}
+	\marginpar{\fbox{Solution}}
+	\begin{enumerate}
+		\item~\\
+			\begin{minipage}{\linewidth}
+				\begin{wrapfigure}
+					{r}{5cm}
+					\centering
+					\begin{asy}
+						import graph;
+						size(5cm);
+						axes(EndArrow);
+						
+						real[] coeffs = {-0.0052538717183996655,-0.0018668631201231925,0.7863750556279947,0.050000000000000704};
+
+						real f(real x) {
+							real y = 0;
+							int k = coeffs.length;
+
+							for(int i = 0; i < k; ++i) {
+								y += x^i * coeffs[k-i-1];
+							}
+
+							return y;
+						}
+
+						draw(graph(f, -16, 16), deepmagenta);
+
+						real[] roots = {-12.382, -0.064, 12.09};
+						real[] droots = {-7.183, 6.946};
+						real eps = 4;
+
+						for(real root: roots) {
+							dot((root, f(root)), deepcyan);
+						}
+
+						for(real droot: droots) {
+							real y = f(droot);
+							draw((droot - eps, y) -- (droot + eps, y), red, Arrows(TeXHead));
+						}
+					\end{asy}
+				\end{wrapfigure}
+				Soit $P \in \R[X]$ avec $\deg(P) = n$ scindé sur $\R$.\\
+				On note $x_1< x_2< \cdots< x_n$ les $n$ racines de $P$\\
+				Soit  $f_P: \R \to \R$ la fonction polynomiale. Aussi, $f_P$ est $\mathcal{C}^{\infty}$ sur $\R$.\\
+				D'après le théorème de Rolle, \[
+					\forall i \in \left\llbracket 1, n-1 \right\rrbracket, \exists y_i \in ]x_i, x_{i+1}[,
+					f'_P(y_i) = 0
+				\] Donc $y_1, \ldots, y_{n-1}$ sont racines de $P'$.\\
+				De plus, \[
+					y_1 < x_2 < y_2 < x_3 < y_3 < \cdots < y_{n-1}
+				\] On a donc trouvé $n-1$ racines distinctes de $P'$. Or, $\deg(P') = n-1$.\\
+				Donc, on a trouvé TOUTES les racines complexes de  $P'$. Donc $P'$ est sciendé à racines simples.\\
+			\end{minipage}
+		\item On note $x_1 < \cdots < x_p$ les racines de $P$ et $n = \deg(P)$. On note pour tout $i \in \left\llbracket 1,p \right\rrbracket$, $\mu_i$ la multiplicité de $x_i$. Donc, \[
+			\sum_{i=1}^p \mu_i = n
+		\] D'après le théorème de Rolle, \[
+			\forall i \in \left\llbracket 1,p-1 \right\rrbracket, \exists y_i \in ]x_i, x_{i+1}[, P'(y_i) = 0
+		\] On a trouvé $p-1$ racines réelles de $P'$.
+		$\forall i \in \left\llbracket 1, p \right\rrbracket, x_i$ est une racine de $P'$ de multiplicité $\mu-1$.\\
+		Ce qui fait, $\sum_{i=1}^p (\mu_i - 1) = n - p$ racines réelles de $P'$ comptées avec multiplicité.\\
+		En tout, on a trouvé $n-1$ racines réelles de $P'$ comptées avec multiplicité.\\
+		Comme $\deg(P') = n - 1$, $P'$ n'a pas d'autres racines donc $P'$ est scindé.
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}
+	[Problème]
+	
+	\begin{wrapfigure}
+		{r}{6cm}
+		\centering
+		\begin{asy}
+			import graph;
+			size(6cm);
+
+			axes(EndArrow);
+
+			real[] coeffs = {-0.01152728642222377,-0.058424162190707105,1.0180575851032627,2.3480560198039857};
+
+			real f(real x) {
+				real y = 0;
+				int k = coeffs.length;
+
+				for(int i = 0; i < k; ++i) {
+					y += x^i * coeffs[k-i-1];
+				}
+
+				return y;
+			}
+
+			bool3 check(real x) {return abs(f(x)) < 9 && abs(f(-x)) < 9;}
+
+			draw(graph(f, -16, 16, check), deepmagenta);
+			real step = 32 / 6;
+			real x0 = -16 + step * 1.4;
+			int i = 0;
+			for(real x = x0; x <= 16 - step; x += step) {
+				pair z = (x, f(x));
+				dot(z);
+				draw(z -- (x,0), dotted);
+				if(z.y > 0)
+					label("$\small x_" + string(i + 1) + "$", (x,0), align = S);
+				else
+					label("$\small x_" + string(i + 1) + "$", (x,0), align = N);
+				++i;
+			}
+		\end{asy}
+	\end{wrapfigure}
+
+	Soient $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ tels que \[
+		\forall i \neq j, x_i \neq x_j
+	\] Soient $(y_1, \ldots, y_n) \in \mathbbm{K}^n$.
+	On cherche $P \in \mathbbm{K}[X]$ de \underline{degré minimal} tel que \[
+		(*) \quad \forall i \in \left\llbracket 1,n \right\rrbracket, P(x_i) = y_i
+	\]
+
+	Soit $\varphi : \begin{array}{rcl}
+		\mathbbm{K}[X] &\longrightarrow& \mathbbm{K}^n \\
+		P &\longmapsto& \big(P(x_1), \ldots, P(x_n)\big)
+	\end{array}$\\
+	\[
+		(*) \iff \varphi(P) = (y_1, \ldots, y_n)
+	\] On cherche, parmi tous les antécédants de $(y_1, \ldots, y_n)$ celui de plus bas degré.\\
+	$\varphi$ est linéaire :
+	\begin{align*}
+		\forall P,Q \in \mathbbm{K}[X], \forall \alpha, \beta \in \mathbbm{K},\\
+		\varphi(\alpha P + \beta Q) &= \big(\alpha P(x_1) + \beta Q(x_1), \ldots, \alpha P(x_n) + \beta Q(x_n) \big) \\
+		&= \big(\alpha P(x_1), \ldots, \alpha P(x_n)\big) + \big(\beta Q(x_1), \ldots, \beta Q(x_n)\big) \\
+		&= \alpha \varphi(P) + \beta \varphi(Q) \\
+	\end{align*}
+	\begin{itemize}
+		\item Donc $\varphi$ est un morphisme de groues additifs.
+		\item $(y_1, \ldots, y_n) = \sum_{i = 0}^n y_i e_i$ où $(e_1, \ldots, e_n)$ est la bade canonique de $\mathbbm{K}^n$
+	\end{itemize}
+	Si on trouve $L_1, \ldots, L_n \in \mathbbm{K}[X]$ tels que $\varphi(L_1) = e_1, ~\ldots~ \varphi(L_n) = e_n$, alors
+	\begin{align*}
+		\varphi\left(\sum_{i=1}^n y_i L_i\right) &= \sum_{i=0}^n y_i \varphi(L_i)\\
+		&= \sum_{i=1}^n y_i e_i\\
+		&= (y_1, \ldots, y_n) \\
+	\end{align*}
+	\begin{center}
+		---
+	\end{center}
+	\begin{align*}
+		P \in \Ker(\varphi) &\iff \varphi(P) = (0,\ldots, 0)\\
+												&\iff \forall i \in \left\llbracket 1,n \right\rrbracket, P(x_i) = 0\\
+												&\iff \exists Q \in \mathbbm{K}[X], P = (X - x_1)\cdots(X-x_n) Q
+	\end{align*}
+	Soit $i \in \left\llbracket 1,n \right\rrbracket$ et $L_i \in \mathbbm{K}[X]$.\\
+	\begin{align*}
+		\varphi(L_i) = e_i &\iff \big(L_i(x_1), L_i(x_2), \ldots, L_i(x_n)\big) = (0, \ldots, 0, \underbrace{1}_i, 0, \ldots, 0) \\
+											&\iff \begin{cases}
+												L_i(x_i) = 1\\
+												\forall j \neq i, L_i(x_j) = 0
+											\end{cases}\\
+											&\iff \begin{cases}
+												\exists Q \in \mathbbm{K}[X], L_i = \prod_{\substack{1 \le j \le n\\ j \neq i}} (X - x_j) Q\\
+												1 = \prod_{\substack{1 \le j \le n\\ j \neq i}} (x_i - x_j) Q(x_i)\\
+											\end{cases}\\
+											&\impliedby L_i = \prod_{j \neq i} \frac{X - x_j}{x_i - x_j}
+	\end{align*}
+	D'où,
+	\[
+		\varphi(P) = (y_1, \ldots, y_n) \iff \exists Q \in \mathbbm{K}[X], P = \underbrace{\sum_{i=1}^n y_i L_i}_{\mathllap{\begin{array}{c}
+			\text{solution particulière}\\
+			\deg(\cdot ) \le n-1
+		\end{array}}} + \underbrace{\prod_{k=1}^n (X-x_k)Q}_{\mathrlap{\begin{array}{c}
+			\text{solutions de l'équation}\\
+			\text{homogène associée}\\
+			\deg(\cdot) \ge n
+		\end{array}}}
+	\]
+	\underline{Le} polynôme de plus bas degré solution du problème d'interpolation est \[
+		\sum_{i=1}^n y_i \prod_{j \neq i} \frac{X - x_j}{x_i - x_j}
+	\]
+\end{exo}
+
+\begin{defn}
+	Soit $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ avec \[
+		\forall i \neq j, x_i \neq x_j
+	\] On pose \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket,
+		L_i = \prod_{\substack{1 \le j \le n\\ j \neq i}} \frac{X - x_j}{x_i - x_j}
+	\]
+	$L_i$ est le \underline{$i$-ème polynôme interpolateur de Lagrange} associé à $(x_1, \ldots, x_n)$: \[
+		\forall j \in \left\llbracket 1,n \right\rrbracket, L_i(x_j) = \delta_{i,j}
+	\]
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, $(L_1, \ldots, L_n)$ est une base de $\mathbbm{K}_{n-1}[X]$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item $\forall i \in \left\llbracket 1,n \right\rrbracket, \deg(L_i) = n - 1$
+		\item Soit $P \in \mathbbm{K}_{n-1}[X]$. On pose \[
+				\forall i \in \left\llbracket 1,n \right\rrbracket, y_i = P(x_i)
+			\]
+			On pose $Q = \sum_{i=1}^{n-1}y_i L_i$. $Q$ est le seul polynôme de degré $\le n-1$ tel que $Q(x_i) = y_i$ pour tout $i$.\\
+			Donc, $P = Q \in \Vect(l_1, \ldots, L_n)$. Donc $(L_1, \ldots, L_n)$ est une famille génératrice de $\mathbbm{K}_{n-1}[X]$. Or, $\dim\big(\mathbbm{K}_{n-1}[X]\big) = n$. Donc $(L_1, \ldots, L_n)$ est une base de $\mathbbm{K}_{n-1}[X]$
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$\mathbbm{K} = {}^\Z / {}_{5\Z}$ et $n = 3$
+	
+	\begin{multicols}
+		{2}
+		$x_1 = \overline{2}$ \\
+		$x_2 = \overline{0}$ \\
+		$x_3 = \overline{-1}$ \\
+		$y_1 = \overline{1}$ \\
+		$y_2 = \overline{1}$ \\
+		$y_3 = \overline{2}$
+	\end{multicols}
+	Le seul polynôme de degré $\le 2$ tel que $P(x_i) = y_i$ pour tout $i \in \left\llbracket 1,2 \right\rrbracket$ est $\sum_{i=1}^3 y_i \prod_{\substack{1 \le j \le 3\\j \neq i}}\frac{X - x_j}{x_i - x_j}$\\
+
+	\begin{align*}
+		L_1 &= (x_1-x_2)^{-1} (x_1-x_3)^{-1} (X-x_2)(X-x_3) \\
+		&= \overline{3}\times \overline{2}\times X\left(X+\overline{1}\right) = X\left( X + \overline{1} \right) = X^2 + X \\
+		~\\
+		L_2 &= (x_2 - x_1)^{-1} (x_2 - x_3)^{-1} (X - x_1)(X - x_3)\\
+		&= \overline{2}\times \overline{1} \left( X - \overline{2} \right) \times \left( X - \overline{1} \right) \\
+		&= \overline{2}X^2 + \overline{3}X + \overline{1} \\
+		~\\
+		L_3 &= (x_3 - x_1)^{-1} (x_3 - x_2)^{-1} (X - x_1) (X - x_2)\\
+		&= \overline{3} \times  \overline{4} \times  \left(X - \overline{2}\right) \times X\\
+		&= \overline{2}X\left( X - \overline{2} \right)  \\
+		&= \overline{2}X^2 + X \\
+	\end{align*}
+	Donc,
+	\begin{align*}
+		P &= X^2 + X + \overline{2}X + \overline{3}X + \overline{1} + \overline{4}X^2 + \overline{2}\\
+		&= \overline{2}X^2 + X + \overline{1} \\
+	\end{align*}
+	Vérification:
+	\begin{align*}
+		P\left( \overline{2} \right) = \overline{3} + \overline{2} + \overline{1} = \overline{1} = y_1\\
+		P\left( \overline{0} \right) = \overline{1} = y_2\\
+		P\left( \overline{-1} \right) = \overline{2} - \overline{1} + \overline{1} = \overline{2} = y_3
+	\end{align*}
+\end{exm}

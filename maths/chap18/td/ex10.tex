@@ -1,0 +1,50 @@
+\part{Exercice 10}
+
+On pose 
+\begin{align*}
+	P &= (X - x)(X - y)(X - z)\\
+	&= X^3 - (x + y + z)X^2 + (xy + xz + yz)X - xyz \\
+\end{align*}
+
+On pose \[
+	\begin{cases}
+		\s = x + y + z\\
+		p = xyz\\
+		q = xy + xz + yz
+	\end{cases}
+\]
+On sait que $\s = 0$.
+\begin{align*}
+	\s^2 &= (x + y + z)^2\\
+	&= x^2 + y^2 + z^2 + \underbrace{2xy + 2yz + 2xz}_{2q} \\
+\end{align*}
+
+donc, \[
+	\frac{x^2+y^2+z^2}{2}=-q
+\]
+
+\begin{align*}
+	0 = P(x) = x^3 - \s x^2 + qx - p\\
+	0 = P(y) = y^3 - \s y^2 + qy - p\\
+	0 = P(z) = z^3 - \s z^2 + qz - p\\
+\end{align*}
+
+D'où, \[
+	x^3 + y^3 + z^3 = -q\s +  3p = 3q
+\] donc \[
+	\frac{x^3 + y^3 + z^3}{3}=p
+\]
+
+On a aussi
+
+\begin{align*}
+	0 = x^5 + qx^3 - px^2\\
+	0 = y^5 + qy^3 - py^2\\
+	0 = z^5 + qz^3 - pz^2\\
+\end{align*}
+
+et donc \[
+	x^5 + y^5 + z^5 = -3qp - 2qp = -5qp
+\] donc \[
+	\frac{x^5 + y^5 + z^5}{5} = -qp = \frac{x^2+y^2+z^2}{2} \times \frac{x^3 + y^3 + z^3}{3}
+\]

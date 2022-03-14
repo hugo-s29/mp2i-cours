@@ -1,0 +1,51 @@
+\part{Exercice 1}
+
+\[
+	\begin{cases}
+		P = (X-a)(X-b)Q + R\\
+		\deg R < 2
+	\end{cases}
+\] 
+Donc, $R = \alpha X + \beta$ avec $\alpha, \beta\in \mathbbm{K}$.
+
+\[
+	\begin{cases}
+		P(a) = R(a) = \alpha a + \beta\\
+		P(b) = R(b) = \alpha b + \beta
+	\end{cases}
+\]
+
+
+\begin{align*}
+	\begin{pmatrix}
+		a&1\\
+		b&1\\
+	\end{pmatrix}\begin{pmatrix}
+		\alpha\\
+		\beta
+	\end{pmatrix} = \begin{pmatrix}
+		P(a)\\
+		P(b)
+	\end{pmatrix}
+\end{align*}
+
+On a \[
+	\begin{pmatrix}
+		a&1\\
+		b&1
+	\end{pmatrix}^{-1} = \frac{1}{a - b}
+	\begin{pmatrix}
+		1&-1\\
+		-b&a
+	\end{pmatrix}
+\] 
+
+Donc, \[
+	\begin{pmatrix}
+		\alpha\\
+		\beta
+	\end{pmatrix} = \frac{1}{a -b} \begin{pmatrix}
+		P(a) - P(b)\\
+		-bP(a) + aP(b)
+	\end{pmatrix}
+\]

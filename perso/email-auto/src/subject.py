@@ -9,8 +9,11 @@ class Subject:
     self.optional = optional
 
   def get_color(self):
+    return colors.hex_to_rgb(self.get_hex_color())
+  
+  def get_hex_color(self):
     seed = sum(ord(c) - i for i, c in enumerate(self.name))
-    return colors.hex_to_rgb(colors.get_color(seed))
+    return colors.get_color(seed)
 
   def __repr__(self):
     return f"{self.name} (hours: {self.time}) in {self.room}"

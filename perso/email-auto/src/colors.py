@@ -1,8 +1,6 @@
 import json
 import random
 
-random.seed(8084)
-
 with open("src/colors.json", "r") as file:
   colors = json.load(file)
 
@@ -11,6 +9,8 @@ color_names = [*colors.keys()]
 with open("src/cache.json", "r") as file:
   cache = json.load(file)
 
+def reset_random_seed():
+  random.seed(8084)
 
 def get_color(i, shade=300):
   if i in cache:

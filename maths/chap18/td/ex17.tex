@@ -1,0 +1,85 @@
+\part{Exercice 17}
+
+Soient $x,y,z \in \C$. On pose \[
+	\begin{cases}
+		\s = x + y + z\\
+		q = xy + xz + yz\\
+		p = xyz
+	\end{cases}
+\] et
+\begin{align*}
+	P &= (X - x)(X-y)(X-z) \\
+	&= X^3 -\s X^2 + qX - p \\
+\end{align*}
+
+\begin{align*}
+	\s^2 &= (x+y+z)^2 \\
+	&= x^2 + y^2 + z^2 + 2q \\
+\end{align*}
+donc $x^2+y^2+z^2= \s^2 - 2q$\\
+De plus, 
+\[
+	\begin{cases}
+		0 = P(x) &= x^3-\s x^2 + qx - p \\
+		0 = P(y) &= y^3-\s y^2 + qy - p \\
+		0 = P(z) &= z^3-\s z^2 + qz - p \\
+	\end{cases}
+\] D'où,
+\begin{align*}
+	x^3+y^3+z^3 &= \s(x^2+y^2+z^2) - q(x+y+z) + 3p\\
+	&= \s (\s^2 - 2q) - q\s + 3p \\
+	&= \s^3 -3q\s + 3p \\
+\end{align*} et
+\begin{align*}
+	x^4 + y^4 + z^4 &= \s(x^3 + y^3 + z^3) - q(x^2 + y^2 + z^2) + p(x+y+z) \\
+	&= \s(\s^3 -3q\s + 3p) - q(\s^2 - 2q) + ps \\
+\end{align*} et 
+\begin{align*}
+	x^5 + y^5 + z^5 &= \s(x^4 + y^4 + z^4) - q(x^3 + y^3 + z^3) + p(x^2+y^2+z^2) \\
+\end{align*}
+
+
+\begin{align*}
+	\begin{cases}
+		x^2+y^2+z^2 = 0 \\
+		x^4 + y^4 + z^4 = 0 \\
+		x^5 + y^5 + z^5 = 0 \\
+	\end{cases}
+	\iff& \begin{cases}
+		\s^2-2q= 0 \\
+		\s(\s^3-3q\s + 4p) = 0 \\
+		-q\s + 3p = 0 \\
+	\end{cases}\\
+	\iff& \begin{cases}
+		0 = 0\\
+		\s = 0\\
+		q = 0 \\
+	\end{cases}\ou\begin{cases}
+		\s^2 = 2q \\
+		\s \neq 0\\
+		q \neq 0\\
+		3p = q\s \\
+		\s^3 - 3q\s + 4p = 0 \\
+	\end{cases}\\
+	\iff& \s = q = 0  \ou \begin{cases}
+		\s^2 = 2q\\
+		3p = q\s \\
+		q\s\left(2 - 3 + \frac{4}{3}\right) = 0 \\
+	\end{cases}\\
+	\iff& \s = q = 0\\
+	\iff& x,y,z \text{ sont racines de } X^3 - p = 0 \text{ avec } p \in \C \text{ quelconque }\\
+	\iff& \begin{cases}
+		y = xj\\
+		z = xj^2
+	\end{cases} \ou \begin{cases}
+		y = xj^2\\
+		z = xj
+	\end{cases} \text{ avec } x \in \C \text{ quelconque}
+\end{align*}
+\vspace{3mm}
+Vérification : 
+\begin{align*}
+	x^2+y^2+z^2 = x^2 (1 + j^2 + j^4) = x^2 (1 + j + j^2) = 0\\
+	x^4+y^4+z^4 = x^4 (1 + j^4 + j^8) = x^4 (1 + j + j^2) = 0\\
+	x^5+y^5+z^5 = x^5 (1 + j^5 + j^{10}) = x^5 (1 + j + j^2) = 0
+\end{align*}

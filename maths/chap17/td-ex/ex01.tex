@@ -1,0 +1,59 @@
+\part{Exercice 1}
+
+\begin{enumerate}
+	\item On sait que $\dim(\mathcal{M}_{1,3}(\R)) = 3$. Or, on n'a que 2 vecteurs. Ils ne peuvent donc pas former une base.
+	\item La famille  $(u,v)$ est une base de $F$ car $F = \Vect(u,v)$\\
+		$u$ et $v$ colinéaires ?\\
+		Soient $a,b \in \R$.\\
+		\begin{align*}
+			(0) = au + bv&\iff \begin{cases}
+				0 = a + 3b\\
+				0 = 2a + 2b\\
+				0 = 3a + b
+			\end{cases}\\
+								 &\iff \begin{cases}
+									 a = -3b\\
+									 a = -\frac{1}{3}b\\
+									 a = b
+								 \end{cases}\\
+								 &\iff a = b = 0
+		\end{align*}
+		Donc $\dim(F) = 2$
+	\item On cherche $a,b \in \R$ tels que $x = au + bv$\\
+		\begin{align*}
+			au + bv = x &\iff \begin{cases}
+				a + 3b = 1\\
+				2a + 2b = 4\\
+				3a + b = 7\\
+			\end{cases}\\
+									&\iff \begin{cases}
+										a + b = 2\\
+										2b = -1\\
+										2a = 5
+									\end{cases}\\
+									&\iff \begin{cases}
+										a = \frac{5}{2}\\
+										b = -\frac{1}{2}\\
+										a + b = 2
+									\end{cases}
+		\end{align*}
+		Donc, $x \in F$ et $x = \frac{5}{3}u - \frac{1}{2}v$ 
+	\item On cherche $a,b \in \R$ tels que $y = au + bv$ \\
+		\begin{align*}
+			au + bv = y &\iff \begin{cases}
+				-1 = a + 3b\\
+				3 = a + b\\
+				9 = 3a + b
+			\end{cases}\\
+									&\iff \begin{cases}
+										-4 = 2b\\
+										6 = 2a\\
+										3 = a+b
+									\end{cases}\\
+									&\iff \begin{cases}
+										a = 3\\
+										b = -2\\
+										a + b = 1 = 3 \lightning
+									\end{cases}
+		\end{align*}
+\end{enumerate}

@@ -1,0 +1,88 @@
+\part{Exercice 9}
+
+Soit $u \in E$. \[
+	\forall n, u_n = u_r \text{ où $r$ est le reste de la division de $n$ par $p$}
+\]
+
+\begin{align*}
+	(u_n) &= (u_0, u_1, \ldots, u_{p-1}, u_0, u_1, \ldots, u_{p-1}, u_0, u_1, \ldots)\\
+	&= u_0 (1, 0, \ldots, 0, 1, 0, \ldots, 0, 1, 0, \ldots) \\
+	&+ u_1 (0, 1, \ldots, 0, 0, 1, \ldots, 0, 0, 1, \ldots) \\
+	&\;\,\vdots\\
+	&+ u_{p-1}(0, 0, \ldots, 1, 0, 0, \ldots, 1, 0, 0, \ldots)
+\end{align*}
+
+\[
+	\forall k \in \left\llbracket 0,p-1 \right\rrbracket, v_k = (v_{k,n}) \text{ où } \forall n, v_{k,n} = \begin{cases}
+		1 &\text{ si } n \equiv k\mod p\\
+		0 &\text{ sinon}
+	\end{cases}
+\]
+On vient de montrer que \[
+	E \subset \Vect(v_0, v_1, \ldots, \vee_{p-1})
+\] Or, \[
+	\forall k \in \left\llbracket 0,p-1 \right\rrbracket, v_k \in E
+\] car 
+\begin{align*}
+	\forall k \in \left\llbracket 0, p-1 \right\rrbracket, \forall n \in \N, v_{k, n+p} &= \begin{cases}
+		1 &\text{ si } p+n \equiv k \mod p\\
+		0 &\text{ sinon}
+	\end{cases}\\
+	&= \begin{cases}
+		1 &\text{ si } n\equiv k \mod p\\
+		0 &\text{ sinon}
+	\end{cases} \\
+	&= v_{k,n} \\
+\end{align*}
+
+Donc $E = \Vect(v_0, \ldots, v_{p-1})$ \\
+Donc $\begin{cases}
+	E \text{ sous-espace vectoriel de } \C^\N\\
+	\dim(E) \le p
+\end{cases}$ 
+
+Soit $q \in \C\setminus \{0\}$ \\
+\begin{align*}
+	\forall n \in \N, &q^{n+p} = q^n q^p = q^n\\
+	\iff& q^p = 1\\
+	\iff& \exists k \in \left\llbracket 0, p-1 \right\rrbracket, q = e^{\frac{2ik\pi}{p}}
+\end{align*}
+
+On pose \[
+	\forall k \in \left\llbracket 0, p-1 \right\rrbracket, w_k = \left( e^{\frac{2ik\pi n}{p}} \right) _{n \in \N}
+\] 
+Montrons que $(w_0, \ldots, w_{p-1})$ est libre.\\
+Soient $(\lambda_0, \ldots, \lambda_{p-1}) \in \C^p$. On suppose \[
+	\forall n \in \N, \sum_{k=0}^{p-1} \lambda_k e^{\frac{2ik\pi n}{p}} = 0
+\] 
+On pose \[
+	P(X) = \sum_{k=0}^{p-1} \lambda_k X^{k} \qquad \deg(P) \le p-1
+\] On a donc \[
+	\forall n \in \N, P\left( e^{\frac{2i\pi n}{p}} \right) = 0
+\] 
+
+donc $P$ a au moins $p$ racines: $1, e^{\frac{2i\pi}{p}}, e^{\frac{4i\pi}{p}}, \ldots, e^{\frac{2i(p-1)\pi}{p}}$\\
+Donc $P = 0$, donc  $\forall  k\in \left\llbracket 0, p-1 \right\rrbracket, \lambda_k = 0$\\
+Donc $(w_0, \ldots, w_{p-1})$ est libre donc $\dim(E) \ge p$ \\
+Donc $\dim(E)= p$ \\
+Donc $(w_0, \ldots, w_{p-1})$ est une base de $E$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

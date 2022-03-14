@@ -3,7 +3,6 @@
 \usepackage{textcomp}
 \usepackage[french]{babel}
 \usepackage{amsmath, amssymb}
-\usepackage{bbm}
 \usepackage{amsthm}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -29,6 +28,16 @@
 \usepackage{floatflt}
 \usepackage{calligra}
 \usepackage[cuteinductors,european,straightvoltages,europeanresistors]{circuitikz}
+\usepackage{cellspace}
+\usepackage{dsfont}
+\usepackage{pdflscape}
+
+%\DeclareMathAlphabet{\mathbbm}{U}{dsrom10}{m}{n}
+\let\mathbbm\mathds
+
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+\newcolumntype{D}{>{$}Sr<{$}}
 
 \usetikzlibrary{babel}
 \usetikzlibrary{tikzmark,calc,fit,arrows}
@@ -102,6 +111,7 @@
 \DeclareMathOperator{\cotan}{cotan}
 \DeclareMathOperator*{\po}{\text{\cursive o}}
 \DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\codim}{codim}
 
 \pdfsuppresswarningpagegroup=1
 \reversemarginpar
@@ -198,7 +208,8 @@
 \newcommand{\danger}{{\large\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax}\;}
 \newcommand{\ex}{\fbox{ex}\;}
 \renewcommand{\mod}[1]{~\left[ #1 \right]}
-
+\newcommand{\todo}[1]{{\color{blue} À faire : #1}}
+\newcommand*{\raisesign}[2][.7\normalbaselineskip]{\smash{\llap{\raisebox{#1}{$#2$\hspace{2\arraycolsep}}}}}
 \newcommand{\vrt}[1]{\rotatebox{90}{$#1$}}
 
 \DeclareMathOperator{\ou}{\text{ ou }}
@@ -221,3 +232,8 @@
 		\end{titlepage}
 	}
 }
+
+\let\bx\boxed
+\newcommand{\s}{\text{\cursive s}}
+\renewcommand{\t}{{}^t\!}
+\newcommand{\eme}{\ensuremath{{}^{\text{ème}}}~}

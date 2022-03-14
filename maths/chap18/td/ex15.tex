@@ -1,0 +1,29 @@
+\part{Exercice 15}
+
+On suppose $\deg(A) \ge \deg(B)$. \[
+	\deg(A - B) \le \deg(A)
+\]
+Soient $a_1, \ldots, a_p$ les racines distinctes de $A$ (et donc de $B$) avec $\alpha_1, \ldots, \alpha_p$ leur multiplicité en tant que racine de $A$ et $\beta_1, \ldots, \beta_p$ leur multiplicité en tant que racine de $B$.\\
+Donc, \[
+	\begin{cases}
+		\sum_{i=1}^p \alpha_i = \deg(A)\\
+		\sum_{i=1}^p \beta_i = \deg(B)\\
+	\end{cases}
+\]
+
+$\forall i, a_i$ est une racine de $A - B$ de multiplicité $\min(\alpha_i, \beta_i)$ \[
+	A - B = (A - 1) - (B - 1)
+\] Soient $a_1', \ldots, a_q'$ les racines de $A - 1$ (et donc de $B-1$) avec $\alpha_1', \ldots, \alpha_q'$ leur multiplicité en tant que racine de $A - 1$, et $\beta_1', \ldots, \beta_q'$ leur multiplicité en tant que racine de $B - 1$.\\
+On remarque que $\{a_1, \ldots, a_p\} \cap \{a_1', \ldots, a_q'\} = \O$ \\
+
+$\forall j \in \left\llbracket 1,q \right\rrbracket, a_j'$ est racine de $A - B$ avec multiplicité $\min(\alpha_j', \beta_j')$.\\
+$\forall i, a_i$ racone de $A'$ avec multiplicité $\alpha_i - 1$.
+$\forall i, a_i'$ racone de $A'$ avec multiplicité $\alpha_i' - 1$.
+\begin{align*}
+	\sum_{i=1}^p (\alpha_i - 1) + \sum_{i=1}^q (\alpha_j' - 1) \le \deg(A') = \deg(A) - 1
+\end{align*}
+D'où, \[
+	\deg(A) - p + \deg(A) q \le \deg(A) - 1
+\] Donc \[
+	p + q \ge \deg(A) + 1
+\] On a donc trouvé au moins $p+q$ racines différentes de $A - B$ avec $ p + q > \deg(A - B)$. Donc $A - B = 0$

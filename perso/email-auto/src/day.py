@@ -23,6 +23,8 @@ class Day:
       *self.generate_subjects(),
     ]
 
+    self.subjects = list(filter(lambda x: x is not None, self.subjects))
+
     self.meals = self.generate_meals()
 
     for subject in self.subjects:

@@ -1,0 +1,28 @@
+\part{Exercice 2}
+
+\begin{enumerate}
+	\item
+		\begin{align*}
+			z^4 + 1 = 0 \iff& z^4 = -1 = e^{i\pi}\\
+			\iff& z \in \left\{ e^{\frac{i\pi}{4}}, e^{\frac{3i\pi}{4}}, e^{\frac{5i\pi}{4}}, e^{\frac{7i\pi}{4}}  \right\}
+		\end{align*}
+		Dans $\C[X]$,
+		\begin{align*}
+			X^4 - 1 &= \left(X - e^{\frac{i\pi}{4}}\right)\left( X- e^{\frac{3i\pi}{4}} \right) \left( X - e^{\frac{5i\pi}{4}} \right)\left( X - e^{\frac{7i\pi}{4}} \right)\\
+			&= \left(X - e^{\frac{i\pi}{4}}\right)\left( X - e^{\frac{7i\pi}{4}}\left( X- e^{\frac{3i\pi}{4}} \right) \left( X - e^{\frac{5i\pi}{4}} \right) \right)\\
+			&= \left(X^2 - 2\cos\left( \frac{\pi}{4} \right) X + 1\right) \left( X^2 - 2\cos\left( \frac{3\pi}{4} \right)X + 1 \right)\\
+			&= \left( X^2 -\sqrt{X} X + 1 \right) \left( X^2+\sqrt{2} X + 1 \right)  \in \R[X]\\
+		\end{align*}
+	\item $P = \left( X^2 - X + 1 \right)^2 + 1$ \\
+		\begin{align*}
+			\left( z^2 - z + 1 \right)^2 + 1 = 0 \iff&
+			\left( z^2 - z + 1 \right)^2 = -1\\
+			\iff& z^2 - z + 1 = i \ou z^2 - z + 1 = -i\\
+			\iff& z = \frac{1 \pm (1 + 2i)}{2} \ou z = \frac{1 \pm (1-2i)}{2}
+		\end{align*}
+		Dans $\C$,
+		\begin{align*}
+			P &= \big(X - (1+i)\big) \big(X - (-i)\big) \big(X - (1-i)\big) \big(X - i\big) \\
+			&= \left( X^2 - 2X + 2 \right) \left( X^2 + 1 \right) \in \R[X] \\
+		\end{align*}
+\end{enumerate}

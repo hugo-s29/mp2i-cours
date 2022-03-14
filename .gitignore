@@ -354,3 +354,5 @@ web/
 **/*.exe
 
 .env
+.cache
+mermaid-filter.err

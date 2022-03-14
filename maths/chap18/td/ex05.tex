@@ -1,0 +1,15 @@
+\part{Exercice 5}
+
+\begin{align*}
+	z^{2n} - 2\cos(na) z^n + 1 = 0
+	\iff& z^n = e^{\pm ina}\\
+	\iff& z \in \left\{ e^{ia} \times e^{\frac{2ik\pi}{n}}  \mid k \in \left\llbracket 0, n - 1 \right\rrbracket \right\}
+	\cup \left\{ e^{-ia} \times  e^{\frac{2ik\pi}{n}}  \mid k \in \left\llbracket -(n-1), 0 \right\rrbracket \right\} 
+\end{align*}
+
+\begin{align*}
+	X^{2n} -2\cos(na) X^n + 1 &= \prod_{k=0}^{n-1} \left( X - e^{i \left( a + \frac{2k\pi}{n}\right)} \right) \prod_{k=0}^{n-1} \left( X - e^{i \left(-a + \frac{2k\pi}{n}\right)} \right) \\
+	&= \prod_{k=0}^{n-1} \left( X^2 - 2\cos\left( a + \frac{2k\pi}{n} \right) X + 1 \right) \\
+\end{align*}
+
+

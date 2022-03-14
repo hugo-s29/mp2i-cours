@@ -1,0 +1,59 @@
+\part{Exercice 8}
+
+\begin{itemize}
+	\item On suppose $a \neq b$.
+		\begin{align*}
+			P  \mid P(X^3) \iff& \text{$a$ et $b$ sont racines de $P(X^3)$}\\
+			\iff& P(a^3) = P(b^3) = 0
+			\iff& (a^3 = a \ou a^3=b)\et(b^3=a \ou b^3=b)
+		\end{align*}
+		Or,
+		\begin{align*}
+			\begin{cases}
+				a^3=a\\
+				b^3=a
+			\end{cases} &\iff \cancel{\begin{cases}
+				a = 0\\
+				b = 0\\
+			\end{cases}} \ou \begin{cases}
+				a = 1\\
+				b \in \{\cancel1, j, j^2\}
+			\end{cases} \ou \begin{cases}
+				a = -1\\
+				b \in \{\cancel-1, -j, -j^2\}
+			\end{cases}\\
+			&\iff P \in \big\{ (X-1)(X-j), (X-1)(X-j^2), (X+1)(X+j), (X+1)(X+j^2) \big\}\\
+		\end{align*}
+		$\begin{cases}
+			a^3 = a\\
+			b^3 = b
+		\end{cases}$ donne des polynômes (en plus des précédents) dans \[
+			\big\{ X(X-1), X(X+1), (X-1)(X+1) \big\}
+		\]
+		\[
+			\begin{cases}
+				a^3 = b\\
+				b^3 = a
+			\end{cases} \iff \begin{cases}
+				a^3 = b\\
+				a^9 = a
+			\end{cases} \iff \exists k \in \left\llbracket 0, 7 \right\rrbracket, \begin{cases}
+				a = e^{\frac{ik\pi}{4}}\\
+				b = e^{\frac{3ik\pi}{4}}
+			\end{cases}
+		\]
+		On a donc, \[
+			\bigg\{\left(X-e^{i\frac{\pi}{4}}\right)\left(X-e^{\frac{3i\pi}{4}}\right), \underbrace{(X-i)(X+i)}_{\in \R[X]}, \left( X-e^{\frac{5i\pi}{4}} \right)\left( X-e^{\frac{-i\pi}{4}} \right) \bigg\}
+		\]
+	\item On suppose $a = b$.
+		\begin{align*}
+			P  \mid P(X^3) &\iff \begin{cases}
+				P(a^3) = 0\\
+				3a^2 P'(a^3) = 0
+			\end{cases}\\
+			&\iff a^3 = a\\
+			&\iff a \in \{0, 1, -1\}\\
+			&\iff P \in \left\{ X^2, (X-1)^2, (X+1)^2 \right\}
+		\end{align*}
+\end{itemize}
+

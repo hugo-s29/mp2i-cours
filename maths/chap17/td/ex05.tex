@@ -1,0 +1,65 @@
+\part{Exercice 5}
+
+\begin{enumerate}
+	\item 
+		\begin{itemize}
+			\item On pose $G = \Vect(e_1, \ldots, e_k)$. On sait que $F \oplus G = E$ \\
+				Soit $x \in F \cap G_a$. On considère $(\lambda_1, \ldots, \lambda_k) \in \mathbbm{K}^k$ tel que
+				\begin{align*}
+					x &= \sum_{i=1}^k \lambda_i (a + e_i)\\
+					&= \left( \sum_{i=1}^k \lambda_i \right)a + \sum_{i=1}^k \lambda_i e_i \\
+				\end{align*}
+				D'où, \[
+					\underbrace{x - \left( \sum_{i=1}^k \lambda_i \right)a}_{\in F} = \underbrace{\sum_{i=1}^k \lambda_i e_i}_{\in G}
+				\]
+				Or, $F \cap G = \{0\}$ Donc $\sum_{i=1}^k \lambda_i e_i = 0$ \\
+				Comme $(e_1, \ldots, e_k)$ est libre, \[
+					\forall i \in \left\llbracket 1,k \right\rrbracket , \lambda_i = 0
+				\] Donc, $x = \sum_{i=1}^k \lambda_i (a + e_i) = 0$ \\
+				On a prouvé que $F \cap G_a = \{0\}$.
+			\item $(e_1, \ldots, e_k)$ est une base de $G$ donc $\dim(G) = k$, donc $\dim(F) = \dim(E) - k$ 
+			\item Soitent $(\lambda_1, \ldots, \lambda_k) \in K^k$. On suppose que \[
+					\sum_{i=1}^k \lambda_i (a + e_i) = 0
+				\] 
+				D'où, \[
+					\underbrace{\left(\sum_{i=1}^k \lambda_i\right)a}_{\in F} = \underbrace{-\sum_{i=1}^k \lambda_i e_i}_{\in G}
+				\] Donc, \[
+					\sum_{i=1}^{k} \lambda_i e_i \in F\cap G = \{0\}
+				\] donc \[
+					\forall i \in \left\llbracket 1,k \right\rrbracket, \lambda_i = 0
+				\] Donc $(a + e_1, \ldots, a + e_k)$ est libre, c'est donc une base de $G_a$, donc \[
+					\dim(G_a) = k
+				\] D'où, \[
+					\dim(F) + \dim(G_a) = \dim(E) - k + k = \dim(E)
+				\] Ainsi, \[
+					F \oplus G_a = E
+				\]
+		\end{itemize}
+	\item On suppose $K$ infini. Dans ce cas, $F$ contient une infinité de vecteurs.\\
+		Soient $a, b \in F$ avec $a \neq b$ et $a \neq 0$. Montrons que $G_a \neq G_b$.\\
+		Soit $x \in G_a \cap G_b$ donc
+		\begin{align*}
+			x &= \sum_{i=1}^k \mu_i (a + e_i)\\
+			&= \sum_{i=1}^k \lambda_i (b + e_i) \\
+		\end{align*}
+		D'où, \[
+			\underbrace{\left(\sum_{i=1}^k \mu_i \right)a - \left(\sum_{i=1}^k \lambda_i \right)b}_{\in F} = \underbrace{\sum_{i=1}^k (\lambda_i - \mu_i) e_i}_{\in G}
+		\] Donc, \[
+			\begin{cases}
+				\left( \sum_{i=1}^k \mu_i \right)a = \left( \sum_{i=1}^k \lambda_i \right) b\\
+				\sum_{i=1}^k (\lambda_i - \mu_i) e_i = 0
+			\end{cases}
+		\] Donc, \[
+			a = b \text{ ou } \sum_{i=1}^k \lambda_i = 0\\
+			\forall i \in \left\llbracket 1,k \right\rrbracket, \lambda_i = \mu_i
+		\] Or, $a \neq b$, donc $\sum_{i=1}^k \lambda_i = 0$ donc $x \in G$\\
+		Si $G_a = G_b$, alors \[
+			G_a = G_a \cap G_b \subset G
+		\] donc  \[
+			G_a = G
+		\] Or, \[
+			\sum_{i=1}^k (a+ e_i) \in G_a \setminus G
+		\] En effet, si $\sum_{i=1}^k (a+ e_i) = y \in G$, alors  \[
+			\underbrace{ka}_{\in F} = \underbrace{g-  \sum_{i=1}^k e_i}_{\in G}
+		\]donc $ka = 0$ Or $l \neq 0$ et $a \neq 0$.
+\end{enumerate}

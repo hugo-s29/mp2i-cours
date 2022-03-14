@@ -7,7 +7,7 @@ directories = sorted([
 ])
 
 cwd = os.getcwd()
-out_directory = f'{cwd}/../web/data/'
+out_directory = f'{cwd}/../web/data/maths/'
 
 def clean_up_asymptote_files(chapter):
     asy_directory = f'{cwd}/{chapter}/asy'

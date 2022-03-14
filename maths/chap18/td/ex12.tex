@@ -1,0 +1,43 @@
+\part{Exercice 12}
+
+\[
+	P = \sum_{k=0}^n \frac{P^{(k)}(0)}{k!}X^k
+\]
+
+Soit $k \in \N$ tel que \[
+	\begin{cases}
+		P^{(k)}(0) = 0\\
+		P^{(k-1)}(0) > 0\\
+		P^{(k+1)}(0) > 0
+	\end{cases}
+\] 
+\begin{center}
+	\begin{asy}
+		import graph;
+
+		size(5cm);
+		axes(EndArrow);
+		real[] coeffs = {0.0004950866580504836,0.0002429906319244281,-0.07386528603441771,0.006311712555938941,-3.4000000000000004};
+		
+		real f(real x) {
+			real y = 0;
+			int k = coeffs.length;
+
+			for(int i = 0; i < k; ++i) {
+				y -= x^i * coeffs[k-i-1];
+			}
+
+			return y;
+		}
+
+		draw(graph(f, -16, 16), deepcyan);
+		draw((-2, f(0)) -- (2, f(0)), red, Arrows(TeXHead));
+	\end{asy}
+\end{center}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{exercice-12}
+    \caption{Exercice 12}
+    \label{fig:exercice-12}
+\end{figure}

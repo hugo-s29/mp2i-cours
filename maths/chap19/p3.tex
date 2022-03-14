@@ -1,0 +1,204 @@
+\part{Théorème du rang}
+
+Dans ce paragraphe, $E$ est un $\mathbbm{K}$-espace vectoriel de dimension finie.
+
+\begin{prop}
+	Soit $f: E \to F$ un isomorphisme (i.e. une application linéaire bijective). Alors, $\dim(E) = \dim(F)$
+\end{prop}
+
+\begin{prv}
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$. On pose \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket, u_i = f(e_i) \in F
+	\]
+	\begin{itemize}
+		\item Soit $(\lambda_1, \ldots, \lambda_n)\in \mathbbm{K}^n$. On suppose que $\sum_{i=0}^n \lambda_i u_i = 0_F$. D'où,
+			\begin{align*}
+				\sum_{i=1}^n\lambda_i f(e_i) &\text{ donc } f\left( \sum_{i=1}^n \lambda_i e_i \right) = 0_F\\
+				&\text{ donc } \sum_{i=1}^n \lambda_i e_i \in \Ker(f) = \{0_E\}\\
+				&\text{ donc } \sum_{i=1}^n \lambda_i e_i = 0_E\\
+				&\text{ donc } \forall i \in \left\llbracket 1,n \right\rrbracket, \lambda_i = 0
+			\end{align*}
+			Donc $(u_1, \ldots, u_n)$ est libre.\\
+			Soit $y \in F$. Comme $f$ est surjective, il existe $x \in E$ tel que $f(x) = y$. Comme $\mathcal{B}$ engendre $E$, il existe $\lambda_1, \ldots, \lambda_n \in \mathbbm{K}^n$ tel que $x = \sum_{i=1}^n \lambda_i e_i$. Comme $f$ est linéaire, \[
+				y = f(x) = \sum_{i=1}^n \lambda_i f(e_i) = \sum_{i=1}^n \lambda_i e_i
+			\] Donc, $F = \Vect(u_1, \ldots, u_n)$ \\
+			Donc $(u_1, \ldots, u_n)$ est une base de $F$ donc \[
+				\dim(E) = n = \dim(F)
+			\]
+	\end{itemize}
+\end{prv}
+
+La première partie de la preuve précédente justifie le résultat suivant.\\[3mm]
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E,F)$ injective. $\mathcal{L} = (e_1, \ldots, e_p)$ une famille libre de $E$. Alors $\big(f(e_1), \ldots, f(e_n)\big)$ est une famille libre de $F$. En particulier, $\dim(F) \ge \dim(E)$.
+	\qed
+\end{prop}
+
+La deuxième partie de la preuve prouve: \\[3mm]
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E,F)$ surjective et $\mathcal{G} = (e_1, \ldots, e_p)$ une famille génératrice de $E$. Alors $\big(f(e_1), \ldots, f(e_p)\big)$ est une famille génératrice de $F$. En particulier, \[
+		\dim(F) \le \dim(E)
+	\]\qed
+\end{prop}
+
+\begin{thm}
+	[Théorème du rang] Soit $f \in \mathcal{L}(E, F)$. \[
+		\dim(E) = \dim\big(\Ker(f)\big) + \dim\big(\mathrm{Im}(f)\big)
+	\]
+\end{thm}
+
+\begin{prv}
+	[À connaître]
+	On pose \begin{align*}
+		u: U &\longrightarrow \mathrm{Im}(f) \\
+		x &\longmapsto f(x)
+	\end{align*} où $U$ est un supplémentaire de $\Ker(f)$ dans $E$.\\
+	($U$ existe : voir remarque qui suit)
+	\begin{itemize}
+		\item $u \in \mathcal{L}\big(U, \mathrm{Im}(f)\big)$, en effet, soient $x,y \in U, \lambda, \mu \in \mathbbm{K}$\\
+			\begin{align*}
+				u(\lambda x + \mu v) &= f(\lambda x + \mu v)\\
+				&= \lambda f(x) + \mu f(y) \\
+				&= \lambda u(x) + \mu u (y)\\
+			\end{align*}
+		\item Soit $y \in \mathrm{Im}(f)$. Soit $x \in E$ tel que $y = f(x)$. Comme $E = U \oplus \Ker(f)$. On peut écrire \[
+			\begin{cases}
+				 x = a+b\\
+				 a \in U, b \in \Ker(f)
+			\end{cases}
+		\]
+		D'où, \[
+			y = f(x) = f(a + b) = f(a) + f(b) = u(a) + 0_E = u(a)
+		\] Donc $u$ est surjective.\\
+		Soit $x \in U$.
+		\begin{align*}
+			x \in \Ker(u) \iff& u(x) = 0_F\\
+			\iff& f(x) = 0_F\\
+			\iff&x \in \Ker(f)\\
+			\iff& x = 0_E \text{ car } U \cap \Ker(f) = \{0_E\}
+		\end{align*}
+		Donc $u$ est injective.\\
+		Ainsi, $\dim(U) = \dim\big(\mathrm{Im}(f)\big)$ \\
+		Or,
+		\begin{align*}
+			\dim(E) &= \dim\big(U\oplus \Ker(f) \big)\\
+			&= \dim(U) + \dim\big(\Ker(f)\big) \\
+		\end{align*}
+		donc \[
+			\dim(U) = \dim(E) - \dim\big(\Ker(f)\big)
+		\] Donc, \[
+			\dim(E) = \dim\big(\Ker(f)\big) + \dim\big(\mathrm{Im}(f)\big)
+		\]
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie, et $F$ un sous-espace vectoriel de $E$.
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] $F = \{0_E\}$, alors $E$ est un supplémentaire de $F$.
+		\item[\underline{\sc Cas 2}] $F \neq \{0_E\}$. Soit $\mathcal{B} = (e_1, \ldots, e_p)$ une base de $F$. Alors $\mathcal{B}$ est une famille libre de $E$. On complète $\mathcal{B}$ en une base $(e_1, \ldots, e_p, e_{p+1}, \ldots, e_n)$ de $E$. On pose $G = \Vect(e_{p+1}, \ldots, e_n)$. On démontre que  \[
+			F \oplus G = E
+		\]
+	\end{itemize}
+\end{rmk}
+
+\begin{crlr}
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels de \underline{même dimension finie} et $f \in \mathcal{L}(E, F)$.
+	\begin{align*}
+		f \text{ injective } &\iff f \text{ surjective}\\
+		&\iff f \text{ bijective}
+	\end{align*}
+\end{crlr}
+
+\begin{prv}
+	D'après le théorème du rang, \[
+		\dim(E) = \dim\big( \Ker(f) \big) + \dim\big( \mathrm{Im}(f) \big)
+	\]
+	\underline{Si $f$ est injective}, alors $\Ker(f) = \{0_E\}$\\
+	et donc  $\dim\big( \Ker(f) \big) = 0$ \\
+	et donc $\dim\big(\mathrm{Im}(f)\big) = \dim(F)$\\
+	et donc $\mathrm{Im}(f) = F$\\
+	et donc $f$ est surjective.
+	\vspace{3mm}
+
+	\underline{Si $f$ est surjective}, alors $\mathrm{Im}(f) = F$ \\
+	et donc $\dim\big(\mathrm{Im}(f)\big) = \dim(F) = \dim(E)$ \\
+	et donc $\dim\big(\Ker(f)\big) = 0$\\
+	et donc $\Ker(f) = \{0\}$\\
+	et donc $f$ est injective
+\end{prv}
+
+\begin{exm}
+	Soit $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ tel que \[
+		\forall i \neq j, x_i \neq x_j
+	\] Soit $(y_1, \ldots, y_n) \in \mathbbm{K}^n$.
+	On pose $\varphi : \begin{array}{rcl}
+		\mathbbm{K}_{n-1}[X] &\longrightarrow& \mathbbm{K}^n \\
+		P &\longmapsto& \big(P(x_1), \ldots, P(x_n)\big)
+	\end{array}$\\
+	\begin{align*}
+		P \in \Ker(\varphi) &\iff \varphi(P) = 0\\
+		&\iff \forall i \in \left\llbracket 1, n \right\rrbracket, P(x_i) = 0\\
+		&\iff P = 0 \text{ car } \deg(P) \le n-1
+	\end{align*}
+	Donc $\varphi$ est injective et donc $\varphi$ est bijective.\\
+	Donc, \[
+		\exists! P \in \mathbbm{K}_{n-1}[X], \forall i \in \left\llbracket 1,n \right\rrbracket, P(x_i) = y_i
+	\] De plus, $\varphi^{-1}: \mathbbm{K}^n \to \mathbbm{K}_{n-1}[X]$ est un isomorphisme.\\
+	Soit $(e_1, \ldots, e_n)$ la base canonique d $\mathbbm{K}^n$. $\big(\varphi^{-1}(e_1) \ldots, \varphi^{-1}(e_n)\big)$ est une base de $\mathbbm{K}_{n-1}[X]$.\\
+	$\forall i \in \left\llbracket 1,n \right\rrbracket, \varphi^{-1}(e_i) = L_i$ es tle $i$-ème polynôme interpolateur de Lagrange.\\
+	\begin{align*}
+		P &= \varphi^{-1}(y_1, \ldots, y_n)\\
+		&= \varphi^{-1}\left( \sum_{i=1}^n y_i e_i \right) \\
+		&= \sum_{i=1}^n y_i \varphi^{-1}(e_i) \\
+		&= \sum_{i=1}^n y_i L_i \\
+	\end{align*}
+\end{exm}
+
+\begin{exo}
+	[Interpolation de Hermite]
+	Soit $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ avec \[
+		\forall i \neq j, x_i \neq x_j
+	\] Soit $(y_1, \ldots, y_n) \in \mathbbm{K}^n$ et $(z_1, \ldots, z_n) \in \mathbbm{K}^n$.\\
+	Trouver un polynôme de plus bas degré tel que \[
+		(*) \qquad \forall i \in \left\llbracket 1,n \right\rrbracket, \begin{cases}
+			P(x_i) = y_i\\
+			P'(x_i) = z_i
+		\end{cases}
+	\]
+	Soit $\varphi : \begin{array}{rcl}
+		\mathbbm{K}_{2n-1}[X] &\longrightarrow& \mathbbm{K}^{2n} \\
+		P &\longmapsto& \big(P(x_1), \ldots, P(x_n), P'(x_1), \ldots, P'(x_n)\big) 
+	\end{array}$ \[
+		(*) \iff \varphi(P) = (y_1, \ldots, y_n, z_1, \ldots, z_n)
+	\] 
+	\begin{align*}
+		P \in \Ker(\varphi) &\iff \forall i, \begin{cases}
+			P(x_i) = 0\\
+			P'(x_i) = 0
+		\end{cases}\\
+		&\iff P = 0 \text{ car } \deg(P) \le 2n-1
+	\end{align*}
+	Donc $\varphi$ est un isomorphisme.
+\end{exo}
+
+\begin{crlr}
+	Soit $f \in \mathcal{L}(E)$ avec $E$ de dimension finie. Alors, \[
+		f \in \mathrm{GL}(E) \iff f \text{ injective } \iff f \text{ surjective }
+	\]\qed
+\end{crlr}
+
+\begin{rmk}
+	Soit $f \in \mathcal{L}(E,F)$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$. Alors \[
+		\boxed{\mathrm{Im}(f) = \Vect\big(f(e_1), \ldots, f(e_n)\big)}
+	\]
+	$\dim\big(\mathrm{Im}(f)\big) = \rg\big(f(e_1), \ldots, f(e_n)\big)$
+\end{rmk}
+
+\begin{defn}
+	Soit $f \in \mathcal{L}(E,F)$. Le \underline{rang} de $f$ est \[
+		\rg(f) = \dim\big(\mathrm{Im}(f)\big)
+	\]
+\end{defn}

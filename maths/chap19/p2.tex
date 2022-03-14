@@ -1,0 +1,74 @@
+\part{Noyau et image}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E,F)$, $U$ un sous-espace vectoriel de $E$ et $V$ un sous-espace vectoriel de $F$.
+	\begin{enumerate}
+		\item $f(U)$ est un sous-espace vectoriel de $F$.
+		\item $f^{-1}(V)$ est un sous-espace vectoriel de $E$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $0_F = f(0_E)$ et $0_E \in U$ donc $0_F \in f(U)$ donc $f(U) \neq \O$\\
+			Soient $(x,y) \in f(U)^2$, $(\lambda, \mu) \in \mathbbm{K}^2$. Soient $a,b \in U$ tels que $\begin{cases}
+				x= f(a)\\
+				y = f(b)
+			\end{cases}$.\\
+			\[
+				\lambda x + \mu y = \lambda f(a) + \mu f(b) = f(\lambda a + \mu b) \text{ car } f \in \mathcal{L}(E,F)
+			\] $U$ est un sous-espace vectoriel de $E$.\\
+			Donc $\lambda a + \mu v \in U$\\
+			donc $f(\lambda u + \mu v) \in f(U)$ \\
+			donc $\lambda x + \mu y \in f(U)$.
+		\item $f(0_E) = 0_F \in V$ donc $0_E \in f^{-1}(V)$. Donc $f^{-1}(V) \neq \O$.\\
+			Soient $x,y \in f^{-1}(V)$, $\lambda, \mu \in \mathbbm{K}$.
+			\[
+				f(\lambda x + \mu y) = \lambda\underbrace{f(x)}_{\in V} + \mu \underbrace{f(y)}_{\in V} \in V
+			\] donc $\lambda x + \mu y \in f^{-1}(V)$.
+	\end{enumerate}
+\end{prv}
+
+\begin{crlr}
+	Soit $f \in \mathcal{L}(E,F)$.
+	\begin{enumerate}
+		\item $\Ker(f) = f^{-1}\big(\{0_F\}\big) = \{x \in E \mid f(x) = 0_E\}$ est un sous-espace vectoriel de $E$.
+		\item $\mathrm{Im}(f) = f(E) = \{f(u)  \mid u \in E\}$ est un sous-espace vectoriel de $E$.
+	\end{enumerate}
+	\qed
+\end{crlr}
+
+\begin{rmk}
+	[Rappel]
+	Soit $f \in \mathcal{L}(E,F)$ 
+	\begin{align*}
+		f \text{ injective } \iff \Ker(f) = \{0_E\}\\
+		f \text{ surjective } \iff \mathrm{Im}(f) = F
+	\end{align*}
+\end{rmk}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Soit $I$ un intervalle, $E = \mathcal{D}(I, \R)$ et $F = \R^I$ \begin{align*}
+				\varphi: E &\longrightarrow F \\
+				f &\longmapsto f'
+			\end{align*}
+			\begin{align*}
+				\Ker(\varphi) = \big\{ f : I \to \R  \mid f \text{ constante } \big\}\\
+				\mathrm{Im}(\varphi) \supset \mathcal{C}^0(I, \R)
+			\end{align*}
+		\item $E = \R_2[X]$, $F = \R$, $\varphi : \begin{array}{rcl}
+				E &\longrightarrow& F \\
+				P &\longmapsto& \int_{0}^{1} P(t)~dt
+			\end{array}$
+			\begin{align*}
+				\Ker(\varphi) &= \left\{ P = a + bX + cX^2  \mid (a,b,c) \in \R^3 \et \int_{0}^{1} P(t)~dt = 0 \right\} \\
+				&= \left\{ a + bX + cX^2  \mid  a + \frac{b}{2}+\frac{c}{3} = 0 \right\} \\
+				&= \left\{ a + bX + cX^2  \mid  a = -\frac{b}{2} - \frac{c}{3} \right\} \\
+				&= \left\{ -\frac{b}{2}-\frac{c}{3} + bX + cX^2  \mid b,c \in \R \right\}  \\
+				&= \left\{ b\left( -\frac{1}{2}+X \right) + c\left( -\frac{1}{3}+X^2 \right)  \mid b,c \in \R \right\}  \\
+				&= \Vect\left( -\frac{1}{2}+X, -\frac{1}{3}+X^2 \right) \\
+			\end{align*}
+			$\mathrm{Im}(\varphi)=\R$.
+	\end{enumerate}
+\end{exm}

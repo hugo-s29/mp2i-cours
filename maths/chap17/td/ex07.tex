@@ -1,0 +1,25 @@
+\part{Exercice 7}
+
+$F$ et $G$ deux hyperplans\\[2mm]
+
+$F \cap G \subset F$ donc $\dim(F \cap G) \le n-1$\\[2mm]
+
+\begin{align*}
+	\dim(F \cap G) = n - 1 &\iff F \cap G = F\\
+												 &\iff F \subset  G\\
+												 &\iff F = G
+\end{align*}
+
+\[
+	\dim(F \cap G) = \dim(F) + \dim(G) - \dim(F + G)
+\]
+
+\begin{align*}
+	&F + G \subset \R^n\\
+	\text{donc }& \dim(F + G) \le n\\
+	\text{donc }& -\dim(F + G) \ge -n\\
+	\text{donc }& \dim(F \cap G) \ge 2(n-1) - n = n - 2
+\end{align*}
+
+Si $F = G$, alors $\dim(F \cap G) = n - 1$ \\
+Si $F \neq G$, alors $\dim(F \cap G) = n - 2$ \\

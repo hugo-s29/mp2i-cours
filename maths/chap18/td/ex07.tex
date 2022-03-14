@@ -1,0 +1,42 @@
+\part{Exercice 7}
+
+\begin{align*}
+	f: \mathbbm{K}_n[X] &\longrightarrow \mathbbm{K}_n[X] \\
+	P &\longmapsto P - P'
+\end{align*}
+
+$f$ est linéaire
+
+\begin{align*}
+	P \in \Ker(f) \iff& P - P' = 0\\
+	\iff& P = 0
+\end{align*}
+
+Donc $f \in \mathrm{GL}\big(\mathbbm{K}_n[X]\big)$ et $P_n = f^{-1}(X^n)$
+
+\begin{align*}
+	P_n = \sum_{k=0}^n \alpha_k X^k\\
+	P'_n = \sum_{k=1}^n k \alpha_k X^{k-1} = \sum_{k=0}^{n-1} (k+1)\alpha_{k+1}X^{k}
+\end{align*}
+
+\[
+	P_n - P'_n = \alpha_n X^n + \sum_{k=0}^{n-1}\big(\alpha_k - (k+1) \alpha_{l + 1}\big)X^k
+\] \[
+	\begin{cases}
+		\alpha_n = 1\\
+		\forall k \in \left\llbracket 0, n-1 \right\rrbracket, \alpha_k = (k+1)\alpha_{k+1}
+	\end{cases}
+\]
+\begin{align*}
+	&\alpha_n = 1 = \frac{n!}{n!}\\
+	&\alpha_{n-1} = n \alpha_n = n = \frac{n!}{(n-1)!}\\
+	&\alpha_{n-2} = (n-1) \alpha_{n-1} = (n-1)n = \frac{n!}{(n-2)!}
+\end{align*}
+
+Preuve par récurrence : \[
+	\alpha_{n-k} = \frac{n!}{(n-k)!}
+\] 
+
+Donc, \[
+	P_n = \sum_{k=0}^n \frac{n!}{k!}X^k
+\]

@@ -1,0 +1,714 @@
+\part{Arithmétique dans $\mathbbm{K}[X]$}
+
+\begin{defn}
+	Soient $A,B \in \mathbbm{K}[X]$. On dit que $A$ \underline{divise} $B$ (dans $\mathbbm{K}[X]$) s'il existe $C \in \mathbbm{K}[X]$ tel que \[
+		AC = B
+	\] On dit dans ce cas que $A$ est un \underline{diviseur} de $B$ ou que $B$ est un \underline{multiple} de $A$. On le note alors $A \mid B$\\
+	On dit que $A$ et $B$ sont \underline{associés} s'il existe $\lambda \in \mathbbm{K} \setminus \{0\}$ tel que $A = \lambda B$. Il s'agit d'une relation d'équivalence.
+\end{defn}
+
+\begin{prop}
+	Soient $A,B \in \mathbbm{K}[X]$.
+	\[
+		\begin{rcases*}
+			A  \mid B\\
+			B  \mid A
+		\end{rcases*}
+		\iff A \text{ et } B \text{ sont associés}
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] Soit $C \in \mathbbm{K}[X]$ tel que $AC = B$ et $D \in \mathbbm{K}[X]$ tel que $BD = A$. D'où,  \[
+				A = BD = ACD
+			\] Or, $\mathbbm{K}[X]$ est un anneau intègre.\\
+			D'où \[
+				A (1-CD) = 0
+			\] donc $A = 0$ ou $CD = 1$\\
+			Si $A = 0$, alors $B = 0 \times C = 0 = 1\times A$ donc $A$ et $B$ sont associés\\
+			Si $CD = 1$, on sait que $\mathbbm{K}[X]^\times = \mathbbm{K}\setminus \{0\}$\\
+			Alors, $A$ et $B$ sont associés.
+		\item[$``\impliedby"$] évident
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	$\mathbbm{K}[X]$ est un anneau intègre.
+\end{lem}
+
+\begin{prv}
+	Soient $P,Q \in \mathbbm{K}[X]$ tels que $PQ = 0$. On suppose que $P \neq 0$ et $Q \neq 0$ \\
+	Alors $\deg(PQ) = \deg(P) + \deg(Q) \ge 0$ \\
+	Or, $PQ = 0$ et $\deg(0) = -\infty$ : $\lightning$ une contradiction
+\end{prv}
+
+\begin{lem}
+	\[
+		\mathbbm{K}[X]^\times = \mathbbm{K}\setminus \{0\}
+	\] 
+\end{lem}
+
+\begin{prv}
+	Soient $P,Q \in \mathbbm{K}[X]$ tels que $PQ = 1$.\\
+	Alors, $0 = \deg(1) = \deg(PQ) = \deg(P) + \deg(Q)$\\
+	Comme  $P \neq 0$, $\deg(P) \ge 0$. De même, $\deg(Q) \ge 0$\\
+	Done $\deg(P) = \deg(Q) = 0$ Donc, il existe  $\lambda, \mu \in \mathbbm{K}$ tels que $\lambda \mu = 1$ \\
+	Donc $\lambda \in \mathbbm{K}^\times  = \mathbbm{K}\setminus \{0\}$
+\end{prv}
+
+\begin{prop}
+	$\mid$ est une relation réflexive et transitive.
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soient $A,B, C \in \mathbbm{K}[X]$ tels que $A \mid B$ et $A \mid C$. Alors \[
+		\forall (P,Q) \in \mathbbm{K}[X]^2, A  \mid  BQ + CP
+	\] \qed
+\end{prop}
+
+\begin{prop-defn}
+	Soit $A \in \mathbbm{K}[X], B \in \mathbbm{K}[X]\setminus \{0\}$.
+	\[
+		\exists !(P,Q) \in \mathbbm{K}[X]^2, \begin{cases}
+			A = PQ + R\\
+			\deg(R) < \deg(B)
+		\end{cases}
+	\]
+	On dit que $Q$ est le \underline{quotient} et $R$ le \underline{reste} de la division (euclidienne) de $A$ par $B$.
+\end{prop-defn}
+
+\begin{prv}
+	\begin{itemize}
+		\item On prouve l'existence par récurrence sur le degré de $A$. On fixe $B \in \mathbbm{K}[X]\setminus \{0\}$\\
+			\begin{align*}
+				\forall n \in \N, \mathcal{P}(n): ``~\forall A \in \mathbbm{K}[X] \text{ tel que } \deg(A) = n,\\
+				\exists (Q,R) \in \mathbbm{K}[X]^2, \begin{cases}
+					A = BQ+R\\
+					\deg(R) < \deg(B)
+				\end{cases}"
+			\end{align*}
+
+			\begin{itemize}
+				\item Soit $A \in \mathbbm{K}[X]$. On suppose $\deg(A) = 0$\\
+					Si  $\deg(B) > 0$ alors on pose $Q = 0$ et $R = A$. Ainsi $\begin{cases}
+						BQ+R = A\\
+						\deg(R) = 0 < \deg(B)
+					\end{cases}$\\
+					Si $\deg(B) = 0$, alors $A = \lambda$ et $B = \mu$ avec $(\lambda, \mu) \in \left(\mathbbm{K}\setminus \{0\}\right)^2$.\\
+					On pose $\begin{cases}
+						Q = \mu^{-1} \lambda\\
+						R = 0
+					\end{cases}$. Alors, $\begin{cases}
+						BQ+R = \mu \mu^{-1} \lambda = \lambda = A\\
+						\deg(R) = -\infty < 0 = \deg(B)
+					\end{cases}$
+					\\[5mm]
+					Donc $\mathcal{P}(0)$ est vraie.
+				\item Soit $n \in \N$. On suppose $\mathcal{P}(k)$ pour tout $k \le n$. Soit $A \in \mathbbm{K}[X]$ tel que $\deg(A) = n + 1$. On pose $p = \deg(B)$ \\
+					Si $p > n+1$, on pose $\begin{cases}
+						Q=0\\
+						R = A
+					\end{cases}$ et on a \[
+						\begin{cases}
+							BQ+R = A\\
+							\deg(R) = n+1 < p = \deg(B)
+						\end{cases}
+					\] 
+					Si $p \le n+1$. On pose $\begin{cases}
+						Q = a_{n+1}b_b ^{-1} X^{n+1-p}\\
+						R = A - BQ
+					\end{cases}$ où $\begin{cases}
+						a_{n+1} = \dom(A)\\
+						a_p = \dom(b)\\
+					\end{cases}$ On a $A = BQ+R$ \\
+					Or,  $\begin{cases}
+						\deg(BQ) = p + n + 1 - p = n+1 = \deg(A)\\
+						\dom(BQ) = b_p b_p^{-1} a_{n+1} = a_{n+1} = \dom(A)
+					\end{cases}$\\
+					donc $\deg(R) < \deg(A)$  donc $\deg(R) \le n$ \\
+					D'après $\mathcal{P}(n)$, \[
+						\exists (Q_1, R_1) \in \mathbbm{K}[X]^2, \begin{cases}
+							R = BQ_1 + R_1\\
+							\deg(R_1) < \deg(B)
+						\end{cases}
+					\] D'où, 
+					\begin{align*}
+						A &= BQ+R \\
+							&= BQ+BQ_1+R_1\\
+							&= B(Q + Q_1) + R_1\\
+					\end{align*}
+					et $\deg(R_1) < \deg(B)$ donc $\mathcal{P}(n+1)$ est vraie.
+			\end{itemize}
+			Donc, $\mathcal{P}(n)$ est vraire pour tout $n \in \N$ par récurrence forte.
+			Si $A = 0$, on pose $Q = R = 0$ et on a bien $BQ+R = 0 = A$ et $\deg(R) = -\infty < \deg(B)$
+		\item \underline{Unicité}\\
+			Soient $A,B \in \mathbbm{K}[X]$ avec $B \neq 0$. On suppse que $A = BQ_1 + R_1 = BQ_2 + R_2$ avec $Q_1,Q_2, R_1, R_2 \in \mathbbm{K}[X]$ et $\begin{cases}
+				\deg(R_1) < \deg(B)\\
+				\deg(R_2) < \deg(B)
+			\end{cases}$\\
+			D'où, \[
+				B(Q_1-Q_2) = R_2 - R_1
+			\] Or, \[
+				\deg(R_2- R_1) \le \max\big(\deg(R_2), \deg(R_1)\big) < \deg(B)
+			\] Or,
+			\begin{align*}
+				\deg\big(B(Q_1-Q_2)\big) &= \deg(B)+ \deg(Q_1-Q_2)\\
+																 &\ge \deg(B) \text{ si } Q_1 - Q_2 \neq 0
+			\end{align*}
+			Donc,  \[
+				\begin{cases}
+					Q_1 - Q_2 = 0\\
+					R_2 - R_1 = B(Q_2 - Q_1) = 0
+				\end{cases}
+			\] et donc \[
+				\begin{cases}
+					Q_1 = Q_2\\
+					R_2 = R_1
+				\end{cases}
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	Division euclidienne de $A = X^5 + X^3 - X^2 + 1$ par $B = X^2 + \frac{1}{2}X - 1$ dans $\R[X]$ \\
+	\begin{center}
+		\begin{NiceTabular}{D|D}
+			X^5 + X^3 - X^2 + 1 & X^2 + \frac{1}{2} X - 1\\ \cline{2-2}
+			\raisesign{-}
+			X^5 + \frac{1}{2}X^4 - X^3 & X^3 - \frac{1}{2}X^2 + \frac{9}{4}X - \frac{21}{8}\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			-\frac{1}{2} X^4 + 2X^3 - X^2 + 1\\
+			\raisesign{-}
+			-\frac{1}{2}X^4 - \frac{1}{4}X^3 + \frac12 X^2 \\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			\frac94X^3 - \frac32 X^2 + 1\\
+			\raisesign{-}
+			\frac94X^3 + \frac98X^2 - \frac94 X\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			-\frac{21}8X^2 + \frac94 X + 1\\
+			\raisesign{-}
+			-\frac{21}8X^2 - \frac{21}{16}X + \frac{21}8\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			\frac{57}{16}X - \frac{13}8
+			\CodeAfter
+			\begin{tikzpicture}
+				\node [draw=red, rounded corners=2pt, inner ysep = -2pt, fit = (2-2)] {};
+				\draw[red, <-, bend right, thick] (2-2)+(0,-0.5) to (-1,2);
+				\node[draw, red, right] at (-1,2) {quotient};
+
+				\node [draw=blue, rounded corners=2pt, inner ysep = -2pt, fit = (13-1)] {};
+				\draw[blue, <-, bend right, thick] (13-1)+(1,0) to (-3,-3);
+				\node[draw, blue, above] at (-3,-3) {reste};
+			\end{tikzpicture}
+		\end{NiceTabular}
+	\end{center}
+\end{exm}
+
+\begin{thm}
+	Soit $P \in \mathbbm{K}[X]$ et $a \in \mathbbm{K}$.
+	\[
+		P(a) = 0 \iff X - a \mid P
+	\] 
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\impliedby"$] On suppose $P = (X-A)\times Q$ avec $Q \in \mathbbm{K}[⁄]$. On substitue $a$ à $X$ \[
+				P(a) = (a-a)\times Q(a) = 0_\mathbbm{K} \times Q(a) = 0_\mathbbm{K}
+			\] 
+		\item[$``\implies"$] On suppose que $P(a) = 0$. On réalise la division euclidienne de $P$ par $X-a$ : \[
+			\begin{cases}
+				P = (X-a) \times Q + R\\
+				\deg(R) < \deg(X-a) = 1
+			\end{cases}
+		\] donc $R = \lambda$ avec $\lambda \in \mathbbm{K}$ \\
+		D'où, \[
+			0 = P(a) = (a-a) \times Q(a) + R(a) = \lambda
+		\] donc \[
+			P = (X-a) \times Q
+		\] et donc  \[
+			X-a \mid P
+		\] 
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Soit $P \in \mathbbm{K}[X]$ non nul de degré $n$. Alors, $P$ a au plus $n$ racines distinctes dans $\mathbbm{K}$ \\
+\end{crlr}
+
+\begin{prv}
+	[par récurrence sur $n$]
+	\begin{itemize}
+		\item C'est évident pour $n = 0$
+		\item Soit $n\in \N$. On suppose la proposition vraie pour les polynômes de degré $n$.\\
+			Soit $P \in \mathbbm{K}[X]$ de degré $n+1$ \\
+			Si $P$ n'a pas de racine alors le résultat est trivialement vrai pour $P$\\
+			Si $P$ a une racine $a$, alors il existe $Q \in \mathbbm{K}[X]$ non nul tel que $P = (X-a)\times Q$\\
+			$n+1 = \deg(P) = 1 + \deg(Q)$ donc $\deg(Q) = n$\\
+			D'après l'hypothèse de récurrence, $Q$ a au plus $n$ racines distinctes\\
+			Soit $b$ une racine de $P$ différente de $a$. Alors, \[
+				0 = P(b) = \underbrace{(b-a)}_{\neq 0}\times Q(b)
+			\] donc $Q(b) = 0$\\
+	\end{itemize}
+	Donc $P$ a bien au plus $n+1$ racines.
+\end{prv}
+
+\begin{defn}
+	Soient $A$ et $B$ deux polynômes dont l'un au moins est non nul, $D \in \mathbbm{K}[X]$. On dit que $D$ est un PGCD de $A$ et $B$ si $D$ est un diviseur commun de $A$ et $B$ et de degré maximal.
+\end{defn}
+
+\begin{prop}
+	Avec les hypothèse précédents, deux PGCD quelconques de $A$ et $B$ sont nécessairement associés
+\end{prop}
+
+\begin{prv}
+	On forme \[
+		E = \big\{AU + BV \mid (U,V) \in \mathbbm{K}[X]^2 \big\} 
+	\]
+	\begin{itemize}
+		\item $E$ est un sous-groupe de $(\mathbbm{K}[X], +)$
+		\item $\forall P \in E, \forall Q \in \mathbbm{K}[X], PQ \in E$
+	\end{itemize}
+	{On dit que $E$ est un {\em idéal} de $\mathbbm{K}[X]$}\\
+
+	Soit $D \in E$ un polynôme non nul de degré minimal. Soit $P \in E$ On divise $P$ par $D$ : \[
+		\begin{cases}
+			P = DQ + R\\
+			\deg(R) < \deg(D)
+		\end{cases}
+	\]
+	D'où \[
+		R = \underbrace{P}_{\in E} - \underbrace{DQ}_{\in E} \in E
+	\] $\deg(R) < \deg(D)$ donc $R = 0$\\
+	Donc,  \[
+		\forall P \in E, D \mid P
+	\]
+	$A \in E$ donc $D \mid A$ \\
+	$B \in E$ donc $D \mid B$ \\
+
+	Soit $\Delta$ un diviseur commun quelconque de $A$ et $B$. On pose $D = AU + BV$ \\
+	$\begin{rcases*}
+		\Delta \mid A\\
+		\Delta \mid B
+	\end{rcases*}$ donc $\Delta  \mid  AU + BV$ donc $\Delta  \mid  D$\\
+	donc $\deg(\Delta) \le \deg(D)$\\
+
+	Ainsi, $D$ est un PGCD de $A$ et $B$. De plus, $\Delta$ est un PGCD de $A$ et $B$ alors \[
+		\begin{cases}
+			\Delta  \mid D\\
+			\deg(\Delta) = \deg(D)
+		\end{cases}
+	\] Donc $D = \Delta Q$ avec $\begin{cases}
+		Q \in \mathbbm{K}[X]\\
+		\deg(Q) = 0
+	\end{cases}$\\
+	donc $D$ et $\Delta$ sont associés.
+\end{prv}
+
+\begin{rmk}
+	Dans la preuve précédente, on a aussi montré les deux propositions suivantes.
+\end{rmk}
+
+\begin{thm}
+	[Théorème de Bézout]
+	Soient $A,B \in \mathbbm{K}[X]$ tels que $A \neq 0$ ou $B \neq 0$ \\
+	Soit $D$ un PGCD de $A$ et $B$. Alors \[
+		\exists (U,V)\in \mathbbm{K}[X]^2, AU + BV = D
+	\]
+	\hfill $\blacksquare$
+\end{thm}
+
+\begin{prop}
+	Avec les hypothèses précédents,
+	\begin{align*}
+		\forall \Delta \in \mathbbm{K}[X],\\
+		\begin{rcases*}
+			\Delta  \mid  A\\
+			\Delta  \mid B
+		\end{rcases*} \iff \Delta \mid D
+	\end{align*}
+	\hfill $\blacksquare$
+\end{prop}
+
+\begin{defn}
+	On dit qu'un polynôme est \underline{unitaire} si sont coefficiant dominant vaut 1.
+\end{defn}
+
+\begin{prop-defn}
+	Soient $A$ et $B$ deux polynômes dont l'un au moins est non nul. Parmi tous les PGCD de $A$ et $B$, un seul est unitaire. On le note $A \wedge B$
+\end{prop-defn}
+
+\begin{prv}
+	Soit $D$ un PGCD de $A$ et $B$. Alors $\dom(D)^{-1}D$ est associé à $D$, donc c'est un PGCD de $A$ et $B$ et il est unitaire. Soient $D$ et $\Delta$ deux PGCD unitaires de $A$ et $B$. Ils sont associés \[
+		\Delta = \lambda D \text{ avec } \lambda \in \mathbbm{K}\setminus \{0\}
+	\] D'où, \[
+		1 = \dom(\Delta) = \lambda \dom(D) = \lambda
+	\] Donc $\Delta = D$
+\end{prv}
+
+\begin{prop}
+	Soient $A,B \in \mathbbm{K}[X]$ avec $B \neq 0$. Soit $R$ le reste de la division de $A$ par $B$. Alors, \[
+		A \wedge B = B \wedge R
+	\] 
+\end{prop}
+
+\begin{prv}
+	[idem que dans $\Z$]
+\end{prv}
+
+\begin{exm}
+	$D = (5X^2 + 3X-1)\wedge(X+3)$\\
+
+	\begin{center}
+		\begin{tabular}{D|D}
+			X^2 + 3X - 1 & X + 3\\ \cline{2-2}
+			\raisesign{-}
+			5X^2 + 15X & 5X - 12\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			-12X - 1\\
+			\raisesign{-}
+			-12X - 36 \\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			35\\
+		\end{tabular} $\qquad$
+		\begin{tabular}{D|D}
+			X+3 & 35\\ \cline{2-2}
+			\raisesign{-}
+			X&\frac1{35}X+\frac3{35}\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			3\\
+			\raisesign{-}
+			3\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			0\\
+		\end{tabular}
+	\end{center}
+	\[
+		D = (X+3) \wedge 35 = 1
+	\] 
+\end{exm}
+
+\begin{thm}
+	[Théorème de Gauss]
+	Soient $A,B,C$ trois polynômes non nuls tels que $\begin{cases}
+		A  \mid BC\\
+		A\wedge B = 1
+	\end{cases}$ \\
+	Alors, $A \mid C$
+\end{thm}
+
+\begin{prv}
+	[idem que dans $\Z$]
+\end{prv}
+
+\begin{crlr}
+	Avec les notations précédentses,
+	\[
+		\begin{rcases*}
+			A \mid B\\
+			B \mid C\\
+			A\wedge B = 1
+		\end{rcases*} \implies AB  \mid C
+	\] 
+\end{crlr}
+
+\begin{prop}
+	Soient $A$ et $B$ deux polynômes non nuls et $D$ un PGCD de $A$ et $B$. Soit $x \in \mathbbm{K}$.\\
+	\[
+		A(x) = B(x) = 0 \iff D(X) = 0
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] On suppose $A(x) = B(x) = 0$ \\
+			D'après le théorème de Bézout, \[
+				D = AU + BV \text{ avec } (U,V) \in \mathbbm{K}[X]^2
+			\] Donc, \[
+				D(x) = A(x) U(x) + B(x) V(x) = 0+0 = 0
+			\] 
+		\item[$``\impliedby"$ ]
+			On suppose $D(x) = 0$. On pose $\begin{cases}
+				A = DA_1\\
+				B = DB_1
+			\end{cases}$ avec $(A_1,B_1) \in \mathbbm{K}[X]^2$ \\
+			D'où, \[
+				\begin{cases}
+					A(x) = D(x) A_1(x) = 0\\
+					B(x) = D(x) B_1(x) = 0\\
+				\end{cases}
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $P \in \mathbbm{K}[X]$.\\[2mm]
+	On dit que $P$ \underline{n'est pas irréductible} si il existe $(Q,R)\in \mathbbm{K}[X]^2$ non constants tels que $P = QR$
+	{\bf ou} si $P$ est constant.\\[2mm]
+	Sinon, on dit que $P$ est \underline{irréductible}.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $X^2+1$ est irréductible dans $\R[X]$ \\
+			On suppose que \[
+				X^2+1 = QR \text{ avec } (Q,R) \in \R[X]^2
+			\]
+			$\begin{cases}
+				\deg(Q) > 0\\
+				\deg(R) > 0
+			\end{cases}$ \\[2mm]
+			Donc, $P$ et $Q$ sont de degré 1, donc ont chacun une racine réelle donc $X^2 + 1$ a au moins une racine réelle: $\lightning$ une contradiction.
+		\item $X^2+1$ n'est pas irréductible dans $\C[X]$ : \[
+				X^2 + 1 = (X-i)(X+i)
+			\]
+		\item $X^4 + 1$ n'est pas irréductible dans $\R[X]$ et pourtant il n'a aucune racine réelle.
+			\begin{align*}
+				X^2+1&= X^4 + 2X^2 + 1 - 2X^2 \\
+				&= \left( X^2+1 \right)^2 - 2X^2 \\
+				&= \underbrace{\left(X^2+1-\sqrt{2}X\right)}_{\in \R[X]}\underbrace{\left(X^2 + 1 + \sqrt{2}X\right)}_{\in \R[X]} \\
+			\end{align*}
+	\end{enumerate}
+\end{exm}
+
+\begin{thm}
+	[Théorème de D'alembert - Gauss]
+	\[
+		\forall P \in \C[X] \text{ non constant}, \exists a \in \C, P(a) = 0
+	\]
+	\qed
+\end{thm}
+
+\begin{crlr}
+	Les polynômes irréductibles de $\C[X]$ sont exactemenent les polynômes de degré 1.
+\end{crlr}
+
+\begin{prv}
+	Les polynômes de degré 1 sont évidemment irréductibles.\\
+	Soit $P \in \mathbbm{K}[X]$ tel que $\deg(P) \ge 2$. Soit $a \in \C$ une racine de $P$.\\
+	Donc $X - a  \mid P$. \[
+		\begin{cases}
+			P = (X-a) \times  Q\\
+			Q \in \C[X]
+		\end{cases}
+	\] 
+	$\begin{rcases*}
+		\deg(Q) \ge 1\\
+		\deg(X-a) = 1
+	\end{rcases*}$ donc $P$ n'est pas irréductible.
+\end{prv}
+
+\begin{exm}
+	Factoriser $X^4 + 1$ dans $\C$ \\
+	Les racines complexes de $X^4 + 1$ sont $\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2}$, $-\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2}$, $\frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2}$ et $-\frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2}$\\
+	Donc,
+	\begin{align*}
+		X^4 - 1 =& \left( X - \frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2} \right)\left( X + \frac{\sqrt{2}}{2} - i \frac{\sqrt{2}}{2} \right)\\
+		\times&\left( X + \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right) \left( X - \frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right)
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	Soit $P \in \mathbbm{K}[X]$ et $a \in \mathbbm{K}$, $\mu \in \N$.\\
+	On dit que $a$ est \underline{une racine de $P$ de multiplicité $\mu$} si \[
+		\begin{cases}
+			\phantom{{}^{\mu+1}}(X-a)^\mu \mid P\\
+			\phantom{{}^{\mu}}(X-a)^{\mu+1} \nmid P
+		\end{cases}
+	\] \\
+	Si $\mu=1$, on dit que $a$ est une racine \underline{simple}.\\
+	Si $\mu=2$, on dit que $a$ est une racine \underline{double}.
+\end{defn}
+
+\begin{rmk}
+	$a$ est une racine de multiplicité 0 si et seulement si $P(a) \neq 0$
+\end{rmk}
+
+\begin{lem}
+	Soient $(A,B) \in \R[X]^2$ non nuls. On suppose que $A$ divise $B$ dans $\C[X]$ \\
+	Alors, $A$ divise $B$ dans $\R[X]$
+\end{lem}
+
+\begin{prv}
+	On suppose que \[
+		(*) \qquad B = AQ \text{ avec } Q \in \C[X]
+	\] On divise $B$ par $A$ dans $\R[X]$ : \[
+		(**)\qquad B = AQ_1 + R_1 \text{ avec} \begin{cases}
+			(Q_1,Q_2) \in \R[X]^2\\
+			\deg(R_1) < \deg(A)
+		\end{cases}
+	\]
+	Comme $\R[X] \subset \C[X]$, $(**)$ est aussi le résultat de la division euclidienne de $B$ par $A$ dans $\C[X]$.\\
+	$(*)$ correspond aussi à une division euclidienne dans $\C[X]$ \\
+	Par unicité, $\begin{cases}
+		Q = Q_1 \in \R[X]\\
+		R_1 = 0
+	\end{cases}$ \\
+	Donc $A$ divise $B$ dans $\R[X]$
+\end{prv}
+
+\begin{prop}
+	Soit $P \in \R[X]$ et $a \in \C \setminus \R$, $\mu \in \N$.\\
+	Si $a$ est une racine de $P$ de multiplicité $\mu$ alors $\overline{a}$ est une racine de $P$ de multiplicité $\mu$.
+\end{prop}
+
+\begin{prv}[par récurrence sur $\mu$]
+	On pose
+	\begin{align*}
+		\forall n \in \N, \mathcal{P}(n): ``\forall P \in \R[X] \text{ et $a \in \C\setminus\R$ racine de $P$ de multiplicité $\mu$,}\\\text{
+		alors $\overline{a}$ est aussi une racine de $P$ de multiplicité $\mu$}"
+	\end{align*}
+
+	\begin{itemize}
+		\item Soit $P \in \R[X]$ et $a \in \C\setminus\R$ tel que $P(a) \neq 0$.\\
+			On pose $P = \sum_{i = 0}^p \alpha_i X^i$ avec $\alpha_0, \ldots, \alpha_p \in \R$\\
+			\begin{align*}
+				P(\overline{a}) &= \sum_{i=0}^p \alpha_i \overline{a}^i\\
+				&= \sum_{i=0}^p \overline{\alpha_i} \overline{a^i}\\
+				&= \sum_{i=0}^p \overline{\alpha_i a^i}\\
+				&= \overline{\left( \sum_{i=0}^p \alpha_i a^i \right)} \\
+				&= \overline{P(a)} \\
+				&\neq 0
+			\end{align*}
+			Donc $\mathcal{P}(0)$ est vraie
+		\item Soit $\mu \in \N$. On suppose $\mathcal{P}(\mu)$ vraie.\\
+			Soit $P \in \R[X]$ et $a \in \C\setminus\R$ une racine de $P$ de multiplicité $\mu + 1$. On pose \[
+				\begin{cases}
+					P = (X-a)^{\mu + 1}Q\\
+					Q \in \C[X]\\
+					Q(a) \neq 0
+				\end{cases}
+			\] On pose aussi $P = \sum_{i=0}^p \alpha_i a^i$ avec $\alpha_0, \ldots, \alpha_p \in \R$ \\
+			$\mu + 1 \ge 1$ donc $P(a) = 0$. D'où, $P(\overline{a}) = \overline{P(a)} = \overline{0} = 0$ \\
+			donc $\underbrace{(\overline{a} - a)^{\mu + 1}}_{\neq 0} Q(\overline{a}) = 0$\\
+			Donc, $Q = (X-\overline{a})Q_1$ avec $Q_1 \in \C[X]$ \\
+			D'où
+			\begin{align*}
+				P &= (X-a)^{\mu + 1} (X-\overline{a})Q_1\\
+				&= (X-a)(X-\overline{a}) (X-a)^\mu Q_1 \\
+			\end{align*}
+			Or,
+			\begin{align*}
+				(X-a)(X-\overline{a}) &= X^2 - (a + \overline{a}) X + a\overline{a}\\
+				&= X^2 - 2\Re(a) X = \left| a \right|^2 \in \R[X] \\
+			\end{align*}
+			D'après le lemme précédent, $(X-a)^\mu Q_1 \in \R[X]$ \\
+			De plus, \[
+				0 \neq Q(a) = (\overline{a} - a)Q_1(a)
+			\] docn $Q_1(a) \neq 0$\\
+			Donc $a$ est une racine de $(X-a)^\mu Q_1 \in \R[X]$ de multiplicité $\mu$.\\
+			D'après $\mathcal{P}(\mu)$, $\overline{a}$ est aussi une racine de $(X-a)^\mu Q_1$ de multiplicité $\mu$.\\
+			Donc, on peut écrire \[
+				(X-a)^\mu Q_1 = (X-\overline{a})^\mu Q_2 \text{ avec} \begin{cases}
+					Q_2 \in \C[X]\\
+					Q_2(\overline{a}) \neq 0
+				\end{cases}
+			\] Donc, \[
+				P = (X-a) (X-\overline{a})^{\mu+1}Q_2
+			\] Donc $\overline{a}$ est une racine de $P$ de multiplicité $\mu +1$\\
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Les polynômes irréductibles de $\R[X]$ sont les polynômes de degré 1 et les polynômes de degré 2 à discriminant strictement négatifs.
+\end{crlr}
+
+\begin{prv}
+	\begin{itemize}
+		\item Les polynômes de de degré 1 sont évidemment irréductibles
+		\item Les polynômes constants ne sont pas irréductibles par définition
+		\item Les polynômes de degré 2 ayant au moins une racine réelle peuvent s'écrire comme produit de deux polynômes réels de degré 1 à coefficiants réels
+		\item Réciproquement, si un polynôme de degré 2 n'est pas irreductible, c'est forcémet un produit de 2 polynômes de degré 1 à coefficiants réels et donc ce polynôme a au moins une racine réelle
+		\item Soit $P \in \R[X]$ tel que $\deg(P) \ge 3$ \\
+			On note $a_1, \ldots, a_r$ les racines réelles distictes de $P$, \[a_{r + 1}, \overline{a_{r+1}}, a_{r+2}, \overline{a_{r+2}}, \ldots, a_s, \overline{a_s}\] les récines non réelles distictes de $P$. On note aussi \[
+				\forall k \in \left\llbracket 1,s \right\rrbracket, \mu_k \text{ la multiplicité de } a_k
+			\]
+			Donc
+			\begin{align*}
+				P &= \dom(P) (X-a_1)^{\mu_1} \cdots (X-a_r)^{\mu_r} (X-a_{r+1})^{\mu_{r + 1}} (X-\overline{a_{r+1}})^{\mu_{r + 1}}\\
+					&\times \cdots \times (X - a_s)^{\mu_s} (X - \overline{a_s})^{\mu_s}
+			\end{align*}
+			Or,
+			\begin{align*}
+				\forall k \ge r+1, (X-a_k)^{\mu_k}(X-\overline{a_k})^{\mu_k}
+				&= \left( (x-a)(x-\overline{a}) \right)^{\mu_k} \\
+				&= (X^2 - 2\Re(a)X + \left| a \right|^2 \\
+				&\in \R[X]
+			\end{align*}
+			D'où, \[
+				P = \underbrace{\dom(P)}_{\in \R}
+				\underbrace{\prod_{k=1}^r (X-a_k)^{\mu_k}}_{\in \R[X]}
+				\prod_{k=r+1}^s\underbrace{\left( X^2 - 2\Re(a_k)X + \left|a_k \right|^2 \right)^{\mu_k}}_{\in \R[X]}
+			\]
+			\[
+				P \text{ irréductible } \iff \left(\begin{array}{l}
+					\text{il y a une unique racine réelle simple}\\
+					\text{et aucune racine non réelle}\\
+					\text{\sc ou}\\
+					\text{il n'y a aucune racine réelle et 2 racines}\\
+					\text{non réelles conjuguées simples}
+				\end{array}\right.
+			\] 
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	Soit $\mathbbm{K} = \R$ ou $\C$.\\
+	Tout polynôme de $\mathbbm{K}$ se découpe en produit de facteurs irréductibles dans $\mathbbm{K}[X]$ et cette décomposition est unique à multiplication par une constante non nulle près.
+	\qed
+\end{thm}
+
+\begin{prop}
+	Soient $A, B \in \C[X]$ non nuls. \[
+		A \mid B \iff \begin{array}{l}
+			\forall a \in \C, \text{ si $a$ est une racine de $A$ de multiplicité $\mu \in \N$,}\\
+			\text{alors $a$ est racine de $B$ avec une multiplicité $\ge \mu$}
+		\end{array}
+	\] 
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[$``\implies"$] On suppose $A \mid B$\\
+			Soit $a \in \C$ une racine de $A$ de multiplicité $\mu$\\
+			Alors, $(X-a)^\mu  \mid  A$ donc $(X-a)^\mu  \mid B$ \\
+			Donc $a$ est une racine de $B$ de multiplicité $\ge \mu$ 
+		\item[$``\impliedby"$]
+			On décompose $A$ et $B$ en produit de facteurs irréductibles sur $\C[X]$: \[
+				B = \dom(B) \prod_{a \in \mathcal{R}} (X-a)^{\nu_a}
+			\] où $\mathcal{R}$ est l'ensemble des racines de $B$; et \[
+				A = \dom(A) \prod_{a \in \mathcal{S}} (X-a)^{\mu_a}
+			\] où $\mathcal{S}$ est l'ensemble des racines de $A$ \\
+			On suppose que $\begin{cases}
+				\mathcal{S} \subset \mathcal{R}\\
+				\forall a \in \mathcal{S}, \mu_a \le \nu_a
+			\end{cases}$\\
+			D'où,
+			\begin{align*}
+				B = \frac{\dom(B)}{\dom(A)} \underbrace{\dom(A) \prod_{a \in \mathcal{S}} (X-a)^{\mu_a}}_A \times \underbrace{\prod_{a \in \mathcal{S}} (X-a)^{\nu_a - \mu_a} \times \prod_{a \in \mathcal{R}\setminus\mathcal{S}} (X-a)^{\nu_a}}_{\in \C[X]}
+			\end{align*}
+			Donc, $A  \mid B$
+	\end{itemize}
+\end{prv}
+
+\begin{exo}
+	Montrer que $1 + X + X^2  \mid X^{3n} - 1$ \\
+	Les racines de $1+X+X^2$ sont $j$ et $j^2$ \\
+
+	\begin{align*}
+		j^{3n}-1 = \left( j^3 \right) ^n - 1 = 1-1=0\\
+		\left(j^2\right)^{3n} = \left( j^3 \right) ^{2n} - 1 = 1 - 1 = 0
+	\end{align*}
+\end{exo}
+
+\begin{prop}
+	Soit $P \in \C[X]$ de degré $n>0$ \\
+	Alors $P$ a exactement $n$ racines comptées avec multiplicité.
+\end{prop}
+
+\begin{prv}
+	 \[
+		P = \dom(P) \times  \prod_{a \in \mathcal{R}} (X-a)^{\mu_a}
+	\] où $\mathcal{R}$ est l'ensemble des racines distinctes de $P$ \\
+	$n = \deg(P) = \sum_{a \in \mathcal{R}} \deg\big((X-a)^{\mu_a}\big) = \sum_{a \in \mathcal{R}}\mu_a$
+\end{prv}
+
+
+
+
+
+

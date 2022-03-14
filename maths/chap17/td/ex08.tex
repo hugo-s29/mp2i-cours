@@ -1,0 +1,89 @@
+\part{Exercice 8}
+
+\begin{itemize}
+	\item[$``\impliedby"$] Soient $F, G, U$ tels que \[
+			F \oplus U = E = G \oplus U
+		\]
+		Donc,
+		\begin{align*}
+			\dim(F)+\dim(U) = \dim(E)\\
+			\dim(G)+\dim(U) = \dim(E)\\
+		\end{align*}
+		Donc, $\dim(F) = \dim(G)$
+	\item[$``\implies"$]~\\
+			\begin{center}
+				\begin{asy}
+					import solids;
+					import math;
+					import three;
+
+					settings.render = 0;
+					settings.prc = false;
+					size(4cm);
+
+					guide3 square = (-1,-1,0) -- (-1, 1, 0) -- (1, 1, 0) -- (1, -1, 0) -- cycle;
+					transform3 r = rotate(30, (0,1,1));
+
+					draw(r * rotate(30, (1,0,0)) * square);
+					draw(r * rotate(-30, (1,0,0)) * square);
+					draw(r * (-1,0,0) -- r * (1,0,0), red);
+					draw(r * (1,0,0) -- r * (1, 0.6, 0), deepcyan, Arrow3(TeXHead2));
+					label("$\vec{u}$", r*(1,0.5,0), deepcyan, align=S);
+				\end{asy}
+				$\qquad$
+				\begin{asy}
+					import math;
+					size(3cm);
+					pair O = (0,0);
+					drawline(O, (1,1));
+					drawline(O, (1,-1));
+					label("$F$", (1,1), align=S);
+					label("$G$", (1,-1), align=N);
+					dot((-1,-1), white+0);
+					dot((-1,1), white+0);
+					draw(circle(O, 0.1), red);
+					dot(O, red);
+					label("$O$", O, align=NE);
+					draw(O -- (0.6,0), deepcyan, Arrow(TeXHead));
+					label("$\vec{u}$", (0.4, 0), deepcyan, align=S);
+				\end{asy}
+			\end{center}
+		On raisonne par récurrence sur la $\codim(F) = \dim(E) - \dim(F)$
+		\begin{itemize}
+			\item Soient $F$ et $G$ deux hyperplans de $E$ \\
+				$F \cup G \neq E$ d'après l'exercice classique suivant: \[
+					F \cup G \text{ sous-espace vectoriel de } E \iff F \subset G \text{ ou } G \subset F
+				\] Solution de l'exercice:
+				\begin{itemize}
+					\item[$``\impliedby"$ ]
+						\begin{align*}
+							F \subset  G \implies F\cup G = G\\
+							G \subset F \implies F\cup G = F
+						\end{align*}
+					\item[$``\implies"$] On suppose $G \not\subset F$. Soit $u \in F$. Soit $v \in G\setminus F$.\\
+						 $u + v \in F\cup G$ car $F \cup G$ est un sous-espace vectoriel de $E$.\\
+						 Si $u + v \in F$, alors $v = \underbrace{u + v}_{\in F} - \underbrace{u}_{\mathclap{\in F}} \in F$ $\lightning$\\
+						 Si $u + v \in G$, alors $u = \underbrace{u + v}_{\in G} - \underbrace{v}_{\mathclap{\in G}} \in G$ $\lightning$\\ 
+						 Donc $F \subset G$
+				\end{itemize}
+
+				Soit $u \in E \setminus (F \cup G)$. $u\neq 0$ donc $\left<u \right>$ est de dimension 1.
+				$\left<u \right> \cap F = \{0\}$ donc $F \oplus \left<u \right> = E$ \\
+				$\left<u \right> \cap G = \{0\}$ donc $G \oplus \left<u \right> = E$ \\
+			\item Soit $n \in \N_*$ tels que pour tous $F$ et $G$ sous-espaces vectoriels de $E$ de codimension $n$, $F$ et $G$ ont un supplémentaire commun.\\
+				Soient $F$ et $G$ de codimension $n+1$. De nouveau, $F\cup G \neq E$. Soit $u \in E \setminus (F \cup G)$. $\left<u \right> \cap F = \{0\}$. On pose $F' = F \oplus \left<u \right>$.\\
+				$\dim(F') = \dim(F) + 1$ donc $\codim(F') = n$\\
+				De même,  $\left<u \right>\cap G = \{0\}$. On pose $G' = G \oplus \left<u \right>$ donc $\codim(G') = n$ \\
+				Soit $U$ un supplémentaire commun à $F'$ et $G'$. On pose $U' = \left<u \right> \oplus U$
+				\begin{align*}
+					E &= F' \oplus U\\
+						&= F \oplus \left<u \right>\oplus U\\
+						&= F \oplus U'\\
+				\end{align*}
+				\begin{align*}
+					E &= G' \oplus U\\
+						&= G \oplus \left<u \right>\oplus U\\
+						&= G \oplus U'\\
+				\end{align*}
+		\end{itemize}
+\end{itemize}

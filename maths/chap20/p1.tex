@@ -1,0 +1,232 @@
+\part{Construction de $\mathbbm{K}(X)$}
+
+\begin{prop-defn}
+	On définit la relation $\sim$ sur $\mathbbm{K}[X]\times \big(\mathbbm{K}[X] \setminus \{0\}\big)$ par \[
+		(P, Q) \sim (A, B) \iff PB = QA
+	\] Cette relation est une relation d'équivalence. On note $\big(\mathbbm{K}[X]\times \big(\mathbbm{K}[X]\setminus \{0\}\big)\big) /_\sim$. Les éléments de $\mathbbm{K}(X)$ sont appelés \underline{fractions rationnelles}.\\
+	On note $\frac{P}{Q}$ la classe d'équivalence du couple $(P, Q)$.
+\end{prop-defn}
+
+\begin{prv}
+	On note $E = \mathbbm{K}[X] \big( \mathbbm{K}[X] \setminus \{0\} \big)$.
+	\begin{itemize}
+		\item Soit $(P, Q) \in E$. $PQ = QP$ car $\times$ est commutative dans $\mathbbm{K}[X]$. Donc $(P,Q)\sim(P,Q) $
+		\item Soient $(P,Q) \in E,  (A, B) \in E$. On suppose que $(P, Q)\sim(A, B)$. Donc $PB = QA$ \\
+			Donc, $(A,B) \sim (P,Q)$ 
+		\item Soit $\big((P,Q), (A, B), (C,D)\big) \in E^3$. On suppose \[
+			\begin{cases}
+				(P,Q)\sim (A,B)\\
+				(A,B)\sim (C,D)
+			\end{cases}
+		\] D'où, \[
+			\begin{cases}
+				PB = QA\\
+				AD = BC
+			\end{cases}
+		\] Donc \[
+			PBD = QAD = QBC
+		\] donc $B(PD - QC) = 0$\\
+		Comme $B \neq 0$ et comme $\mathbbm{K}[X]$ est intègre, \[
+			PD - QC = 0
+		\] et donc $(P, Q)\sim (C,D)$
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $(P,Q) \in \mathbbm{K}[X] \times \big(\mathbbm{K}[X]\setminus \{0\}\big)$ et $R \in \mathbbm{K}[X]\setminus \{0\}$. Alors \[
+		\frac{PR}{QR} = \frac{P}{Q}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		\frac{PR}{QR}=\frac{P}{Q}\iff& (PQ,QR)\sim (P,Q)\\
+		\iff& PRQ = QRP
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $(P,Q) \in \mathbbm{K}[X]\setminus\big(\mathbbm{K}[X] \setminus \{0\} \big)$. On dit que la fraction $\frac{P}{Q}$ est sous forme \underline{irréductible} si $P\wedge Q = 1$.
+\end{defn}
+
+\begin{prop-defn}
+	Soient $(P,Q) \sim (A,B)$. Alors \[
+		\deg(P) - \deg(Q) = \deg(A) - \deg(B)
+	\] Le \underline{degré} de $\frac{P}{Q}$ est $\deg(P) - \deg(Q)$. On note ce ``nombre'' $\deg\left( \frac{P}{Q} \right)$.
+\end{prop-defn}
+
+\begin{prv}
+	On sait que $PB = QA$ donc \[
+		\deg(P) + \deg(Q) = \deg(Q) + \deg(A)
+	\] et donc \[
+		\deg(P) - \deg(Q) = \deg(A) - \deg(B)
+	\]
+\end{prv}
+
+\begin{prop-defn}
+	Soient $(P,Q)\sim (A,B)$ et $(R, S)\sim (C,D)$. Alors, $(PR, QS)\sim(AC, BD)$.\\
+	Le \underline{produit} de $\frac{P}{Q}$ avec $\frac{R}{S}$ est $\frac{PR}{QS}$
+\end{prop-defn}
+
+\begin{prv}
+	On sait que $\begin{cases}
+		PB = QA\\
+		RD = SC
+	\end{cases}$. D'où, \[
+		PBRD = QASC
+	\] et donc \[
+		(PR)(BD) = (QS)(AC)
+	\] donc \[
+	(PR, QS) \sim (AC, BD)
+	\] 
+\end{prv}
+
+\begin{prop-defn}
+	Avec les notations précédentes, \[
+		(PS + RQ, QS) \sim (AD + BC, BD)
+	\] On définit la somme de $\frac{P}{Q}$ et $\frac{R}{S}$ par \[
+		\frac{P}{Q} + \frac{R}{S} = \frac{PS + RQ}{QS}
+	\] 
+\end{prop-defn}
+
+\begin{prv}
+	On sait que $\begin{cases}
+		PB = QA\\
+		RD = SC
+	\end{cases}$. Donc,
+	\begin{align*}
+		(PS + RQ) BD &= PSBD + RQBD \\
+		&= QASD + SCQB \\
+		&= QS(AD + BC) \\
+	\end{align*}
+\end{prv}
+
+\begin{thm}
+	$\big(\mathbbm{K}(X), +, \times\big)$ est un corps.
+\end{thm}
+
+\begin{prv}
+	[(partielle)]
+	\begin{enumerate}
+		\item $``+"$ est associative: soient $\left(\frac{P}{Q}, \frac{R}{S}, \frac{A}{B}\right) \in \mathbbm{K}(X)^3$.
+			\begin{align*}
+				\frac{P}{Q} + \left( \frac{R}{S} + \frac{A}{B} \right) = \frac{P}{Q} + \frac{RB+AS}{SB} = &~\frac{PSB + QRB + QAS}{QSB}\\
+				&\quad\qquad\qquad\vrt=\\
+				\left( \frac{P}{Q} + \frac{R}{S} \right) + \frac{A}{B} = \frac{PS+RQ}{QS} + \frac{A}{B} = &~\frac{PSB+ RQB + AQS}{QSB}
+			\end{align*}
+		\item $``+"$ est commutative
+		\item $\frac{0}{1}$ est neutre pour $``+"$ 
+			\[
+				\frac{P}{Q} + \frac{0}{1} = \frac{P\times 1 + 0 \times Q}{Q \times 1} = \frac{P}{Q}
+			\]
+		\item Soit $\frac{P}{Q} \in \mathbbm{K}(X)$. \[
+				\frac{P}{Q} + \frac{-P}{Q} = \frac{PQ - QP}{Q^2} = \frac{0}{Q^2} = \frac{0}{1}
+			\]
+		\item $``\times"$ est associative
+		\item $``\times"$ est commutative
+		\item $\frac{1}{1}$ est le neutre pour $``\times"$ 
+		\item Soient $\left( \frac{P}{Q}, \frac{R}{S}, \frac{A}{B} \right) \in \mathbbm{K}(X)^3$
+			\[
+				\frac{P}{Q}\left( \frac{R}{S}+ \frac{A}{B} \right) = 
+				\frac{P}{Q}\times \frac{RB+AS}{SB} = 
+				\frac{PRB + PAS}{QSB}
+			\] et
+			\begin{align*}
+				\frac{P}{Q} \times \frac{R}{S} + \frac{P}{Q} \times  \frac{A}{B} &= \frac{PR}{QS} + \frac{PA}{QB} \\
+				&= \frac{PRQB + QSPA}{Q^2SB} \\
+				&= \frac{PRB + SPA}{QSB} \\
+			\end{align*}
+		\item Soit $\frac{P}{Q} \neq \frac{0}{1}$ donc $P\times 1 \neq Q \times 0$ donc $P \neq 0$.
+			\[
+				\frac{P}{Q} \times \frac{Q}{P} = \frac{PQ}{PQ}= \frac{1}{1}
+			\]
+		\item $\frac{1}{1}\neq \frac{0}{1}$ car $1\times 1 \neq 0\times 1$
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	\[
+		\forall P,A \in \mathbbm{K}[X], \forall Q \in \mathbbm{K}[X]\setminus \{0\}, \qquad
+		\frac{P}{Q}+\frac{A}{Q} = \frac{P+A}{Q}
+	\]
+\end{prop}
+
+\begin{prop}
+	$i : \begin{array}{rcl}
+		\mathbbm{K}[X] &\longrightarrow& \mathbbm{K}(X) \\
+		P &\longmapsto& \frac{P}{1}\\
+	\end{array}$ est un morphisme d'anneaux injectif.
+\end{prop}
+
+\begin{prv}
+	Soient $P, Q \in \mathbbm{K}[X]$.
+	\begin{align*}
+		&i(P + Q) = \frac{P+Q}{1} = \frac{P}{1} + \frac{Q}{1} = i(P) + i(Q)\\
+		&i(PQ) = \frac{PQ}{1}  = \frac{PQ}{1\times 1} = \frac{P}{1} \times \frac{Q}{1} = i(P) \times i(Q)\\
+		&i(1) = \frac{1}{1}
+	\end{align*}
+	Donc $i$ est un morphisme d'anneaux.
+	\begin{align*}
+		P \in \Ker(i) \iff& i(P) = \frac{0}{1}\\
+		\iff& \frac{P}{1} = \frac{0}{1}\\
+		\iff& P\times 1 = 0\times 1\\
+		\iff& P = 0
+	\end{align*} donc $i$ est injective.
+\end{prv}
+
+\begin{defn}
+	Soient $\lambda \in \mathbbm{K}$ et $F = \frac{P}{Q} \in \mathbbm{K}(X)$. On pose \[
+		\lambda F = \frac{\lambda P}{Q} = \frac{\lambda}{1} \times  \frac{P}{Q}
+	\]
+\end{defn}
+
+\begin{prop}
+	$\big(\mathbbm{K}(X), +, \cdot\big)$ est un $\mathbbm{K}$-espace vectoriel et $i : \begin{array}{rcl}
+		\mathbbm{K}[X] &\longrightarrow& \mathbbm{K}(X) \\
+		P &\longmapsto& \frac{P}{1}
+	\end{array}$ est linéaire. \qed
+\end{prop}
+
+\begin{rmk}
+	On peut identifier $P \in \mathbbm{K}[X]$ avec $\frac{P}{1} \in \mathbbm{K}(X)$ i.e. écrire $P = \frac{P}{1}$ et alors $\begin{cases}
+		\mathbbm{K}[X]\text{ est un sous-anneau de } \mathbbm{K}(X)\\
+		\mathbbm{K}[X]\text{ est un sous-espace vectoriel de } \mathbbm{K}(X)
+	\end{cases}$ \\
+	De plus, les deux définitions de degré coïncident.
+\end{rmk}
+
+\begin{prop}
+	Soit $F, G \in \mathbbm{K}(X)$.
+	\begin{enumerate}
+		\item $\deg(F+G) \le \max(\deg F, \deg G)$\\
+			Si $\deg(F) \neq \deg(G)$ alors $\deg(F+G) = \max(\deg F, \deg G)$;
+		\item $\deg(FG) = \deg(F) + \deg(G)$;
+		\item Si $F \neq 0$, $\deg\left( \frac{1}{F} \right) = -\deg(F)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	On pose $F = \frac{A}{B}$ et $G = \frac{P}{Q}$.
+
+	\begin{enumerate}
+		\item $F+G = \frac{AQ+PB}{BQ}$. On suppose que $\deg(F) \ge \deg(G)$ i.e. $\deg A - \deg B \ge \deg P - \deg Q$.
+
+			\[\deg(F+G) = \deg(QA+PB) - \deg(BQ)\]
+
+			On a \[
+				\deg(AQ) = \deg(A) + \deg(Q) \ge \deg(P) + \deg(B) = \deg(PB).
+			\] D'où \[
+				\deg(F+G) \le \deg(AQ) - \deg(BQ) = \deg\left( \frac{AQ}{BQ} \right) = \deg(F).
+			\] Si $\deg(F) > \deg(G)$, alors $\deg(AQ) > \deg(PB)$ et donc \[
+				\deg(F+G) = \deg(AQ) - \deg(BQ) = \deg(F).
+			\]
+		\item
+			\begin{align*}
+				\deg(FG) &= \deg\left( \frac{AP}{BQ} \right) \\
+				&= \deg(AP) - \deg(BQ) \\
+				&= \deg(A) + \deg(P) - \deg(B) - \deg(Q) \\
+				&= \deg F + \deg G. \\
+			\end{align*}
+		\item $\deg\left( \frac{1}{F} \right) = \deg(1) - \deg(F) = -\deg(F)$
+	\end{enumerate}
+\end{prv}

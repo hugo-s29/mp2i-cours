@@ -1,0 +1,31 @@
+\part{Exercice 11}
+
+\[
+	L_n = \frac{n!}{(2n)!} \big((X^2 - 1)^n\big)^{(n)}
+\]
+
+\begin{enumerate}
+	\item $\deg(L_n) = 2n - n = n$ et $\dom(L_n) = 1$ car
+		\begin{align*}
+			L_n &= \frac{n!}{(2n)!} \sum_{k=0}^n {n \choose k} \left(X^{2k}\right)^{(n)} (-1)^{n-k}\\
+			&= \frac{n!}{(2n)!} \sum_{k=0}^n {n \choose k} \frac{(2k)!}{(2k-n)!} X^{2k-n} (-1)^{n-k} \\
+		\end{align*}
+	\item Soit $Q \in \R_{n-1}[X]$.\\
+		On pose $f_n: t \mapsto \frac{n!}{(2n)!} \left( t^2 - 1 \right)^n$
+
+		\begin{align*}
+			\int_{-1}^{1} L_n(t) Q(t) ~dt &= f^{(n)}_n(t) Q(t) ~dt \\
+			&= \left[ f_n^{(n-1)}(t) Q(t) \right]_{-1}^1 - \int_{-1}^{1} f_n^{(n-1)}(t) Q'(d) ~dt  \\
+		\end{align*}
+		$f_n^{(n-1)}(1) = 0$ car $1$ est racine de $\left(X^2 - 1\right)^n$ avec multiplicité $n$. De même, $f_n^{(n-1)}(-1) = 0$.
+		Par récurence, à $n$ fixé,
+		\begin{align*}
+			\forall k \in \left\llbracket 0,n-1 \right\rrbracket,
+			\mathcal{P}(k): ``\int_{-1}^{1} L_n(t) Q(t)~dt = (-1)^k \int_{-1}^{1}f_n^{(n-k)}(t) Q^{(k)}(t)~dt"
+		\end{align*}
+	\item $\int_{-1}^{1} L_n ~dt = 0$, $t \mapsto L_n(t)$ est continue sur $[-1,1]$ et n'est pas l'application nulle.\\
+		donc $L_n$ change de signe sur $[-1,1]$ donc $L_n$ a au moins une racine dans $[-1,1]$.\\
+		Supposons que $L_n$ a une unique racine $a$ dans $[-1,1]$ et qu'elle change de signes en $a$. Donc, $t\mapsto L_n(t) (t-a)$ ne change pas de signes sur $[-1,1]$, est continue et d'intégrale nulle. Donc c'est l'application nulle $\lightning$.\\
+		On prouve par récurrence sur $k$ que $t \mapsto L_n(t)$ change de signe au moins $k$-fois.
+		Avec $k = n$, on trouve $n$ racines disctinctes dans $[-1,1]$ et comme $\deg(L_n) = n$ donc, il n'y a pas plus de $n$ racines.
+\end{enumerate}

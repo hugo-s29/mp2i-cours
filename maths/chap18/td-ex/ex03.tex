@@ -1,0 +1,22 @@
+\part{Exercice 3}
+
+\begin{enumerate}
+	\item $\deg(Q^2) = 2d$, $\deg(XP^2) = 2d'+1$ avec $d, d' \in \N$ donc il n'y a aucune solution
+	\item On pose $\deg(P) = n$
+		 \begin{itemize}
+			\item[\sc Cas 1] $n = 1, 0 \text{ ou } -\infty$ donc $P = aX + b$ où $a, b \in \mathbbm{K}$ 
+				\begin{align*}
+					P(P) = P &\iff P(aX + b) = aX + b\\
+									 &\iff a^2X+ ab+ b = aX + b\\
+									 &\iff \begin{cases}
+									 	a^2 = a\\
+										ab + b = b
+									 \end{cases}\\
+									 &\iff a = 0 \ou \begin{cases}
+									 	a = 1\\
+										b = 0
+									 \end{cases}
+				\end{align*}
+			\item[\sc Cas 2] $n \ge 2$ donc $\deg(P) = n \neq n^2 = \deg\big(P\big(P(x)\big)\big)$
+		\end{itemize}
+\end{enumerate}

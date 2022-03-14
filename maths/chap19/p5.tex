@@ -1,0 +1,325 @@
+\part{Projections et symétries}
+
+\begin{defn}
+	\begin{wrapfigure}
+		{l}{5cm}
+		\vspace{-2cm}
+		\begin{asy}
+			import math;
+			import three;
+			size(5cm);
+			settings.render = 0;
+			settings.prc = false;
+
+			guide3 p = (-1, 1, 0) -- (1, 1, 0) -- (1, -1, 0) -- (-1, -1, 0) -- cycle;
+			draw(p);
+			draw(shift(3Z/4) * p, dashed);
+
+			triple x = (-1, 2, 3) / 4;
+			triple d = (0.5, 0, 2) / 4;
+			triple a = 1.5d;
+			draw(O -- x, red, Arrow3(TeXHead2));
+			draw(O -- -2d);
+			draw(a -- 3d);
+			draw(O -- a, deepcyan, Arrow3(TeXHead2));
+			draw(shift(x - a) * (-2d -- 3d), dotted);
+			draw(O -- x-a, deepmagenta, Arrow3(TeXHead2));
+		\end{asy}
+	\end{wrapfigure}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel, $F$ et $G$ deux sous-espaces de $E$ supplémentaires : \[
+		E = F \oplus G
+	\] Soit $x \in E$. \[
+		\exists ! (a,b) \in F\times G, x = a + b
+	\]
+	Le vecteur $a$ est appelé \underline{projeté de $x$ sur $G$ parallèlement à $G$}.\\
+	Le vecteur $b$ est appelé \underline{projeté de $x$ sur $G$ parallèlement à $F$}.\\
+	La \underline{projection sur $G$ parallèlement à $G$} est l'application qui à $x\in E$ associe son projeté sur $F$ parallèlement à $G$.
+\end{defn}
+
+\begin{exm}
+	$E= \R^\R$, $F = \{f \in E  \mid f \text{ paire}\}$ et $G = \{f \in E  \mid f \text{ impaire}\}$\\
+	On a $E = F \oplus G$.\\
+	Soient $p$ la projection sur $F$ parallèlement à $G$ et $q$ la projection sur $G$ parallèlement à $F$.\\
+	\[
+		\forall x \in E, \begin{cases}
+			p(f) : x \mapsto \frac{1}{2}\big(f(x) + f(-x)\big)\\[2mm]
+			q(f) : x \mapsto \frac{1}{2}\big(f(x) - f(-x)\big)\\
+		\end{cases}
+	\] 
+\end{exm}
+
+\begin{prop}
+	Soient $F$ et $G$ deux sous-espaces vectoriels de $E$ supplémentaires et $p$ la projection sur $F$ parallèlement à $G$.
+	\begin{enumerate}
+		\item $p \in \mathcal{L}(E)$
+		\item $p_{|F} = \id_F$ et $p_{|G} = 0$
+		\item $p \circ p = p$ 
+		\item $\id_E - p$ est la projection sur $G$ parallèlement à $F$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\forall x \in E, p(x) \in F \subset E$\\
+			Soit $(x,y) \in E^2$, $(\lambda, \mu) \in \mathbbm{K}^2$.\\
+			On pose $x = a + b$ avec $\begin{cases}
+				a \in F\\
+				b \in G
+			\end{cases}$ et $y = c + d$ avec $\begin{cases}
+				c \in F\\
+				d \in G
+			\end{cases}$ \\
+			donc,
+			\begin{align*}
+				\lambda x + \mu y &= \lambda (a+b) + \mu (c+d) \\
+				&= \underbrace{(\lambda a + \mu c)}_{\in F} + \underbrace{(\lambda b + \mu d)}_{\in G} \\
+			\end{align*}
+
+			Donc, \[
+				p(\lambda x + \mu y) = \lambda a + \mu b  = \lambda p(x) + \mu p(y)
+			\] 
+		\item $\forall x \in F, x = \underbrace{x}_{\in F} + \underbrace{0}_{\in G}$ donc $p(x) = x$ \\
+			$\forall x \in G, x = \underbrace{0}_{\in F} + \underbrace{x}_{\in G}$ donc $p(x) = 0$
+		\item $\forall x \in E, p(x) \in F$ donc $p(p(x)) = p(x)$ 
+		\item Soit $x \in E$. On pose $x = a + b$ avec $\begin{cases}
+			a \in F\\
+			b \in G
+		\end{cases}$. Donc $p(x) = a$. D'où, $x - p(x) = b$ est le projeté de $x$ sur $G$ parallèlement à $F$.
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	Soit $f \in \mathcal{L}(E)$. On dit que $f$ est un \underline{projecteur} si $f \circ f = f$
+\end{defn}
+
+\begin{prop}
+	Soit $f$ un projecteur de $E$. Alors $f$ est la projection sur $\mathrm{Im}(f)$ parallèlement à $\Ker(f)$. En particulier, \[
+		\mathrm{Im}(f) \oplus \Ker(f) = E
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $x \in E$. On suppose que $x = a+b$ avec $\begin{cases}
+			a \in \Ker(f)\\
+			b \in \mathrm{Im}(f)
+		\end{cases}$. D'où,
+		\begin{align*}
+			f(x) &= f(a) + f(b) \\
+			&= 0 + f(b) \\
+			&= f(b) \\
+		\end{align*}
+		Soit $y \in E$ tel que $b = f(y)$. Donc, \[
+			f(b) = f\big(f(y)\big) = f(y) = b
+		\] Donc, \underline{$f(x) = b$ } et donc \underline{$a = x - b = x - f(x)$}\\
+	\item[\underline{\sc Synthèse}] Soit $x \in E$. On pose $\begin{cases}
+		a = x - f(x)\\
+		b = f(x)
+	\end{cases}$. Évidemment, $\begin{cases}
+		a + b = x\\
+		b \in \mathrm{Im}(f)
+	\end{cases}$ 
+	\begin{align*}
+		f(a) &= f\big(x - f(x)\big)\\
+		&= f(x) - f\big(f(x)\big) \\
+		&= f(x) - f(x) \\
+		&= 0 \\
+	\end{align*} Donc $a \in \Ker(f)$. On a montré \[
+		\mathrm{Im}(f) \oplus \Ker(f) = E
+	\] On considère la projection $p$ sur $\mathrm{Im}(f)$ parallèlement à $\Ker(f)$.\\
+	Soit $x \in E$. On a montré que \[
+		x = \underbrace{f(x)}_{\in \mathrm{Im}(f)} +\ \underbrace{x - f(x)}_{\in \Ker(f)}
+	\] donc $p(x) = f(x)$ et donc $p = f$
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soient $F$ et $G$ supplémentaires dans $E$ : $E = F \oplus G$ \\
+	\begin{wrapfigure}
+		{l}{5cm}
+		\centering
+		\vspace{-0.8cm}
+		\begin{asy}
+			import math;
+			import three;
+			size(3.5cm);
+			settings.render = 0;
+			settings.prc = false;
+
+			guide3 p = (-1, 1, 0) -- (1, 1, 0) -- (1, -1, 0) -- (-1, -1, 0) -- cycle;
+			draw(p);
+			draw(shift(3Z/4) * p, dashed);
+			draw(shift(-3Z/4) * p, dashed);
+
+			triple x = (-1, 2, 3) / 4;
+			triple d = (0.5, 0, 2) / 4;
+			triple a = 1.5d;
+			triple b = x - a;
+			triple sx = b - a;
+			draw(O -- x, red, Arrow3(TeXHead2));
+			draw(-3d -- -a);
+			draw(a -- 3d);
+			draw(O -- a, deepcyan, Arrow3(TeXHead2));
+			draw(O -- -a, darkcyan, Arrow3(TeXHead2));
+			draw(shift(x - a) * (-3d -- 3d), dotted);
+			draw(O -- x-a, deepmagenta, Arrow3(TeXHead2));
+			draw(O -- sx, deepred, Arrow3(TeXHead2));
+			label("$a$", b / 2, deepmagenta + fontsize(7pt), align=N);
+			label("$x$", x / 2, red + fontsize(7pt), align=NW);
+			label("$s(x)$", sx / 2, deepred + fontsize(7pt), align=NE);
+			label("$b$", a / 2, deepcyan + fontsize(7pt), align=W);
+			label("$-b$", -a / 2, darkcyan + fontsize(7pt), align=W);
+		\end{asy}
+		\vspace{1.5cm}
+	\end{wrapfigure}
+	Soit $x \in E$. On décompose $x$ : \[
+		x = a + b \text{ avec } \begin{cases}
+			 a \in F\\
+			 b \in G
+		\end{cases}
+	\] et on forme \[
+		y = a - b
+	\] On dit que $y$ est le \underline{symétrique de $x$ par rapport à $F$ parallèlement à $G$}\\
+	La \underline{symétrie par rapport à $F$ parallèlement à $G$} est l'application qui à tout $x \in E$ associe son symétrique parallèlement à $G$ par rapport à $F$.
+\end{defn}
+
+\begin{prop}
+	Soient $F$ et $G$ supplémentaires dans $E$, $\s$ la symétrie par rapport à $F$ parallèlement à $G$.
+	\begin{enumerate}
+		\item $\s \in \mathcal{L}(E)$ 
+		\item $\s_{|E} = \id_F$ et $\s_{|G} = -\id_G$
+		\item $\s \circ \s = \id_{E}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	Soient $p$ la projection sur $F$ parallèlement à $G$ et $q$ la projection sur $G$ parallèlement à $F$.\\
+	On remarque que $\s = p - q$.
+	\begin{enumerate}
+		\item $p$ et $q$ sont des endomorphismes donc $\s$ aussi
+		\item $\forall x \in E, \s(x) = p(x) - q(x) = x - 0 = x$ \\
+			$\forall x \in G, \s(x) = p(x) - q(x) = 0 - x = -x$ 
+		\item
+			\begin{align*}
+				\forall x \in E, \s\big(\s(x)\big) &= \s\big(p(x) - q(x)\big) \\
+				&= \s\big(\underbrace{p(x)}_{\in F}\big) - \s\big(\underbrace{q(x)}_{\in G}\big) \\
+				&= p(x) - \big(-q(x)\big) \\
+				&= x \\
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	Soit $f \in \mathcal{L}(E)$. On dit que $f$ est \underline{involutive} si $f \circ f = \id_{E}$
+\end{defn}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E)$ involutif. Alors $f$ est la symétrie par rapport à $\Ker(f - \id_E)$ parallèlement à $\Ker(f + \id_E)$. En particulier, \[
+		\Ker(f - \id_E) \oplus \Ker(f + \id_E) = E
+	\]
+\end{prop}
+
+\begin{prop}
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $x \in E$. On suppose que $x = a + b$ avec $\begin{cases}
+				a \in \Ker(f - \id_E)\\
+				b \in \Ker(f + \id_E)
+			\end{cases}$\\
+			\begin{align*}
+				a \in \Ker(f - \id_E) \iff& (f - \id_E)(a) = 0\\
+				\iff& f(a) - a = 0\\
+				\iff& a = f(a)
+			\end{align*}
+			\begin{align*}
+				b \in \Ker(f + \id_E) \iff& f+\id_E)(b) = 0\\
+				\iff& f(b) + b = 0\\
+				\iff& f(b) = -b
+			\end{align*}
+			On sait que $x = a+b$ et $f(x) = f(a) + f(b) = a - b$ \\
+			D'où,
+			\begin{align*}
+				a = \frac{1}{2}\big(x + f(x)\big)\\
+				b = \frac{1}{2} \big(x - f(x)\big)
+			\end{align*}
+		\item[\underline{\sc Synthèse}] Soit $x \in E$. On pose
+			\begin{align*}
+				a = \frac{1}{2}\big(x + f(x)\big)\\
+				b = \frac{1}{2}\big(x - f(x)\big)
+			\end{align*}
+			Alors $a+b = x$\\
+			\begin{align*}
+				f(a) &= f\left( \frac{1}{2}\big(x + f(x)\big) \right)\\
+				&=\frac{1}{2}\left( f(x) + f\big(f(x)\big) \right)\\
+				&= \frac{1}{2}\big(f(x) + x\big) \\
+				&= a \\
+			\end{align*}
+			Donc $a \in \Ker(f - \id_E)$ 
+			\begin{align*}
+				f(b) &= f\left( \frac{1}{2}\big(x - f(x)\big) \right)\\
+				&= \frac{1}{2}\left( f(x) - f\big(f(x)\big)  \right)  \\
+				&= \frac{1}{2}\big(f(x) - x\big) \\
+				&= -b \\
+			\end{align*} donc $b \in \Ker(f + \id_E)$ \\
+			Ainsi, \[
+				\Ker(f - \id_E) \oplus \Ker(f + \id_E) = E
+			\]
+	\end{itemize}
+	 Soit $\s$ la symétrie par rapport à $\Ker(f - \id_E)$ parallèlement à $\Ker(f + \id_E)$.\\
+	Soit $x \in E$. On a vu que \[
+		x = \underbrace{\frac{1}{2}\big(x + f(x)\big)}_{\in \Ker(f - \id_E)} + \underbrace{\frac{1}{2}\big(x - f(x)\big)}_{\in \Ker(f + \id_E)}
+	\] Donc, \[
+		\s(x) = \frac{1}{2}\big(x + f(x)\big) - \frac{1}{2}\big(x - f(x)\big) = f(x)
+	\] Donc $\s = f$
+\end{prop}
+
+\begin{exm}
+	$E = \R^\R$ et
+	\begin{align*}
+		\s : E \longrightarrow& E \\
+		f \longmapsto& \s(f) : \begin{array}{rcl}
+			\R &\longrightarrow& \R \\
+			x &\longmapsto& f(-x)
+		\end{array}
+	\end{align*}
+	$\s(f) = f  \circ (-\id_{\R})$ \\
+	$\s \in \mathcal{L}(E)$, en effet : 
+	\begin{align*}
+		\forall f,g \in \mathcal{L}(E), \forall \alpha, \beta \in \R,\\
+		\s(\alpha f + \beta g) &= (\alpha f + \beta g)  \circ (-\id_\R) \\
+		&= \alpha \big(f \circ (-\id_\R\big) + \beta \big(g  \circ (-\id_\R)\big)  \\
+		&= \alpha \s(f) + \beta \s(g) \\
+	\end{align*}
+	De plus, $\s \circ \s = \id_E$. Donc $\s$ est une symétrie.
+	\begin{align*}
+		\Ker(\s - \id_E) = \{f \in E  \mid  f \text{ paire}\} = \mathcal{P}\\
+		\Ker(\s + \id_E) = \{f \in E  \mid  f \text{ impaire}\} = \mathcal{I}
+	\end{align*}
+	D'où, \[
+		\mathcal{P} \oplus \mathcal{I} = E
+	\]
+\end{exm}
+
+\begin{exm}
+	$E = \mathcal{M}_n(\mathbbm{K})$\\
+	Pour $A \in E$, on note $\t A$ la \underline{transposée} de $A$ la matrice obtenue en écrivant en ligne les colonnes de $A$.\\
+	Soit \begin{align*}
+		\s: \mathcal{M}_{n}(\mathbbm{K}) &\longrightarrow \mathcal{M}_n(\mathbbm{K}) \\
+		A &\longmapsto \t A
+	\end{align*}
+	$\s$ est linéaire, $\s \circ \s = \id_{\mathcal{M}_n(\mathbbm{K})}$\\
+	\begin{align*}
+		\Ker(\s - \id_E) = S_n(\mathbbm{K})\\
+		\Ker(\s + \id_E) = A_n(\mathbbm{K})\\
+	\end{align*}
+\end{exm}
+
+
+
+
+
+
+
+
+
+
+

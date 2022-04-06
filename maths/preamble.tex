@@ -1,6 +1,9 @@
+\let\mmathcal\mathcal
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
+\usepackage[bookmarks]{hyperref}
 \usepackage[french]{babel}
 \usepackage{amsmath, amssymb}
 \usepackage{amsthm}
@@ -15,6 +18,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{calligra}
+\usepackage{thmtools}
 \usepackage{diagbox}
 \usepackage{centernot}
 \usepackage{multicol}
@@ -30,9 +34,23 @@
 \usepackage[cuteinductors,european,straightvoltages,europeanresistors]{circuitikz}
 \usepackage{cellspace}
 \usepackage{dsfont}
+\usepackage{subcaption}
 \usepackage{pdflscape}
+\usepackage{contour}
+\usepackage{ulem}
 
-%\DeclareMathAlphabet{\mathbbm}{U}{dsrom10}{m}{n}
+\frenchspacing
+\reversemarginpar
+
+% better underline
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+
+\renewcommand{\underline}[1]{%
+  \mbox{\uline{\phantom{#1}}}%
+	\llap{\contour{white}{#1}}%
+}
+
 \let\mathbbm\mathds
 
 \setlength\cellspacetoplimit{4pt}
@@ -49,17 +67,18 @@
 \usepackage{graphicx}
 \newcommand\longvdots[1]{\raisebox{1em}{\rotatebox{-90}{\hbox to #1 {\dotfill}}}}
 
+\usepackage[framemethod=TikZ]{mdframed}
+\theoremstyle{definition}
+\makeatletter
+
 \pgfplotsset{compat=1.17}
 \let\vec\vv
 
 \definecolor{green}{HTML}{60A917}
 
-\everymath{\displaystyle}
-\let\textstyle\displaystyle
-\let\scriptstyle\displaystyle
-\let\scriptscriptstyle\displaystyle
-
 \def\asydir{asy}
+
+\newcommand{\cwd}{.}
 
 % figure support
 \usepackage{import}
@@ -69,14 +88,20 @@
 \usepackage{transparent}
 \newcommand{\incfig}[1]{%
 	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
+	\import{\cwd/figures/}{#1.pdf_tex}
 }
 
+\newcommand{\mathnode}[2]{%
+  \mathord{\tikz[baseline=(#1.base), inner sep = 0pt]{\node (#1) {$#2$};}}}
 
 \usepackage{calrsfs}
 \usepackage{mathrsfs}
 \usepackage{stmaryrd}
 \usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{etoolbox}
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0em}
@@ -105,78 +130,94 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\argmax}{argmax}
 \DeclareMathOperator{\argmin}{argmin}
 \DeclareMathOperator{\Vect}{Vect}
 \DeclareMathOperator{\cotan}{cotan}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator*{\po}{\text{\cursive o}}
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\codim}{codim}
 
 \pdfsuppresswarningpagegroup=1
-\reversemarginpar
 
-\newcommand{\defblock}[5]{
-	\newenvironment{#1}[1][{}]
-		{
-			\if##1\empty\else
-				{#3 ##1 #5}
-			\fi
-			\marginpar{#2}
-			~\\
-		}
-		{
-			#4
-			\vspace{8mm}
-		}
-}
-
-\newcommand{\defoptblock}[6]{
-	\AtBeginDocument{
-		\ifsimple
-			\newenvironment{#1}[1][{}]
-				{
-					\expandafter\comment
-				}
-				{
-					\expandafter\endcomment
-					\vspace{-8mm}
-					#6
-					\vspace{8mm}
-				}
-		\else
-			\defblock{#1}{#2}{#3}{#4}{#5}
-		\fi
+\newcommand{\emptyenv}[2][{}] {
+	\newenvironment{#2}[1][{}] {
+		\vspace{-16pt}
+		#1
+		\vspace{16pt}
+		\expandafter\noindent\comment
+	}{
+		\expandafter\noindent\endcomment
 	}
 }
 
-\defblock{defn}{\bf Definition}{\bf\hfill}{}{\hfill}
-\defblock{prop}{\bf Proposition}{\bf\hfill}{}{\hfill}
-\defblock{crlr}{\bf Corollaire}{\bf\hfill}{}{\hfill}
-\defblock{prop-defn}{\bf Proposition\\Définition}{\bf\hfill}{}{\hfill}
-\defblock{thm}{\bf Théorème}{\bf\hfill}{}{\hfill}
-\defblock{lem}{\bf Lemme}{\bf\hfill}{}{\hfill}
+\mdfsetup{skipabove=1em,skipbelow=1em, innertopmargin=6pt, innerbottommargin=6pt,}
 
-\defoptblock{exm}{Exemple}{}{}{}{}
-\defoptblock{exo}{Exemple}{}{}{}{}
+\declaretheoremstyle[
+	mdframed={ },
+	headpunct={:},
+	numbered=no,
+	headfont=\normalfont\bfseries,
+	bodyfont=\normalfont,
+	postheadspace=1em]{defnstyle}
 
-\defblock{rmk}{\it Remarque}{\it}{}{}
-\defoptblock{prv}{\it Preuve}{\it}{\qed}{\hfill}{\hfill$\blacksquare$}
+\declaretheoremstyle[
+	mdframed={
+				rightline=false, topline=false, bottomline=false,
+		innerlinewidth=0.4pt,outerlinewidth=0.4pt,
+		middlelinewidth=2pt,
+		linecolor=black,middlelinecolor=white,
+	},
+	headpunct={:},
+	numbered=no,
+	headfont=\normalfont\bfseries,
+	bodyfont=\normalfont,
+	postheadspace=1em]{thmstyle}
 
-% \AtBeginDocument{
-	% \newenvironment{cblk}[3][{}][{}]
-		% {
-			% \if#1\empty\else
-				% {#1}
-			% \fi
-			% \marginpar{#3}
-			% ~\\
-		% }
-		% {
-			% #2
-			% \vspace{8mm}
-		% }
-% }
+\declaretheoremstyle[
+	headpunct={:},
+	postheadspace=\newline,
+	numbered=no,
+	headfont=\normalfont\scshape]{rmkstyle}
+
+\declaretheoremstyle[
+	headfont=\normalfont\itshape,
+	numbered=no,
+	postheadspace=\newline,
+	mdframed={ rightline=false, topline=false, bottomline=false },
+	headpunct={:},
+	qed=\qedsymbol]{prvstyle}
+
+\declaretheorem[style=defnstyle, name=Définition]{defn}
+\declaretheorem[style=defnstyle, name=Proposition\\Définition]{prop-defn}
+
+% \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Théorème]{thm}
+% \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Proposition]{prop}
+% \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Corollaire]{crlr}
+% \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Lemme]{lem}
+
+\declaretheorem[style=thmstyle, name=Théorème]{thm}
+\declaretheorem[style=thmstyle, name=Proposition]{prop}
+\declaretheorem[style=thmstyle, name=Corollaire]{crlr}
+\declaretheorem[style=thmstyle, name=Lemme]{lem}
+
+\declaretheorem[style=rmkstyle, name=Remarque]{rmk}
+
+\AtBeginDocument{
+	\ifsimple
+		\emptyenv{exm}
+		\emptyenv{exo}
+		\emptyenv[\hfill$\blacksquare$]{prv}
+	\else
+		\declaretheorem[style=rmkstyle, name=Exemple]{exm}
+		\declaretheorem[style=rmkstyle, name=Exercice]{exo}
+		\declaretheorem[style=prvstyle, name=Preuve]{prv}
+	\fi
+}
 
 \makeatother
 \usepackage{fancyhdr}
@@ -237,3 +278,26 @@
 \newcommand{\s}{\text{\cursive s}}
 \renewcommand{\t}{{}^t\!}
 \newcommand{\eme}{\ensuremath{{}^{\text{ème}}}~}
+%\let\oldfract\fract
+%\renewcommand{\fract}[2]{\oldfract{\displaystyle #1}{\displaystyle #2}}
+% \let\textstyle\displaystyle
+% \let\scriptstyle\displaystyle
+% \let\scriptscriptstyle\displaystyle
+\everymath{\displaystyle}
+
+
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+\newcommand{\plusbar}{\charfusion[\mathbin]{+}{\color{blue}/}}

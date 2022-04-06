@@ -60,33 +60,28 @@
 
 \begin{rmk}
 	On peut représenter $f$ de la façon suivante.\\
-	\begin{minipage}
-		{\linewidth}
-		\begin{wrapfigure}
-			{l}{0.75\textwidth}
-			\centering
-			\begin{asy}
-				import graph;
+	\begin{align*}
+		f: [0,2\pi[ &\longrightarrow \C \\
+		t &\longmapsto e^{(1+i)t}
+	\end{align*}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
 
-				size(7cm);
-				axes("$\Re$", "$\Im$", EndArrow);
+			size(7cm);
+			axes("$\Re$", "$\Im$", EndArrow);
 
-				dot((-3, -4), white+0);
-				dot(( 8,  3), white+0);
+			dot((-3, -4), white+0);
+			dot(( 8,  3), white+0);
 
-				pair F(real x) {return exp(x * (0.3,1)); }
+			pair F(real x) {return exp(x * (0.3,1)); }
 
-				draw(graph(F, 0, 2pi), magenta + 1.4);
-				xtick(1); label("$1$", (1,0), align=S);
-				xtick(F(2pi).x); label("$e^{2\pi}$", F(2pi), align=N);
-			\end{asy}
-		\end{wrapfigure}
-		\begin{align*}
-			f: [0,2\pi[ &\longrightarrow \C \\
-			t &\longmapsto e^{(1+i)t}
-		\end{align*}
-		\vspace{3cm}
-	\end{minipage}
+			draw(graph(F, 0, 2pi), magenta + 1.4);
+			xtick(1); label("$1$", (1,0), align=S);
+			xtick(F(2pi).x); label("$e^{2\pi}$", F(2pi), align=N);
+		\end{asy}
+	\end{figure}
 \end{rmk}
 
 \begin{prop}

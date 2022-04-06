@@ -1,0 +1,28 @@
+\part{Exercice 2}
+
+\[
+	f(x,y) = \frac{3x^2 + xy}{\sqrt{x^2+y^2}}.
+\] Soit $\varepsilon>0$. On cherche $r > 0$ tel que \[
+	\underbrace{\forall (x,y) \in B_{(0,0)}(r) \setminus \{(0,0)\}}_{0 < \sqrt{x^2+y^2} < r}, \left| f(x,y) - 0 \right| \le \varepsilon.
+\]
+
+Soit $(x,y) \in \R^2 \setminus \{(0,0)\}$.
+\begin{align*}
+	\left| 3x^2 + xy \right| &\le 3x^2 + \left| xy \right| \\
+	&\le 3(x^2 + y^2) + \frac{1}{2}(x^2 + y^2)\\
+	&\le \frac{7}{2} \|(x,y)\|^2
+\end{align*}
+donc
+\[
+	\left| \frac{3x^2 + xy}{\sqrt{x^2 + y^2}} \right| \le \frac{7}{2} \|(x,y)\|.
+\]
+On pose $r = \frac{2}{7}\varepsilon > 0$. Soit $(x,y) \in B_{(0,0)}(r) \setminus \{(0,0)\}$.
+
+Alors \[
+	\left| f(x,y) \right| \le \frac{7}{2}\|(x,y)\| < \frac{7}{2}r = \varepsilon.
+\]
+
+Donc \[
+	f(x,y) \tendsto{(x,y) \to (0,0)} 0.
+\]
+

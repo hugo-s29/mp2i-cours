@@ -1,0 +1,40 @@
+\part{Exercice 6}
+
+\begin{enumerate}
+	\item \[
+			S = \{u \in \R^\N  \mid  \forall n \in \N, u_{n+2} = au_{n+1} + bu_n\} 
+		\]
+		\begin{itemize}
+			\item $S \neq \O$ car $0 \in S$.
+			\item Soient $u, v \in S$ et $\lambda, \mu \in \R$. Soit $n \in \N$.\\
+				\begin{align*}
+					(\lambda u + \mu v)(n+2) &= \lambda u_{n+2} + \mu v_{n+2} \\
+					&= \lambda (au_{n+1} + bu_n) + \mu(av_{n+1} + bv_n) \\
+					&= a(\lambda u_n + \mu v_n) + b(\lambda u + \mu v)  \\
+					&= a(\lambda u + \mu v)(n+1) + b(\lambda u + \mu v)(n) \\
+				\end{align*}
+				Donc $(\lambda u + \mu v) \in S$.
+		\end{itemize}
+	\item \begin{align*}
+		\Phi: S &\longrightarrow \R^2 \\
+		(x_n) &\longmapsto (x_0, x_1)
+	\end{align*}
+	Soit $(u,v) \in S^2$ et $(\lambda, \mu) \in \R^2$.
+	\begin{align*}
+		\Phi(\lambda u + \mu v) &= (\lambda u_0 + \mu v_0, \lambda u_1 + \mu v_1) \\
+		&= \lambda (u_0,u_1) + \mu (v_0, v_1) \\
+		&= \lambda \Phi(u) + \mu \Phi(v) \\
+	\end{align*}
+	Donc $\Phi$ est linéaire.
+	
+	\begin{align*}
+		\forall n \in \N,\quad a \alpha^{n+1} + b \alpha^n &= \alpha^n (a \alpha + b) \\
+		&= \alpha^n + \alpha^2 \quad \text{ car solution de l'équation caractéristique} \\
+		&= \alpha^{n+2} \\
+	\end{align*}
+	Donc, $(\alpha^n)_{n\in\N} \in S$ et $\Phi(\alpha^n) = (1, \alpha) \neq (0,0)$
+	Donc $\dim\big(\mathrm{Im}(\varphi)\big) > 0$.\\
+	De même, $(\beta_n)_{n\in\N} \in S$ et $\Phi(\beta^n) = (1, \beta) \neq (0,0)$.\\
+	On a deux vecteurs non colinéaires dans $\mathrm{Im}\ \Phi$ donc $\dim(\mathrm{Im}\ \Phi) = 2$.\\
+	Donc $\mathrm{Im}\ \Phi = \R^2$ et donc $\Phi$ est bijective.
+\end{enumerate}

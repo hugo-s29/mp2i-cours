@@ -1,0 +1,23 @@
+\part{Exercice 13}
+
+\begin{enumerate}
+	\item $f \circ f = \id_{\mathcal{P}(E)}$.
+	\item $g : \begin{array}{rcl}
+			\mathcal{P}_0 &\longrightarrow& \mathcal{P}_1 \\
+			X &\longmapsto& f(X)
+		\end{array}$ bijective donc $\#\mathcal{P}_0 = \#\mathcal{P}_1$.
+	\item On en déduit que si $n > 0$ \[
+			\#\mathcal{P}_0 = \frac{1}{2} \#\mathcal{P}(E) = \frac{2^n}{2} = 2^{n-1}.
+		\]
+		On a \[
+			\#\mathcal{P}_0 = \sum_{\substack{0 \le i \le n \\ i \text{ pair}}} {n \choose i}
+		\] et \[
+			\#\mathcal{P}_1 = \sum_{\substack{0 \le i \le n \\ i \text{ impair}}} {n \choose i}.
+		\]
+
+		\begin{align*}
+			\sum_{k=0}^n (-1)^k{n\choose k} &= \sum_{\substack{0 \le k \le n\\ k \text{ pair}}} {n \choose k} + \sum_{\substack{0 \le k \le n\\ k \text{ impair}}} \left( - {n \choose k} \right)  \\
+			&= \#\mathcal{P}_0 - \#\mathcal{P}_1 \\
+			&= 0 \\
+		\end{align*}
+\end{enumerate}

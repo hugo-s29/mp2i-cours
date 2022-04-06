@@ -340,6 +340,7 @@ scan/
 **/asy/*.asy
 **/asy/*.prc
 **/*.pbsdat
+**/*.cpssection
 
 perso/email-auto/archive/
 SII/S1-C1-1-DM1/tp/

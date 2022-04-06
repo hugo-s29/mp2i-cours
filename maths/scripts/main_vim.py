@@ -12,6 +12,7 @@ def input(text, val = ""):
     return simpledialog.askstring(title=text, prompt=text, initialvalue = val)
 
 def choose(*options):
+    # process = sp.Popen("/Users/hugo/vim/choose.sh", stdin=sp.PIPE, stdout=sp.PIPE)
     process = sp.Popen("choose", stdin=sp.PIPE, stdout=sp.PIPE)
     
     process.stdin.write(str.encode('\n'.join(options)))
@@ -26,15 +27,20 @@ def choose(*options):
     if len(result) == 0:
         exit()
 
-    return result
+    return result.split('\n')[0]
 
 os.chdir('/Users/hugo/Documents/ecole/maths')
 chapters = list(reversed(sorted(filter(lambda d: d.startswith('chap'), os.listdir('.')))))
 chapters.append('--NEW--')
+chapters.insert(0, '--FULL--')
 
 def get_chapter_name(chapter):
     if chapter == '--NEW--':
         return 'Nouveau chapitre'
+
+    if chapter == '--FULL--':
+        return 'Tous les chapitres'
+
     if not os.path.exists(f'{chapter}/main.tex'):
         return f'Chapitre {chapter[4:]}'
     
@@ -101,15 +107,19 @@ def get_part_name(file, offset=2):
         else:
             return title
 def create_chap():
-    num = int(chapters[0][4:]) + 1
+    num = int(chapters[1][4:]) + 1
     title = input('Titre ? ')
+    
+    if title is None:
+        return
+
     num = int(input('Numéro ?', str(num)))
     chap = f'chap{str(num).zfill(2)}'
 
     os.mkdir(chap)
     os.mkdir(f'{chap}/asy')
     shutil.copyfile('latexmkrc', f'{chap}/latexmkrc')
-    shutil.copyfile('compile-asy.sh', f'{chap}/commpile-asy.sh')
+    shutil.copyfile('compile-asy.sh', f'{chap}/compile-asy.sh')
     os.chdir(chap)
 
     with open('main.tex', 'w') as f:
@@ -134,6 +144,17 @@ chap = chapters[index]
 
 if chap == '--NEW--':
     create_chap()
+    exit()
+
+if chap == '--FULL--':
+    choice = choose('Cours', 'Cours simple')
+    os.chdir('full')
+
+    if choice == 'Cours':
+        os.system('open main.pdf')
+    elif choice == 'Cours simple':
+        os.system('open simple-main.pdf')
+
     exit()
 
 os.chdir(chap)

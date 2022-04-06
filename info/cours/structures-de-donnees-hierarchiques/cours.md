@@ -1,5 +1,4 @@
 # I. Introduction - définition
-
 ## Utilisation des arbres
 
  - Arbres syntaxiques
@@ -27,11 +26,11 @@ Un arbre (enraciné) est
 
  - soit un ensemble vide
  - soit un ensemble fini non vide $A$ muni d'une relation binaire $<$ (est le fils de ...) telle que
-  - il existe $r \in A$ tel que $\forall x \in A, r < x$ (il existe un ancètre)
+  - il existe $r \in A$ tel que $\forall x \in A, r < x$ (il existe un ancêtre)
   - $\forall x \in A \setminus \{r\}, \exists ! y \in A, x < y$ (il y a un père unique)
-  - $\forall x \in A \setminus \{r\}, \exists n \in \mathbb{N} \text{ et } (x_1, x_2, \ldots, x_n) \in A^n, x < x_1 < x_2 < \cdots < x_n < r$ (chaque élément descend de l'ancètre)
+  - $\forall x \in A \setminus \{r\}, \exists n \in \mathbb{N} \text{ et } (x_1, x_2, \ldots, x_n) \in A^n, x < x_1 < x_2 < \cdots < x_n < r$ (chaque élément descend de l'ancêtre)
 
-On parle aussi de frères, de décendance et d'ancètres.
+On parle aussi de frères, de descendance et d'ancêtres.
 
 L'*arité* d'un père correspond au nombre de ses fils
 
@@ -79,7 +78,7 @@ La *hauteur* de l'arbre est la profondeur maximale de ses feuilles. Dans l'exemp
 
 Soit $A$ un ensemble fini appelé nœuds.
 
-- les arbres de hauter 0 sont les éléments de $A$ noté $(e,0)$ où $e$ est la racine de l'arbre
+- les arbres de hauteur 0 sont les éléments de $A$ noté $(e,0)$ où $e$ est la racine de l'arbre
 - Si $e \in A$ et Si $A_1, A_2, \ldots, A_n$ sont des arbres de hauteur respectives $h_1, h_2, \ldots, h_n$ et dont les racines respectives sont $e_1, e_2, \ldots, e_n$, alors en connectant $e$ à $e_1, e_2, \ldots e_n$, on définit $\big(e, (A_1, A_2, \ldots, A_n)\big)$ l'arbre de racine $e$, de hauteur $\displaystyle 1 + \max_{k \in [\![ 1,n ]\!]} (h_k)$ de sous arbres $A_1, A_2, \ldots, A_n$
 
 ```{.mermaid format=pdf}
@@ -596,7 +595,7 @@ Une valeur de E.gauche ou E.droit égale à -1 indique qu'il n'existe pas de fil
 	}
 	```
 
-### Arbres binaires de recherche
+## Arbres binaires de recherche
 
 Arbre binaire marqué:
 
@@ -640,7 +639,7 @@ r(2) --- m1((vide))
 r --- a(5)
 a --- b(7)
 a --- m2((vide))
-subgraph <= x.cle = 5
+subgraph >= x.cle = 5
 b --- c(6)
 b --- d(8)
 c --- e(5)
@@ -712,7 +711,7 @@ L'efficacité augment quand la hauteur diminue.
 
 Arbre dégénéré (filiforme) : chaque nœud n'a qu'un enfant.
 
-### Arbres binaires bicolores (rouge - noir)
+## Arbres binaires bicolores (rouge - noir)
 
 Arbre de recherche: possibilité d'arbre déséquilibré (filiforme, dégénéré)
 
@@ -929,18 +928,351 @@ e --- n8((N))
 
 Exercice 3:
 
- 1. hauteurs $h_n(30) = 3$, $h_n(20) = 3$, $h_n(35) = 2$ et $h_n(50) = 
+```{.mermaid format=pdf}
+graph TD;
+r{{30}} --- a(20) --- b{{10}} --- c{{3}} --- n0((N))
+c --- n1((N))
+b --- d{{15}} --- n2((N))
+d --- n3((N))
+a --- e{{25}} --- f{{21}} --- n4((N))
+f --- n5((N))
+e --- g{{28}} --- n6((N))
+g --- n7((N))
+r --- h{{40}} --- i(35) --- j{{32}} --- n8((N))
+j --- n9((N))
+i --- k{{37}} --- n10((N))
+k --- n11((N))
+h --- l{{50}} --- n12((N))
+l --- n13((N))
+```
+
+ 1. hauteurs $h_n(30) = 3$, $h_n(20) = 3$, $h_n(35) = 2$ et $h_n(50) = 1$
+ 2. Dans le meilleur des cas, il n'y a pas de nœuds rouges, donc $h = h_n$ et donc le nombre de feuille $f$ vaut $2^h$ donc $2^{h_n(x)}$. Or, le nombre de nœuds internes $i$ valide $f = i + 1$ donc $i = f - 1$ et donc $i \geqslant 2^{h_n(x)} - 1$
+ 3. Dans le meilleur des cas, on a $h = h_n$.
+ 	\begin{align*}
+		i \geqslant 2^{h_n(x)} - 1 \iff&
+		i + 1 \geqslant 2^{h_n(x)}\\ \iff&
+		\log_2(i+1) \geqslant h_n(x) = h
+	\end{align*}
+
+# III. Parcours d'arbres
+
+## Définition
+
+Soit un arbre $A$ de taille $n$.
+
+Objectif:
+
+  - visiter les nœuds pour traitement
+  - contrainte: chaque nœud doit être traité une seule fois
+
+Définition:
+
+Un parcours d'arbre est une succession de nœuds $(n_1, n_2, \ldots, n_n)$, indiquant l'ordre dans lequel ils ont été visités
+
+Pricipe général des parcours d'arbre :
+
+- marquage du nœud après sont traitement pour ne plus le traiter
+- maintien d'un ensemble de nœuds en attente de traitement
+
+Existence de plusieurs manières de parcourir un arbre
+
+## Utilisation des arbres
+
+Arbres d'expression $\to$ représentation d'expressions
+
+ - Arbre syntaxique
+ - Expressions mathématiques
+
+Arbres préfixes (ou trie) $\to$ représentation d'un ensemble de mots
+
+$$ %FAIRE LE GRAPH
+$$
 
 
+## Parcours en profondeur
+
+### Définitions
+
+Principe de parcours en profondeur:
+
+ - Utilisation de la définition inductive des arbres
+ - Proposition d'algorithmes récursifs
+
+$\implies$ Exploration d'un des sous-arbres avant d'explorer le sous-arbre suivant
+
+Plusieurs posibilités:
+
+- Exploration en partant de la racine
+- Exploration en partant des feuilles
+- Exploration symétrique
+
+Remarque: Le choix de traiter de gauche à doite est arbitraire.
+
+Ordre préfixé:
+
+ - Départ à la racine
+ - Exploration préfixe du sous-arbre gauche
+ - Exploration préfixe du sous-arbre droit
+ - $\vdots$
+ - Exploration du sous-arbre $A_n$
+
+Pour un arbre binaire, ordre = père, fils gauche, fils droit.
+
+Pour l'arbre ci-dessous, l'ordre préfixé est
+\begin{align*}
+a \to b \to e \to h \to i \to f \to c \to d \to g \to j \to k \to o \to p \to q \to l \to m \to n
+\end{align*}
+
+```{.mermaid format=pdf}
+graph TD;
+a --- b --- e --- h
+e --- i
+b --- f
+a --- c
+a --- d --- g ---j
+g --- k --- o
+k --- p
+k --- q
+g --- l
+g --- m
+g --- n
+```
+
+Ordre infixé ou parcours symétrique:
+
+ - Exploration infixé du sous-arbre gauche
+ - Puis racine
+ - Exploration infixé du sous-arbre droit
+ - $\vdots$
+ - Exploration des nœuds de $A_n$ en ordre infixé
+
+Pour un arbre binaire, ordre : fils gauche, père, fils droit.
+
+Pour un ABR : ordre infixé
+
+ - Obtention de la suite ordonnée des étiquettes
+
+Pour l'arbre précédent, l'ordre infixé est
+\begin{align*}
+h \to e \to i \to b \to f \to a \to c \to j \to g \to o \to k \to p \to q \to l \to m \to n \to d
+\end{align*}
 
 
+Ordre postfixé:
+
+ - Exploration postfixé du sous-arbre gauche
+ - Exploration postfixé du sous-arbre droit
+ - $\vdots$
+ - Exploration du sous-arbre $A_n$
+ - Traitement de la racine
+
+Pour une arbre binaire, l'ordre est fils gauche, fils droit, père
+
+Parcours en profondeur de l'arbre précédent : 
+\begin{align*}
+	h \to i \to e \to f \to b \to c \to j \to o \to p \to q \to k \to l \to m \to n \to g \to d \to a
+\end{align*}
+
+## Parcours en profondeur : arbre d'expression
+
+Problème lié aux expressions infixes : gestion des parenthèses
+
+$\left(1 + 2 \times \sqrt3\right) / 4$ pour $\frac{1 + 2\sqrt3}4$
+
+Représentation d'une expression sous forme d'arbre : 
+
+```{.mermaid format=pdf}
+graph TD;
+a("÷") --- b(+) --- c(1)
+b --- d("×") --- e(2)
+d --- f("√") --- g(3)
+a --- h(4)
+```
+
+Parcours de l'arbre : 
+
+ - Infixe : $(1~+~(2~\times~\sqrt{3}))~/~4$
+ - Préfixe : $/~(+~1~(\times~2~\sqrt3))~4$
+ - Postfixe : $(1~(2~(3~\sqrt{~})~\times)~+)~4~/$
+
+Notation polonaise inversée (NPI):
+
+ - Notation postfixé
+ - Nécessité de deux piles :
+    - pile d'expression
+    - pile de calcul
+
+$\frac{9}{(2 + (-3)) \times (4 - (-5))}$
+
+```{.mermaid format=pdf}
+graph TD;
+a("÷") --- o(9)
+a --- b("×") --- c(+) --- p(2)
+c --- d("-") --- r(3)
+b --- e("-") --- q(4)
+e --- f("-") --- s(5)
+```
+
+Infixe : $9~\div~(~(2~+~(-3)~)~\times~(4~-~(-5)~)~)$
+
+Préfixe : $\div~9~(\times~~(~+~2~(-~3)~)~(~-~4~(-~5)~)~)$
+
+Postfixe : $9~(~(~2~(3~-)~+~)~(~4~(5~-)~-~)~\times~)~\div$
+
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+| Etape    | 1 | 2 | 3 | 4     | 5     | 6    | 7    | 8     |  9   | 10       | 11     | 12   |
++:--------:+:-:+:-:+:-:+:-----:+:-----:+:----:+:----:+:-----:+:----:+:--------:+:------:+:----:+
+| Mot lu   | 9 | 2 | 3 | neg   | $+$   | 4    | 5    | neg   |  $-$ | $\times$ | $\div$ |      |
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+| Pile     | 9 | 2 | 3 | $-3$  | $-1$  | $-1$ | 5    | $-5$  |  9   |    $-9$  | $-9$   | $-1$ |
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+|          |   | 9 | 2 |  2    | 9     | 9    | 4    |  4    | $-1$ |      9   |  9     |      |
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+|          |   |   | 9 |  9    |       |      | $-1$ | $-1$  |  9   |          |        |      |
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+|          |   |   | 9 |  9    |       |      |      |  9    |      |          |        |      |
++----------+---+---+---+-------+-------+------+------+-------+------+----------+--------+------+
+
+Parcours de l'arbre $\to$ utilisation d'une pile
+
+Visite des fils droits avant les fils gauches pour retrouver l'ordre préfixe (fils gauche en somme de pile)
+
+Pile : 
+
++---+---+
+| 1 |   |
++---+---+
+| 3 | 2 |
++---+---+
+| 3 | 4 |
++---+---+
+| 3 |   |
++---+---+
+| 6 | 5 |
++---+---+
+| 6 | 7 |
++---+---+
+| 6 |   |
++---+---+
+
+Clés traité: $1\to2\to4\to3\to5\to7\to6$
+
+```{.mermaid format=pdf}
+graph TD;
+r((1)) --- a((2)) --- b((4))
+r --- c((3)) --- d((5)) --- e((7))
+c --- f((6))
+```
+
+### Bilan
+
+Parcours d'un arbre $\to$ fonction récursive
+
+Comportement d'une pile
+
+Depth First Search (DFS)
+
+```
+Fonction ParcoursArbre(Élément)
+  Entrée: pointeur sur un nœud de l'arbre
+  Sortie: traitement sur chacun des nœuds du sous-arbre enraciné en un élément
+  Début
+    Si Élément != NIL Alors
+      Traitement Élément     != parcours préfixé
+      Parcours arbre.gauche
+      Traitement Élément     != parcours infixé
+      Parcours arbre.droit
+      Traitement Élément     != parcours postfixé
+    Fin Si
+  Fin
+```
+
+## Parcours en largeur
+
+Principe du parcours en largeur :
+
+ - Départ de la racine
+ - Exploration des nœuds par niveaux de l'arbre
+ - Pour un même niveau, parcours de gauche à droite
+
+$\implies$ Parcours réalisé à l'aide d'une file
+
+Visite des fils gauches avant les fils droits
+
+Parcours intéressant pour
+
+ - une recherche avec la plus petite profondeur possible
+ - pour une énumération
+
+```{.mermaid format=pdf}
+graph TD;
+r((1)) --- a((2)) --- b((4))
+r --- c((3)) --- d((5)) --- e((7))
+c --- f((6))
+```
+
+File:
+
++---+---+---+
+| 1 |   |   |
++---+---+---+
+| 3 | 2 |   |
++---+---+---+
+| 4 | 3 |   |
++---+---+---+
+| 6 | 5 | 4 |
++---+---+---+
+| 6 | 5 |   |
++---+---+---+
+| 7 | 6 |   |
++---+---+---+
+| 7 |   |   |
++---+---+---+
 
 
+Clés traitées: $1\to2\to3\to4\to5\to6\to7$
 
+# IV. Implémentation
 
+## Arbres binaires de recherche
 
+Type arbre n'existe pas $\to$ sérialisation (stockage sous un autre format)
 
+Deux implémentations possibles : 
 
+ 1. Par tableaux (voir exercice)
+ 2. Par enregistrement et pointeurs
 
+Solution par enregistrement:
 
+ - Création du type nœud
+ - Creation du type arbre pointant sur la racine de l'arbre (en C)
+ - Arbre complet contenu dans en enregistrement d'enregistrements (en OCAML)
+
+$\implies$ structure récursive
+
+Quels champs pour un nœud ?
+
+ - entier `clé`
+ - pointeur `fils_gauche`
+ - pointeur `fils_droit`
+ - pointeur `parent`
+ - enregistrement `informations`
+
+En C, nécessité d'écrire une fonction créant un nœud :
+
+ - Entrée:
+   * valeur (`int`)
+   * info (enregistrement contenu dans le nœud)
+ - Sortie:
+   * pointeur sur le nœud créé (les champs `fils_gauche`, `fils_droit` et `parent` sont initialisé à `NULL`)
+
+Constructeur : créer un arbre
+
+ - Entrée : aucun
+ - Sortie : pointeur sur la racine, qui peut être `NULL`/`NIL`
+ - Sémantique :
+   * Fonction créant un pointeur sur la racine
+   * Pointeur sur la racine initialisé à `NULL`/`NIL`
 

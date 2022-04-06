@@ -3,8 +3,7 @@
 Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère orthonormé $(O, \vec{\imath}, \vec{\jmath})$\\
 
 \begin{defn}
-	\begin{wrapfigure}
-		{r}{0.5\textwidth}
+	\begin{figure}[H]
 		\centering
 		\begin{asy}
 			import graph;
@@ -41,7 +40,7 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 			label("$a$", (w1+w12)/2, align=S);
 			label("$b$", (w2+w12)/2, align=E);
 		\end{asy}
-	\end{wrapfigure}
+	\end{figure}
 	Soit $M \in \mathcal{P}$. On note $(x,y)$ les coordonnées du point $M$ par rapport au repère $(O, \vec{\imath}, \vec{\jmath})$\\
 	\underline{L'affixe} de $M$ est le nombre \[
 		z_M = x+iy \in \C
@@ -110,8 +109,7 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 \end{prv}
 
 \begin{defn}
-	\begin{wrapfigure}
-		{r}{0.5\textwidth}
+	\begin{figure}[H]
 		\centering
 		\begin{asy}
 			import graph;
@@ -139,7 +137,7 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 			draw(M--M2, heavyred, Arrow(TeXHead));
 			label("$\vec{w}$", M + w/2, red, align=SE);
 		\end{asy}
-	\end{wrapfigure}
+	\end{figure}
 	Soit $\vec{w} \in \vec{\mathcal{P}}$. La \underline{translation} de vecteur $\vec{w}$ est l'application
 	\begin{align*}
 		t_{\vec{w}}: \mathcal{P} &\longrightarrow \mathcal{P} \\
@@ -186,54 +184,50 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 \end{prv}
 
 \begin{defn}
-	\begin{minipage}
-		{\linewidth}
-		\begin{wrapfigure}
-			{r}{0.5\textwidth}
-			\centering
-			\begin{asy}
-				import graph;
-				size(7cm);
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(7cm);
 
-				dot("$\Omega$", (0,0), align=SW);
+			dot("$\Omega$", (0,0), align=SW);
 
-				void plane(pair O, real x1, real x2, real y1, real y2) {
-					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
-					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
-				}
+			void plane(pair O, real x1, real x2, real y1, real y2) {
+				for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+				for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+			}
 
-				plane((0,0), -3, 7, -1, 5);
-				real t = 100;
+			plane((0,0), -3, 7, -1, 5);
+			real t = 100;
 
-				draw(arc((0,0), 1.5, 0, t), red, Arrow(TeXHead));
-				label("$\theta$", dir(t/2) * 1.5, red, align=NE);
+			draw(arc((0,0), 1.5, 0, t), red, Arrow(TeXHead));
+			label("$\theta$", dir(t/2) * 1.5, red, align=NE);
 
-				pair M = (3,0);
-				pair M2 = dir(t) * M;
+			pair M = (3,0);
+			pair M2 = dir(t) * M;
 
-				dot("$M$", M);
-				dot("$M'$", M2);
+			dot("$M$", M);
+			dot("$M'$", M2);
 
-				draw(M2--(0,0)--M, dotted + 1);
+			draw(M2--(0,0)--M, dotted + 1);
 
-				draw(circle((0,0), length(M)), dashed + deepcyan);
+			draw(circle((0,0), length(M)), dashed + deepcyan);
 
-				xlimits(-3, 7);
-				ylimits(-1, 5);
-				crop();
-			\end{asy}
-		\end{wrapfigure}
-		Soit $\Omega \in \mathcal{P}$ et $\theta\in \R$.\\
-		La \underline{rotation} de centre $\Omega$ et d'angle $\theta$ est l'application \begin{align*}
-			\rho_{\Omega, \theta}: \mathcal{P} &\longrightarrow \mathcal{P} \\
-			M &\longmapsto M'
-		\end{align*} où  $M'$ vérifie  \[
-			\begin{cases}
-				\|\vec{\Omega M}\| = \|\vec{\Omega M'}\|\\
-				\widehat{(\vec{\Omega M}, \vec{\Omega M'}}) = \theta
-			\end{cases}
-		\]
-	\end{minipage}
+			xlimits(-3, 7);
+			ylimits(-1, 5);
+			crop();
+		\end{asy}
+	\end{figure}
+	Soit $\Omega \in \mathcal{P}$ et $\theta\in \R$.\\
+	La \underline{rotation} de centre $\Omega$ et d'angle $\theta$ est l'application \begin{align*}
+		\rho_{\Omega, \theta}: \mathcal{P} &\longrightarrow \mathcal{P} \\
+		M &\longmapsto M'
+	\end{align*} où  $M'$ vérifie  \[
+		\begin{cases}
+			\|\vec{\Omega M}\| = \|\vec{\Omega M'}\|\\
+			\widehat{(\vec{\Omega M}, \vec{\Omega M'}}) = \theta
+		\end{cases}
+	\]
 \end{defn}
 
 \begin{prop}
@@ -363,51 +357,47 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 \end{prv}
 
 \begin{defn}
-	\begin{minipage}
-		{\linewidth}
-		\begin{wrapfigure}{r}
-			{0.5\linewidth}
-			\centering
-			\begin{asy}
-				import graph;
-				size(7cm);
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(7cm);
 
-				dot("$\Omega$", (0,0), align=SW);
+			dot("$\Omega$", (0,0), align=SW);
 
-				void plane(pair O, real x1, real x2, real y1, real y2) {
-					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
-					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
-				}
+			void plane(pair O, real x1, real x2, real y1, real y2) {
+				for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+				for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+			}
 
-				plane((0,0), -3, 7, -1, 5);
-				real k = 2.5;
+			plane((0,0), -3, 7, -1, 5);
+			real k = 2.5;
 
-				pair M = (2,1);
-				pair M2 = k * M;
+			pair M = (2,1);
+			pair M2 = k * M;
 
-				dot("$M$", M, align=S);
-				dot("$M'$", M2);
+			dot("$M$", M, align=S);
+			dot("$M'$", M2);
 
-				pair eps = (0,-0.03);
+			pair eps = (0,-0.03);
 
-				draw(eps -- M2 + eps, blue, Arrow(TeXHead));
-				label("$\lambda\times\vec{\Omega M}$", M2/2, blue, align=SE);
+			draw(eps -- M2 + eps, blue, Arrow(TeXHead));
+			label("$\lambda\times\vec{\Omega M}$", M2/2, blue, align=SE);
 
-				draw((0,0) -- M, red, Arrow(TeXHead));
-				label("$\vec{\Omega M}$", M/2, red, align=NW);
+			draw((0,0) -- M, red, Arrow(TeXHead));
+			label("$\vec{\Omega M}$", M/2, red, align=NW);
 
-				xlimits(-3, 7);
-				ylimits(-1, 5);
-				crop();
-			\end{asy}
-		\end{wrapfigure}
+			xlimits(-3, 7);
+			ylimits(-1, 5);
+			crop();
+		\end{asy}
+	\end{figure}
 
-		Soit $\Omega\in \mathcal{P}$ et $\lambda\in \R$.\\
-		L'\underline{homothétie} de centre $\Omega$ et de rapport $\lambda$ est l'application \begin{align*}
-			h_{\Omega,\lambda}: \mathcal{P} &\longrightarrow \mathcal{P} \\
-			M &\longmapsto M'
-		\end{align*} où $M'$ vérifie $\vec{\Omega M'} = \lambda \vec{\Omega M}$
-	\end{minipage}
+	Soit $\Omega\in \mathcal{P}$ et $\lambda\in \R$.\\
+	L'\underline{homothétie} de centre $\Omega$ et de rapport $\lambda$ est l'application \begin{align*}
+		h_{\Omega,\lambda}: \mathcal{P} &\longrightarrow \mathcal{P} \\
+		M &\longmapsto M'
+	\end{align*} où $M'$ vérifie $\vec{\Omega M'} = \lambda \vec{\Omega M}$
 \end{defn}
 
 \begin{prop}
@@ -449,55 +439,51 @@ Dans ce paragraphe, $\mathcal{P}$ dérisgne un plan euclidien muni d'un repère 
 \end{rmk}
 
 \begin{defn}
-	\begin{minipage}
-		{\linewidth}
-		\begin{wrapfigure}[10]{r}
-			{0.5\linewidth}
-			\centering
-			\begin{asy}
-				import graph;
-				size(7cm);
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(7cm);
 
-				dot("$\Omega$", (0,0), align=SW);
+			dot("$\Omega$", (0,0), align=SW);
 
-				void plane(pair O, real x1, real x2, real y1, real y2) {
-					for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
-					for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
-				}
+			void plane(pair O, real x1, real x2, real y1, real y2) {
+				for(real x = x1+1; x < x2; ++x) draw((x,y1)--(x,y2), gray);
+				for(real y = y1+1; y < y2; ++y) draw((x1,y)--(x2,y), gray);
+			}
 
-				plane((0,0), -3, 7, -1, 5);
-				real k = 2.5;
-				real t = 30;
+			plane((0,0), -3, 7, -1, 5);
+			real k = 2.5;
+			real t = 30;
 
-				pair M = (2,1);
-				pair Ma = k * M;
-				pair M2 = k * dir(t) * M;
+			pair M = (2,1);
+			pair Ma = k * M;
+			pair M2 = k * dir(t) * M;
 
-				dot("$M$", M, align=N);
-				dot("$M'$", M2);
+			dot("$M$", M, align=N);
+			dot("$M'$", M2);
 
-				draw((0,0) -- Ma, blue, Arrow(TeXHead));
-				label("$\times\lambda$", Ma/2, blue, align=SE);
+			draw((0,0) -- Ma, blue, Arrow(TeXHead));
+			label("$\times\lambda$", Ma/2, blue, align=SE);
 
-				draw((0,0) -- M2, magenta, Arrow(TeXHead));
+			draw((0,0) -- M2, magenta, Arrow(TeXHead));
 
-				draw(arc((0,0), length(Ma) / 1.5, degrees(M), degrees(M2)), green, Arrow(TeXHead));
-				label("$\theta$", length(Ma) * dir(t/2 + degrees(M)) / 1.5, green, align=NE);
+			draw(arc((0,0), length(Ma) / 1.5, degrees(M), degrees(M2)), green, Arrow(TeXHead));
+			label("$\theta$", length(Ma) * dir(t/2 + degrees(M)) / 1.5, green, align=NE);
 
-				draw((0,0) -- M, red, Arrow(TeXHead));
-				label("$\vec{\Omega M}$", M/2, red, align=SE);
+			draw((0,0) -- M, red, Arrow(TeXHead));
+			label("$\vec{\Omega M}$", M/2, red, align=SE);
 
-				xlimits(-3, 7);
-				ylimits(-1, 5);
-				crop();
-			\end{asy}
-		\end{wrapfigure}
+			xlimits(-3, 7);
+			ylimits(-1, 5);
+			crop();
+		\end{asy}
+	\end{figure}
 
-		Soient $\Omega\in \mathcal{P}$, $(\theta,\lambda)\in \R^2$.
-		La \underline{similitude (directe)} de centre $\Omega$, d'angle $\theta$ et de rapport $\lambda$ est \[
-			S_{\Omega,\theta,\lambda} = h_{\Omega,\lambda} \circ \rho_{\Omega, \theta}
-		\] 
-	\end{minipage}
+	Soient $\Omega\in \mathcal{P}$, $(\theta,\lambda)\in \R^2$.
+	La \underline{similitude (directe)} de centre $\Omega$, d'angle $\theta$ et de rapport $\lambda$ est \[
+		S_{\Omega,\theta,\lambda} = h_{\Omega,\lambda} \circ \rho_{\Omega, \theta}
+	\] 
 \end{defn}
 
 \begin{prop}

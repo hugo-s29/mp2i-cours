@@ -1,0 +1,403 @@
+\part{Exercice 8}
+
+\begin{enumerate}
+	\subsection*{Partie I.}
+	
+	\item 
+		\begin{enumerate}
+			\item Soit $x = (x_1, \ldots, x_n) \in \R^n$. Soit $\mathcal{B} = (e_1, \ldots, e_n)$ la base canonique de $\R^n$.
+
+				\begin{align*}
+					x \in \Ker f \iff& f(x) = 0\\
+					\iff& \Mat_\mathcal{B}\big(f(x)\big) = \Mat_\mathcal{B}(0) = \begin{pmatrix}
+						0\\ \vdots \\ 0
+					\end{pmatrix}\\
+					\iff& A\begin{pmatrix}
+						x_1 \\\vdots\\ x_n
+					\end{pmatrix} = \begin{pmatrix}
+						0\\ \vdots \\ 0
+					\end{pmatrix}\\
+					\iff& \begin{pmatrix}
+						x_n\\
+						0\\
+						\vdots\\
+						0
+					\end{pmatrix} = \begin{pmatrix}
+						0\\ \vdots \\ 0
+					\end{pmatrix}\\
+					\iff& x_n = 0\\
+					\iff& x = (x_1, \ldots, x_{n-1}, 0)\\
+					\phantom{\iff}& \phantom{x} = \sum_{i=1}^{n-1} x_i e_i
+				\end{align*}
+
+				Donc $\boxed{\Ker f = \Vect(e_1, \ldots, e_{n-1})}$.
+				
+				D'après le théorème du rang,
+				\begin{align*}
+					\rg f &= \dim \R^n - \dim(\Ker f)\\
+					&= n - (n -1) = 1. \\
+				\end{align*}
+
+				De plus, \[
+					\Mat_\mathcal{B}\big(f(e_n)\big) =  A \begin{pmatrix}
+						0\\
+						\vdots\\
+						0\\
+						1
+					\end{pmatrix} = \begin{pmatrix}
+						1\\
+						0\\
+						\vdots\\
+						0
+					\end{pmatrix} = \Mat_\mathcal{B}(e_1)
+				\] donc $f(e_n) = e_1 \neq 0$.
+				
+				Donc, $\boxed{\mathrm{Im}\,f = \Vect\big(f(e_n)\big) = \Vect(e_1)}$.
+
+				On constate que \[
+					\boxed{\mathrm{Im}\,f \subset \Ker f}.
+				\]
+				
+				Soit $x \in \R^n$. Comme $f(x) \in \mathrm{Im}\,f \subset \Ker f$, \[
+					f\big(f(x)\big) = 0 \text{ donc } f^2 = 0.
+				\]
+
+				donc \fbox{$f$ est nilpotent}. Comme $A \neq 0$, $f$ est nilpotent \fbox{d'indice 2}.
+
+				Soit $x = (x_1, \ldots, x_n) \in \R^n$.
+				\begin{align*}
+					x \in \Ker g \iff& B\begin{pmatrix}
+						x_1\\ \vdots\\ x_n
+					\end{pmatrix} = \begin{pmatrix}
+						0\\ \vdots\\ 0
+					\end{pmatrix}\\
+					\iff& \begin{pmatrix}
+						0\\ \vdots\\ 0\\ x_1
+					\end{pmatrix} = \begin{pmatrix}
+						0\\ \vdots \\ 0
+					\end{pmatrix}\\
+					\iff& x_1 = 0
+				\end{align*}
+				
+				On en déduit que \[
+					\boxed{\Ker g = \Vect(e_2, \ldots, e_n)}.
+				\]
+
+				De plus, $g(e_1) = e_n \neq 0$ donc \[
+					\boxed{\mathrm{Im}\, g = \Vect(e_n)}
+				\] et \[
+					\boxed{\mathrm{Im}\,g \subset \Ker g}
+				\] donc \fbox{$g$ est nilpotente d'indice 2}.
+			\item
+				\begin{align*}
+					A^2 &= \Mat_\mathcal{B}(f)^2 \\
+					&= \Mat_\mathcal{B}(f \circ f) \\
+					&= \Mat_\mathcal{B}(0) \\
+					&= 0 \\
+				\end{align*}
+				Par récurrence, \[
+					\boxed{\forall k \ge 2, A^k = 0}\,,\, A^1 = \begin{pmatrix}
+						0&\cdots&1\\
+						\vdots&\ddots&\vdots\\
+						0&\cdots&0
+					\end{pmatrix} \text{ et } A^0 = I_n.
+				\] De même, \[
+					\boxed{\forall k \ge 2, B^k = 0}\,,\, B^1 = \begin{pmatrix}
+						0&\cdots&0\\
+						\vdots&\ddots&\vdots\\
+						1&\cdots&0
+					\end{pmatrix} \text{ et } B^0 = I_n.
+				\]
+			\item Soit $k \in \N^*$. \[
+					(A + B)^k = \Mat_\mathcal{B}\big((f+g)^k\big)
+				\] Soit $x = (x_1, \ldots, x_n) \in \R^n$.
+				\begin{align*}
+					(f+g)(x) &= (x_n, 0, \ldots, 0) + (0, \ldots, 0, x_1) \\
+					&= (x_n, 0, \ldots, 0, x_1) \\.
+				\end{align*}
+				\begin{align*}
+					(f+g)^2(x) &= (f+g)(x_n, 0, \ldots, x_1)\\
+					&= (x_1, 0, \ldots, 0, x_n) \\
+				\end{align*}
+				On en déduit par récurrence que \[
+					\forall k \in \N^*, \forall x = (x_1, \ldots, x_n) \in \R^n,
+					\begin{cases}
+						(f+g)^{2k}(x) = (x_1, 0, \ldots, 0, x_n)\\
+						(f+g)^{2k+1}(x) = (x_n, 0, \ldots, 0, x_1)
+					\end{cases}
+				\] D'où \[\boxed{
+						\forall k \in \N^*, \begin{cases}
+							(A+B)^{2k} = \begin{pmatrix}
+								1&0&\cdots&0&0\\
+								0&&&&&\\
+								\vdots&\vdots&\ddots&\vdots&\vdots\\
+								&&&&0\\
+								0&0&\cdots&0&1
+							\end{pmatrix} \neq 0\\
+							(A+B)^{2k+1} = \begin{pmatrix}
+								0&0&\cdots&0&1\\
+								&&&&0\\
+								\vdots&\vdots&\ddots&\vdots&\vdots\\
+								0&&&&\\
+								1&0&\cdots&0&0
+							\end{pmatrix} \neq 0.
+						\end{cases}}
+					\] Donc, \fbox{$A + B$ n'est pas nilpotente}.
+				\item
+					\[\boxed{AB = \Mat_\mathcal{B}(f \circ g)
+					= \begin{pmatrix}
+						1&0&\cdots&0\\
+						0\\
+						\vdots&\vdots&\ddots&\vdots\\
+						0&0&\cdots&0
+					\end{pmatrix}}
+					\]
+					car $f \circ g(e_1) = f(e_n) = e_1$ \\
+					et $\forall k \ge 2, f(e_k) = 0$.
+					\[
+						\boxed{ BA = \Mat_\mathcal{B}(g \circ f) = \begin{pmatrix}
+								0&\cdots&0\\
+								\vdots&\ddots&\vdots\\
+								0&\cdot&1
+						\end{pmatrix}}
+					\] car $\forall k < n, g \circ f(e_k) = g(0) = 0$\\
+					et $g \circ f(e_n) = g(e_1) = e_n$.
+					
+					De plus,
+					\begin{align*}
+						\forall x = (x_1, \ldots, x_n) \in \R^n,
+						(f \circ g)^2(x) &= f \circ g(x_1, 0, \ldots, 0) \\
+						&= (x_1, 0, \ldots, 0) \\
+						&= f \circ g(x) \\
+					\end{align*}
+					donc $(AB)^2 = AB$ et donc \[
+						\boxed{\forall k \ge 1, (AB)^k = AB \neq 0}.
+					\] De même, \[
+					(g  \circ f)^2 = g \circ f
+					\] et donc \[
+						\boxed{\forall k\ge 1, (BA)^k = BA \neq 0}.
+					\] Ainsi, \fbox{ni $AB$ ni $BA$ ne sont nilpotentes}.
+				\item $N_n(\R)$ n'est pas stable par somme, donc \underlin{ce n'est pas un sous-espace vectoriel de $\mmathcal{M}_n(\R)$} et a fortiori \underline{ce n'est pas une sous-algèbre}.
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item Soit $(\lambda_0, \ldots, \lambda_{p-1}) \in \R^p$. On suppose \[
+					\sum_{i=0}^{p-1} \lambda_i f^i(e_1) = 0.
+				\]
+				Pour $k \in \left\llbracket 0, p-1 \right\rrbracket$, \[
+					f^k\left( \sum_{i=0}^{p-1} \lambda_i f^i(e_1) \right) = 0
+				\] i.e. \[
+					\sum_{i=0}^{p-1}\lambda_i \underbrace{f^{k+i}(e_1)}_{\mathclap{=0 \text{ si } k + 1 \ge p}}= 0
+				\] i.e. \[
+					\sum_{i=0}^{p-k-1} \lambda_i f^{k+i}(e_1) = 0.
+				\] En particulier, avec $k = p - 1$ : \[
+					\lambda_0 \underbrace{f^{p-1}(e_1)}_{\neq 0} = 0
+				\] donc $\lambda_0 = 0$.
+				Avec $k = p-2$ : \[
+					\underbrace{\lambda_0 f^{p-2}(e_1)}_{=0} + \lambda_1 \underbrace{f^{p-1}(e_1)}_{\neq 0} = 0
+				\] donc $\lambda_1 = 0$.
+				
+				De proche en proche, \[
+					\forall i \in \left\llbracket 0, p-1 \right\rrbracket , \lambda_i = 0.
+				\] La famille $\big(f^{p-1}(e_1), \ldots, f(e_1), e_1\big)$ a $p$ vecteurs et $\dim(\R^n) = n$ donc $\boxed{p \le n}$.
+			\item Soit $g$ nilpotent d'indice $p$. D'après 2.(a), $p\le n$.
+
+				D'où 
+				\begin{align*}
+					g^n &= g^p  \circ g^{n-p}\\
+					&= 0  \circ g^{n-p} \\
+					&= 0 \\
+				\end{align*}
+		\end{enumerate}
+	\item 
+		\begin{enumerate}
+			\item On sait que $\mathcal{C} = \big(f^2(e_1), f(e_1), e_1\big)$ est libre. Elle a $\dim(\R^3)$ vecteurs donc c'est une base de $\R^3$. \[
+					\boxed{\Mat_\mathcal{C}(f) = \begin{pmatrix}
+						0&1&0\\
+						0&0&1\\
+						0&0&0
+					\end{pmatrix}}
+				\] car $f\big(f^2(e_1)\big) = 0$, $f\big(f(e_1)\big) = f^2(e_1)$, $f(e_1) = 0 \cdot f^2(e_1) + 1\cdot f(e_1) + 0\cdot e_1$
+			\item Soit $x \in \mathrm{Im}\, f$. On considère $a \in \R^n$ tel que $x = f(a)$.
+
+				D'où $f(x) = f\big(f(a)\big) = f^2(a) = 0$ et donc $x \in \Ker f$.
+
+				On a montré \underlin{$\mathrm{Im}\, f \subset \Ker f$}. et donc \[
+					\dim(\mathrm{Im} f) \le \dim(\Ker f)
+				\] D'après le théorème du rang, \[
+					3 = \dim(\mathrm{Im}\, f) + \dim(\Ker f)
+				\] $f\neq 0$ donc $\dim(\mathrm{Im}\,f) > 0$.
+				Donc, $\boxed{\dim(\mathrm{Im}\, f) = 1 \text{ et } \dim(\Ker f) = 2}$.
+
+				$f(e_1) \neq 0$ et $f(e_1) \in \Ker f$ donc $\big(f(e_1)\big)$ est une famille libre de $\Ker f$. Comme $\dim(\Ker f) = 2$, d'après le théorème de la base incomplète, il existe $e_3 \in \Ker f$ tel que $\big(f(e_1), e_3\big)$ soit une base de $\Ker f$.
+
+				Soit $(\alpha, \beta, \gamma) \in \R^3$. On suppose \[
+					\alpha f(e_1) + \beta e_1 + \gamma e_3 = 0
+				\] donc, en applicant $f$, \[
+					\beta \underbrace{f(e_1)}_{\neq 0} = 0
+				\] donc $\beta = 0$ et donc \[
+					\alpha f(e_1) + \gamma e_3 = 0.
+				\] Or, $\big(f(e_1), e_3\big)$ est libre donc $\alpha = \gamma = 0$.
+
+				Donc, $\mathcal{D}= \big(f(e_1), e_1, e_3\big)$ est une base de $\R^3$ et \[
+					\boxed{
+						\Mat_\mathcal{D}(f) = \begin{pmatrix}
+							0&1&0\\
+							0&0&0\\
+							0&0&0
+						\end{pmatrix}\!
+					}.
+				\]
+		\end{enumerate}
+	\item
+	\item
+		\begin{enumerate}
+			\item[(c)] Soit $M \in N_n(\R)$. D'après 4., il existe $P \in \mathrm{GL}_n(\R)$ tel que \[
+					P M P^{-1} =
+					\begin{pNiceArray}{c|c|c|c}
+						0&*&\ldots&*\\ \hline
+						*&\ddots&\ddots&\vdots\\ \hline
+						\vdots&\ddots&\ddots&*\\ \hline
+						*&\ldots&*&0
+					\end{pNiceArray}
+				\]
+				De plus, d'après (2b), \[
+					\tr\big(P(MP^{-1})\big) = \tr\big((MP^{-1})P\big) = \tr(M).
+				\] Comme les blocs diagonaux de $PMP^{-1}$ sont nuls, $\tr(PMP^{-1}) = 0.$
+
+				Donc $M \in \Ker(\tr)$. On a prouvé \[
+					N_n(\R) \subset \Ker(\tr)
+				\]
+				$\Ker(\tr)$ est un sous-espace vectoriel de $\mathcal{M}_n(\R)$ donc \[
+					\Vect\big(N_n(\R)\big) \subset \Ker(\tr)
+				\]
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item $E_{12}^2 = \begin{pmatrix}
+					0&0\\
+					0&0
+				\end{pmatrix}$ donc $E_{12} \in N_2(\R)$.
+
+				$E_{12}^2 = \begin{pmatrix}
+					0&0\\
+					0&0
+				\end{pmatrix}$ donc $E_{12} \in N_2(\R)$.
+
+				$N^2 = \begin{pmatrix}
+					0&0\\
+					0&0
+				\end{pmatrix}$ donc $N \in N_2(\R)$.
+			\item
+				\begin{align*}
+					M &= a\begin{pmatrix}
+						1&-1\\
+						1&-1
+					\end{pmatrix} + (b-a) \begin{pmatrix}
+						0&1\\
+						0&0
+					\end{pmatrix} + (c + a) \begin{pmatrix}
+						0&0\\
+						1&0
+					\end{pmatrix}\\
+					\in \Vect(N, E_{12}, E_{21})
+				\end{align*}
+			\item \[
+					\Ker(\tr) \subset \Vect(N, E_{12}, E_{21}) \subset \Vect\big(N_2(\R)\big) \subset  \Ker(\tr)
+				\] 
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item \[
+					E_{ij}^2 = (a_{k,\ell})
+				\] où \[
+					\forall k,\ell,~ a_{k,\ell} = \sum_{m=0}^n \underbrace{\delta_{i,j}^{k,m}}_{=\begin{cases}
+						0 &\text{ si } i \neq k \et j \neq m\\
+						1 &\text{ sinon }
+					\end{cases}} + \delta_{i,j}^{m,\ell}
+				\] Soit $m \in \left\llbracket 0,n \right\rrbracket$.
+
+				\[
+					\delta_{i,j}^{k,m} \, \delta_{i,j}^{m,\ell} \neq 0 \iff \begin{cases}
+						k = i\
+						m = j\\
+						m = i\\
+						\ell = j
+					\end{cases} \implies i = j
+				\]
+
+				Comme $i\neq j$, $E_{ij}^2 = 0$.
+
+				\begin{align*}
+					N_i^2 &= E_{11}^2 - E_{11}E_{1i} + E_{11}E_{i1}  - E_{11}E_{ii} - E_{1i}E_{11} + E^2_{1i} - E_{1i}E_{i1}\\
+					&+ E_{1i}E_{ii} + E_{i1}E_{i1} + E_{i1}^2 - E_{i1}E_{ii} - E_{ii}E_{11} + E_{ii}E_{1i} - E_{ii}E_{i1}\\
+					& + E_{ii}^2\\
+					&= \cancel{E_{11}} - \cancel{E_{1i}} - \cancel{E_{11}} + \cancel{E_{1i}} + \cancel{E_{i1}} - \cancel{E_{ii}} - \cancel{E_{i1}} + \cancel{E_{ii}} \\
+					&= 0 \\
+				\end{align*}
+			\item Soit $(\lambda_{i,j})_{i \neq j} \in \R^{n^2-n}$ et $(\mu_i)_{2\le u\le n}\in \R^{n-1}$.
+
+				On suppose que \[
+					\sum_{1 \le i \neq j \le n} \lambda_{i,j}E_{i,j} + \sum_{i=2}^{n} \mu_i N_i = 0.
+				\] Soit $(k, \ell) \in \left\llbracket 1,n \right\rrbracket^2$. Le coefficient en position $(k,\ell)$ de la combinaison ci-dessus est :
+				\begin{align*}
+					&\sum_{1 \le i \neq j \le n} \lambda_{i,j} \delta^{k,\ell}_{i,j}
+					+\sum_{i=2}^{n} \mu_i\left( \delta_{1,1}^{k,\ell} - \delta_{1,i}^{k,\ell} + \delta_{1,i}^{k,\ell} - \delta_{i,i}^{k,\ell} \right) \\
+					&= \delta_{11}^{k,\ell} \left( \sum_{i=2}^{n} \mu_i \right) - \sum_{i=2}^{n}\mu_i \delta_{i,i}^{k,\ell} + \sum_{i=2}^{n}(\lambda_{1,i} -\mu_i) \delta_{1i}^{k\ell} + \sum_{i=2}^{n}(\lambda_{i,1} + \mu_i) \delta_{i,1}^{k,\ell} + \sum_{2 \le i \neq j \le n} \lambda_{i,j}\delta_{i,j}^{k,\ell} \\ 
+				\end{align*}
+				Soit $(k,\ell)$ avec $\begin{cases}
+					2 \le k\le n,\\
+					2\le \ell\le n,\\
+					k \neq \ell.
+				\end{cases}$
+
+				Alors \[
+					\begin{cases}
+						\delta_{11}^{k,\ell}= 0\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{i,i}^{k,\ell} = 0\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{1,i}^{k,\ell} = 0\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{i,1}^{k,\ell} = 0\\
+						\forall i \neq j \in \left\llbracket 2,n \right\rrbracket, \delta_{i,j}^{k,\ell} = 0 \text{ sauf si } \begin{cases}
+							k = i\\
+							j = \ell
+						\end{cases}
+					\end{cases}
+				\] et donc $\lambda_{k,\ell} = 0$.
+
+				Soit $\ell \in \left\llbracket 2,n \right\rrbracket$ et $k = 1$.\[
+					\begin{cases}
+						\delta_{11}^{k,\ell} = 0\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{i,i}^{k,\ell} = 0\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{1,i}^{k,\ell} \neq 0 \iff i = \ell\\
+						\forall i \in \left\llbracket 2,n \right\rrbracket, \delta_{i,1}^{k,\ell} = 0\\
+						\forall i \neq j \in \left\llbracket 2,n \right\rrbracket, \delta_{i,j}^{k,\ell} = 0
+					\end{cases}
+				\] donc $\lambda_{1,\ell} - \mu_\ell = 0$.
+				
+				De même, \[
+					\begin{cases}
+						\forall k \in \left\llbracket 2,n \right\rrbracket, \lambda_{k1} + \mu_k = 0\\
+						\forall k \in \left\llbracket 2,n \right\rrbracket, -\mu_k = 0
+					\end{cases}
+				\] Ainsi \[
+					\begin{cases}
+						\forall k \neq \ell, \lambda_{k,\ell} = 0\\
+						\forall k \ge 2, \mu_k = 0
+					\end{cases}
+				\] donc la famille est libre.
+
+				On a trouvé une famille libre consituée de $n^2 - n + n - 1 = n^2-1$ matrices dans $\Vect\big(N_n(\R)\big)$ donc
+			\item \[
+					\dim\big(\Vect\big(N_n(\R)\big)\big) \ge n^2 - 1.
+				\] Or \[
+					\Vect\big(N_n(\R)\big) \subset \Ker(\tr)
+				\] donc \[
+					\dim\big(\Vect\big(N_n(\R)\big)\big) \le \dim(\Ker \tr) = n^2 - 1.
+				\] Donc \[
+					\dim\big(\Vect\big(N_n(\R)\big) \big) = n^2 - 1 = \dim(\Ker \tr)
+				\] Comme $\Vect\big(N_n(\R)\big) \subset \Ker(\tr)$, \[
+					\boxed{\Vect\big(N_n(\R)\big) = \Ker(\tr).}
+				\]
+			\item $\Card(\mathcal{F}_n) = \dim\big(\Vect\big(N_n(\R)\big)\big)$ et $\mathcal{F}_n$ est libre, donc $\mathcal{F}_n$ est une base de $\Vect\big(N_n(\R)\big)$.
+		\end{enumerate}
+\end{enumerate}

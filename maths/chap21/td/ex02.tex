@@ -1,0 +1,79 @@
+\part{Exercice 2}
+
+	Soit $a \in \C^*$ et $f : z \mapsto z + a\overline{z}$.
+
+\begin{enumerate}
+	\item $\forall x \in \C, f(x) \in \C$.
+
+		Soient $(x,y) \in \C^2$ et $(\lambda, \mu) \in \R^2$.
+		\begin{align*}
+			f(\lambda x + \mu y) &= (\lambda x + \mu y) + a \overline{(\lambda x + \mu y)} \\
+			&= \lambda x + \mu y + a\lambda \overline{x} + a \mu \overline{y} \\
+			&= \lambda (x + a\overline{x}) + \mu(y + a \overline{y}) \\
+			&= \lambda f(x) + \mu f(y) \\
+		\end{align*}
+
+		Donc $f \in \mathcal{L}(\C)$.
+	\item
+		$f(1) = 1 + a \times 1 = a + 1$ \\
+		$f(i) = i + a \times (-i) = i (a - 1)$ 
+
+		\[
+			M = \Mat_{(1,i)}(f) = \begin{pmatrix}
+				1 + \Re(a) & \Im(a)\\
+				\Im(a) & \Re(a) - 1
+			\end{pmatrix}
+		\]
+	\item Soit $z \in \C$. On pose $z = x + iy$ avec $x,y \in \R$.
+
+		\begin{align*}
+			M\begin{pmatrix}
+				x\\y
+			\end{pmatrix} = \begin{pmatrix}
+				x + x\,\Re(a) + y\,\Im(a)\\
+				 x\,\Im(a) + y - y\,\Re(a)
+			\end{pmatrix}
+		\end{align*}
+
+		\begin{align*}
+			\det(M) &= \big(1 + \Re(a)\big)\big(-\Re(a) + 1\big) - \Im(a)^2\\
+			&= 1 - \Re(a)^2 -\Im(a)^2 \\
+			&= 1 - \left| a \right|^2 \\
+		\end{align*}
+
+		Si $a \neq 1$, $\Ker(f) = \{0\}$.
+		Si $a = 1$,
+		\begin{itemize}
+			\item[\sc Cas 1] $\Re(a) = -1$, alors \[
+					\begin{cases}
+						0 = 0\\
+						y = 0.
+					\end{cases}
+				\]
+				On a \[
+					\Ker(f) = \Vect(e_1) = \Vect(1) = \R
+				\]
+			\item[\sc Cas 2] $\Re(a) \neq -1$, alors \[
+				\begin{cases}
+					x = \frac{-y\Im(a)}{1 + \Re(a)}
+				\end{cases}
+			\] et donc \[
+				z = y \left( \frac{-\Im(a)}{1+\Re(a)} - i \right)
+			\]
+
+			On a \[
+				\Ker(f) = \Vect\big(-\Im(a) + i(1 + \Re(a))\big) 
+			\]
+		\end{itemize}
+	\item 
+		\begin{align*}
+			\dim(\mathrm{Im}\, f) &= \dim(\C) - \dim(\Ker f)\\
+									&= 1 \\
+		\end{align*}
+		Donc, si $\Re(a) \neq -1$, \[
+			\Im(f) = \Vect(1 + a)
+		\] sinon \[
+			\Im(f) = \Vect(2i) = i\R
+		\] 
+\end{enumerate}
+

@@ -1,0 +1,75 @@
+\part{Exercice 9}
+
+\begin{enumerate}
+	\item $E^* = \mathcal{L}(E, \mathbbm{K})$
+	\item Soit $i \in \left\llbracket 1,n \right\rrbracket$. Soient $(x,y) \in E^2$ et $(\lambda, \mu) \in \mathbbm{K}^2$.\\
+		On pose $x = \sum_{j=1}^n x_j e_j$ avec $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ et $y = \sum_{j=1}^n y_j e_j$ avec $(y_1, \ldots, y_n) \in \mathbbm{K}^n$.\\
+		D'où, 
+		\begin{align*}
+			\lambda x + \mu y &= \lambda \sum_{j=1}^n x_j e_j + \mu \sum_{j=1}^n y_j e_j \\
+			&= \sum_{j=1}^n (\lambda x_j + \mu y_j) e_j \\
+		\end{align*}
+		\begin{align*}
+			e_i^*(\lambda x + \mu y) &= \lambda x_i + \mu y_i \\
+			&= \lambda e_i^*(x) + \mu e_i^*(y) \\
+		\end{align*}
+		Donc, $e_i^* \in E^*$.\\
+		Soit $(\lambda_1, \ldots, \lambda_n) \in \mathbbm{K}^n$. On suppose que \[
+			\sum_{i=1}^n \lambda_i e_i^* = 0_{E^*}
+		\] Donc \[
+			\forall x \in E, \sum_{i=1}^n \lambda_i e_i^*(x) = 0_\mathbbm{K}
+		\] \[
+			\forall j \in \left\llbracket 1,n \right\rrbracket, \sum_{i=1}^n \lambda_i \underbrace{e^*_i(e_j)}_{\delta_{i,j}} = 0_\mathbbm{K} \text{ donc } \lambda_j = 0_\mathbbm{K}
+		\] Donc $(e_1^*, \ldots, e_n^*)$ est libre.
+	\item Soit $f \in E^*$. On va montrer que \[
+			f = \sum_{i=1}^n f(e_i) e_i^*
+		\] En effet, pour tout $x \in E$ :
+		\begin{align*}
+			f(x) = f\left( \sum_{i=1}^n e_i^*(x) e_i \right) 
+			&= \sum_{i=1}^n f(e_i) e_i^*(x) \\
+			&= \left(\sum_{i=1}^n f(e_i) e_i^*\right)(x) \\
+		\end{align*}
+		Donc $E^* = \Vect(e_1^*, \ldots, e_n^*)$. Donc $\dim(E^*) = \dim(E)$.
+	\item \begin{align*}
+			\Phi(u): E^* &\longrightarrow \mathbbm{K} \\
+			f &\longmapsto f(u)
+		\end{align*}
+		Soient $f,g \in E^*$ et $\lambda,\mu \in \mathbbm{K}$.
+		\begin{align*}
+			\Phi(u) (\lambda f + \mu g) &= (\lambda f + \mu g)(u) \\
+			&= \lambda f(u) + \mu g(u) \\
+			&= \lambda \Phi(f) + \mu \Phi(g) \\
+		\end{align*}
+		Donc $\Phi(u) = \mathcal{L}(E^*, \mathbbm{K}) = \left( E^* \right)^* = E^{**}$.
+	\item \begin{align*}
+			\Phi: E &\longrightarrow E^{**} \\
+			u &\longmapsto \Phi(u)
+		\end{align*}
+		Soient $(u,v) \in E^2$ et $(\lambda, \mu) \in \mathbbm{K}^2$.
+		\begin{align*}
+			\Phi(\lambda u + \mu v) &: E^* \longrightarrow \mathbbm{K}\\
+			\lambda \Phi(u) + \mu \Phi(v) &: E^* \longrightarrow \mathbbm{K}\\
+		\end{align*}
+		Soit $f \in E^*$.
+		\begin{align*}
+			\Phi(\lambda u + \mu v)(f) &= f(\lambda u + \mu v) \\
+			&= \lambda f(u) + \mu f(v) \\
+			&= \lambda \Phi(u)(f) + \mu \Phi(v)(f) \\
+			&= \big(\lambda \Phi(u) + \mu \Phi(v)\big)(f) \\
+		\end{align*}
+		Donc $\Phi \in \mathcal{L}(E, E^{**})$.\\[2mm]
+		Soit $u \in E$.
+		\begin{align*}
+			\Phi(u) = 0_{E^{**}} \iff& \forall f \in E^*, \Phi(u)(f) = 0_\mathbbm{K}\\
+			\iff& \forall f \in E^*, f(u) = 0_\mathbbm{K}
+			\implies& \forall i \in \left\llbracket 1,n \right\rrbracket, e_i^*(u) = 0_\mathbbm{K}\\
+			\implies& u = \sum_{i=1}^n e_i^*(u) e_i = 0_E\\
+		\end{align*}
+		Donc, $\Ker \Phi = \{0_E\}$ donc $\Phi$ est injective.
+	\item \[
+			\dim(E^{**}) = \dim(E^*) = \dim(E)
+		\] donc \[
+			\Phi \in \mathrm{GL}(E, E^{**})
+		\]
+\end{enumerate}
+

@@ -1,0 +1,101 @@
+\part{Exercice 10}
+
+\begin{wrapfigure}{l}{4cm}
+	\centering
+	\begin{asy}
+		import graph;
+		size(4cm);
+
+		draw(unitcircle);
+		pair A = dir(0);
+		pair B = dir(100);
+		pair C = dir(230);
+		pair O = (0,0);
+
+		dot("$A(1)$", A); dot("$B(e^{i\theta_1})$", B, align=N); dot("$C(e^{i\theta_2})$", C, align=S);
+
+		draw(A -- B -- C -- cycle);
+		draw(O -- A, dashed);
+		draw(O -- B, dashed);
+		draw(O -- C, dashed);
+		draw(arc(O, 0.3, 0, 100), Arrow(TeXHead));
+		draw(arc(O, 0.4, 0, 230), Arrow(TeXHead));
+		label("$\theta_1$", 0.3dir(50), align=SW);
+		label("$\theta_2$", 0.4dir(165), align=W);
+	\end{asy}
+\end{wrapfigure}
+
+\begin{align*}
+	f: U &\longrightarrow \R \\
+	(\theta_1, \theta_2) &\longmapsto \left| 1 - e^{i\theta_1} \right| + \left| e^{i\theta_1} - e^{i\theta_2} \right| + \left| 1 - e^{i\theta_2} \right|
+\end{align*} où  \[
+	U = \{(\theta_1, \theta_2) \in ]0,2\pi[^2  \mid \theta_1 < \theta_2 \} 
+\] un ouvert de $\R^2$.
+
+On a \[
+	\begin{cases}
+		\left| 1- e^{i\theta_1} \right| = 2\left| \sin \frac{\theta_1}{2} \right|, \\
+		\left| 1 - e^{i\theta_2} \right| = 2\left| \sin\frac{\theta_2}{2} \right|, \\
+		\left| e^{i\theta_1} - e^{i\theta_2} \right|  = 2 \left| \sin \frac{\theta_1 - \theta_2}{2} \right|.
+	\end{cases}
+\]
+Soit $(\theta_1, \theta_2) \in U$.
+Donc, \[
+	f(\theta_1, \theta_2) = 2\left( \sin\left( \frac{\theta_1}{2} \right)  + \sin\left( \frac{\theta_2}{2} \right) + \sin\left( \frac{\theta_2 - \theta_1}{2} \right)  \right) 
+\] 
+
+On a \[
+	\begin{cases}
+		\frac{\partial f}{\partial \theta_1}(\theta_1, \theta_2) = 2\left( \frac{1}{2}\cos\left(\frac{\theta_1}{2}\right) - \frac{1}{2}\cos\left( \frac{\theta_2 - \theta_1}{2} \right) \right), \\
+		\frac{\partial f}{\partial \theta_2}(\theta_1, \theta_2) = 2\left( \frac{1}{2}\cos\left( \frac{\theta_2}{2} \right) + \frac{1}{2}\cos\left( \frac{\theta_2 - \theta_1}{2} \right) \right).
+	\end{cases}
+\]
+
+On cherche $(\theta_1, \theta_2)$ tel que
+\begin{align*}
+	&\begin{cases}
+		\cos \frac{\theta_1}{2} - \cos\frac{\theta_2 - \theta_1}{2} = 0\\
+		\cos \frac{\theta_2}{2} + \cos \frac{\theta_2- \theta_1}{2 } = 0
+	\end{cases}\\
+	\iff& \begin{cases}
+		\frac{\theta_2}{2} = \frac{\theta_2 - \theta_1}{2}\\
+		\pi - \frac{\theta_2}{2} = \frac{\theta_2 - \theta_1}{2}
+	\end{cases}\\
+	\iff& \begin{cases}
+		2\theta_1 = \theta_2\\
+		2\theta_2 - \theta_1 = 2\pi
+	\end{cases}\\
+	\iff& \begin{cases}
+		\theta_1 = \frac{2\pi}{3}\\
+		\theta_2 = \frac{4\pi}{3}
+	\end{cases}
+\end{align*}
+
+
+\begin{wrapfigure}{l}{4cm}
+	\centering
+	\begin{asy}
+		import graph;
+		size(4cm);
+
+		draw(unitcircle);
+		pair A = dir(0);
+		pair B = dir(120);
+		pair C = dir(240);
+		pair O = (0,0);
+
+		dot("$A(1)$", A); dot("$B(j)$", B, align=N); dot("$C(j^2)$", C, align=S);
+
+		draw(A -- B -- C -- cycle);
+		draw(O -- A, dashed);
+		draw(O -- B, dashed);
+		draw(O -- C, dashed);
+	\end{asy}
+\end{wrapfigure}
+
+
+
+
+
+
+

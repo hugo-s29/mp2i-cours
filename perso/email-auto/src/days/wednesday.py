@@ -8,7 +8,7 @@ class Wednesday(Day):
     td_math_time = (13, 15) if self.student.half_group == "I" else (15, 17)
     tp_phys_time = (13, 15) if self.student.half_group == "II" else (15, 17)
 
-    td_math = Subject(name="Mathématiques", room="I210", time=td_math_time)
+    td_math = Subject(name="Mathématiques", room="K201", time=td_math_time)
     tp_phys = Subject(name="Physique", room="Salles TP", time=tp_phys_time)
 
     subjects = [
@@ -51,6 +51,6 @@ class Wednesday(Day):
 
   def generate_meals(self):
     return [
-      Meal(time="11h45"),
+      Meal(time="12h03"),
       Meal(time="19h06", meal_type="dinner"),
     ]

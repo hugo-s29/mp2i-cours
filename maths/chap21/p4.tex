@@ -1,0 +1,598 @@
+\part{Formules de changement de bases}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie $n$.\\
+	Soient $\mathcal{B}_1$ et $\mathcal{B}_2$ deux bases de $E$ et $x \in E$. Soit $P = P_{\mathcal{B}_1 \to \mathcal{B}_2} = \Mat_{\mathcal{B}_1}(\mathcal{B}_2)$.\\
+	Alors \[
+		\Mat_{\mathcal{B}_2}(x) = P^{-1} \Mat_{\mathcal{B}_1}(x)
+	\]
+\end{prop}
+
+\begin{prv}
+	\[
+		P = \Mat_{\mathcal{B}_2, \mathcal{B}_1}(\id_E) = \begin{pNiceMatrix}
+			\cdot & \cdot & \cdot \\
+			\cdot & \cdot & \cdot \\
+			\cdot & \cdot & \cdot \\
+		\end{pNiceMatrix}  % todo
+	\] si $\begin{cases}
+		 \mathcal{B}_1 = (e_1, \ldots, e_n)\\
+		 \mathcal{B}_2 = (u_1, \ldots, u_n)
+	\end{cases}$\\
+	\begin{align*}
+		P \Mat_{\mathcal{B}_2}(x) &= \Mat_{\mathcal{B}_2, \mathcal{B}_1}(\id_E) \times \Mat_{\mathcal{B}_2}(x) \\
+		&= \Mat_{\mathcal{B}_1}\big(\id_E(x)\big) \\
+		&= \Mat_{\mathcal{B}_1}(x) \\
+	\end{align*}
+
+	\[
+		E_{\mathcal{B}_2} \quad {\begin{array}{c}
+			~\\
+			~
+		\end{array}}^x_X \xrightarrow[P]{\id_E} {\begin{array}{c}
+			~\\
+			~
+		\end{array}}^{\id_E(x)}_{PX} \quad E_{\mathcal{B}_1}
+	\] % todo
+\end{prv}
+
+\begin{prop}
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels de dimension finie $\mathcal{B}_1$ et $\mathcal{B}_2$ deux bases de $E$, et $\mathcal{C}_1, \mathcal{C}_2$ deux bases de $F$ et $f \in \mathcal{L}(E,F)$.\\
+	Soient $\begin{cases}
+		P = P_{\mathcal{B}_1 \to \mathcal{B}_2} = \Mat_{\mathcal{B}_1}(\mathcal{B}_2)\\
+		Q = P_{\mathcal{C}_1\to \mathcal{C}_2} = \Mat_{\mathcal{C}_1}(\mathcal{C}_{2})\\
+		A = \Mat_{\mathcal{B}_1, \mathcal{C}_1}(f)
+	\end{cases}$\
+	Alors, \[
+		\Mat_{\mathcal{B}_2,\mathcal{C}_2}(f) = Q^{-1} A P
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{wrapfigure}{l}{4cm}
+		\vspace{-1cm}
+		\begin{asy}
+			size(4cm);
+			pair E1 = (-1, 1);
+			pair E2 = (-1, -1);
+			pair F1 = (1, 1);
+			pair F2 = (1, -1);
+
+			label("$E_{\mathcal{B}_1}$", E1);
+			label("$E_{\mathcal{B}_2}$", E2);
+			label("$F_{\mathcal{C}_1}$", F1);
+			label("$F_{\mathcal{C}_2}$", F2);
+
+			real eps = 0.3;
+
+			pair g = (-eps, 0);
+			pair d = (eps, 0);
+			pair h = (0, eps);
+			pair b = (0, -eps);
+
+			draw(E1 + d -- F1 + g, Arrow(TeXHead));
+			draw(E2 + h -- E1 + b, Arrow(TeXHead));
+			draw(E2 + d -- F2 + g, Arrow(TeXHead));
+			draw(F1 + b -- F2 + h, Arrow(TeXHead));
+
+			label("\small $f$", (0,1), align=N);
+			label("\small $A$", (0,1), align=S);
+			label("\small $f$", (0,-1), align=N);
+			label("\small $A'$", (0,-1), align=S);
+			label("\small $\id_E$", (-1,0), align=W);
+			label("\small $P$", (-1,0), align=E);
+			label("\small $\id_F$", (1,0), align=W);
+			label("\small $Q^{-1}$", (1,0), align=E);
+		\end{asy}
+	\end{wrapfigure}
+
+	$f = \id_F  \circ f \circ \id_E$ donc \[
+		\Mat_{\mathcal{B}_2,\mathcal{C}_2} = \Mat_{\mathcal{C}_1,\mathcal{C}_2}(\id_F)
+		\Mat_{\mathcal{B}_1,\mathcal{C}_1}(f)
+		\Mat_{\mathcal{B}_2,\mathcal{C}_2}(\id_E)
+	\]
+	\vspace{2cm}
+\end{prv}
+
+\begin{exm}
+	$E = \R^3$, $F = \big\{ (x,y,z) \in \R^3  \mid x + y = 0 \big\}$, $G = \Vect\big((1,1,1)\big)$ et $f$ la projection sur $F$ parallèlement à $G$.\\
+	Soient $\mathcal{B} = (e_1,e_2,e_3)$ base canonique de $E$ et $\mathcal{C} = (u_1, u_2, u_3)$ avec $\begin{cases}
+		u_1 = (0,0,1)\\
+		u_2 = (1, -1, 0)\\
+		u_3 = (1, 1, 1)
+	\end{cases}$.
+	\[
+		\Mat_{\mathcal{C}}(f) = \begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			0&0&0
+		\end{pmatrix}
+	\] Donc
+	\begin{align*}
+		\Mat_{\mathcal{B}}(f) = \begin{pmatrix}
+			0&1&1\\
+			0&-1&1\\
+			1&0&1
+		\end{pmatrix} \begin{pmatrix}
+			1&0&0\\
+			0&1&0\\
+			0&0&0
+		\end{pmatrix} \begin{pmatrix}
+			0&1&1\\
+			0&-1&1\\
+			1&0&1
+		\end{pmatrix} ^{-1}
+	\end{align*}
+\end{exm}
+
+\begin{prop-defn}
+	Soient $(A,B) \in \mathcal{M}_{p,n}(\mathbbm{K})^2$.\\
+	On dit que $A$ et $B$ sont \underline{équivalentes} si \[
+		\exists (P,Q) \in \mathrm{GL}_n(\mathbbm{K}) \times \mathrm{GL}_p(\mathbbm{K}), B = Q^{-1} A P
+	\] Cette relation est une relation d'équivalence.
+	\qed
+\end{prop-defn}
+
+\begin{thm}
+	Soit $f \in \mathcal{L}(E)$, $\mathcal{B}$ et $\mathcal{C}$ deux bases de $E$, $P = P_{\mathcal{B} \to \mathcal{C}} = \Mat_\mathcal{B}(\mathcal{C})$, $A = \Mat_\mathcal{B}(f)$ et $B = \Mat_\mathcal{C}(f)$.\\
+	Alors \[
+		B = P^{-1} A P.
+	\] \qed
+\end{thm}
+
+\begin{defn}
+	Soit $(A,B) \in \mathcal{M}_{n}(\mathbbm{K})^2$. On dit que $A$ et $B$ sont \underline{semblables} s'il existe $P \in \mathrm{GL}_n(\mathbbm{K})$ telle que \[
+		B = P^{-1} A P.
+	\]
+	L'ensemble $\left\{ P^{-1}AP  \mid P \in \mathrm{GL}_n(\mathbbm{K}) \right\}$ est la \underline{classe de similitude de $A$}.
+\end{defn}
+
+\begin{exm}
+	\[
+		\begin{cases}
+			\forall n \in \N, u_{n+2} = u_{n+1}+ u_n\\
+			u_0 = 0\\
+			u_1 = 1
+		\end{cases}
+	\] On pose \[
+		\forall n \in \N, X_n = \begin{pmatrix}
+			u_n\\u_{n+1}
+		\end{pmatrix} \et X_0 = \begin{pmatrix}
+			0\\1
+		\end{pmatrix} 
+	\] On a
+	\begin{align*}
+		\forall n \in \N, X_{n+1} &= \begin{pmatrix}
+			u_{n+1}\\u_{n+2}
+		\end{pmatrix}  \\
+		&= \begin{pmatrix}
+			u_{n+1}\\
+			u_{n}+ u_{n+1}
+		\end{pmatrix}  \\
+		&= \begin{pmatrix}
+			0&1\\
+			1&1
+		\end{pmatrix} \begin{pmatrix}
+			u_n\\
+			u_{n+1}
+		\end{pmatrix} \\
+		&= AX_n \text{ avec } A = \begin{pmatrix}
+			0&1\\
+			1&1
+		\end{pmatrix}. \\
+	\end{align*}
+	D'où \[
+		\forall n \in \N, X_n = A^n X_0
+	\] On aimerait trouver $D$ diagonale et $P \in \mathrm{GL}_2(\C)$ telles que \[
+		A = P D P^{-1}.
+	\] Soit $f : \begin{array}{rcl}
+		\C^2 &\longrightarrow& \C^2 \\
+		(z_1,z_2) &\longmapsto& (z_2, z_1+z_2)
+	\end{array}$ telle que $\Mat_\mathcal{B}(f) = A$ où $\mathcal{B}=(e_1, e_2)$ est la base canonique de $\C^2$.\\
+	On cherche $\mathcal{C} = (u_1, u_2)$ une base de $\C^2$ telle que $\Mat_\mathcal{C}(f) = \begin{pmatrix}
+		\lambda_1&0\\
+		0&\lambda_2
+	\end{pmatrix} = D$ avec $(\lambda_1, \lambda_2) \in \C^2$.
+
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] On suppose que $\mathcal{C}$ existe. Dans ce cas, \[
+				\begin{cases}
+					f(u_1) = \lambda_1 u_1,\\
+					f(u_2) = \lambda_2 u_2,\\
+					(\lambda_1, \lambda_2) \text{ libre}.
+				\end{cases}
+			\]
+			Soit $u = (x,y) \in \C^2$ et $\lambda \in \C$.
+			\begin{align*}
+				f(u) = \lambda u
+				\iff& \begin{cases}
+					y = \lambda x\\
+					x + y = \lambda y
+				\end{cases}\\
+				\iff& \begin{cases}
+					y = \lambda x\\
+					x + \lambda x - \lambda^2 x = 0
+				\end{cases} \\
+				\iff& \begin{cases}
+					y = \lambda x\\
+					x(1 + \lambda - \lambda^2) = 0
+				\end{cases} \\
+				\iff& \begin{cases}
+					x = 0\\
+					y = 0
+				\end{cases} \ou \begin{cases}
+					A + \lambda - \lambda^2 = 0\\
+					y = \lambda x
+				\end{cases}\\
+				\iff& u = (0,0) \ou \begin{cases}
+					\lambda = \frac{-1 + \sqrt{5}}{2}\\
+					y = \frac{-1 + \sqrt{5}}{2}x
+				\end{cases} \ou \begin{cases}
+					\lambda = \frac{-1-\sqrt{5}}{2}\\
+					y = \frac{-1-\sqrt{5}}{2}x
+				\end{cases}
+			\end{align*}
+		\item[\underline{\sc Synthèse}] On pose $\begin{cases}
+			\lambda_1 = \frac{-1 + \sqrt{5}}{2} = \varphi\\
+			u_1 = (1, \varphi)
+		\end{cases}$ et $\begin{cases}
+			\lambda_2 = \frac{-1-\sqrt{5}}{2} = -\frac{1}{\varphi}\\
+			u_2 = \left( 1, -\frac{1}{\varphi} \right) 
+		\end{cases}$.\\
+		Ainsi, $\begin{cases}
+			f(u_1) = \lambda_1 u 1\\
+			f(u_2) = \lambda_2 u_2.
+		\end{cases}$\\
+		$u_1$ et $u_2$ ne sont pas colinéaires, ils forment une famille libre donc une base.\\
+	\end{itemize}
+	On pose $\mathcal{C} = (u_1, u_2)$ et $\Mat_\mathcal{C}(f) = \begin{pmatrix}
+		\varphi&0\\
+		0&-\frac{1}{\varphi}
+	\end{pmatrix} = D$.
+
+	\begin{wrapfigure}{l}{4cm}
+		\vspace{-2.5cm}
+		\begin{asy}
+			size(3cm);
+			pair E1 = (-1, 1);
+			pair E2 = (-1, -1);
+			pair F1 = (1, 1);
+			pair F2 = (1, -1);
+
+			label("$\C^2_{\mathcal{B}}$", E1);
+			label("$\C^2_{\mathcal{C}}$", E2);
+			label("$\C^2_{\mathcal{B}}$", F1);
+			label("$\C^2_{\mathcal{C}}$", F2);
+
+			real eps = 0.3;
+
+			pair g = (-eps, 0);
+			pair d = (eps, 0);
+			pair h = (0, eps);
+			pair b = (0, -eps);
+
+			draw(E1 + d -- F1 + g, Arrow(TeXHead));
+			draw(E1 + b -- E2 + h, Arrow(TeXHead));
+			draw(E2 + d -- F2 + g, Arrow(TeXHead));
+			draw(F2 + h -- F1 + b, Arrow(TeXHead));
+
+			label("\small $f$", (0,1), align=N);
+			label("\small $A$", (0,1), align=S);
+			label("\small $f$", (0,-1), align=N);
+			label("\small $D$", (0,-1), align=S);
+			label("\small $\id_{\C^2}$", (-1,0), align=W);
+			label("\small $P^{-1}$", (-1,0), align=E);
+			label("\small $\id_{\C^2}$", (1,0), align=W);
+			label("\small $P$", (1,0), align=E);
+		\end{asy}
+	\end{wrapfigure}
+	\vspace{2cm}
+	\[
+		A = P D P^{-1}
+	\] et \[
+		\begin{cases}
+			P^{-1}=  \Mat_{\mathcal{B},\mathcal{C}}(\id_{\C^2}) = P_{\mathcal{C}\to \mathcal{B}}\\
+			P = \Mat_{\mathcal{C},\mathcal{B}}(\id_{\C^2}) = P_{\mathcal{B}\to \mathcal{C}}
+		\end{cases}
+	\]
+	On a $P = \begin{pmatrix}
+		1&1\\
+		\varphi & -\frac{1}{\varphi}\\
+	\end{pmatrix}$ donc \[
+		P^{-1} = -\frac{1}{\sqrt{5}}\begin{pmatrix}
+			-\frac{1}{\varphi}&-1\\
+			-\varphi&1
+		\end{pmatrix} = \frac{1}{\sqrt{5}} \begin{pmatrix}
+			\frac{1}{\varphi}&1\\
+			\varphi&-1
+		\end{pmatrix}
+	\] Donc $A = P D P^{-1}$ et donc
+	\begin{align*}
+		\forall n \in \N,~ &A^n = P D^n P^{-1} = \frac{1}{\sqrt{5}}\begin{pmatrix}
+			1&1\\
+			\varphi&-\frac{1}{\varphi}
+		\end{pmatrix}\begin{pmatrix}
+			\varphi^n&0\\
+			0&\left( -\frac{1}{\varphi} \right)^n
+		\end{pmatrix} \begin{pmatrix}
+			\frac{1}{\varphi}&1\\
+			\varphi&-1
+		\end{pmatrix}\\
+		&\vrt=\\
+		\phantom{\begin{pmatrix}
+			*&u_n\\
+			*&*
+		\end{pmatrix}}\begin{pmatrix}
+			*&u_n\\
+			*&*
+		\end{pmatrix}&\\
+	\end{align*}
+\end{exm}
+
+
+\begin{exm}
+	\[
+		y'' + \omega^2 y = 0 \qquad \omega \in \R^+_*
+	\] \[
+		\forall t, Y(t) = \begin{pmatrix}
+			y(t)\\
+			y'(t)
+		\end{pmatrix}
+	\]
+	\begin{align*}
+		\forall t, Y'(t) &= \begin{pmatrix}
+			y'(t)\\
+			y''(t)
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+			y'(t)\\
+			-\omega^2 y(t)
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+			0&1\\
+			-\omega^2&0
+		\end{pmatrix} \begin{pmatrix}
+			y(t)\\
+			y'(t)
+		\end{pmatrix} \\
+		&= AY(t) \\
+	\end{align*}
+	Soit $f : \begin{array}{rcl}
+		\C^2 &\longrightarrow& \C^2 \\
+		(a,b) &\longmapsto& (b, -\omega^2a)
+	\end{array}$.\\
+	$A = \Mat_\mathcal{B}(f)$ où $\mathcal{B} = (e_1, e_2)$ base canonique de $\C^2$.
+	%todo champs de vecteur
+	On cherche $\mathcal{C} = (u_1,u_2)$ une base de $\C^2$ telle que $\Mat_\mathcal{C}(f) = \begin{pmatrix}
+		\lambda_1&0\\
+		0&\lambda_2
+	\end{pmatrix} = D$.
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Si $\mathcal{C}$ existe, \[
+				\begin{cases}
+					f(u_1) = \lambda_1 u_1\\
+					f(u_2) = \lambda_2 u_2
+				\end{cases}
+			\] Soit $u = (a,b) \in \C^2$ et $\lambda \in C$.
+			\begin{align*}
+				f(u) = \lambda u \iff& \begin{cases}
+					 b = \lambda a\\
+					 -\omega^2a = \lambda b
+				\end{cases}\\
+				\iff& \begin{cases}
+					b = \lambda a\\
+					-\omega^2 a = \lambda^2 a
+				\end{cases}\\
+				\iff& \begin{cases}
+					a = 0\\
+					b = 0
+				\end{cases} \ou \begin{cases}
+					\lambda^2 = -\omega^2\\
+					b = \lambda a
+				\end{cases}
+			\end{align*}
+		\item[\underline{\sc Synthèse}]
+			On pose $\begin{cases}
+				\lambda_1 = i\omega\\
+				u_1 = (1, i\omega)
+			\end{cases}$ et $\begin{cases}
+				\lambda_2 = -i\omega\\
+				u_2 = (1, -i\omega)
+			\end{cases}$. $(u_1, u_2)$ est bien une base de $\C^2$ et $\Mat_\mathcal{C}(f) = \begin{pmatrix}
+			i\omega&0\\
+			0&-i\omega
+			\end{pmatrix} = D$
+	\end{itemize}
+
+	\begin{wrapfigure}{l}{4cm}
+		\vspace{-2.5cm}
+		\begin{asy}
+			size(4cm);
+			pair E1 = (-1, 1);
+			pair E2 = (-1, -1);
+			pair F1 = (1, 1);
+			pair F2 = (1, -1);
+
+			label("$\C^2_{\mathcal{B}}$", E1);
+			label("$\C^2_{\mathcal{C}}$", E2);
+			label("$\C^2_{\mathcal{B}}$", F1);
+			label("$\C^2_{\mathcal{C}}$", F2);
+
+			real eps = 0.3;
+
+			pair g = (-eps, 0);
+			pair d = (eps, 0);
+			pair h = (0, eps);
+			pair b = (0, -eps);
+
+			draw(E1 + d -- F1 + g, Arrow(TeXHead));
+			draw(E1 + b -- E2 + h, Arrow(TeXHead));
+			draw(E2 + d -- F2 + g, Arrow(TeXHead));
+			draw(F1 + b -- F2 + h, Arrow(TeXHead));
+			draw(E2 + h + d -- F1 + b + g, dashed, Arrow(TeXHead));
+
+			label("\small $f$", (0,1), align=N);
+			label("\small $A$", (0,1), align=S);
+			label("\small $f$", (0,-1), align=N);
+			label("\small $D$", (0,-1), align=S);
+			label("\small $\id_{\C^2}$", (-1,0), align=W);
+			label("\small $P$", (-1,0), align=E);
+			label("\small $\id_{\C^2}$", (1,0), align=W);
+			label("\small $P$", (1,0), align=E);
+		\end{asy}
+	\end{wrapfigure}
+	\vspace{1cm}
+	\[
+		A P = PD \iff P^{-1}A = DP^{-1}
+	\] On a \[
+		P = P_{\mathcal{B}\to \mathcal{C}} = \begin{pmatrix}
+			1&1\\
+			i\omega&-i\omega
+		\end{pmatrix}
+	\] On pose \[
+		\forall t, X(t) = P^{-1} \times Y(t)
+	\] Donc 
+	\begin{align*}
+		\forall t, X'(t) = P^{-1} Y'(t) &= P^{-1} A Y(t) \\
+		&= DP^{-1} Y(t) \\
+		&= DX(t) \\
+	\end{align*}
+	On pose \[
+		\forall t, X(t) = \begin{pmatrix}
+			a(t)\\
+			b(t)
+		\end{pmatrix}
+	\]
+	\begin{align*}
+		X'(t) = DX(t) \iff& \begin{cases}
+			a'(t) = i\omega a(t)\\
+			b'(t) = -i\omega b(t)
+		\end{cases}\\
+		\iff& \begin{cases}
+			a(t) = \lambda e^{i\omega t}\\
+			b(t) = \mu e^{-i\omega t}
+		\end{cases} \qquad (\lambda, \mu) \in \C^2.
+	\end{align*}
+	\begin{align*}
+		\forall t, Y(t) &= P\times X(t) \\
+		&= \begin{pmatrix}
+			1&1\\
+			i\omega&-i\omega
+		\end{pmatrix}\begin{pmatrix}
+			\lambda e^{i\omega t}\\
+			\mu e^{-i\omega t}
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+			\lambda e^{i\omega t} + \mu e^{-i\omega t}\\
+			*
+		\end{pmatrix}
+	\end{align*}
+	Donc, \[
+		\forall t, y(t) = \lambda e^{i\omega t} + \mu e^{-i\omega t}
+	\]
+\end{exm}
+
+\begin{defn}
+	Soit $A = (a_{i,j}) \in \mathcal{M}_n(\mathbbm{K})$.\\
+	La \underline{trace} de $A$ est \[
+		\tr(A) = \sum_{i=1}^n a_{i,i}
+	\]
+\end{defn}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\tr \in \mathcal{L}\big(\mathcal{M}_n(\mathbbm{K}), \mathbbm{K}\big) = \mathcal{M}_n(\mathbbm{K})^*$
+		\item $\forall A,B \in \mathcal{M}_n(\mathbbm{K}),\, \tr(AB) = \tr(BA)$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soient $(A,B) \in \mathcal{M}_n(\mathbbm{K})$ et $(\alpha, \beta) \in \mathbbm{K}^2$. On pose $A = (a_{i,j})$ et $B = (b_{i,j})$.
+			\begin{align*}
+				\tr(\alpha A + \beta B) &= \sum_{i=1}^n (\alpha a_{i,i} \beta b_{i,i}) \\
+				&= \alpha \sum_{i=1}^n a_{i,i} + \beta \sum_{i=1}^n b_{i,i} \\
+				&= \alpha \tr(A) + \beta \tr(B) \\
+			\end{align*}
+		\item Soit $(A,B) \in \mathcal{M}_n(\mathbbm{K})^2$. On pose $A = (a_{i,j})$, $B = (b_{i,j})$, $AB = (c_{i,j})$ et $BA = (d_{i,j})$.
+			\begin{align*}
+				\tr(AB) = \sum_{i=1}^n c_{i,i} &= \sum_{i=1}^n \sum_{j=1}^n a_{i,j} b_{i,j} \\
+				&= \sum_{j=1}^n \sum_{i=1}^n b_{j,i}a_{i,j} \\
+				&= \sum_{j=1}^n d_{j,j} \\
+				&= \tr(BA) \\
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $(A,B) \in \mathcal{M}_n(\mathbbm{K})^2$. \[
+		A \text{ et } B \text{ semblables } \implies \tr(A) = \tr(B)
+	\]
+\end{prop}
+
+\begin{prv}
+	On suppose $A$ et $B$ semblables. Soit $P \in \mathrm{GL}_n(\mathbbm{K})$ telle que $A = P^{-1}BP$. Donc \[
+		\tr(A) = \tr\big(P^{-1}(BP)\big) = \tr\big((BP)P^{-1}\big) = \tr(B)
+	\]
+\end{prv}
+
+\begin{rmk}
+	[\danger Attention]
+	$A = \begin{pmatrix}
+		1&0\\
+		1&1\\
+	\end{pmatrix}$ et $B = \begin{pmatrix}
+		1&0\\
+		0&1
+	\end{pmatrix}$ \\
+	$\tr(A) = 2 = \tr(B)$\\
+	Or, $A$ et $B$ ne sont pas semblables, sinon
+	\begin{align*}
+		A &= P^{-1} B P \text{ avec } P \in \mathrm{GL}_2(\mathbbm{K})
+		&= P^{-1} I_2 P \\
+		&= P^{-1} P \\
+		&= I_2 \neq A \\
+	\end{align*}
+\end{rmk}
+
+\marginpar{\bf Définition\\[-5mm]}
+\begin{crlr}
+	Soit $f \in \mathcal{L}(E)$ et $\mathcal{B}$ une base de $E$. $A = \Mat_{\mathcal{B}}(f)$. La \underline{trace} de $f$ est $\tr(A)$.\\
+	Ce nombre ne dépend pas de la base $\mathcal{B}$ choisie. On note ce nombre $\tr(f)$.
+	\qed
+\end{crlr}
+
+\begin{prop}
+	Soit $p$ un projecteur de $E$ de dimension finie. Alors \[
+		\tr(p) = \rg(p)
+	\]
+\end{prop}
+
+\begin{prv}
+	On sait que \[
+		E = \Ker(p) \oplus \mathrm{Im}(p)
+	\] Soit $\mathcal{B}_1 = (e_1, \ldots, e_k)$ une base $\Ker(p)$ et $\mathcal{B}_2 = (e_{k+1}, \ldots, e_n)$ une base de $\mathrm{Im}(p)$.\\
+	On pose $\mathcal{B} = (e_1, \ldots, e_k, e_{k+1}, \ldots, e_n)$. $\mathcal{B}$ est une base de $E$ et \[
+		A = \Mat_\mathcal{B}(p)
+	\] % todo
+	\[
+		\tr(p) = \tr(A) = n - k = \# \mathcal{B}_2 = \dim(\mathrm{Im}\, p) = \rg(p)
+	\]
+\end{prv}
+
+\begin{exm}
+	$F = \{(x,y,z) \in \R^3  \mid  x + y = 0\}$ \\
+	$G = \Vect\big((1,1,1)\big)$ \\
+	$f$ la projection sur $F$ parallèlement à $G$.\\
+	$\mathcal{B} = (e_1, e_2, e_3)$ la base canonique de $\R^3$.
+	\[
+		\Mat_\mathcal{B}(f) = \begin{pmatrix}
+			\frac{1}{2} & -\frac{1}{2} & 0\\
+			-\frac{1}{2} & \frac{1}{2} & 0\\
+			-\frac{1}{2} & -\frac{1}{2} & 1
+		\end{pmatrix} = A
+	\]
+	\[
+		\tr(A) = 2 = \dim(F)
+	\]
+\end{exm}

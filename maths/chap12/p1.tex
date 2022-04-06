@@ -106,8 +106,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 			\item rotations d'axe $D$
 		\end{itemize}
 
-		\begin{figure}[H]
-			\center
+		\begin{center}
 			\begin{asy}
 				import solids;
 				settings.render=0;
@@ -126,14 +125,12 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 				label("$\vec{P}$", (1.2,1.5));
 
 				label("$D$", -0.6 * Z + (-0.5,0,0), red);
-
 			\end{asy}
-		\end{figure}
-
+		\end{center}
 		\vspace{2mm}
+
 	\item \underline{Effet}
-		\begin{figure}[H]
-			\center
+		\begin{center}
 			\begin{asy}
 				size(4cm);
 
@@ -152,13 +149,13 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 				draw((A + 0.25 * L) .. (B + 0.25 * L) .. (C + 0.25 * L));
 				draw((A - 0.25 * L) .. (B - 0.25 * L) .. (C - 0.25 * L));
 			\end{asy}
-		\end{figure}
+		\end{center}
 \end{itemize}
 
 \begin{defn}
 	Soit $G$ un ensemble, muni d'une loi de composition \underline{interne} $\diamond$.\\
 	On dit que $\left( G, \diamond  \right) $ est un \underline{groupe} si:
-	 \begin{itemize}
+	\begin{itemize}
 		\item $\diamond $ est associative
 		\item $\diamond$ a un neutre $e \in G$ 
 		\item $\forall x \in G, \exists y \in G, x\diamond y = y \diamond x = e$
@@ -417,8 +414,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 				\end{tabular}
 			\end{center}
 
-			\begin{figure}[H]
-				\center
+			\begin{center}
 				\begin{asy}
 					size(5cm);
 
@@ -428,8 +424,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 					draw((-a,-a)--(-a,a)--(a,a)--(a,-a)--cycle);
 					dot("$O$", (0,0));
 				\end{asy}
-			\end{figure}
-
+			\end{center}
 		\item $G_2$ l'ensemble des rotations planes qui laissent globalement invariant un carré.
 			\[
 				G_2 = \left\{ id, \rho_{\frac{\pi}{2}}, \rho_{\pi}, \rho_{\frac{3\pi}{2}} \right\}

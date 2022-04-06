@@ -1,0 +1,451 @@
+\part{Cardinal d'un ensemble}
+
+\begin{lem}
+	Soit $n \in \N^*$, $n \ge 2$, et $X \subsetneq \left\llbracket 1,n \right\rrbracket$ avec $X \neq \O$ ($\subsetneq$ signifie inclus et différent).
+
+	Alors \[
+		\exists~0<p<n, \exists f: X \to \left\llbracket 1,p \right\rrbracket \text{ bijective }.
+	\]
+\end{lem}
+
+\begin{prv}
+	[par récurrence sur $n$]
+	On pose, pour $n \ge 2$, \[
+		\mathcal{P}(n): ``\forall X \subsetneq \left\llbracket 1,n \right\rrbracket \text{ tel que } X \neq \O, \exists~0<p<n, \exists f: X \to \left\llbracket 1,p \right\rrbracket \text{ bijective}"
+	\]
+	\begin{itemize}
+		\item Soit $X \subsetneq \left\llbracket 1,2 \right\rrbracket$ avec $X \neq \O$.
+			Par définition d'une inclusion, \[
+				X = \{1\} \ou X = \{2\}.
+			\] On pose $p = 1$.
+
+			Si $X = \{1\}$, alors on pose \begin{align*}
+				f: X &\longrightarrow \left\llbracket 1,1 \right\rrbracket = \{1\} \\
+				1 &\longmapsto 1
+			\end{align*} $f$ est bien bijective.
+
+			Si $X = \{2\}$, alors on pose \begin{align*}
+				f: X &\longrightarrow \{1\} \\
+				2 &\longmapsto 1
+			\end{align*} De nouveau, $f$ est bijective.
+
+			Ainsi, $\mathcal{P}(2)$ est vraie.
+
+		\item Soit $n \ge 2$. On suppose $\mathcal{P}(n)$ vraie. Soit $X \subsetneq \left\llbracket 1,n+1 \right\rrbracket$ avex $X \neq \O$.
+
+			\begin{itemize}
+				\item[\underline{\sc Cas 1}] On suppose que $n+1 \not\in X$.
+
+					Alors $X \subset \left\llbracket 1,n \right\rrbracket$.
+
+					\begin{itemize}
+						\item Si $X = \left\llbracket 1,n \right\rrbracket$, alors on pose $p = n < n+1$ et  $f : \begin{array}{rcl}
+								X &\longrightarrow& \left\llbracket 1,p \right\rrbracket = X \\
+								i &\longmapsto& i
+							\end{array}$ est bijective.
+						\item Si $X \subsetneq \left\llbracket 1,n \right\rrbracket$, d'après $\mathcal{P}(n)$, il existe $p \in \left\llbracket 1,n-1 \right\rrbracket$ et une bijection $f: X \to \left\llbracket 1,p \right\rrbracket$.
+
+							On a bien $p < n + 1$.
+					\end{itemize}
+				\item[\underline{\sc Cas 2}] $n + 1 \in X$. On pose $Y = X \setminus \{n + 1\}$. Ainsi $Y \subset \left\llbracket 1,n+1 \right\rrbracket$.
+					\begin{itemize}
+						\item Si $Y = \left\llbracket 1,n \right\rrbracket$, alors $X = \left\llbracket 1,n \right\rrbracket \cup \{n+1\}$: $\lightning$
+						\item Si $Y = \O$, alors $X = \{n + 1\}$. On pose donc $p = 1 < n+1$ et $f : \begin{array}{rcl}
+								X &\longrightarrow& \left\llbracket 1,p \right\rrbracket = \{1\} \\
+								n+1 &\longmapsto& 1
+							\end{array}$ est bijective.
+						\item On suppose $Y \neq \O$. D'après $\mathcal{P}(n)$, il existe $q \in  \left\llbracket 1,n-1 \right\rrbracket$ et $g: Y \to \left\llbracket 1,q \right\rrbracket$ bijective.
+
+							On pose  $f : \begin{array}{rcl}
+								X &\longrightarrow& \left\llbracket 1,q+1 \right\rrbracket \\
+								x &\longmapsto& \begin{cases}
+									g(x) &\text{ si } x \neq n+1,\\
+									q + 1 &\text{ si } x = n + 1.
+								\end{cases}
+							\end{array}$
+
+							On pose aussi $p = q + 1 \le n < n + 1$. $f$ est bijective.
+
+							On pose \begin{align*}
+								h: \left\llbracket 1,q+1 \right\rrbracket &\longrightarrow X \\
+								i &\longmapsto \begin{cases}
+									g^{-1}(i) &\text{ si } i \le q,\\
+									n + 1 &\text{ si } i = q + 1.
+								\end{cases}
+							\end{align*}
+
+							\begin{align*}
+								\forall i \in \left\llbracket 1,q+1 \right\rrbracket, f\big(h(i)\big)
+								&= \begin{cases}
+									f\big(g^{-1}(i)\big) &\text{ si } i \le q\\
+									f(n+1) &\text{ si } i = q + 1
+								\end{cases} \\
+								&= \begin{cases}
+									g\big(g^{-1}(i)\big) &\text{ si } i \le q\\
+									q+1 &\text{ si } i = q + 1
+								\end{cases} \\
+								&= i \\
+							\end{align*}
+
+							\begin{align*}
+								\forall x \in X, h\big(f(x)\big) &= \begin{cases}
+									h\big(g(x)\big) &\text{ si } x\neq n + 1\\
+									h(q+1) &\text{ si } x = n+1
+								\end{cases}\\
+								&= \begin{cases}
+									g^{-1}\big(g(x)\big) &\text{ si }x \neq n + 1\\
+									n+1 &\text{ si } x = n + 1
+								\end{cases} \\
+								&= x \\
+							\end{align*}
+					\end{itemize}
+			\end{itemize}
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	Soient $n, p$ deux entiers non-nuls et $f: \left\llbracket 1,p \right\rrbracket \to \left\llbracket 1,n \right\rrbracket$ une surjection. Alors $p \ge n$.
+\end{lem}
+
+\begin{prv}
+	[par récurrence sur $n$]
+
+	Pour $n \in \N^*$, on pose \[
+		\mathcal{P}(n): ``~\forall p \in \N^*, \forall f: \left\llbracket 1,p \right\rrbracket \to \left\llbracket 1,n \right\rrbracket, f \text{ surjective } \implies p\ge n."
+	\]
+
+	\begin{itemize}
+		\item Soit $p \in \N^*$ et $f: \left\llbracket 1,p \right\rrbracket \to \left\llbracket 1,1 \right\rrbracket = \{1\}$. On suppose $f$ surjetive. Nécessairement, $p \ge 1$.
+
+		\item Soit $n \in \N^*$. On suppose $\mathcal{P}(n)$ vraie. Soit $p \in \N^*$ et $f: \left\llbracket 1,p \right\rrbracket \to \left\llbracket 1, n+1 \right\rrbracket$. On suppose $f$ surjective. On veut montrer que $p \ge n+1$.
+
+			On pose \[
+				X = f^{-1}\big(\left\llbracket 1,n \right\rrbracket\big) = \{i \in \left\llbracket 1,p \right\rrbracket  \mid  f(i) \neq n + 1\}.  
+			\] Commme $f$ est surjective, $X \neq \O$ et $X \neq \left\llbracket 1,p \right\rrbracket$. D'après le lemme précédent, il existe $0 < q < p$ et $g: X \to \left\llbracket 1,q \right\rrbracket$ bijective.
+
+			Ainsi $f \circ g^{-1}: \left\llbracket 1,q \right\rrbracket \to \left\llbracket 1,n \right\rrbracket$ est surjective.
+
+			D'après $\mathcal{P}(n)$, $q \ge n$.
+
+			Si $p \le n$, alors $q < p \le n$ : $\lightning$
+
+			Donc $p > n$ et donc $p \ge n + 1$.
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	Soient $n \ge 1$ et $p \ge 1$, $f: \left\llbracket 1,p \right\rrbracket \to \left\llbracket 1,n \right\rrbracket$. Alors $p \le n$.
+\end{lem}
+
+\begin{prv}
+	On pose \begin{align*}
+		g: \left\llbracket 1,n \right\rrbracket &\longrightarrow \left\llbracket 1,p \right\rrbracket \\
+		i &\longmapsto \begin{cases}
+			1 &\text{ si } f^{-1}\big(\{i\}\big) = \O,\\
+			j &\text{ si } f^{-1}\big(\{i\}\big) = \{j\}.
+		\end{cases}
+	\end{align*}
+
+	$g$ est surjective. Soit $k \in \left\llbracket 1,p \right\rrbracket$, alors $g\big(f(k)\big) = k$ car $k$ est un antécédant de $f(k)$ par $f$.
+
+	D'après le lemme précédent, $n \ge p$.
+\end{prv}
+
+\begin{crlr}
+	Soient $n, p \in \N^*$ et $f: \left\llbracket 1,n \right\rrbracket \to \left\llbracket 1,p \right\rrbracket$ bijective. Alors $n = p$
+\end{crlr}
+
+\begin{defn}
+	Soit $X$ un ensemble. On dit que $X$ est \underline{fini} si $X = \O$ ou s'il existe $n \in \N^*$ et une bijection $f: X \to \left\llbracket 1,n \right\rrbracket$.
+
+	Soit $X$ un ensemble fini. Le \underline{cardinal} de $X$ est
+	\begin{itemize}
+		\item 0 si $X = \O$ 
+		\item sinon, c'est le seul entier $n \in \N^*$ pour lequel il existe une bijection de $X$ dans $\left\llbracket 1,n \right\rrbracket$.
+	\end{itemize}
+
+	On le note $\Card(X)$, $\#X$ ou $\left| X \right|$.
+\end{defn}
+
+\begin{prop}
+	Soit $E$ un ensemble fini et $X \in \mathcal{P}(E)$.
+
+	Alors $X$ est fini et $\#X\le \#E$.
+
+	Si $\#X = \#E$, alors $X = E$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] Si $E = \O$, alors $X = \O$.
+		\item[\underline{\sc Cas 2}] $E \neq \O$. On pose $n = \#E \in \N^*$.
+			Soit $f: E \to \left\llbracket 1,n \right\rrbracket$ une bijection.
+
+			On suppose $X \neq \O$. On pose $Y = f(X) \subset \left\llbracket 1,n \right\rrbracket$
+			\begin{itemize}
+				\item Si $Y = \left\llbracket 1,n \right\rrbracket$, alors $X = E$ et donc $\#X = n \le \#E$.
+				\item Si $Y \subsetneq \left\llbracket 1,n \right\rrbracket$, comme $Y \neq \O$, il existe $p \in \left\llbracket 1,n-1 \right\rrbracket$ et $g: Y \to \left\llbracket 1,p \right\rrbracket$: une bijection.
+
+					\begin{align*}
+						g: X &\longrightarrow \left\llbracket 1,p \right\rrbracket \\
+						x &\longmapsto g\big(f(x)\big)
+					\end{align*}
+
+					D'où\\
+					 \begin{tikzcd}
+						X \arrow[r, "f"] \arrow[rd, "h", dashed] & Y \arrow[d, "g"]\\
+																						 &\left\llbracket 1,p \right\rrbracket
+					\end{tikzcd}
+
+					Montrons que $h$ est bijective. On pose \begin{align*}
+						k: \left\llbracket 1,p \right\rrbracket &\longrightarrow X \\
+						i &\longmapsto f^{-1}\big(g^{-1}(i)\big).
+					\end{align*}
+
+					$h$ et $k$ sont réciproques l'une de l'autre, donc $\#X = p \le n$.
+			\end{itemize}
+
+			On suppose $X = \O$, alors $\#X = 0 < n$.
+	\end{itemize}
+\end{prv}
+
+
+\begin{prop}
+	Soit $E$ un ensemble fini, $(A,B) \in \mathcal{P}(E)^2$ tel que $A \cap B = \O$.
+
+	Alors \[
+		\#(A \cup B) = \#A + \#B.
+	\]
+\end{prop}
+
+\begin{prv}
+	Le résultat est évident si $A = \O$ et $B = \O$.
+
+	On suppose $A \neq \O$ et $B \neq \O$. On pose $a = \#A$ et $\#B$. Soient \[
+		\begin{cases}
+			f: A \to \left\llbracket 1,a \right\rrbracket \text{ une bijection}\\
+			g: B \to \left\llbracket 1,b \right\rrbracket \text{ une bijection}
+		\end{cases}
+	\]
+
+	On pose \begin{align*}
+		h: A\cup B &\longrightarrow \left\llbracket a+b \right\rrbracket \\
+		x &\longmapsto \begin{cases}
+			f(x) &\text{ si } x \in A,\\
+			a + g(x) & \text{ si } x \in B.
+		\end{cases}
+	\end{align*}
+
+	Comme $A \cap B = \O$, $h$ est bien définie.
+
+	Soit \begin{align*}
+		k: \left\llbracket 1, a+b \right\rrbracket &\longrightarrow A\cup B \\
+		i &\longmapsto \begin{cases}
+			f^{-1}(i) &\text{ si } i \le a\\
+			g^{-1}(i - a) &\text{ si } i > a.
+		\end{cases}
+	\end{align*}
+
+	On vérifie que $h$ et $k$ sont réciproques l'une de l'autre.
+
+	Donc $\#(A \cup B) = a + b$.
+\end{prv}
+
+\begin{prop}
+	Soient $E$ un ensemble fini, $n \in \N^*$, $(A_1, \ldots, A_n) \in \mathcal{P}(E)^n$ telles que \[
+		\forall i \neq j, A_i \cap A_j = \O.
+	\] Alors \[
+		\#\left( \bigcup_{i=1}^n A_i \right) = \sum_{i=1}^n \#A_i
+	\]
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $n$]
+
+	On a traité le cas $n = 2$ précédemment.
+
+	Soit $n \ge 2$ pour lequel le résultat est vrai. Soit $(A_1, \ldots, A_{n+1}) \in \mathcal{P}(E)^{n+1}$ telles que \[
+		\forall i \neq j, A_i \cap A_j = \O.
+	\]
+	On pose $A = \bigcup_{i=1}^n A_i$. Alors
+	\begin{align*}
+		A \cap A_{n+1} &= \left( \bigcup_{i=1}^n A_i \right) \cap A_{n+1} \\
+		&= \bigcup_{i=1}^n (A_i \cap A_{n+1}) \\
+		&= \bigcup_{i=1}^n \O \\
+		&= \O. \\
+	\end{align*}
+
+	Donc, 
+	\begin{align*}
+		\#(\bigcup_{i=1}^{n+1}A_i) &= \#(A\cup A_{n+1}) \\
+		&= \#A = \#A_{n+1} \\
+		&= \sum_{i=1}^n \#A_i + \#A_{n+1} \\
+		&= \sum_{i=1}^{n+1}\#A. \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soient $E$ un ensemble fini, $(A,B) \in \mathcal{P}(E)^2$. Alors \[
+		\#(A\cup B) = \#A + \#B - \#(A\cap B).
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{minipage}{\linewidth}
+		\begin{wrapfigure}{r}{3cm}
+			\centering
+			\vspace{-7mm}
+			\begin{asy}
+				import patterns;
+				add("hatch",hatch(1mm, cmyk(0, 0, 1, 0.5)));
+				size(3cm);
+
+				guide main_set = (-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle;
+				guide set_a = (-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle;
+				guide set_b = (0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle;
+
+				draw(main_set, magenta); label("$E$", (0.8,0.9),magenta, align=NE);
+				draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+				draw(set_b, heavygreen); label("$B$", (0.8,-0.6), heavygreen, align=SE);
+
+				fill(set_a, pattern("hatch"));
+				fill(set_b, pattern("hatch"));
+			\end{asy}
+		\end{wrapfigure}
+		On pose $\begin{cases}
+			C = A\cap B\\
+			A' = A \setminus C\\
+			B' = B \setminus C.
+		\end{cases}$
+
+		Alors \[
+			\begin{cases}
+				A' \cup B' \cup C = A\cup B,\\
+				A' \cap B' = A' \cap C = B'\cap C = \O.
+			\end{cases}
+		\]
+		D'où
+		\begin{align*}
+			\#(A\cup B) &= \#(A'\cup B'\cup C)\\
+			&= \#A' + \#B' + \#C. \\
+		\end{align*}
+
+		Or, \[
+			\begin{cases}
+				A = A' \cup C\\
+				A' \cap C = \O
+			\end{cases}
+		\]
+	\end{minipage}
+
+	donc \[
+		\#A = \#A' + \#C
+	\] donc \[
+		\#A' = \#A - \#C.
+	\] De même, \[
+		\#B' = \#B - \#C.
+	\]
+	D'où
+	\begin{align*}
+		\#(A\cup B) &= \#A - \#C + \#B - \#C + \#C \\
+		&= \#A + \#B - \#C \\
+	\end{align*}
+\end{prv}
+
+\ifsimple\else
+Au passage, on a prouvé la proposition suivante:
+\fi
+
+\begin{prop}
+	Soient $E$ un ensemble fini, $(A,B) \in \mathcal{P}(E)^2$ avec $B \subset A$. Alors \[
+		\#(A\setminus B) = \#A - \#B.
+	\]\qed
+\end{prop}
+
+\begin{exm}
+	Soit $E$ un ensemble fini, $(A,B,C) \in \mathcal{P}(E)^3$.
+	\begin{align*}
+		\#(A \cup B \cup C) &= \#A + \#B + \#C \\
+		&-\#(A\cap B) - \#(B\cap C) - \#(A\cap C)\\
+		&+\#(A\cap B\cap C).
+	\end{align*}
+
+	Soit $(A,B,C,D) \in \mathcal{P}(E)^4$.
+	\begin{align*}
+		\#(A\cup B\cup C\cup D) &= \#A + \#B + \#C + \#D \\
+		&-\#(A\cap B) - \#(A\cap C) - \#(A\cap D) - \#(B\cap C) - \#(B\cap D) - \#(C\cap D)\\
+		&+\#(A\cap B\cap C) + \#(A\cap B\cap D) + \#(B\cap C\cap D) + \#(A\cap C\cap D)\\
+		&-\#(A\cap B\cap C\cap D).
+	\end{align*}
+
+	En généralisant, on obtient \underline{la formule du crible} :
+	\[
+		\#\left( \bigcup_{i=1} ^n A_i \right) = \sum_{k=1}^n (-1)^{k+1}\sum_{\mathclap{1\le i_1\le \cdots \le i_k \le n}} \#(A_{i_1} \cap \cdots \cap A_{i_k}).
+	\]
+\end{exm}
+
+\begin{prop}
+	Soient $E$ et $F$ deux ensembles finis et $f: E \to F$.
+	\begin{enumerate}
+		\item Si $f$ est injective, alors $\#E \le \#F$,
+		\item Si $f$ est surjective, alors $\#E \ge \#F$,
+		\item Si $f$ est bijective, alors $\#E = \#F$,
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item
+ 			\begin{tikzcd}
+ 				E \arrow[r, "f"] & F \arrow[d, "bij"]\\
+ 					\left\llbracket 1,n \right\rrbracket \arrow[u, "bij"] \arrow[r, "inj", dashed] & \left\llbracket 1,p \right\rrbracket
+ 			\end{tikzcd}
+		\item
+ 			\begin{tikzcd}
+ 				E \arrow[r, "surj"] & F \arrow[d, "bij"]\\
+ 					\left\llbracket 1,n \right\rrbracket \arrow[u, "bij"] \arrow[r, "surj", dashed] & \left\llbracket 1,p \right\rrbracket
+ 			\end{tikzcd}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	[principe des tiroirs -- pigeonhole principle]
+	Soit $f: E \to F$ telle que $\#E > \#F$. Alors \[
+		\exists (x,y) \in E^2, \begin{cases}
+			x \neq y,\\
+			f(x) = f(y)
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	C'est la contraposée du point 1. de la proposition précédente.
+\end{prv}
+
+\begin{prop}
+	Soit $E \to F$ où $E$ et $F$ sont finis et $\#E = \#F$.\[
+		f \text{ injective } \iff f \text{ surjective } \iff f \text{ bijective }.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item On suppose $f$ injective. Soit \begin{align*}
+				g: E &\longrightarrow \mathrm{Im}(f) \\
+				x &\longmapsto f(x)
+			\end{align*}
+
+			$g$ est bijective donc $\#E=\#\mathrm{Im}\,f$. Or, $\#E = \#F$ donc $\mathrm{Im}\,f = F$ et donc $f$ est surjective.
+		\item On suppose $f$ surjective. Alors \[
+			E = \bigcupdot_{y \in F} f^{-1}\big(\{y\}\big)
+		\] donc \[
+			\#E = \sum_{y \in F} \#f^{-1}\big(\{y\}\big) \ge \sum_{y\in F}1 = \#F
+		\] donc \[
+			\forall y \in F, \#f^{-1}\big(\{y\}\big) = 1
+		\] donc $f$ est bijective.
+	\end{itemize}
+\end{prv}
+
+
+
+

@@ -1,0 +1,49 @@
+\part{Exercice 1}
+
+Soit $\varphi$ l'endomorphisme de $\R_n[X]$ défini par $\varphi(P) = P(X+1)$.
+
+\begin{enumerate}
+	\item La base canonique de $\R_n[X]$ est $\mathcal{B} = (1, X, X^2, \ldots, X^n)$.
+
+		\begin{align*}
+			\forall k \in \left\llbracket 1,n \right\rrbracket,\,
+			\varphi(X^k) &= (X+1)^k \\
+			&= \sum_{i=0}^k {k \choose i} X^i \\
+		\end{align*}
+		
+		Donc, \[
+			A = \begin{pNiceMatrix}
+				1&1&1&\Cdots&1\\
+				0&1&2&\Cdots&n\\
+				\Vdots&\Vdots&\Vdots&\Ddots&\Vdots\\
+				0&0&0&\Cdots&1\\
+			\end{pNiceMatrix}
+		\] 
+	\item \[
+			A \text{ est inversible } \iff \varphi \text{ bijective }
+		\]
+
+		On pose $\psi : \begin{array}{rcl}
+			\mathbbm{K}_n[X] &\longrightarrow& \mathbbm{K}_n[X] \\
+			P &\longmapsto& P(X-1)
+		\end{array}$
+
+		 $\varphi$ et $\psi$ sont réciproques l'une de l'autre donc \[
+		 	A^{-1} = \Mat_{\mathcal{B}}(\psi).
+		 \]
+
+		 \begin{align*}
+			 \forall k \in \left\llbracket 1,n \right\rrbracket, \,
+		 	\psi(X^k) &= (X-1)^k \\
+			&= \sum_{i=0}^k {k \choose i} X^i (-1)^{k-i} \\
+		 \end{align*}
+
+		 Donc, \[
+			A^{-1} = \begin{pNiceMatrix}
+				1&-1&1&\Cdots&(-1)^n\\
+				0&1&-2&\Cdots&(-1)^{n-1}\\
+				\Vdots&\Vdots&\Vdots&\Ddots&\Vdots\\
+				0&0&0&\Cdots&1\\
+			\end{pNiceMatrix}
+		 \] 
+\end{enumerate}

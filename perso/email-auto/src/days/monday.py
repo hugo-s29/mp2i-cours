@@ -16,6 +16,6 @@ class Monday(Day):
 
   def generate_meals(self):
     return [
-      Meal(time="12h50"),
+      Meal(time="12h39"),
       Meal(time="18h28", meal_type="dinner"),
     ]

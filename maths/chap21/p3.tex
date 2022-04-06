@@ -1,0 +1,323 @@
+\part{Matrices d'une application linéaire}
+
+Soit $f \in \mathcal{L}(E,F)$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$ et $\mathcal{C} = (f_1, \ldots, f_p)$ une base de $F$.
+\vspace{5mm}
+
+\begin{prop-defn}
+	Soit $x \in E$ et $X = \begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix} = \Mat_\mathcal{B}(x)$. Soit $y \in F$ et $Y = \begin{pmatrix}
+		y_1\\
+		\vdots\\
+		y_p
+	\end{pmatrix} = \Mat_\mathcal{C}(y)$. On pose $A = \begin{pmatrix}
+		a_{11}&\ldots&a_{1,n}\\
+		\vdots&\ddots&\vdots\\
+		a_{p,1}&\ldots&a_{p,n}
+	\end{pmatrix} \in \mathcal{M}_{p,n}(\mathbbm{K})$ telle que \[
+		\forall j \in \left\llbracket 1,n \right\rrbracket, \begin{pmatrix}
+			a_{1,j}\\
+			\vdots\\
+			a_{p,j}
+		\end{pmatrix} = \Mat_\mathcal{C}\big(f(e_j)\big)
+	\] Alors \[
+		y = f(x) \iff Y = AX
+	\] On dit que $A$ est la \underlin{matrice de $f$ dans les bases $\mathcal{B}$ et $\mathcal{C}$}. On la note $\Mat_{\mathcal{B},\mathcal{C}}(f)$.
+\end{prop-defn}
+
+\begin{prv}
+	\[
+		x = \sum_{j=1}^n x_j e_j \qquad y = \sum_{i=1}^p y_i f_i
+	\]
+	\begin{align*}
+		y = f(x) \iff& \sum_{i=1}^p y_i f_i = f\left( \sum_{j=1}^n x_j e_j \right)\\
+		\iff& \sum_{i=1}^p y_i f_i = \sum_{j=1}^n x_j f(e_j)
+	\end{align*}
+	Or, \[
+		\forall j \in \left\llbracket 1,n \right\rrbracket, f(e_j) = \sum_{i=1}^p a_{i,j} f_i
+	\] D'où,
+	\begin{align*}
+		y = f(x) \iff& \sum_{i=1}^p y_i f_i = \sum_{j=1}^n x_j \sum_{i = 1}^p a_{i,j}f_i\\
+		&\phantom{\sum_{i=1}^p y_i f_i} = \sum_{i=1}^p \left( \sum_{j=1}^n a_{i,j}x_j \right) f_i\\
+		\iff& \forall i \in \left\llbracket 1,p \right\rrbracket, \sum_{j=1}^n a_{i,j} x_i = y_i\\
+		\iff& AX = Y
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	$E = \R^3$ et $f$ la projection sur $R = \big\{(x,y,z)  \mid  x + y = 0\big\}$ parallèlement à $G = \Vect\big((1,1,1)\big)$.
+	\begin{itemize} %todo
+		\item $\mathcal{B} = (e_1, e_2, e_3)$ base canonique.
+			\[
+				\Mat_{\mathcal{B}, \mathcal{B}}(f) = \begin{pmatrix}
+					\cdot &\cdot &\cdot \\
+					\cdot &\cdot &\cdot \\
+					\cdot &\cdot &\cdot \\
+				\end{pmatrix}
+			\]
+			\[
+				e_1 = (1,0,0) = \underbrace{\left( \frac{1}{2},-\frac{1}{2},-\frac{1}{2} \right)}_{\in F} + \underbrace{\left( \frac{1}{2},\frac{1}{2},\frac{1}{2} \right)}_{\in G}
+			\] \[
+				f(e_1) = \left( \frac{1}{2}, -\frac{1}{2}, -\frac{1}{2} \right) = \frac{1}{2}e_1 - \frac{1}{2}e_2 - \frac{1}{2}e_3
+			\] \[
+				e_2 = (0, 1, 0) = \left( -\frac{1}{2}, \frac{1}{2}, -\frac{1}{2} \right) + \left( \frac{1}{2}, \frac{1}{2}, \frac{1}{2} \right)
+			\] \[
+				e_3 = (0,0,1) = (0,0,1) + (0,0,0)
+			\] Donc \[
+				\Mat_{\mathcal{B}, \mathcal{B}}(f) = \begin{pmatrix}
+					\frac{1}{2}&-\frac{1}{2}&0\\
+					-\frac{1}{2}&\frac{1}{2}&0\\
+					-\frac{1}{2}&-\frac{1}{2}&1
+				\end{pmatrix}
+			\]
+		\item $\mathcal{C} = (e_3, e_1 - e_2, e_1 + e_2 + e_3) =  (u_1, u_2, u_3)$ % todo
+			\[
+				\Mat_{\mathcal{C},\mathcal{C}}(f) = \begin{pmatrix}
+					1&0&1\\
+					0&1&0\\
+					0&0&0
+				\end{pmatrix}
+			\] car \[
+				f(u_1) = u_1\\
+				f(u_2) = u_2\\
+				f(u_3) = 0
+			\]
+		\item \[
+			\Mat_{\mathcal{C},\mathcal{B}} = \begin{pmatrix}
+					0&1&0\\
+					0&-1&0\\
+					1&0&0
+				\end{pmatrix}
+			\]
+		\item \[
+			\Mat_{\mathcal{B},\mathcal{C}}(f) = \begin{pmatrix}
+				-\frac{1}{2}&-\frac{1}{2}&1\\
+				\frac{1}{2}&-\frac{1}{2}&0\\
+				0&0&0
+			\end{pmatrix}
+			\] 
+		\item Soit $(x,y,z) \in \R^3$
+			\begin{align*}
+				\Mat_{\mathcal{B}}\big(f\big((x,y,z)\big)\big) &= \Mat_{\mathcal{B}, \mathcal{B}}(f) \times \Mat_{\mathcal{B}}\big((x,y,z)\big)  \\
+				&= \begin{pmatrix}
+					-\frac{1}{2}&-\frac{1}{2}&1\\
+					\frac{1}{2}&-\frac{1}{2}&0\\
+					0&0&0
+				\end{pmatrix} \begin{pmatrix}
+					x\\
+					y\\
+					z
+				\end{pmatrix} \\
+				&= \begin{pmatrix}
+					\frac{x-y}{2}\\
+					\frac{y - x}{2}\\
+					\frac{-x-y}{2}+z
+				\end{pmatrix} \\
+			\end{align*}
+			Donc \[
+				f\big((x,y,z)\big) = \left( \frac{x-y}{2}, \frac{y - x}{2}, z - \frac{x + y}{2} \right)
+			\]% todo
+			\begin{align*}
+				\Mat_\mathcal{C}\big(f(x,y,z)\big) &= \Mat_{\mathcal{B},\mathcal{C}}(f) \times \Mat_\mathcal{B}\big((x,y,z)\big)\\
+				&= \begin{pmatrix}
+					-\frac{1}{2}&-\frac{1}{2}&1\\
+					\frac{1}{2}&-\frac{1}{2}&0\\
+					0&0&0
+				\end{pmatrix} \begin{pmatrix}
+					x\\
+					y\\
+					z
+				\end{pmatrix} \\
+				&= \begin{pmatrix}
+					\frac{-x-y}{2}+z\\
+					\frac{x - y}{2}\\
+					0
+				\end{pmatrix} \\
+			\end{align*}
+			Donc \[
+				f\big((x,y,z)\big)  = \left( z - \frac{x+y}{2} \right)u_1 + \left( \frac{x-y}{2} \right)u_2
+			\]
+	\end{itemize}
+\end{exm}
+
+\begin{exm}
+	Soient $E = \C$, $\mathcal{B} = (1,i)$, $\theta \in \R$ et $f$ la rotation de centre $O$ et d'angle $\theta$. \begin{align*}
+		f: \C &\longrightarrow \C \\
+		z &\longmapsto e^{i\theta}z
+	\end{align*}
+	$f$ est linéaire :
+	\begin{align*}
+		\forall (\lambda,\mu) \in \R^2, \forall (z, w) \in \C^2
+		f(\lambda z + \mu w) &= e^{i\theta}(\lambda z + \mu w) \\
+		&= \lambda e^{i\theta} z + \mu e^{i\theta}w \\
+		&= \lambda f(z) + \mu f(w) \\
+	\end{align*}
+	\[
+		\Mat_\mathcal{B}(f) = \begin{pmatrix}
+			\cos \theta & -\sin\theta\\
+			\sin\theta & \cos\theta
+		\end{pmatrix}
+	\] car \[
+		\begin{cases}
+			f(1) = e^{i\theta} = \cos\theta + i \sin\theta\\
+			f(i) = ie^{i\theta} = -\sin\theta + i \cos\theta\\
+		\end{cases}
+	\] %todo graph
+	\[z = x + iy \text{ avec } x,y \in \R\]
+	\[
+		\begin{pmatrix}
+			\cos \theta & -\sin\theta\\
+			\sin\theta & \cos\theta
+		\end{pmatrix} 
+		\begin{pmatrix}
+			x\\y
+		\end{pmatrix} = 
+		\begin{pmatrix}
+			x\cos \theta & -y\sin\theta\\
+			x\sin\theta & y\cos\theta
+		\end{pmatrix} 
+	\] 
+\end{exm}
+
+\begin{thm}
+	Soient $E$ et $F$ deux $\mathbbm{K}$-espaces vectoriels de dimension finie, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$ et $\mathcal{C} = (f_1, \ldots, f_p)$ une base de $F$.
+	\begin{align*}
+		\Phi: \mathcal{L}(E,F) &\longrightarrow \mathcal{M}_{p,n}(\mathbbm{K}) \\
+		f &\longmapsto \Mat_{\mathcal{B},\mathcal{C}}(f)
+	\end{align*}
+	$\Phi$ est un $\mathbbm{K}$-isomorphisme linéaire.
+\end{thm}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soient $(f,g) \in \mathcal{L}(E,F)^2$ et $(\lambda, \mu) \in \mathbbm{K}^2$. On pose $A = \Mat_{\mathcal{B},\mathcal{C}}(f) = \Phi(f) = (a_{i,j})$ et $B = \Mat_{\mathcal{B},\mathcal{C}}(g) = \Phi(g) = (b_{i,j})$. On pose également $C = \Mat_{\mathcal{B}, \mathcal{C}}(\lambda f + \mu g) = \Phi(\lambda f + \mu g) = (c_{i,j})$.
+			\begin{align*}
+				\forall j \in \left\llbracket 1,n \right\rrbracket, \begin{pmatrix}
+					c_{1,j}\\
+					\vdots\\
+					c_{p,j}
+				\end{pmatrix} &= \Mat_{\mathcal{C}}\big((\lambda f + \mu g)(e_j)\big)\\
+					&= \Mat_{\mathcal{C}}\big(\lambda f(e_j) + \mu g(e_j)\big) \\
+			\end{align*}
+			Or, \[
+				\Mat_{\mathcal{C}}\big(f(e_j)\big)  = \begin{pmatrix}
+					a_{1,j}\\
+					\vdots\\
+					a_{p,j}
+				\end{pmatrix}
+			\] et \[
+				\Mat_{\mathcal{C}}\big(g(e_j)\big) = \begin{pmatrix}
+					b_{1,j}\\
+					\vdots\\
+					b_{p,j}
+				\end{pmatrix} 
+			\] Donc \[
+				\Mat_\mathcal{C} \big(\lambda f(e_j) + \mu g(e_j)\big) = \lambda \begin{pmatrix}
+					a_{1,j}\\
+					\vdots\\
+					a_{p,j}
+				\end{pmatrix} + \mu \begin{pmatrix}
+					b_{1,j}\\
+					\vdots\\
+					b_{p,j}
+				\end{pmatrix}
+			\] Donc $C = \lambda A + \mu B$ et donc $\Phi$ est linéaire.
+		\item Soit $f \in \Ker\Phi$ : \[
+				\Mat_{\mathcal{B},\mathcal{C}}(f) =
+				\begin{pNiceMatrix}
+					0 &\Cdots& 0\\
+					\Vdots && \Vdots\\
+					0 &\Cdots& 0
+				\end{pNiceMatrix}
+			\] % todo
+			Donc \[
+				\forall j \in \left\llbracket 1,n \right\rrbracket, f(e_j) = \sum_{i=1}^p 0 \cdot f_i = 0_F
+			\] Soit $x \in E$. On pose $x = \sum_{j=1}^n x_j e_j$. \[
+				f(x) = \sum_{j=1}^n x_j f(e_j) = 0_F
+			\] Donc $f = 0$. Donc $\Phi$ est injective.\\
+			Soit $A \in \mathcal{M}_{p,n}(\mathbbm{K})$. On pose $A = (a_{i,j})_{\substack{1\le i\le p\\1\le j\le n}}$.\\
+			On définit $F : E \to  F$ de la façon suivante : pour tout $x \in E$, on décompose $x = \sum_{j=1}^n x_j e_j$. On pose alors
+			\begin{align*}
+				f(x) &= \sum_{j=1}^n x_j \sum_{i=1}^p a_{i,j}f_i \\
+				&= \sum_{i=1}^p \sum_{j=1}^n a_{i,j} x_j f_i \\
+			\end{align*} Montrons que $f \in \mathcal{L}(E,F)$ et $\Phi(f) = A$ 
+		\item Soit $(x,y) \in E^2$ et $(\alpha, \beta) \in \mathbbm{K}^2$. On pose \[
+				\begin{cases}
+					x = \sum_{j=1}^n x_j e_j &\text{ avec } (x_1, \ldots, x_n) \in \mathbbm{K}^n\\
+					y = \sum_{j=1}^n y_j e_j &\text{ avec } (y_1, \ldots, y_n) \in \mathbbm{K}^n\\
+				\end{cases}
+			\] Donc \[
+				\alpha x + \beta y = \sum_{j=1}^n (\alpha x_j + \beta y_j)(e_j
+			\] D'où
+			\begin{align*}
+				f(\alpha x + \beta y) &= \sum_{i=1}^p \sum_{j=1}^n a_{i,j}(\alpha x_j + \beta x_j)f_i \\
+				&= \alpha \sum_{i=1}^p \sum_{j=1}^n a_{i,j} x_j f_i + \beta \sum_{i=1}^p \sum_{j=1}^n b_{i,j} y_j f_i \\
+				&= \alpha f(x) + \beta f(y) \\
+			\end{align*}
+			Soit $j \in \left\llbracket 1,p \right\rrbracket$. \[
+				f(e_j) = \sum_{i=1}^p a_{i,j}f_i
+			\] et \[
+				\Mat_{\mathcal{C}}\big(f(e_j)\big) = \begin{pmatrix}
+					a_{1,j}\\
+					\vdots\\
+					a_{p,j}
+				\end{pmatrix} 
+			\] donc \[
+				\Mat_{\mathcal{B},\mathcal{C}}(f) = A
+			\]
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Si $E$ et $F$ sont deux $\mathbbm{K}$-espaces vectoriels de dimension finie, alors \[
+		\dim\big(\mathcal{L}(E,F)\big) = \dim(E) \times \dim(F)
+	\]
+	\qed
+\end{crlr}
+
+\begin{exm}[\itshape Trouver tous les endomorphismes de $\R^2$]
+	Soit $\mathcal{B} = (e_1, e_2)$ la base canonique de $\R^2$.
+	\begin{align*}
+		\R^2 &\longrightarrow \R^2 \\
+		(x,y) &\longmapsto (ax + cy, bx + dy)
+	\end{align*} avec $(a,b,c,d) \in \R^4$.\\
+	Une base de $\mathcal{L}(\R^2)$ est $(f_1, f_2, f_3, f_4)$ où \[
+		\begin{cases}
+			f_1 : (x,y) \mapsto (x,0)\\
+			f_2 : (x,y) \mapsto (0,x)\\
+			f_3 : (x,y) \mapsto (y,0)\\
+			f_4 : (x,y) \mapsto (0,y)\\
+		\end{cases}
+	\] 
+\end{exm}
+
+\begin{thm}
+	Soient $f \in \mathcal{L}(E,F)$ et $g \in \mathcal{L}(F,G)$, $\mathcal{B}$ une base de $E$, $\mathcal{C}$ une base de $F$ et $\mathcal{D}$ une base de $G$. Alors \[
+		\Mat_{\mathcal{B},\mathcal{D}}(g \circ f) = \Mat_{\mathcal{C},\mathcal{D}}(g) \times \Mat_{\mathcal{B},\mathcal{C}}(f)
+	\] % todo
+\end{thm}
+
+\begin{prv}
+	On pose
+	\begin{align*}
+		\mathcal{B} = (e_1, \ldots, e_n)\\
+		\mathcal{C} = (f_1, \ldots, f_p)\\
+		\mathcal{D} = (g_1, \ldots, g_q).
+	\end{align*}
+	et
+	\begin{align*}
+		A = (a_{i,j})_{\substack{1\le i\le p\\1\le j\le n}} = \Mat_{\mathcal{B},\mathcal{C}}(f)\\
+		B = (b_{k,i})_{\substack{1\le k\le q\\1\le i\le p}} = \Mat_{\mathcal{C},\mathcal{D}}(g)\\
+		C = (c_{k,j})_{\substack{1\le k\le q\\1\le j\le n}} = \Mat_{\mathcal{B},\mathcal{D}}(g \circ f)\\
+	\end{align*}
+	Soit $j \in \left\llbracket 1,n \right\rrbracket$. La $j$-ième colonne de $C$ est
+	\begin{align*}
+		\Mat_{\mathcal{D}}\big(g \circ f(e_j)\big) &= \Mat_{\mathcal{D}}\big(g\big(f(e_j\big)\big) \\
+		&= \Mat_{\mathcal{C},\mathcal{D}}(g) \times \Mat_{\mathcal{C}}\big(f(e_j)\big) \\
+		&= B A_j \\
+	\end{align*} où $A_j$ est la $j$-ème colonne de $A$.\\
+	Or, la $j$-ème colonne de $BA$ est aussi $BA_j$.\\
+	Donc, $C = BA$.
+\end{prv}

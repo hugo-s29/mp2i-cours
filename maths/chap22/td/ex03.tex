@@ -1,0 +1,19 @@
+\part{Exercice 3}
+
+\[
+	f:(x,y) \mapsto \begin{cases}
+		\frac{xy}{x^2 + y^2} &\text{ si } (x,y) \neq (0,0)\\
+		0 &\text{ sinon }.
+	\end{cases}
+\]
+
+Si $f(x,y) \tendsto{(x,y) \to (0,0)} 0$, alors \underline{si} $x,y : I \to \R$ telles que $\begin{cases}
+	x(t) \tendsto{t \to 0} 0\\
+	y(t) \tendsto{t \to 0} 0
+\end{cases}$ alors $f\big(x(t), y(t)\big) \tendsto{t \to 0} 0$.
+
+On a $x(t) = t$ et $y(t) = t$. On calcule donc \[
+	f(x,x) = \frac{x^2}{2x^2} = \frac{1}{2} \tendsto{x \to 0} \frac{1}{2} \neq 0.
+\] Donc \[
+	f(x,y) \centernot{\tendsto{(x,y) \to (0,0)}} (0,0)
+\] et donc $f$ n'est pas continue en $(0,0)$.

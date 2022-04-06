@@ -59,6 +59,7 @@ questions = [
 ]
 
 answers = inquirer.prompt(questions)
+update_full = False
 
 pdf_files = []
 for choice in answers['target']:
@@ -70,6 +71,7 @@ for choice in answers['target']:
     if part == "main":
         path = f'{cwd}/{chapter}/main.tex'
         file = f"{chapter}.pdf"
+        update_full = True
     else:
         path = f'{cwd}/{chapter}/td/main.tex'
         file = f"{chapter}-td.pdf"
@@ -122,12 +124,20 @@ for chapter in directories:
         data['chapters'].update({ chapter: get_title(chapter) })
     if os.path.exists(f'{cwd}/{chapter}/td/main.tex'):
         data["files"].append(f"{chapter}-td.pdf")
-    
 
 for path, file_name in pdf_files:
     shutil.copyfile(path, f'{out_directory}{file_name}')
 
     data['files'].append(file_name)
+
+if update_full:
+    os.chdir(f'{cwd}/full')
+    os.system('python3 run.py')
+    os.system('latexmk -pdf main.tex')
+    os.system('latexmk -pdf simple-main.tex')
+    os.chdir(cwd)
+    shutil.copyfile('full/main.pdf', f'{out_directory}full.pdf')
+    shutil.copyfile('full/simple-main.pdf', f'{out_directory}full-simple.pdf')
 
 with open(f'{out_directory}data.json', 'w') as f:
     json.dump(data, f)

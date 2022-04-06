@@ -1,0 +1,25 @@
+\part{Exercice 5}
+
+\begin{enumerate}
+	\item $\deg\left( \frac{P''}{P} \right) < 0$.
+
+		\[
+			\frac{P''}{P} = \sum_{i=1}^n \frac{a_i}{X-x_i}
+		\] donc \[
+			\forall i \in \left\llbracket 1,n \right\rrbracket,
+			a_i = \frac{P''(x_i)}{P'(x_i)}.
+		\]
+	\item  \[
+			\sum_{k=1}^n \frac{P''(x_k)}{P'(x_k)}.
+		\] donc
+		\[
+			\frac{P''}{P} = \lambda \frac{\displaystyle\sum_{i=1}^n a_i \prod_{j \neq i}^n (X-x_j)}{P} \quad \lambda \in \C^*
+			\]
+			Les coefficiants de  $X^{n-1}$ est $\sum_{i=1}^n a_i$ en développant l'expression.
+
+			Or, \[
+				\deg(P'') < n - 1
+			\] Donc \[
+				\sum_{i=1}^n a_i = 0
+			\]
+\end{enumerate}

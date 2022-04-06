@@ -1,0 +1,80 @@
+\part{Exercice 8}
+
+\[
+	A = \{(X,Y) \in \mathcal{P}(E)^2  \mid X \subset Y\}.
+\]
+\begin{itemize}
+	\item[\underline{\sc Méthode 1}] $A = \bigcupdot_{y=0}^n A_y$
+		où \[
+			\forall y \in \left\llbracket 0,n \right\rrbracket, A_y = \{(X,Y) \in \mathcal{P}(E)^2  \mid X\subset Y \et \#Y = y\}.
+		\]
+		Soit $y \in \left\llbracket 0,n \right\rrbracket$.
+		
+		On note $C_y$ l'ensemble \[
+			C_y = \{Y \in \mathcal{P}(E)  \mid \#Y = y\}.
+		\] On a $\#C_y = {n \choose y}$. Soit $Y \in C_y$. On pose \[
+			B_Y = \{X \in \mathcal{P}(E)  \mid X \subset Y\}.
+		\] Donc, \[
+			A_y = \bigcupdot_{Y \in C_y} B_Y.
+		\] Soit $f : \begin{array}{rcl}
+			B_Y &\longrightarrow& \mathcal{P}(Y) \\
+			(X,Y) &\longmapsto& X.
+		\end{array}$
+
+		Donc, \[
+			\#B_y = \#\mathcal{P}(Y) = 2^y.
+		\] D'où,
+		\begin{align*}
+			\#A &= \sum_{y=0}^n \sum_{Y \in C_y} 2^y\\
+			&= \sum_{y=0}^n {n \choose y} 2^y = 3^n. \\
+		\end{align*}
+	\item[\underline{\sc Méthode 2}] \[
+			A = \bigcupdot_{X \in \mathcal{P}(E)} \underbrace{\{(X,Y) \mid Y \supset X\}}_{B_X}.
+		\]
+		On pose $f : \begin{array}{rcl}
+			B_X &\longrightarrow& \{Y \in \mathcal{P}(E)  \mid Y \supset X\} = C_X \\
+			(X,Y) &\longmapsto& Y,
+		\end{array}$
+
+		$g : \begin{array}{rcl}
+			C_X &\longrightarrow& \mathcal{P}(E \setminus X) \\
+			Y &\longmapsto& Y\setminus X,
+		\end{array}$
+
+		et $h : \begin{array}{rcl}
+			\mathcal{P}(E\setminus X) &\longrightarrow& C_X \\
+			Z &\longmapsto& Z \cup X.
+		\end{array}$
+
+		Les applications $g$ et $h$ sont réciproques donc 
+		\begin{align*}
+			\#C_X &= \#\mathcal{P}(E\setminus X) \\
+			&= 2^{\#(E\setminus X)} \\
+			&= 2^{n - \#X}. \\
+		\end{align*}
+		Donc
+		\begin{align*}
+			\#A &= \sum_{X \in \mathcal{P}(E)}2^{n - \#X}\\
+			&= \sum_{k=0}^n \sum_{\substack{X \in \mathcal{P}(E)\\ \#X = k}} 2^{n-k} \\
+			&= \sum_{k=0}^n 2^{n-k} {n \choose k} = 3^n.
+		\end{align*}
+	\item[\underline{\sc Méthode 3}] % todo graph
+		On note $x_1, \ldots, x_n$ les élements de $E$. Soit $(X,Y) \in A$. On pose \[
+			\forall i \in \left\llbracket 1,n \right\rrbracket, a_i^{(X,Y)} = \begin{cases}
+				0 &\text{ si } x_i \in X,\\
+				1 &\text{ si } x_i \in Y \setminus X,\\
+				2 &\text{ si } x_i \not\in Y.
+			\end{cases}
+		\] On dispose donc de \begin{align*}
+			f: A &\longrightarrow \left\llbracket 0,2 \right\rrbracket^n \\
+			(X,Y) &\longmapsto \big(a_1(X,Y), a_2(X,Y), \ldots, a_n(X,Y)\big).
+		\end{align*}
+		Soit  \begin{align*}
+			g: \left\llbracket 0,2 \right\rrbracket^n &\longrightarrow A  \\
+			(a_1, \ldots, a_n) &\longmapsto \big(\{x_i  \mid i \in \left\llbracket 1,n \right\rrbracket \et a_i = 0\}, \{x_i  \mid i \in \left\llbracket 1,n \right\rrbracket \et a_i \neq 2\}  \big) 
+		\end{align*}
+
+		Les applications $f$ et $g$ sont réciproques donc \[
+			\#A = \#\big(\left\llbracket 0,2 \right\rrbracket\big)^n = 3^n. 
+		\]
+\end{itemize}

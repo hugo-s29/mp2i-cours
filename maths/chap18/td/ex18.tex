@@ -1,0 +1,131 @@
+\part{Exercice 18}
+
+\begin{enumerate}
+	\item
+		\begin{align*}
+			\forall x, &B_{3,0}(x) = (1-x)^3\\
+			&B_{3,1}(x) = 3x(1-x)^2\\
+			&B_{3,2}(x) = 3x^2(1-x)\\
+			&B_{3,3}(x) = x^3
+		\end{align*}
+
+		\begin{center}
+			\begin{asy}
+				import graph;
+				axes(EndArrow);
+				size(8cm);
+
+				real b30(real x) { return (1-x)^3; }
+				real b31(real x) { return 3x * (1-x)^2; }
+				real b32(real x) { return 3x^2 * (1-x); }
+				real b33(real x) { return x^3; }
+
+				draw(graph(b30, 0, 1), magenta);
+				draw(graph(b31, 0, 1), deepcyan);
+				draw(graph(b32, 0, 1), red);
+				draw(graph(b33, 0, 1), darkgreen);
+
+				label("$B_{3,3}$", (1, b33(1)), darkgreen, align=W);
+				label("$B_{3,2}$", (0.66, b32(0.66)), red, align=N);
+				label("$B_{3,1}$", (0.33, b31(0.33)), deepcyan, align=N);
+				label("$B_{3,0}$", (0, b30(0)), magenta, align=E);
+			\end{asy}
+		\end{center}
+	\item
+		\begin{enumerate}
+			\item
+				\begin{align*}
+					\sum_{k=0}^n b_{n,k} &= \sum_{k=0}^n {n \choose k} X^k (1-X)^{n-k} \\
+					&= (X + 1 - X)^n  \\
+					&= 1 \\
+				\end{align*}
+				\[
+					\forall x \in [0,1], B_{n,k}(x) = {n \choose k}x^k (1-x)^{n-k} \ge 0
+				\] \[
+					\sum_{k=0}^n B_{n,k}(x) = 1
+				\] donc \[
+					\forall x \in \left\llbracket 0,1 \right\rrbracket, B_{n,k}(x) \le 1
+				\]
+			\item 
+				\begin{align*}
+					\sum_{k=1}^n k B_{n,k} &= \sum_{k=1}^n k {n \choose k} X^k (1-X)^{n-k} \\
+					&= \sum_{k=1}^n \frac{n!}{(k-1)! (n-k)!} X^k (1-X)^{n-k} \\
+					&=n \sum_{k=1}^n {n-1\choose k-1} X^k (1-X)^{n-k} \\
+					&= n \sum_{j=0}^{n-1} {n-1 \choose j} X^{j+1} (1-X)^{n-1-j} \\
+					&= nX \sum_{j=0}^{n-1} {n-1\choose j} X^j (1-X)^{n-1-k} \\
+					&= nX (X + 1- X) ^{n-1}\\
+					&= nX \\
+				\end{align*}
+				\begin{align*}
+					\sum_{k=2}^n k(k-1) {n \choose k} X^k (1-X)^{n-k}
+					&= \sum_{k=2}^n \frac{n!}{(k-2)!(n-k)!} X^k (1-X)^{n-k} \\
+					&= n(n-1) \sum_{k=2}^n {n-2 \choose k-2} X^k (1-X)^{n-k} \\
+					&= n(n-1) \sum_{j=0}^{n-2} {n-2 \choose j} X^{j+2} (1-X)^{n-2-j} \\
+					&= n (n-1)X^2 \big(X + (1-X)\big)^{n-2} \\
+					&= n (n-1) X^2 \\
+				\end{align*}
+				\begin{align*}
+					\forall k \in \left\llbracket 1,n-1 \right\rrbracket, \sum_{k=1}^n k^2 B_{n,k} &= \sum_{k=1}^n k\big((k-1) + 1\big) B_{n,k} \\
+					&= \sum_{k=1}^n k (k-1) B_{n,k} + \sum_{k=1}^n k B_{n,k} \\
+					&= n (n-1)X^2 + nX \\
+					&= n^2 X^2 + n(X-X^2) \\
+				\end{align*}
+				\begin{align*}
+					B'_{n,0} = -n (1-X)^{n-1} = -nB_{n-1,0}\\
+					B'_{n,n} = n X^{n-1} = nB_{n-1, n-1}
+				\end{align*}
+		\end{enumerate}
+	\item
+		\begin{align*}
+			B'_{n-k} &= {n \choose k} \left( k X^{k-1}(1-X)^{n-k} - (n- k)X^k (1-X)^{n-k-1} \right) \\
+			&= n {n-1\choose k-1} X^{k-1} (1-X)^{n-k} - n{n-1\choose n-k-1} X^k (1-X)^{n-k-1} \\
+			&= n B_{n-1,k-1}-nB_{n-1,k} \\
+		\end{align*}
+	\item On montre par récurrence sur $n$ que $(B_{n,k})_{0 \le k \le n}$ est libre.\\
+		Soient $(\lambda_k)_{0\le k\le n} \in \R^{n+1}$. On suppose que \[
+			\sum_{k=0}^n \lambda_k B_{n,k} = 0
+		\] Donc \[
+			-n \lambda_0 B_{n-1,0} + n\lambda_n B_{n-1,n-1} + \sum_{k=1}^{n-1} n\lambda_k (B_{n-1,k-1} - B_{n-1,k}) = 0
+		\] Donc \[
+			-\lambda_0B_{n-1,0} + \lambda_nB_{n-1,n-1} + \sum_{j=0}^{n-2} \lambda_{j+1}B_{n-1,j+1} - \sum_{k=1}^{n-1} \lambda_k B_{n-1, k} = 0
+		\] Donc \[
+			(\lambda_1 - \lambda_0) B_{n-1,0} = (\lambda_n - \lambda_{n-1})B_{n-1,n-1}
+			+ \sum_{k=1}^{n-2} (\lambda_{k+1} - \lambda_k) B_{n-1,k}= 0
+		\] D'après l'hypothèse de récurrence, \[
+			\lambda_1 - \lambda_0 = 0\\
+			\lambda_n - \lambda_{n-1} = 0\\
+			\forall k \in \left\llbracket 1,n-2 \right\rrbracket, \lambda_{k+1} - \lambda_k = °0
+		\] Donc \[
+			\forall k \in \left\llbracket 0,n \right\rrbracket, \lambda_k =\lambda_0
+		\] D'où \[
+			\sum_{k=0}^n \lambda_0 B_{n,k} = 0
+		\] donc \[
+			\lambda_0 \times 1 = 0
+		\] et donc \[
+			\lambda_0 = 0
+		\] Donc \[
+			\forall k \in \left\llbracket 0,n \right\rrbracket, \lambda_k = 0
+		\]
+	\item
+		\begin{enumerate}
+			\item Soient $P, Q \in \R_n[X], \lambda, \mu \in \R$.\\
+				\begin{align*}
+					B(\lambda P + \mu Q) &= \sum_{k=0}^n (\lambda P + \mu Q)\left( \frac{k}{n} \right) B_{n,k} \\
+					&= \sum_{k=0}^n \left( \lambda P\left( \frac{k}{n} \right) + \mu Q\left( \frac{k}{n} \right) \right) B_{n,k} \\
+					&= \lambda \sum_{k=0}^n P\left( \frac{k}{n} \right) B_{n,k} + \mu \sum_{k=0}^n Q\left( \frac{k}{n} \right) B_{n,k} \\
+					&= \lambda B(P) + \mu B(Q) \\
+				\end{align*}
+				\[
+					\forall k, \deg(B_{n,k}) \le n
+				\] donc \[
+					\forall P \in \R[X], \deg\big(B(P)\big) \le n
+				\]
+			\item
+				\begin{align*}
+					\Ker(B) &= \left\{ P \in \R_n[X]  \mid \sum_{k=0}^n P\left( \frac{k}{n} \right) B_{n,k} = 0 \right\} \\
+					&= \left\{ P \in \R_n[X]  \mid \forall k \in \left\llbracket 0,n \right\rrbracket, P\left( \frac{k}{n} \right) = 0 \right\}  \\
+					&= \{0\} \\
+				\end{align*}
+				donc $B$ injective et donc $B$ est bijective.
+		\end{enumerate}
+\end{enumerate}

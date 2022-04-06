@@ -1,0 +1,160 @@
+\part{Exercice 12}
+
+\subsection*{Partie I.}
+
+Soit $N \in \N_*$. On pose \[
+	\forall P \in \R_N[X], \Delta(P) = P(X + 1) - P(X).
+\]
+
+\begin{enumerate}
+	\item
+		Soit $P \in \R_N[X]$. On pose \[
+			P = \sum_{k=0}^N a_{k}X^k
+		\] On pose $N' = \deg P$. Donc,
+		\begin{align*}
+			P(X+1) &= \sum_{k=0}^{N'} a_k(X+1)^k \\
+			&= \sum_{k=0}^{N'} a_k \sum_{i=0}^k {k \choose i} X^i \\
+			&= \sum_{i=0}^{N'} \left( \sum_{k=i}^{N'} a_k {k \choose i} \right) X^i \\
+			&= \sum_{k=0}^{N'} \left( \sum_{i=k}^{N'} a_i {i \choose k} \right) X^k\\
+		\end{align*}
+		Donc,
+		\begin{align*}
+			\Delta(P) = P(X+1) - P(X)&= \sum_{k=0}^{N'} \left( \sum_{i=k}^{N'} a_i {i \choose k} \right) X^k - \sum_{k=0}^{N'} a_k X^k\\
+			&= \sum_{k=0}^{N'}\left( \sum_{i=k}^{N'} a_i {i \choose k} - a_k \right) X^k \\
+		\end{align*}
+
+		Pour $k = {N'}$, $a_{N'}{{N'} \choose {N'}} - a_{N'} = 0$.
+
+		Pour $k = {N'}-1$, 
+		\[
+			a_{{N'}-1} {{N'}-1 \choose {N'}-1} + a_{N'} {{N'} \choose {N'}-1} - a_{{N'}-1} \le {N'} a_{N'} \neq 0
+			\text{ si }N' \neq 0.
+		\]
+
+		Si $\deg P > 0$, alors $\deg\big(\Delta(P)\big) = \deg(P) - 1$.
+
+		Si $\deg P \le 0$, alors $\deg \Delta(P) = -\infty$.
+	\item $\deg\big(\Delta(P)\big) \le \deg(P) \le N$ donc $\Delta(P) \in \R_N[X]$.\\
+		Soient $(P,Q) \in \R_N[X]^2$ et $(\lambda, \mu) \in \R^2$.
+		\begin{align*}
+			\Delta(\lambda P + \mu Q) &= (\lambda P + \mu Q)(X+1) - (\lambda P + \mu Q)(X) \\
+			&= \lambda P(X+1) + \mu Q(X+1) - \lambda P(X) - \mu Q(X) \\
+			&= \lambda \Delta(P) + \mu \Delta(Q) \\
+		\end{align*}
+		Donc $\Delta \in \mathcal{L}\big(\R_n[X]\big)$.
+	\item
+		\begin{align*}
+			P \in \Ker(\Delta) \iff& \Delta(P) = 0\\
+			\iff& P(X+1) - P(X) = 0\\
+			\iff& \deg(P) \le 0\\
+			\iff& P \in \Vect(1)
+		\end{align*}
+		$(1)$ est libre donc c'est une base.
+	\item D'après le théorème du rang, \[
+			\dim\big(\R_N[X]\big) = \dim(\Ker\Delta) + \dim(\mathrm{Im}\ \Delta)
+		\] \[
+			\dim(\mathrm{Im}\ \Delta) = N
+		\] donc \[
+			\mathrm{Im}\ \Delta \neq \R_N[X]
+		\] donc $\Delta$ n'est pas surjective.
+
+\end{enumerate}
+
+\subsection*{Partie II.}
+
+\begin{enumerate}
+	\item Soit $n \in \N_*$.
+		\begin{align*}
+			\Delta(P_n) &= P_n(X+1) - P_n(X) \\
+			&= \frac{1}{n!} \prod_{k=0}^{n-1} (X+1 - k) - \frac{1}{n!} \prod_{k=0}^{n-1}(X-k) \\
+			&= \frac{1}{n!} \left( \prod_{k=0}^{n-1}(X+1-k) - \prod_{k=0}^{n-1}(X-k) \right) \\
+			&= \frac{1}{n!}\left( \prod_{i=-1}^{n-2} (X-i) - \prod_{k=0}^{n-1}(X-k) \right) \\
+			&= \frac{1}{n!}\left( \prod_{i=0}^{n-2}(X-i)\big((\cancel X+\cancel1)-(\cancel X-n+\cancel1)\big)  \right)  \\
+			&= \frac{1}{(n-1)!} \prod_{i=0}^{n-2}(X-i) \\
+			&= P_{n-1} \\
+		\end{align*}
+
+		Si $n = 0$, $P_n = 1$ donc $\Delta(P_0) = 0$.
+	\item \[
+		\forall i\neq j, \deg(P_i) \neq \deg(P_j)
+	\] donc $(P_0, \ldots, P_n)$ est libre.
+
+	Or, il y a $n+1$ vecteurs et  \[
+		\dim\big(\R_n[X]\big) = n + 1
+	\] donc $(P_0, \ldots, P_N)$ est une base de $\R_N[X]$.
+
+	\[
+		\begin{pmatrix}
+			1&0&0&0\\
+			0&1&-1 / 2&1 / 3\\
+			0&0&1 / 2&-1 / 2\\
+			0&0&0&1 / 6
+		\end{pmatrix}
+	\] car 
+	\begin{align*}
+		&P_0 = 1\\
+		&P_1 = X\\
+		&P_2 = \frac{1}{2}X^2-\frac{1}{2}X\\
+		&P_3 = -\frac{1}{6}(X^3 - 3X^2 + 2X)
+	\end{align*}
+
+	\begin{align*}
+		\left(\begin{array}{cccc|cccc}
+				1&0&0&0&1&0&0&0\\
+				0&1&-1/2&1/3&0&1&0&0\\
+				0&0&1/2&-1/2&0&0&1&0\\
+				0&0&0&1/6&0&0&0&1
+		\end{array}\right) \begin{array}{c}
+			\sim\\
+			\substack{L_2 \leftarrow L_2 + L_3 \\ L_3 \leftarrow 2L_3\\ L_4 \leftarrow 6L_4}
+		\end{array}&
+		\left(
+			\begin{array}{cccc|cccc}
+				1&0&0&0&1&0&0&0\\
+				0&1&0&-1 / 6&0&1&1&0\\
+				0&0&1&-1&0&0&2&0\\
+				0&0&0&1&0&0&0&6
+			\end{array}
+		\right)\\
+		\begin{array}{c}
+			\sim\\
+			\substack{L_3 \leftarrow L_3 + L_4\\ L_2 \leftarrow L_2 + \frac{1}{6}L_4}
+		\end{array}&
+		\left(
+			\begin{array}{cccc|cccc}
+				1&0&0&0&1&0&0&0\\
+				0&1&0&0&0&1&1&1\\
+				0&0&1&0&0&0&2&6\\
+				0&0&0&1&0&0&0&6
+			\end{array}
+		\right) 
+	\end{align*}
+	Donc, \[
+		A^{-1} = \begin{pmatrix}
+			1&0&0&0\\
+			0&1&1&1\\
+			0&0&2&6\\
+			0&0&0&6
+		\end{pmatrix} 
+	\] On a \[
+		\begin{pmatrix}
+			1&0&0&0\\
+			0&1&1&1\\
+			0&0&2&6\\
+			0&0&0&6
+		\end{pmatrix} \begin{pmatrix}
+			0\\0\\0\\1
+		\end{pmatrix} = \begin{pmatrix}
+			0\\1\\6\\6
+		\end{pmatrix}
+	\] Donc $X^3 = P_1 + 6P_2 + 6P_3$.
+	Donc, $Q = P_2 + 6P_3 + 6P_4$ et aussi $\Delta(P) = X^3$.
+	donc \[
+		\forall n \in \N, \sum_{k=0}^n k^3 = \sum_{k=0}^n \big(Q(n+k) - Q(k)\big)
+	\] Donc \[
+		\forall n \in \N, \sum_{k=0}^n k^3 = Q(n+1) - Q(0)
+	\]
+\end{enumerate}
+
+
+

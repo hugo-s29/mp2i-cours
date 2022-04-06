@@ -1,0 +1,29 @@
+\part{Exercice 10}
+
+\underline{\sc Cas particulier} : $p = 2$, $n = 15$ donc $x_1 + x_2 = 15$.
+
+\begin{align*}
+	\left.\begin{array}{ccc}
+		0 &+& 15\\
+		1 &+& 14\\
+		~&\vdots&\\
+		15&+&0\\
+	\end{array}\right\} 16
+\end{align*}
+
+Avec $p = 3$ et $n = 15$, on a donc $x_1 + x_2 + x_3 = 15$.
+
+\begin{align*}
+	15 &= 1 + 1 + 1 + 1 + 1 \plusbar 1 + 1 + 1 + 1 + 1 + 1 + 1 \plusbar 1 + 1 + 1\\
+	&= 5 + 7 + 3 \\
+\end{align*}
+
+Avec $(x_1, x_2, \ldots, x_p) \in \left( \N^* \right)^p$, on en a ${n-1 \choose p-1}$.
+
+\begin{align*}
+	15 &= 12 + 0 + 3\\
+		 &~~~~~~~\vrt\leftarrow\\
+	18 &= 13 + 1 + 4 \\
+\end{align*}
+
+On a donc ${n + p - 1 \choose p - 1}$.

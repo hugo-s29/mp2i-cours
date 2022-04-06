@@ -1,0 +1,80 @@
+\part{Exercise 7}
+
+\begin{itemize}
+	\item 
+		\[
+			\forall f \in \mathcal{L}(E), \begin{cases}
+				f \circ p \in \mathcal{L}(E)\\
+				p \circ f \in \mathcal{L}(E)\\
+			\end{cases}
+		\] so \[
+			\frac{1}{2}(f \circ p + p \circ f) \in \mathcal{L}(E)
+		\]
+	\item Let $(f,g) \in \mathcal{L}(E)^2$, $(\lambda, \mu) \in \mathbbm{K}^2$.
+		\begin{align*}
+			\Phi(\lambda f + \mu g) &= \frac{1}{2}\big((\lambda f + \mu g) \circ p + p  \circ (\lambda f + \mu g)\big) 
+			&= \frac{1}{2} (\lambda f \circ p + \mu g \circ p + \lambda p  \circ f + \mu p \circ g)\\
+			&= \lambda \Phi(f) + \mu \Phi(g) \\
+		\end{align*}
+		Thus, \[
+			\Phi \in \mathcal{L}\big(\mathcal{L}(E)\big)
+		\]
+	\item
+		\begin{align*}
+			E = \Ker(p) \oplus \mathrm{Im}(p)\\
+			P_{|\Ker(p)} = 0\\
+			P_{|\mathrm{Im}(p)} = \id
+		\end{align*}
+		\begin{itemize}
+			\item[\underline{\sc Analysis}] Let $f \in \Ker(\Phi)$ so \[
+					\Phi(f) = 0_{\mathcal{L}(E)}
+				\] thus \[
+					\forall x \in E, \Phi(f)(x) = 0_E
+				\] so \[
+					\forall x \in \Ker(p), \Phi(f)(x) = 0_E
+				\] so \[
+					\forall x \in \Ker(p), f(0_E) + p\big(f(x)\big) = 0_E
+				\] thus \[
+					\forall x \in \Ker(p), f(x) \in \Ker(p)
+				\]
+				Let $x \in \mathrm{Im}(p)$ 
+				\begin{align*}
+					\Phi(f)(x) = 0_E \text{ so }& f(x) + p\big(f(x)\big) = 0_E\\
+					\text{so }& p\big(f(x)\big) = -f(x)\\
+					\text{so }& -f(x) \in \mathrm{Im}(p)\\
+					\text{so }& f(x) \in \mathrm{Im}(p)\\
+					\text{so }& p\big(f(x)\big) = f(x)\\
+					\text{so }& f(x) = 0_E
+				\end{align*}
+			\item[\underline{\sc Synthesis}] Let $u \in \mathcal{L}(\Ker p)$. We set $f : E \to E$ defined by \[
+					\forall x \in E, f(x) = u\big(x - p(x)\big)
+				\]
+				\begin{itemize}
+					\item \[\forall x \in E, p\big(x-p(x)\big) = p(x) - p(x) = 0_E\]
+						so $f$ is well-defined.
+					\item Let $(x,y) \in E^2$ and $(\alpha, \beta) \in \mathbbm{K}^2$.
+						\begin{align*}
+							f(\alpha x + \beta y) &= u\big(\alpha x + \beta y - p(\alpha x + \beta y) \big) \\
+							&= u\big(\alpha x + \beta y - \alpha p(x) - \beta p(y)\big) \\
+							&= u\big(\alpha \big(x - p(x)\big) + \beta \big(y - p(y)\big)\big)\\
+							&= \alpha u\big(x - p(x)\big) + \beta u\big(y - p(y)\big) \\
+							&= \alpha f(x) + \beta f(y) \\
+						\end{align*}
+						Thus, \[
+							f \in \mathcal{L}(E)
+						\]
+					\item Let $x \in E$.
+						\begin{align*}
+							\Phi(f)(x) &= \frac{1}{2}\big(f\big(p(x)\big) + \underbrace{p\big(f(x)\big)}_{\mathrlap{=0_E \text{ car } f(x) \in \Ker(p)}}\big)  \\
+							&= \frac{1}{2}\big(p(x) - p\big(p(x)\big)\big) \\
+							&= \frac{1}{2}u\big(p(x) - p(x)\big) \\
+							&= 0_E \\
+						\end{align*}
+						So,  \[
+							\Phi(f) = 0_{\mathcal{L}(E)}
+						\] Thus, \[
+							f \in \Ker \Phi
+						\]
+				\end{itemize}
+		\end{itemize}
+\end{itemize}

@@ -1,0 +1,40 @@
+\part{Sommes doubles}
+
+\begin{exm}
+	\[
+		S = \sum_{i=1}^n \sum_{j=1}^i a_{i,j}
+	\]
+	\begin{align*}
+		S &= \sum_{j=1}^1 a_{1,j} + \sum_{j=1}^2 a_{2,j} + \sum_{j=3}^3 a_{3,j} + \cdots + \sum_{j=1}^n a_{n,j}\\
+		&= a_{11} \\
+		&+ a_{21} + a_{22} \\
+		&+ a_{31} + a_{32} + a_{33} \\
+		&~~~\vdots\\
+		&+ a_{n,1} + \cdots + a_{n,n}
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		\sum_{i=1}^n \sum_{j=1}^i&= \sum_{i=1}^n (2^i - 1) \\
+		&= \sum_{i=1}^n 2^i - n \\
+		&= 2\times \frac{1 - 2^n}{1 - 2} - n \\
+		&= 2(2^n - 1) - n \\
+	\end{align*}~\\
+\end{exm}
+
+\begin{exm}
+	Soit $n \in \N^*$.
+	\[
+		\Bigg.
+			S = \sum_{j=1}^i \sum_{i=1}^n {i\choose j}
+		\Bigg]\text{\large Aucun sens !}
+	\]
+\end{exm}
+
+\begin{exm}
+	Soit $n \in \N^*$. \[
+		S = \sum_{i=1}^n \sum_{j=i}^n {i\choose j} 
+	\] 
+\end{exm}
+

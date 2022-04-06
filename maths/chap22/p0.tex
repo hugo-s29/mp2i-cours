@@ -1,0 +1,269 @@
+\part{Quelques généralités}
+
+\begin{wrapfigure}{r}{5cm}
+	\begin{asy}
+		import three;
+		size(5cm);
+
+		settings.render = 0;
+		settings.prc = false;
+		currentprojection = obliqueX;
+
+		draw(O -- X, Arrow3(TeXHead2));
+		draw(O -- Y, Arrow3(TeXHead2));
+		draw(O -- Z, Arrow3(TeXHead2));
+		label("$x$", X, align=SE);
+		label("$y$", Y, align=E);
+		label("$z$", Z, align=N);
+
+		draw((0.2, 0.3, 0)..(0.9, 0.4, 0)..(0.8, 0.8, 0)..(0.2, 0.8, 0)..cycle, deepcyan);
+		draw((0.2, 0.3, 0.9)..(0.9, 0.4, 0.8)..(0.8, 0.8, 0.8)..(0.2, 0.8, 0.5)..cycle, magenta);
+
+		dot((0.5, 0.5, 0), deepcyan);
+		draw((0.5, 0, 0) -- (0.5, 0.5, 0), dashed);
+		draw((0, 0.5, 0) -- (0.5, 0.5, 0), dashed);
+		draw((0.5, 0.5, 0) -- (0.5, 0.5, 0.8), dashed);
+		draw((0, 0, 0.8) -- (0.5, 0.5, 0.8), dashed);
+		dot((0.5, 0.5, 0.8), magenta);
+
+		label("$f(x,y)$", (0,0,0.8), fontsize(7pt), align=W);
+
+		label("$D$", (0.8, 0.8, 0), deepcyan, align=SE);
+	\end{asy}
+\end{wrapfigure}
+
+On s'interesse dans ce chapitre à des fonctions définies sur une partie $D$ de $\R^2$ à valeurs dans $\R$.
+
+Par exemple, \[
+	f : (x,y) \mapsto 5xy + \sqrt{x^2+y^2} 
+\]
+
+Une sphère n'est pas la surface représentative d'une fonction. Mais, une demi-sphère oui : \[
+	f: (x,y) \mapsto \sqrt{1-x^2-y^2}.
+\]
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{3cm}
+		\centering
+		\begin{asy}
+			import solids;
+			settings.render=0;
+			settings.prc=false;
+
+			size(3cm);
+
+			revolution r=sphere(O,1);
+			draw(r,1,longitudinalpen=nullpen);
+			draw(r.silhouette());
+
+			triple onsphere(real x, real y) {
+				real z = sqrt(1 - (x*x + y*y));
+				return (x, y, z);
+			}
+
+			triple A = onsphere(0.2, 0.6);
+			triple A2 = (A.x, A.y, -A.z);
+			triple Atop = (A.x, A.y, 1.2);
+			triple Abot = (A.x, A.y, -1.2);
+
+			draw(A -- A2, dashed + red);
+			draw(A -- Atop, red);
+			draw(A2 -- Abot, red);
+			dot(A, red);
+			dot(A2, red);
+		\end{asy}
+	\end{subfigure}
+	\begin{subfigure}
+		{1cm}~\\ % spacing
+	\end{subfigure}
+	\begin{subfigure}{3cm}
+		\centering
+		\begin{asy}
+			import graph;
+			import solids;
+			settings.render=0;
+			settings.prc=false;
+
+			size(3cm);
+
+			triple n(triple a) { return a / length(a); }
+
+			triple c = O;
+			real r = 1;
+			draw(Arc(c,r,90-sqrtEpsilon, -45,-90+sqrtEpsilon,-45, n((Y+X)/2),nslice));
+			draw(Arc(c,r,90-sqrtEpsilon, -45,-90+sqrtEpsilon,-45, Z,nslice), dashed);
+			draw(Arc(c,r,-90+sqrtEpsilon, 135,90-sqrtEpsilon,135, Z,nslice));
+
+
+			draw(O -- 1.5X, Arrow3(TeXHead2));
+			draw(O -- 1.5Y, Arrow3(TeXHead2));
+			draw(O -- 1.5Z, Arrow3(TeXHead2));
+		\end{asy}
+	\end{subfigure}
+\end{figure}
+
+La surface de la demisphère est \[
+	S = \big\{\big(x,y,f(x,y)\big)  \mid (x,y) \in D_O(1) \big\}.
+\] où $D_O(1)$ est le disque unitaire à l'origine.
+
+\vspace{2mm}
+\begin{center}
+	\underline{\Large \scshape Point de vue naïf}
+\end{center}
+\vspace{2mm}
+
+Soit $f: D\subset \R^2 \to \R^2$. On fixe $y$ et on étudie $f_y: x \mapsto f(x,y)$. Ou, on fixe $x$ et on étudie $f_x: y\mapsto f(x,y)$.
+
+\begin{figure}[H]
+	\centering
+
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			import graph3;
+
+			settings.render=0;
+			settings.prc=false;
+			currentprojection = obliqueX;
+
+			size(5cm);
+
+			typedef triple partfunc(real var);
+
+			triple F(pair t) {
+				real x = t.x;
+				real y = t.y;
+				real z = cos(x) * cos(y) / 2;
+				return (x,y,z);
+			}
+
+			partfunc fx(real x) { return new triple(real y) { return F((x, y)); }; }
+			partfunc fy(real y) { return new triple(real x) { return F((x, y)); }; }
+
+			real inc = 1 / 3;
+
+			for(real x = -1; x < 1; x += inc) {
+				draw(graph(
+					new real(real t) { return x; }, // x
+					new real(real y) { return y; }, // y
+					new real(real y) { return F((x, y)).z; }, // z
+					-1, 1, operator..
+				));
+			}
+
+			for(real y = -1; y < 1; y += inc) {
+				draw(graph(
+					new real(real x) { return x; }, // x
+					new real(real t) { return y; }, // y
+					new real(real x) { return F((x, y)).z; }, // z
+					-1, 1, operator..
+				));
+			}
+
+			real x = 0;
+			guide3 g = graph(
+				new real(real t) { return x; }, // x
+				new real(real y) { return y; }, // y
+				new real(real y) { return F((x, y)).z; }, // z
+				-1, 1, operator..
+			);
+			draw(g, red);
+
+			triple A1 = F((x, -1.5));
+			triple A2 = F((x, 1.5));
+
+			triple B = F((x, 0));
+
+			A1 = (A1.x, A1.y, A1.z * 4);
+			A2 = (A2.x, A2.y, A2.z * 4);
+
+			triple A11 = (A1.x, A1.y, B.z+A1.z);
+			triple A21 = (A2.x, A2.y, B.z+A2.z);
+
+			draw(A1 -- A11 -- A21 -- A2 -- cycle, deepred);
+
+			label("$f_x$", A2, deepred, align=SE);
+		\end{asy}
+	\end{subfigure}
+	\begin{subfigure}
+		{1cm}~\\ % spacing
+	\end{subfigure}
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			import graph3;
+
+			settings.render=0;
+			settings.prc=false;
+			currentprojection = obliqueX;
+
+			size(5cm);
+
+			typedef triple partfunc(real var);
+
+			triple F(pair t) {
+				real x = t.x;
+				real y = t.y;
+				real z = cos(x) * cos(y) / 2;
+				return (x,y,z);
+			}
+
+			partfunc fx(real x) { return new triple(real y) { return F((x, y)); }; }
+			partfunc fy(real y) { return new triple(real x) { return F((x, y)); }; }
+
+			real inc = 1 / 3;
+
+			for(real x = -1; x < 1; x += inc) {
+				draw(graph(
+					new real(real t) { return x; }, // x
+					new real(real y) { return y; }, // y
+					new real(real y) { return F((x, y)).z; }, // z
+					-1, 1, operator..
+				));
+			}
+
+			for(real y = -1; y < 1; y += inc) {
+				draw(graph(
+					new real(real x) { return x; }, // x
+					new real(real t) { return y; }, // y
+					new real(real x) { return F((x, y)).z; }, // z
+					-1, 1, operator..
+				));
+			}
+
+			real y = 0;
+			guide3 g = graph(
+				new real(real x) { return x; }, // x
+				new real(real t) { return y; }, // y
+				new real(real x) { return F((x, y)).z; }, // z
+				-1, 1, operator..
+			);
+			draw(g, red);
+
+			triple A1 = F((-1.5, y));
+			triple A2 = F((1.5, y));
+
+			triple B = F((0, y));
+
+			A1 = (A1.x, A1.y, A1.z * 4);
+			A2 = (A2.x, A2.y, A2.z * 4);
+
+			triple A11 = (A1.x, A1.y, B.z+A1.z);
+			triple A21 = (A2.x, A2.y, B.z+A2.z);
+
+			draw(A1 -- A11 -- A21 -- A2 -- cycle, deepred);
+
+			label("$f_y$", A11, deepred, align=NE);
+		\end{asy}
+	\end{subfigure}
+\end{figure}
+
+\begin{center}
+	\underline{\Large \scshape Le bon point de vue}
+\end{center}
+
+On reprend les notions d'une fonction d'une seule variable (limite, continuité, développement limité, \ldots) que l'on adapte aux fonctions à deux variables.
+

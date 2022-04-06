@@ -1,0 +1,234 @@
+\part{Matrices par blocs}
+
+\begin{exm}
+	Soit $p$ un projecteur de $E$ : \[
+		E = \Ker p \oplus \mathrm{Im}\ p
+	\] Soit $\mathcal{B} = (e_1, \ldots, e_k, e_{k+1}, \ldots, e_n)$ une base de $E$ avec $\begin{cases}
+		\mathrm{Im}(p) = \Vect(e_1, \ldots, e_k)\\
+		\Ker(p) = \Vect(e_{k+1}, \ldots, e_n)\\
+	\end{cases}$
+
+	Alors, 
+	\begin{align*}
+		\Mat_\mathcal{B}(p) =
+		\left(\begin{NiceArray}{c c c | c c c}
+				1&&&0&\Cdots&0\\
+				 &\Ddots&&\Vdots&&\Vdots\\
+				&&1&0&\Cdots&0\\\hline
+				0&\Cdots&0&0&\Cdots&0\\
+				\Vdots&&\Vdots&\Vdots&&\Vdots\\
+				0&\Cdots&0&0&\Cdots&0\\
+		\end{NiceArray}\right)
+		= \left( \begin{array}{c|c}
+				I_k & 0\\ \hline
+				0&0
+		\end{array}\right) \\
+	\end{align*}
+
+	De même, si $\s$ est une symétrie de $E$, \[
+		E = \Ker(\s - \id_E) \oplus \Ker(\s + \id_E)
+	.\] Soit $\mathcal{C} = (e_1', \ldots, e_\ell', e_{\ell+1}', \ldots, e'_n)$ avec $\begin{cases}
+		\Vect(e'_1, \ldots, e'_\ell) = \Ker(\s - \id_E),\\
+		\Vect(e'_{\ell+1}, \ldots, e'_n) = \Ker(\s + \id_E).\\
+	\end{cases}$
+
+	Alors
+	\[
+		\Mat_\mathcal{C}(\s) = \left(\begin{array}{c|c}
+				I_\ell &0\\ \hline
+				0&-I_{n-\ell}
+		\end{array}\right) 
+	\]
+\end{exm}
+
+\begin{prop}
+	Soient $F$ et $G$ supplémentaires dans $E$ : \[
+		E = F \oplus G.
+	\] Soit $f \in \mathcal{L}(F)$ et $g \in \mathcal{L}(G)$. Alors \[
+	\exists !h \in \mathcal{L}(E) h_{|F} = f,\ h_{|G} = g \et h = f \circ p + g \circ q
+	\] où $\begin{cases}
+		p \text{ est la projection sur $F$ parallèlement à $G$}\\
+		q \text{ est la projection sur $G$ parallèlement à $F$}\\
+	\end{cases}$.
+
+	On a aussi $q = \id_E - p$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc \underline{Analyse}] Soit $h \in \mathcal{L}(E)$ tel que $\begin{cases}
+				h_{|F}=f\\
+				h_{|G}=g
+			\end{cases}$.
+
+			Soit $x \in E$. Alors \[
+				x = \underbrace{p(x)}_{\in F} + \underbrace{q(x)}_{\in G}
+			\]
+
+			Donc,
+			\begin{align*}
+				h(x) &= h\big(p(x)\big) + h\big(q(x)\big)\\
+				&= f\big(p(x)\big) + g\big(q(x)\big) \\
+				&= (f \circ p + g \circ q)(x) \\
+			\end{align*}
+			Si $h$ existe, alors \[
+				h = f \circ p + g \circ q
+			\]
+		\item[\underline{\sc Synthèse}] On pose $h = f \circ p + g  \circ q$.
+
+			$p$, $q$, $f$ et $g$ sont linéaires donc $h$ aussi.
+
+			Soit $x \in E$.
+			\begin{align*}
+				h(x) &= f\big(p(x)\big) + g\big(q(x)\big) \\
+				&= f(x) + g(0_E) \\
+				&= f(x) \\
+			\end{align*}
+			donc $h_{|F} = f$ et de même $h_{|G}=g$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	On reprend les notations et hypothèses précédentes. Soit $(e_1, \ldots, e_p)$ une base de $F$, et $(f_1, \ldots, f_q)$ une base de $G$. Alors, $\mathcal{B} = (e_1, \ldots, e_p, f_1, \ldots, f_q)$ est une base de $E$ et \[
+		\Mat_\mathcal{B}(h) = \left(
+		\begin{array}{c|c}
+			A&0\\ \hline
+			0&B
+		\end{array}\right)
+	\] où $\begin{cases}
+		A = \Mat_{(e_1, \ldots e_p)}(f)\\
+		B = \Mat_{(f_1, \ldots, f_q)}(g)
+	\end{cases}$
+	\qed
+\end{prop}
+
+\begin{prop}
+	Soient $(A,A') \in \mathcal{M}_n(\mathbbm{K})^2$ et $(B,B') \in \mathcal{M}_p(\mathbbm{K})^2$.
+	\begin{enumerate}
+		\item \[
+				\left(\begin{array}{c|c}
+					A&0\\ \hline
+					0&B
+				\end{array}\right)
+				\left(\begin{array}{c|c}
+					A'&0\\ \hline
+					0&B'
+				\end{array}\right) = 
+				\left(\begin{array}{c|c}
+					AA'&0\\ \hline
+					0&BB'
+				\end{array}\right)
+			\]
+		\item \[
+				\left(\begin{array}{c|c}
+					A&0\\ \hline
+					0&B
+				\end{array}\right) \in \mathrm{GL}_{n+p}(\mathbbm{K})	 \iff \begin{cases}
+					 A \in \mathrm{GL}_n(\mathbbm{K})\\
+					 B \in \mathrm{GL}_p(\mathbbm{K})
+				\end{cases}
+			\] et dans ce cas, \[
+				\left(\begin{array}{c|c}
+					A&0\\ \hline
+					0&B
+				\end{array}\right)^{-1} =
+				\left(\begin{array}{c|c}
+					A^{-1}&0\\ \hline
+					0&B^{-1}
+				\end{array}\right)
+			\]
+		\item \[
+				\tr \left(\begin{array}{c|c}
+					A&0\\ \hline
+					0&B
+				\end{array}\right) = \tr A + \tr B
+			\]
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $\begin{cases}
+				f \in \mathcal{L}(F) \text{ tel que } \Mat_\mathcal{B}(f) = A,
+				f' \in \mathcal{L}(F) \text{ tel que } \Mat_\mathcal{B}(f') = A',
+				g \in \mathcal{L}(G) \text{ tel que } \Mat_\mathcal{C}(g) = B,
+				g' \in \mathcal{L}(G) \text{ tel que } \Mat_\mathcal{C}(g') = B'
+			\end{cases}$ où $\begin{cases}
+				F \oplus G = \mathbbm{K}^{n+p},\\
+				\dim(F) = n, \dim(G) = p,\\
+				\mathcal{B} \text{ base de } F,\\
+				\mathcal{C} \text{ base de } G.\\
+			\end{cases}$
+			Soit $\begin{cases}
+				h \in \mathcal{L}(\mathbbm{K}^{n+p}) \text{ tel que } \begin{cases}
+					h_{|F} = f\\
+					h_{|G} = g
+				\end{cases}\\
+				h' \in \mathcal{L}(\mathbbm{K}^{n+p}) \text{ tel que } \begin{cases}
+					h'_{|F} = f'\\
+					h'_{|G} = g'\\
+				\end{cases}
+			\end{cases}$
+			Soit $\mathcal{D} = \mathcal{B} \cup \mathcal{C}$ une base de $\mathbbm{K}^{n+p}$.
+			\begin{align*}
+				\left(\begin{array}{c|c}
+					A&0\\ \hline
+					0&B
+				\end{array}\right)
+				\left(\begin{array}{c|c}
+					A'&0\\ \hline
+					0&B'
+				\end{array}\right) &= \Mat_{\mathcal{D}}(h) \Mat_{\mathcal{D}}(h')\\
+				&= \Mat_{\mathcal{D}}(h \circ h') \\
+			\end{align*}
+			Or, $(h \circ h')_{|F} = f \circ f'$ et $(h \circ h')_{|G} = g \circ g'$.
+
+			Donc,
+			\begin{align*}
+				\Mat_\mathcal{D}(h \circ h') &=
+					\left(\begin{array}{c|c}
+						\Mat_\mathcal{B}(f \circ f')&0\\ \hline
+						0&\Mat_\mathcal{C}(g \circ g')
+					\end{array}\right)\\
+				&=\left(\begin{array}{c|c}
+					AA'&0\\ \hline
+					0&BB'
+				\end{array}\right).
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soient $A,A' \in \mathcal{M}_n(\mathbbm{K})$, $B,B' \in \mathcal{M}_{n,p}(\mathbbm{K})$, $C,C' \in \mathcal{M}_{p,n}(\mathbbm{K})$ et $D, D' \in \mathcal{M}_p(\mathbbm{K})$.
+
+	\[
+		\left(\begin{array}{c|c}
+			A&B\\ \hline
+			C&D
+		\end{array}\right)
+		\left(\begin{array}{c|c}
+			A'&B'\\ \hline
+			C'&D'
+		\end{array}\right) = 
+		\left(\begin{array}{c|c}
+			AA' + BC'& AB' + BD'\\ \hline
+			CA' + DC'&CB' + DD'
+		\end{array}\right)
+	\] Cette formule se généralise à un nombre quelconque de blocs : \[
+		\left(\begin{array}{c|c|c|c}
+				A_{11}&A_{12}&\cdots&A_{1,n}\\ \hline
+				A_{21}&A_{22}&\cdots&A_{2,n}\\ \hline
+				\vdots&\vdots&\ddots&\vdots\\ \hline
+				A_{p,1}&A_{p,2}&\cdots&A_{p,n}
+		\end{array}\right)
+		\left(\begin{array}{c|c|c|c}
+				A'_{11}&A'_{12}&\cdots&A'_{1,n}\\ \hline
+				A'_{21}&A'_{22}&\cdots&A'_{2,n}\\ \hline
+				\vdots&\vdots&\ddots&\vdots\\ \hline
+				A'_{p,1}&A'_{p,2}&\cdots&A'_{p,n}
+		\end{array}\right)
+	\] Cette matrice se calcyle comme on s'y attend si les dimensions des blocs autorisent les produits.
+\end{prop}
+
+
+

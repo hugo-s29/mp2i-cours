@@ -1,0 +1,88 @@
+\part{Exercice 11}
+
+\begin{enumerate}
+	\item 
+		Soient $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie $n$ et $f,g \in \mathcal{L}(E)$.
+
+		\begin{align*}
+			f_{|\mathrm{Im}(g)}: \mathrm{Im}(g) &\longrightarrow E \\
+			x &\longmapsto f(x)
+		\end{align*}
+
+		Soit $x \in \mathrm{Im}(g)$.
+		\begin{align*}
+			x \in \Ker(f_{|\mathrm{Im}(g)}) \iff& f_{|\mathrm{Im}(g)}(x) = 0\\
+			\iff& \begin{cases}
+				f(x) = 0\\
+				x \in \mathrm{Im}(g)
+			\end{cases}\\
+			\iff& x \in \Ker(f) \cap \mathrm{Im}(g)
+		\end{align*}
+
+		\[
+			\Ker(f_{|\mathrm{Im}(g)}) = \Ker(f) \cap \mathrm{Im}(g)
+		\]\[
+			\dim(\mathrm{Im}\ g) = \dim\big(f(\mathrm{Im}\ g)\big) + \dim(\Ker f \cap \mathrm{Im}\ g)
+		\] \[
+			\dim\big(f(\mathrm{Im}\ g)\big) = \dim\big(\mathrm{Im}(f \circ g)\big) = \rg(f \circ g)
+		\] \[
+			\rg(f \circ g) = \rg(g) - \dim(\mathrm{Im}\ g \cap \Ker f)
+		\] \[
+			\dim(E) = n = \rg(g) + \dim(\Ker f)
+		\] donc \[
+			-n + \rg(f) = \dim(\Ker f) \le -\dim(\mathrm{Im}\ g \cap \Ker f)
+		\] \[
+			\rg(f \circ g) \ge \rg(g) + \rg(f) - n
+		\]
+	\item
+		\begin{itemize}
+			\item[\underline{\sc Analyse}]
+				Soit $f \in \mathcal{L}(E)$ et $\dim(E) = 3$. On suppose $f \circ f = 0$.
+				\[
+					\rg(0) = \rg(f \circ f) \ge \rg(f) = \rg(f) + \rg(f) - n
+				\] Donc \[
+					0 \le 2\rg (f) - n
+				\] \[
+					3 = n \ge 2\rg(f)
+				\] Donc, \[
+					\rg(f) \in \{0, 1\} 
+				\] et donc \[
+					\dim(\mathrm{Im}\ f) \in \{1,0\}
+				\] 
+				Soit $u \in \mathrm{Im}(f) \setminus \{0\}$ donc $\Vect\ u = \mathrm{Im}\ f$. \[
+					\forall x \in K, \exists \lambda(x) \in \mathbbm{K}, f(x) = \lambda(x) \cdot u
+				\]
+			\item[\underline{\sc Synthèse}]~\\
+				\begin{itemize}
+					\item $f = 0$ 
+					\item On suppose $f \neq 0$. Soit $u \in E$, $\lambda \in \mathcal{L}(E, \mathbbm{K}) = E^*$.
+						\begin{align*}
+							f: E &\longrightarrow E \\
+							x &\longmapsto \lambda(x) \cdot u
+						\end{align*}
+						Soit $x \in E$.
+						\begin{align*}
+							(f \circ f)(x) &= f\big(\lambda(x) \cdot u\big) \\
+							&= \lambda\big(\lambda(x) \cdot u\big) \\
+							&= \lambda(x) \lambda(u) \cdot u \\
+						\end{align*}
+						Soient $(x,y) \in E^2$ et $\alpha, \beta \in \mathbbm{K}^2$.
+						\begin{align*}
+							f(\alpha a\,&+ \beta y) = \lambda (\alpha x + \beta y) \cdot u\\
+												 &\vrt=\\
+							\alpha f(x) \,&+ \beta f(y) = \alpha \lambda(x) \cdot u + \beta \lambda(y) \cdot u
+						\end{align*}
+						Donc, \[
+							\lambda(\alpha x + \beta y) \cdot u = \big(\alpha \lambda(x) + \beta \lambda(y)\big) \cdot u
+						\] et donc \[
+							\lambda (\alpha x + \beta y) = \alpha \lambda(x) + \beta \lambda(y)
+						\]
+						\[
+							f(u) = u
+						\] Soit $v \in E$ tel que $f(v) = u$. \[
+							f(u) = f\big(f(v)\big) = 0 = \lambda (u) \cdot u
+						\] Donc $\lambda(u) = 0$ et donc $u \in \Ker(\lambda)$.
+				\end{itemize}
+		\end{itemize}
+\end{enumerate}
+

@@ -1,0 +1,34 @@
+\part{Exercice 6}
+
+\begin{enumerate}
+	\item On pose $g : (x,y) \mapsto f(y, x)$.
+
+		\begin{align*}
+			\frac{\partial g}{\partial x}(x,y) &= \frac{\partial f}{\partial x}(y,x)\;\frac{\partial y}{\partial x}(x,y) + \frac{\partial f}{\partial y}(y,x)\;\frac{\partial x}{\partial x}(x,y)\\
+			&= \frac{\partial f}{\partial y}(y,x) \\
+		\end{align*}
+
+		\begin{align*}
+			\frac{\partial g}{\partial y}(x,y) &= \frac{\partial f}{\partial x}(y,x)\; \frac{\partial x}{\partial x}(x,y) + \frac{\partial f}{\partial y}(y,x)\; \frac{\partial y}{\partial x}(x,y) \\
+			&= \frac{\partial f}{\partial x}(y,x) \\
+		\end{align*}
+	\item On pose $h: (x,y) \mapsto f\big(y, f(x,x)\big)$ et $k : x \mapsto f(x,x)$
+
+		\begin{align*}
+			\frac{\partial h}{\partial x}(x,y) &= \frac{\partial f}{\partial x}\big(y, f(x,x)\big)\;\frac{\partial y}{\partial x}(x,y) + \frac{\partial f}{\partial y}\big(y, f(x,x)\big)k'(x)\\
+			&= \frac{\partial f}{\partial y}\big(y, f(x,x)\big)  \left( \frac{\partial f}{\partial x}(x,x) + \frac{\partial f}{\partial y}(x,x) \right)\\
+		\end{align*}
+
+		En effet, on a $\gamma: x \mapsto (x,x)$ et $\gamma'(x) = (1,1)$.
+
+		Donc $f \circ \gamma : x \mapsto f(x,x) = k(x)$.
+		\begin{align*}
+			k'(x) &= \left<\nabla f(x,x)  \mid \gamma'(x) \right> \\
+			&= \frac{\partial f}{\partial x}(x,x) + \frac{\partial f}{\partial y}(x,x).
+		\end{align*}
+
+		\begin{align*}
+			\frac{\partial h}{\partial y}(x,y) &= \frac{\partial f}{\partial x}\big(y, f(x,x)\big) \frac{\partial f}{\partial y}(x,y) + \frac{\partial f}{\partial y}\big(y, f(x,x)\big) \times 0\\
+			&= \frac{\partial f}{\partial x}\big(y, f(x,x)\big). \\
+		\end{align*}
+\end{enumerate}

@@ -1,0 +1,228 @@
+\part{Matrice d'une famille de vecteurs}
+
+Soient $E$ est un $\mathbbm{K}$-espace vectoriel de dimension finie $n$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$, $\mathcal{F} = (u_1, \ldots, u_p)$ une famille de vecteurs de $E$.\\
+\vspace{5mm}
+
+\begin{defn}
+	La \underlin{matrice de $\mathcal{F}$ dans la base $\mathcal{B}$} est la matrice $M$ telle que, pour tout $j \in \left\llbracket 1,p \right\rrbracket$, la $j$-ème colonne de $M$ est $\Mat_\mathcal{B}(u_j)$.
+\end{defn}
+
+\begin{exm}
+	\[
+		\Mat_\mathcal{C}(\mathcal{B}) = \begin{pmatrix}
+			1&3&9&27\\
+			1&2&4&8\\
+			1&1&1&1\\
+			1&0&0&0
+		\end{pmatrix}
+	\]
+\end{exm}
+
+\begin{prop}
+	Soit $\mathcal{F}$ une famille de vecteurs de $E$. \[
+		\rg(\mathcal{F}) = \rg\big(\Mat_{\mathcal{B}}(\mathcal{F})\big)
+	\]
+\end{prop}
+
+\begin{prv}
+	Dans ce chapitre, on définit le rang d'une matrices comme le nombre maximale de colonnes linéairement idépendantes.
+\end{prv}
+
+\begin{crlr}
+	Soit $\mathcal{F} = (u_1, \ldots, u_p) \in E^p$ et $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$, et $M = \Mat_\mathcal{B}(\mathcal{F})$.
+	\begin{enumerate}
+		\item $\mathcal{F}$ est libre $\iff \rg(M) = p$
+		\item $E = \Vect(\mathcal{F}) \iff \rg(M) = n$ 
+		\item $\mathcal{F}$ base de $E$ $\iff n = p = \rg(M) \iff M \in \mathrm{GL}_n(\mathbbm{K})$\\
+			Dans ce cas, \[
+				\left( \Mat_\mathcal{B}(\mathcal{F}) \right) ^{-1} = \Mat_{\mathcal{F}}(\mathcal{B})
+			\]
+	\end{enumerate}
+\end{crlr}
+
+\begin{exm}
+	\[
+		\Mat_\mathcal{C} (\mathcal{B}) = \begin{pmatrix}
+			1&3&9&27\\
+			1&2&4&8\\
+			1&1&1&1\\
+			1&0&0&0
+		\end{pmatrix}  = M
+	\] On sait que $\mathcal{B}$ est une base donc $M \in \mathrm{GL}_4(\R)$. Donc, \[
+		M^{-1} = \Mat_\mathcal{B}(\mathcal{C}) = \begin{pmatrix}
+			0&0&0&1\\
+			\frac{1}{3}&-\frac{3}{2}&3&-\frac{11}{6}\\
+			-\frac{1}{2}&2&-\frac{5}{2}&1\\
+			\frac{1}{6}&-\frac{1}{2}&\frac{1}{2}&-\frac{1}{6}
+		\end{pmatrix}
+	\] 
+\end{exm}
+
+\begin{prv}
+	\begin{enumerate}
+		\item 
+			\begin{align*}
+				\mathcal{F} \text{ est libre } &\iff (u_1, \ldots, u_p) \text{ base de } \Vect(u_1, \ldots, u_p)\\
+				&\iff \dim\big(\Vect(u_1, \ldots, u_p)\big) = p\\
+				&\iff \rg\big((u_1, \ldots, u_p)\big) = p\\
+				&\iff \rg(M) = p
+			\end{align*}
+		\item
+			\begin{align*}
+				\mathcal{F} \text{ engendre } E \iff& E = \Vect(u_1, \ldots, u_p)\\
+				\iff& \dim(E) = \dim\big(\Vect(u_1, \ldots, u_p)\big)\\
+				\iff& n = \rg(M)
+			\end{align*}
+		\item
+			\begin{align*}
+				\mathcal{F} \text{ base de } E \iff& \begin{cases}
+					\rg(M) = p\\
+					\rg(M) = n
+				\end{cases}
+			\end{align*}
+			On suppose que $\mathcal{F}$ est une base de $E$. \[
+				M = \Mat_{\mathcal{B}}(\mathcal{F}) = \begin{pmatrix}
+					m_{11}& \ldots & m_{1,n}\\
+					m_{21}&\ldots&m_{2,n}\\
+					\vdots&\ddots&\vdots\\
+					m_{n,1}&\ldots&m_{n,n}
+				\end{pmatrix}
+			\]
+			Soit $A = \Mat_{\mathcal{F}}(\mathcal{B}) = \begin{pmatrix}
+				a_{11}& \ldots & a_{1,n}\\
+				a_{21}&\ldots&a_{2,n}\\
+				\vdots&\ddots&\vdots\\
+				a_{n,1}&\ldots&a_{n,n}
+			\end{pmatrix}$. Montrons que $AM = I_n$.\\
+			La première colonne de $AM$ est 
+			\begin{align*}
+				A \begin{pmatrix}
+					m_{11}\\
+					\vdots\\
+					m_{n,1}
+				\end{pmatrix} &=  m_{11} \begin{pmatrix}
+					a_{11}\\
+					\vdots\\
+					a_{n,1}
+				\end{pmatrix} + m_{21} \begin{pmatrix}
+					a_{12}\\
+					\vdots\\
+					a_{n,2}
+				\end{pmatrix} + \cdots + m_{n,1} \begin{pmatrix}
+					a_{1,n}\\
+					\vdots\\
+					a_{n,n}
+				\end{pmatrix} \\
+			\end{align*}
+			Or, $\forall i \in \left\llbracket 1,n \right\rrbracket, \begin{pmatrix}
+				a_{1,i}\\
+				\vdots\\
+				a_{n,i}
+			\end{pmatrix} = \Mat_\mathcal{F}(e_i)$.\\
+			Donc, la première colonne de $AM$ est la colonne des coordonées du vecteur $m_{11}e_1 + m_{21}e_2+\cdots+m_{n,1}e_n$ dans la base $\mathcal{F}$.\\
+			Or, \[
+				\Mat_{\mathcal{B}}(u_1) = \begin{pmatrix}
+					m_{11}\\
+					m_{21}\\
+					\vdots\\
+					m_{n,1}
+				\end{pmatrix}
+			\] donc $u_1 = m_{11}e_1 + m_{21}e_2 + \cdots + m_{n,1}e_n$.\\
+			Comme $u_1 = 1 \cdot u_1 + 0\cdot u_2 + \cdots + 0 \cdot u_n$, \[
+				\Mat_{\mathcal{F}}(u_1) = \begin{pmatrix}
+					1\\
+					0\\
+					\vdots\\
+					0
+				\end{pmatrix}
+			\] 
+			La $j$-ème colonne de $AM$ est 
+			\begin{align*}
+				A \begin{pmatrix}
+					m_{1,j}\\
+					\vdots\\
+					m_{n,j}
+				\end{pmatrix} &=  m_{1,j} \begin{pmatrix}
+					a_{11}\\
+					\vdots\\
+					a_{n,1}
+				\end{pmatrix} + m_{2,j} \begin{pmatrix}
+					a_{12}\\
+					\vdots\\
+					a_{n,2}
+				\end{pmatrix} + \cdots + m_{n,j} \begin{pmatrix}
+					a_{1,n}\\
+					\vdots\\
+					a_{n,n}
+				\end{pmatrix} \\
+			\end{align*}
+			Or, $\forall i \in \left\llbracket 1,n \right\rrbracket, \begin{pmatrix}
+				a_{1,i}\\
+				\vdots\\
+				a_{n,i}
+			\end{pmatrix} = \Mat_\mathcal{F}(e_i)$.\\
+			Donc, la $j$-ème colonne de $AM$ est la colonne des coordonées du vecteur $m_{1,j}e_1 + m_{2,j}e_2+\cdots+m_{n,j}e_n$ dans la base $\mathcal{F}$.\\
+			Or, \[
+				\Mat_{\mathcal{B}}(u_1) = \begin{pmatrix}
+					m_{1,j}\\
+					m_{2,j}\\
+					\vdots\\
+					m_{n,j}
+				\end{pmatrix}
+			\] donc $u_j = m_{1,j}e_1 + m_{2,j}e_2 + \cdots + m_{n,j}e_n$.\\
+			Comme $u_j = 0 \cdot u_1 + \cdots + 1\cdot u_j + \cdots + 0 \cdot u_n$, \[
+				\Mat_{\mathcal{F}}(u_1) = \begin{pmatrix}
+					0\\
+					\vdots\\
+					1 \leftarrow j\\
+					\vdots\\
+					0
+				\end{pmatrix}
+			\] Donc, % todo
+			\[
+				AM = \begin{pNiceMatrix}
+					1&0&\Cdots&0\\
+					0&\Ddots&\Ddots&\Vdots\\
+					\Vdots&\Ddots&&0\\
+					0&\Cdots&0&1
+				\end{pNiceMatrix} = I_n
+			\]
+			En inversant les rôles de $\mathcal{F}$ et $\mathcal{B}$, on prouve que $MA = I_n$.\\[5mm]
+			On suppose maintenant que $M \in \mathrm{GL}_n(\mathbbm{K})$. Montrons que $\mathcal{F}$ est une base de $E$. On pose \[
+				M^{-1} = \begin{pmatrix}
+					a_{11}&\ldots&a_{1,n}\\
+					\vdots&\ddots&\vdots\\
+					a_{n,1}&\ldots&a_{n,n}
+				\end{pmatrix}
+			\]
+			On sait que \[
+				M\,M^{-1} = I_n
+			\] Donc \[
+				\forall j \in \left\llbracket 1,n \right\rrbracket,
+				a_{1,j} \begin{pmatrix}
+					m_{11}\\
+					\vdots\\
+					m_{n,1}
+				\end{pmatrix} + \cdots +
+				a_{n,j} \begin{pmatrix}
+					m_{1,n}\\
+					\vdots\\
+					m_{n,n}
+				\end{pmatrix} = \begin{pmatrix}
+					0\\
+					\vdots\\
+					1 \leftarrow j\\
+					\vdots\\
+					0
+				\end{pmatrix}
+			\] donc \[
+				\forall j \in \left\llbracket 1,n \right\rrbracket, \Mat_\mathcal{B}\left( \sum_{i=1}^n a_{i,j} u_i \right) = \Mat_\mathcal{B}(e_j)
+			\] donc \[
+				\forall j \in \left\llbracket 1,n \right\rrbracket,
+				e_j = \sum_{i=1}^n a_{i,j} u_i \in \Vect(\mathcal{F})
+			\]
+			Donc $\mathcal{F}$ engendre $E$. \[
+				\Card(\mathcal{F}) = n = \dim(E)
+			\] donc $\mathcal{F}$ est une base de $E$.
+	\end{enumerate}
+\end{prv}

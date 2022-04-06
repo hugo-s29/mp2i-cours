@@ -1,0 +1,41 @@
+\part{Exercise 10}
+
+$\dim(\Ker f \cap F) \ge \dim F - \rk f$
+
+Let $g : \begin{array}{rcl}
+	? &\longrightarrow& ? \\
+	x &\longmapsto& ?
+\end{array}$. We need to find $g$ such that $\Ker(g) = \Ker(f) \cap F$.\\
+
+\begin{align*}
+	g(x) = 0 \iff x \in \Ker(g) \iff& x \in \Ker(f) \cap F\\
+	\iff&x \in \Ker(f) \text{ and } x \in F\\
+	\iff& f(x) = 0 \text{ and } x \in F
+\end{align*}
+
+So, \begin{align*}
+	g: F &\longrightarrow E \\
+	x &\longmapsto f(x)
+\end{align*}
+
+$f$ is linear, so, $g$ is also linear.
+
+Thus,
+\begin{align*}
+	\dim(F) &= \dim(\Ker g) - \dim(\mathrm{Im}\, f) \\
+	&= \dim\big(\Ker (f) \cap F\big) - \dim(\mathrm{Im}\, f) \\
+\end{align*}
+
+We know that \[
+	\mathrm{Im}\, f \supset \mathrm{Im}\, g
+\] So, \[
+	\dim(\mathrm{Im}\, f) \le \dim(\mathrm{Im}\, g)
+\] 
+
+So, \[
+	\dim F \le \dim(\Ker(f) \cap F) + \dim(\mathrm{Im}\\,f)
+\] and so \[
+	\dim\big(\Ker (f) \cap F\big) \ge \dim F - \dim(\mathrm{Im}\,f)
+\]
+
+

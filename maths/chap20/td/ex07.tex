@@ -1,0 +1,36 @@
+\part{Exercice 7}
+
+\begin{enumerate}
+	\item  \[
+			\left( \frac{P'}{P} \right)\!' = \frac{P''P - {P'}^2}{P^2}.
+		\] 
+		On note $x_1 \le \cdots \le x_n$ les racines (réelles) de $P$. Pour tout $x \not\in \{x_1, \ldots, x_n\}$, $P'(x)^2 - P''(x)P(x)$ est du signe opposé à $f'(x)$ où $f: x \mapsto \frac{P'(x)}{P(x)}$.
+
+		Or, \[
+			\forall x \not\in \{x_1, \ldots, x_n)\}, 
+			f(x) = \sum_{i=1}^n \frac{1}{x - x_i}
+		\] et donc \[
+			\forall x \not\in  \{x_1, \ldots, x_n\}, f'(x) = \sum_{i=1}^n \frac{-1}{(x-x_i)^2} < 0
+		\] donc \[
+			\forall x \not\in \{x_1, \ldots, x_n\}, P'(x)^2 - P''(x) P(x) > 0
+		\] par continuuité, on a donc \[
+			\forall x \in \R, P'(x)^2-P''(x) P(x) \ge 0.
+		\]
+	\item D'après la formule de Taylor, \[
+		P = \sum_{k=0}^{n} \frac{P^{(k)}(0)}{k!} X^k.
+	\] D'où \[
+		\forall k \in \left\llbracket 0,n \right\rrbracket, a_k = \frac{P^{(k)}(0)}{k!}.
+	\] D'où, d'après 1. : \[
+		{a_1}\!^2-2a_2a_0 \ge 0
+	\] Donc si $a_0 a_2\ge 0$, \[
+		a_0a_2 \le 2a_0a_2\le {a_0}\!^2
+	\] et si $a_0a_2\le 0$, \[
+		a_0a_2 \le 0 \le {a_0}\!^2
+	\] Soit $k \in \N^*$. On a aussi, comme $P^{(k-1)}$ est scindé on a \[
+		P^{(k)}(0)^2 - P^{(k+1)}(0) P^{(k-1)}(0) \ge 0
+	\] donc \[
+		(k!)^2 a_k^2 - (k+1)!(k-1)! a_{k+1}a_{k-1}\ge 0
+	\] \[
+		a_k^2 \ge \frac{k}{k+1}a_k^2 \ge a_{k+1}a_{k-1}
+	\]
+\end{enumerate}

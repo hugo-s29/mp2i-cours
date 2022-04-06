@@ -1,0 +1,73 @@
+\part{Exercice 8}
+
+Soit $n \ge 2$.
+
+{\it $f$ nilpotent} : $\exists k \in \N^*, \underbrace{f \circ \ldots \circ f}_{k}$
+ et $k$ est l'{\it indice de nilpotence} de $f$.
+
+$N_n(\R)$ ensemble des matrices nilpotentes à coefficants dans $\R$.
+
+\subsection*{Partie I}
+
+\begin{enumerate}
+	\item On pose $\mathcal{B} = (e_1, \ldots, e_n)$ la base canonique de $\mmathcal{M}_n(\mathbbm{K})$
+		\begin{enumerate}
+			\item
+					\begin{itemize}
+						\item[\sc Pour $A$] On a \[
+								\forall k < n, f(e_k) = 0
+							\] et $f(e_n) = e_1 \neq 0$. Donc, \[
+								\Ker(f) = \Vect(e_1, \ldots, e_{n-1})
+							\] et \[
+								\mathrm{Im}(f) = \Vect(e_1)
+							.\] Donc \[
+								\mathrm{Im}(f) \subset \Ker(f)
+							\]
+						\item[\sc Pour $B$] On a \[
+								\forall k < n, g(e_k) = 0
+							\] et $g(e_n) = e_1 \neq 0$. Donc, \[
+								\Ker(g) = \Vect(e_2, \ldots, e_n)
+							\] et \[
+								\mathrm{Im}\, g = \Vect(e_n)
+							\] Donc \[
+								\Ker(g) \subset \mathrm{Im}(f)
+							.\]
+				\end{itemize}
+			\item On a $A^2 = (0)$ et $B^2 = 0_{\mmathcal{M}_n(\R)}$. Donc $A$ et $B$ sont nilpotentes d'indice 2.
+			\item On a \[
+				A + B = 
+					\begin{pNiceMatrix}
+						1&0&\Cdots&0\\
+						0&\Ddots&\Ddots&\Vdots\\
+						\Vdots&\Ddots&&0\\
+						0&\Cdots&0&1
+					\end{pNiceMatrix}
+				\]
+				On remarque que \[
+					M = (A + B)^2 = 
+					\begin{pNiceMatrix}
+						1&0&\Cdots&0\\
+						0&\Ddots&\Ddots&\Vdots\\
+						\Vdots&\Ddots&&0\\
+						0&\Cdots&0&1
+					\end{pNiceMatrix}
+				\] et $(A+B)^3 = A + B$. Donc, par récurrence, \[
+					(A+B)^q = \begin{cases}
+						(A + B)^2 &\text{ si } q = 2k \text{ avec } k \in \N^*\\
+						A + B &\text{ si } q = 2k + 1 \text{ avec } k\in \N^*.
+					\end{cases}
+				\] Bah du coup non.
+			\item $AB = A$ et $BA = B$. Donc $(AB)^k = A^k = 0$ et $(BA)^k = B^k = 0$ pour $k \ge 2$. Donc $A, B \in N_n(\R)$.
+			\item $I_n \not\in N_n(\R)$ car $\forall k \in \N, {I_n}\!^k = I_n \neq (0)$. Donc $N_n$ n'est pas une $\R$-algèbre de $\mmathcal{M}_n(\R)$. Bon, flemme de rédiger.
+		\end{enumerate}
+
+		\subsection*{Partie II}
+		\item
+			\begin{enumerate}
+				\item
+			\end{enumerate}
+\end{enumerate}
+
+
+
+

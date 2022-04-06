@@ -1,0 +1,40 @@
+\part{Exercice 4}
+
+\[
+	\forall P \in \R_n[X],
+	\int_{0}^{1} P(t)\,dt = \sum_{i=0}^n \lambda_i P(a_i)
+\]
+On pose \begin{align*}
+	f: \R_n[X] &\longrightarrow \R \\
+	 P &\longmapsto \int_{0}^{1} P(t)\, dt.
+\end{align*}
+
+\[
+	\forall P \in \R_n[X],\, f(P) = \sum_{i=0}^n \lambda_i P(a_i)
+\]
+
+On pose \begin{align*}
+	g_i: \R_n[X] &\longrightarrow \R \\
+	P &\longmapsto P(a_i).
+\end{align*}
+
+
+On doit montrer : $\boxed{\forall P \in \R_n[X], f(P) = \sum_{i=0}^n \lambda_i\,g_i(P).}$
+\\[3mm]
+
+$\mathcal{B} = (g_0, \ldots, g_n)$ est une base de $\R_n[X]^*$. Soit $\mathcal{C} = (1, X, \ldots, X^n)$ la base canonique de $\mathbbm{K}_n[X]$.
+
+On a $g_1(1) = 1$, $g_1(X) = a_1$, $\ldots$, $g_1(X^n) = {a_1}^n$ 
+
+Donc, \[
+	A = \begin{pmatrix}
+		1&1&\cdots&1\\
+		a_0&a_1&\cdots&a_n\\
+		\vdots&\vdots&\ddots&\vdots\\
+		{a_0}^n&{a_1}^n&\cdots&{a_n}^n
+	\end{pmatrix}
+\] 
+
+$\t A = \Mat_\mathcal{C}(D)$ où $D$ est la base des polynômes interpolateurs de Lagrange.
+
+Donc $\t A$ inversible et donc $A$ inversible.

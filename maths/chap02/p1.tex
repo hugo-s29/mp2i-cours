@@ -1,6 +1,6 @@
 \part{Trigonométrie}
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[H]
 	\centering
 	\vspace{2cm}
 	\begin{asy}
@@ -38,7 +38,7 @@
 		draw((0,1)--(1/tan(theta), 1), mediumred);
 		label("$\cotan(\theta)$", (1/(2*tan(theta)), 1), mediumred, align=N);
 	\end{asy}
-\end{wrapfigure}
+\end{figure}
 
 \begin{defn}
 	On définit, pour 
@@ -79,7 +79,7 @@
 		\item[8.] 
 			Soient $\vec{u} = (\cos(a), \sin(a))$ et $\vec{v} = (\cos(b), \sin(b))$\\
 			\begin{minipage}{\linewidth}
-				\begin{wrapfigure}{r}{1cm}
+				\begin{figure}[H]
 					\centering
 					\begin{asy}
 						import graph;
@@ -109,7 +109,7 @@
 						label("$b$", (cos(a + b/2), sin(a + b/2)) * 0.4, align=NE);
 
 					\end{asy}
-				\end{wrapfigure}
+				\end{figure}
 				D'une part, $\vec{u}\cdot \vec{v} = \cos(a)\cos(b) + \sin(a)\sin(b)$ \\
 				D'autre part, $\vec{u} \cdot \vec{v} = \|\vec{u}\|\times \|\vec{v}\| \times \cos(\widehat{\vec{u}, \vec{v}}) = \cos(a-b)$ \\
 				On a montré que
@@ -173,73 +173,71 @@
 			\]
 		\item 
 			On peut le prouver par le calcul avec les formules de la tangeante mais on peut également le prouver géométriquement.\\
-			\begin{minipage}
-				{\linewidth}
-				\begin{wrapfigure}{l}{0.5\linewidth}
-					\begin{asy}
-						import graph;
-						import math;
+			\begin{figure}[H]
+				\centering
+				\begin{asy}
+					import graph;
+					import math;
 
-						size(5cm);
-						axes(EndArrow);
+					size(5cm);
+					axes(EndArrow);
 
-						pair O = (0,0);
-						real a = 0.6 * 180 / pi;
+					pair O = (0,0);
+					real a = 0.6 * 180 / pi;
 
-						draw(circle(O, 1), gray);
-						label("$\mathcal{C}$", unit((-1,1)), gray, align=NW);
+					draw(circle(O, 1), gray);
+					label("$\mathcal{C}$", unit((-1,1)), gray, align=NW);
 
-						pair A = (-1,0);
-						pair M = dir(a);
+					pair A = (-1,0);
+					pair M = dir(a);
 
-						dot("$A$", A, align=SW);
-						dot("$M$", M);
+					dot("$A$", A, align=SW);
+					dot("$M$", M);
 
-						drawline(A, M);
-						
-						draw(O -- M);
+					drawline(A, M);
+					
+					draw(O -- M);
 
-						draw((M.x, 0) -- M, dashed);
-						draw((0, M.y) -- M, dashed);
+					draw((M.x, 0) -- M, dashed);
+					draw((0, M.y) -- M, dashed);
 
-						draw((M.x, 0) -- O, red);
-						draw((0, M.y) -- O, blue);
-						label("$\cos(a)$", (M.x/2, 0), red, align=S);
-						label("$\sin(a)$", (0, M.y/2), blue, align=NW);
-						
-						draw(arc(O, 0.5, 0, a), deepcyan, Arrow(TeXHead));
-						draw(arc(A, 0.5, 0, a / 2), deepcyan, Arrow(TeXHead));
+					draw((M.x, 0) -- O, red);
+					draw((0, M.y) -- O, blue);
+					label("$\cos(a)$", (M.x/2, 0), red, align=S);
+					label("$\sin(a)$", (0, M.y/2), blue, align=NW);
+					
+					draw(arc(O, 0.5, 0, a), deepcyan, Arrow(TeXHead));
+					draw(arc(A, 0.5, 0, a / 2), deepcyan, Arrow(TeXHead));
 
-						label("$\frac{a}{2}$", dir(a/4) * 0.5 + A, deepcyan, align=E);
-						label("$a$", dir(a/2) * 0.5, deepcyan, align=E);
+					label("$\frac{a}{2}$", dir(a/4) * 0.5 + A, deepcyan, align=E);
+					label("$a$", dir(a/2) * 0.5, deepcyan, align=E);
 
-						label("$H$", (M.x,0), align=SE);
-						draw((M.x, 0) -- (M.x - 0.05, 0) -- (M.x - 0.05, 0.05) -- (M.x, 0.05) -- cycle);
-					\end{asy}
-				\end{wrapfigure}
-				Soit $M(x_0,y_0) \neq A$ sur le cercle trigonométrique $\mathcal{C}$. On note $t$ la pente de la demi-droite $[AM)$.\\
-				On en déduit que l'équation de la droite $(AM)$ est \[
-					y = tx + t = t(x+1)
-				\]
-				On sait que $M \in (AM)$ donc \[
-					y_0 = t(x_0+1)
-				\] On sait aussi que ${x_0}^2 + {y_0}^2 = 1$ \\
-				Donc, \[
-					x_0 + t^2(x_0+1)^2 = 1
-				\] et donc \[
-					{x_0}^2 \underbrace{(1+t^2)}_{\neq 0} + 2t^2x_0	+ t^2 - 1 = 0
-				\] On résout cette équation du second degré et on trouve deux racines: $x_0 = -1$ et $x_0 = \frac{1-t^2}{1+t^2}$.\\
-				Comme $M \neq A$, $x_0 = \frac{1-t^2}{1+t^2}$ et $y_0 = t\left( \frac{1-t^2}{1+t^2} + 1 \right) = \frac{2t}{1+t^2}$ \\
-				Enfin,  \[
-					t = \frac{\left| HM \right| }{\left| AH \right|} = \tan\left( \frac{a}{2} \right) 
-				\] car $AHM$ est rectangle en $H$ (d'après le théorème de Thalès)\\
-				Donc, \[
-					\begin{cases}
-						\cos(a) = \frac{1-\tan^2\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right)}\\
-						\sin(a) = \frac{2\tan\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right) }
-					\end{cases}
-				\] 
-			\end{minipage}
+					label("$H$", (M.x,0), align=SE);
+					draw((M.x, 0) -- (M.x - 0.05, 0) -- (M.x - 0.05, 0.05) -- (M.x, 0.05) -- cycle);
+				\end{asy}
+			\end{figure}
+			Soit $M(x_0,y_0) \neq A$ sur le cercle trigonométrique $\mathcal{C}$. On note $t$ la pente de la demi-droite $[AM)$.\\
+			On en déduit que l'équation de la droite $(AM)$ est \[
+				y = tx + t = t(x+1)
+			\]
+			On sait que $M \in (AM)$ donc \[
+				y_0 = t(x_0+1)
+			\] On sait aussi que ${x_0}^2 + {y_0}^2 = 1$ \\
+			Donc, \[
+				x_0 + t^2(x_0+1)^2 = 1
+			\] et donc \[
+				{x_0}^2 \underbrace{(1+t^2)}_{\neq 0} + 2t^2x_0	+ t^2 - 1 = 0
+			\] On résout cette équation du second degré et on trouve deux racines: $x_0 = -1$ et $x_0 = \frac{1-t^2}{1+t^2}$.\\
+			Comme $M \neq A$, $x_0 = \frac{1-t^2}{1+t^2}$ et $y_0 = t\left( \frac{1-t^2}{1+t^2} + 1 \right) = \frac{2t}{1+t^2}$ \\
+			Enfin,  \[
+				t = \frac{\left| HM \right| }{\left| AH \right|} = \tan\left( \frac{a}{2} \right) 
+			\] car $AHM$ est rectangle en $H$ (d'après le théorème de Thalès)\\
+			Donc, \[
+				\begin{cases}
+					\cos(a) = \frac{1-\tan^2\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right)}\\
+					\sin(a) = \frac{2\tan\left( \frac{a}{2} \right)}{1+\tan^2\left( \frac{a}{2} \right) }
+				\end{cases}
+			\] 
 	\end{enumerate}
 \end{prv}
 

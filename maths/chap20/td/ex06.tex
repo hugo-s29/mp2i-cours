@@ -1,0 +1,46 @@
+\part{Exercice 6}
+
+\[
+	\forall i \in \left\llbracket 1,n \right\rrbracket,
+	\sum_{j=1}^n \frac{x_j}{a_j + \alpha_j} = 1
+\]
+
+On pose \[
+	F = \sum_{j=1}^n \frac{x_j}{a_j + X} \in \C(X).
+\]
+
+Donc, \[
+	(S) \iff \forall i \in \left\llbracket 1,n \right\rrbracket, F(\alpha_i) = 0.
+\]
+
+De plus, $-1 + \sum_{j=1}^n \frac{x_j}{X+ a_j}$ est la décomposition en éléments simples d'une fraction rationelle ayant pour pôles simples $-a_1, -a_2, \ldots, -a_n$.
+
+Donc, \[
+	\begin{cases}
+		F = \frac{P}{(X+a_1)(X+a_2)\cdots(X+a_n)} \text{ avec } P \in \C[X]\\~\\
+		\forall i \in \left\llbracket 1,n \right\rrbracket, F(\alpha_i) = 0.
+	\end{cases}
+\]
+
+Comme $\deg(F) = 0$, $\deg(P) = n$.
+
+De plus, \[
+	\forall i \in \left\llbracket 1,n \right\rrbracket, P(\alpha_i)= 0
+\]
+
+Donc \[
+	\exists \lambda \in \C, P = \lambda(X-\alpha_1)(X-\alpha_2)\cdots(X-\alpha_n).
+\]
+
+Donc
+\begin{align*}
+	\forall j \in \left\llbracket 1,n \right\rrbracket, x_j &= \frac{P(-a_j)}{\prod_{i \neq j}(-a_j + a_i}\\
+	&= \frac{\lambda \prod_{i=1}^n (-a_j - \alpha_i)}{\prod_{i\neq j}(a_i - a_j)}. \\
+\end{align*}
+
+De plus, $-1$ est le quotient de la division euclidienne de $P$ par $\prod_{i=1}^n (X + a_i)$ c'est-à-dire $\lambda$. Donc, $\lambda = -1$.
+
+\[
+	\forall j \in \left\llbracket 1,n \right\rrbracket,
+	x_j = \frac{\displaystyle(-1)^{n+1} \prod_{i=1}^n (a_j + \alpha_i)}{\displaystyle\prod_{\substack{1 \le i \le n\\ i\neq j}} (a_i- a_j)}.
+\]

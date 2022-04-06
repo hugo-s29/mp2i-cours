@@ -1,0 +1,49 @@
+\part{Exercice 1}
+
+$E = \mathbbm{K}_3[X]$ et $\varphi : \begin{array}{rcl}
+	E &\longrightarrow& \mathbbm{K}[X] \\
+	P &\longmapsto& XP' - P
+\end{array}$\\
+
+\begin{enumerate}
+	\item Soit $P \in E$.
+		\begin{align*}
+			\deg(XP') = 1 + \deg(P) - 1 = \deg(P)\\
+			\deg(XP'-P) \le \deg(P) \le 3
+		\end{align*}
+		donc $\varphi(P) \in E$.\\
+		Soient $P,Q \in E$, $\lambda, \mu \in \mathbbm{K}$.
+		\begin{align*}
+			\varphi(\lambda P + \mu Q) &= X(\lambda P + \mu Q)' - (\lambda P + \mu Q) \\
+			&= X(\lambda P' + \mu Q') - \lambda P - \mu Q \\
+			&= \lambda (XP' - P) + \mu(XQ' - Q) \\
+			&= \lambda \varphi(P) + \mu \varphi(Q) \\
+		\end{align*}
+		Donc $\varphi \in \mathcal{L}(E)$.
+	\item Soit $P \in E$. On pose $P = aX^3+bX^2+cX+d$ avec $(a,b,c,d) \in \mathbbm{K}^4$.
+		\begin{align*}
+			P \in \Ker\varphi \iff& \varphi(P) = 0\\
+			\iff& X(3aX^2+2bX+c) - (aX^3 + bX^2+cX+d) = 0\\
+			\iff& 2aX^3 + bX^2 + d = 0\\
+			\iff& \begin{cases}
+				a = 0\\
+				b = 0\\
+				d = 0
+			\end{cases}\\
+			\iff& P = cX\\
+			\iff& P \in \Vect(X)
+		\end{align*}
+		$\Ker(\varphi) = \Vect(X)$ et $X \neq 0$ donc $(X)$ est une base de $\Ker\varphi$.
+		\begin{align*}
+			\mathrm{Im}(\varphi) &= \Vect\big(\varphi(1), \varphi(X), \varphi(X^2), \varphi(X^3)\big)\\
+			&= \Vect(-1, X^2, 2X^3) \\
+		\end{align*}
+		D'après le théorème du rang,
+		\begin{align*}
+			\dim\big(\mathrm{Im}(\varphi)\big) &= \dim E - \dim(\Ker \varphi) \\
+			&= 4 - 1 \\
+			&= 3 \\
+		\end{align*}
+		Donc $(1, X^2, X^3)$ est une base de $\mathrm{Im}(\varphi)$.
+\end{enumerate}
+

@@ -55,6 +55,6 @@ class Thursday(Day):
 
   def generate_meals(self):
     return [
-      # Meal(time="11h15"), FIXME
+      Meal(time="11h21"),
       Meal(time="19h06", meal_type="dinner"),
     ]

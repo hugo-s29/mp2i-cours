@@ -1,0 +1,194 @@
+Fonction Afficher
+	Paramètres:
+		Combinaision combi
+	
+	Début
+		affichage ← []
+		position ← 0
+
+		Pour i ∈ 〚0, 10〛 faire
+			agencement ← combi.agencement[i]
+
+			Si agencement ≠ 0 alors
+				affichage ← affichage + (i, agencement)
+				position ← position + 1
+			Fin Si
+		Fin Pour
+
+		Afficher combi.prix
+
+		Pour i ∈ 〚0, position〛 faire
+			nombre ← affichage[i][1]
+			taille ← affichage[i][0]
+
+			Afficher nombre, taille
+		Fin Pour
+	Fin
+
+Fonction CreerCombinaisonZero
+	Sortie:
+		Combinaision combi
+	
+	Début
+		combi ← CreerCombinaision()
+		
+		Pour i ∈ 〚0, 10〛 faire
+			combi.agencement[i] ← 0
+		Fin Pour
+
+		combi.prix ← 0
+
+		Retourner combi
+	Fin
+
+
+Fonction CreerListeCombinaison
+	Paramètres:
+		Entier longueur
+	Sortie:
+		Liste de combinaisons 	liste
+	
+	Début
+		liste ← []
+
+		Pour i ∈ 〚1, longueur〛 faire
+			liste[i] ← CreerCombinaisonZero()
+		Fin Pour
+
+		Retourner liste
+	Fin
+
+Fonction VersionForceBruteRecursive
+	Paramètres:
+		Entier longeur
+		Liste d'entiers tableauPrix
+	Sortie:
+		Combinaison combiMax
+	
+	Début
+		combiMax ← CreerCombinaisonZero()
+		combiTmp ← CreerCombinaisonZero()
+
+		Si longeur = 0 alors
+			Retourner combiMax
+		Fin Si
+
+		Si longueur ⩽ 11 alors
+			Pour i ∈ 〚 1, longueur 〛faire
+				combiTmp ← VersionForceBruteRecursive(longeur - i)
+
+				combiTmp.prix ← combiTmp.prix + tableauPrix[i]
+				combiTmp.agencement[i] ← combiTmp.agencement[i] + 1
+				
+				Si combiTmp.prix ⩾ combiMax.prix alors
+					combiMax ← combiTmp
+				Fin si
+			Fin pour
+		Sinon
+			Pour i ∈ 〚 1, 10 〛faire
+				combiTmp ← VersionForceBruteRecursive(longeur - i)
+
+				combiTmp.prix ← combiTmp.prix + tableauPrix[i]
+				combiTmp.agencement[i] ← combiTmp.agencement[i] + 1
+
+				Si combiTmp.prix ⩾ combiMax.prix alors
+					combiMax ← combiTmp
+				Fin si
+			Fin Pour
+		Fin Si
+
+		Retourner combiMax
+	Fin
+
+Fonction VersionDynamiqueAscendante
+	Paramètres:
+		Entier longueur
+		Liste d'entiers tableauPrix
+	Sortie:
+		Combinaison résultat
+	
+	Début
+		listePrix ← [0]
+		listeIndex ← []
+		resultat ← CreerCombinaisonZero()
+
+		Pour taille ∈ 〚1, longueur 〛 faire
+			prixMax ← -1
+			
+			Pour i ∈ 〚 1, taille 〛faire
+				Si prixMax < tableauPrix[i] + listePrix[taille - i] alors
+					prixMax ← tableauPrix[i] + listePrix[taille - i]
+
+					listeIndex[taille] ← i
+					resultat.agencement[taille] ← i
+				Fin Si
+			Fin Pour
+			
+			listePrix[tailleDécoupe] ← prixMax
+			resultat.prix ← prixMax
+		Fin Pour
+
+		Retourner résultat
+	Fin
+
+Fonction IndiceCoupuresVersCombinaison
+	Paramètres:
+		Entier longueur
+		Combinaison combiDécoupe
+	Sortie:
+		Combinaison
+	
+	Début
+		combinaison ← []
+		prix ← combiDécoupe.prix
+
+		Pour i ∈ 〚 0, longueur 〛 faire
+			combinaison[i] ← combiDécoupe.agencement[i]
+			combiDécoupe.agencement[i] ← 0
+		Fin Pour
+
+		i ← longueur
+		Tant que i > 0
+			k ← combinaison[i]
+			combiDécoupe.agencement[k] ← combiDécoupe.agencement[k] + 1
+			i ← i - k
+		Fin Tant que
+
+		combiDécoupe.prix ← prix
+
+		Retourner combiDécoupe
+	Fin
+
+Programme CouperBarres
+	Début
+		tailleBrute ← 4
+		tailleDynamique ← 15
+
+		Afficher tailleBrute
+		combiBrute ← VersionForceBruteRecursive(tailleBrute)
+		Afficher(combiBrute)
+
+		Afficher tailleDynamique
+		combiDynamique ← VersionDynamiqueAscendante(tailleDynamique)
+		combiDynamique ← IndicesCoupuresVersCombinaison(tailleDynamique, combiDynamique)
+		Afficher(combiDynamique)
+	Fin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

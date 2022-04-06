@@ -1,0 +1,102 @@
+\part{Exercice 5}
+
+$\dim(E) = n$ et $f \in \mathcal{L}(E)$. On suppose $f \circ f = 0$.
+
+\begin{itemize}
+	\item[\underline{\sc Anaylyse}] Soit $\mathcal{B} = (u_1, \ldots, u_n)$ une base de $E$ telle que \[
+			\Mat_\mathcal{B}(f) = 
+			\begin{pNiceArray}{c c c c | c c c c}
+					0&\Cdots&&0&1&0&\Cdots&0\\
+					\Vdots&&&\Vdots&0&\Ddots&&\Vdots\\
+					&&&&\Vdots&&&0\\
+					&&&&0&\Cdots&0&1\\ \cline{5-8}
+					&&&0&\Cdots&&&0\\
+					0&\Cdots&&&&&&0
+			\end{pNiceArray}
+		\]
+
+		\[
+			\forall i \le n - p, f(u_i) = 0
+		\] \[
+			\forall i > n - p, f(u_i) = u_{i - n + p}
+		\]
+
+		i.e.
+
+		\[
+			\begin{cases}
+				u_1 = f(u_{n-p+1})\\
+				u_2 = f(u_{n-p+2})\\
+				\vdots\\
+				u_p = f(u_n)
+			\end{cases}
+		\] 
+	\item[\underline{\sc Synthèse}]
+		Soit $F$ tel que $\Ker(f) \oplus F = E$. On pose $p = \dim(F)$ et $\mathcal{C} = (v_1, \ldots, v_p)$ une base de $F$. \[
+			\forall i, u_{n-p + i} = v_i
+		\]
+
+	$u_i = f(u_{n-p+i})$ pour $i \in \left\llbracket 1,p \right\rrbracket$
+	
+	La famille $(u_1, \ldots, u_p, u_{n-p+1}, \ldots, u_n)$ est-elle libre ?
+	
+	Soit $F$ un supplémentaire de $\Ker(f)$ : \[
+		\Ker(f) \oplus F = E
+	\]
+	On pose $p = \dim(F)$ et $(v_1, \ldots, v_p)$ une base de $F$. \[
+		\begin{cases}
+			u_{n-p+1} = v_1\\
+			u_{n-p+2} = v_2\\
+			\vdots\\
+			u_n = v_p
+		\end{cases}
+	\] On pose aussi \[
+		\begin{cases}
+			u_1 = f(u_{n-p+1}) = f(v_1)\\
+			u_2 = f(u_{n-p+2}) = f(v_2)\\
+			\vdots\\
+			u_p = f(u_n) = f(v_p).
+		\end{cases}
+	\] \[
+		\forall i \in \left\llbracket 1,p \right\rrbracket, f(u_i) = f\big(f(v_i)\big) = 0
+	\] donc \[
+		\forall i \in \left\llbracket 1,p \right\rrbracket, u_i \in \Ker(f).
+	\] Montrons que $(u_1, \ldots, u_p)$ est libre. Soit $(\lambda_1, \ldots, \lambda_p) \in \mathbbm{K}^p$. On suppose \[
+		\sum_{i=1}^p \lambda_i u_i = 0.
+	\] Donc \[
+		\sum_{i=0}^{p}\lambda_i f(v_i) = 0
+	\] donc \[
+		f\left( \sum_{i=1}^p \lambda_i v_i \right) = 0
+	\] donc \[
+		\sum_{i=0}^p \lambda_i v_i \in \Ker(f).
+	\]Or, \[
+		\sum_{i=1}^p \lambda_i v_i \in F.
+	\] Comme $F \cap \Ker(f) = \{0\}$ : \[
+		\sum_{i=1}^p \lambda_i v_i = 0.
+	\] Comme $(v_1, \ldots, v_p)$ est libre, \[
+		\forall i \in \left\llbracket 1,p \right\rrbracket, \lambda_i = 0.
+	\] On complète $(u_1, \ldots, u_p)$ en une base $(u_1, \ldots, u_p, u_{p+1}, \ldots, u_{n-p})$ de $\Ker(f)$ ($\dim(\Ker f) = \dim E - \dim F = n - p$.
+	Montrons que $(u_1, \ldots, u_n)$ est libre. Soit $(\mu_1, \ldots, \mu_n) \in \mathbbm{K}^n$. On suppose \[
+		\sum_{i=1}^n \mu_i u_i = 0.
+	\] Donc, \[
+		\underbrace{\sum_{i=1}^{n-p} \mu_i u_i}_{\in \Ker f} = -\underbrace{\sum_{i=n-p+1}^n \mu_i u_i}_{\in F}.
+	\] Donc \[
+		\begin{cases}
+			\sum_{i=1}^{n-p} \mu_i u_i = 0\\
+			\sum_{i=n - p+1}^n \mu_i u_i = 0.
+		\end{cases}
+	\] Comme $(u_1, \ldots, u_{n-p})$ est libre : \[
+		\forall i \in \left\llbracket 1,n-p \right\rrbracket, \mu_i = 0.
+	\] Comme $(u_{n-p+1}, \ldots, u_n)$ est libre : \[
+		\forall i \in \left\llbracket n-p+1,n \right\rrbracket, \mu_i = 0.
+	\] Donc $(u_1, \ldots, u_{n})$ est libre. donc, c'est une base de $E$.
+
+	\[
+		\Mat_{(u_1, \ldots, u_{n})}(f) = \left(
+			\begin{array}{c|c}
+				(0)&I_p\\ \cline{2-1}
+				(0)&(0)
+			\end{array}
+		\right) 
+	\] 
+\end{itemize}

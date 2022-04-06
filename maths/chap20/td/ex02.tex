@@ -1,0 +1,99 @@
+\part{Exercice 2}
+
+\begin{enumerate}
+	\item[6.]
+		\begin{align*}
+			\frac{4}{(X^2+1)^2} &= \frac{4}{(X-i)^2(X+i^2)} \\
+			&= \frac{a}{X-i}+\frac{b}{(X-i)^2} + \frac{c}{X+i} + \frac{d}{(X+i)^2} \\
+		\end{align*}
+		avec $(a,b,c,d) \in \C^4$.
+
+		\begin{align*}
+			\frac{4}{(X+i)^2} &= b + a(X-i)+ (X-i)^2\left( \frac{c}{X+i} + \frac{d}{(X+i)^2} \right) \\
+		\end{align*}
+		On remplace $X$ par $i$ : \[
+			-1 = \frac{4}{(2i)^2} = b
+		\]
+
+		\begin{align*}
+			\frac{4}{(X-i)^2} = d + c(X+i)+(X+i)^2\left( \frac{a}{X-i} + \frac{b}{(X-i)^2} \right) 
+		\end{align*}
+		On remplace $X$ par $-i$ : \[
+			-1 = \frac{4}{(2i)^2} = d
+		\] donc \[
+			\frac{4}{(X-i)^2(X+i)^2} + \frac{1}{(X-i)^2} + \frac{1}{(X+i)^2} = \frac{a}{X-i} + \frac{c}{X+i}
+		\] donc \[
+			\frac{4 + (X+i)^2 + (X-i)^2}{(X-i)^2(X+i)^2} = \frac{a}{X-i} + \frac{c}{X+i}
+		\] donc \[
+			\frac{4 + X^2 + \cancel{2iX} - 1 + X^2 - \cancel{2iX} - 1}{(X-i)^2(X+i)^2} = \frac{a}{X-i} + \frac{b}{X+i}
+		\] donc \[
+			\frac{2\cancel{(X-i)}\cancel{(X+i)}}{(X-i)^{\cancel2}(X+i)^{\cancel2}} = \frac{a}{X-i} + \frac{c}{X+i}
+		\] donc \[
+			\frac{2}{(X-i)(X+i)} = \frac{a}{X-i} + \frac{c}{X + i}
+		\] donc \[
+			\frac{2}{X+i} = a + c\frac{X-i}{X+i}
+		\] et donc \[
+			-i = \frac{2}{2i} = a
+		\] On a aussi \[
+			\frac{2}{X-i} = c + a \frac{X + i}{X-i}
+		\] donc \[
+			i = \frac{2}{-2i} = c
+		\]
+		Donc, \[
+			\frac{4}{(X^2 + 1)^2} = -\frac{i}{X-i}-\frac{1}{(X-i)^2}+\frac{i}{X+i}-\frac{1}{(X+i)^2}
+		\]
+	\item[3.] \[
+			\frac{1}{X(X-1)^2} = \frac{a}{X} + \frac{b}{X-1} + \frac{c}{(X-1)^2} \text{ avec } a,b,c \in \C
+		\]
+		$a = 1$, $c = 1$
+		\begin{align*}
+			\frac{1}{X(X-1)^2}-\frac{1}{X}-\frac{1}{(X-1)^2} &= \frac{1- (X-1)^2 - X}{X(X-1)^2} \\
+			&= \frac{\cancel 1 - X^2 + 2X - \cancel 1 - X}{X(X-1)^2} \\
+			&= \frac{X(1-X)}{X(X-1)^2} \\
+			&= -\frac{1}{X-1} = \frac{b}{X-1} \\
+		\end{align*}
+		Donc, $b = -1$.
+		\begin{align*}
+			f: x \longmapsto \frac{1}{x(x-1)^2} = \frac{1}{x}-\frac{1}{x-1}+\frac{1}{(x-1)^2}
+		\end{align*}
+		Une primitive de $f$ est \[
+			x \mapsto \ln(\left| x \right|) - \ln(\left| x-1 \right|) - \frac{1}{x-1}
+		\]
+	\item[9.] \[
+			A = \frac{3}{(X^3 - 1)^2}
+		\]
+		Racines du dénominateur : $1$, $j$ et $j^2$
+		
+		\begin{align*}
+			A = \frac{a}{(X-1)^2} + \frac{b}{X-1} + \frac{c}{(X-j)^2} + \frac{d}{X-j} + \frac{e}{(X-j^2)^2} + \frac{f}{X-j^2}
+		\end{align*}
+		On a $a = \frac{1}{3}$.
+		\begin{align*}
+			c &= \frac{3}{(X-1)^2(X-j^2)^2}\\
+			&= \frac{3}{(j-1)^2(j-j^2)^2} \\
+			&= \frac{3}{(j^2-2j+1)(j^2-2+j)} \\
+			&= \frac{3}{(-3j)(-3)} \\
+			&= \frac{1}{3j} = \frac{1}{3}j^2 \\
+		\end{align*}
+		\begin{align*}
+			e &= \frac{3}{(j^2-1)^2(j^2-j)^2} \\
+			&= \frac{3}{(j-2j^2 + 1)(j-2+j^2)} \\
+			&= \frac{3}{(-3j^2)(-3)} \\
+			&= \frac{1}{3j^2} = \frac{1}{3}j \\
+		\end{align*}
+
+		\begin{landscape}
+			\begin{align*}
+				\frac{3}{(X-1)^2}-\frac{a}{(X-1)^2}-\frac{c}{(X-j)^2}-\frac{e}{(X-j^2)^2} &= \frac{b}{X-1} + \frac{d}{X-j}+\frac{f}{X-j^2} \\
+				&= \frac{3 - \frac{1}{3}(X-j^2)(X-j^2)^2-\frac{1}{3}j^2(X-1)^2(X-j^2)^2-\frac{1}{3}j(X-1)^2(X-j)^2}{(X^3-1)^2} \\
+				&= -2\left( \frac{X^3-1}{(X^3-1)^2} \right) \\
+				&= -\frac{2}{X^3-1} \\
+			\end{align*}
+
+			\begin{align*}
+				b &= -\frac{2}{(1-j)(1-j^2)}\\
+				d &= -\frac{2}{(j-1)(j-j^2)} = -2j \\
+				b &= -\frac{2}{(j^2-1)(j^2)} = -2j^2 \\
+			\end{align*}
+		\end{landscape}
+\end{enumerate}

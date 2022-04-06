@@ -1,0 +1,266 @@
+\part{Conséquences}
+
+\begin{prop}
+	La multiplication matricielle est associative.
+\end{prop}
+
+\begin{prv}
+	\[
+		\begin{cases}
+			A \in \mathcal{M}_{n,p}(\mathbbm{K})\\
+			B \in \mathcal{M}_{p,q}(\mathbbm{K})\\
+			C \in \mathcal{M}_{q,r}(\mathbbm{K})
+		\end{cases}
+	\]
+	Soient $f \in \mathcal{L}(\mathbbm{K}^p, \mathbbm{K}^n)$, $g \in \mathcal{L}(\mathbbm{K}^q, \mathbbm{K}^p)$ et $h \in \mathcal{L}(\mathbbm{K}^r, \mathbbm{K}^q)$ telles que \[
+		\begin{cases}
+			A = \Mat_{\mathcal{B},\mathcal{C}}(f)\\
+			B = \Mat_{\mathcal{E}, \mathcal{B}}(g)\\
+			C = \Mat_{\mathcal{D},\mathcal{E}}(h)
+		\end{cases}
+	\] où 
+	$\mathcal{B}$ est la base canonique de $\mathbbm{K}^p$,
+	$\mathcal{C}$ est la base canonique de $\mathbbm{K}^n$,
+	$\mathcal{D}$ est la base canonique de $\mathbbm{K}^r$,
+	$\mathcal{E}$ est la base canonique de $\mathbbm{K}^q$.\\
+	\begin{align*}
+		A(BC) &= \Mat_{\mathcal{D}\mathcal{C}}\big(f \circ (g \circ h)\big)\\
+					&= \Mat_{\mathcal{D},\mathcal{C}}\big((f \circ g) \circ h\big)  \\
+					&= (AB) C \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $(A,B) \in \mathcal{M}_n(\mathbbm{K})^2$. On suppose que $AB = I_n$. Alors $(A,B) \in \mathrm{GL}_n(\mathbbm{K})^2$ et $A^{-1} = B$.
+\end{prop}
+
+\begin{prv}
+	Soit $\mathcal{B}$ la base canonique de $\mathbbm{K}^n$, $f \in \mathcal{L}(\mathbbm{K}^n)$ telle que $\Mat_\mathcal{B}(f) = A$, $g \in \mathcal{L}(\mathbbm{K}^n)$ telle que $\Mat_{\mathcal{B}}(g) = B$.
+	\begin{align*}
+		AB = I_n &\text{ donc } \Mat_\mathcal{B}(f \circ g) = \Mat_\mathcal{B}(\id_{\mathbbm{K}^n})
+						 &\text{ donc } f \circ g = \id_{\mathbbm{K}^n}\\
+						 &\text{ donc } f \circ g \text{ est injective}\\
+						 &\text{ donc } g \text{ est injective}\\
+						 &\text{ donc } g \text{ est un isomorphisme}
+	\end{align*}
+	Or, $f \circ g = \id$ donc $f = f \circ g \circ g^{-1} = g^{-1}$
+	\begin{align*}
+		BA &= \Mat_\mathcal{B}(g) = \Mat_\mathcal{B}(f)\\
+		&= \Mat_\mathcal{B}(g \circ f) \\
+		&= \Mat_\mathcal{B}(g \circ g^{-1}) \\
+		&= \Mat_\mathcal{B}(\id_{\mathbbm{K}^n}) \\
+		&= I_n \\
+	\end{align*}
+	Donc $A = B^{-1}$.
+\end{prv}
+
+\begin{rmk}
+	Au passage, on a montré que \[
+		f \in \mathrm{GL}(E) \iff \Mat_\mathcal{B}(f) \in \mathrm{GL}_n(\mathbbm{K})
+	\] et, dans ce cas, \[
+		\Mat_\mathcal{B}(f^{-1}) = \Mat_\mathcal{B}(f)^{-1}
+	\]
+\end{rmk}
+
+\begin{prop}
+	Soit $A \in \mathcal{M}_{p,n}(\mathbbm{K})$.
+
+	Le nombre maximal de lignes linéairement indépendantes de $A$ est égal au rang de $A$.
+\end{prop}
+
+\begin{prv}
+	On appelle \underline{rang par lignes} le nombre exact de lignes linéairement indépendantes.
+	
+	Ce rang par ligne est invariant quand on effectue une opération élémentaire sur les lignes.
+
+	En appliquant la méthode du pivot de Gauss, on obtient une matrice de la forme \[
+		\left(\begin{array}{c c c c c c c c}
+				0&\ldots&0&\multicolumn{1}{|c}{\bx1} & * & \ldots &\ldots& *\\ \cline{4-5}
+				0&\ldots&\ldots&0&\multicolumn{1}{|c}{\bx1} & * & \ldots & *\\ \cline{5-8}
+				0&\ldots&\ldots&\ldots&\ldots&\ldots&\ldots&0\\
+		\end{array}\right)
+	\] qui a le même rang par lignes que $A$.
+
+	On obsèrve que ce rang $r$ est égal au nombre de pivots.
+
+	Soit $S$ le système homogène \[
+		AX = 0
+	\] où $X = \begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n\\
+	\end{pmatrix}$. D'après l'algorithme du pivot, la résolution de ce système fournit $r$ inconnues principales et $n-r$ paramètres.
+
+	Sans perte de généralité, on peut supposer que $x_1, \ldots, x_{n-r}$ sont les paramètres et $x_{n-r+1},\ldots, x_n$ les inconnues principales.
+
+	Soit $\mathcal{B}=(e_1, \ldots, e_n)$ la base canonique de $\mathbbm{K}^n$ et $\mathcal{C} = (f_1, \ldots, f_p)$ la base canonique de $\mathbbm{K}^p$ et $f \in \mathcal{L}(\mathbbm{K}^n, \mathbbm{K}^p)$ telle que \[
+		A = \Mat_{\mathcal{B},\mathcal{C}}(f)
+	.\]
+	Soit $x = (x_1, \ldots, x_n) \in \mathbbm{K}^n$ et $X = \Mat_\mathcal{B}(x)$.
+
+	\begin{align*}
+		AX = 0 \iff& \Mat_{\mathcal{B}, \mathcal{C}}(f) \Mat_\mathcal{B}(f) = \Mat_\mathcal{C}(0)\\
+		\iff& \Mat_\mathcal{C}\big(f(x)\big) = \Mat_\mathcal{C}(0)\\
+		\iff& f(x) = 0\\
+		\iff& x \in \Ker f
+	\end{align*}
+
+	Ainsi, l'ensemble $E$ des solutions de $(S)$ est un $\mathbbm{K}$-espace vectoriel isomorphe à $\Ker(f)$.
+
+	De plus,
+	\begin{align*}
+		g: E &\longrightarrow \mathbbm{K}^{n-r} \\
+		\begin{pmatrix}
+			x_1\\
+			\vdots\\
+			x_n
+		\end{pmatrix} &\longmapsto (x_1, \ldots, x_{n-r})
+	\end{align*} est un isomorphisme. Donc, $\dim(\Ker f) = \dim(E) = n - r$.
+	
+	D'après le théorème du rang, \[
+		\rg(A) = \rg(f) = \dim(\mathbbm{K}^n) - \dim(\Ker f) = n - (n - r) = r
+	.\]
+\end{prv}
+
+\begin{defn}
+	Soit $A = (a_{i,j})_{\substack{1\le i\le p\\1\le j\le n}} \in \mathcal{M}_{p,n}(\mathbbm{K})$.
+
+	La \underline{transposée} de $A$, notée $\t A = (b_{j,i})_{\substack{1\le j\le n\\1\le i\le p}} \in \mathcal{M}_{n,p}(\mathbbm{K})$ est définie par \[
+		\forall i \in \left\llbracket 1,p \right\rrbracket, \forall j \in \left\llbracket 1,n \right\rrbracket, b_{j,i} = a_{i,j}.
+	\] Les lignes de $\t A$ sont les colonnes de $A$. Les colonnes de $\t A$ sont les lignes de $A$.
+\end{defn}
+
+\begin{exm}
+	$A = \begin{pmatrix}
+		1&0\\
+		2&1\\
+		3&-1
+	\end{pmatrix}$ donc $\t A = \begin{pmatrix}
+		1&2&3\\
+		0&1&-1
+	\end{pmatrix}$.
+\end{exm}
+
+\begin{crlr}
+	\[
+		\forall A \in \mathcal{M}_{n,p}(\mathbbm{K}), \rg(A) = \rg(\t A)
+	\] \qed
+\end{crlr}
+
+\begin{prop}
+	$\begin{array}{rcl}
+		\mathcal{M}_n(\mathbbm{K}) &\longrightarrow& \mathcal{M}_n(\mathbbm{K}) \\
+		A &\longmapsto& \t A
+	\end{array}$ est la symétrie par rapport à $S_n(\mathbbm{K})$ parallèlement à $A_n(\mathbbm{K})$ où \[
+		S_n(\mathbbm{K}) = \{A \in \mathcal{M}_n(\mathbbm{K})  \mid  \t A = A\} = 
+		\small
+		\begin{pNiceArray}{c c c c c}
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&(u)&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&(u)&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\CodeAfter
+			\tikz \draw (1-1) -- (5-5);
+			\tikz \draw (2-1) -- (5-4) -- (5-1) -- (2-1);
+			\tikz \draw (1-2) -- (4-5) -- (1-5) -- (1-2);
+		\end{pNiceArray}
+	\]
+	et \[
+		A_n(\mathbbm{K}) = \{A \in \mathcal{M}_n(\mathbbm{K})  \mid \t A = -A\}  = 
+		\small\begin{pNiceArray}{c c c c c}
+			0&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&(u)&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&(-u)&\phantom{0}&\phantom{0}&\phantom{0}\\
+			\phantom{0}&\phantom{0}&\phantom{0}&\phantom{0}&0\\
+			\CodeAfter
+			\tikz \draw[dotted] (1-1) -- (5-5);
+			\tikz \draw (2-1) -- (5-4) -- (5-1) -- (2-1);
+			\tikz \draw (1-2) -- (4-5) -- (1-5) -- (1-2);
+		\end{pNiceArray}
+	\]
+	et donc \[
+		S_n(\mathbbm{K}) \oplus A_n(\mathbbm{K}) = \mathcal{M}_n(\mathbbm{K})
+	.\]
+\end{prop}
+
+\begin{prv}
+	Soient $A = (a_{i,j})$, $B = (b_{i,j})$ et $(\alpha, \beta) \in \mathbbm{K}^2$.
+	\begin{align*}
+		\t (\alpha A + \beta B) &= (\alpha a_{j,i} + \beta b_{j,i})_{1 \le i,j \le n} = \alpha (a_{j,i}) + \beta (b_{j,i}) \\
+		&= \alpha \t A + \beta \t B \\
+	\end{align*}
+	
+	Clairement, \[
+		\forall A \in \mathcal{M}_n(\mathbbm{K}), \t\left( \t A \right) = A
+	\] donc $f: A \mapsto \t A$ est la symétrie par rapport à $\Ker(f - \id_{\mathcal{M}_n(\mathbbm{K})})$ parallèlement à $\Ker(f + \id_{\mathcal{M}_n(\mathbbm{K})})$.
+
+	Or, \begin{align*}
+		\Ker(f - \id_{\mathcal{M}_n(\mathbbm{K})}) &= \{A \in \mathcal{M}_n(\mathbbm{K})  \mid  f(A) - A = 0\}  \\
+		&= \{A \in \mathcal{M}_n(\mathbbm{K})  \mid  \t A = A\} \\
+		&= S_n(\mathbbm{K}) \\
+	\end{align*} et
+	\begin{align*}
+		\Ker(f + \id_{\mathcal{M}_n(\mathbbm{K})}) &= \{A \in \mathcal{M}_n(\mathbbm{K})  \mid f(A) + A = 0\}\\
+		&= \{A \in \mathcal{M}_n(\mathbbm{K})  \mid \t A = A\} \\
+		&= A_n(\mathbbm{K}) \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $A \in \mathcal{M}_{n,p}(\mathbbm{K})$ et $B \in \mathcal{M}_{p,q}(\mathbbm{K})$. \[
+		\t (AB) = \t B \t A
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose \[
+		\begin{cases}
+			A = (a_{i,j})_{\substack{1\le i\le n\\1\le j\le p}},\\
+			B = (b_{j,k})_{\substack{1\le j\le p\\1\le k\le q}},\\
+			\t B \t A = (c_{k,i})_{\substack{1\le k\le q\\1\le i\le n}}.
+		\end{cases}
+	\]
+
+	\begin{align*}
+		\forall k \in \left\llbracket 1,q \right\rrbracket, \forall i \in \left\llbracket 1,n \right\rrbracket, 
+		c_{k,i} &= \sum_{j=1}^p (\t B)_{k,j} (\t A)_{j,i}\\
+		&= \sum_{j=1}^p b_{j,k} a_{i,j} \\
+		&= \sum_{j=1}^p a_{i,j} b_{j,k} \\
+		&= (AB)_{i,k} \\
+		&= \left( \t(AB)_{k,i} \right) \\
+	\end{align*}
+	Donc, $\t(AB) = \t B \t A$.
+\end{prv}
+
+\begin{crlr}
+	Si $A \in \mathrm{GL}_n(\mathbbm{K})$ alors $\t A \in \mathrm{GL}_n(\mathbbm{K})$ et \[
+		\left( \t A \right) ^{-1} = \t \left( A^{-1} \right) 
+	\]
+\end{crlr}
+
+\begin{prv}
+	On suppose $A \in \mathrm{GL}_n(\mathbbm{K})$.
+
+	$A A^{-1} = I_n$ donc $\t(A A^{-1}) = \t I_n$
+
+	donc $\t(A^{-1}) \t A = I_n$ 
+
+	donc \[
+		\t A \in \mathrm{GL}_n(\mathbbm{K})\\
+		\t (A^{-1}) = (\t A)^{-1}
+	\]
+\end{prv}
+
+
+
+
+
+
+
+
+
+
+
+

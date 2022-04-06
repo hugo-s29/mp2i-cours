@@ -1,6 +1,6 @@
 \part{Décomposition en éléments simples}
 
-\marginpar{\bf Définition\\[-1mm]}
+\marginpar{\bf Définition\\[-5mm]}
 \begin{lem}
 	\[
 		\forall F \in \mathbbm{K}(X), \exists! (E,G) \in \mathbbm{K}[X] \times \mathbbm{K}(X),
@@ -171,7 +171,7 @@
 \end{prv}
 
 \begin{thm}
-	[Théorème de décomposition en éléments simples sur $\mathbf{\C}$]
+	[Théorème de décomposition en éléments simples sur $\mathbf{\C(X)}$]
 	Soit $F \in \mathbbm{K}(X)$, $F = \frac{P}{Q}$ la forme irréductible de $F$. On note $(z_1, \ldots, z_p)$ les racines complexes de $Q$ et $(\mu_1, \ldots, \mu_p)$ leur multiplicité.
 
 	Alors,
@@ -237,13 +237,206 @@
 			&= \frac{(X-i)(X+i)(2X+5)}{2(X-i)^2(X+i)^2} \\
 			&= \frac{2X+5}{2(X-i)(X+i)} \\
 		\end{align*}
-	\end{landscape}
 
-	Donc, \[
-		\begin{cases}
-			g = \frac{2i + 5}{2\times 2i} = \frac{(2i+5)i}{-4} = \frac{2 - 5i}{4}\\
-			~\\
-			h = \frac{2(-i) + 5}{2(-2i)} = \frac{2 + 5i}{4}
-		\end{cases}
-	\]
+		Donc, \[
+			\begin{cases}
+				g = \frac{2i + 5}{2\times 2i} = \frac{(2i+5)i}{-4} = \frac{2 - 5i}{4}\\
+				~\\
+				h = \frac{2(-i) + 5}{2(-2i)} = \frac{2 + 5i}{4}
+			\end{cases}
+		\]
+	\end{landscape}
 \end{exm}
+
+\begin{prv}
+	On suppose $\frac{P}{Q}\not\in \C[X]$. On peut supposer $Q$ unitaire.
+
+	\begin{itemize}
+		\item[\underline{\sc Existence}] D'après le lemme 1, il existe $E \in \C[X]$, $G \in \C(X)$ tels que \[
+				\begin{cases}
+					\frac{P}{Q} = E + G\\
+					\deg(G) < 0
+				\end{cases}
+			\] Soit $\frac{A}{B}$ la forme irréductible de $G$ avec $B$ unitaire ($A\wedge B=1$ et $A\neq 0$).
+			\[
+				\frac{P}{Q} = E + \frac{A}{B}
+			\] donc \[
+				PB = EBQ + AQ \qquad (*)
+			\] donc \[
+				AQ = PB - EBQ
+			\] donc \[
+				A  \mid B (P-EQ)
+			\] D'après le théorème de Gauss, \[
+				A  \mid P - EQ
+			\] Soit $R \in \C[X]$ tel que \[
+				AR = P - EQ
+			\] D'où \[
+				\frac{AR}{Q} = \frac{P}{Q}-E = \frac{A}{B}
+			\] D'où \[
+				\frac{R}{Q} = \frac{1}{B}
+			\] donc $B \mid Q$.\\
+			De $(*)$, on a aussi \[
+				P  \mid Q (EB+A)
+			\] Or, $P\wedge Q = 1$. Donc \[
+				P \mid EB + A
+			\] Soit $S \in \C[X]$ tel que \[
+				PS = EB + A
+			\] Donc \[
+				\frac{PS}{B} = E + \frac{A}{B} = \frac{P}{Q}
+			\] Donc \[
+				\frac{S}{B} = \frac{1}{Q}
+			\] et donc $Q \mid B$ \\
+			Donc $Q = B$ (car ils sont unitaires).\\
+			Donc $G = \frac{A}{Q}$.\\
+			Or, \[
+				Q = \prod_{j=1}^{p} (X - z_j)^{\mu_j}
+			\] \[
+				\forall j \neq k, (X - z_j)^{\mu_j} \wedge (X - z_k)^{\mu_k} = 1
+			\] D'après le lemme 2, il existe $(A_1, \ldots, A_p) \in \C[X]^p$ tel que \[
+				\begin{cases}
+					\frac{A}{Q} = \sum_{j=1}^p \frac{A_j}{(X-z_j)^{\mu_j}}\\
+					\forall j\in \left\llbracket 1, p \right\rrbracket, \deg(A_j) < \mu_j
+				\end{cases}
+			\] Soit $j \in \left\llbracket 1,p \right\rrbracket$. D'après le lemme 3, \[
+				\frac{A_j}{(X-z_j)^{\mu_j}} = \frac{a_{j, \mu_j}}{(X-z_j)^{\mu_j}}
+				+ \frac{A_{j,1}}{(X-z_j)^{\mu_j - 1}}
+			\] avec \[
+				\begin{cases}
+					a_{j, \mu_j} \in \C\\
+					A_{j,1} \in \C_{\mu_j-2}[X]
+				\end{cases}
+			\] En itérant ce procédé, on trouve $(a_{j, \mu_j}, \ldots, a_{j,1}) \in \C^{\mu_j}$ tel que \[
+				\frac{A_j}{(X-z_j)^{\mu_j}} = \sum_{k=1}^{\mu_j} \frac{a_{j, k}}{(X-z_j)^k}
+			\] D'où \[
+				\frac{P}{Q} = E + \underbrace{\sum_{j=1}^p \sum_{k=1}^{\mu_j} \frac{a_{j,k}}{(X-z_j)^k}}_{\deg(\quad) < 0}
+			\] 
+		\item[\underline{\sc Unicité}] Soit $E_1 \in \C[X]$ et $(b_{j,k})_{\substack{1\le j\le p\\1\le k\le \mu_j}} \in \C^{\sum_{j=1}^p \mu_j}$ tels que \[
+				\frac{P}{Q} = E_1 + \underbrace{\sum_{j=1}^p \sum_{k=1}^{\mu_j} \frac{b_{j,k}}{(X-z_j)^k}}_{\deg(\quad) < 0}
+			\]
+			D'après le lemme 1, \[
+				E = E_1 \et \sum_{j=1}^p \sum_{k=1}^{\mu_j} \frac{a_{j,k}}{(X - z_j)^k} = \sum_{j=1}^p \sum_{k=1}^{\mu_j} \frac{b_{j,k}}{(X- z_j)^k}
+			\]
+			\begin{align*}
+				\forall j \in \left\llbracket 1,p \right\rrbracket,\\
+				\sum_{k=0}^{\mu_j}& \frac{b_{j,k}}{(X-z_j)^k} = \frac{\sum_{k=1}^{\mu_j} b_{j,k}(X-z_j)^{\mu_j-k}}{(X-z_j)^{\mu_j}}\\
+				&\qquad\vrt=\\
+				\sum_{k=1}^{\mu_j}& \frac{a_{j,k}}{(X-z_j)^k} = \frac{\sum_{k=1}^{\mu_j}a_{j,k} (X - z_j)^{\mu_j- k}}{(X-z_j)^{\mu_j}}
+			\end{align*}
+			Donc, \[
+				\sum_{k=1}^{\mu_j} a_{j,k} (X-z_j)^k = \sum_{k=1}^{\mu_j} b_{j,k}(X-z_j)^k
+			\] Comme $\left( X - z_j, (X-z_j)^2, \ldots, (X - z_j)^{\mu_j} \right)$ est libre dans $\C[X]$, \[
+				\forall k \in \left\llbracket 1,\mu_j \right\rrbracket, b_{j,k} = a_{j,k}
+			\]
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	[Théorème de décomposition en éléments simples sur $\R(X)$]
+	Soit $(P,Q) \in \R[X]^2,~P\wedge Q = 1,~Q$ unitaire, $Q \not\in \{0,1\}$. On pose \[
+		Q = \prod_{i=1}^p (X - a_i)^{\mu_i} \prod_{k=1}^q (X^2 + \alpha_k X + \beta_k)^{\nu_k}
+	\] avec \[
+		\begin{cases}
+			p \in \N, q \in \N,\\
+			(a_1, \ldots, a_p) \in \R^p\\
+			(\alpha_1, \ldots, \alpha_q, \beta_1, \ldots, \beta_q) \in \R^{2q}\\
+			(\mu_1, \ldots, \mu_p, \nu_1, \ldots, \nu_p) \in \N^{p+q}\\
+			\forall j \in \left\llbracket 1, q \right\rrbracket, \alpha_k^2 - 4\beta_k < 0
+		\end{cases}
+	\] Alors
+	\begin{align*}
+		\exists! (E, &\gamma_{1,1}, \ldots, \gamma_{1,\mu_1}, \gamma_{2,1}, \ldots, \gamma_{2, \mu_2}, \ldots, \gamma_{p,1}, \ldots, \gamma_{p, \mu_p},\\
+		&\delta_{1,1}, \ldots, \delta_{1,\nu_1}, \delta_{2,1}, \ldots, \delta_{2, \nu_2}, \ldots, \delta_{q,1}, \ldots, \delta_{q, \nu_q},\\
+		&\varepsilon_{1,1}, \ldots, \varepsilon_{1,\nu_1}, \varepsilon_{2,1}, \ldots, \varepsilon_{2, \nu_2}, \ldots, \varepsilon_{q,1}, \ldots, \varepsilon_{q, \nu_q})\\
+		\!\!\!&\in \R[X] \times \R^{\mu_1 + \cdots + \mu_p} \times \R^{2(\nu_1 + \cdots + \nu_q)}
+	\end{align*}
+	\begin{align*}
+		\frac{P}{Q} = E + & \sum_{i=1}^p \sum_{j=1}^{\mu_i} \frac{\gamma_{i,j}}{(X-a_i)^j}\\
+		&+ \sum_{k=1}^{q} \sum_{j=1}^{\nu_k} \frac{\delta_{k,j}X + \varepsilon_{k,j}}{\left( X^2 + \alpha_k X + \beta_k \right)^j}
+	\end{align*}
+	\qed
+\end{thm}
+
+\begin{defn}
+	Soit $F \in \C(X)$. Soient $(P,Q) \in \C[X]^2$ tels que $\begin{cases}
+		P\wedge Q = 1\\
+		F = \frac{P}{Q}
+	\end{cases}$.\\
+	Les racines de $P$ sont appelées \underline{zéros de $F$}\\
+	Les racines de $Q$ sont appelées \underline{pôles de $F$}\\
+\end{defn}
+
+\begin{prop}
+	Soit $F \in \C(X)$ et $z \in \C$ un pôle simple de $F$. Le coefficiant devant $\frac{1}{X - z}$ dans la décomposition en éléments simples de $F$ est $\frac{P(z)}{Q'(z)}$.
+\end{prop}
+
+\begin{prv}
+	Soit $(P,Q) \in \C[X]^2$ tels que \[
+		\begin{cases}
+			F = \frac{P}{Q}\\
+			P\wedge Q = 1\\
+			Q \text{ unitaire}
+		\end{cases}
+	\] On pose \[
+		Q = (X - z) \prod_{i = 1}^q (X - z_i)^{\mu_i}
+	\] où $z_1, \ldots, z_q$ sont les racines distinctes de $z$ du polynôme $Q$. Donc, \[
+		\frac{P}{Q} = F = \frac{a}{X-z} + \sum_{i=1}^{q} \sum_{k=1}^{\mu_i} \frac{b_{i,k}}{(X-z_i)^k}
+	\] avec $a, \left( b_{i,k} \right)_{\substack{1\le i\le q\\1\le k \le \mu_i}}$ des nombres complexes.\\
+	On muliplie par $X-z$. \[
+		\frac{P}{\displaystyle\prod_{i=1}^q (X-z_i)^{\mu_i}} = a + (X-z) \sum_{i=1}^q \sum_{k=1}^{\mu_i} \frac{b_{i,k}}{(X-z_i)^k}
+	\] On remplace $X$ par $z$. \[
+		\frac{P(z)}{\displaystyle\prod_{i=1}^q (z - z_i)^{\mu_i}} = a
+	\] Or, \[
+		Q = (X-z) \prod_{i=1}^{q} (X-z_i)^{\mu_i}
+	\] D'où \[
+		Q' = \prod_{i=1}^q (X-z_i)^{\mu_i} + (X-z)\left( \prod_{i=1}^q (X-z_i)^{\mu_i} \right)'
+	\] Don \[
+		Q'(z) = \prod_{i=1}^q (z - z_i)^{\mu_i}
+	\] Donc \[
+		a = \frac{P(z)}{Q'(z)}
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $P \in \C[X]$ avec $\deg(P)\ge 1$, $(z_1, \ldots, z_p)$ les racines de $P$, $\mu_1, \ldots, \mu_p$ leur multiplicité. Alors \[
+		\frac{P'}{P} = \sum_{i=1}^p \frac{\mu_i}{X-z_i}
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose \[
+		P = \alpha \prod_{i=1}^p (X-z_i)^{\mu_i}
+	\] Donc \[
+		P' = \alpha \sum_{i=1}^p \left( \prod_{j\neq i} (X - z_j)^{\mu_j} \right)\mu_i (X-z_i)^{\mu_i-1}
+	\] D'où
+	\begin{align*}
+		\frac{P'}{P} &= \frac{\cancel\alpha \sum_{i=1}^p \mu_i (X-z_i)^{\mu_i-1} \prod_{j\neq i}(X-z_j)^{\mu_j}}{\cancel\alpha \prod_{i=1}^p (X-z_i)^{\mu_i}}\\
+		&= \sum_{i=1}^p \mu_i \frac{(X-z_i)^{\mu_i - 1} \prod{j\neq i}) (X - z_j)^{\mu_j}}{\prod_{j=1}^p (X - z_j)^{\mu_j}} \\
+		&= \sum_{i=1}^p \mu_i \frac{1}{X-z_i} \\
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	Il existe un ``truc'' pour retenir cette formule : \[
+		\frac{P'}{P} = \underbrace{\ln(P)'}_{\mathclap{\text{n'existe pas !}}}
+		 = \left(\ln\left( \alpha \prod_{i=1}^p (X-z_i)^{\mu_i} \right)\right)'
+		 = \left( \sum_{i=1}^p \mu_i \ln(X-z_i) \right)'
+		 = \sum_{i=1}^p \mu_i \frac{1}{X-z_i}
+	\]
+\end{rmk}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

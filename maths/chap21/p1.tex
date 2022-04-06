@@ -1,0 +1,56 @@
+\part{Matrices d'un vecteur}
+
+Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension finie $n$. Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$.\\
+\vspace{5mm}
+
+\begin{defn}
+	Soit $x \in E$. On sait qu'il existe un unique $n$-uplet $(x_1, \ldots, x_n) \in \mathbbm{K}^n$ tel que \[
+		x = \sum_{i=1}^n x_i e_i
+	\]
+	La \underlin{matrice de $x$ dans la base $\mathcal{B}$} est la colonne \[
+		\Mat_\mathcal{B}(x) = \begin{pmatrix}
+			x_1\\
+			x_2\\
+			\vdots\\
+			x_n
+		\end{pmatrix}.
+	\]
+\end{defn}
+
+\begin{rmk}
+	En général, si  $\mathcal{B}$ et $\mathcal{B}'$ sont 2 bases différentes, alors $\Mat_{\mathcal{B}}(x) \neq \Mat_{\mathcal{B}'}(x)$.
+\end{rmk}
+
+\begin{exm}
+	$E = \R_3[X]$, $\mathbbm{K} = \R$, $\mathcal{B} = (1, X, X^2, X^3)$ et \\
+	\begin{align*}
+		\mathcal{C} &= \left( \frac{X(X-1)(X-2)}{6}, -\frac{X(X-1)(X-3)}{2},\right.\\
+			&\left.\frac{X(X-2)(X-3)}{2}, -\frac{(X-1)(X-2)(X-3)}{6} \right)
+	\end{align*}
+	
+	\[
+		P = X^2-X+1
+	\]
+
+	\[
+		\Mat_\mathcal{B}(P) = \begin{pmatrix}
+			1\\
+			-1\\
+			1\\
+			0
+		\end{pmatrix}
+	\]
+	\begin{align*}
+		P &= P(3) \frac{X(X-1)(X-2)}{6} + P(2) \frac{-X(X-1)(X-3)}{2}\\
+			&+ P(1) \frac{X(X-2)(X-3)}{2} + P(0) \frac{-(X-1)(X-2)(X-3)}{6}
+	\end{align*}
+
+	\[
+		\Mat_{\mathcal{B}'}(P) = \begin{pmatrix}
+			7\\
+			3\\
+			1\\
+			1\\
+		\end{pmatrix}
+	\]
+\end{exm}

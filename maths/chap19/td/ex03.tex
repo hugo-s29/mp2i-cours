@@ -1,0 +1,97 @@
+\part{Exercice 3}
+
+$E = \R^4$ et $f: E \to E$ linéaire.
+
+\begin{enumerate}
+	\item $u = (x,y,z,t) \in E$ donc \[
+			u = xe_1 + ye_2 + ze_3 + te_4\\
+		\] donc
+		\begin{align*}
+			f(u) &= f(xe_1 + ye_2 + ze_3 + te_4)\\
+			&= xf(e_1) + yf(e_2) + zf(e_3) + tf(e_4) \\
+			&= x(1,1,1,1) + y(1,2, 1, 1) + z(2, 3, 2, 2) + t(-1, -2, -1, -1) \\
+			&= (x + y + 2z - t, x + 2y + 3z -2t, x + y + 2z - t, x + y + 2z - t) \\
+		\end{align*}
+		\begin{rmk}
+			\[
+				\begin{pmatrix}
+					1&1&2&-1\\
+					1&2&3&-2\\
+					1&1&2&-1\\
+					1&1&2&-1
+				\end{pmatrix}
+				\begin{pmatrix}
+					x\\y\\z\\t
+				\end{pmatrix} = \begin{pmatrix}
+					x+y+2z-t\\
+					x+2y+3z-2t\\
+					x+y+2z-t\\
+					x+y+2z-t\\
+				\end{pmatrix} 
+			\]
+		\end{rmk}
+	\item Soit $u = (x,y,z,t) \in E$.
+		\begin{align*}
+			u \in \Ker(f) \iff& f(u) = (0,0,0,0)\\
+			\iff& \begin{cases}
+				x+y+2z-t=0\\
+				x+2y+3z-2t=0\\
+				x+y+2z-t=0\\
+				x+y+2z-t=0\\
+			\end{cases}\\
+			\iff& \begin{cases}
+				x+2y+3z-2t=0\\
+				x+y+2z-t=0\\
+			\end{cases}\\
+			\begin{array}{c}
+				\iff\\
+				L_2\leftarrow L_2 - L_1
+			\end{array}&\begin{cases}
+				\bx x + y + 2z  -t = 0\\
+				\bx y + z - t = 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				x = -z\\
+				y = -z + t
+			\end{cases}\\
+			\iff& u = (-z, -z + t, z, t)\\
+			\phantom{\iff}& \phantom{u} = z\underbrace{(-1, -1, 1, 0)}_{v_1} + t\underbrace{(0,1,0,1)}_{v_2}\\
+			\iff& u \in \Vect(v_1, v_2)
+		\end{align*}
+		Or, $(v_1, v_2)$ est libre donc c'est une base de $\Ker(f)$.\\
+		\[
+			\mathrm{Im}(f) = \Vect\big(f(e_1), f(e_2), f(e_3), f(e_4)\big)
+		\] Or, $\rg(f) = 4 - 2 = 2$\\
+		Donc $\big(f(e_1), f(e_2)\big)$ est libre dans $\mathrm{Im}(f)$ donc c'est une base de $\mathrm{Im}(f)$ 
+	\item $\Ker(f) \neq \{0\}$ donc $f$ n'est pas injective donc pas bijective.
+	\item
+		\begin{align*}
+			\forall (x,y,z,t) \in E, f((x,y,z,t)) = (&x + y + 2z - t, x + 2y + 3z -2t,\\
+			&x + y + 2z - t, x + y + 2z - t) \\
+		\end{align*}
+		Soit $(\alpha, \beta, \gamma, \delta)$.
+		\begin{align*}
+			(\alpha, \beta, \gamma, \delta) \in \mathrm{Im}(f) \iff& \exists (x,y,z,t) \in E,
+			(\alpha, \beta, \gamma, \delta) = f\big((x,y,z,t)\big)\\
+			\iff& \exists (x,y,z,t) \in E, \begin{cases}
+				x + y + 2z - t = \alpha\\
+				x + 2y + 3z - 2t = \beta\\
+				x + y + 2z - t = \gamma\\
+				x + y + 2z - t = \delta\\
+			\end{cases}\\
+			\iff& \exists (x,y,z,t)\in E \begin{cases}
+				\bx x + y + 2z - t = \alpha\\
+				\bx y + z - t = \beta - \alpha\\
+				0 = \gamma - \alpha\\
+				0 = \delta - \alpha
+			\end{cases}\\
+			\iff& \begin{cases}
+				\gamma - \alpha = 0\\
+				\delta - \alpha = 0
+			\end{cases}\\
+			\iff& (\alpha, \beta, \gamma, \delta) = (\alpha, \beta, \alpha, \alpha)\\
+			\phantom{\iff}& \phantom{(\alpha, \beta, \gamma, \delta)} = \alpha (1, 0, 1, 1) + \beta (0, 1, 0, 0)
+		\end{align*}
+		Une base de $\mathrm{Im}(f)$ est $\big((1,0,1,1),(0,1,0,0)\big)$.
+\end{enumerate}
+

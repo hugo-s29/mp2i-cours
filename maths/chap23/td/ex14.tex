@@ -1,0 +1,53 @@
+\part{Exercice 14}
+
+\newcommand{\stirling}[2]{\left\{\begin{array}{c}#1\\#2\end{array}\right\}}
+
+\subsection*{Partie I. Les nombres de Bell}
+
+\begin{enumerate}
+	\item On a $b_3 = 1 + 3 + 1 = 5$.
+	\item
+		\begin{enumerate}
+			\item par définition d'une partition !
+			\item On pose $B(E)$ l'ensemble des partitions de $E$. Donc,\[
+					B(\left\llbracket 1,n+1 \right\rrbracket) = \bigcupdot_{\substack{P \in \mathcal{P}(\left\llbracket 1,n+1 \right\rrbracket)\\ n+1 \in P}}\big(\underbrace{\big\{\{P_1,\ldots,P_\s\} \in B_n \mid \exists i, P = P_i\big\}}_{A_p^{n+1}}\big)
+				\]
+				L'application $\begin{array}{rcl}
+					A_p^{n+1} &\longrightarrow& B\big(\left\llbracket 1,n+1 \right\rrbracket \setminus P\big)  \\
+					\{P_1, \ldots, P_\s\}  &\longmapsto& \{P_i  \mid P_i \neq P\}
+				\end{array}$ est une bijection.
+				%todo
+
+				On a donc
+				\begin{align*}
+					b_{n+1} &= \sum_{\substack{P \in \mathcal{P}(\left\llbracket 1,n+1 \right\rrbracket)\\n+1 \in P}} b_{n+1 - \#P}\\
+					&= \sum_{i=1}^{n+1} \sum_{\substack{P \in \mathcal{P}(\left\llbracket 1,n+1 \right\rrbracket)\\n+1 \in P\\\#P = i}} b_{n+1 - i}\\
+					&= \sum_{i=1}^{n+1} {n \choose i-1}b_{n+1-i} \\
+					&= \sum_{k=0}^n {n \choose k} b_{n-k} \\
+					&= \sum_{k=0}^n {n \choose n-k} b_{n-k} \\
+					&= \sum_{k=0}^n {n \choose k} b_k .\\
+				\end{align*}
+			\item
+				\begin{align*}
+					b_3 &= \sum_{k=0}^2 {2 \choose k} b_k\\
+					&= b_0 + 2b_1 + b_2 \\
+					&= 1 + 2\times 1 + 2 = 5 \\[3mm]
+					b_4 &= \sum_{k=0}^3 {3 \choose k} b_k = b_0 + 3b_1 + 3b_2 + b_3\\
+					&= 1 + 3 + 3 \times 2 + 5 \\
+					&= 15 \\[3mm]
+					b_5 &= \sum_{k=0}^4 {4 \choose k} b_k \\
+					&= b_0 + 4b_1 + 6b_2 + 4b_3 + b_4 \\
+					&= 1 + 4 + 12 + 20 + 15 \\
+					&= 52.
+				\end{align*}
+			\item
+				\begin{align*}
+					b_{n+1} = \sum_{k=0}^n {n \choose k} b_k  \ge {n \choose n - 1} b_{n-1} = nb_{n-1}
+				\end{align*}
+
+				$b^2_{2k+1} \ge b_{2k} b_{2k+1} \ge (2k)!$\\
+				$b_{2k+1} = \sqrt{(2k)!}$
+		\end{enumerate}
+\end{enumerate}
+
+

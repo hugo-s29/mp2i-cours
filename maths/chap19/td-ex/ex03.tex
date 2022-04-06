@@ -1,0 +1,24 @@
+\part{Exercice 3}
+
+\begin{enumerate}
+	\item On sait que $(x,y,z,t) = xe_1 + ye_2 + ze_3 + te_4$. Et comme $f$ est linéaire,
+		\begin{align*}
+			f\big((x,y,z,t)\big) &= xf(e_1) + yf(e_2) + zf(e_3) + tf(e_4)\\
+			&= e_1(x+y+2z-t) + e_2(x + 2y + 3z - 2t) + e_3(x+y+2z-t) + e_4(x+y+2z-t)\\
+			&= (x+y+2z-t, x+2y+3z-2t, x+y+2z-t, x+y+2z-t) \\
+		\end{align*}
+	\item
+		\begin{align*}
+			xe_1 + ye_2 + ze_3 + te_4 = u \in \Ker(f) \iff& f(u) = (0,0,0,0)\\
+			\iff& \begin{cases}
+				x+y+2z-t = 0\\
+				x+2y+3z-2t = 0
+			\end{cases}\\
+			\iff&\begin{cases}
+				t = y + z\\
+				x + y + 2z - y - z = 0\\
+			\end{cases}\\
+			\iff& x + z = 0 \et t = z\\
+			\iff& z = t = -x
+		\end{align*}
+\end{enumerate}

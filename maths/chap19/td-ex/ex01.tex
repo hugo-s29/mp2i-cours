@@ -1,0 +1,54 @@
+\part{Exercice 1}
+
+$E = \mathbbm{K}_3[X]$ et \begin{align*}
+	\varphi: E &\longrightarrow \mathbbm{K}[X] \\
+	P &\longmapsto XP' - P
+\end{align*}
+
+\begin{enumerate}
+	\item Soient $P,Q \in E$ et $\lambda, \mu \in \mathbbm{K}$.
+		\begin{align*}
+			\varphi(\lambda P + \mu Q) &= X(\lambda P + \mu Q)' - (\lambda P + \mu Q) \\
+			&= \lambda (XP' - P)  + \mu(XQ' - Q) \\
+			&= \lambda \varphi(P) + \mu \varphi(Q) \\
+		\end{align*}
+	\item
+		\begin{align*}
+			aX^3 + bX^2 + cX + d = P \in \Ker(\varphi) \iff& \varphi(P) = 0\\
+			\iff& XP' - P = 0\\
+			\iff& XP' = P\\
+			\iff& X(3aX^2 + 2bX + c) = aX^3 + bX^2+ cX + d\\
+			\iff& 3aX^3 + 2bX^2 + cX = aX^3 + bX^2 + cX + d\\
+			\iff& \begin{cases}
+				3a = a\\
+				2b = b\\
+				c = c\\
+				d = 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				a = 0\\
+				b = 0\\
+				d = 0
+			\end{cases}
+		\end{align*}
+		Donc $\mathcal{B} = (X)$ est une base de $\Ker(\varphi)$ \\
+		Comme $\dim(\Ker \varphi) = 1$ et $\dim\ E= 4$,  \[
+			\dim(\mathrm{Im}\, \varphi) = 3
+		\]
+		$\mathcal{L} = (1, X^2, X^3)$ est libre car 
+		
+		\begin{align*}
+			\varphi(aX^3 + bX^2 + c) = 0 \iff& 3aX^3 + 2bX^2 = aX^3 + bX^2 + c\\
+			\iff&\begin{cases}
+				3a = a\\
+				2b = b\\
+				0 = c
+			\end{cases}\\
+			\iff&\begin{cases}
+				a = 0\\
+				b = 0\\
+				c = 0
+			\end{cases}
+		\end{align*}
+\end{enumerate}
+

@@ -1,0 +1,90 @@
+\part{Généralités}
+
+\begin{defn}
+	Soient $I$ un \underline{intervalle} de $\R$, $f$ une fonction continue et $a,b \in I$.
+
+	On définit \underline{l'intégrale de $f$} de $a$ à $b$ par \[
+		\int_{a}^{b} f(x)~\mathrm{d}x = \big[F(x)\big]_a^b = F(b) - F(a)
+	\] où $F$ est une primitive quelconque de $f$.
+
+	La variable $x$ est \underline{muette}: \[
+		\int_{a}^{b} f(x)~\mathrm{d}x = \int_{a}^{b} f(u)~\mathrm{d}u = \int_{a}^{b} f(t)~\mathrm{d}t = \int_{a}^{b}  f(\text{\ding{96}})~\mathrm{d}\text{\ding{96}} \neq \int_{a}^{b} f({\color{red}x})~\mathrm{d}{\color{red}t}
+	\] 
+\end{defn}
+
+\begin{prop}[Croissance]
+	Soient $f$ et $g$ continues sur $I$, $a,b \in I^2$ tels que $\begin{cases}
+		\forall x \in I, f(x) \le g(x),\\
+		a \le b.
+	\end{cases}$
+
+	Alors \[
+		\int_{a}^{b} f(x)~\mathrm{d}x \le \int_{a}^{b} g(x)~\mathrm{d}x. 
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose, pour tout $x \in I$, $h(x) = g(x) - f(x) \ge 0$. $h$ est continue sur $I$.
+
+	Soit $H$ une primitive de $h$ sur $I$. Donc
+	\begin{align*}
+		\int_{a}^{b} f(x)~\mathrm{d}x - \int_{a}^{b} f(x)~\mathrm{d}x &= \int_{a}^{b} \big(f(x)-g(x)\big) ~\mathrm{d}x \\
+		&= -\int_{a}^{b} h(x)~\mathrm{d}x  \\
+		&= H(a) - H(b) \\
+	\end{align*}
+
+	Or, $h = H' \ge 0$ donc $H$ est croissante sur $I$. Comme $b \ge a$, $H(b) \ge H(a)$ et donc $\int_{a}^{b} f(x)~\mathrm{d}x -\int_{a}^{b} g(x)~\mathrm{d}x \le 0$.
+\end{prv}
+
+\begin{prop}[Linéarité]
+	Soient $f$ et $g$ continues sur $I$, $\alpha, \beta \in \R$ et $a, b \in \R$.
+	Alors, \[
+		\int_{a}^{b} \big(\alpha\,f(x) + \beta\,g(x)\big) ~\mathrm{d}x = \alpha\int_{a}^{b} f(x)~\mathrm{d}x + \beta \int_{a}^{b} g(x)~\mathrm{d}x.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soient $F$ et $G$ deux primitives sur $I$ de $f$ et $g$ respectivement.
+
+	$\alpha F + \beta G$ est un primitive de $\alpha f + \beta g$ sur $I$ car
+	\[(\alpha F + \beta G)' = \alpha F' + \beta G' = \alpha f + \beta g.\]
+
+	D'où
+	\begin{align*}
+		\int_{a}^{b} \big(\alpha f(x) + \beta(g)\big) ~\mathrm{d}x &= (\alpha F + \beta G)(b) - (\alpha F + \beta G)(a) \\
+		&= \alpha F(b) + \beta G(b) - \alpha F(b) - \beta G(a) \\
+		&= \alpha\big(F(b) - F(a)\big) + \beta\big(G(b) - G(a)\big) \\
+		&= \alpha \int_{a}^{b} f(x)~\mathrm{d}x + \beta \int_{a}^{b} g(x)~\mathrm{d}x. \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}[Chasles]
+	Soit $f$ continue sur un interval $I$, $a,b,c \in I$. Alors \[
+		\int_{a}^{b} f(x)~\mathrm{d}x = \int_{a}^{c} f(x)~\mathrm{d}x + \int_{c}^{b} f(x)~\mathrm{d}x.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $F$ une primitive de $f$ sur $I$. Alors,
+	\begin{align*}
+		\int_{a}^{c} f(x)~\mathrm{d}x + \int_{b}^{c} ~\mathrm{d}x &= F(c) - F(a) + F(b) - F(c) \\
+		&= F(b) - F(a) \\
+		&= \int_{a}^{b} f(x)~\mathrm{d}x. \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $f$ positive et continue sur un interval $I$, $(a,b) \in I^2$ avec $a \le b$. Alors \[
+		\int_{a}^{b} f(x)~\mathrm{d}x = 0 \iff\forall x \in [a,b], f(x) = 0.
+	\]
+\end{prop}
+
+\begin{prv} Soit $F$ une primitive de $f$.
+	\begin{itemize}
+		\item[``$\implies$''] On suppose que $\int_{a}^{b} f(x)~\mathrm{d}x = 0$. Donc $F(b) = F(a)$.
+
+			Comme $F' = f \ge 0$, $F$ est croissante.
+	\end{itemize}
+\end{prv}
+
+

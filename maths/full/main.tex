@@ -8,6 +8,7 @@
 }
 
 \renewcommand{\part}[1]{\section{#1}}
+\AtBeginDocument{\fulltrue}
 
 \makeatother
 
@@ -60,6 +61,9 @@
 	\input{../chap01/p1.tex}
 	\input{../chap01/p2.tex}
 	\input{../chap01/p3.tex}
+	\input{../chap01/p4.tex}
+	\input{../chap01/p5.tex}
+	\input{../chap01/p6.tex}
 
 	\chap[02]{Nombres complexes}
 	\renewcommand{\cwd}{../chap02}
@@ -71,7 +75,13 @@
 
 	\chap[03]{Étude de fonctions}
 	\renewcommand{\cwd}{../chap03}
+	\input{../chap03/p0.tex}
 	\input{../chap03/p1.tex}
+	\input{../chap03/p2.tex}
+
+	\chap[05]{Calcul intégral}
+	\renewcommand{\cwd}{../chap05}
+	\input{../chap05/p1.tex}
 
 	\chap[06]{Équations différentielles linéaires}
 	\renewcommand{\cwd}{../chap06}
@@ -168,4 +178,13 @@
 	\chap[23]{Dénombrement}
 	\renewcommand{\cwd}{../chap23}
 	\input{../chap23/p1.tex}
+	\input{../chap23/p2.tex}
+	\input{../chap23/p3.tex}
+
+	\chap[24]{Groupe symétrique}
+	\renewcommand{\cwd}{../chap24}
+	\input{../chap24/p0.tex}
+	\input{../chap24/p1.tex}
+	\input{../chap24/p2.tex}
+	\input{../chap24/p3.tex}
 \end{document}

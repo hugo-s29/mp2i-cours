@@ -1,0 +1,189 @@
+\part{Transpositions}
+
+\begin{defn}
+	Une \underline{transposition} est un cycle de longueur 2 : $\begin{pmatrix}
+		a&b
+	\end{pmatrix}$ avec $a \neq b$.
+\end{defn}
+
+\begin{exm}
+	Avec $n = 5$ et $\gamma = \begin{pmatrix}
+		2&4&1
+	\end{pmatrix}$.
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(5cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			draw_cycle((-1,0), 0.8, 1, 2, 4);
+			draw_cycle((1,0), 0.3, 3);
+			draw_cycle((2,0), 0.3, 5);
+		\end{asy}
+	\end{figure}
+
+	\[
+		\gamma = \begin{pmatrix}
+			1&4
+		\end{pmatrix} \begin{pmatrix}
+			1&2
+		\end{pmatrix}
+	\]
+
+	Avec $n = 6$ et $\gamma = \begin{pmatrix}
+		1&3&5&6&2
+	\end{pmatrix} = \begin{pmatrix}
+		1&2&3&4&5&6\\
+		3&1&5&4&6&2
+	\end{pmatrix}$.
+
+	Donc, \[
+		\gamma = \begin{pmatrix}
+			1&2
+		\end{pmatrix} \begin{pmatrix}
+			1&6
+		\end{pmatrix} \begin{pmatrix}
+			1&5
+		\end{pmatrix} \begin{pmatrix}
+			1&3
+		\end{pmatrix}
+	\] 
+	\[
+		\begin{pmatrix}
+			1&2&3&4&5&6\\
+			3&2&1&4&5&6\\
+			3&2&5&4&1&6\\
+			3&2&5&4&6&1\\
+			3&1&5&4&6&2\\
+		\end{pmatrix}
+	\]
+
+	Et, \[
+		\gamma = \begin{pmatrix}
+			1&3
+		\end{pmatrix} \begin{pmatrix}
+			2&3
+		\end{pmatrix} \begin{pmatrix}
+			3&5
+		\end{pmatrix} \begin{pmatrix}
+			5&6
+		\end{pmatrix} 
+	\]
+
+	\[
+		\begin{pmatrix}
+			1&2&3&4&5&6\\
+			1&2&3&4&6&5\\
+			1&2&5&4&6&3\\
+			1&3&5&4&6&2\\
+			3&1&5&4&6&2\\
+		\end{pmatrix} 
+	\] 
+\end{exm}
+
+\begin{exm}
+	\[
+		\begin{pmatrix}
+			1&4
+		\end{pmatrix} = \begin{pmatrix}
+			1&2
+		\end{pmatrix} \begin{pmatrix}
+			2&3
+		\end{pmatrix} \begin{pmatrix}
+			3&4
+		\end{pmatrix} \begin{pmatrix}
+			2&3
+		\end{pmatrix} \begin{pmatrix}
+			1&2
+		\end{pmatrix}
+	\]
+	On n'a pas toujours le même nombre de transpositions mais la parité du nombre reste la même (proposition plus loin).
+\end{exm}
+
+\begin{thm}
+	Toute permutation se décompose en produit de transpositions.
+\end{thm}
+
+\begin{prv}
+	Soit $\gamma = \begin{pmatrix}
+		a_1&\cdots&a_k
+	\end{pmatrix}$ un $k$-cycle.
+
+	On remarque que
+	\[
+		\gamma = \begin{pmatrix}
+			a_1&a_k
+		\end{pmatrix} \cdots \begin{pmatrix}
+			a_1&a_4
+		\end{pmatrix} \begin{pmatrix}
+			a_1&a_3
+		\end{pmatrix} \begin{pmatrix}
+			a_1&a_2
+		\end{pmatrix}
+	\] C'est un produit de transpositions.
+\end{prv}
+
+\begin{exm}
+	Avec $n = 10$ et $\sigma = \begin{pmatrix}
+		1&2&3&4&5&6&7&8&9&10\\
+		9&8&1&7&2&3&4&5&10&6
+	\end{pmatrix}$.
+
+	On a
+	\begin{align*}
+		\sigma &= \begin{pmatrix}
+			1&9&10&6&3
+		\end{pmatrix} \begin{pmatrix}
+			2&8&5
+		\end{pmatrix} \begin{pmatrix}
+			4&7
+		\end{pmatrix}\\
+		&= \begin{pmatrix}
+			1&3
+		\end{pmatrix} \begin{pmatrix}
+			1&6
+		\end{pmatrix} \begin{pmatrix}
+			1&10
+		\end{pmatrix} \begin{pmatrix}
+			1&9
+		\end{pmatrix} \begin{pmatrix}
+			2&5
+		\end{pmatrix} \begin{pmatrix}
+			2&8
+		\end{pmatrix} \begin{pmatrix}
+			4&7
+		\end{pmatrix} \\
+	\end{align*}
+
+	Vérification : \[
+		\begin{pmatrix}
+			1&2&3&4&5&6&7&8&9&10\\
+			1&2&3&7&5&6&4&8&9&10\\
+			1&8&3&7&5&6&4&2&9&10\\
+			1&8&3&7&2&6&4&5&9&10\\
+			9&8&3&7&2&6&4&5&1&10\\
+			9&8&3&7&2&6&4&5&10&1\\
+			9&8&3&7&2&1&4&5&10&6\\
+			9&8&1&7&2&3&4&5&10&6\\
+		\end{pmatrix} 
+	\] 
+\end{exm}

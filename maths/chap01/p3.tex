@@ -9,7 +9,7 @@
 		&= a_{11} \\
 		&+ a_{21} + a_{22} \\
 		&+ a_{31} + a_{32} + a_{33} \\
-		&~~~\vdots\\
+		&~~\vdots\\
 		&+ a_{n,1} + \cdots + a_{n,n}
 	\end{align*}
 \end{exm}
@@ -35,6 +35,27 @@
 \begin{exm}
 	Soit $n \in \N^*$. \[
 		S = \sum_{i=1}^n \sum_{j=i}^n {i\choose j} 
-	\] 
-\end{exm}
+	\] On pose \[
+		a_{j,i} = {i\choose j}.
+	\] Alors,
+	\[
+		\begin{array}{cccccccc|c|}
+			\cline{9-9}
+			S &=& a_{11} &+& a_{12} &+& \cdots &+& a_{1n}\\
+				&&&+&a_{22} &+& \cdots &+& a_{2n}\\
+				&&&&&&\ddots&\vdots&\vdots\\
+				&&&&&&&+&a_{nn}\\\cline{9-9}
+		\end{array}
+	\]
+	\[
+		\begin{array}{rlccrl}
+			\sum_{j=1}^{i} a_{j,i} &= \sum_{j=1}^i {i \choose j} &&&
+			\boxed{\cdot} &= \sum_{j=1}^n a_{j,n} = \sum_{j=1}^n {n\choose j} \\
+			&= 2^{i}-1&&&&=2^{n} - 1 \\
+		\end{array}
+	\]
 
+	Donc, \[
+		\sum_{i=1}^n\sum_{j=1}^{i} {i\choose j} = 2(2^{n}-1)-n.
+	\]
+\end{exm}

@@ -1,93 +1,105 @@
-\pagebreak
-\'Etudier une fonction c'est déterminer tous les éléments (tangentes, asymptotes) qui permettent d'obtenir l'allure de la courbe représentative de la fonction.\\
+\part{Calculs de limites}
+
+\begin{rap}
+	Soient $f$ et $g$ deux fonctions et $a \in \R \cup \{-\infty, +\infty\}$.
+
+	On ne connaît pas, à l'avance, les limites de
+	\begin{itemize}
+		\item $f(x) - g(x)$ si $\begin{cases}
+				f(x) \tendsto{x \to a} +\infty\\
+				g(x) \tendsto{x \to a} +\infty
+			\end{cases}$ \hfill (``$\infty-\infty$'')\\
+		\item $\frac{f(x)}{g(x)}$ si $\begin{cases}
+				f(x) \tendsto{x \to a} 0\\
+				g(x) \tendsto{x \to a} 0
+			\end{cases}$ \hfill (``$\textstyle\frac{0}{0}$'')\\
+		\item $\frac{f(x)}{g(x)}$ si $\begin{cases}
+				f(x) \tendsto{x \to a} \pm\,\infty\\
+				g(x) \tendsto{x \to a} \pm\,\infty
+			\end{cases}$ \hfill (``$\textstyle\frac{\infty}{\infty}$'')\\
+		\item $f(x) \times g(x)$ si $\begin{cases}
+				f(x) \tendsto{x \to a} 0\\
+				g(x) \tendsto{x \to a} \pm\,\infty\\
+			\end{cases}$ \hfill (``$0\times \infty$'')\\
+	\end{itemize}
+\end{rap}
 
 \begin{exm}
+	$\lim_{n \to +\infty}\left( 1 + \frac{1}{n} \right)^n$ ?
+
 	\[
-		f: x \mapsto  \frac{x^2-2x+3}{x^2+2x-3}
-	\] 
-	\begin{enumerate}
-		\item On détemine le domaine de définition de la fonction $f$.\\
-			Soit $x \in \R$. \[
-				x^2+2x-3 = 0 \iff x \in \{-3,1\} \quad \text{ car }
-				\begin{cases}
-					-3 + 1 = -2 = -\frac{b}{a}\\
-					-3 \times 1 = -3 = \frac{c}{a}
-				\end{cases}
-			\] Donc $f$ est définie sur $\mathcal{D}$ avec $\mathcal{D} = ]-\infty, -3[ \cup ]-3,-1[ \cup ]-1, +\infty[$
-		\item Asymptotes et limites\\
-			Soit $x \in \mathcal{D}$\\
-			\[
-				f(x) = \frac{\cancel{x^2}\left( 1-\frac{2}{x}+\frac{3}{x^2} \right)}{\cancel{x^2}\left( 1+\frac{2}{x}-\frac{3}{x^2} \right) }
-				\tendsto{x\to \pm \infty} 1
-			\] 
-			\[
-				\begin{rcases*}
-					x^2-2x + 3 \tendsto{x\to -3} 9+6+3 = 18\\
-					x^2+ 2x - 3 \tendsto{x\to -3} 0
-				\end{rcases*} \text{ donc }
-				\begin{cases}
-					f(x) \tendsto{\substack{x \to -3\\<}} +\infty\\
-					f(x) \tendsto{\substack{x \to -3\\>}} -\infty\\
-				\end{cases}
-			\]\[
-				\begin{rcases*}
-					x^2-2x + 3 \tendsto{x\to 1} 2\\
-					x^2+ 2x - 3 \tendsto{x\to 1} 0
-				\end{rcases*} \text{ donc }
-				\begin{cases}
-					f(x) \tendsto{\substack{x \to 1\\<}} -\infty\\
-					f(x) \tendsto{\substack{x \to 1\\>}} +\infty\\
-				\end{cases}
-			\] 
-		\item $f$ est dérivable sur $\mathcal{D}$ et 
-			\begin{align*}
-				\forall x \in \mathcal{D}, f'(x) &= \frac{2(x-1)(x^2+2x-3) - 2(x^2-2x+3)(x+1)}{(x^2+2x-3)^2}\\
-				&= \frac{2(2x^2 - 6x)}{(x^2-2x+3)^2} \\
-				&= \frac{4x(x-4)}{(x^2-2x+3)^2} \\
-			\end{align*}
-			\begin{center}
-				\begin{tikzpicture}
-					\tkzTabInit[espcl=1.5]{$x$/0.7,$f'(x)$/1,$f$/2}{$+\infty$, -3, 0, 1, 3, +$\infty$}
-					\tkzTabLine{,+,d,+,z,-,d,-,z,+,}
-					\tkzTabVar{-/1,+D-/$+\infty$/$-\infty$, +/-1, -D+/$-\infty$/$+\infty$, -/$\frac{1}{2}$, +/1}
-				\end{tikzpicture}
-			\end{center}
+		\forall n \in \N, \left( 1 + \frac{1}{n} \right)^n = e^{n\ln\left(1 + \frac{1}{n}\right)}
+	\] et \[
+		\begin{cases}
+			\ln\left( 1 + \frac{1}{n} \right) \tendsto{n \to +\infty} 0\\
+			n \tendsto{n\to +\infty} +\infty
+		\end{cases}
+	\] donc c'est une forme indéterminée.
+\end{exm}
 
-			\begin{center}
-				\begin{asy}
-					import graph;
-					import math;
+\begin{prop}~\\
+	Si $\begin{cases}
+		f(x)\tendsto{x \to a} 1\\
+		g(x)\tendsto{x \to a} \pm \infty
+	\end{cases}$ alors, on ne sait pas à l'avance calculer $\lim_{x\to a} \big(f(x)\big)^{g(x)}$.\qed
+\end{prop}
 
-					size(10cm);
-					xaxis(LeftTicks, EndArrow);
-					yaxis(EndArrow);
+\begin{defn}
+	Soient $f$ et $g$ deux fonctions et $a \in \overline{\R}$ où $\overline{\R} = \R\cup \{+\infty, -\infty\}$.
 
-					labely(-2); ytick(-2);
-					labely(2); ytick(2);
-					ytick(0);
+	On dit que $f$ et $g$ sont équivalentes au voisinage de $a$ (ou éqivalentes en $a$) s'il existe une fonction $u$ telle que \[
+		\begin{cases}
+			f = g \times u\\
+			u(x) \tendsto{x \to a} 1
+		\end{cases}
+	\] On note alors $f\simi_a g$ ou $f(x)\simi_{x\to a}g(x)$.
+\end{defn}
 
-					real f(real x) {return (x^2-2x+3)/(x^2+2x-3);}
+\begin{prop}
+	Un polynôme est équivalent en $\pm\infty$ à son terme de plus haut degré.
+\end{prop}
 
-					bool3 fcond(real x) {
-						if(x == -3 || x == 1 || abs(f(x)) > 3)
-							return false;
-						else
-							return true;
-					}
+\begin{prv}
+	Soit $P: x \mapsto \sum_{k=0}^n a_kx^k$ avec $a_n \neq 0$.
+	On pose $Q: x \mapsto a_nx^n$.
 
-					draw(graph(f, -10, 10, n=10*ngraph, cond=fcond));
+	\begin{align*}
+		\forall x \in \R, P(x) &= a_nx^n \left( \sum_{k=0}^n \frac{a_kx^k}{a_nx^n} \right) \\
+		&= Q(x)\Bigg( 1 + \sum_{k=0}^{n-1} \frac{a_k}{a_n} \times \underbrace{\left( \frac{1}{x^{n-k}} \right)}_{u(x)}\Bigg) \\
+		&= Q(x)\,u(x) \\
+	\end{align*}
 
-					drawline((0,1),(1,1), dashed+green);
+	On a $u(x)\tendsto{x\to \pm\infty}$ 1 donc $P(x)\simi_{x\to +\infty}Q(x)$.
+\end{prv}
 
-					real eps = 1;
+\begin{prop}
+	Un polynôme est équivalent en $0$ à sont terme de plus bas degré.
+\end{prop}
 
-					void drawtangent(real x) {real y = f(x); draw((x-eps, y) -- (x + eps, y),red, Arrows(TeXHead)); }
+\begin{prv}
+	À faire
+\end{prv}
 
-					drawtangent(0);
-					drawtangent(3);
+\begin{rmk}
+	Soient $f$ et $g$ deux fonctions définies au voisinage de $a$ tel que \[
+		\forall x \in I, g(x) \neq 0
+	\] où $I$ est un intervalle
+	\begin{itemize}
+		\item qui contient $a$ si $a \in \R$,
+		\item dont une borne est $a$ si $a = \pm\infty$.
+	\end{itemize}
 
-					crop();
-				\end{asy}
-			\end{center}
-	\end{enumerate}
+	Alors, \[
+		f\simi_ag \iff \frac{f(x)}{g(x)}\tendsto{\substack{x\to a\\\neq}} 1.
+	\]
+\end{rmk}
+
+\begin{exm}
+	$x^2+x^3\simi_{x\to 0}x^2$ car $\frac{x^2+x^3}{x^2} = 1+x \tendsto{x\to 0}1$.
+\end{exm}
+
+\begin{exm}
+	Soit $f$ une fonction. \[
+		f \simi_0 0 \iff \exists I \text{ voisinage de } a, \forall x \in I, f(x) = 0.
+	\]
 \end{exm}

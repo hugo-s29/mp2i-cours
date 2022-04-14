@@ -1,0 +1,312 @@
+\part{Dénombrement}
+
+\begin{prop}
+	Soient $E$ et $F$ deux ensembles finis. Alors $E \times F$ est fini et \[
+		\#(E\times F) = \#E \times \#F.
+	\]
+\end{prop}
+
+\begin{prv}
+	\[
+		E \times F = \bigcupdot_{x \in E} \underbrace{\big\{ (x,y)  \mid y \in F \big\}}_{F_x}.
+	\]
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			size(4cm);
+
+			pair O = (0,0);
+			real a = 0.4;
+
+			draw((-a, 0) -- (4+a, 0), Arrow(TeXHead));
+			draw((0, -a) -- (0, 3+a), Arrow(TeXHead));
+			label("$E$", (4+a/2,0), align=SE);
+			label("$F$", (0,3+a/2), align=NW);
+
+			real eps = 0.15;
+
+			for(int i = 0; i <= 4; ++i) {
+				for(int j = 1; j <= 3; ++j) {
+					draw((i-eps, j)--(i+eps, j));
+				}
+			}
+
+			for(int i = 1; i <= 4; ++i) {
+				for(int j = 0; j <= 3; ++j) {
+					draw((i, j-eps)--(i, j+eps));
+				}
+			}
+
+			for(int i = 1; i <= 4; ++i) {
+				draw((i-3eps, 2)..(i,1-2eps)..(i+3eps, 2)..(i, 3+2eps)..cycle, deepcyan);
+			}
+		\end{asy}
+	\end{figure}
+
+	Donc, \[
+		\#(E\times F) = \sum_{x \in E} (\#F_x)
+	\] Pour $x \in E$, soit \begin{align*}
+		\varphi_x: F_x &\longrightarrow F \\
+		(x,y) &\longmapsto y.
+	\end{align*}
+
+	$\varphi_x$ est bijective donc $\#F_x = \#F$. D'où \[
+		\#(E\times F) = \sum_{x \in E} (\#F) = \#(E) \times (\#F).
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $n\in \N^*$ et $E_1, \ldots, E_n$ des ensembles finis. Alors $\prod_{i=1}^n E_i$ est fini et \[
+		\#\left( \prod_{i=1}^n E_i \right) = \prod_{i=1}^n (\#E_i).
+	\]
+\end{prop}
+
+\begin{prv}
+	par récurrence sur $n$.
+\end{prv}
+
+\begin{crlr}
+	Soit $E$ un ensemble fini de cardinal $n$ et $p \in \N^*$. Alors \[
+		\#(E^p) = n^p.
+	\] En d'autres termes, il y a $n^p$ \underline{p-listes} de $E$, où une $p$-lise de $E$ est un $(x_1, \ldots, x_p)$ de $E^p$.
+\end{crlr}
+
+\begin{defn}
+	Soit $E$ un ensemble fini et $p \in \N^*$. Un \underline{$p$-arrangement} de $E$ est une $p$-liste de $E$ d'éléments deux-à-deux distincts:
+	\[
+		(x_1, \ldots, x_p) \in E^p \text{ est un $p$-arrangement} \iff \forall i \neq j, x_i \neq x_j.
+	\]
+\end{defn}
+
+\begin{prop}
+	Soit $E$ un ensemble fini de cardinal $n$ et $p \in \N^*$. Il y a exactement $\frac{n!}{(n-p)!}$~~~$p$-arrangements si $p \le n$ et 0 si $p > n$.
+\end{prop}
+
+\begin{prv}
+	[par récurrence sur $p$]
+	\begin{itemize}
+		\item Il y a $n$~~~$1$-arrangements de $E$. Or, $\frac{n!}{(n-1)!} = n$.
+		\item Soit  $p \in \N^*$. On suppose qu'il y a $\frac{n!}{(n-p)!}$~~~$p$-arrangements.
+
+			Soit  \begin{align*}
+				f: \mathcal{A}_{p+1} &\longrightarrow \mathcal{A}_p \\
+				(x_1, \ldots, x_{p+1}) &\longmapsto (x_1, \ldots, x_p)
+			\end{align*}
+			où $\mathcal{A}_{p+1}$ est l'ensemble des $(p+1)$-arrangements et $\mathcal{A}_p$ est l'ensemble des $p$-arrangements.
+
+			Soit $x = (x_1, \ldots, x_p) \in \mathcal{A}_p$. $x$ a exactement $n -p$ antécédants par $f$.
+
+			\begin{figure}[H]
+				\centering
+				\incfig{nombre-d-arrangements}
+			\end{figure}
+
+			D'après le principe des bergers,
+			\begin{align*}
+				\#\mathcal{A}_{p+1} &= (n-p)\#\mathcal{A}_p\\
+				&= (n-p) \times \frac{n!}{(n-p)!} \\
+				&= \frac{n!}{(n-p-1)!} \\
+				&= \frac{n!}{\big(n-(p+1)\big)!} \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+Dans la preuve précédente, on a utilisé principe des bergers:
+
+\begin{lem}
+	[principe des bergers]
+
+	Soit $f : E \to F$ surjective telle que \[
+		\exists k, \forall y \in F, \#\big(f^{-1} (\{ -1 \}) \big) = k
+	\]
+
+	En d'autres termes, tous les éléments de $F$ ont le même nombre d'antécédants.
+
+	Si $F$ est fini, alors \[
+		\#E = k\>\#F.
+	\]
+\end{lem}
+
+\begin{prv}
+	On définit $\sim$ sur $E$ : \[
+		x \sim y \iff f(x) = f(y).
+	\] ``$\sim$'' est une relation d'équivalence sur $E$. Soit $\mathcal{R}$ un système de représentants: \[
+		E = \bigcupdot_{x \in \mathcal{R}} \Cl(x).
+	\]
+
+	On a donc \[
+		\forall x \in E, \exists! u \in \mathcal{R}, x \sim u.
+	\]
+
+	L'application $\begin{array}{rcl}
+		\mathcal{R} &\longrightarrow& F \\
+		x &\longmapsto& f(x)
+	\end{array}$ est bijective donc $\#\mathcal{R} = \#F$.
+
+	Soit $x \in \mathcal{R}$.
+	\begin{align*}
+		\forall y \in E, y \in \Cl(x) \iff& f(y) = f(x)\\
+		\iff& y  \text{ est un antécédant de } f(x)
+	\end{align*}
+
+	donc $\#\Cl(x) = k$.
+
+	Finalement,
+	\begin{align*}
+		\#E &= \sum_{x \in \mathcal{R}}\#\big(\Cl(x)\big)\\
+		&= \sum_{x \in \mathcal{R}}k \\
+		&= k(\#\mathcal{R}) \\
+		&= k(\#F). \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $E$ un ensemble fini de cardinal $n$. Il y a $n!$ permutations de $E$.
+\end{prop}
+
+\begin{prv}
+	On note $S(E)$ l'ensemble des permutations de $E$, $\mathcal{A}_n(E)$ l'ensemble des $n$ arrangements de $E$. On pose $E = \{a_1, \ldots, a_n\}$ et \begin{align*}
+		f: S(E) &\longrightarrow \mathcal{A}_n(E) \\
+		\sigma &\longmapsto \big(\sigma(a_1), \ldots, \sigma(a_n)\big).
+	\end{align*} et \begin{align*}
+		g: \mathcal{A}_n(E) &\longrightarrow S(E) \\
+		(b_1, \ldots, b_n) &\longmapsto \left(\sigma : \begin{array}{rcl}
+			E &\longrightarrow& E \\
+			a_i &\longmapsto& b_i
+		\end{array}\right).
+	\end{align*}
+
+	$f$ et $g$ sont réciproques l'une de l'autre donc \[
+		\#S(E) = \#\mathcal{A}_n(E) = \frac{n!}{0!} = n!.
+	\]
+\end{prv}
+
+\begin{exm}
+	On pose $E = \left\{\pi, e, \sqrt{2}\right\}$.
+	Alors, \[
+		S(E) = \left\{ \id, \left( 
+		\begin{array}{c}
+			\pi\mapsto e\\
+			e\mapsto \pi\\
+			\sqrt{2} \mapsto \sqrt{2}
+		\end{array}\right), \ldots \right\}
+	\]
+
+	Donc, \[
+		f(\sigma) = \left(e, \pi, \sqrt{2}\right).
+	\] et alors \begin{align*}
+		g\left(\sqrt{2}, \pi, e\right) : E &\longrightarrow E \\
+		\pi &\longmapsto \sqrt{2} \\
+		e &\longmapsto \pi \\
+		\sqrt{2} &\longmapsto e.
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	Soit $E$ un ensemble fini et $p \in \N^*$. Une \underline{$p$-combinaison} de $E$ est une partie de $E$ de cardinal $p$.
+\end{defn}
+
+\begin{prop}
+	Soit $E$ fini de cardinal $n$ et $p \in \N^*$. Il y a exactement ${n\choose p}$ parties de $E$ de cardinal $p$.
+\end{prop}
+
+\begin{prv}
+	On note $\mathcal{A}_p(E)$ l'ensemble des $p$-arrangements et $\mathcal{C}_p(E)$ l'ensemble des $p$-combinaisons de $E$.
+
+	Soit \begin{align*}
+		f: \mathcal{A}_p(E) &\longrightarrow \mathcal{C}_p(E) \\
+		(x_1, \ldots, x_p) &\longmapsto \{x_1, \ldots, x_p\}.
+	\end{align*}
+
+	$f$ est surjective et \[
+		\forall X \in \mathcal{C}_p(E),~X \text{ a $p!$ antécédants}.
+	\]
+	D'après le lemme des bergers: \[
+		\#\mathcal{A}_p(E) = p!\>\#\mathcal{C}_p(E)
+	\] et donc \[
+		\#\mathcal{C}_p(E) = \frac{n!}{(n-p)!~p!} = {n\choose p}.
+	\]
+\end{prv}
+
+\begin{crlr}
+	\[
+		\forall (n,p) \in \N^2, {n\choose p} \in \N.
+	\]\qed
+\end{crlr}
+
+\begin{prop}
+	Soit $E$ et $F$ deux ensembles finis. Alors $F^E$ est fini et \[
+		\#(F^E) = (\#F)^{\#E}.
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soit \begin{align*}
+		\varphi: F^E &\longrightarrow F^n \\
+		f &\longmapsto \big(f(x_1), \ldots, f(x_n)\big)
+	\end{align*}
+	où $E = \{x_1, \ldots, x_n\}$ et $n = \#E$.
+
+	Soit \begin{align*}
+		\psi: F^n &\longrightarrow F^E \\
+		(y_1, \ldots, y_n) &\longmapsto \begin{array}{rcl}
+			E &\longrightarrow& F \\
+			x_i &\longmapsto& y_i.
+		\end{array}
+	\end{align*}
+
+	On a $\varphi \circ \psi = \id_{F^n}$ et $\psi \circ \varphi = \id_{F^E}$.
+
+	Donc \[
+		\#(F^E) = (\#F)^n.
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $E$ fini de cardinal $n$. Alors $\#\mathcal{P}(E) = 2^n$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Méthode 1}]
+			Soit  \begin{align*}
+				\varphi: \mathcal{P}(E) &\longrightarrow \{0,1\}^E \\
+				A &\longmapsto \mathbbm{1}_A : \begin{array}{rcl}
+					E &\longrightarrow& \{0,1\}  \\
+					x &\longmapsto& \begin{cases}
+						1 &\text{ si } x \in A\\
+						0 & \text{ sinon}.
+					\end{cases}
+				\end{array}
+			\end{align*}
+
+			$\varphi$ est bijective : \begin{align*}
+				\varphi^{-1}: \{0,1\}^E &\longrightarrow \mathcal{P}(E) \\
+				f &\longmapsto \{x \in E \mid f(x) = 1\}.
+			\end{align*}
+
+			On a donc $\#\mathcal{P}(E) = 2^n$.
+		\item[\underline{\sc Méthode 2}] \[
+				\mathcal{P}(E) = \bigcupdot_{p=0}^n \mathcal{C}_p(E)
+			\] donc \[
+				\#\mathcal{P}(E) = \sum_{p=0}^n{n \choose p} = (1+1)^n = 2^n
+			\]
+		\item[\underline{\sc Méthode 3}] (par récurrence sur $n$).
+			\begin{itemize}
+				\item $n = 0$ donc $E = \O$ et $\mathcal{P}(\O) = \{\O\}$. donc $\#\mathcal{P}(E) = 1 = 2^n$.
+				\item Soit $n \in \N$. On suppose que \[
+						\forall E \text{ de cardinal } n,~\#\mathcal{P}(E) = 2^n
+					\]
+					Soit $E$ de cardinal $n +1 > 0$. Soit $a \in E$ et $F = E \setminus \{a\}$.
+					\begin{itemize}
+						\item Les parties de $E$ qui ne contienent pas $a$ sont des parties de $F$ et réciproquement: il y en a $2^n$.
+						\item A chaque partie de $E$ contenant $a$, on peut faire correspondre une partie de $F$ en supprimant $a$ de la partie, et réciproquement: il y en a $2^n$.
+					\end{itemize}
+
+					Donc,\[
+						\#\mathcal{P}(E) = 2^n + 2^n = 2\times 2^n = 2^{n+1}.
+					\] 
+			\end{itemize}
+	\end{itemize}
+\end{prv}

@@ -16,6 +16,7 @@ out = r'''\documentclass[a4paper]{report}
 }
 
 \renewcommand{\part}[1]{\section{#1}}
+\AtBeginDocument{\fulltrue}
 
 \makeatother
 

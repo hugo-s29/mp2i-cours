@@ -1,0 +1,20 @@
+\part{Exercice 9}
+
+Soient $a, b, c \in \C$. Alors
+\begin{align*}
+	\big(a + (b + c)\big) &= \sum_{k=0}^n {n \choose k} a^k (b+c)^{n-k} \\
+	&= \sum_{k=0}^n {n\choose k} \sum_{j=0}^{n-k} {n-k\choose j} b^j c^{n-k-j}. \\
+\end{align*}
+
+Donc, pour le coéfficient de $a^2b^5c^3$, on a $k=2$ et $j = 5$. Le coéfficient est donc ${10\choose 2}\times {8\choose 5} = 2\,520$.
+
+On pose pour $p \in \N^*$, \[
+	\mathcal{P}(p): ``\text{le coeff° de } a_1^{k_1}\cdots a_p^{k_p} \text{ est } \prod_{i=1}^p{n-k_{i-1}\choose k_i}"
+\]
+
+\begin{itemize}
+	\item Pour $p = 1$, on cherche le coeff devant le $a^{k_1}$ dans $a_1^{p}$ e le coef est donc 1.
+	\item Soit $p \in \N$. On suppose $\mathcal{P}(p)$ vraie. On montre $\mathcal{P}(p+1)$ i.e. le coef devant $a_1^{k_1}a_2^{k_2}\cdots a_{p+1}^{k_{p+1}}$ dans $(a_1 + a_2 + \cdots + a_{p+1})^n$ est $\prod_{i=1}^{p+1}{n - k_{i-1} \choose k_i}$.
+poend{itemize}
+
+

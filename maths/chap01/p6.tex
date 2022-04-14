@@ -1,0 +1,45 @@
+\part{Rappels sur $\ln$ et $\exp$}
+
+\begin{prop}~\\
+	\begin{itemize}
+		\item Soit $(a_i)_{i\in I}$ une famille finie de réels strictement positifs. Alors,
+			\[
+				\ln\left( \prod_{i \in I} a_i \right) = \sum_{i \in I} \ln a_i.
+			\]
+		\item Soit $(b_i)_{i\in I}$ une famille de réels. Alors \[
+			\exp\left( \sum_{i \in I} b_i \right) = \prod_{i \in I} \exp(b_i).
+		\]
+	\end{itemize}
+\end{prop}
+
+\begin{rmk}
+	Soit $f: I \to \R^*$ dérivable. On pose $g: x \mapsto \ln \left| f(x) \right|$.
+
+	Alors $g$ est dérivable sur $I$ et \[
+		\forall x \in I, g'(x) = \frac{f'(x)}{f(x)}
+	\]
+
+	On dit que $\frac{f'}{f}$ est la \underline{dérivée logarithmique} de $f$.
+
+	Soient $f_1,f_2: I\to \R^*$ dérivables. Alors \[
+		\frac{(f_1\,f_2)'}{f_1\,f_2} = \frac{f_1'}{f_1} + \frac{f_2'}{f_2}.
+	\]
+\end{rmk}
+
+\begin{rmk}
+	Soit $a \in \R$.
+	\begin{itemize}
+		\item Soit $n \in \N^*$. Alors, $a^n = \overbrace{a\times a\times a\times \cdots \times a}^{n \text{ fois }}$.
+		\item Soit $n \in \Z^-_*$. Si $a \neq 0$, alors $a^n = \frac{1}{a^{-n}}$.
+		\item Si $a \neq 0$, $a^{0} = 1$ et \[
+				\forall p,q \in \Z, a^{p}\times a^{q} = a^{p+q}.
+			\]
+		\item Soit $p \in \Z$ et $a > 0$. \[
+			a^{p} = \exp(\ln a^{p}) = \exp(p \ln a) = e^{p \ln a}.
+		\]
+	\end{itemize}
+\end{rmk}
+
+\begin{defn}
+	Soit $a \in \R^+_*$ et $p \in \R$. On pose $a^p = e^{p \ln a}$.
+\end{defn}

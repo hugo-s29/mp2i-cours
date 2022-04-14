@@ -1,0 +1,148 @@
+\part{Signature d'une permutation}
+
+\begin{defn}
+	Soit $\sigma \in S_n$.
+
+	Un \underline{inversion} de $\sigma$ est $(i,j) \in \left\llbracket 1,n \right\rrbracket^2$ tel que $i < j$ et $\sigma(i) >\sigma(j)$.
+
+	La \underline{signature} de $\sigma$, notée $\varepsilon(\sigma)$ vaut $(-1)^k$ où $k$ est le nombre d'inversions de $\sigma$.
+\end{defn}
+
+\begin{exm}
+	Avec $n = 10$ et $\sigma = \begin{pmatrix}
+		1&2&3&4&5&6&7&8&9&10\\
+		9&8&1&7&2&3&4&5&10&6
+	\end{pmatrix}$.
+
+	Les inversions de $\sigma$ sont $(1,2)$, $(1,3)$, $(1,4)$, $(1,5)$, $(1,6)$, $(1,7)$, $(1,8)$, $(1,10)$, $(2,3)$, $(2,4)$, $(2,5)$, $(2,6)$, $(2,7)$, $(2,8)$, $(2, 10)$, $(4,5)$, $(4,6)$, $(4,7)$, $(4,8)$, $(4,10)$, $(9,10)$.
+
+	Donc, $\varepsilon(\sigma) = (-1)^{21} = -1$.
+\end{exm}
+
+\begin{prop}
+	Soit $\tau$ un transposition. Alors $\varepsilon(\tau) = -1$.
+\end{prop}
+
+\begin{prv}
+	On pose $\tau = \begin{pmatrix}
+		a&b
+	\end{pmatrix}$ avec $a < b$.
+
+	Donc \[
+		\tau = \begin{pmatrix}
+			1&2&\cdots&a&\cdots&b&\cdots&n\\
+			1&2&\cdots&b&\cdots&a&\cdots&n\\
+		\end{pmatrix}
+	\]
+
+	$\tau$ a pour inversion $(a,a+1)$, $(a, a+2)$,~$\ldots$~, $(a,b)$, $(a+1,b)$, $(a+2,b)$,~$\ldots$~, $(b-1,b)$.
+
+	Donc \[
+		\varepsilon(\tau) = (-1)^{b-a+b-a+1} = (-1)^{2(b-a) + 1} = -1.
+	\] 
+\end{prv}
+
+\begin{thm}
+	$\varepsilon: (S_n, \circ) \to \big(\{-1,1\}, \times\big)$ est un morphisme de groupes.
+	\qed
+\end{thm}
+
+\begin{defn}
+	On dit qu'une permutation $\sigma$ est \underline{paire} si $\varepsilon(\sigma) = 1$, \underline{impaire} si $\varepsilon(\sigma) = -1$.
+\end{defn}
+
+\begin{prop-defn}
+	On note \[
+		A_n = \{\sigma \in S_n  \mid \varepsilon(\sigma) = 1\}.
+	\]
+	C'est un sous-groupe de $S_n$ : on l'appelle \underline{groupe alterné}.
+\end{prop-defn}
+
+\begin{prv}
+	Soient $(\sigma_1, \sigma_2) \in (S_n)^2$. On a \[
+		\varepsilon(\sigma_1) = \prod_{i<j} \frac{\sigma_1(i) - \sigma_1(j)}{i - j}\\
+	\] donc
+	\begin{align*}
+		\varepsilon(\sigma_1\sigma_2) &= \prod_{i<j} \frac{\sigma_1\sigma_2(i) - \sigma_1\sigma_2(j)}{i-j}\\
+		&= \prod_{i<j}\frac{\sigma_1(\sigma_2(i)) - \sigma_1(\sigma_2(j))}{\sigma_2(i) - \sigma_2(j)} \times \frac{\sigma_2(i) - \sigma_2(j)}{i-j} \\
+		&= \prod_{\mathclap{\substack{k,\ell\\{\sigma_2}^{-1}(k) < {\sigma_2)^{-1}(\ell)}}}}
+		\frac{\sigma_1(k) - \sigma_1(\ell)}{k-\ell}\times \varepsilon(\sigma_2)\\
+		&= \prod_{i<j}\frac{\sigma_1(i) - \sigma_1(j)}{i-j}\times \varepsilon(\sigma_2) \\
+		&= \varepsilon(\sigma_1)\varepsilon(\sigma_2). \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	Avec \[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5\\
+			1&3&2&5&4
+		\end{pmatrix}
+	\] donc 
+	\begin{align*}
+		\prod_{i<j} \frac{\sigma(j) - \sigma(i)}{j - i}
+		&= \frac{\cancel{(3-1)}\cancel{(2-1)}\cancel{(5-1)}\cancel{(4-1)}}{\cancel{(2-1)}\cancel{(3-1)}\cancel{(4-1)}\cancel{(5-1)}} \\
+		&\times \frac{\cancel{(2-3)}\cancel{(5-3)}\cancel{(4-3)}}{\cancel{(3-2)}\cancel{(4-2)}\cancel{(5-2)}}\\
+		&\times \frac{\cancel{(5-2)}\cancel{(4-2)}}{\cancel{(4-3)}\cancel{(5-3)}}\\
+		&\times \frac{4-5}{5-4}\\
+		&= -1. \\
+	\end{align*}
+\end{exm}
+
+\begin{rmk}
+	$\#A_n = \frac{n!}{2}$. En effet : \begin{align*}
+		A_n &\longrightarrow \{\sigma \in S_n  \mid \varepsilon(\sigma) = 1\} \\
+		\sigma &\longmapsto \begin{pmatrix}
+			1&2
+		\end{pmatrix} \sigma
+	\end{align*} est une bijection.
+\end{rmk}
+
+\begin{exo}
+	\underline{Problème} : 
+	\begin{center}
+		{\itshape Soit $\sigma \in S_n$. $\sigma$ est-il un produit des cycles $\gamma_k = \begin{pmatrix}
+				k&k-1&k-2&\cdots&1
+		\end{pmatrix}$ avec $k \in \left\llbracket 1,N \right\rrbracket$ ?}
+	\end{center}
+
+	Avec $N = 5$ et $\gamma = \begin{pmatrix}
+		2&3&5
+	\end{pmatrix}$, $\begin{cases}
+		\gamma_2 &= \begin{pmatrix}
+			1&2
+		\end{pmatrix}\\[3mm]
+		\gamma_3 &= \begin{pmatrix}
+			3&2&1
+		\end{pmatrix}\\[3mm]
+		\gamma_4 &= \begin{pmatrix}
+			4&3&2&1
+		\end{pmatrix}\\[3mm]
+		\gamma_5 &= \begin{pmatrix}
+			5&4&3&2&1
+		\end{pmatrix}
+	\end{cases}$
+
+	\[
+		\begin{pNiceMatrix}
+			1&2&3&4&5&\\
+			3&1&2&4&5&\gamma_3\\
+			3&2&1&4&5&\gamma_2\\
+			2&1&5&3&4&\gamma_5\\
+			1&3&5&2&4&\gamma_3\\
+			2&3&5&1&4&\gamma_2\\
+			1&2&5&4&3&\gamma_4\\
+			3&1&5&4&2&\gamma_3\\
+			2&3&5&4&1&\gamma_3\\
+			1&3&5&4&2&\gamma_2\\
+		\end{pNiceMatrix} 
+	\]
+\end{exo}
+
+
+
+
+
+
+
+

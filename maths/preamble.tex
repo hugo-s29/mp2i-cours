@@ -17,6 +17,7 @@
 \usepackage{moresize}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{pifont}
 \usepackage{calligra}
 \usepackage{thmtools}
 \usepackage{diagbox}
@@ -37,19 +38,14 @@
 \usepackage{subcaption}
 \usepackage{pdflscape}
 \usepackage{contour}
-\usepackage{ulem}
+\usepackage{soulutf8}
 
 \frenchspacing
 \reversemarginpar
 
 % better underline
-\renewcommand{\ULdepth}{1.8pt}
+\setuldepth{a}
 \contourlength{0.8pt}
-
-\renewcommand{\underline}[1]{%
-  \mbox{\uline{\phantom{#1}}}%
-	\llap{\contour{white}{#1}}%
-}
 
 \let\mathbbm\mathds
 
@@ -61,7 +57,9 @@
 \usetikzlibrary{tikzmark,calc,fit,arrows}
 
 \newif\ifsimple
-\simplefalse
+\newif\iffull
+\simplefalse\fullfalse
+\let\underline\ul
 \let\underlin\underline
 
 \usepackage{graphicx}
@@ -123,6 +121,7 @@
 \renewcommand\Im{\expandafter\mathfrak{Im}}
 
 \renewcommand{\thepart}{\Roman{part}} 
+\newcommand{\centered}[1]{\begin{center}#1\end{center}}
 
 \DeclareMathOperator{\Arctan}{Arctan}
 \DeclareMathOperator{\Card}{Card}
@@ -138,9 +137,12 @@
 \DeclareMathOperator{\Mat}{Mat}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Cl}{\mathcal{C}\!\ell}
 \DeclareMathOperator*{\po}{\text{\cursive o}}
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\codim}{codim}
+\DeclareMathOperator*{\simi}{\sim}
 
 \pdfsuppresswarningpagegroup=1
 
@@ -206,6 +208,7 @@
 \declaretheorem[style=thmstyle, name=Lemme]{lem}
 
 \declaretheorem[style=rmkstyle, name=Remarque]{rmk}
+\declaretheorem[style=rmkstyle, name=Rappel]{rap}
 
 \AtBeginDocument{
 	\ifsimple

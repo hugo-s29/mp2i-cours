@@ -1,0 +1,561 @@
+\part{Cycles}
+
+\begin{rmk}
+	[Notation]
+	Soit $\sigma \in S_n$.
+	\begin{align*}
+		\sigma: \left\llbracket 1,N \right\rrbracket &\longrightarrow \left\llbracket 1,N \right\rrbracket \\
+		i &\longmapsto \begin{cases}
+			* &\text{ si } i = 1\\
+			* &\text{ si } i =2\\
+						&\vdots\\
+			* &\text{ si } i = N.
+		\end{cases}
+	\end{align*}
+
+	On écrit plutôt \[
+		\sigma = \begin{pmatrix}
+			1&2&3&\cdots&N\\
+			\sigma(1)&\sigma(2)&\sigma(3)&\cdots&\sigma(N)
+		\end{pmatrix}
+	\]
+\end{rmk}
+
+\begin{exm}
+	Avec $N = 4$, on a donc
+	\begin{align*}
+		\gamma_1 = \begin{pmatrix}
+			1&2&3&4\\
+			1&2&3&4\\
+		\end{pmatrix} \qquad
+		\gamma_2 = \begin{pmatrix}
+			1&2&3&4\\
+			2&1&3&4\\
+		\end{pmatrix} \\[3mm]
+		\gamma_3 = \begin{pmatrix}
+			1&2&3&4\\
+			3&1&2&4\\
+		\end{pmatrix} \qquad
+		\gamma_4 = \begin{pmatrix}
+			1&2&3&4\\
+			4&1&2&3\\
+		\end{pmatrix} 
+	\end{align*}
+\end{exm}
+
+\begin{rmk}
+	Avec $N=4$ et \[
+		\sigma = \begin{pmatrix}
+			1&2&3&4\\
+			4&1&3&2
+		\end{pmatrix}
+	\]
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(5cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			draw_cycle((-1,0), 0.8, 1, 4, 2);
+			draw_cycle((1,0), 0.3, 3);
+		\end{asy}
+	\end{figure}
+
+	Avec $N = 8$ et \[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5&6&7&8\\
+			2&4&1&5&3&7&8&6
+		\end{pmatrix} 
+	\]
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(5cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			draw_cycle((-1,0), 0.8, 1, 2, 4, 5, 3);
+			draw_cycle((1,0), 0.8, 6, 7, 8);
+		\end{asy}
+	\end{figure}
+\end{rmk}
+
+\begin{defn}
+	Soit $\sigma \in S_N$ et $x \in \left\llbracket 1,N \right\rrbracket$.
+
+	L'\underline{orbite} de $x$ pour $\sigma$ est \[
+		\{x, \sigma(x), \sigma^2(x), \ldots\} = \{\sigma^i(x) \mid i \in \N\}.
+	\] On note l'\underline{ordre} $d$ de $\sigma$ : si $\sigma \neq \id$, $\begin{cases}
+		\sigma^d = \id,\\
+		\sigma^{d-1} \neq \id.
+	\end{cases}$ L'orbite de $x$ est \[
+		\{x, \sigma(x), \ldots, \sigma^{d-1}(x)\}.
+	\] Les orbites de $\sigma$ partitionnent $\left\llbracket 1,N \right\rrbracket$.
+\end{defn}
+
+\begin{defn}
+	Soit $\gamma \in S_N$. On dit que $\gamma$ est un $k$-cycle si $\gamma$ a $N-k$ points fixes et les $k$ autres éléments sont dans une même orbite.
+\end{defn}
+
+\begin{exm}
+	\[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5&6&7\\
+			3&5&4&2&6&1&7
+		\end{pmatrix} 
+	\]
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(5cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			draw_cycle((-1,0), 0.8, 1, 3, 4, 2, 5, 6);
+			draw_cycle((1,0), 0.3, 7);
+		\end{asy}
+	\end{figure}
+
+	$\sigma$ est un 6-cycle.
+	\vspace{3mm}
+	\[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5&6&7&8\\
+			3&2&4&6&5&8&7&1
+		\end{pmatrix} 
+	\]
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(5cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			pair n(real a, real b) { return (a,b) / length((a,b)); }
+
+			draw_cycle((-1,0), 0.8, 1, 3, 4, 6, 8);
+			draw_cycle((1,0), 0.2, 2);
+			draw_cycle(n(1,1), 0.2, 5);
+			draw_cycle(n(1,-1), 0.2, 7);
+		\end{asy}
+	\end{figure}
+
+	$\sigma$ est un 5-cycle.
+\end{exm}
+
+\begin{exm}
+	\[
+		\gamma_k = \begin{pmatrix}
+			1&2&3&\cdots&k&k+1&\cdots&N\\
+			k&1&2&\cdots&k-1&k+1&\cdots&N
+		\end{pmatrix}
+	\] 
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(10cm);
+
+			real rho = 0.15; // circles
+
+			real r = 0.8;
+			real eps = (15 / r) * 0.8;
+			string[] c1 = {"$2$", "$1$", "$k$", "\tiny$k-1$", "\tiny$k-2$", "" };
+			int n = c1.length;
+			pair O = (-1, 0);
+
+			real mod(real a, real b) {
+				if(a > b) {
+					return mod(a - b, b);
+				} else if (a < 0) {
+					return mod(a + b, b);
+				} else {
+					return a;
+				}
+			}
+
+			for(int i = 0; i < n; ++i) {
+				real theta_1 = (360/n) * (i+1);
+				real theta_2 = (360/n) * i;
+				real theta_3 = (360/n) * (i-1);
+
+				pair C = O + dir(theta_2) * r;
+
+				string s = c1[i];
+
+				real a = mod(theta_3 + eps, 360);
+				real b = mod(theta_1 - eps, 360);
+
+				if(length(s) == 0) {
+					for(real t = 0; t <= 1; t += 0.25) {
+						real alpha = (1 - t) * 0.6 + t * 0.4;
+						real theta = (1 - alpha) * a + alpha * b;
+						pair P = O + r * dir(theta);
+
+						fill(circle(P, 0.01));
+					}
+				} else {
+					draw(circle(C, rho));
+					label(s, C, fontsize(9));
+				}
+				draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+			}
+
+
+			void draw_cycle(pair O, real r ...string[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label(nums[i], C, fontsize(9));
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			pair A = (1, 0);
+			pair B = (2.5, 0);
+
+			draw_cycle(A, 0.3, "\tiny$k+1$");
+			draw_cycle(B, 0.3, "$N$");
+
+			for(real t = 0; t < 1; t += 0.15) {
+				real a = (1 - t) * 0.35 + t * 0.78;
+				pair P = (1 - a) * A + a * B;
+				fill(circle(P, 0.01));
+			}
+		\end{asy}
+	\end{figure}
+
+	$\gamma_k$ est un $k$-cycle.
+\end{exm}
+
+\begin{rmk}[Notation]
+	Soit $\gamma$ un $k$-cycle tel que $\gamma(x) \neq x$. On note \[
+		\gamma = \begin{pmatrix}
+			x & \gamma(x) & \gamma^2(x) & \cdots & \gamma^{k-1}(x)
+		\end{pmatrix}.
+	\] 
+\end{rmk}
+
+\begin{exm}
+	Avec \[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5&6&7&8\\
+			3&2&4&6&5&8&7&1
+		\end{pmatrix}
+	\]
+	On a donc
+	\begin{align*}
+		\sigma &= \begin{pmatrix}
+			6&8&1&3&4\\
+		\end{pmatrix}\\
+		&= \begin{pmatrix}
+			3&4&6&8&1
+		\end{pmatrix} \\
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\[
+		\sigma = \begin{pmatrix}
+			1&2&3&4&5&6&7\\
+			3&1&2&6&5&4&7
+		\end{pmatrix}
+	\]
+
+	\begin{figure}[H]
+		\centering
+
+		\begin{asy}
+			size(8cm);
+
+			real rho = 0.15; // circles
+
+			void draw_cycle(pair O, real r ...int[] nums) {
+				int n = nums.length;
+				real eps = (15 / r) * 0.8;
+
+				for(int i = 0; i < n; ++i) {
+					real theta_1 = (360/n) * (i+1);
+					real theta_2 = (360/n) * i;
+
+					pair C = O + dir(theta_2) * r;
+
+					draw(circle(C, rho));
+					label("$" + string(nums[i]) + "$", C);
+					draw(arc(O, r, theta_2+eps, theta_1-eps), Arrow(TeXHead));
+				}
+			}
+
+			pair n(real a, real b) { return (a,b) / length((a,b)); }
+
+			draw_cycle((-2,0), 0.6, 1, 3, 2);
+			draw_cycle((-0.3,0), 0.5, 4, 6);
+			draw_cycle((1.2,0), 0.3, 5);
+			draw_cycle((2.4,0), 0.3, 7);
+		\end{asy}
+	\end{figure}
+
+	\[
+		\begin{pmatrix}
+			1&3&2
+		\end{pmatrix} \circ \begin{pmatrix}
+			4&6
+		\end{pmatrix} = \begin{pmatrix}
+			1&2&3&4&5&6&7\\
+			3&1&2&6&5&4&7
+		\end{pmatrix} = \sigma.
+	\]
+	\[
+		\begin{pmatrix}
+			4&6
+		\end{pmatrix} \circ \begin{pmatrix}
+			1&3&2
+		\end{pmatrix} = \begin{pmatrix}
+			1&2&3&4&5&6&7\\
+			3&1&2&6&5&4&7
+		\end{pmatrix} = \sigma.
+	\]
+\end{exm}
+
+\begin{exm}
+	Avec $N=4$,
+	
+	\begin{align*}
+		\begin{pmatrix}
+			1&2&3
+		\end{pmatrix} \begin{pmatrix}
+			1&3&4
+		\end{pmatrix} = &\begin{pmatrix}
+			1&2&3&4\\
+			1&3&4&2
+		\end{pmatrix} \\
+		&~~~~~~~\vrt{\neq}\\
+		\begin{pmatrix}
+			1&3&4
+		\end{pmatrix} \begin{pmatrix}
+			1&2&3
+		\end{pmatrix} = \begin{pmatrix}
+			1&2&3&4\\
+			2&4&3&1
+		\end{pmatrix} 
+	\end{align*}
+\end{exm}
+
+\begin{defn}
+	Soit $\sigma \in S_n$. Le \underline{support} de $\sigma$ est \[
+		\Supp(\sigma) = \{x \in \left\llbracket 1,n \right\rrbracket  \mid  \sigma(x) \neq x\}. 
+	\]
+\end{defn}
+
+\begin{thm}
+	Toute permutation de $S_n$ est une composée de cycles à \underline{supports disjoints} et ces cycles sont uniques.
+\end{thm}
+
+\begin{exm}
+	\begin{align*}
+		\sigma &= \left(\begin{array}{cccccccccccc}
+			1&2&3&4&5&6&7&8&9&10&11&12\\
+			10&9&8&1&7&11&3&2&12&5&4&6
+		\end{array}\right)\\
+		&= \left(\begin{array}{cccccccccccc}
+			1&10&5&7&3&8&2&9&12&6&11&4
+		\end{array}\right) \\
+	\end{align*}
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		\sigma &= \begin{pmatrix}
+			1&2&3&4&5&6&7&8\\
+			4&5&8&2&1&6&3&7
+		\end{pmatrix}\\
+		&= \begin{pmatrix}
+			1&4&2&5
+		\end{pmatrix} \begin{pmatrix}
+			3&8&7
+		\end{pmatrix}\\
+	\end{align*}
+\end{exm}
+
+\begin{prv}
+	Soit $\sigma \in S_n$.
+
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] On suppose que \[
+				\sigma = \gamma_1 \gamma_2 \cdots \gamma_p
+			\] où $\forall i \in \left\llbracket 1,p \right\rrbracket$, $\gamma_i$ est un cycle et $\forall i \neq j, \Supp(\gamma_i)\cap \Supp(\gamma_j) = \O$.
+
+			On pose $\gamma_1 = \begin{pmatrix}
+				a_1&a_2&\cdots&a_k
+			\end{pmatrix}$. Donc
+			\begin{align*}
+				\sigma(a_1) &= \gamma_1 \circ \cdots \circ \gamma_p(a_1)\\
+				&= \gamma_1  \circ \cdot  \circ \gamma_{p-1}(a_1) (\text{ car } a_1 \in \Supp(\gamma_1) \text{ donc } a_1\not\in \Supp(\gamma_p))\\
+				&~~\vdots \\
+				&= \gamma_1(a_1) = a_2. \\
+			\end{align*}
+
+			De même,
+			\[ \sigma(a_2) = \gamma_1(a_2) = a_3 \]
+			\[\vdots\]
+			\[ \sigma(a_{k-1}) = \gamma_1(a_{k-1}) = a_k \]
+			\[ \sigma(a_k) = \gamma_1(a_k) = a_1 \]
+
+			De même, \[
+				\forall i \in \left\llbracket 1,p \right\rrbracket,~\Supp(\gamma_i) \text{ est un orbite de } \sigma.
+			\]
+
+			En d'autres termes, si $\sigma$ a pour orbites $O(x_1), O(x_2), \ldots, O(x_p), \{\{x_{p+1}\},\ldots, \{x_q\}\}$ avec $x_1, \ldots, x_p \in \Supp(\sigma)$ alors \[
+				\begin{cases}
+					\gamma_1 = \begin{pmatrix} x_1&\sigma(x_1)&\sigma^2(x_1)&\cdots \end{pmatrix} \\
+					\gamma_2 = \begin{pmatrix} x_2&\sigma(x_2)&\sigma^2(x_2)&\cdots \end{pmatrix}\\
+					~~~~~~\vdots\\
+					\gamma_p = \begin{pmatrix} x_p&\sigma(x_p)&\sigma^2(x_p)&\cdots \end{pmatrix} \\
+				\end{cases}
+			\]
+		\item[\underline{\sc Synthèse}] ok!
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $\gamma$ un $k$-cycle.
+
+	Alors l'ordre de $\gamma$ est $k$ : \[
+		\begin{cases}
+			\gamma^{k}= \id\\
+			\forall \ell \in \left\llbracket 1,k-1 \right\rrbracket, \gamma^{\ell} \neq \id
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose $\gamma = \begin{pmatrix}
+		a_1&a_2&\cdots&a_k
+	\end{pmatrix}$ avec \[
+		\forall i \neq j, a_i \neq a_j.
+	\] Soit $\ell \in \left\llbracket 1,k-1 \right\rrbracket$. Alors \[
+		\gamma^{\ell} = a_{1+\ell} \neq a_1 \text{ car } 1 + \ell \le k
+	\] donc $\gamma^{\ell} \neq \id$.
+
+	Soit $i \in \left\llbracket 1,k \right\rrbracket$. Alors \[
+		\gamma^{k}(a_i) = a_j
+	\] avec $\begin{cases}
+		j \in \left\llbracket 1,k \right\rrbracket\\
+		j \equiv i + k \mod k
+	\end{cases}$ donc $a_j = a_i$.
+
+	\[
+		\forall x \not\in \{a_1, \ldots, a_k\}, \gamma(x) = x
+	\] donc $\gamma^{k}(x) = x$ et donc $\gamma^{k} = \id$.
+\end{prv}
+
+\begin{prop}
+	Soit $\gamma = \begin{pmatrix}
+		a_1&\cdots&a_k
+	\end{pmatrix}$ un $k$-cycle et $\sigma \in S_n$. Alors \[
+		\sigma\gamma\sigma^{-1} = \begin{pmatrix}
+			\sigma(a_1)&\cdots&\sigma(a_k)
+		\end{pmatrix}
+	\] est un $k$-cycle.
+\end{prop}
+
+\begin{prv}
+	Soit $x \not\in \{\sigma(a_1), \ldots, \sigma(a_k)\}$. $\sigma$ est bijective : soit $y \in \left\llbracket 1,n \right\rrbracket$ tel que $\sigma(y) = x$.
+
+	De plus, $y \not\in \{a_1, \ldots, a_k\}$.
+
+	D'où
+	\begin{align*}
+		\sigma\gamma\sigma^{-1} &= \sigma\gamma\sigma^{-1}\big(\sigma(y)\big)  \\
+		&= \sigma\gamma(y) \\
+		&= \sigma(y) \\
+		&= x. \\
+	\end{align*}
+	Soit $i \in \left\llbracket 1,k-1 \right\rrbracket$.
+
+	\begin{align*}
+		\sigma\gamma\sigma^{-1}\big(\sigma(a_i)\big) = \sigma\gamma(a_i) = \sigma(a_{i+1})\\
+		\sigma\gamma\sigma^{-1}\big(\sigma(a_k)\big)  = \sigma\gamma(a_k) = \sigma(a_1).
+	\end{align*}
+\end{prv}

@@ -1,0 +1,307 @@
+\part{Asymptotes, branches paraboliques et prolongement par continuité}
+
+\centered{\Large Limite en $+ \infty$:}
+
+\marginpar{\underline{\scshape Cas 1}} $f(x) \tendsto{x\to +\infty}\ell \in \R$.
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(4cm);
+
+			real l = 3;
+			real xl = 8;
+
+			draw((-0.3,l)--(xl-0.3,l), dashed);
+			draw((-2,0)--(xl,0), Arrow(TeXHead));
+			draw((0,-1)--(0,6), Arrow(TeXHead));
+
+			draw(graph(new real(real x) { return 1.3sin(3x) / (x + 1.2) + l; }, -1, xl-0.3), red);
+			draw(graph(new real(real x) { return -2.5exp(-x/2) + l; }, -1, xl-0.3), magenta);
+
+			label("$\ell$", (0,l), align=W);
+		\end{asy}
+	\end{figure}
+	On dit que la droite d'équation $y = \ell$ est une \underline{asymptote} horizontale.
+\end{multicols}
+
+\marginpar{\underline{\scshape Cas 2}} $f(x)\tendsto{x\to +\infty} \pm\infty\qquad$ dans ce cas, on cherche $\lim_{x\to +\infty}\frac{f(x)}{x}$.
+
+$\frac{f(x)}{x}$ n'a pas de limite en $+\infty$.\marginpar{\underline{Sous cas 1}}\\[3mm]
+
+\vspace{-5mm}\centered{\LARGE ?}
+
+$\frac{f(x)}{x} \tendsto{x\to +\infty} +\infty$.\marginpar{\underline{Sous cas 2}}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+			size(4cm);
+
+			real f(real x) { return (x+2)^2 / 3; }
+			bool3 fcheck(real x) { return f(x) < 5; }
+
+			real x = 1;
+
+			draw((-1,0)--(3,0), Arrow(TeXHead));
+			draw((0,-1)--(0,4), Arrow(TeXHead));
+
+			draw(graph(f, -0.5, 3, fcheck), magenta);
+
+			draw((x, 0) -- (x, f(x)) -- (0,f(x)), dashed);
+			label("$x$", (x ,0), align=S);
+			label("$f(x)$", (0, f(x)), align=W);
+			draw((0,0) -- (x, f(x)), green);
+		\end{asy}
+	\end{figure}
+
+	On dit que la courbe de $f$ présente \underline{une branche parabolique} de \underline{direction asymptotique} l'axee des ordonées.\\[1mm]
+
+	$\frac{f(x)}{x}$ est la pente de la droite verte.
+\end{multicols}
+
+$\frac{f(x)}{x} \tendsto{x\to +\infty} 0$.\marginpar{\underline{Sous cas 3}}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+			size(4cm);
+
+			real f(real x) { return sqrt(x + 1); }
+
+			real x = 1;
+
+			draw((-1,0)--(5,0), Arrow(TeXHead));
+			draw((0,-1)--(0,4), Arrow(TeXHead));
+
+			draw(graph(f, -0.5, 4.5), magenta);
+
+			for(real x = 1; x <= 4; x += 1) {
+				draw((0,0) -- (x, f(x)), green);
+			}
+		\end{asy}
+	\end{figure}
+
+	On dit que la courbe de $f$ présente \underline{une branche parabolique} de \underline{direction asymptotique} l'axe des ordonées.\\[1mm]
+
+	$\frac{f(x)}{x}$ est la pente de la droite verte.
+\end{multicols}
+
+$\frac{f(x)}{x} \tendsto{x\to +\infty} \ell \in \R^+$.\marginpar{\underline{Sous cas 4}}
+On cherche $\lim_{x\to +\infty}\big(f(x) - \ell x\big)$.
+
+$f(x) - \ell x \tendsto{x\to +\infty}a\in \R$ \marginpar{\!\!\!\!\!\!\!{\underline{\itshape Sous-sous cas 1}}}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+			size(4cm);
+
+			real f(real x) { return -exp(-(x-0.5)/3) + 0.1; }
+			real g(real x) { return -exp(-(x-0.5)/3)/3 * sin(4x); }
+
+			draw((-1,0)--(5,0), Arrow(TeXHead));
+			draw((0,-1)--(0,4), Arrow(TeXHead));
+
+			real k = sqrt(2);
+
+			draw(shift((0, 0.5)) * rotate(45) * graph(f, -0.5, 4k), magenta);
+			draw(shift((0, 0.5)) * rotate(45) * graph(g, -0.5, 4k), orange);
+			drawline((0,0.5), (1,1.5), dashed+green);
+		\end{asy}
+	\end{figure}
+
+	Asymptote oblique d'équation $y = \ell x + a$.
+\end{multicols}
+
+$f(x)-\ell x \tendsto{x\to +\infty} \pm \infty$\marginpar{\!\!\!\!\!\!\!{\underline{\itshape Sous-sous cas 2}}}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+			size(4cm);
+
+			real f(real x) { return sqrt(x+0.5) - 1/sqrt(2); }
+
+			draw((-1,0)--(5,0), Arrow(TeXHead));
+			draw((0,-1)--(0,4), Arrow(TeXHead));
+
+			real k = sqrt(2);
+
+			draw(rotate(45) * graph(f, 0, 4k), magenta);
+			drawline((0,0), (1,1), dashed+green);
+		\end{asy}
+	\end{figure}
+
+	Branche parabolique de direction asymptotique la droite d'équation $y = \ell x$.
+\end{multicols}
+
+$f(x)-\ell x$ n'a pas de limite \marginpar{\!\!\!\!\!\!\!{\underline{\itshape Sous-sous cas 2}}}
+
+\vspace{-5mm}\centered{\LARGE ?}
+\vspace{1cm}
+
+\centered{\Large Limite en $a \in \R$:}
+
+On cherche $\lim_{x\to a}f(x)$.\vspace{3mm}
+
+~\marginpar{\underline{\sc Cas 1}}
+\begin{multicols}{2}
+	Pas de limite
+
+	\ex $x \mapsto \sin\left( \frac{1}{x} \right)$ en $0$ : 
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+			size(4cm);
+
+			real f(real x) { return sin(1/x); }
+			bool3 fcheck(real x) { return x != 0; }
+
+			draw((-3,0)--(3,0), Arrow(TeXHead));
+			draw((0,-1.5)--(0,1.5), Arrow(TeXHead));
+
+			draw(graph(f, -3, -1, fcheck), magenta);
+			draw(graph(f, 3, 1, fcheck), magenta);
+			draw(graph(f, -1, 1, 1500, fcheck), magenta);
+		\end{asy}
+	\end{figure}
+\end{multicols}
+
+$f(x)\tendsto{x\to a}\pm\infty$ \marginpar{\underline{\sc Cas 2}}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+
+			size(4cm);
+
+			real a = 2;
+
+			real map(real value, real start1, real stop1, real start2, real stop2) {
+				return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+			}
+
+			real clamp(real x, real lowerlimit, real upperlimit) {
+				if (x < lowerlimit)
+					x = lowerlimit;
+				if (x > upperlimit)
+					x = upperlimit;
+				return x;
+			}
+
+			real smoothstep(real edge0, real edge1, real x) {
+				// Scale, bias and saturate x to 0..1 range
+				x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0); 
+				// Evaluate polynomial
+				return x * x * (3 - 2 * x);
+			}
+
+			real u(real x) { if(x < a) { return 2; } else { return 0.5; } }
+			real l(real x) { return map(smoothstep(x, 0, 3), 0, 0.5, 2.5, 0.05); }
+			real s(real x) { if(x < 0) { return -(-x)^(1/l(-x)); } else { return x^(1/l(x)); } }
+			real f(real x) { return 1 / s(x - a) + u(x); }
+			real g(real x) { return 1 / s(abs(x - a)) - 0.5; }
+			bool3 checkf(real x) { return x != a && f(x) < 3 && f(x) > -1; }
+			bool3 checkg(real x) { return x != a && g(x) < 3 && g(x) > -1; }
+
+			draw(graph(f, -1, 5, 500, checkf), magenta);
+			draw(graph(g, -1, 5, 500, checkg), deepcyan);
+
+			draw((-1,0)--(5,0), Arrow(TeXHead));
+			draw((0,-1)--(0,3), Arrow(TeXHead));
+			drawline((a,0),(a,1), dashed);
+		\end{asy}
+	\end{figure}
+
+	Asymptote verticale d'équation $x = a$.
+\end{multicols}
+
+$f(x)\tendsto{x\to a}\ell \in \R$. \marginpar{\underline{\sc Cas 3}}
+
+\begin{multicols}{2}
+	\ex
+	\color{green}{
+		$f: x \mapsto \frac{\sin x}{x}$ 
+		$f(x)\tendsto{x\to 0}1$, dans ce cas, on pose \[
+			f(x) = \begin{cases}
+				\frac{\sin x}{x} &\text{ si }x \neq 0\\
+				1 &\text{ si } x = 0
+			\end{cases}
+		\]
+	}
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(4cm);
+
+			real f(real x) { if(x == 0) { return 1; } else { return sin(x)/x; } }
+
+			draw((-4,0)--(4,0), Arrow(TeXHead));
+			draw(graph(f, -4, 4), magenta);
+			dot((0,1), white+2.5);
+			draw((0,-1.5)--(0,1.5), Arrow(TeXHead));
+			draw(circle((0,1), 0.1), magenta);
+		\end{asy}
+	\end{figure}
+\end{multicols}
+
+\begin{multicols}{2}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			size(4cm);
+
+			real[] coeffs = {0.01742221589139381,-0.3902542972387844,2.542687028281624,-8.219500333985712};
+
+			real f(real x) {
+				real y = 0;
+				int k = coeffs.length;
+
+				for(int i = 0; i < k; ++i) {
+					y += x^i * coeffs[k-i-1];
+				}
+
+				return y/2 + 7;
+			}
+
+			real eps = 0.75;
+			real a = 8;
+
+			draw((-1,0)--(16,0), Arrow(TeXHead));
+			draw(graph(f, -1, 16), magenta);
+			draw(graph(f, a-3, a-eps), magenta, Arrow(TeXHead));
+			draw(graph(f, a-3, a-2eps), magenta, Arrow(TeXHead));
+			draw(graph(f, a-3, a-3eps), magenta, Arrow(TeXHead));
+			draw(graph(f, a+3, a+eps), magenta, Arrow(TeXHead));
+			draw(graph(f, a+3, a+2eps), magenta, Arrow(TeXHead));
+			draw(graph(f, a+3, a+3eps), magenta, Arrow(TeXHead));
+			draw((0,-1)--(0,9), Arrow(TeXHead));
+		\end{asy}
+	\end{figure}
+
+	On pose $f(a) = \ell$. On dit que l'on a \underline{prolongé par continuité} la fonction $f$.
+\end{multicols}

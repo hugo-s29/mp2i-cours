@@ -1,0 +1,61 @@
+\part{Sommes sur un ensemble fini}
+
+\begin{defn}
+	Soit $I$ un ensemble fini. Soit $(a_i)_{i\in I}$ une famille de nombres complexes.
+
+	On note $\sum_{i \in I}a_i$ la somme des éléments de cette famille.
+\end{defn}
+
+\begin{exm}
+	Soit $I = \{\clubsuit, \heartsuit, \spadesuit, \diamondsuit\}$. On pose \[
+		\begin{cases}
+			a_{\heartsuit} = 0\\
+			a_{\clubsuit} = -1\\
+			a_{\spadesuit} = i\\
+			a_{\diamondsuit} = 1 + i.
+		\end{cases}
+	\]
+
+	Alors \[
+		\sum_{j \in I} a_j = 0 - 1 + i + 1 + i = 2i.
+	\]
+\end{exm}
+
+\begin{exm}
+	Avec $I = \{x\mapsto x^2, x\mapsto x^3, x\mapsto x^4\}$, on pose $\forall i \in I, a_i = i(2)$.
+
+	Alors, \[
+		\sum_{i \in I} a_i = 2^2 + 2^3 + 2^{4}.
+	\]
+\end{exm}
+
+\begin{exm}~\newline
+	\begin{itemize}
+		\item $\sum_{\mathclap{k\in \left\llbracket 1,n \right\rrbracket}} 2^k = \sum_{k=1}^n 2^k = 2(2^{n} - 1)$.\\
+		\item $\sum_{\mathclap{\substack{k \in \left\llbracket 1,n \right\rrbracket\\k \text{ pair }}}} 2^{k} = \sum_{\mathclap{\substack{1\le j\le \frac{n}{2}\\j \text{ entier}}}} 2^{2j}$.
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	Soit $\varphi:I \to J$ une bijection et $(a_j)_{j\in J}$ une famille de nombres complexes. Alors \[
+		\sum_{j \in J}a_j = \sum_{i \in I} a_{\varphi(i)}.
+	\]\qed
+\end{prop}
+
+\begin{exm}
+	\[
+		\sum_{i \in \{2,4,6,8\}} a_i = \sum_{j=1}^4 a_{2j}.
+	\]
+\end{exm}
+
+\begin{exm}
+	\begin{align*}
+		S = \sum_{i=1}^n \sum_{j=i}^n a_{ij} &= \sum_{(i,j) \in \big\{ (1,1),\ldots, (1,n),(2,2),\ldots,(2,n),\ldots,(n,n) \big\}} a_{i,j} \\
+		&= \sum_{1\le i\le j\le n} a_{ij} \\
+		&= \sum_{j=1}^n \sum_{i=1}^j a_{ij}. \\
+	\end{align*}
+\end{exm}
+
+
+
+

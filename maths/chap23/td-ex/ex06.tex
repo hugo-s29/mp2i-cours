@@ -1,0 +1,8 @@
+\part{Exercice 6}
+
+On note le monde $W = (P_1, \ldots, P_n)$ où, pour tout $i$, $P_i$ est un pays. On note $n$ le nombre de pays dans le monde. On pose l'application $f: W \to \left\llbracket 1,n-1 \right\rrbracket$ qui associe le pays à son nombre de voisins. 
+
+Comme $\#W = n$ et $\#\left\llbracket 1,n-1 \right\rrbracket = n - 1$, et d'après le principe des tiroirs, il existe $P$ et $P'$ deux pays différents avec $f(P) = f(P')$. Donc, les pays $P$ et $P'$ ont le même nombre de voisin.
+
+S'il est possible d'avoir un (ou plusieurs) pays qui n'ont pas de voisins (une île par exemple), alors le raisonement précédent est faux. Il est donc impossible pour un pays d'avoir $n - 1$ voisins et donc $\mathrm{Im}\,f \subset \left\llbracket 0,n-2 \right\rrbracket$ et donc, le raisonement précédent s'applique presque de la même manière.
+

@@ -1,0 +1,66 @@
+\part{Preuves combinatoires}
+
+\begin{prop}
+	\[
+		\forall k \le n \in \N, {n\choose k} = {n\choose n-k}.
+	\] 
+\end{prop}
+
+\begin{prv}
+	Il y a autant de façons de choisir $k$ éléments parmi $n$ que d'en choisir $n-k$ à exclure.
+	\vspace{5mm}
+
+	\fbox{Formellement}: ~\\
+	L'application
+	\begin{align*}
+		f: \mathcal{C}_k(\left\llbracket 1,n \right\rrbracket) &\longrightarrow \mathcal{C}_{n-k}(\left\llbracket 1,n \right\rrbracket)  \\
+		X &\longmapsto \left\llbracket 1,n \right\rrbracket \setminus X
+	\end{align*} est bijective.
+\end{prv}
+
+\begin{prop}
+	\[
+		\forall k \le n,~~{n+1\choose k + 1} = {n \choose k+1} + {n \choose k}.
+	\] 
+\end{prop}
+
+\begin{prv}
+	On pose \[
+		A_{n+1} = \Big\{ X \in \mathcal{C}_{k+1}\big(\left\llbracket 1,n+1 \right\rrbracket\big)  \mid n + 1 \in X \Big\},\\
+		B_{n+1} = \Big\{ X \in \mathcal{C}_{k+1}\big(\left\llbracket 1,n+1 \right\rrbracket\big)  \mid n + 1 \not\in X \Big\}.
+	\] 
+	donc \[
+		\mathcal{C}_{k+1}\big(\left\llbracket 1,n+1 \right\rrbracket\big) = A_{n+1}\cupdot B_{n+1}.
+	\]
+
+	L'application $f : \begin{array}{rcl}
+		A_{n+1} &\longrightarrow& \mathcal{C}_k\big(\left\llbracket 1,n \right\rrbracket\big)  \\
+		X &\longmapsto& X\setminus \{n+1\}
+	\end{array}$ est bijective
+
+	Donc \[
+		B_{n+1} = \mathcal{C}_{k+1}\big(\left\llbracket 1,n \right\rrbracket\big) 
+	\] et donc
+	\begin{align*}
+		{n+1\choose k+1} &= \#A_{n+1} + \#B_{n+1} \\
+		&= {n \choose k} + {n\choose k+1}. \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $(A, +, \times)$ un anneau, $(a,b) \in A^2$ tel que $a\times b = b\times a$. Alors \[
+		\forall n \in \N^*, (a+b)^n = \sum_{k=0}^n {n\choose k} a^k b^{n-k}.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $n\in \N^*$. On pose $a_1 = a$ et $a_2 = b$. Alors
+	\begin{align*}
+		(a + b)^n &= (a_1 + a_2)(a_1 + a_2) \cdots (a_1 + a_2) \\
+		&= \sum_{i_1 = 1}^2 a_{i_1}~\sum_{i_2 = 1}^2 a_{i_2}~\cdots~\sum_{i_n = 1}^2 a_{i_n} \\
+		&= \sum_{{(i_1, \ldots, i_n) \in \{1,2\}^n}} a_{i_1}\,a_{i_2}\,\cdots\,a_{i_n}\\
+		&= \sum_{k=0}^n \sum_{{\substack{(i_1, \ldots, i_n) \in \{1,2\}^n\\\#\{j \in \left\llbracket 1,n \right\rrbracket \mid i_j = 1\}} = k}} a^k b^{n-k}\\
+		&= \sum_{k=0}^n \sum_{{\substack{(i_1, \ldots, i_n) \in \{1,2\}^n\\ \#\{j \in \left\llbracket 1,n \right\rrbracket  \mid i_j = 1\}= k}}} a^k b^{n-k} \\
+		&= \sum_{k=0}^n {n\choose k} a^k b^{n-k}.
+	\end{align*}
+\end{prv}

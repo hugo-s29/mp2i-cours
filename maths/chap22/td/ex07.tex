@@ -1,0 +1,53 @@
+\part{Exercice 7}
+
+Soit $u = (a,b) \in \R^2$.
+
+\[
+	\forall t \neq 0, \Delta f(t) = \frac{f\big((0,0) - tu\big) - f(0,0)}{t} = \frac{1}{t} f(ta, tb).
+\]
+
+\begin{itemize}
+	\item[\underline{\sc Cas 1}] $a \neq 0$. Alors, \[
+			\forall t \neq 0, \Delta f(t) = \frac{1}{t}t^2b^2\ln\big(|ta|\big) = tb^2\ln\big(|ta|)\big) \tendsto{t\to 0} 0.
+		\]
+	\item[\underline{\sc Cas 2}] $a = 0$. Alors, \[
+			\Delta f(t) = \frac{1}{t} \times 0 = 0 \tendsto{t\to 0} 0.
+		\]
+\end{itemize}
+
+On trouve que \[
+	\forall u \in \R^2, \mathrm{d}f(u)(0,0) = 0.
+\]
+On pose \[
+	\begin{cases}
+		x(t) = t\\
+		y(t) = \begin{cases}
+			0 &\text{ si } t = 0\\
+			\sqrt{\frac{1}{\left| \ln\big(|t|\big) \right|}} &\text{ si } t \neq 0
+		\end{cases}
+	\end{cases}
+\] et on a bien \[
+	\begin{cases}
+		x(t)\tendsto{t\to 0} 0\\
+		y(t)\tendsto{t\to 0} 0\\
+	\end{cases}
+\]
+
+On a \[
+	\lim_{t\to 0}f\big(x(t), y(t)\big) = -1 \tendsto{t\to 0} -1 \neq f(0,0)
+\]
+
+\centered{***}
+
+On a \[
+	\begin{cases}
+		\frac{\partial f}{\partial x}(0,0) = \mathrm{d}f(1,0)(0,0) = 0,\\[3mm]
+		\frac{\partial f}{\partial y} = \mathrm{d}f(0,1)(0,0) = 0.
+	\end{cases}
+\] et \[
+	\forall (x,y) \in \R^* \times \R,
+	\begin{cases}
+		\frac{\partial f}{\partial x}(x,y) = \frac{y^2}{|x|} \times \sgn(x) \tendsto{x\to 0} \pm\infty\\[3mm]
+		\frac{\partial f}{\partial y}(x,y) = 2y \ln\big(|x|\big).
+	\end{cases}
+\]

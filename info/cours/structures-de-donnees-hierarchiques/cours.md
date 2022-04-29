@@ -674,8 +674,8 @@ Opérations fondamentales des ABR:
 Utilité: faciliter une recherche avec une recherche par clé dans l'ABR
 
  - temps de recherche proportionnel à la hauteur $h$ de l'arbre
-   - $T(n) = O(n)$ recherche linéaire dans le pire des cas (liste chainée)
-   - $T(n) = O\big(\log_2(n)\big)$ recherche en temps logarithmique en moyenne pour un ABR complet.
+   - $T(n) = \mathcal{O}(n)$ recherche linéaire dans le pire des cas (liste chainée)
+   - $T(n) = \mathcal{O}\big(\log_2(n)\big)$ recherche en temps logarithmique en moyenne pour un ABR complet.
  - Dépend de la construction de l'arbre:
 
 ```{.mermaid format=pdf}
@@ -715,7 +715,7 @@ Arbre dégénéré (filiforme) : chaque nœud n'a qu'un enfant.
 
 Arbre de recherche: possibilité d'arbre déséquilibré (filiforme, dégénéré)
 
- - Recherche en $O(n)$ où $n$ est le nombre de nœuds
+ - Recherche en $\mathcal{O}(n)$ où $n$ est le nombre de nœuds
  - aucun apport par rapport à une liste chainée
 
 Arbre bicolore: arbre de recherche particulier, approximativement équilibré
@@ -1020,9 +1020,9 @@ Ordre préfixé:
 Pour un arbre binaire, ordre = père, fils gauche, fils droit.
 
 Pour l'arbre ci-dessous, l'ordre préfixé est
-\begin{align*}
+$$
 a \to b \to e \to h \to i \to f \to c \to d \to g \to j \to k \to o \to p \to q \to l \to m \to n
-\end{align*}
+$$
 
 ```{.mermaid format=pdf}
 graph TD;
@@ -1231,7 +1231,7 @@ File:
 +---+---+---+
 
 
-Clés traitées: $1\to2\to3\to4\to5\to6\to7$
+Clés traitées: $1\to 2\to 3\to 4\to 5\to 6\to 7$
 
 # IV. Implémentation
 
@@ -1248,9 +1248,9 @@ Solution par enregistrement:
 
  - Création du type nœud
  - Creation du type arbre pointant sur la racine de l'arbre (en C)
- - Arbre complet contenu dans en enregistrement d'enregistrements (en OCAML)
+ - Arbre complet contenu dans un enregistrement d'enregistrements (en OCAML)
 
-$\implies$ structure récursive
+>> $\implies$ structure récursive
 
 Quels champs pour un nœud ?
 
@@ -1275,4 +1275,433 @@ Constructeur : créer un arbre
  - Sémantique :
    * Fonction créant un pointeur sur la racine
    * Pointeur sur la racine initialisé à `NULL`/`NIL`
+
+Transformateur : insérer un nouveau nœud $\to$ nouvelle feuille. Plusieurs cas à envisager :
+
+ * Arbre vide $\to$ insérer au niveau de la racine
+ * Arbre non vide
+
+    - Début de la racine
+    - Parcours de l'arbre par chemin descendant à la recherche d'un `NULL`/`NIL`
+    - Pointeur sur nœud, descendant l'arbre jusqu'à `NIL` (pointeur de traine)
+    - Mise à jour du parent de nouveau
+    - Mise à jour du fils gauche / droit du futur parent
+    - Nécessité d'un pointeur temporaire conservant l'adresse du futur parent
+    - Mise à jour dans la boucle du pointeur sur parent
+
+>> $\implies$ Deux phases :
+
+>>> 1. Recherche de la feuille
+>>> 2. Modification de l'arbre / mise à jours des nœuds
+
+> Cette fonction est linéaire en temps : $\mathcal{O}(h)$ où $h$ est la hauteur de l'arbre.
+
+Transformateur : Supprimer un nœud
+
+ - Argument : pointeur sur l'arbre, valeur de la clé
+ - Retourne : arbre modifié
+ - Sémantique : ?
+
+> Quel cas envisager ? 
+
+>> Il faut vérifier que la clé est présent dans l'arbre
+
+>> Suppression d'une feuille
+
+>> Suppression d'un nœud interne / racine ayant un seul enfant
+
+>> Suppression d'un nœud interne / racine ayant deux enfants
+
+- Suppression d'une feuille : modification du parent et suppression de la feuille
+- Suppression d'un nœud interne / racine ayant un seul enfant
+
+  * modification du parent (Parent.gauche ou Parent.doit pointe sur l'enfant non nul du nœud supprimé)
+  * modification de l'enfant (Enfant.parent pointe sur le parent du nœud supprimé)
+
+- Suppression d'un nœud interne / racine ayant deux enfants
+
+  * Enfant droit est le *successeur* (la définition est après) du nœud à supprimer
+  * Enfant droit devient le fils de Parent à la place du nœud à supprimer: mise à jour de Parent.gauche et de Enfant droit.parent
+  * Enfant gauche devient le fils gauche de Enfant droit : mise à jours de Enfant droit.gauche et Enfant gauche.parent
+
+Prédécesseurs et successeurs : Si toutes les clés sont distinctes, le successeur d'un nœud $x$ est le nœud $y$ possédant la plus petite clé supérieure à $x$.clé
+
+Les algorithmes sont sur la feuille "Structures hiérarchiques --- Arbres" mais uniquement pour information : on n'a pas à savoir les écrire.
+
+## Arbre bicolore
+
+Modification du type : ajout d'un champ pour désigner la couleur
+
+Opérations d'insertion et de suppression :
+
+> $\to$ visite des nœuds pour préserver les propriétés des arbres bicolores
+
+\large\sc Non Traité \normalsize\rm (aucune indication dans le programme)
+
+## Équilibrage des arbres (arbres binaires de recherche)
+
+Préservation des propriétés de l'arbre binaire de recherche
+
+Utile pour équilibrage des arbres
+
+> $\to$ se rapprocher d'un arbre entier
+
+> $\to$ éviter les arbres filiformes (car la recherche est en $\mathcal{O}(n)$)
+
+Arbre H-équilibré:
+
+> Déséquilibre d'un arbre en $a$ : $$
+\mathrm{déséquilibre}(a) = h\big(\mathrm{gauche}(a)\big) - h\big(\mathrm{droit}(a)\big)
+$$
+
+> Un arbre $a$ est H-équilibré si, pour tous ses sous--arbres $b$ on a : $$
+\mathrm{déséquilibre}(b)\in\{-1,0,1\}
+$$
+
+> Un arbre AVL (Adelson -- Velskii -- Landis en 1962) est un arbre H-équilibré.
+
+Arbre initial : 
+
+```{.mermaid format=pdf}
+graph TD;
+x --- A
+x --- y --- B
+y --- C
+```
+
+
+Après une rotation gauche, on a
+
+```{.mermaid format=pdf}
+graph TD;
+y --- x --- A
+x --- B
+y --- C
+```
+
+Après une rotation droite, on retrouve l'arbre initial.
+
+Rotation gauche : $x$ va à droite
+
+Rotation droite : $y$ va à gauche
+
+Exercice 1 : 
+
+1. Arbre $A_1$
+	a. $\mathrm{déséquilibre}(A_1) = 3 - 3 = 0$, il est donc H-équilibré
+	b.
+
+		```{.mermaid format=pdf}
+		graph TD;
+		a((12)) --- b((3)) --- d((2)) --- h[N]
+		d --- i[N]
+		b --- e((5)) --- j[N]
+		e --- k[N]
+		a --- c((14)) --- f[N]
+		c --- g((15)) --- l[N]
+		g --- m[N]
+		```
+
+
+		Après une rotation à droite de centre le nœud $3$ : 
+
+		```{.mermaid format=pdf}
+		graph TD;
+		a((12)) --- b((2)) --- d[N]
+		b --- e((3)) --- h[N]
+		e --- i((5)) --- j[N]
+		i --- k[N]
+		a --- c((14)) --- f[N]
+		c --- g((15)) --- l[N]
+		g --- m[N]
+		```
+
+		Après la rotation à gauche de centre le nœud $14$ : 
+
+		```{.mermaid format=pdf}
+		graph TD;
+		a((12)) --- b((2)) --- d[N]
+		b --- e((3)) --- h[N]
+		e --- i((5)) --- j[N]
+		i --- k[N]
+		a --- c((15)) --- g((14))
+		c --- l[N]
+		g --- m[N]
+		g --- f[N]
+		```
+
+	2. Arbre $A_2$
+
+		a. $\mathrm{déséquilibre}(A_2) = 0$
+		b. Rotation à gauche de centre $5$ puis à droite de centre $14$
+
+
+# V. Tas et files de priorité
+
+## Tas : définition
+
+Un tas est un arbre binaire :
+
+- tel que (condition sur le squelette) :
+	toutes les feuilles sont de profondeur $h$ ou $h - 1$.
+	Pour toute profondeur $p < h$, il y a exactement $2^p$ nœuds.
+	Toutes les feuilles (de profondeur $h$) sont le plus à gauche de l'arbre
+- tournoi (condition sur les étiquettes) :
+	l'étiquette d'un nœud est supérieure (inférieure) ou égale à celles de ses fils
+
+Tas max : l'étiquette d'un nœud est supérieure ou égale à celles de ses fils.
+
+Tas min : l'étiquette d'un nœud est inférieure ou égale à celles de ses fils.
+
+Structure bin adaptée pour gérer les files de priorité :
+
+> implémentation : (priorité, élément)
+
+> la priorité sert de clé
+
+Exercice : construire 3 tas max contenant les nœuds de clés $\{8, 10, 14, 15, 16, 17, 20\}$
+
+```{.mermaid format=pdf}
+graph TD;
+r((20)) --- a((17)) --- b((15))
+a --- c((14))
+r --- d((16)) --- e((8))
+d --- f((10))
+```
+
+```{.mermaid format=pdf}
+graph TD;
+r((20)) --- a((17)) --- b((16))
+a --- c((15))
+r --- d((14)) --- e((10))
+d --- f((8))
+```
+
+```{.mermaid format=pdf}
+graph TD;
+r((20)) --- a((17)) --- b((16))
+a --- c((8))
+r --- d((15)) --- e((14))
+d --- f((10))
+```
+
+## Implémentation des tas
+
+Implémentation dans un tableau :
+
+* Chaque nœud correspond à un élément du tableau
+* Fils gauche d'un nœud $i$ stocké à l'indice $2i$
+* Fils droit d'un nœud $i$ stocké à l'indice $2i + 1$
+* Parent d'un nœud $i$ stocké à l'indice $\left\lfloor \frac{i}{2} \right\rfloor$
+
+Tableau $A$ représentant un tas : deux attributs (algorithmique) :
+
+- $A$.longueur : nombre d'éléments dans un tableau,
+* $A$.taille : nombre d'éléments dans le tas,
+* Le premier élément du tableau $A$ est la racine du tas,
+* On a $A$.longueur $\leqslant$ $A$.taille.
+
+Possibilités :
+
+* Stocker la taille du tas à l'indice 0 du tableau lors de la programmation,
+* Définir un enregistrement contenant la taille du tas et le tableau.
+
+![](figures/tas.svg)
+
+
+Exercice 2:
+
+1. Au maximum, on a un arbre complet de hauteur $h$ donc $2^{h+1} - 1$ nœuds.
+   Au minimum, on a un arbre complet de hauteur $h - 1$ et le nœud le plus à gauche à un fils gauche. On a donc au minimum $2^h$ nœuds.
+2.
+```{.mermaid format=pdf}
+graph TD;
+a((23)) --- b((17)) --- d((6)) --- h((5))
+d --- i((7))
+b --- e((13)) --- j((12))
+a --- c((14)) --- f((10))
+c --- g((1))
+```
+
+> Cet arbre n'est pas un tas max car $7 > 6$. Il faut donc enlever 7 et 12 : 
+  $$ [\;23, 17, 14, 6, 13, 10, 1, 5\;] $$
+  La taille de ce tas est 8.
+
+3. On suppose que le nœud stocké en $\left\lfloor \frac{n}{2} \right\rfloor + 1$ est un parent.
+   Alors, son fils gauche est stocké en $2\left(\left\lfloor \frac{n}{2} \right\rfloor + 1\right)$. Or
+   $$ \left\lfloor \frac{n}{2} \right\rfloor + 1 > {n \over 2} \iff 2\left(\left\lfloor \frac{n}{2}\right\rfloor + 1\right) > n. $$
+   Donc, l'indice étant en dehors du tableau, il n'a pas de fils. C'est donc une feuille.
+
+   Soit $k \in \left[\kern-2mm\left[ 1, \left\lfloor {n \over 2} \right\rfloor\;\; \kern-1mm\right]\kern-2mm\right]$. $k \times 2 \leqslant 2$ donc $k$ a un fils donc ce n'est pas une feuille.
+
+## Opérations sur les tas
+
+Trois opérations
+
+1. Préservation de la propriété des tas max
+
+>> Reçoit un tableau et un indice du tableau
+
+>> Modifie le tableau pour qu'il contienne un tas max
+
+2. Construction d'un tas max
+
+>> Reçoit un tableau
+
+>> Retourne un tas max
+
+3. Tri par tas
+
+>> Tri d'un tableau par ordre croissant (décroissant) en utilisant les propriétés d'un tas max (min).
+
+### Conservation de la propriété des tas max
+
+(code sur la feuille)
+
+*État de l'arbre et du tableau pour l'appel de `entasserMax(A, 2)` avec*
+$$\mathit{A = [\;20,15,17,34,5,7,12,10,16\;]\kern3mm \text{\it?}} $$
+
+Après une itération, on a $A = [\;20,34,17,15,5,7,12,10,16\;]$.
+
+Après deux itération, on a $A = [\;20,34,17,16,5,7,12,10,15\;]$.
+
+```{.mermaid format=pdf}
+graph TD;
+a((20))---b((15))---d((34))---h((10))
+d---i((16))
+b---e((5))
+a---c((17))---f((7))
+c---g((12))
+```
+devient
+```{.mermaid format=pdf}
+graph TD;
+a((20))---b((34))---d((16))---h((10))
+d---i((15))
+b---e((5))
+a---c((17))---f((7))
+c---g((12))
+```
+
+*Que représente $i$ pour l'arbre résultant ?*
+
+Le $i$ représente l'indice dans le tableau de l'arbre de la racine du tas max que l'on veut former.
+
+Fonction `entasserMax` :
+
+* Reçoit un tableau $A$ représentant un tas,\vspace{-2mm}
+* Reçoit un $i$,\vspace{-2mm}
+* Retourne $A$ modifié.\vspace{3mm}
+
+* `entasserMax` fait l'hypothèse que les sous arbres gauche et droit du nœud $i$ sont des tais mais que le nœud $i$ est peut être plus petit que ses enfant.\vspace{3mm}
+
+* `entasserMax` fait alors descendre le nœud $i$ jusqu'à ce que la propriété de tas max soit rétablie localement.\vspace{3mm}
+
+* Complexité en $\mathcal{O}(\ln n) = \mathcal{O}(h)$
+
+Fonction `construireTasMax`:
+
+* Construction d'un tas,
+* Conversion en tas max,
+* Invariant : au début de chaque itération de la boucle pour, chaque nœud $i+1, i+2, \ldots, n$ est la racine d'un tas max,
+* Complexité en $T(n) = \mathcal{O}(n\ln n)$.
+
+## Tri par tas (*heap sort*)
+
+On fait remonter la dernière valeur du tableau en l'interchangeant avec la racine du tas (la plus grande valeur). Pour éviter de faire remonter la plus grande valeur à la racine, on diminue la taille du tas. On recrée un tas local en replaçant la valeur maximale à la racine.
+
+Première étape : \vspace{-2mm}
+
+> Construction du tas max \vspace{-2mm}
+
+> La première valeur est la racine donc l'élément de clé la plus grande.
+
+> \vspace{-2mm} On place cet élément en dernier.
+
+Seconde étape : \vspace{-2mm}
+
+> On rétablit la propriété de tas max sur le tableau privé du dernier élément.
+
+Répétition du processus jusqu'à arriver à un tas de taille 2.
+
+Complexité en $\mathcal{O}(n \ln n)$.
+
+## Files de priorité
+
+Exemple d'utilisation très répandue des tas $\to$ gestion de files de priorités
+
+Objectifs : classer des événements par ordre de priorité
+
+Nœuds $\to$ association (priorité, élément)
+
+Existence de files de priorités min et de files de priorités max
+
+Exemple d'utilisation de files de priorités
+
+ * Ordonnancement des tâches
+ * Ordinateurs multi threads (programme de spé.)
+ * Parcours en largeur de graphs (Dijkstra, $A^*$, Prim, ...)
+
+### Opérations sur les files de priorités
+
+Opérations sur les tas max $\to$ restent accessibles :
+
+* `entasserMax(A, i)`
+* `construireTasMax(A)`
+
+Opérations propres aux files max :
+
+* `maximumTas(A)`
+* `extraireMaxTas(A)`
+* `augmenterCle(A, i, cle)`
+* `insererTasMax(A, cle)`
+
+Opération propres aux files min :
+
+* `minimumTas(A)`
+* `extraireMinTas(A)`
+* `diminuerCle(A, i, cle)`
+* `insererTasMin(cle)`
+
+#### Opérations propres aux files de priorité max
+
+* Opération `maximumTax(A)` : \vspace{-2mm}
+
+>> Entrée : tableau `A` \vspace{-2mm}
+
+>> Sortie : élément de priorité maximale \vspace{-2mm}
+
+>> Sémantique : \vspace{-2mm}
+
+>>> Retourne $-1$ si le tas est vide \vspace{-2mm}
+
+>>> Retourne la racine sinon \vspace{-2mm}
+
+>>> Ne supprime pas les éléments du tas \vspace{-2mm}
+
+* Opération `extraireMaxTas(A)` : \vspace{-2mm}
+
+>> Entrée : tableau `A` \vspace{-2mm}
+
+>> Sortie : élément de priorité maximale, tableau modifié \vspace{-2mm}
+
+>> Sémantique : \vspace{-2mm}
+
+>>> Retourne $-1$ si le tas est vide \vspace{-2mm}
+
+>>> Retourne la racine et le tableau modifié sinon \vspace{-2mm}
+
+>>> Supprime l'élément du tas\vspace{-2mm}
+
+>>> Reconstitue la propriété de tas max\vspace{-2mm}
+
+
+* Opération `augmenterCle(A, i, cle)` (c.f. feuille)
+* Opération `insérerTasMax(A, cle)` (c.f. feuille)
+
+
+
+
+
+
 

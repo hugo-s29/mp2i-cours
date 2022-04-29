@@ -1,0 +1,79 @@
+\part{Défintions et premières propriétés}
+
+\begin{defn}
+	Soit $(u_n)_{n\in\N} \in \C^\N$. La suite des \underline{sommes partielles} associée à $(u_n)$ est \[
+		\forall n \in \N, S_n = \sum_{k=0}^n u_k.
+	\] Étudier la \underline{série} des $(u_n)$, c'est étudier la convergence de la suite $(S_n)$.
+
+	On dit que la série $\Sigma u_n$ \underline{converge} si $(S_n)$ converge.
+	Dans ce cas, $\lim_{n\to +\infty} S_n$ est notée $\sum_{n=0}^{+\infty} u_n$ et on l'appelle la \underline{somme} de la série, et la suite définie par \[
+		\forall n \in \N, R_n = \sum_{k=n+1}^{+\infty} u_k
+	\] est appelée suite des \underline{restes partiels}.
+	\index{somme partielle (série)}
+	\index{série}
+	\index{somme (série)}
+	\index{convergence (série)}
+\end{defn}
+
+\begin{exm}[À connaître : série géométrique]
+	Soit $q \in \C$.\[
+		\forall n \in \N, \sum_{k=0}^n q_k = \begin{cases}
+			\frac{1-q^{n+1}}{1-q} &\text{ si } q \neq 1\\
+			n + 1 &\text{ si } q = 1
+		\end{cases}
+	\]
+
+	Cette série converge si et seulement si $|q| < 1$, et dans ce cas $\sum_{k=0}^{+\infty} q^n = \frac{1}{1-q}$.
+
+	Par exemple, avec $q = \sfrac{1}{2}$, on a \[
+		\sum_{n=0}^{+\infty}\left( \frac{1}{2} \right)^n = \frac{1}{1-\frac{1}{2}} = 2
+	\] et
+	\begin{align*}
+		R_n &= 2 - \sum_{k=0}^{n} \left( \frac{1}{2} \right)^k\\
+		&= 2 - \frac{1-\left( \frac{1}{2} \right)^{n+1}}{1-\frac{1}{2}} \\
+		&= 2-2\left( 1-\left( \frac{1}{2} \right)^{n+1} \right) \\
+		&= \frac{1}{2^n} \\
+	\end{align*}
+\end{exm}
+
+\begin{prop}
+	Soit $(v_n) \in \C^\N$.
+
+	La série $\Sigma (v_{n+1} - v_n)$ converge si et seulement si $(v_n)$.
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall n \in \N, \sum_{k=0}^n (v_{k+1} - v_k) = v_{n+1} - v_k.
+	\] 
+\end{prv}
+
+\begin{prop}
+	Soit $\Sigma u_n$ une série.
+
+	{\large \color{orange}\sc Si} $\Sigma u_n$ converge {\large \color{orange}\sc Alors} $u_n \longrightarrow 0$.
+\end{prop}
+
+\begin{rmk}
+	La réciproque est {\color{red}\sc \large Fausse}.
+\end{rmk}
+
+\begin{cexm}[série harmonique]
+	La série $\Sigma \textstyle \frac{1}{n}$ diverge. En effet, on a vu en T.D. : \[
+		\forall n \in \N^*, \sum_{k=1}^n \frac{1}{k} = \ln(n) + \gamma + \po_{n\to +\infty}(1)
+	\]
+	où $\gamma$ est la constante d'Euler.
+\end{cexm}
+
+\begin{prv}
+	On pose \[
+		\forall n \in \N, \, S_n = \sum_{k=0}^n u_k.
+	\] On suppose que $(S_n)$ converge vers $S \in \C$. On a donc
+	\[
+		\forall n \in \N^*, u_n = S_n - S_{n-1} \tendsto{n\to +\infty} S - S = 0.
+	\]
+\end{prv}
+
+\begin{rmk}
+	Avec les notations précédentes, si $u_n \centernot{\tendsto{\phantom{n\to +\infty}}}0$, alors $\Sigma u_n$ diverge. On dit qu'elle \underline{diverge grossièrement}.
+\end{rmk}

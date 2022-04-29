@@ -1,0 +1,170 @@
+\part{Définitions}
+
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n < +\infty$ et $f : E^n \longrightarrow \mathbbm{K}$. On dit que $f$ est \underline{multilinéaire} si
+	\[
+		\begin{array}{c}
+			\forall i \in \left\llbracket 1,n \right\rrbracket, \forall (u_1, \ldots, u_{i-1}, u_{i+1}, \ldots, u_n) \in E^{n-1},\\[3mm]
+			\text{l'application } \begin{array}{rcl}
+				E &\longrightarrow& \mathbbm{K} \\
+				u &\longmapsto& f(u_1, \ldots, u_{i-1}, u, u_{i+1}, \ldots, u_{n})
+			\end{array} \text{ est linéaire.}
+		\end{array}
+	\] 
+	\index{multilinéaire (application)}
+
+	On dit que $f$ est \underline{antisymétrique} si
+	\[
+		\begin{array}{c}
+			\forall i < j, \forall (u_1,\ldots, u_n) \in E^n,\\
+			\phantom{=-}f(u_1, \ldots, u_{i-1}, u_{\color{red} j}, u_{i+1}, \ldots, u_{j-1}, u_{\color{red}i}, u_{j+1}, \ldots, u_n)\\
+			=-f(u_1, \ldots, u_{i-1}, u_{\color{red} i}, u_{i+1}, \ldots, u_{j-1}, u_{\color{red}j}, u_{j+1}, \ldots, u_n).
+		\end{array}
+	\] 
+
+	\index{antisymétrique (application)}
+
+	On dit que $f$ est \underline{alternée} si \[
+		\forall (u_1, \ldots, u_n) \in E^n, \big(\exists i < j, u_i = u_j \implies f(u_1,\ldots,u_n) = 0\big).
+	\]
+	\index{alternée (application)}
+\end{defn}
+
+\begin{prop}
+	Soit $\mathbbm{K}$ un corps tel que $1 + 1 \neq 0$, $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n$ et $f : E^{n}\to \mathbbm{K}$ une forme multilinéaire.
+
+	Alors, \[
+		f \text{ alternée} \iff f \text{ antisymétrique}.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $f$ alternée.
+
+			Soit $(u_1, \ldots, u_n) \in E^n$ et $(i,j) \in \left\llbracket 1,n \right\rrbracket^2$ avec $i < j$.
+
+			\begin{align*}
+				0 &= f(u_1, \ldots, u_{i-1}, u_i + u_j, u_{i+1}, \ldots, u_{j-1}, u_i + u_j, u_{j+1}, \ldots, u_n)\\
+				&=\phantom{+} f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_{j-1}, u_i + u_j, u_{j+1},\ldots, u_n) \\
+				&\phantom{=}+f(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_{j-1}, u_i + u_j, u_{j+1}, \ldots, u_n)\\
+				&=\,\phantom{+} f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_{j-1}, u_i, u_{j+1}, \ldots, u_n) \\
+				&\phantom{=}\, + f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_{j-1}, u_j, u_{j+1}, \ldots, u_n)\\
+				&\phantom{=}\, + f(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_{j-1}, u_i, u_{j+1}, \ldots, u_n)\\
+				&\phantom{=}\, + f(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_{j-1}, u_j, u_{j+1}, \ldots, u_n)\\
+			\end{align*}
+
+			donc
+			\begin{align*}
+				&f(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, u_{i+1}, \ldots, u_{j-1}, u_i, u_{j+1}, \ldots, u_n)\\
+				=-&f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, u_{i+1}, \ldots, u_{j-1}, u_j, u_{j+1}, \ldots, u_n).\\
+			\end{align*}
+
+			Donc, $f$ est antisymétrique.
+		\item[``$\impliedby$''] On suppose $f$ antisymétrique.
+			Soit $(u_1, \ldots, u_n) \in E^n$ et $(i,j) \in \left\llbracket 1,n \right\rrbracket^2$ tels que $i<j$ et $u_i < u_j$.
+
+			\begin{align*}
+				&f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_{j-1}, u_j, u_{j+1}, \ldots, u_n)\\
+				=&f(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_{j-1}, u_i, u_{j+1}, \ldots, u_n)\\
+				=-&f(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_{j-1}, u_j, u_{j+1}, \ldots, u_n)\\
+			\end{align*}
+
+			D'où, \[
+				f(u_1, \ldots, u_n)\underbrace{(1+1)}_{\neq 0} = 0
+			\] donc $f(u_1, \ldots, u_n) = 0$.
+	\end{itemize}
+\end{prv}
+
+Dans le reste du chapitre, $\mathbbm{K}$ est un corps avec $1 + 1 \neq 0$.
+
+\begin{thm}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n$. L'ensemble des formes multilinéaires alternées de $E$ est un sous-espace vectoriel de $\mathbbm{K}^{(E^n)}$ de dimension 1.
+\end{thm}
+
+\begin{prv}[pas exigible]
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$. Soit $f$ une forme multilinéaire alternée. Soit $(u_1, \ldots, u_n) \in E^n$.
+	\[
+		\forall j \in \left\llbracket 1,n \right\rrbracket,\, \exists (a_{i,j})_{1\le i\le n},\, u_j = \sum_{i=1}^n a_{i,j} e_i
+	\]
+
+	\begin{align*}
+		f(u_1, \ldots, u_n) &= f\left( \sum_{i=1}^n a_{i,1} e_i, u_2, \ldots, u_n \right) \\
+		&= \sum_{i=1}^n a_{i,1} f(e_i, u_2, \ldots, u_n) \\
+		&= \sum_{i_1 = 1}^n a_{i_1,1} f\left( e_{i_1}, \sum_{i_2 = 1}^n a_{i_2,2} e_{i_2}, u_3, \ldots, u_n \right)\\
+		&= \sum_{i_1 = 1}^n \sum_{i_2=1}^n a_{i_1,1} a_{i_2,2}, f(e_{i_1}, e_{i_2}, u_3, \ldots,u_n) \\
+		&\kern1.5mm\vdots \\
+		&= \sum_{i_1=1}^n \sum_{i_2=1}^n \cdots \sum_{i_n = 1}^n a_{i_1,1} a_{i_2,2} \cdots a_{i_n,n} f(e_{i_1}, e_{i_2}, \ldots, e_{i_n})\\
+		&= \sum_{\sigma \in S_n} a_{\sigma(1),1} a_{\sigma(2),2} \cdots a_{\sigma(n),n} f(e_{\sigma(1)}, e_{\sigma(2)},\ldots, e_{\sigma(n)}) \\
+		&= \underbrace{\sum_{\sigma \in S_n}\left( \varepsilon(\sigma) \prod_{j=1}^n a_{\sigma(j), j} \right)}_{A(u_1, \ldots, u_n)}\; \underbrace{f(e_1, \ldots, e_n)}_{\in \mathbbm{K}}\\
+	\end{align*}
+
+	D'où, $f = f(e_1, \ldots, e_n)\;A$.
+
+	Donc, l'ensemble des formes multilinéaires alternées est $\Vect(A)$. De plus,
+	\begin{align*}
+		A(e_1, \ldots, e_n) &= \sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{j=1}^n  \delta_{\sigma(j), j} \\
+		&= \varepsilon(\id) \prod_{j=1}^n 1 = 1 \neq 0. \\
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n$ et $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$.
+
+	Il existe une unique forme $f$ multilinéaire alternée sur $E$ telle que $f(e_1, \ldots, e_n) = 1$. Elle est donnée par la formule \[
+		\forall (u_1, \ldots, u_n) \in E^n,
+		f(u_1, \ldots, u_n) = \sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{j=1}^n a_{\sigma(j), j}
+	\] où \[
+		\forall i,j,\;a_{i,j} \text{ est la $i$-ème coordonnée de $u_j$ dans la base $\mathcal{B}$.}
+	\] Cette application est appelée \underlin{déterminant dans la base $\mathcal{B}$} et noté $\det_{\mathcal{B}}$.
+	\index{déterminant (dans une base $\mathcal{B}$)}
+\end{defn}
+
+\begin{prop}
+	Soient $\mathcal{B} = (e_1, \ldots, e_n)$ et $\mathcal{C} = (u_1, \ldots, u_n)$ deux bases de $E$. Alors \[
+		\det_\mathcal{C} = \det_\mathcal{C}(e_1, \ldots, e_n)\;\det_\mathcal{B}
+	\] i.e. \[
+		\forall (v_1, \ldots, v_n) \in E^n,
+		\det_\mathcal{C}(v_1, \ldots, v_n) = \det_\mathcal{C}(e_1, \ldots, e_n) \; \det_\mathcal{B}(v_1, \ldots, v_n).
+	\]
+\end{prop}
+
+\begin{prv}
+	On sait que $\det_\mathcal{B}$ et $\det_\mathcal{C}$ sont colinéaires : \[
+		\exists \lambda \in \mathbbm{K},\, \forall (v_1, \ldots, v_n) \in E^n,\, \det_\mathcal{C}(v_1, \ldots, v_n) = \lambda \det_\mathcal{B}(v_1, \ldots, v_n).
+	\] En particulier, \[
+		\det_\mathcal{C}(e_1, \ldots, e_n) = \lambda \det_\mathcal{B}(e_1, \ldots, e_n) = \lambda.
+	\]
+\end{prv}
+
+\begin{rmk}[notation]
+	Avec les notations précédentes, on note $\det_\mathcal{B}(\mathcal{C})$ au lieu de $\det_\mathcal{B}(u_1, \ldots, u_n)$.
+\end{rmk}
+
+\begin{crlr}
+	Avec les notations précédentes, $\det_\mathcal{B}(\mathcal{C}) \neq 0$ et \[
+		\det_\mathcal{B}(\mathcal{C}) = \left( \det_\mathcal{C}(\mathcal{B}) \right)^{-1}
+	\]
+\end{crlr}
+
+\begin{prv}
+	On sait que \[
+		\forall (v_1, \ldots, v_n) \in E^n, \det_\mathcal{C}(v_1, \ldots, v_n) = \det_\mathcal{B}(\mathcal{C}) \;\det_\mathcal{B}(v_1, \ldots, v_n).
+	\] En particulier, \[
+		1 = \det_\mathcal{C}(\mathcal{C}) = \det_\mathcal{C}(\mathcal{B}) \;\det_\mathcal{B}(\mathcal{C}).
+	\]
+\end{prv}
+
+\begin{thm}
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$, $\mathcal{C} = (u_1, \ldots, u_n)$ une famille liée (i.e. $\mathcal{C}$ n'est pas libre). Alors $\det_\mathcal{B}(\mathcal{C}) = 0$.
+\end{thm}
+
+\begin{prv}
+	Sans perte de généralité, on peut supposer que $u_n \in \Vect(u_1, \ldots, u_{n-1})$ : \[
+		u_n = \sum_{k=1}^{n-1} \lambda_k u_k \text{ où } \lambda_1, \ldots, \lambda_{n-1} \in \mathbbm{K}.
+	\]
+	\begin{align*}
+		\det_\mathcal{B}(u_1, \ldots, u_{n-1}, u_n) &= \sum_{k=1}^{n-1} \lambda_k \underbrace{\det_{\mathcal{B}}(u_1, \ldots, u_{n-1}, u_k)}_{=0} \\
+			&= 0 \\
+	\end{align*}
+\end{prv}

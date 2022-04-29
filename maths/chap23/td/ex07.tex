@@ -1,0 +1,28 @@
+\part{Exercice 7}
+
+\begin{align*}
+	\sum_{X \in \mathcal{P}(E)} (\#E) &= \sum_{k=0}^n \sum_{\substack{X \in \mathcal{P}(E)\\ \#X = k}} \#X\\
+	&= \sum_{k=0}^n k {n\choose k} \\
+	&= \sum_{k=1}^n \frac{n!}{(k-1)!\,(n-k)!} \\
+	&= n \sum_{k=1}^n {n-1\choose k-1} \\
+	&= n \sum_{k=0}^{n-1} {n - 1 \choose k} \\
+	&= n 2^{n-1} \\
+\end{align*}
+
+\begin{align*}
+	\sum_{X,Y \in \mathcal{P}(E)} \#(X\cap Y) &= \sum_{X \in \mathcal{P}(E)}\quad \sum_{Y \in \mathcal{P}(E)} \#(X\cap Y) \\
+	&= \sum_{X \in \mathcal{P}(E)} \quad\sum_{(Z,T) \in \mathcal{P}(X) \times \mathcal{P}(E\setminus X)} \#Z \\
+	&= \sum_{X\in \mathcal{P}(E)}\quad \sum_{T \in \mathcal{P}(E\setminus X)} \quad \sum_{Z \in \mathcal{P}(X)} \#Z \\
+	&= \sum_{X \in \mathcal{P}(E)}\quad \sum_{T \in \mathcal{P}(E)} \#X 2^{\#X-1} \\
+	&= \sum_{X \in \mathcal{P}(E)} \# X 2^{\#X - 1} 2^{n - \#X} \\
+	&= \sum_{X \in \mathcal{P}(E)} \#X 2^{n-1} \\
+	&= n\left(2^{n-1}\right)^2 \\
+	&= n 2^{2n-2} \\
+\end{align*}
+
+\begin{align*}
+	\sum_{X,Y \in \mathcal{P}(E)} \#(X \cup Y) &= \sum_{X,Y \in \mathcal{P}(E)} \big(\#X + \#Y - \#(X \cap Y)\big)\\
+	&= 2 \sum_{Y \in \mathcal{P}(E)}\quad\sum_{X \in \mathcal{P}(E)} \#X - \sum_{X,Y \in \mathcal{P}(E)} \#(X \cap Y) \\
+	&= 2\times 2^n \times n 2^{n-1} - n 2^{2n - 2} \\
+	&= 3n 2^{2n-2} \\
+\end{align*}

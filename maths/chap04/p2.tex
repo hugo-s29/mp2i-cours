@@ -1,0 +1,84 @@
+\part{Exponentielle}
+
+\begin{prop}
+	$\ln: \R^*_+ \to \R$ est bijective.
+\end{prop}
+
+\begin{prv}
+	$\ln$ est continue sur $\R^+_*$ (car elle est dérivable) et strictement croissante, donc elle établit une bijection de $]0, +\infty[$ dans $\bigg]\lim_{\substack{x\to 0\\>}} \ln x, \lim_{x \to +\infty} \ln x\bigg[ = ]-\infty, +\infty[ = \R$.
+\end{prv}
+
+\begin{defn}
+	La fonction \underline{exponentielle} est la réciproque du logarithme népérien. On la note $\exp$.
+	\index{exponentielle (réelle)}
+\end{defn}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\exp: \R \to \R^*_+$ est dérivable et $\forall x \in \R, \exp'(x) = \exp(x)$;
+		\item $\begin{cases}
+				\lim_{x\to +\infty} \exp(x) = +\infty;\\
+				\lim_{x\to -\infty} \exp(x) = 0;
+			\end{cases}$ 
+		\item $\lim_{x\to +\infty} \frac{\exp(x)}{x} = +\infty$;
+		\item $\forall a,b \in \R, \exp(a + b) = \exp(a) \times \exp(b)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $x \in \R$. \[
+				\ln'\big(\exp(x)\big)  = \frac{1}{\exp(x)} \neq 0
+			\] donc $\exp$ est dérivable sur $\R$ et \[
+				\forall x \in \R, \exp'(x) = \frac{1}{\ln'\big(\exp(x)\big)} = \exp(x).
+			\]
+		\item
+			\begin{itemize}
+				\item $\ln u \tendsto{u\to 0} -\infty$ donc $\exp(x) \tendsto{x\to -\infty}0$ 
+				\item $\ln u \tendsto{u\to +\infty} +\infty$ donc $\exp(x) \tendsto{x\to +\infty} +\infty$.
+			\end{itemize}
+		\item Pour $x \in \R$, on pose $x = \ln u~\Big(\kern -2mm\iff u = \exp(x)\Big)$. Donc \[
+				\frac{\exp(x)}{x} = \frac{u}{\ln u} = \frac{1}{\frac{\ln u}{u}} \tendsto{u\to +\infty} +\infty.
+			\]
+		\item Soient $a,b \in \R$. On pose $\begin{cases}
+			a = \ln \alpha,\\
+			b = \ln \beta.
+		\end{cases}$ 
+
+		On a $\exp(a) \times \exp(b) = \alpha \beta$ et
+		\begin{align*}
+			\exp(a + b) &=  \exp\big(\ln(\alpha) + \ln(\beta)\big) \\
+			&= \exp\big(\ln(\alpha \beta)\big) \\
+			&= \alpha \beta \\
+		\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real ry = (9/16)*8;
+
+		bool3 check(real x) {
+			if(exp(x) > ry) {
+				return false;
+			}
+
+			return true;
+		}
+
+		real f(real x) { return exp(x); }
+
+		draw(graph(f, -5, 5, 300, check), magenta);
+		dot("$1$", (0, 1), align=NW);
+
+		draw(shift((0,1)) * scale(0.7) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+
+		draw((0,-1) -- (0, ry), Arrow(TeXHead));
+		draw((-5,0) -- (5,0), Arrow(TeXHead));
+	\end{asy}
+\end{figure}

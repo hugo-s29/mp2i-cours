@@ -1,0 +1,88 @@
+\part{Déterminant d'une matrice carrée}
+
+\begin{defn}
+	Soit $A = (a_{i,j})_{\substack{1\le i\le n\\1\le j\le n}} \in \mathcal{M}_n(\mathbbm{K})$.
+
+	Le \underline{déterminant} de $A$ est \[
+		\det(A) =
+		\begin{vmatrix}
+			a_{11}&\cdots&a_{1,n}\\
+			\vdots&\ddots&\vdots\\
+			a_{n,1}&\cdots&a_{n,n}
+		\end{vmatrix} = 
+		\sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{j=1}^n a_{\sigma(j), j}
+	\]
+
+	\index{déterminant (d'une matrice)}
+\end{defn}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$, $(u_1, \ldots, u_n) \in E^n$ et $A = \Mat_\mathcal{B}(u_1, \ldots,u_n)$.
+
+	Alors, \[
+		\det_\mathcal{B}(u_1, \ldots, u_n) = \det(A).
+	\]
+\end{prop}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel de dimension $n$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$, $f \in \mathcal{L}(E)$ et $A = \Mat_\mathcal{B}(f)$. Alors, $\det(A) = \det(f)$.
+\end{prop}
+
+\begin{prv}
+	$\det(f) = \det_\mathcal{B}\big(f(e_1), \ldots, f(e_n)\big)$, $A = \Mat_\mathcal{B}\big(f(e_1), \ldots, f(e_n) \big)$.
+
+	\begin{align*}
+		\det A &= \det_\mathcal{B}\big(f(e_1), \ldots, f(e_n)\big) \\
+		&= \det(f). \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $(A,B) \in \mathcal{M}_n(\mathbbm{K})^2$. \[
+		\det(AB) = \det(A)\,\det(B).
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $E = \mathbbm{K}^n$, $\mathcal{B} = (e_1, \ldots, e_n)$ la base canonique de $E$, $f \in \mathcal{L}(E)$ tel que $A = \Mat_\mathcal{B}(f)$ et $g \in \mathcal{L}(E)$ tel que $B = \Mat_\mathcal{B}(g)$.
+
+	\begin{align*}
+		\det(AB) = \det(f \circ g) &= (\det f)\,(\deg g)\\
+		&= \det(A)\,\det(B). \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $A \in \mathcal{M}_n(\mathbbm{K})$. \[
+		A \in \mathrm{GL}_n(\mathbbm{K}) \iff \det(A) \neq 0
+	\] Dans ce cas, $\det(A^{-1}) = \det(A)^{-1}$.
+	\qed
+\end{prop}
+
+\begin{prop}
+	\[
+		\forall A \in \mathcal{M}_n(\mathbbm{K}), \det(\t A) = \det(A).
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $A \in \mathcal{M}_n(\mathbbm{K})$.
+
+	\begin{align*}
+		\det(\t A) &= \sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{j=1}^n a_{j, \sigma(j)}\\
+		&= \sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{k=1}^n a_{\sigma^{-1}(k), k}  \\
+		&= \sum_{\sigma' \in S_n}\varepsilon\left({\sigma'}^{-1}\right) \prod_{k=1}^n a_{\sigma'(k), k} \\
+		&= \sum_{\sigma' \in S_n} \varepsilon(\sigma') \prod_{k=1}^n a_{\sigma'(k),k} \\
+		&= \det(A) \\
+	\end{align*}
+	car
+	\begin{align*}
+		\forall \sigma' \in S_n, \varepsilon\left( {\sigma'}^{-1} \right) = \varepsilon(\sigma')^{-1} &= \begin{cases}
+			1 &\text{ si } \varepsilon(\sigma') = 1\\
+			-1 &\text{ si } \varepsilon(\sigma') = -1
+		\end{cases} \\
+		&= \varepsilon(\sigma').
+	\end{align*}
+\end{prv}
+
+

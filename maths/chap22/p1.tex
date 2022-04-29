@@ -21,6 +21,8 @@
 			dot((4,3), white+0);
 		\end{asy}
 	\end{figure}
+	\index{norme (de $\R^2$)}
+	\index{norme euclidienne (de $\R^2$)}
 \end{defn}
 
 \begin{prop}
@@ -57,6 +59,12 @@
 	La \underline{sphère} (ou \underline{boule}) de centre $(a,b)$ et de rayon $r$ est \[
 		S_{(a,b)}(r) = \partial \overline{B_{(a,b)}}(r) = \big\{ (x,y) \in \R^2  \mid \|(x,y) - (a,b)\| = r \big\}.
 	\]
+	\index{boule ouverte (de $\R^2$)}
+	\index{disque ouverte (de $\R^2$)}
+	\index{boule fermée (de $\R^2$)}
+	\index{disque fermée (de $\R^2$)}
+	\index{boule (de $\R^2$)}
+	\index{sphère (de $\R^2$)}
 \end{defn}
 
 \begin{figure}[H]
@@ -73,6 +81,9 @@
 		\forall (x,y) \in O, \exists r > 0, B_{(a,b)}(r) \subset O.
 	\]
 	Une partie $F$ est \underline{fermée} su $\R^2\setminus F$ est ouverte.
+	\index{partie ouverte (de $\R^2$)}
+	\index{ouvert (de $\R^2$)}
+	\index{partie fermée (de $\R^2$)}
 \end{defn}
 
 \begin{figure}[H]
@@ -219,6 +230,7 @@
 	On dit que $V$ est un voisinage de $(a,b)$ s'il existe $r > 0$ tel que \[
 		B_{(a,b)}(r) \subset V.
 	\]
+	\index{voisinage (dans $\R^2$)}
 \end{defn}
 
 \begin{prop}
@@ -230,7 +242,9 @@
 		\exists r > 0, B_{(a,b)}(r) \subset D.
 	\] en d'autres termes, si $D$ est un voisinage de $(a,b)$.
 
-	On note $\mathring D$ l'ensemble des points interieurs à $D$. C'est \underline{l'intérieur} de $D$.
+	On note $\mathring D$ l'ensemble des points intérieurs à $D$. C'est \underline{l'intérieur} de $D$.
+	\index{point intérieur (dans $\R^2$)}
+	\index{intérieur (dans $\R^2$)}
 \end{defn}
 
 \begin{prop}
@@ -271,6 +285,8 @@
 	\] en d'autres termes si \[
 		\forall V \in \mathcal{V}_{\ell}, \exists W \in \mathcal{V}_{(a,b)}, \forall (x,y) \in W \cap D, f(x,y) \in V.
 	\]
+	\index{limite (dans $\R^2$)}
+	\index{tendre vers (dans $\R^2$)}
 \end{defn}
 
 \begin{prop}
@@ -305,6 +321,7 @@
 	On dit que $f$ est \underline{continue} en $(a,b)$ si \[
 		f(x,y) \tendsto{(x,y) \to (a,b)}f(a,b).
 	\]
+	\index{continuité (dans $\R^2$)}
 \end{defn}
 
 \begin{prop}
@@ -366,6 +383,8 @@
 	On dit que $(x,y)$ est \underline{adhérent} à $D$ si \[
 		\forall r > 0, B_{(x,y)}(r) \cap D \neq \O.
 	\] L'ensemble des points adhérents à $D$ est noté $\overline{D}$. On dit que $\overline{D}$ est \underline{l'adhérence} de $D$.
+	\index{point adhérent (dans $\R^2$)}
+	\index{adhérent (dans $\R^2$)}
 \end{defn}
 
 \begin{defn}
@@ -373,6 +392,8 @@
 		\forall \varepsilon > 0, \exists r > 0, \forall (x,y) \in B_{(a,b)}(r) \cap D,
 		\left| f(x,y) - \ell \right| \le \varepsilon.
 	\]
+	\index{limite (dans $\R^2$)}
+	\index{tendre vers (dans $\R^2$)}
 \end{defn}
 
 \begin{prop}

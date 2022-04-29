@@ -17,6 +17,8 @@
 			 \end{cases}
 		\]
 	\end{enumerate}
+	\index{monoïde (groupe)}
+	\index{anneau}
 \end{defn}
 
 \begin{rmk}
@@ -79,6 +81,7 @@
 	On dit qu'un anneau $(A, +, \times)$ est \underline{intègre} si \[
 		\forall (a,b) \in A^2, \left( a \times b = 0_A \implies a = 0_A \text{ ou } b = 0_A \right) 
 	\]\\
+	\index{intègrité (anneau)}
 \end{defn}
 
 \begin{exm}
@@ -174,6 +177,10 @@
 		\item Soient $(a,b) \in A^2$. On dit que $a$ \underline{divise} $b$ s'il existe $k \in A$ tel que $b = a\times k$. On dit aussi que $a$ est un \underline{diviseur} de $b$ et que $b$ est un \underline{multiple} de $a$.
 		\item On dit que $a$ et $b$ sont \underline{associés} s'il existe $k \in A^\times$ tel que $ak = b$ (dans ce cas, $a \mid b$ et $b \mid a$)
 	\end{enumerate}
+	\index{division (anneau)}
+	\index{multiple (anneau)}
+	\index{diviseur (anneau)}
+	\index{association (anneau)}
 \end{defn}
 
 \begin{rmk}
@@ -200,6 +207,7 @@
 		\item $\forall (a,b) \in B^2, a\times b \in B$
 		\item $1_A \in B$
 	\end{enumerate}
+	\index{sous anneau}
 \end{defn}
 
 \begin{exm}
@@ -239,6 +247,8 @@
 		\item $\forall (a,b) \in A^2, f(a ~\blue\times~ b) = f(a) ~\red\times~ f(b)$
 		\item $f(1_A) = 1_B$
 	\end{enumerate}
+	\index{morphisme (d'anneaux)}
+	\index{homomorphisme (d'anneaux)}
 \end{defn}
 
 \begin{prop}
@@ -269,6 +279,9 @@
 			\end{cases}$ 
 		\item \underline{automorphisme d'anneaux} si $f$ est à la fois un isomorphisme et un endomorphisme d'anneaux
 	\end{itemize}
+	\index{isomorphisme (d'anneaux)}
+	\index{endomorphisme (d'anneaux)}
+	\index{automorphisme (d'anneaux)}
 \end{defn}
 
 \begin{exm}
@@ -325,6 +338,7 @@
 	Soi $f: A \to B$ un morphisme d'anneaux. Le \underline{noyau} de $f$ est \[
 		\Ker(f) = \{a \in A \mid f(a) = 0_B\} 
 	\]  
+	\index{noyau (d'une application)}
 \end{defn}
 
 \begin{prop}
@@ -341,6 +355,7 @@
 \begin{defn}
 	Soit $(A,+,\times)$ un anneau et $a \in A\setminus \{0_A\}$.\\
 	On dit que $a$ est un \underline{diviseur de zéro} s'il existe $b \in A \setminus \{0_A\} $ tel que $a\times b = b\times a = 0_A$
+	\index{diviseur de zéro (anneau)}
 \end{defn}
 
 \begin{prop}

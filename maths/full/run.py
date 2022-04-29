@@ -15,25 +15,27 @@ out = r'''\documentclass[a4paper]{report}
     \renewcommand*\parttitle{#2}
 }
 
-\renewcommand{\part}[1]{\section{#1}}
+\let\part\section
+\let\section\subsection
 \AtBeginDocument{\fulltrue}
 
-\makeatother
+\renewcommand{\thesection}{\arabic{section}}
 
+\usepackage{pgfornament}
+\usepackage{makeidx}
 \usepackage{fancyhdr}
+\usepackage[totoc]{idxlayout}
+\usepackage{tocbibind}
 \pagestyle{fancy}
 
 \fancyhead[R]{\itshape MP2I}
-\fancyhead[L]{\thesection}
+\fancyhead[L]{\arabic{chapter}.\arabic{section}}
 \fancyhead[C]{\parttitle}
 
+\fancyfoot{}
 \fancyfoot[C]{\thepage}
-\fancyfoot[L]{}
-\fancyfoot[R]{}
 
-\makeatletter
-
-\usepackage{pgfornament}
+\makeindex
 
 \begin{document}
     \begin{titlepage}
@@ -53,8 +55,14 @@ out = r'''\documentclass[a4paper]{report}
             Hugo {\sc Salou}\\
         \end{center}
     \end{titlepage}
-    \tableofcontents
-'''
+
+    {
+        \lhead{}
+        \renewcommand*\parttitle{Table des matières}
+        \tableofcontents
+    }
+
+'''.replace('    ', '\t')
 
 for chap in chaps:
     main_path = os.path.join(os.getcwd(), chap, 'main.tex')
@@ -84,8 +92,18 @@ for chap in chaps:
     for inp in inputs:
         out += '\n\t\\input{../' + chap + '/' + inp + '}'
 
-out += '\n\\end{document}'
+out += r'''
+
+    \clearpage
+    \lhead{}
+    \renewcommand*\parttitle{Index}
+    \printindex
+\end{document}
+'''.replace('    ', '\t')
 os.chdir('full')
 
 with open('main.tex', 'w') as f:
     f.write(out)
+
+with open('simple-main.tex', 'w') as f:
+    f.write('\\AtBeginDocument\\simpletrue\n\\input{main.tex}')

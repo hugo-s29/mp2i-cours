@@ -6,6 +6,8 @@
 	Un \underline{inversion} de $\sigma$ est $(i,j) \in \left\llbracket 1,n \right\rrbracket^2$ tel que $i < j$ et $\sigma(i) >\sigma(j)$.
 
 	La \underline{signature} de $\sigma$, notée $\varepsilon(\sigma)$ vaut $(-1)^k$ où $k$ est le nombre d'inversions de $\sigma$.
+	\index{inversion (permutation)}
+	\index{signature (permutation)}
 \end{defn}
 
 \begin{exm}
@@ -44,19 +46,7 @@
 
 \begin{thm}
 	$\varepsilon: (S_n, \circ) \to \big(\{-1,1\}, \times\big)$ est un morphisme de groupes.
-	\qed
 \end{thm}
-
-\begin{defn}
-	On dit qu'une permutation $\sigma$ est \underline{paire} si $\varepsilon(\sigma) = 1$, \underline{impaire} si $\varepsilon(\sigma) = -1$.
-\end{defn}
-
-\begin{prop-defn}
-	On note \[
-		A_n = \{\sigma \in S_n  \mid \varepsilon(\sigma) = 1\}.
-	\]
-	C'est un sous-groupe de $S_n$ : on l'appelle \underline{groupe alterné}.
-\end{prop-defn}
 
 \begin{prv}
 	Soient $(\sigma_1, \sigma_2) \in (S_n)^2$. On a \[
@@ -70,6 +60,22 @@
 		&= \prod_{i<j}\frac{\sigma_1(i) - \sigma_1(j)}{i-j}\times \varepsilon(\sigma_2) \\
 		&= \varepsilon(\sigma_1)\varepsilon(\sigma_2). \\
 	\end{align*}
+\end{prv}
+
+\begin{defn}
+	On dit qu'une permutation $\sigma$ est \underline{paire} si $\varepsilon(\sigma) = 1$, \underline{impaire} si $\varepsilon(\sigma) = -1$.
+	\index{parité (permutation)}
+\end{defn}
+
+\begin{prop-defn}
+	On note \[
+		A_n = \{\sigma \in S_n  \mid \varepsilon(\sigma) = 1\}.
+	\]
+	C'est un sous-groupe de $S_n$ : on l'appelle \underline{groupe alterné}.
+	\index{groupe alterné}
+\end{prop-defn}
+
+\begin{prv}$A_n = \Ker(\varepsilon)$
 \end{prv}
 
 \begin{exm}
@@ -124,7 +130,7 @@
 	\end{cases}$
 
 	\[
-		\begin{pNiceMatrix}
+		\begin{pNiceMatrix}[last-col]
 			1&2&3&4&5&\\
 			3&1&2&4&5&\gamma_3\\
 			3&2&1&4&5&\gamma_2\\

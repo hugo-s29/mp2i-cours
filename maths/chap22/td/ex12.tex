@@ -1,0 +1,29 @@
+\part{Exercice 12}
+
+\begin{enumerate}
+	\item $\begin{cases}
+			\frac{\partial f}{\partial x} = xy^2\\[2mm]
+			\frac{\partial f}{\partial y} = x^2 y
+		\end{cases}$ 
+
+		Donc $f(x,y) = \frac{x^2y^2}{2} + \lambda$.
+	\item $\begin{cases}
+			\frac{\partial f}{\partial x} = \frac{x}{\sqrt{x^2+y^2}}\\[2mm]
+			\frac{\partial f}{\partial y} = \frac{y}{\sqrt{x^2 + y^2}}
+		\end{cases}$ 
+
+		Donc $f(x,y) = \sqrt{x^2 + y^2} + \lambda$.
+	\item $\begin{cases}
+			\frac{\partial f}{\partial x} = \frac{x}{x^2 + y^2}\\[2mm]
+			\frac{\partial f}{\partial y} = -\frac{y}{x^2 + y^2}
+		\end{cases}$ 
+
+		D'après $(E_1)$,  $f(x,y) = \frac{1}{2} \ln\big(x^2 + y^2\big) + g(y)$
+
+		Or, 
+		\[
+			\frac{\partial f}{\partial y} = \frac{y}{x^2 + y^2} + g'(y) = -\frac{y}{x^2 + y^2}
+			\iff g'(y) = \frac{2y}{x^2 + y^2} \text{ dépend de $x$}\kern 2mm \lightning
+		\] 
+\end{enumerate}
+

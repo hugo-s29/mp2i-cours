@@ -2,50 +2,58 @@
 \input{../preamble.tex}
 
 \newcommand{\chap}[2][0]{
-    \setcounter{chapter}{#1 - 1}
-    \chapter{#2}
-    \renewcommand*\parttitle{#2}
+	\setcounter{chapter}{#1 - 1}
+	\chapter{#2}
+	\renewcommand*\parttitle{#2}
 }
 
-\renewcommand{\part}[1]{\section{#1}}
+\let\part\section
+\let\section\subsection
 \AtBeginDocument{\fulltrue}
 
-\makeatother
+\renewcommand{\thesection}{\arabic{section}}
 
+\usepackage{pgfornament}
+\usepackage{makeidx}
 \usepackage{fancyhdr}
+\usepackage[totoc]{idxlayout}
+\usepackage{tocbibind}
 \pagestyle{fancy}
 
 \fancyhead[R]{\itshape MP2I}
-\fancyhead[L]{\thesection}
+\fancyhead[L]{\arabic{chapter}.\arabic{section}}
 \fancyhead[C]{\parttitle}
 
+\fancyfoot{}
 \fancyfoot[C]{\thepage}
-\fancyfoot[L]{}
-\fancyfoot[R]{}
 
-\makeatletter
-
-\usepackage{pgfornament}
+\makeindex
 
 \begin{document}
-    \begin{titlepage}
-        \begin{center}
-            \vspace{10cm}
-            {\Large \itshape 2021-2022}\\
-            \vspace{3cm}
-            \pgfornament[width=8cm]{88}\\
-            \vspace{2mm}
-            \vspace{0.5cm}
-            {\HUGE Mathématiques}\\
-            \vspace{0.5cm}
-            {\fontsize{240pt}{260pt}\selectfont MP2I}\\
-            \vspace{0.5cm}
-            \pgfornament[width=8cm]{88}\\
-            \vfill
-            Hugo {\sc Salou}\\
-        \end{center}
-    \end{titlepage}
-    \tableofcontents
+	\begin{titlepage}
+		\begin{center}
+			\vspace{10cm}
+			{\Large \itshape 2021-2022}\\
+			\vspace{3cm}
+			\pgfornament[width=8cm]{88}\\
+			\vspace{2mm}
+			\vspace{0.5cm}
+			{\HUGE Mathématiques}\\
+			\vspace{0.5cm}
+			{\fontsize{240pt}{260pt}\selectfont MP2I}\\
+			\vspace{0.5cm}
+			\pgfornament[width=8cm]{88}\\
+			\vfill
+			Hugo {\sc Salou}\\
+		\end{center}
+	\end{titlepage}
+
+	{
+		\lhead{}
+		\renewcommand*\parttitle{Table des matières}
+		\tableofcontents
+	}
+
 
 
 	\chap[00]{Logique (rudiments)}
@@ -79,6 +87,16 @@
 	\input{../chap03/p1.tex}
 	\input{../chap03/p2.tex}
 
+	\chap[04]{Fonctions usuelles}
+	\renewcommand{\cwd}{../chap04}
+	\input{../chap04/p1.tex}
+	\input{../chap04/p2.tex}
+	\input{../chap04/p3.tex}
+	\input{../chap04/p4.tex}
+	\input{../chap04/p5.tex}
+	\input{../chap04/p6.tex}
+	\input{../chap04/p7.tex}
+
 	\chap[05]{Calcul intégral}
 	\renewcommand{\cwd}{../chap05}
 	\input{../chap05/p1.tex}
@@ -89,10 +107,15 @@
 	\input{../chap06/p2.tex}
 	\input{../chap06/p3.tex}
 
+	\chap[07]{Développements limités}
+	\renewcommand{\cwd}{../chap07}
+	\input{../chap07/p1.tex}
+
 	\chap[08]{Ensembles, applications, relations et lois de composition}
 	\renewcommand{\cwd}{../chap08}
 	\input{../chap08/p1.tex}
 	\input{../chap08/p2.tex}
+	\input{../chap08/p3.tex}
 
 	\chap[11]{Suites numériques}
 	\renewcommand{\cwd}{../chap11}
@@ -187,4 +210,27 @@
 	\input{../chap24/p1.tex}
 	\input{../chap24/p2.tex}
 	\input{../chap24/p3.tex}
+
+	\chap[25]{Séries numériques}
+	\renewcommand{\cwd}{../chap25}
+	\input{../chap25/p1.tex}
+	\input{../chap25/p2.tex}
+	\input{../chap25/p3.tex}
+	\input{../chap25/p4.tex}
+	\input{../chap25/p5.tex}
+	\input{../chap25/p6.tex}
+	\input{../chap25/p7.tex}
+	\input{../chap25/p8.tex}
+
+	\chap[26]{Déterminant}
+	\renewcommand{\cwd}{../chap26}
+	\input{../chap26/p0.tex}
+	\input{../chap26/p1.tex}
+	\input{../chap26/p2.tex}
+	\input{../chap26/p3.tex}
+
+	\clearpage
+	\lhead{}
+	\renewcommand*\parttitle{Index}
+	\printindex
 \end{document}

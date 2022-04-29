@@ -1,0 +1,164 @@
+\begin{defn}
+	Soit $f$ une fonction définie au voisinage d'un point $a \in \R$.
+
+	On dit que $f$ possède un \underline{développment limité d'ordre $n$ au voisinage de $a$} s'il existe des réels $(c_0, \ldots, c_n) \in \R^{n+1}$ tels que \[
+		f(x) = c_0 + c_1(x-a) + c_2(x-a)^2 + \cdots + c_n (x-a)^{n} + \po_{x\to a}\big((x-a)^n\big).
+	\]
+
+	En particulier, avec $a = 0$, on a \[
+		f(x) = \underbrace{c_0 + c_1x + c_2x^2 + \underset{\phantom{x}}{\cdots} + c_n x^n}_{\text{\underline{développement de Taylor}}} + \underbrace{\po_{x\to 0}(x^n)}_{\text{\underline{reste}}}.
+	\]
+
+	\index{développement limité d'ordre $n$ au voisinage de $a$}
+\end{defn}
+
+\begin{thm}[Taylor-Young]
+	Si $f$ est de classe $\mathcal{C}^n$ (i.e. $f$ définie et dérivable $n$ fois et $f^{(n)}$ est continue) au voisinage de $a$, alors $f$ admet un développement limité d'ordre $n$ au voisinage de $a$ est \[
+		f(x) = f(a) + (x-a)f'(a) + (x-a)^2 \frac{f''(a)}{2!} + \cdots + (x-a)^n \frac{f^{(n)}(a)}{n!} + \po_{x\to a}\big((x-a)^n\big).
+	\] \qed
+\end{thm}
+
+\begin{rmk}
+	Cette formule est à éviter en pratique : il est bien trop difficile de calculer $f^{(n)}$ pour tout $n$.
+
+	Cependant, on peut quand même en déduire le développement limité de $\exp$, $\cos$, $\sin$ et $x\mapsto (1+x)^\alpha$ en 0.
+\end{rmk}
+
+\begin{crlr}
+	\begin{align*}
+		&e^{x} = 1 + x + \frac{x^2}{2} + \cdots + \frac{x^n}{n!} + \po_{x\to 0}(x^n),\\
+		&\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots + (-1)^n \frac{x^{2n}}{(2n)!} + \po_{x\to 0}(x^{2n}),\\
+		&\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots + (-1)^n \frac{x^{2n+1}}{(2n+1)!} + \po_{x\to 0}(x^{2n+1}),\\
+		\forall \alpha \in \R,\, &(1+x)^\alpha = 1 + \alpha x + \alpha (\alpha -1) \frac{x^2}{2!} + \alpha(\alpha-1)(\alpha-2)\frac{x^3}{3!} + \cdots\\
+		&\qquad+ \alpha(\alpha-1)\cdots\big(\alpha - (\alpha- 1)\big) \frac{x^n}{n!} + \po_{x\to 0}(x^n).
+	\end{align*}
+\end{crlr}
+
+\begin{rmk}
+	Avec $\alpha = -1$, on obtient le développement limité de $\frac{1}{1+x}$ en 0 : \[
+		\frac{1}{1+x} = 1 - x + x^2 - x^3 + \cdots + (-1)^nx^n + \po_{x\to 0}(x^n).
+	\]
+
+	On en déduit donc le développement limité en $0$ de $\frac{1}{1-x}$ : \[
+		\frac{1}{1-x} = 1 + x + x^2+ x^3 + \cdots + x^n + \po_{x\to 0}(x^n)
+	\]
+
+	Avec $\alpha = \frac{1}{2}$, on obtient le développement limité à l'ordre 2 de $\sqrt{1+x}$ : \[
+		\sqrt{1+x}  = 1 + \frac{x}{2} - \frac{x^2}{8} + \po_{x\to 0}(x^2).
+	\]
+\end{rmk}
+
+\begin{thm}[primitivation]
+	Soit $f$ une fonction continue en $a$ ayant un développement limité d'ordre $n$ au voisinage de $a$. Soient $(c_0, c_1, \ldots, c_n)\in \R^{n+1}$ tels que \[
+		f(x)  = c_0  + c_1(x-a) + c_2(x-a)^2 + \cdots + c_n(x-a)^n + \po_{x\to a}\big((x-a)^n\big).
+	\]
+
+	Soit $F$ une primitive de $f$. Alors $F$ a un développement limité d'ordre $n+1$ au voisinage de $a$ et \[
+		F(x) = F(a) = c_0(x-a) + c_1 \frac{(x-a)^2}{2} + \cdots + c_n\frac{(x-a)^{n+1}}{n+1} + \po_{x\to a}\big((x-a)^{n+1}\big).
+	\]\qed
+\end{thm}
+
+\begin{crlr}
+	En primitivant le développement limité de $\frac{1}{x+1}$, on obtient le développement limité de $\ln(1+x)$ : \[
+		\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + \cdots + (-1)^n \frac{x^{n+1}}{n+1} + \po_{x\to 0}(x^{n+1}).
+	\] On en déduit aussi le développement limité de $\Arctan$ : \[
+		\Arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7}+ \cdots + (-1)^n \frac{x^{2n+1}}{2n+1} + \po_{x\to 0}(x^{2n+1}).
+	\] 
+	\qed
+\end{crlr}
+
+\begin{exo}[{\itshape Calculer $\mathit{DL_5(0)}$ de $\tan$}]~\\[-3mm]
+	\begin{itemize}
+		\item[\sc Méthode 1] (quotient) : $\tan x = \frac{\sin x}{\cos x}$.
+
+			On a \[
+				\begin{cases}
+					\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} + \po(x^5),\\
+					\cos x = 1 - \frac{x^2}{2} + \frac{x^4}{24} + \po(x^5).
+				\end{cases}
+			\]
+
+			On calcule d'abord le développement limité de $\frac{1}{\cos x}$ :
+			\begin{align*}
+				\frac{1}{\cos x} &= \frac{1}{1 - \frac{x^2}{2} + \frac{x^4}{24} + \po(x^5)} \\
+				&= \frac{1}{1+u} \text{ avec } u = -\frac{x^2}{2} + \frac{x^4}{24} + \po(x^5)\tendsto{x \to 0} 0 \\
+				&= 1 - u + u^2 + \po(u^2) \\
+				&= 1 - \left( -\frac{x^2}{2} + \frac{x^4}{24} + \po(x^5) \right) \\
+				&\phantom{ = 1 -} \mathclap{+} \phantom{+} \left( -\frac{x^2}{2} + \frac{x^4}{24} + \po(x^5) \right)\\
+				&\phantom{ = 1 -} \mathclap{+} \phantom{+} \po\left( \left( -\frac{x^2}{2} + \frac{x^4}{24} + \po(x^5) \right)^2 \right)\\
+				&= 1+\frac{x^2}{2} -\frac{x^4}{24} + \frac{x^4}{4} + \po(x^5) \\
+				&= 1 + \frac{x^2}{2} + \frac{5x^4}{24} + \po(x^5). \\
+			\end{align*}
+
+			On en déduit le développement limité de $\tan x$ :
+			\begin{align*}
+				\tan x &= \left(x - \frac{x^3}{6}+ \frac{x^5}{120} + \po(x^5)\right) \left( 1 + \frac{x^2}{2} + \frac{5x^4}{24} + \po(x^5) \right) \\
+				&= x + \frac{x^3}{2} + \frac{5x^5}{24} - \frac{x^3}{6} - \frac{x^5}{12} + \frac{x^5}{120} + \po(x^5) \\
+				&= x + \frac{x^3}{3} + \frac{2x^5}{15} + \po(x^5). \\
+			\end{align*}
+
+			{
+				\color{red}
+				À connaître:
+				\[
+					\boxed{\color{black} \tan x  = x + \frac{x^3}{3} + \po_{x\to 0}(x^3).}
+				\]
+			}
+		\item[\sc Méthode 2](déterminer les coefficiants)
+
+			On identifie les coefficants: 
+			\begin{align*}
+				\sin x &= (\tan x)(\cos x)\\
+				&= \big(c_0 + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + \po(x^5)\big)\\
+				&\times \left( 1 - \frac{x^2}{2} + \frac{x^4}{24} + \po(x^5) \right)\\
+				&= c_0 + c_1x + c_2 x^2 + c_3x^3 + c_4x^4 + c_5x^5 + \po(x^5)\\
+				&- c_0 \frac{x^2}{2}-c_1 \frac{x^3}{2} - c_2 \frac{x^4}{2} - c_3 \frac{x^5}{2} + c_0\frac{x^4}{24} + c_1 \frac{x^5}{24} \\
+			\end{align*}
+
+			Par unicité du développement limité, \[
+				\begin{cases}
+					c_0 = 0\\
+					c_1 = 1\\
+					c_2 - \frac{c_0}{2} = 0\\
+					c_3 - \frac{c_1}{2} = -\frac{1}{6}\\
+					c_4 - \frac{c_2}{2} + \frac{c_0}{24} = 0\\
+					c_5 - \frac{c_3}{2} + \frac{c_1}{24} = \frac{1}{120}
+				\end{cases}
+			\] et donc \[
+				\begin{cases}
+					c_0 = c_2 = c_4 = 0\\
+					c_1 = 1\\
+					c_3 = \frac{1}{3}\\
+					c_5 = \frac{2}{15}
+				\end{cases}
+			\]
+		\item[\sc Méthode 3](primitivation)
+
+			On sait que \[
+				\frac{\tan x - \tan 0}{x - 0} \tendsto{x\to 0} \tan'(0) = 1
+			\] donc $\tan x \sim x$ et donc $\tan x = x + \po(x)$.
+
+			D'où
+			\begin{align*}
+				\tan'(x) = 1 + \tan^2(x) &= 1 + \big(x + \po(x)\big)^2 \\
+				&= 1 + x^2 + \po(x^2). \\
+			\end{align*}
+			En intégrant, on en déduit que \[
+				\tan x = \tan 0 + x + \frac{x^3}{3} + \po(x^3)
+			\]
+
+			Donc,
+			\begin{align*}
+				\tan'(x) &= 1 + \tan^2 x \\
+				&= 1 + \left( x + \frac{x^3}{3} + \po(x^3) \right)^2 \\
+				&= 1 + x^2 + \frac{x^6}{9} + \po(x^6) + 2 \frac{x^4}{3} + \po(x^4) + \po(x^6) \\
+				&= 1 + x^2 + \frac{2}{3}x^4 + \po(x^4) \\
+			\end{align*}
+
+			On en déduit donc le développement limité à l'ordre $5$ de $\tan$ : \[
+				\tan x = \underbrace{\tan 0}_{\substack{\,\vrt=\\0}} + \frac{x^3}{3} + \frac{2}{15}x^5 + \po(x^5)
+			\] 
+	\end{itemize}
+\end{exo}
+
+

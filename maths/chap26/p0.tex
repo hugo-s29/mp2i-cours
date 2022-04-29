@@ -1,0 +1,97 @@
+\part{Motivation}
+
+Soit $E$ un espace vectoriel de dimension $n$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$.
+
+Soit $\mathcal{C} = (u_1, \ldots, u_n)$ une famille de $E$. On souhaite trouver un ``calcul'' sur les coordonées des vecteurs de $\mathcal{C}$ qui nous dira si $\mathcal{C}$ est un base ou non de $E$.
+
+\begin{exm}
+	Avec $E = \R^2$, $\mathcal{B} = (e_1, e_2)$ base canonique de $\R^2$, $\mathcal{C} = (u_1, u_2)$ avec $u_1 = (x,y)$ et $u_2 = (x', y')$.
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			size(4cm);
+			pair u1 = (1.5, 3);
+			pair u2 = (3, 1.5);
+			pair u3 = (2.5, -1);
+
+			draw((0,0) -- u1 -- u1 + u2 + u3 -- u2 + u3 -- cycle, gray);
+
+			draw((-1, 0) -- (7, 0), Arrow(TeXHead));
+			draw((0, -1) -- (0, 7), Arrow(TeXHead));
+
+			draw((0,0) -- u1, orange, Arrow(TeXHead));
+			draw((0,0) -- u2, deepcyan, Arrow(TeXHead));
+			draw(u1 -- u1 + u2, deepcyan, Arrow(TeXHead));
+			draw(u2 -- u1 + u2, orange, Arrow(TeXHead));
+			draw(u2 -- u2 + u3, red, Arrow(TeXHead));
+			draw(u2 + u1 -- u1 + u2 + u3, red, Arrow(TeXHead));
+
+			label("\small$u_1$", u1/2, orange, align=W);
+			label("\small$u_2$", u2/2, deepcyan, align=S);
+			label("\small$u_3$", u2 + u3/2, red, align=N);
+		\end{asy}
+	\end{figure}
+
+	On note $A$ l'aire orientée (ou algébrique) du parallélogramme engendré par $u_1$ et $u_2$.
+
+	Cette aire vérifie : \[
+		\begin{cases}
+			A(u_1 + u_3, u_2) = A(u_1, u_2) + A(u_3, u_2)\\
+			A(\lambda u_1, u_2) = \lambda A(u_1, u_2)\\
+			A(u_2, u_1) = -A(u_1, u_2)\\
+			A(e_1, e_2) = 1
+		\end{cases}
+	\]
+
+	\begin{align*}
+		A(u_1, u_2) &= A(xe_1+ye_2, u_2) \\
+		&= xA(e_1, u_2) + yA(e_2, u_2) \\
+		&= xA(e_1, x'e_1 + y'e_2) + yA(e_2, x' e_1 + y' e_2) \\
+		&= xx' A(e_1, e_1) + xy' A(e_1, e_2) + yx' A(e_2, e_1) + yy' A(e_2, e_2) \\
+		&= xy' - yx' \\
+	\end{align*}
+
+	\[
+		(u_1, u_2) \text{ base de } \R^2 \iff xy' - yx' \neq 0
+	\]
+\end{exm}
+
+\begin{rmk}
+	\[
+		\Mat_\mathcal{B}(\mathcal{C}) = \begin{pmatrix}
+			x&x'\\
+			y&y'
+		\end{pmatrix}
+	\]
+\end{rmk}
+
+\begin{exm}
+	$E=\R^3$, $(e_1, e_2, e_3)$ base canonique, $\mathcal{C} = (u_1, u_2, u_3)$ famille de $E$.
+
+	Soit $V$ le volume algébrique du parallélépipède orienté engendré par $u_1$, $u_2$ et $u_3$.
+
+	$V$ est trilinéaire et \[
+		\begin{cases}
+			V(u_2, u_1, u_3) = -V(u_1, u_2, u_3)\\
+			V(u_3, u_1, u_2) = V(u_1, u_2, u_3)\\
+			V(e_1, e_2, e_3) = 1
+		\end{cases}
+	\]
+
+	On pose $\begin{cases}
+		u_1 = (x_1, y_1, z_1)\\
+		u_2 = (x_2, y_2, z_2)\\
+		u_3 = (x_3, y_3, z_3).
+	\end{cases}$
+
+	\begin{align*}
+		V(u_1, u_2, u_3) &= V(x_1 e_1 + y_1 e_2 + z_1 e_3, u_2, u_3) \\
+		&= x_1 V(e_1, u_2, u_3)  + y_1 V(e_2, u_2, u_3) + z_1V(e_3, u_2, u_3)\\
+		&=\;\phantom{+} x_1 y_2 z_3V(e_1, e_2, e_3) + x_1 z_2 y_3 V(e_1, e_3, e_2) + y_1 x_2 z_3 V(e_2, e_1, e_3) \\
+		&\phantom{=\;} + y_1 z_2 x_3 V(e_2, e_3, e_1) + z_1 x_2 y_3 V(e_3, e_1, e_2) + z_1 y_2 x_3 V(e_3, e_2, e_1)\\
+		&= x_1 y_2 z_3 + y_1 z_2 x_3 + z_1 x_2 y_3 - x_1 z_2 y_3 - y_1 x_2 z_3 - z_1 y_2 x_3 \\
+	\end{align*}
+
+	C'est la formule de Sarrus (hors-programme).
+\end{exm}

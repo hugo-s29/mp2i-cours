@@ -1,0 +1,256 @@
+\part{Logarithme népérien}
+
+\begin{thm}
+	[théorème fondamental de l'analyse]
+	Soit $f$ une fonction continue sur un intervalle $I$. Alors il existe $F$ dérivable sur $I$ telle que \[
+		\forall x \in I, F'(x) = f(x).
+	\]
+\end{thm}
+
+\begin{prv}
+	[c.f. chapitre 5 : calcul intégral]
+\end{prv}
+
+
+\begin{defn}
+	La fonction \underline{$\ln$} est l'unique primitive sur $\R_*^+$ de $x \mapsto \frac{1}{x}$ qui s'annule en $1$.
+	\index{logarithme népérien}
+\end{defn}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\ln 1 = 0$;
+		\item $\ln$ est dérivable sur $\R^*_+$ et \[
+				\forall x > 0, \ln'x = \frac{1}{x}.
+			\]
+	\end{enumerate}
+	\qed
+\end{prop}
+
+\begin{crlr}
+	\[
+		\forall x > 0, \ln x = \int_{1}^{x} \frac{\mathrm{d}t}{t}.
+	\]
+\end{crlr}
+
+\begin{prv}
+	Soit \begin{align*}
+		\varphi: \R^+_* &\longrightarrow \R \\
+		x &\longmapsto \int_{1}^{x} \frac{\mathrm{d}t}{t}.
+	\end{align*}
+
+	On a
+	\begin{align*}
+		\forall x > 0, \varphi(x) &= [\ln t]^x_1\\
+		&= \ln x - \ln 1 \\
+		&= \ln x \\
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	\begin{align*}
+		u: \R^-_* &\longrightarrow \R \\
+		x &\longmapsto \ln (-x)
+	\end{align*}
+
+	$u$ est dérivable sur $\R_*^-$ et \[
+		\forall x < 0, u'(x) = \ln'(-x) \times (-1) = \frac{-1}{-x} = \frac{1}{x}.
+	\] 
+
+	Donc $u$ est une primite de $x \mapsto \frac{1}{x}$ sur $\R^-_*$.
+
+	Soit $v : \begin{array}{rcl}
+		\R^* &\longrightarrow& \R \\
+		x &\longmapsto& \ln\big(\left| x \right|\big).
+	\end{array}$ $\left| x \right|$ est dérivable sur $\R^*$ donc $v$ aussi.
+
+	\begin{align*}
+		&\forall x > 0, v(x) = \ln x\\
+		\text{ donc }& \forall x > 0, v'(x) = \frac{1}{x}.
+	\end{align*}
+
+	\begin{align*}
+		&\forall x < 0, v(x) = \ln(-x) = u(x)\\
+		\text{ donc }& \forall x < 0, v'(x) = \frac{1}{x}.
+	\end{align*}
+
+	Donc, $\forall x \in \R^*, v'(x) = \frac{1}{x}$. Ainsi, $v$ est \underline{une} primitive de $x \mapsto \frac{1}{x}$ sur $\R^*$ mais cette primitive n'est pas unique : \begin{align*}
+		w: \R^* &\longrightarrow \R \\
+		x &\longmapsto \begin{cases}
+			1 + \ln x & \text{ si } x > 0\\
+			\ln(-x) - 3 & \text{ si } x < 0
+		\end{cases}
+	\end{align*} est une autre primitive de $x \mapsto \frac{1}{x}$ sur $\R^*$.
+\end{rmk}
+
+\begin{crlr}
+	$\ln$ est strictement croissante sur $\R_*^+$.
+\end{crlr}
+
+\begin{prv}
+	\[
+		\forall x > 0, \ln' x = \frac{1}{x} > 0.
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $f$ une fonction croissante sur $]a,b[$ avec $\begin{cases}
+		a \in \R\cup \{-\infty\}\\
+		b \in \R\cup \{+\infty\}.
+	\end{cases}$ et $a < b$.
+
+	\begin{enumerate}
+		\item Si $f$ est majorée, $\lim_{\substack{x\to b\\<}}f(x) \in \R$.
+		\item Si $f$ n'est pas majorée, $\lim_{\substack{x\to b\\<}}f(x) = +\infty$.
+		\item Si $f$ est minorée, $\lim_{\substack{x\to a\\>}}f(x) \in \R$.
+		\item Si $f$ n'est pas minorée, $\lim_{\substack{x\to a\\>}}f(x) = -\infty$.
+	\end{enumerate}\qed
+\end{prop}
+
+\begin{prop}
+	\[
+		\forall a,b \in \R_*^+, \ln(ab) = \ln a + \ln b.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $a > 0$ et $u : \begin{array}{rcl}
+		\R_*^+ &\longrightarrow& \R \\
+		x &\longmapsto& \ln(ax).
+	\end{array}$
+
+	$u$ est dérivable sur $\R^+_*$ et \[
+		\forall x > 0, u'(x) = \ln'(ax) \times a = \frac{a}{ax} = \frac{1}{x}
+	\]
+
+	Donc $u$ est une primitive de $x\mapsto \frac{1}{x}$ sur $\R^+_*$. Comme $\R^+_*$ est un intervalle, il existe $C \in \R$ telle que \[
+		\forall x \in \R^+_*, u(x) = \ln x + C.
+	\] En particulier,
+	\[
+		\begin{array}{ccc}
+			u(1) &=& \ln 1 + C\\
+			\vrt=&&\vrt=\\
+			\ln a&=&C
+		\end{array}
+	\] Donc \[
+		\forall x > 0, \ln(ax) = \ln x + \ln a.
+	\]
+\end{prv}
+
+\begin{crlr}
+	Soit $a > 0$ et $n \in \Z$. Alors $\ln(a^n) = n \ln(a)$.
+\end{crlr}
+
+\begin{prv}[par récurrence sur $n$ ]
+	Pour $n \in \N$, on pose \[
+		\mathcal{P}(n) : ``\ln(a^n) = n \ln a".
+	\]
+	\begin{itemize}
+		\item Avec $n = 0$, $\ln(a^n) = \ln 1 = 0 = 0 \times \ln a$
+		\item Soit $n \in \N$. On suppose $\mathcal{P}(n)$ vraie.
+			\begin{align*}
+				\ln(a^{n+1}) &= \ln(a \times a^{n})\\
+				&= \ln a + \ln(a^n) \\
+				&= \ln a + n \ln a \\
+				&= (n+1) \ln a \\
+			\end{align*}
+	\end{itemize}
+
+	Donc \[
+		\forall n \in \N, \ln(a^n) = n \ln a.
+	\]
+
+	\begin{itemize}
+		\item \[
+				\ln\left( \frac{1}{a} \right) + \ln a = \ln\left( \frac{1}{a}\times a \right) = \ln 1 = 0
+			\] donc $\ln \frac{1}{a} = -\ln a$ 
+		\item Soit $n \in \Z^-$. Alors, \[
+			\ln(a^n) = \ln\left( \left( \frac{1}{a} \right)^{-n} \right) = -n \ln \frac{1}{a} = n \ln a.
+		\]
+	\end{itemize}
+\end{prv}
+
+
+\begin{crlr}
+	\[
+		\begin{cases}
+			\lim_{x\to +\infty} \ln x = +\infty\\
+			\lim_{x\to 0} \ln x = -\infty
+		\end{cases}
+	\]
+\end{crlr}
+
+\begin{prv}
+	Comme $\ln$ est croissante sur $]0,+\infty[$, on sait que $\lim_{x\to +\infty} \ln x$ existe. C'est un réle ou $+\infty$.
+
+	Supposons cette limite réelle : on pose $\lim_{x\to +\infty} \ln x = \ell \in \R$. Alors $\lim_{n\to +\infty} \ln(2^n) = \ell$ car $2^n\tendsto{n\to +\infty} +\infty$.
+
+	Or, \[
+		\forall x \in \N, \ln(2^n) = n \ln 2
+	\] et $2 > 1$ donc $\ln 2 >\ln 1 = 0$ donc $n \ln 2 \tendsto{n\to +\infty} +\infty$: une contradiction.
+
+	Donc $\ln x \tendsto{x\to +\infty} +\infty$.
+
+	\[
+		\forall x > 0, \ln x = - \ln \frac{1}{x} \tendsto{\substack{x\to 0\\>}} -\infty
+	\] car $\frac{1}{x} \tendsto{\substack{x\to 0\\ >}} +\infty$.
+\end{prv}
+
+\begin{prop}
+	\[
+		\lim_{x\to +\infty} \frac{\ln x}{x} = 0.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $x \ge 1$. On a \[
+		0 = \ln 1 \le \ln x = \int_{1}^{x} \frac{1}{t}~\mathrm{d}t.
+	\] et \[
+		\forall t \in [1,x], t \ge \sqrt{t}
+	\] donc \[
+		\forall t \in [1,x], \frac{1}{t} \le \frac{1}{\sqrt{t}}.
+	\]
+
+	Par croissance de l'intégrale, on en déduit que \[
+		\ln x = \int_{0}^{1} \frac{1}{t}~\mathrm{d}t \le \int_{1}^{x} \frac{1}{\sqrt{t}}~\mathrm{d}t =\left[ 2\sqrt{t} \right]_1^x = 2\sqrt{x} - 2.
+	\]
+
+	Ainsi, \[
+		\forall x \ge 1, 0 \le \frac{\ln x}{x} \le \underbrace{2 \left( \frac{1}{\sqrt{x}} - \frac{1}{x} \right)}_{\tendsto{x\to +\infty}0}.
+	\]
+
+	Par encadrement, on a donc $\frac{\ln x}{x} \tendsto{x\to +\infty} 0$.
+\end{prv}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real ry = (9/16)*5;
+
+		bool3 check(real x) {
+			if(x == 0) {
+				return false;
+			}
+
+			if(abs(log(x)) > ry) {
+				return false;
+			}
+
+			return true;
+		}
+
+		real f(real x) { return log(x); }
+
+		draw(graph(f, 0, 5, 300, check), magenta);
+		dot("$1$", (1, 0), align=SE);
+
+		draw(shift((1,0)) * scale(0.7) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+
+		draw((0,-ry) -- (0, ry), Arrow(TeXHead));
+		draw((-1,0) -- (5,0), Arrow(TeXHead));
+	\end{asy}
+\end{figure}

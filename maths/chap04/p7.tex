@@ -1,0 +1,83 @@
+\part{Trigonométrie hyperbolique}
+
+\begin{defn}
+	Pour tout $x \in \R$, on pose \[
+		\begin{cases}
+			\ch x = \frac{e^x + e^{-x}}{2},\\
+			\sh x = \frac{e^x - e^{-x}}{2},\\
+			\th x = \frac{\sh x}{\ch x}.
+		\end{cases}
+	\]
+
+	$\ch$ est appelé \underline{cosinus hyperbolique}, $\sh$ est appelé \underline{sinus hyperbolique} et $\th$ est appelé \underline{tangeante hyperbolique}.
+	\index{cosinus hyperbolique}
+	\index{sinus hyperbolique}
+	\index{tangente hyperbolique}
+\end{defn}
+
+\begin{rmk}
+	Ces formules rappèlent les formules d'Euler : pour tout $x \in \R$,
+	\begin{align*}
+		\cos x = \frac{e^{ix} + e^{-ix}}{2}\quad\longleftrightarrow\quad\ch x = \frac{e^x + e^{-x}}{2}\\
+		\sin x = \frac{e^{ix} - e^{-ix}}{2i}\quad\longleftrightarrow\quad\sh x = \frac{e^x - e^{-x}}{2}\\
+	\end{align*}
+\end{rmk}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(12cm);
+
+		pair A = (-2, 0);
+		pair B = (2, 0);
+
+		real eps = 0.05;
+
+		draw(shift(A) * ((0, -1.3) -- (0, 1.3)), Arrow(TeXHead));
+		draw(shift(A) * ((-1.3, 0) -- (1.3, 0)), Arrow(TeXHead));
+
+		draw(circle(A, 1), magenta);
+		
+		real theta = 38;
+		pair M = dir(theta) + A;
+		draw(A -- M, red);
+		draw(arc(A, 0.35, 0, theta), red, Arrow(TeXHead));
+		draw(M -- (A.x-eps, M.y), dashed);
+		draw(M -- (M.x, A.y-eps), dashed);
+		label("\small$\theta$", 0.5dir(theta/2) + A, red);
+		label("\small$\cos\theta$", (M.x, A.y), align=S);
+		label("\small$\sin\theta$", (A.x, M.y), align=1.2W);
+		dot("\small$M$", M);
+
+		label("\small$x^2 + y^2 = 1$", A + 1.5dir(45+180));
+
+		draw(shift(B) * ((0, -1.3) -- (0, 1.3)), Arrow(TeXHead));
+		draw(shift(B) * ((-1.3, 0) -- (1.3, 0)), Arrow(TeXHead));
+
+		real ch(real x) { return (exp(x) + exp(-x)) / 2.; }
+		real sh(real x) { return (exp(x) - exp(-x)) / 2.; }
+		real nch(real x) { return -ch(x); }
+
+		real k = 1.9; real r = 1.2;
+		real t = 1.4;
+
+		draw(shift(B) * scale(0.35) * graph(ch, sh, -k, k), magenta);
+		draw(shift(B) * scale(0.35) * graph(nch, sh, -k, k), magenta);
+
+		label("\small$x^2 - y^2 = 1$", B + 1.5dir(45+180) + (0, -0.2));
+
+		M = B + 0.35(ch(t), sh(t));
+
+		draw(M -- (B.x-eps, M.y), dashed);
+		draw(M -- (M.x, B.y-eps), dashed);
+		dot("\small$M$", M);
+		label("\small$\ch x$", (M.x, B.y), align=S);
+		label("\small$\sh x$", (B.x, M.y), align=1.2W);
+
+		draw(shift(B) * ((-r, -r)--(r,r)), gray + dashed);
+		draw(shift(B) * ((r, -r)--(-r,r)), gray + dashed);
+	\end{asy}
+\end{figure}
+

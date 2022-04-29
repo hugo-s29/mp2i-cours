@@ -48,9 +48,9 @@
 	\]
 \end{prop}
 
-\begin{prv}
-	\begin{wrapfigure}{l}{4cm}
-		\vspace{-1cm}
+\begin{prv}~
+	\begin{figure}[H]
+		\centering
 		\begin{asy}
 			size(4cm);
 			pair E1 = (-1, 1);
@@ -84,12 +84,12 @@
 			label("\small $\id_F$", (1,0), align=W);
 			label("\small $Q^{-1}$", (1,0), align=E);
 		\end{asy}
-	\end{wrapfigure}
+	\end{figure}
 
 	$f = \id_F  \circ f \circ \id_E$ donc \[
-		\Mat_{\mathcal{B}_2,\mathcal{C}_2} = \Mat_{\mathcal{C}_1,\mathcal{C}_2}(\id_F)
+		\Mat_{\mathcal{B}_2,\mathcal{C}_2}(f) = \Mat_{\mathcal{C}_1,\mathcal{C}_2}(\id_F)
 		\Mat_{\mathcal{B}_1,\mathcal{C}_1}(f)
-		\Mat_{\mathcal{B}_2,\mathcal{C}_2}(\id_E)
+		\Mat_{\mathcal{B}_2,\mathcal{B}_1}(\id_E)
 	\]
 	\vspace{2cm}
 \end{prv}
@@ -131,6 +131,7 @@
 		\exists (P,Q) \in \mathrm{GL}_n(\mathbbm{K}) \times \mathrm{GL}_p(\mathbbm{K}), B = Q^{-1} A P
 	\] Cette relation est une relation d'équivalence.
 	\qed
+	\index{équivalence (matrices)}
 \end{prop-defn}
 
 \begin{thm}
@@ -145,6 +146,8 @@
 		B = P^{-1} A P.
 	\]
 	L'ensemble $\left\{ P^{-1}AP  \mid P \in \mathrm{GL}_n(\mathbbm{K}) \right\}$ est la \underline{classe de similitude de $A$}.
+	\index{classe de similitude (matrices)}
+	\index{semblable (matrices)}
 \end{defn}
 
 \begin{exm}
@@ -497,6 +500,7 @@
 	La \underline{trace} de $A$ est \[
 		\tr(A) = \sum_{i=1}^n a_{i,i}
 	\]
+	\index{trace (matrice)}
 \end{defn}
 
 \begin{prop}
@@ -516,7 +520,7 @@
 			\end{align*}
 		\item Soit $(A,B) \in \mathcal{M}_n(\mathbbm{K})^2$. On pose $A = (a_{i,j})$, $B = (b_{i,j})$, $AB = (c_{i,j})$ et $BA = (d_{i,j})$.
 			\begin{align*}
-				\tr(AB) = \sum_{i=1}^n c_{i,i} &= \sum_{i=1}^n \sum_{j=1}^n a_{i,j} b_{i,j} \\
+				\tr(AB) = \sum_{i=1}^n c_{i,i} &= \sum_{i=1}^n \sum_{j=1}^n a_{i,j} b_{j,i} \\
 				&= \sum_{j=1}^n \sum_{i=1}^n b_{j,i}a_{i,j} \\
 				&= \sum_{j=1}^n d_{j,j} \\
 				&= \tr(BA) \\

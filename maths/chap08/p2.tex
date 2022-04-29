@@ -11,6 +11,7 @@
 		f: E &\longrightarrow F \\
 		x &\longmapsto f(x)
 	\end{align*}
+	\index{application}
 \end{defn}
 
 \begin{exm}
@@ -116,10 +117,14 @@
 \begin{defn}
 	Soit $f: E \to F$ une application. On dit que $f$ est
 	\begin{itemize}
-		\item \underline{injective} si tout élément de $F$ a au plus un antécédant par $f$
-		\item \underline{bijective} si tout élément de $F$ a un unique antécédant par $f$
-		\item \underline{surjective} si tout élément de $F$ a au moins un antécédant par $f$
+		\item \underline{injective} si tout élément de $F$ a au plus un antécédent par $f$
+		\item \underline{bijective} si tout élément de $F$ a un unique antécédent par $f$
+		\item \underline{surjective} si tout élément de $F$ a au moins un antécédent par $f$
 	\end{itemize}
+
+	\index{injective (application)}
+	\index{surjective (application)}
+	\index{bijective (application)}
 \end{defn}
 
 \begin{exm}
@@ -178,6 +183,7 @@
 		x &\longmapsto g(f(x))
 	\end{align*}
 	On dit que c'est la \underline{composée} de $f$ et $g$.
+	\index{composition (application)}
 \end{defn}
 
 \begin{prop}
@@ -257,8 +263,9 @@
 	Soit $f: E\to F$ une \underline{bijection}.
 	L'application $\left\{\begin{array}{rcl}
 			F &\longrightarrow& E \\
-			y &\longmapsto& \text{l'unique antécédant de $y$ par $f$}
+			y &\longmapsto& \text{l'unique antécédent de $y$ par $f$}
 	\end{array}\right.$ est la \underline{réciproque} de $f$ notée $f^{-1}$
+	\index{réciproque (application)}
 \end{defn}
 
 \begin{defn}
@@ -266,6 +273,7 @@
 		E &\longrightarrow& E \\
 		x &\longmapsto& x
 	\end{array}$
+	\index{identité (application)}
 \end{defn}
 
 \begin{prop}
@@ -292,6 +300,7 @@
 		\item Soit $A \in \mathcal{P}(E)$. L'\underline{image directe} de $A$ par $f$ est \[
 				f(A) = \{f(x)  \mid x \in A\} 
 			\]
+			\index{image directe (application, ensemble)}
 			\vspace{-1.5cm}
 			\begin{center}
 				\incfig{image-directe}
@@ -301,6 +310,7 @@
 		\item Soit $B \in \mathcal{P}(F)$. L'\underline{image réciproque} de $B$ par $f$ est \[
 				f^{-1}(B) = \{x \in E | f(x) \in B\}
 			\]
+			\index{image réciproque (application, ensemble)}
 			\vspace{-1.5cm}
 			\begin{center}
 				\incfig{image-reciproque}
@@ -308,3 +318,154 @@
 			\vspace{-2cm}
 	\end{enumerate}
 \end{defn}
+
+\begin{rmk}~
+	\begin{itemize}
+		\item $y \in f(A) \iff \exists x \in A, y = f(x)$,
+		\item $x \in f^{-1}(B) \iff f(x) \in B$.
+	\end{itemize}
+\end{rmk}
+
+\begin{prop}
+	Soient $f: E \to F$, $A \in \mathcal{P}(E)$ et $F \in \mathcal{P}(F)$.
+
+	\begin{enumerate}
+		\item $f^{-1}\big(f(A)\big) \supset A$,
+		\item Si $f$ est injective alors $f^{-1}\big(f(A)\big) = A$,
+		\item $f\big(f^{-1}(B)\big) \subset B$,
+		\item Si $f$ est surjective, alors $f\big(f^{-1}(Bà\big) = B$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $x \in A$. Montrons que $x \in f^{-1}\big(f(A)\big)$ i.e. montrons que $f(x) \in f(A)$. Comme $x \in A$, $f(x) \in f(A)$.
+		\item On suppose $f$ injective. Montrons que $f^{-1}\big(f(A)\big) = A$.
+			Soit $x \in f^{-1}\big(f(A)\big)$, montrons que $x \in A$. On sait que $f(x) \in f(A)$. Donc, il existe $a \in A$ tel que $f(x) = f(a)$. Or, $f$ est injective et donc $x = a$. On en déduit que $x \in A$.
+
+			D'après 1., on sait que $f^{-1}\big(f(A)\big) \supset A$. On a montré $f^{-1}\big(f(A)\big) \subset A$. Donc \[
+				f^{-1}\big(f(A)\big) = A.
+			\]
+		\item Soit $y \in f\big(f^{-1}(B)\big)$. Montrons $y \in B$. On sait qu'il existe $x \in f^{-1}(B)$ tel que $y = f(x)$. On a donc $f(x) \in B$ et donc $y \in B$.
+		\item On suppose $f$ surjective, montrons $B \subset f\big(f^{-1}(B)\big)$. Soit $y \in B$, montrons $y \in f\big(f^{-1}(B)\big)$. On cherche $x \in f^{-1}(B)$ tel que $y = f(x)$. C'est à dire, on cherche $x \in E$ tel que $f(x) \in B$ et $y = f(x)$. On sait que $f$ est surjective donc $y$ a un antécédant $x \in E$ tel que $B \ni y = f(x)$.
+
+			On vient de montrer $B \subset f\big(f^{-1}(B)\big)$ et on a montré dans 3. que $B \supset f\big(f^{-1}(B)\big)$. On en déduit que \[
+				f\big(f^{-1}(B)\big) = B.
+			\]
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soit $f: E\to F$ et $(A,B) \in \mathcal{P}(F)^2$. Alors \[
+		\begin{cases}
+			f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B),\qquad \qquad &(1)\\
+			f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B).&(2)
+		\end{cases}
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soit $x \in E$.
+	\begin{align*}
+		x \in f^{-1}(A \cup B) \iff& f(x) \in A\cup B\\
+		\iff& f(x) \in A \ou f(x) \in B\\
+		\iff& x \in f^{-1}(A) \ou x \in f^{-1}(B)\\
+		\iff& x \in f^{-1}(A) \cup f^{-1}(B).
+	\end{align*}
+	\begin{align*}
+		x \in f^{-1}(A \cap B) \iff& f(x) \in A\cap B\\
+		\iff& f(x) \in A \et f(x) \in B\\
+		\iff& x \in f^{-1}(A) \et x \in f^{-1}(B)\\
+		\iff& x \in f^{-1}(A) \cap f^{-1}(B).
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soient $f: E \to F$ et $(A,B) \in \mathcal{P}(E)^2$.
+
+	\begin{enumerate}
+		\item $f(A \cap B) \subset f(A)\cap f(B)$
+		\item Si $f$ est injective, $f(A\cap B) = f(A) \cap f(B)$
+		\item $f(A\cup B) = f(A) \cup f(B)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $y \in f(A \cap B)$. Soit $x \in A \cap B$ tel que $y = f(x)$.
+			Comme $x \in A$, $f(x) \in f(A)$ et comme $x \in B$, $f(x) \in f(B)$ 
+			et donc $y \in f(A)\cap f(B)$
+		\item On suppose $f$ injective. Soit $y \in f(A) \cap f(B)$.\\
+			Comme $y \in f(A)$, il existe $a \in A$ tel que $y = f(a)$.\\
+			Comme $y \in f(B)$, il existe $b \in B$ tel que $y = f(b)$.
+
+			Comme $f$ est injective, $a = b$ et donc $a \in A \cap B$. On en déduit que \[
+				y = f(a) \in f(A\cap B).
+			\]
+		\item Soit $y \in F$. Alors
+			\begin{align*}
+				y \in f(A\cup B) \iff& \exists x \in A\cup B; y = f(x)\\
+				\iff& (\exists x \in A \ou \exists x \in B), y = f(x)\\
+				\iff& y \in f(A) \ou y \in f(B)\\
+				\iff& y \in f(A) \cup f(B).
+			\end{align*}
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	[Contre-exemple pour 2.] {\itshape Cas d'une application qui n'est pas injective}
+
+	On pose $A = \R^+_*$, $B = \R^-_*$ et \begin{align*}
+		f: \R &\longrightarrow \R^+ \\
+		x &\longmapsto x^2
+	\end{align*}
+
+	On a $A \cap B = \O$ donc $f(A\cap B) = \O$.
+
+	Or, $\quad\begin{rcases*}
+		f(A) = \R^+_*\\
+		f(B) = \R^+_*
+	\end{rcases*}$ donc $f(A) \cap f(B) = \R^+_*$.
+
+	On a \[
+		f(A\cap B) \neq f(A)\cap f(B).
+	\]
+\end{rmk}
+
+\begin{defn}
+	Soit $f: E\to F$ et $A \in \mathcal{P}(E)$.
+
+	La \underline{restriction} de $f$ à $A$ est \begin{align*}
+		f_{|A}: A &\longrightarrow F \\
+		x &\longmapsto f(x)a
+	\end{align*}
+	\index{restriction (application)}
+
+	On dit aussi que $f$ est \underlin{{\bf un} prolongement} de $f_{|A}$.
+	\index{prolongement (application)}
+\end{defn}
+
+\begin{rmk}[Notation]
+	L'ensemble des applications de $E$ dans $F$ est noté $F^E$.
+\end{rmk}
+
+\begin{exm}
+	On pose $f : \begin{array}{rcl}
+		\R^* &\longrightarrow& \R \\
+		x &\longmapsto& \frac{1}{x}
+	\end{array}$ et $g : \begin{array}{rcl}
+		\R &\longrightarrow& \R \\
+		x &\longmapsto& \begin{cases}
+			\frac{1}{x} &\text{ si } x \neq 0\\
+			0 &\text{ si } x = 0
+		\end{cases}
+	\end{array}$ un prolongement de $f$ car $g_{|\R^*} = f$.
+
+	L'applications $h : \begin{array}{rcl}
+		\R &\longrightarrow& \R \\
+		x &\longmapsto& \begin{cases}
+			\frac{1}{x} &\text{ si } x \neq 0\\
+			1 &\text{ si } x = 0
+		\end{cases}
+	\end{array}$ est un autre prolongement de $f$.
+\end{exm}

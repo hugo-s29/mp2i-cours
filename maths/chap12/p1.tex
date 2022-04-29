@@ -160,6 +160,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 		\item $\diamond$ a un neutre $e \in G$ 
 		\item $\forall x \in G, \exists y \in G, x\diamond y = y \diamond x = e$
 	\end{itemize}
+	\index{groupe}
 \end{defn}
 
 \begin{exm}[(À connaître)]
@@ -179,6 +180,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 
 \begin{defn}
 	On dit que $(G,\diamond)$ est un groupe \underline{commutatif} ou \underline{abélien} si c'est un groupe et $\diamond$ est une loi commutative.
+	\index{groupe commutatif}
+	\index{groupe abélien}
 \end{defn}
 
 \begin{defn}
@@ -188,6 +191,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 		\item $e \in H$ 
 		\item $\forall x \in H, x^{-1} \in H$
 	\end{enumerate}
+	\index{sous groupe}
 \end{defn}
 
 \begin{prop}
@@ -276,6 +280,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 		A \subset H
 	\end{array} } H
 	\]  est le plus petit (au sens de l'inclusion) sous groupe de $G$ qui contient $A$. On dit que c'est le \underline{sous groupe engendré} par $A$ et on le note $\left<A\right>$\\
+	\index{sous groupe engendré par $A$}
 \end{prop-defn}
 
 \begin{prv}
@@ -299,6 +304,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 \begin{defn}
 	Soit $(G, \cdot)$ un groupe et $A \subset G$.\\
 	On dit que $A$ est une \underline{partie génératrice} de $G$ ou que $A$ \underline{engendre} $G$ si $G = \left<A\right>$
+	\index{partie génératrice (groupe)}
+	\index{engendrer (groupe)}
 \end{defn}
 
 \begin{exm}[Rubik's cube]
@@ -340,6 +347,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 	G = \left<a \right>
 	\] 
 	On dit alors que $a$ est un \underline{générateur} de $G$
+	\index{monogène (groupe)}
+	\index{générateur (groupe)}
 \end{defn}
 
 \begin{exm}
@@ -348,7 +357,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 \end{exm}
 
 \begin{defn}
-	Un groupe monogène fini est \underline{cyclique}
+	Un groupe monogène fini est \underline{cyclique}.
+	\index{cyclique (groupe)}
 \end{defn}
 
 \begin{prop}
@@ -385,6 +395,7 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 \begin{defn}
 	Soit $(G, \cdot)$ un groupe et $a \in G$.\\
 	Si $\left<a \right>$ est fini, le cardinal de $\left<a \right>$ est appelé \underline{ordre} de $a$: c'est le plus petit entier strictement positif $n$ tel que $a^n = e$
+	\index{ordre (groupe)}
 \end{defn}
 
 \begin{exm}
@@ -463,6 +474,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 	Soient $(G_1, \cdot)$ et $(G_2, *)$ deux groupes et $f: G_1 \to G_2$. On dit que $f$ est un \underline{(homo)morphisme de groupes} si \[
 	\forall (x,y) \in G_1, f(x\cdot y) = f(x) * f(y)
 	\] 
+	\index{homomorphisme (de groupes)}
+	\index{morphisme (de groupes)}
 \end{defn}
 
 \begin{exm}
@@ -656,6 +669,9 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 		\item Un \underline{isomorphisme} de  $G$ dans $H$ un morphisme de groupes $f: G \to H$ bijectif.\\
 		\item Un \underline{automorphisme} de $G$ est un endomorphisme de $G$ bijectif.
 	\end{itemize}
+	\index{endomorphisme (de groupes)}
+	\index{isomorphisme (de groupes)}
+	\index{automorphisme (de groupes)}
 \end{defn}
 
 \begin{prop}
@@ -690,6 +706,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 		x &\longmapsto g x g^{-1}
 	\end{align*}
 	est appelée \underline{conjugaison par $g$}. On dit aussi que c'est un \underline{automorphisme intérieur}.
+	\index{conjugaison}
+	\index{automorphisme intérieur}
 \end{defn}
 
 \begin{prop}
@@ -758,7 +776,8 @@ On fait tomber un caillou dans un plan d'eau ce qui crée une onde qui se propag
 	Soient $(G_1, *)$ et $(G_2, *)$ deux groupes. On définit une loi sur $G_1\times G_2$ en posant \[
 		\left(x_1,x_2\right) \cdot \left( y_1,y_2 \right) = \left( x_1y_1,x_2y_2 \right)
 	\] 
-	Alors, $G_1\times G_2$ est un groupe pour cette loi appelée \underline{groupe produit}
+	Alors, $G_1\times G_2$ est un groupe pour cette loi appelée \underline{groupe produit}.
+	\index{groupe produit}
 \end{prop-defn}
 
 \begin{prv}

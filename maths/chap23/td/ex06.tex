@@ -1,0 +1,13 @@
+\part{Exercice 6}
+
+On numérote les pays de $1$ à $N$. On pose \begin{align*}
+	f: \left\llbracket 1,N \right\rrbracket &\longrightarrow \left\llbracket 0, N - 1 \right\rrbracket \\
+	p &\longmapsto \text{ le nombre de voisins du pays numéro } p
+\end{align*}
+
+On suppose $f$ injective. Alors $f$ est surjective : $\exists p, f(p) = 0$ et $\exists q, f(q) = N - 1$. Donc $p$ est isolé est $q$ est voisin de tous les pays. Donc $p$ et $q$ sont voisins. $\lightning$.
+
+Donc $f$ n'est pas injective donc \[
+	\exists p \neq q, f(p) = f(q).
+\]
+

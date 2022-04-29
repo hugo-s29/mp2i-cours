@@ -1,22 +1,28 @@
-\part{\'Evaluation}
+\part{Évaluation}
 
 \begin{defn}
-	Soit $A$ une $\mathbbm{K}$-algèble et $P \in \mathbbm{K}[X]$. On pose $P =  \sum_{k=0}^n e_k X^k$. Soit $a \in A$.\\
+	Soit $A$ une $\mathbbm{K}$-algèbre et $P \in \mathbbm{K}[X]$. On pose $P =  \sum_{k=0}^n e_k X^k$. Soit $a \in A$.\\
 	On pose
 	\begin{align*}
 		P(a) &= \sum_{k=0}^n e_k a^k\\
 		&= e_0 1_A + e_1 a + e_2 a^2 + \cdots + e_n a^n \in A \\
 	\end{align*}
 	On dit qu'on a \underline{évalué} $P$ en $a$, ou \underline{spécialisé} $X$ avec la valeur de $a$, ou \underline{remplacé} $X$ par $a$, \underline{substitué} $a$ à $X$.
+	\index{évaluer (polynôme)}
+	\index{spécialiser (polynôme)}
+	\index{remplacer (polynôme)}
+	\index{substituer (polynôme)}
 \end{defn}
 
 \begin{defn}
 	Soit $P \in \mathbbm{K}[X]$ et $a \in \mathbbm{K}$. \\
-	On dit que $a$ est une \underline{racine de $P$} si $P(a) = 0_{\mathbbm{K}}$
+	On dit que $a$ est une \underline{racine de $P$} si $P(a) = 0_{\mathbbm{K}}$.
+	\index{racine (polynôme)}
 \end{defn}
 
 \begin{defn}
 	Soit $P \in \mathbbm{K}[X] \in \mathcal{M}_n(\mathbbm{K})$. On dit que c'est un \underline{polynôme de matrices}.
+	\index{polynôme de matrices}
 \end{defn}
 
 \begin{exm}
@@ -57,6 +63,7 @@
 	Soient $P,Q \in \mathbbm{K}[X]$, $P = \sum_{k=0}^n a_k X^k$.\\
 	Alors $P(Q) = \sum_{k=0}^n a_k Q^k \quad \in \mathbbm{K}[X]$\\
 	C'est la \underline{composée} de $P$ et $Q$.
+	\index{composition (polynômes)}
 \end{defn}
 
 \begin{rmk}
@@ -137,6 +144,7 @@
 	\] \[
 		0_\N a_k = 0_\mathbbm{K}
 	\]
+	\index{dérivé (polynôme)}
 \end{defn}
 
 \begin{rmk}
@@ -210,6 +218,7 @@
 		\item si $k=1$, $P^{(1)} = P'$ 
 		\item si $k>1$, $P^{(k)} = \left( P^{(k-1)} \right)'$
 	\end{itemize}
+	\index{dérivée $n$-ième (polynôme)}
 \end{defn}
 
 \begin{prop}

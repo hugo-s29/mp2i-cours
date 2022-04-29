@@ -1,0 +1,52 @@
+\part{Exercice 11}
+
+\begin{enumerate}
+	\item $S_n^1 = 1$, $S_n^n = n!$ et $p>n$ donc $S_n^p = 0$.
+	\item $p\,S_{n-1}^p + pS_{n-1}^{p-1}$. En effet, on note \[
+			A = \{ f : E \to F \text{ surjective }  \mid f_{|E\setminus \{a\}} \text{ surjective} \}
+		\] et \begin{align*}
+			\varphi: A &\longrightarrow F \times \{f : E\setminus \{a\} \to F \text{ surjective}\} \\
+			f &\longmapsto f_{|E\setminus \{a\}}
+		\end{align*} est bijective car \begin{align*}
+			\psi: F \times \{E \setminus \{a\} \to F \text{ surjective}\} &\longrightarrow A \\
+			(y, g) &\longmapsto \left(\begin{array}{rcl}
+				E &\longrightarrow& F \\
+				x &\longmapsto& \begin{cases}
+					y &\text{ si } x = a\\
+					g(x) &\text{ sinon}
+				\end{cases}
+			\end{array}\right)
+		\end{align*} est la réciproque de $\varphi$ et donc \[
+			\#A = \#F \times \#\{E\setminus \{a\} \to F \text{ surjective}\} = p S_{n-1}^p.
+		\]
+	\item On pose \[
+			\forall n \in \N^*, \mathcal{P}(n) : ``\forall p \in \N^*, S_n^p = \sum_{k=0}^{p}(-1)^{p-k} {p\choose k} k^n".
+		\]
+		\begin{itemize}
+			\item Avec $n = 1$ et $p = 1$, On a $S_1^1 = 1$ et \[
+					\sum_{k=0}^1 (-1)^{1-k} {1\choose k} k^1 = 0 + 1 = 1.
+				\]
+
+				Avec $n = 1$ et $p \ge 2$, montrons que \[
+					0 = \sum_{k=0}^p (-1)^{p-k} {p\choose k} k
+				\]
+
+				\begin{align*}
+					\sum_{k=0}^p (-1)^{p-k} {p \choose k} k &= \sum_{k=1}^p (-1)^{p-k} \frac{p!}{(k-1)!\,(p-k)!} \\
+					&= p \sum_{k=1}^p (-1)^{p-k}{p-1\choose k-1} \\
+					&= p \sum_{j=0}^{p-1}(-1)^{p-1-k} {p-1\choose j} \\
+					&= p (1-1)^{p-1} = 0 \text{ car } p-1 \ge 1.
+				\end{align*}
+			\item Soit $n\ge 1$. On suppose $\mathcal{P}(n)$. Soit $p \in \N^*$.
+
+				\begin{align*}
+					S_{n+1}^p &= p\left( S_n^p + S_n^{p-1} \right)\\
+					&= \left(\sum_{k=0}^p (-1)^{p-k} {p\choose k} k^n + \sum_{k=0}^{p-1}(-1)^{p-1-k}{p-1\choose k} k^n\right)\\
+					&= p\left( \sum_{k=0}^{p-1}(-1)^{p-k} \left( {p\choose k} - {p-1\choose k} \right) k^n + p^n \right) \\
+					&= p \left( p^n + \sum_{k=1}^{p-1} (-1)^{p-k} {p-1\choose k-1} k^n \right) \\
+					&= p^{n+1} + \sum_{k=1}^{p-1}(-1)^{p-k} \frac{p!}{(k-1)!\,(p-k)!} k^n \\
+					&= p^{n+1} + \sum_{k=1}^{p-1} (-1)^{p-k} {p \choose k} k^{n+1} \\
+					&=\sum_{k=0}^p (-1)^{p-k} {p\choose k} k^{n+1}
+				\end{align*}
+		\end{itemize}
+\end{enumerate}

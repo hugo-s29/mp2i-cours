@@ -1,0 +1,23 @@
+\part{Exercice 5}
+
+{
+	\let\mathcal\mmathcal
+
+	On note $\mathcal{O}_1, \ldots, \mathcal{O}_k$ les orbites de $\sigma$ : \[
+		\left\llbracket 1,n \right\rrbracket = \bigcupdot_{j=1}^k \mathcal{O}_j
+	\]
+
+	On pose aussi $\sigma = \gamma_1\cdots\gamma_k$ où \[
+		\forall j \in \left\llbracket 1,k \right\rrbracket, \begin{cases}
+			\gamma_j \text{ est un cycle},\\
+			\Supp(\gamma_j) = \mathcal{O}_j \text{ si } \#\mathcal{O}_j \ge 2.
+		\end{cases}
+	\]
+
+	\begin{align*}
+		\varepsilon(\sigma) &= \prod_{j=1}^k \varepsilon(\gamma_j) \\
+		&= \prod_{j=1}^k (-1)^{\#\mathcal{O}_j - 1} \\
+		&= (-1)^{\sum_{j=1}^k (\#\mathcal{O}_j - 1)} \\
+		&= (-1)^{n-k} \\
+	\end{align*}
+}

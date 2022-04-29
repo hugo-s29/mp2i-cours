@@ -1,0 +1,33 @@
+\part{Exercice 8}
+
+On a \[
+	\begin{cases}
+		\frac{\partial g}{\partial x}(x,y) = \frac{1}{y}\left( e^{-x}-xe^{-x} \right) = \frac{e^{-x}}{y}(1-x)\\[3mm]
+		\frac{\partial g}{\partial y}(x,y) = \frac{-xe^{-x}}{y^2} + \frac{1}{e}
+	\end{cases}
+\]
+
+\begin{align*}
+	\begin{rcases*}
+		\frac{\partial g}{\partial x}(x,y) = 0\\[1mm]
+		\frac{\partial g}{\partial y}(x,y) = 0
+	\end{rcases*} \iff& \begin{cases}
+		x = 1\\
+		y = 1
+	\end{cases}\\
+	\iff& \begin{cases}
+		x = 1\\
+		y = 1
+	\end{cases}
+\end{align*}
+
+On a \[
+	g(1,1) = \frac{1}{e} + \frac{1}{e} = \frac{2}{e}.
+\]
+Or, \[
+	g(1,2) = \frac{1}{2e} + \frac{2}{e} > \frac{2}{e}
+\] et \[
+	g\left( \frac{1}{2}, 1 \right) = \frac{1}{2}e^{-\frac{1}{2}} + \frac{1}{e} < \frac{2}{e}
+\] car $\frac{1}{2}e^{-\frac{1}{2}} < e^{-1} \iff \frac{1}{2} < e^{-\frac{1}{2}} \iff 2 > e^{\frac{1}{2}} \iff 4 > e$.
+
+Donc, $(1,1)$ n'est ni un minimum, ni un maximum pour $g$.

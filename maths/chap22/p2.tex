@@ -45,13 +45,14 @@ On cherche $(a,b) \in \left( \R^+_* \right)^2$ tel que \[
 	Soit $f: U \to \R$ où $U$ est un ouvert de $\R^2$. Soit $(a,b) \in U$.
 	\vspace{2mm}
 
-	Si $\lim_{x \to a} \frac{f(x,b) - f(a,b)}{x - a} \in \R$, alors on dit que $f$ a une dérivée partielle suivant $x$ en $(a,b)$ et cette limite est notée \[
+	Si $\lim_{x \to a} \frac{f(x,b) - f(a,b)}{x - a} \in \R$, alors on dit que $f$ a une \underline{dérivée partielle suivant $x$ en $(a,b)$} et cette limite est notée \[
 		\partial f_1(a,b) = \frac{\partial f}{\partial x}(a,b).
 	\]
 
-	Si $\lim_{y \to b} \frac{f(a,y) - f(a,b)}{y - b} \in \R$, alors on dit que $f$ a une dérivée partielle suivant $y$ et la limite est notée \[
+	Si $\lim_{y \to b} \frac{f(a,y) - f(a,b)}{y - b} \in \R$, alors on dit que $f$ a une \underline{dérivée partielle suivant $y$ en $(a,b)$} et la limite est notée \[
 		\partial f_2(a,b) = \frac{\partial f}{\partial y}(a,b).
 	\]
+	\index{dérivée partielle (fonction à deux variables)}
 \end{defn}
 
 \begin{exm}
@@ -155,6 +156,7 @@ On cherche $(a,b) \in \left( \R^+_* \right)^2$ tel que \[
 		\] existe et est réelle, alors on dit que $f$ a une dérivée dans la direction de $w$ et la limite est notée \[
 			\mathrm{d}f(w)\,(a,b) = D_w(f)\,(a,b).
 		\]
+		\index{dérivée selon un vecteur (fonction à deux variables)}
 	\end{minipage}
 \end{defn}
 
@@ -271,6 +273,7 @@ On cherche $(a,b) \in \left( \R^+_* \right)^2$ tel que \[
 	Le développement limité à l'ordre 1 de $f$ devient \[
 		f\big((a,b)+w\big) = f(a,b) + \left<w \mid \nabla f(a,b) \right> + \po_{w\to 0}(\|w\|)
 	\]
+	\index{gradient (fonction à deux variables)}
 \end{defn}
 
 \begin{prop}
@@ -340,6 +343,8 @@ On cherche $(a,b) \in \left( \R^+_* \right)^2$ tel que \[
 	Soit $f : U \to \R$ de classe $\mathcal{C}^1$ et $(a,b) \in U$. On dit que $(a,b)$ est un \underline{point critique} de $f$ si $\nabla f(a,b) = 0$ i.e. $\frac{\partial f}{\partial x}(a,b) = \frac{\partial f}{\partial y}(a,b) = 0$.
 
 	Dans ce cas, $f(a,b)$ est appelé \underline{valeur critique} de $f$.
+	\index{point critique (fonction à deux variables)}
+	\index{valeur critique (fonction à deux variables)}
 \end{defn}
 
 \begin{prop}~\\

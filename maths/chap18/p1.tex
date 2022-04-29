@@ -2,16 +2,18 @@
 
 \begin{defn}
 	\begin{itemize}
-		\item Un \underlin{polynôme à coefficiants dans $\mathbbm{K}$} est une suite presque nulle de $\mathbbm{K}^\N$\\
+		\item Un \underlin{polynôme à coefficients dans $\mathbbm{K}$} est une suite presque nulle de $\mathbbm{K}^\N$\\
 		\item Le \underline{polynôme nul}, noté $0$ est la suite nulle.\\
 		\item Soit $P = (a_n)_{n\in\N}$ un polynôme non nul.\\
-			$\{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$ est non-vide et majoré. Le \underline{degré} de $P$ est $\max \{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$, et on le note $\deg(P)$ et $a_{\deg(P)}$ est le \underline{coefficiant dominant} de $P$, il est noté $\dom(P)$. \\
+			$\{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$ est non-vide et majoré. Le \underline{degré} de $P$ est $\max \{n \in \N \mid a_n \neq 0_\mathbbm{K}\}$, et on le note $\deg(P)$ et $a_{\deg(P)}$ est le \underline{coefficient dominant} de $P$, il est noté $\dom(P)$. \\
 		\item Le degré du polynôme nul est $-\infty$\\
 	\end{itemize}
+	\index{polynôme à coefficients dans $\mathbbm{K}$}
 \end{defn}
 
 \begin{prop-defn}
-	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficiants dans $\mathbbm{K}$. Alors, $P + Q = \left( a_n + b_n \right)_{n\in\N}$ est un polynôme appelé \underline{somme de $P$ et $Q$}
+	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficients dans $\mathbbm{K}$. Alors, $P + Q = \left( a_n + b_n \right)_{n\in\N}$ est un polynôme appelé \underline{somme de $P$ et $Q$}.
+	\index{somme (polynômes)}
 \end{prop-defn}
 
 \begin{prv}
@@ -26,10 +28,11 @@
 \end{prv}
 
 \begin{prop-defn}
-	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficiants dans $\mathbbm{K}$. On pose \[
+	Soient $P = (a_n)_{n\in\N}$ et $Q = (b_n)_{n\in\N}$ deux polynômes à coefficients dans $\mathbbm{K}$. On pose \[
 		\forall n \in \N, c_n = \sum_{k=0}^n a_k b_{n-k}
 	\]
 	La suite $(c_n)_{n\in\N}$ est presque nulle. Ce polynôme est appelé \underline{produit de $P$ et $Q$} et noté $PQ$.
+	\index{produit (polynômes)}
 \end{prop-defn}
 
 \begin{prv}
@@ -49,7 +52,7 @@
 
 \begin{rmk}
 	[Notation]
-	Soit $P = (a_n)_{n\in\N}$, un polynôme à coefficiants dans $\mathbbm{K}$ et $\lambda \in \mathbbm{K}$. Le polynôme $(\lambda a_n)_{n\in\N}$ est noté $\lambda P$
+	Soit $P = (a_n)_{n\in\N}$, un polynôme à coefficients dans $\mathbbm{K}$ et $\lambda \in \mathbbm{K}$. Le polynôme $(\lambda a_n)_{n\in\N}$ est noté $\lambda P$
 \end{rmk}
 
 
@@ -67,7 +70,7 @@
 \end{exm}
 
 \begin{thm}
-	Soit $P = (a_n)_{n\in\N}$ un polynôme non nul à coefficiants dans $\mathbbm{K}$. Alors \[
+	Soit $P = (a_n)_{n\in\N}$ un polynôme non nul à coefficients dans $\mathbbm{K}$. Alors \[
 		P = \sum_{k=0}^n a_k X^k \quad \text{ où } n = \deg(P) \text{ et } X^0 = (1,0,\ldots)
 	\]
 \end{thm}
@@ -118,7 +121,7 @@
 
 \begin{rmk}
 	[Notation]
-	On note $\mathbbm{K}[X]$ l'ensemble des polynômes à coefficiants dans $\mathbbm{K}$ dont l'indéterminée $(0, 1, 0, \ldots)$ est notée $X$.
+	On note $\mathbbm{K}[X]$ l'ensemble des polynômes à coefficients dans $\mathbbm{K}$ dont l'indéterminée $(0, 1, 0, \ldots)$ est notée $X$.
 \end{rmk}
 
 \begin{prop}
@@ -278,6 +281,6 @@
 		PQ &= \left( \sum_{k=0}^p a_k X^k \right) \left( \sum_{\ell=0}^q b_\ell X^\ell \right) \\
 		&= \sum_{k=0}^p \sum_{\ell=0}^q a_k b_{\ell} X^{k+\ell} \\
 	\end{align*}
-	donc $\deg(PQ) \le p+q$ et le coefficiant devant $X^{p+q}$ est $a_p b_q \neq 0$ (car $\mathbbm{K}$ est intègre)\\
+	donc $\deg(PQ) \le p+q$ et le coefficient devant $X^{p+q}$ est $a_p b_q \neq 0$ (car $\mathbbm{K}$ est intègre)\\
 	donc $\deg(PQ) = p+q$
 \end{prv}

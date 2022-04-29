@@ -1,0 +1,36 @@
+\part{Exercice 9}
+
+\begin{enumerate}
+	\item $f$ est $\mathcal{C}^2$ donc \[
+			\forall h \in \R, f(h) = f(0) + hf'(0) + \po_{h\to 0}(h)
+		\]
+		donc \[
+			\forall (x,y) \in \R^2, f(x^2 + y^2) = f(0) + (x^2 + y^2)\,f'(0) + \po_{(x,y)\to (0,0)}(x^2 + y^2)
+		\] donc \[
+			\forall (x,y) \in \R^2 \setminus \{(0,0)\}, F(x,y) = f'(0) + \po_{(x,y)\to (0,0)} \tendsto{(x,y)\to (0,0)} f'(0).
+		\] 
+		On pose donc $F(0,0) = f'(0)$.
+
+	\item $f$ est de classe $\mathcal{C}^2$ donc \[
+		\forall (x,y) \in \R^2, f(x^2 + y^2) = f(0) + (x^2 + y^2) f'(0) + \frac{(x^2 + y^2)^2}{2}f''(0) + \po_{(x,y)\to(0,0)}\left( \left( x^2 + y^2 \right)^2 \right).
+	\] Donc \[
+		\forall (x,y) \in \R^2 \setminus \{(0,0)\}, F(x,y) = f'(0) + \frac{1}{2}(x^2 + y^2) f''(0) + \po_{(x,y)\to (0,0)}\left( x^2 + y^2 \right).
+	\] On en déduit que \[
+		\frac{\partial F}{\partial x}(0,0) = \lim_{\substack{x\to 0\\\neq }}\frac{F(x,0) - F(0,0)}{x} = \lim_{\substack{x\to 0\\\neq }}\left( \frac{1}{2} xf''(0) + \po_{x\to 0}(x) \right) = 0
+	\] et \[
+		\frac{\partial F}{\partial y}(0,0) = \lim_{\substack{y\to 0\\\neq }} \frac{F(0,y) - F(0,0)}{y} = 0.
+	\] Soit $(x,y) \neq (0,0)$. \[
+		\frac{\partial F}{\partial x}(x,y) = \frac{2x f'(x^2+y^2)(x^2+y^2) - 2x\big(f(x^2+y^2) - f(0)\big)}{(x^2 + y^2)^2}
+	\]
+	donc $\frac{\partial F}{\partial x}$ est continue sur $\R^2\setminus \{(0,0)\}$.
+	Or, $f'$ est $\mathcal{C}^1$ donc \[
+		f'(x^2 + y^2) = f'(0) + (x^2 + y^2) f''(0) + \po(x^2 + y^2)
+	\] d'où
+	\begin{align*}
+		\frac{\partial F}{\partial x}(x,y) &= \frac{2x\big(f'(0) + (x^2 + y^2)f''(0) + \po(x^2+y^2)\big)}{x^2 + y^2} - \frac{2x}{x^2 + y^2}\big(f'(0) + \frac{x^2 + y^2}{2} f''(0) + \po(x^2 + y^2) \big)\\
+		&= x\frac{f''(0)}{2} + \po(1) \tendsto{(x,y)\to (0,1)} 0 = \frac{\partial F}{\partial x}(0,0) \\
+	\end{align*}
+	donc $\frac{\partial F}{\partial x}$ est continue en $(0,0)$. De même, $\frac{\partial F}{\partial y}$ est continue sur $\R^2$.
+
+	On en déduit que $F$ est $\mathcal{C}^1$.
+\end{enumerate}

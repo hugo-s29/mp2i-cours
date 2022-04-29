@@ -1,0 +1,94 @@
+\part{Séries absolument convergente}
+
+\begin{thm}
+	Soit $(u_n) \in \C^\N$. \clrhl{orange}{Si} $\Sigma |u_n|$ converge, \clrhl{orange}{alors} $\Sigma u_n$ converge.
+\end{thm}
+
+\begin{rmk}
+	La réciproque est \clrhl{red}{fausse}. On a vu en exercice que la \underline{série harmonique alternée} $\sum \frac{(-1)^{n+1}}{n}$ converge vers $\ln 2$, alors que $\sum \frac{1}{n}$ diverge.
+\end{rmk}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] On suppose $u \in \R^\N$. On pose \[
+				\forall n \in \N, u_n^+ = \begin{cases}
+					u_n &\text{ si } u_n \ge 0\\
+					0 &\text{ si } u_n < 0
+				\end{cases}
+			\] et \[
+				u_n^- = \begin{cases}
+					-u_n &\text{ si } u_n \le 0\\
+					0 &\text{ si } u_n > 0.
+				\end{cases}
+			\] Ainsi, \[
+				\forall n \in \N, \begin{cases}
+					u_n^+ \ge 0,\\
+					u_n^- \ge 0,\\
+					u_n = u_n^+ - u_n^-,\\
+					|u_n| = u_n^+ + u_n^-.
+				\end{cases}
+			\] On suppose que $\Sigma |u_n|$ converge. Or, \[
+				\forall n \in \N, 0 \le u_n^+ \le u_n^+ + u_n^- = |u_n|
+			\] donc $\Sigma u_n^+$ converge. De même, \[
+				\forall n \in \N, 0 \le u_n^- \le u_n^- + u_n^+ = |u_n|
+			\] donc $\Sigma u_n^-$ converge. Par linéarité, $\Sigma u_n$ converge.
+		\item[\underline{\sc Cas 2}] $u \in \C^\N$. On suppose que $\Sigma |u_n|$ converge. On pose \[
+			\forall n \in \N, \begin{cases}
+				v_n = \Re(u_n) \in \R\\
+				w_n = \Im(u_n) \in \R\\
+			\end{cases}
+		\]
+
+		Or, \[
+			\forall n \in \N, 0 \le |v_n| \le |u_n|
+		\] donc $\Sigma|v_n|$ converge donc d'après le {\sc Cas 1}, $\Sigma v_n$ converge.
+
+		De même, \[
+			\forall n \in \N, 0 \le |w_n| \le |u_n|
+		\] donc $\Sigma w_n$ converge.
+
+		Par linéarité, $\Sigma u_n$ converge.
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $u \in \C^\N$. On dit que $\Sigma u_n$ \underline{converge absolument} si $\Sigma |u_n|$ converge. On dit que $\Sigma u_n$ est \underline{semi-convergente} si \[
+		\begin{cases}
+			\Sigma u_n \text{ converge},\\
+			\Sigma |u_n| \text{ diverge}.
+		\end{cases}
+	\]
+	\index{convergence absolue (série)}
+	\index{semi convergence (série)}
+\end{defn}
+
+\begin{crlr}
+	Soit $u \in \C^\N$ et $v \in \left( \R^+ \right)^\N$ telles que $u = O(v)$.
+
+	Si $\Sigma v_n$ converge, alors $\Sigma u_n$ converge absolument.
+	\qed
+\end{crlr}
+
+\begin{exm}
+	{\itshape Quelle est la nature de la série $\sum_{n\ge 1} \frac{(-1)^n}{n^2} \sin\left( \frac{1}{n} \right)$ ?}
+
+	\[
+		\left| \frac{(-1)^n}{n^2} \sin\left( \frac{1}{n} \right) \right| = \frac{1}{n^2} \left| \sin \frac{1}{n} \right| \sim \frac{1}{n^3}
+	\] donc $\sum \frac{(-1)^n}{n^2} \sin\left( \frac{1}{n} \right)$ converge.
+\end{exm}
+
+\begin{exm}
+	{\itshape Quelle est la nature de $\sum (-1)^n \sin\left( \frac{1}{n} \right)$ ?}
+
+	\[
+		\sin \frac{1}{n} = \frac{1}{n} + O\left( \frac{1}{n^2} \right)
+	\] donc \[
+		(-1)^n \sin \frac{1}{n} = \frac{(-1)^n}{n} + O\left( \frac{1}{n^2} \right).
+	\]
+
+	$\sum O\left( \frac{1}{n^2} \right)$ converge absolument donc converge.
+
+	$\sum \frac{(-1)^n}{n}$ converge.
+
+	Par linéarité, $\sum (-1)^n \sin \frac{1}{n}$ converge.
+\end{exm}

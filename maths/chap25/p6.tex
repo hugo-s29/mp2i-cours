@@ -1,0 +1,72 @@
+\part{Séries alternées}
+
+\begin{thm}
+	Soit $u \in \left(\R^+\right)^\N$ décroissante de limite nulle. Alors $\Sigma (-1)^n u_n$ converge.
+\end{thm}
+
+\begin{prv}
+	On pose \[
+		\forall n \in \N, S_n = \sum_{k=0}^n (-1)^k u_k
+	\]
+
+	Montrons que $(S_{2n})$ et $(S_{2n+1})$ sont adjacentes.
+
+	\begin{itemize}
+		\item Soit $n \in \N$.
+			\begin{align*}
+				S_{2n+2} - S_{2n} &= (-1)^{2n+1} u_{2n+1}+(-1)^{2n+2} u_{2n+2}\\
+				&= u_{2n+2} - u_{2n+1} \le 0 \\
+			\end{align*}
+
+			Donc $(S_{2n})_n$ est décroissante.
+		\item Soit $n \in \N$.
+			\begin{align*}
+				S_{2n+3} - S_{2n+1} &= u_{2n+2} - u_{2n+3} \ge 0 \\
+			\end{align*}
+			Donc la suite $\left( S_{2n+1} \right)_n$ est croissante.
+		\item \(
+				\forall n \in \N, S_{2n+1} - S_{2n} = -u_{2n+1}\tendsto{n\to +\infty} 0.
+			\)
+	\end{itemize}
+
+	Ainsi, $(S_{2n})$ et $(S_{2n+1})$ convergent et ont la même limite, donc $(S_n)$ converge.
+	On note $S = \lim_{n\to +\infty} S_n$ : \[
+		\forall n \in \N, S_{2n+1} \le S \le S_{2n}
+	\] donc \[
+		\forall n \in \N, R_{2n+1} \ge 0 \ge R_{2n}.
+	\]
+
+	Soit $n \in \N$: \[
+		\left| R_{2n+1} \right| = R_{2n+1} = S - S_{2n+1} \le S_{2n} - S_{2n+1} = u_{2n+1},
+	\] \[
+		\left| R_{2n} \right| = -R_{2n} = S_{2n} - S \le S_{2n} - S_{2n+1} \le u_{2n+1} \le u_{2n}.
+	\]
+
+	Ainsi, \[
+		\forall n \in \N, |R_n| \le u_n.
+	\]
+\end{prv}
+
+\begin{prop}
+	Soit $u$ une suite de signe constant telle que $\big(|u_n|\big)_n$ est décroissante de limite nulle.
+	Alors, $\Sigma(-1)^n u_n$ converge et \[
+		\forall n \in \N, R_n \text{ est du signe de } (-1)^{n+1} u_{n+1} \et |R_n| \le |u_n|
+	\]\qed
+\end{prop}
+
+\begin{prop}
+	\[
+		\forall x \in \R,\, \sum_{n=0}^{+\infty} \frac{x^n}{n!} = e^x
+	\]
+\end{prop}
+
+\begin{prv}
+	Formule de Taylor avec reste intégral.
+\end{prv}
+
+\begin{prop}
+	\[
+		\forall z \in \C,\, \sum_{n=0}^{+\infty} \frac{z^n}{n!} = e^z
+	\] \qed
+\end{prop}
+

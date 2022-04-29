@@ -5,6 +5,7 @@
 \usepackage{textcomp}
 \usepackage[bookmarks]{hyperref}
 \usepackage[french]{babel}
+\usepackage[fontsize=8pt]{fontsize}
 \usepackage{amsmath, amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
@@ -18,6 +19,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{pifont}
+\usepackage{xfrac}
 \usepackage{calligra}
 \usepackage{thmtools}
 \usepackage{diagbox}
@@ -28,6 +30,7 @@
 \usepackage{setspace}
 \usepackage{chngpage}
 \usepackage{cancel}
+\usepackage{parskip}
 \usepackage{esvect}
 \usepackage{wrapfig}
 \usepackage{floatflt}
@@ -36,15 +39,18 @@
 \usepackage{cellspace}
 \usepackage{dsfont}
 \usepackage{subcaption}
+\usepackage{glossaries}
 \usepackage{pdflscape}
 \usepackage{contour}
 \usepackage{soulutf8}
+\usepackage[Rejne]{fncychap}
 
 \frenchspacing
 \reversemarginpar
 
 % better underline
 \setuldepth{a}
+\makeglossaries
 \contourlength{0.8pt}
 
 \let\mathbbm\mathds
@@ -100,15 +106,18 @@
 \usepackage{thmtools}
 \usepackage{thm-restate}
 \usepackage{etoolbox}
+%\usepackage{cmbright}
 
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0em}
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{0em}
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
 \let\ge\geqslant
 \let\le\leqslant
+\let\preceq\preccurlyeq
+\let\succeq\succcurlyeq
 
 \newcommand{\C}{\mathbbm{C}}
 \newcommand{\R}{\mathbbm{R}}
@@ -120,27 +129,42 @@
 \renewcommand\Re{\expandafter\mathfrak{Re}}
 \renewcommand\Im{\expandafter\mathfrak{Im}}
 
-\renewcommand{\thepart}{\Roman{part}} 
+\renewcommand{\thepart}{\Roman{part}}
+\iffull\else
+\renewcommand{\thesection}{\Roman{part}.\arabic{section}}
+\fi
 \newcommand{\centered}[1]{\begin{center}#1\end{center}}
 
+\DeclareMathOperator{\Arccos}{Arccos}
+\DeclareMathOperator{\Arcsin}{Arcsin}
 \DeclareMathOperator{\Arctan}{Arctan}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\let\th\relax
+\let\det\relax
+\DeclareMathOperator{\th}{th}
 \DeclareMathOperator{\Card}{Card}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\rg}{rg}
 \DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\PPCM}{PPCM}
+\DeclareMathOperator{\PGCD}{PGCD}
 \DeclareMathOperator{\argmax}{argmax}
 \DeclareMathOperator{\argmin}{argmin}
 \DeclareMathOperator{\Vect}{Vect}
 \DeclareMathOperator{\cotan}{cotan}
 \DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\det}{det}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Supp}{Supp}
 \DeclareMathOperator{\Cl}{\mathcal{C}\!\ell}
 \DeclareMathOperator*{\po}{\text{\cursive o}}
+\DeclareMathOperator*{\gO}{O}
 \DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\sgn}{sgn}
 \DeclareMathOperator*{\codim}{codim}
 \DeclareMathOperator*{\simi}{\sim}
 
@@ -195,7 +219,7 @@
 	qed=\qedsymbol]{prvstyle}
 
 \declaretheorem[style=defnstyle, name=Définition]{defn}
-\declaretheorem[style=defnstyle, name=Proposition\\Définition]{prop-defn}
+\declaretheorem[style=defnstyle, name=Proposition -- Définition]{prop-defn}
 
 % \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Théorème]{thm}
 % \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Proposition]{prop}
@@ -213,10 +237,12 @@
 \AtBeginDocument{
 	\ifsimple
 		\emptyenv{exm}
+		\emptyenv{cexm}
 		\emptyenv{exo}
 		\emptyenv[\hfill$\blacksquare$]{prv}
 	\else
 		\declaretheorem[style=rmkstyle, name=Exemple]{exm}
+		\declaretheorem[style=rmkstyle, name=Contre-exemple]{cexm}
 		\declaretheorem[style=rmkstyle, name=Exercice]{exo}
 		\declaretheorem[style=prvstyle, name=Preuve]{prv}
 	\fi
@@ -304,3 +330,16 @@
 \newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
 \newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
 \newcommand{\plusbar}{\charfusion[\mathbin]{+}{\color{blue}/}}
+\let\olddiamond\diamond
+\renewcommand{\diamond}{\ensuremath{\,\olddiamond\,}}
+\newcommand{\missingpart}{\centered{\color{red} \Large Il manque une partie du cours ici}}
+
+% Ajouter une defn au glossaire
+\newcommand{\glunderline}[2]{\underline{#1}\newglossaryentry{#2}{name={#1}}}
+% TODO
+
+
+\newcommand{\cbox}[2]{{\color{#1}{\fbox{\color{black} #2}}}}
+\newcommand{\clrhl}[2]{{\large\sc\color{#1} #2}}
+\newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\mathunderline}[1]{\text{\underline{$#1$}}}

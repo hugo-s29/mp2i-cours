@@ -1,0 +1,278 @@
+\part{Applications}
+\section{Formule de Stirling}
+
+\begin{prop}
+	On a :
+	\[
+		n! \simi_{n\to +\infty} \sqrt{2\pi n} \left( \frac{n}{e} \right)^n?.
+	\]
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall n \in \N^*, \ln(n!) = \sum_{k=1}^n \ln k.
+	\]
+
+	$x \mapsto \ln x$ est strictement croissante sur $[1, +\infty[$ donc \[
+		\forall k \in \N^*, \forall x \in [k, k+1], \ln x \ge \ln k
+	\] donc \[
+		\forall k \in \N^*, \int_{k}^{k+1} \ln x~\mathrm{d}x \ge \int_{k}^{k+1} \ln k~\mathrm{d}x = \ln k
+	\] et \[
+		\forall k \ge 2, \forall x \in [k - 1, k], \ln x \le \ln k
+	\] et docn \[
+		\forall k \ge 2, \int_{k-1}^{k}  \ln x~\mathrm{d}x \le \int_{k-1}^{k} \ln k~\mathrm{d}x = \ln k
+	\] Ainsi \[
+		\forall n \ge 2, 
+		\int_{1}^{n} \ln x~\mathrm{d}x \ge \sum_{k=2}^n \le \int_{2}^{n+1} \ln x~\mathrm{d}x
+	\] Or
+	\begin{align*}
+		\forall n \ge 2, \int_{1}^{n} \ln x~\mathrm{d}x &= \left[ x \ln x \right]_0^n\\
+		&= n \ln(n) - n + 1 \\
+		&\simi_{n\to +\infty} n \ln n\\
+		\int_{2}^{n+1} \ln x~\mathrm{d}x &= (n+1) \ln(n+1) - (n+1) - 2 \ln(2) + 2 \\
+		&\simi_{n\to +\infty} (n+1) \ln(n+1)\\
+		&\simi_{n\to +\infty}n \ln n
+	\end{align*}
+	car
+	\begin{align*}
+		\ln(n+1) &= \ln\left( n \left( 1+ \frac{1}{n} \right) \right) \\
+		&= \ln n + \ln\left( 1+\frac{1}{n} \right) \\
+		&= \ln n + \frac{1}{n} + \po\left( \frac{1}{n} \right) \\
+		&\sim \ln n \\
+	\end{align*}
+
+	Donc \[
+		\ln(n!)) \simi_{n\to +\infty} n \ln n
+	\]
+	Cependant, on a un problème : {\color{orange}
+	\begin{align*}
+		&\ln(n!) = n \ln n + \po(n \ln n)\\
+		\text{donc } & n! = n^n \underbrace{e^{\po(n \ln n)}}_{?}
+	\end{align*}}
+
+	On pose \[
+		\forall n \in \N^*, u_n = \ln(n!) - n\ln n
+	\] $(u_n)$ a même nature que $\Sigma(u_{n+1} - u_n)$ et
+	\begin{align*}
+		\forall n \in \N^*,
+		u_{n+1} - u_n &= \ln\left( \frac{(n+1)!}{n!} \right) - (n+1) \ln(n+1) + n \ln n \\
+		&= n\big(\ln n - \ln(n+1)\big) \\
+		&= n\ln\left( \frac{n}{n+1} \right) \\
+		&= n \ln \left( 1 - \frac{1}{n+1} \right) \\
+		&\sim -\frac{n}{n+1} \sim -1 < 0
+	\end{align*}
+
+	$\Sigma(-1)$ diverge donc $(u_n)$ diverge.
+
+	{\color{red}
+		\underline{Conjecture}
+		\[
+			u_n = \sum_{k=1}^{n-1}(u_{k+1} - u_k) \underbrace{\sim}_{\mathclap{\substack{~\\\downarrow\\\text{On n'a absolument pas le droit !}}}} \sum_{k=1}^{n-1} (-1) = -(n-1) \sim -n
+		\]
+	}
+
+	On pose \[
+		\forall n \in \N^*, v_n = u_n + n
+	\] et donc 
+	\begin{align*}
+		\forall n \in \N^*, v_{n+1} - v_n &= n \ln\left( 1 - \frac{1}{n+1} \right) + 1 \\
+		&= n\left( -\frac{1}{n+1} - \frac{1}{2(n+1)^2} + \po\left( \left( \frac{1}{n+1} \right)^2 \right) \right) + 1 \\
+		&= n \left( -\frac{1}{n\left( 1+\frac{1}{n} \right)} - \frac{1}{2n^2\left( 1+\frac{1}{n^2} \right)} + \po\left( \frac{1}{n^2} \right) \right) + 1 \\
+		&= -\left( \frac{1}{1+\frac{1}{n}} - \frac{1}{2n} \times \frac{1}{\left( 1+\frac{1}{n} \right)^2} + \po\left( \frac{1}{n} \right) \right) \\
+		&= -\left( 1 - \frac{1}{n} + \frac{1}{2n} + \po\left( \frac{1}{n} \right) \right) + 1 \\
+		&= \frac{1}{2n} + \po\left( \frac{1}{n} \right) \\
+		&\sim \frac{1}{2n} > 0.
+	\end{align*}
+
+	{\color{red}
+		\[
+			v_n \sim \sum_{k=1}^{n-1}(v_{k-1} - v_k) \sim \sum_{k=1}^{n-1} \frac{1}{2k} \sim \frac{1}{2} \ln(n)
+		\]
+	}
+
+	On pose \[
+		\forall n \in \N^*, w_n = v_n - \frac{1}{2} \ln n
+	\] et donc
+	\begin{align*}
+		\forall n \in \N^*,
+		w_{n+1}- w_n &= n\ln\left( 1+\frac{1}{n+1} \right) - \frac{1}{2}\ln(n+1) + \frac{1}{2} \ln(n) + 1 \\
+		&= n\left( -\frac{1}{n+1} - \frac{1}{2(n+1)^2} - \frac{1}{3(n+1)^3} + \po\left( \frac{1}{(n+1)^3} \right) \right)\\
+		&\phantom{=}\,+ 1 + \frac{1}{2} \ln\left( 1 - \frac{1}{n+1} \right) \\
+		&= -1 - \frac{1}{2(n+1)} - \frac{1}{3(n+1)^2} + \po\left( \frac{1}{(n+1)^2} \right) \\
+		&\phantom{=}\,+ \frac{1}{n+1} + \frac{1}{2(n+1)^2} + 1\\
+		&\phantom{=}\,+ \frac{1}{2} \left( -\frac{1}{n+1} - \frac{1}{2(n+1)^2} + \po\left( \frac{1}{(n+1)^2} \right) \right)
+		&\sim -\frac{1}{12(n+1)^2}\\
+		&\sim -\frac{1}{12n^2} < 0
+	\end{align*}
+	donc $\Sigma(w_{n+1} - w_n)$ converge et donc $(w_n)$ converge.
+
+	On pose $\ell = \lim_{n\to +\infty} w_n$. Ainsi, \[
+		\forall n \in \N^*, w_n = \ell + \po(1)
+	\] et donc \[
+		\forall n \in \N^*, \ln(n!) = n \ln n - n + \frac{1}{2} \ln(n) + \ell + \po(1)
+	\] et alors
+	\begin{align*}
+		\forall n \in \N^*, n! &= n^n e^{-n} \sqrt{n} e^{\ell} \underbrace{e^{\po(1)}}_{\mathclap{\tendsto{n\to +\infty} 1}} \\
+		&\sim \left( \frac{n}{e} \right)^n \sqrt{n} \times K
+	\end{align*} avec $K = e^{\ell}$.
+
+	On pose \[
+		\forall n \in \N^*, I_n = \int_{0}^{\frac{\pi}{2}} \sin^n x~\mathrm{d}x \sim \sqrt{\frac{\pi}{2n}}
+	\]et \hfill (c.f. TD5 / Exercice 8)\[
+		I_{2n} = \frac{(2n)!}{\left( 2^n n! \right)^2} \times \frac{\pi}{2}.
+	\]
+
+	\begin{align*}
+		I_{2n} &\sim \frac{\pi}{2} \cancel{\left( \frac{2n}{2e} \right)^{2n}} \sqrt{2n} K \cancel{\left( \frac{e}{n} \right)^{2n}} \frac{1}{n} \times \frac{1}{K^2}\\
+		&\sim \frac{\pi}{K\sqrt{2n}}.
+	\end{align*}
+	Or \[
+		I_{2n} \sim \sqrt{\frac{\pi}{4n}}.
+	\] Donc \[
+		\frac{\sqrt{\frac{\pi}{4n}}}{\frac{\pi}{K\sqrt{2n}}} \tendsto{n\to +\infty} 1
+	\] donc \[
+		\frac{K}{\sqrt{2\pi}} \tendsto{n\to +\infty} 1
+	\] et donc $K = \sqrt{2\pi}$.
+\end{prv}
+
+\section{Développement décimal}
+
+\begin{exm}
+	\begin{itemize}
+		\item Avec $x = 0,54\mathunderline{54}\ldots$, que vaut $2x$ ?
+		\item Avec $x = 0,333\mathunderline{3}\ldots$, que vaut $3x$ ?
+			\begin{itemize}
+				\item $0.999\mathunderline{9}\ldots$ ?
+				\item $3 \times \frac{1}{3} = 1$ ?
+			\end{itemize}
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	Soit $(a_n)_{n \in \N}$ telle que \[
+		\begin{cases}
+			a_0 \in \Z,\\
+			\forall n \ge 1, a_n \in \left\llbracket 0,9 \right\rrbracket
+		\end{cases}
+	\]
+
+	La série $\sum \frac{a_n}{10^n}$ converge.
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall n \ge 1, 0 \le \frac{a_n}{10^n} \le \frac{9}{10^n}
+	\] $\sum \frac{1}{10^n}$ converge car $\frac{1}{10} \in [0, 1[$.
+	Donc $\sum_{n\ge 1} \frac{a_n}{10^n}$ converge donc $\sum_{n\ge 1} \frac{a_n}{10^n}$ converge.
+\end{prv}
+
+\begin{defn}
+	Soit $x \in \R$. On dit que $x$ admet un \underline{développement décimal} si \[
+		\exists a_0 \in \Z, (a_n)_{n\ge 1} \in \left\llbracket 0,9 \right\rrbracket^N,
+		x = \sum_{n=0}^{+\infty} \frac{a_n}{10^n}.
+	\]
+	\index{développement décimal}
+\end{defn}
+
+\begin{thm}
+	Tou réel $x \in [0, 1[$ admet un développement décimal : \[
+		x = \sum_{n=1}^{+\infty} \frac{\left\lfloor 10^n x \right\rfloor - 10 \left\lfloor 10^{n-1} x \right\rfloor}{10^n}
+	\]
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		\forall n \ge 1,\kern 5mm &\phantom{-}10^n x - 1 < \left\lfloor 10^n x \right\rfloor \le  10^n x\\
+		&-10^n x + 10 > -10 \left\lfloor 10^{n-1} x \right\rfloor \ge -10^n x
+	\end{align*}
+	donc \[
+		-1 < \left\lfloor 10^n x \right\rfloor - 10 \left\lfloor 10^{n-1} x \right\rfloor < 10
+	\] et donc \[
+		\left\lfloor 10^n x \right\rfloor - 10 \left\lfloor 10^{n-1} x \right\rfloor \in \left\llbracket 0,9 \right\rrbracket.
+	\]
+
+	De plus,
+	\begin{align*}
+		\sum_{k=1}^n \frac{\left\lfloor 10^k x \right\rfloor - 10 \left\lfloor 10^{k-1}x \right\rfloor }{10^k} &= \sum_{k=1}^n \left( \frac{\left\lfloor 10^k x \right\rfloor}{10^k} - \frac{\left\lfloor 10^{k-1}x \right\rfloor}{10^{k-1}} \right) \\
+		&= \frac{\left\lfloor 10^n x \right\rfloor}{10^n} - \underbrace{\left\lfloor x \right\rfloor}_{=0}\\
+		&\tendsto{n\to +\infty} x. \\
+	\end{align*}
+\end{prv}
+
+\begin{thm}
+	Soit $x \in ]0, 1[$.
+
+	\begin{enumerate}
+		\item Si $x$ n'est pas décimal (i.e. on ne peut pas l'écrire comme $\sfrac{p}{10^n}$ avec $p \in \Z$ et $n \in \N$), alors $x$ a un unique développement décimal.
+		\item Si $x$ est décimal, alors $x$ a exactement 2 développements décimaux :
+			\begin{itemize}
+				\item il y en a un où, à partir d'un certain rang, tous les chiffres sont nuls,
+				\item et un autre où tous les chiffres sont égaux à 9 à parir d'un certain rang.
+			\end{itemize}
+	\end{enumerate}
+\end{thm}
+
+\begin{prv}
+	Soit $(a_n)_{n\ge 1} \in \left\llbracket 0,9 \right\rrbracket^{\N^*}$ et $(b_n)_{n\ge 1} \in \left\llbracket 0,9 \right\rrbracket^{\N^*}$ telles que \[
+		x = \sum_{n=1}^{+\infty} \frac{a_n}{10^n} = \sum_{n=1}^{+\infty} \frac{b_n}{10^n}
+	\] On pose $n_0 = \min \{n \in \N^*  \mid a_n \neq b_n\}$ : \[
+		\begin{cases}
+			\forall n < n_0, a_n = b_n,\\
+			a_{n_0} \neq b_{n_0}.
+		\end{cases}
+	\] Sans perte de généralité, on suppose $a_{n_0} < b_{n_0}$. On a donc
+	\begin{align*}
+		0 < \frac{b_{n_0} - a_{n_0}}{10^{n_0}} &= \sum_{n = n_0 + 1}^{+\infty} \frac{a_n - b_n}{10^n} \\
+	\end{align*}
+	\[
+		\forall n \ge n_0, \begin{cases}
+			0 \le a_n \le 9\\
+			0 \le b_n \le 9
+		\end{cases}
+	\] donc \[
+		\forall n \ge n_0, -9 \le a_n - b_n \le 9
+	\] donc \[
+		-9 \sum_{n=n_0+1}^{+\infty} \frac{1}{10^n} \le \sum_{n=n_0 + 1}^{+\infty} \frac{a_n - b_n}{10^n} \le 9 \sum_{n=1}^{+\infty} \frac{1}{10^n}.
+	\]
+	Or,
+	\begin{align*}
+		\sum_{n=n_0 + 1}^{+\infty} \frac{1}{10^n} &= \frac{1}{10^{n_0+1}} \sum_{n=0}^{+\infty} \frac{1}{10^n} \\
+		&= \frac{1}{10^{n_0+1}} \times \frac{1}{1-\frac{1}{10}} \\
+		&= \frac{1}{9 \times 10^{n_0}} \\
+	\end{align*}
+	D'où, \[
+		0 < \frac{b_{n_0} - a_{n_0}}{10^{n_0}} \le  \frac{1}{10^{n_0}}
+	\] donc \[
+		0 < \underbrace{b_{n_0} - a_{n_0}}_{\in \Z} \le 1
+	\] donc $b_{n_0} - a_{n_0} = 1$ et donc \[
+	\sum_{n = n_0 + 1}^{+\infty} \frac{a_n - b_n}{10^n} = \frac{1}{10^{n_0}}
+	\] donc \[
+		\forall n > n_0, a_n - b_n = 9
+	\] et donc \[
+		\forall n > n_0, \begin{cases}
+			a_n = 9\\
+			b_n = 0
+		\end{cases}
+	\] Comme \[
+		\forall n > n_0, b_n = 0
+	\] $x$ est décimal et les deux développements de $x$ sont alors
+	\begin{align*}
+		x &= 0,a_1\ldots a_{n_0-1}a_{n_0}\mathunderline{9}\ldots\\
+		&= 0,a_1\ldots a_{n_0-1}(a_{n_0}+1)\mathunderline{0}\ldots \\
+	\end{align*}
+\end{prv}
+
+\begin{rmk}
+	Avec $x = 0,\!54\mathunderline{54}\ldots$, $100x = 54,\!54\mathunderline{54}\ldots = 54 + x$. On a donc $x = \frac{54}{99}$.
+
+	Avec $x = 0,\!987\,123\,\mathunderline{123}\ldots$, on a
+	\begin{align*}
+		x &= \frac{987}{1000} + 0,\!000\,\mathunderline{123}\ldots\\
+		&= \frac{987}{1000} + \frac{1}{10^3}\underbrace{(0,\!\mathunderline{123}\ldots)}_y \\
+	\end{align*}
+	On a $1000 y = 123 + y$ et donc $y = \frac{123}{999}$ et donc $x = \frac{987 + \frac{123}{999}}{1000}$.
+\end{rmk}
+
+
+
+

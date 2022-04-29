@@ -5,6 +5,10 @@
 		AC = B
 	\] On dit dans ce cas que $A$ est un \underline{diviseur} de $B$ ou que $B$ est un \underline{multiple} de $A$. On le note alors $A \mid B$\\
 	On dit que $A$ et $B$ sont \underline{associés} s'il existe $\lambda \in \mathbbm{K} \setminus \{0\}$ tel que $A = \lambda B$. Il s'agit d'une relation d'équivalence.
+	\index{division (polynômes)}
+	\index{diviseur (polynôme)}
+	\index{multiple (polynôme)}
+	\index{association (polynôme)}
 \end{defn}
 
 \begin{prop}
@@ -77,6 +81,9 @@
 		\end{cases}
 	\]
 	On dit que $Q$ est le \underline{quotient} et $R$ le \underline{reste} de la division (euclidienne) de $A$ par $B$.
+	\index{division euclidienne (polynômes)}
+	\index{reste (division euclidienne, polynômes)}
+	\index{quotient (division euclidienne, polynômes)}
 \end{prop-defn}
 
 \begin{prv}
@@ -253,6 +260,7 @@
 
 \begin{defn}
 	Soient $A$ et $B$ deux polynômes dont l'un au moins est non nul, $D \in \mathbbm{K}[X]$. On dit que $D$ est un PGCD de $A$ et $B$ si $D$ est un diviseur commun de $A$ et $B$ et de degré maximal.
+	\index{PGCD (polynôme)}
 \end{defn}
 
 \begin{prop}
@@ -329,11 +337,13 @@
 \end{prop}
 
 \begin{defn}
-	On dit qu'un polynôme est \underline{unitaire} si sont coefficiant dominant vaut 1.
+	On dit qu'un polynôme est \underline{unitaire} si sont coefficient dominant vaut 1.
+	\index{polynôme unitaire}
 \end{defn}
 
 \begin{prop-defn}
-	Soient $A$ et $B$ deux polynômes dont l'un au moins est non nul. Parmi tous les PGCD de $A$ et $B$, un seul est unitaire. On le note $A \wedge B$
+	Soient $A$ et $B$ deux polynômes dont l'un au moins est non nul. Parmi tous les PGCD de $A$ et $B$, un seul est unitaire. On le note $A \wedge B$.
+	\index{PGCD (polynômes)}
 \end{prop-defn}
 
 \begin{prv}
@@ -440,6 +450,7 @@
 	On dit que $P$ \underline{n'est pas irréductible} si il existe $(Q,R)\in \mathbbm{K}[X]^2$ non constants tels que $P = QR$
 	{\bf ou} si $P$ est constant.\\[2mm]
 	Sinon, on dit que $P$ est \underline{irréductible}.
+	\index{irréductibilité (polynôme)}
 \end{defn}
 
 \begin{exm}
@@ -512,6 +523,9 @@
 	\] \\
 	Si $\mu=1$, on dit que $a$ est une racine \underline{simple}.\\
 	Si $\mu=2$, on dit que $a$ est une racine \underline{double}.
+	\index{multiplicité (racine d'un polynôme)}
+	\index{racine simple (polynôme)}
+	\index{racine double (polynôme)}
 \end{defn}
 
 \begin{rmk}
@@ -611,8 +625,8 @@
 	\begin{itemize}
 		\item Les polynômes de de degré 1 sont évidemment irréductibles
 		\item Les polynômes constants ne sont pas irréductibles par définition
-		\item Les polynômes de degré 2 ayant au moins une racine réelle peuvent s'écrire comme produit de deux polynômes réels de degré 1 à coefficiants réels
-		\item Réciproquement, si un polynôme de degré 2 n'est pas irreductible, c'est forcémet un produit de 2 polynômes de degré 1 à coefficiants réels et donc ce polynôme a au moins une racine réelle
+		\item Les polynômes de degré 2 ayant au moins une racine réelle peuvent s'écrire comme produit de deux polynômes réels de degré 1 à coefficients réels
+		\item Réciproquement, si un polynôme de degré 2 n'est pas irreductible, c'est forcémet un produit de 2 polynômes de degré 1 à coefficients réels et donc ce polynôme a au moins une racine réelle
 		\item Soit $P \in \R[X]$ tel que $\deg(P) \ge 3$ \\
 			On note $a_1, \ldots, a_r$ les racines réelles distictes de $P$, \[a_{r + 1}, \overline{a_{r+1}}, a_{r+2}, \overline{a_{r+2}}, \ldots, a_s, \overline{a_s}\] les récines non réelles distictes de $P$. On note aussi \[
 				\forall k \in \left\llbracket 1,s \right\rrbracket, \mu_k \text{ la multiplicité de } a_k

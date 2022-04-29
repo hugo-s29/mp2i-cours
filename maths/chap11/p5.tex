@@ -4,10 +4,11 @@
 	Soient $u$ et $v$ deux suites réelles. On dit que $u$ est \underline{dominée} par  $v$ si \[
 	\exists M\in \R, \exists N\in \N,\forall n\ge N,\left| u_n \right| \le M \left| v_n \right| 
 	\] Dans ce cas, on note $u = O(v)$ ou $u_n = O(v_n)$ et on dit que "$u$ est un grand o de $v$"
+	\index{dominer (suites réelles)}
 \end{defn}
 
 \begin{exm}
-	En informatique, on dit qu'un alogirithme a une \underline{complexité linéaire} si son temps d'éxécution est un $O(n)$ 
+	En informatique, on dit qu'un algorithme a une \underline{complexité linéaire} si son temps d'éxécution est un $O(n)$ 
 	Par exemple, on calcule $a^n$ 
 
 	\begin{itemize}
@@ -84,6 +85,7 @@
 	Soient $u$ et $v$ deux suites. On dit que $u$ est \underline{négligeable} devant $v$ si \[
 	\forall \varepsilon>0, \exists N\in \N, \forall n\ge N, \left| u_n \right| \le \varepsilon \left| v_n \right| 
 	\] Dans ce cas, on note $u = o(v)$ ou $u_n = o(v_n)$ ou on le lit "$u$ est un petit o de $v$"
+	\index{négligeabilité (suites réelles)}
 \end{defn}
 
 \begin{prop}
@@ -131,6 +133,7 @@
 	\] i.e. \[
 	\forall \varepsilon >0, \exists N \in \N, \forall n \ge N, \left| u_n-v_n \right| \le \varepsilon\left| v_n \right| 
 	\] Dans ce cas, on le note $u \sim v$
+	\index{équivalence (suites réelles)}
 \end{defn}
 
 \begin{prop}

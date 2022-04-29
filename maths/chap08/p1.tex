@@ -2,6 +2,7 @@
 
 \begin{defn}
 	Un \underline{ensemble} est une collection finie ou infinie d'objets de même nature ou non. L'ordre de ces objets n'a pas d'importance.
+	\index{ensemble}
 \end{defn}
 
 \begin{exm}
@@ -43,6 +44,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 
 \begin{defn}
 	Soit $E$ un ensemble et $F$ un autre ensemble. On dit que $E$ et $F$ sont \underline{égaux} (noté $E = F$) si $E$ et $F$ contiennent les mêmes objets.
+	\index{égalité (ensemble)}
 \end{defn}
 
 \begin{exm}
@@ -64,6 +66,8 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 
 \begin{defn}
 	L'ensemble \underline{vide}, noté $\O$ est le seul ensemble à n'avoir aucun élément.
+	\index{ensemble vide}
+	\index{ensemble vide@$\O$}
 \end{defn}
 
 \begin{defn}
@@ -71,6 +75,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 	\begin{align*}
 		\forall x\in F, x \in E
 	\end{align*}
+	\index{inclusion (ensemble)}
 \end{defn}
 
 \begin{figure}[H]
@@ -120,6 +125,9 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 	\[
 		A \in \mathcal{P}(E) \iff A \subset E
 	\]
+
+	\index{partie d'un ensemble}
+	\index{ensemble de toutes les parties d'un ensemble}
 \end{defn}
 
 \begin{exm}
@@ -170,6 +178,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 				La \underline{réunion} de $A$ et $B$ est \[
 					A \cup B = \{x \in E  \mid x \in A \ou x \in B\}
 				\]
+				\index{réunion (ensemble)}
 			\end{minipage}
 			\vspace{2cm}
 		\item ~\\
@@ -201,6 +210,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 				L'\underline{intersection} de $A$ et $B$ est \[
 					A \cap B = \{x \in E  \mid x \in A \et x \in B\}
 				\]
+				\index{intersection (ensemble)}
 			\end{minipage}
 			\vspace{2cm}
 		\item ~\\
@@ -231,6 +241,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 				Le \underline{complémentaire} de $A$ dans $E$ est \[
 					E \setminus A = \{x \in E \mid x \not\in A\} = C_E A
 				\]
+				\index{complémentaire (ensemble)}
 			\end{minipage}
 			\vspace{2cm}
 		\item ~\\
@@ -269,6 +280,7 @@ Pour éviter ce type de paradoxe, on a donné une définition axiomatique qui ex
 					A \Delta B &= \left\{ x \in E  \mid (x \in A\et x \not\in B)\ou(x\not\in A\et x \in B) \right\}\\
 					&= (A\cup B)\setminus(A\cap B) \\
 				\end{align*}
+				\index{différence symétrique (ensemble)}
 			\end{minipage}
 	\end{enumerate}
 \end{defn}

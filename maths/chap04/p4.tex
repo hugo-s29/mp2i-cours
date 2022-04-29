@@ -1,0 +1,119 @@
+\part{Exponentielle et logarithme de base $a$}
+
+\begin{defn}
+	Soit $a > 0$. L'application $\exp_a : \begin{array}{rcl}
+		\R &\longrightarrow& \R^+_* \\
+		x &\longmapsto& a^x = e^{x \ln a}
+	\end{array}$ est appelée \underline{exponentielle de base $a$}.
+	\index{exponentielle de base $a$}
+\end{defn}
+
+\begin{rmk}
+	L'exponentielle de base $e$ est l'exponentielle classique.
+\end{rmk}
+
+\begin{prop}
+	$\exp_a$ est dérivable sur $\R$ et \[
+		\forall x \in \R, \exp_a'(x) = \ln(a) \exp_a(x) = a^x \ln a.
+	\] \qed
+\end{prop}
+
+\begin{crlr}
+	\begin{enumerate}
+		\item Si $a \in ]0,1[$, alors $\exp_a$ est strictement décroissante.
+		\item Si $a > 1$, alors $\exp_a$ est strictement croissante.
+		\item Si $a = 1$, alors $\exp_a(x) = 1$ pour tout $x \in \R$.
+	\end{enumerate}
+	\qed
+\end{crlr}
+
+\begin{prop}
+	\begin{enumerate}
+		\item Si $a \in ]0,1[$,
+			\begin{itemize}
+				\item $\exp_a(x) \tendsto{x\to +\infty} 0$,
+				\item $\exp_a(x) \tendsto{x\to -\infty} +\infty$,
+				\item $\frac{\exp_a(x)}{x} \tendsto{x\to -\infty} -\infty$;
+			\end{itemize}
+		\item Si $a > 1$,
+			\begin{itemize}
+				\item $\exp_a(x) \tendsto{x \to +\infty} +\infty$,
+				\item $\frac{\exp_a(x)}{x} \tendsto{x\to +\infty} +\infty$,
+				\item $\exp_a(x) \tendsto{x\to -\infty} 0$;
+			\end{itemize}
+	\end{enumerate}
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real a = 3.;
+		bool3 checkf(real x) { return a^x < 5; }
+		real f(real x) { return a^x; }
+
+		real b = 1./3.;
+		bool3 checkg(real x) { return b^x < 5; }
+		real g(real x) { return b^x; }
+
+		real h(real x) { return 1; }
+
+		real k = log(5) / log(3);
+		draw(graph(f, -5, 5, 300, checkf), magenta); label("$a>1$", (k, f(k)), magenta, align=N);
+		draw(graph(g, -5, 5, 300, checkg), orange); label("$a< 1$", (5, g(5)), orange, align=E);
+		draw(graph(h, -5, 5, 5), purple); label("$a=1$",(5,1),purple,align=E);
+
+		draw((0,-0.5) -- (0,5), Arrow(TeXHead));
+		draw((-5,0) -- (5,0), Arrow(TeXHead));
+
+		dot("$1$", (0,1), align=NW);
+	\end{asy}
+\end{figure}
+
+\begin{prop}
+	Si $a \in \R^+_*\setminus \{1\}$, alors $\exp_a$ est bijective.
+\end{prop}
+
+\begin{defn}
+	Soit $a > 0$ et $a \neq 1$.
+
+	La réciproque de $\exp_a$ est appelé \underline{logarithme de base $a$} et est noté $\log_a$.
+	\index{logarithme de base $a$}
+\end{defn}
+
+\begin{prop}
+	Si $a \in \R^+_*\setminus \{1\}$, alors \[
+		\forall x > 0, \log_a(x) = \frac{\ln x}{\ln a}.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $a \in \R^+_* \setminus \{1\}$.
+	\begin{itemize}
+		\item Soit $x > 0$, \[
+				\exp_a\left( \frac{\ln x}{\ln a} \right) = e^{\frac{\ln x}{\ln a} \times \ln a} = e^{\ln x} = x
+			\]
+		\item Soit $x \in \R$, \[
+				\frac{\ln\big(\exp_a(x)\big)}{\ln a} = \frac{\ln\left( e^{x\ln a} \right)}{\ln a} = \frac{x\ln a}{\ln a} = x.
+			\]
+	\end{itemize}
+
+	Donc, $\log_a : x\mapsto \frac{\ln x}{\ln a}$ est bien la réciproque de $\exp_a$.
+\end{prv}
+
+\begin{exm}~\\[-9mm]
+	\centered{\itshape Combien y a-t-il de chiffres dans la représentation décimale de $\mathit{2^{2021}}$ ?}
+
+	Soit $N \in \N$. La représentation décimale de $2^{2021}$ a $N$ chiffres si et seulement si
+	\begin{align*}
+		&10^{N-1} \le 2^{2021} < 10^N\\
+		\iff& N-1 \le \log_{10}\left( 2^{2021} \right) < N\\
+		\iff& N - 1 \le 2021 \log_{10} 2 < N\\
+		\iff& N > 2021 \log_{10} 2 \et N \le 2021 \log_{10}(2) + 1\\
+		\iff& \underbrace{2021 \log_{10} 2}_{\simeq\,608,3} < N \le 2021\log_{10}(2) + 1
+		\implies& N = 609.
+	\end{align*}
+\end{exm}

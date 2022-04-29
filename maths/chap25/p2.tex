@@ -1,0 +1,103 @@
+\part{Séries à termes positifs}
+
+\begin{prop}
+	Soit $(u_n) \in \big(\R^+\big)^\N$. Alors $\left( \sum_{k=0}^n u_k \right)_{n \in \N}$ est croissante.
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall n \in \N,\, \sum_{k=0}^{n+1} u_k - \sum_{k=0}^n u_k = u_{n+1} \ge 0.
+	\]
+\end{prv}
+
+\begin{thm}
+	Soient $u$ et $v$ deux suites réelles telles que \[
+		\forall n \in \N, \, \color{red} \boxed{\color{black} 0 \le u_n } \color{black} \le v_n.
+	\]
+	\begin{enumerate}
+		\item {\large\sc\color{orange} Si} $\Sigma v_n$ converge, {\large\sc\color{orange} Alors} $\Sigma u_n$ converge\\
+		\item {\large\sc\color{orange} Si} $\Sigma u_n$ diverge, {\large\sc\color{orange} Alors} $\Sigma v_n$ diverge.
+	\end{enumerate}
+\end{thm}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose que $\Sigma v_n$ converge. On note \[
+				\forall n \in \N, S_n(v) = \sum_{k=0}^n v_k.
+			\] Donc $\big(S_n(v)\big)$ est majorée. Soit $V$ un majorant et $n \in \N$.
+
+			\[\forall k, 0 \le u_k \le v_k\] donc \[
+				\sum_{k=0}^n u_k \le \sum_{k=0}^n v_k = S_n(v) \le V
+			\] donc $\left(\sum_{k=0}^n u_k\right)_{n\in \N}$ est majorée.
+			Or, elle est croissante, donc elle converge.
+		\item C'est la contraposée du 1.
+	\end{enumerate}
+\end{prv}
+
+\begin{cexm}
+	$\textstyle \sum \frac{1}{n}$ diverge,
+	$\textstyle \sum \frac{1}{n^2}$ converge (vers $\textstyle \frac{\pi^2}{6}$) et \[
+		\forall n \in \N,\, 0\le \frac{1}{\textstyle n^2} \le \frac{1}{n}.
+	\] 
+\end{cexm}
+
+\begin{crlr}
+	Soient $u,v$ deux suites réelles {\large\sc\color{orange} positives} telles que $u = O(v)$.
+
+	\begin{enumerate}
+		\item Si $\Sigma v_n$ converge, alors $\Sigma u_n$ converge.
+		\item Si $\Sigma u_n$ diverge, alors $\Sigma v_n$ diverge.
+	\end{enumerate}
+	\qed
+\end{crlr}
+
+\begin{thm}
+	Soient $u$ et $v$ deux suites réelles {\large\sc\color{orange} positives} telles que $u = \po(v)$.
+
+	\begin{enumerate}
+		\item Si $\Sigma v_n$ converge, alors $\Sigma u_n$ converge.
+		\item Si $\Sigma u_n$ diverge, alors $\Sigma v_n$ diverge.
+	\end{enumerate}
+	\qed
+\end{thm}
+
+\begin{thm}
+	[règle des équivalents] Soient $u$ et $v$ deux suites réelles {\large\sc\color{orange} positives} telles que $u \sim v$. Alors \[
+		\Sigma u_n \text{ converge} \iff \Sigma v_n \text{ converge}.
+	\] 
+\end{thm}
+
+\begin{prv}
+	On suppose \[
+		u_n = v_n + \po(v_n)
+	\] et donc \[
+		\forall \varepsilon > 0, \exists N \in \N, \forall n \ge N, |u_n - v_n| \le \varepsilon |v_n|
+	\] En particulier, on peut considerer $N \in \N$ tel que \[
+		\forall n \ge N, -\frac{1}{2} v_n \le u_n - v_n \le \frac{1}{2} v_n
+	\] et donc \[
+		\forall n \ge N, \frac{1}{2} v_n \le u_n \le \frac{3}{2} v_n
+	\] et donc $\begin{cases}
+		u = O(v),\\
+		v = O(u).
+	\end{cases}$ 
+
+	Si $\Sigma v_n$ converge, alors $\Sigma u_n$ converge car $u = O(v)$.
+
+	Si $\Sigma u_n$ converge, alors $\Sigma v_n$ converge car $v = O(u)$.
+\end{prv}
+
+\begin{exm}
+	{\itshape Déterminer la nature de $\sum \frac{1}{n^3 + n \ln(n)}$ ?}
+	
+	\[
+		\forall n \ge 3, \frac{1}{n^3 + n\ln n} \ge 0.
+	\] et \[
+		\frac{1}{n^3 + n\ln n} \simi_{n\to +\infty} \frac{1}{n^3}.
+	\]
+
+	\[
+		\forall n \ge 1, \frac{1}{n^3} \le \frac{1}{n^2}
+	\]
+
+	$\textstyle \sum\frac{1}{n^2}$ converge donc $\textstyle \sum \frac{1}{n^3}$ converge donc $\sum \frac{1}{n^3 + n \ln n}$ converge.
+\end{exm}

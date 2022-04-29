@@ -1,0 +1,171 @@
+\part{Résumé et exemples}
+
+\begin{landscape}
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			usepackage("mathtools");
+			size(18cm);
+
+			texpreamble("\renewcommand{\c}[1]{\begin{tabular}{c}#1\end{tabular}}");
+
+			defaultpen(fontsize(4pt));
+
+			real margin=1.5mm;
+
+			object alpha = draw("$u_n\xrightarrow[n\to+\infty]{\phantom{n\to+\infty}} 0$ ?", box, (-0.5,0), margin, black, FillDraw(palegray));
+
+			object beta = draw("$\sum u_n$ diverge", box, (1, 1), margin, cyan, FillDraw(palecyan));
+
+			object gamma = draw("\c{$u_n$ de signe\\ constant à partir\\ d'un certain rang ?}", box, (1, -1), margin, black, FillDraw(palegray));
+
+			object delta = draw("\c{On remplace $(u_n)$\\ par un équivalent\\ plus simple}", box, (3, -0.5), 0, white, FillDraw(white));
+
+			object epsilon = draw("Comparer avec une intégrale", box, (4.5, 0.5), 0, white, FillDraw(white));
+
+			object sigma = draw("\c{$v_n = O(w_n)$\\$\sum w_n$ converge ?}", box, (4.5, 0), margin, black, FillDraw(palegray));
+
+			object tau = draw("\c{$w_n = O(v_n)$\\$\sum w_n$ diverge ?}", box, (4.5, -0.5), margin, black, FillDraw(palegray));
+
+			object iota = draw("$\sum u_n$ diverge", box, (6, -0.5), margin, magenta, FillDraw(palemagenta));
+
+			object pie = draw("$\sum u_n$ converge", box, (6, 0), margin, cyan, FillDraw(palecyan));
+
+			object xi = draw("\c{$\sum u_n$ alternée\\$\big(|u_n|\big)\longrightarrow 0$\\$\big(|u_n|\big)$ décroissante}\!\!\large?", box, (3, -1.5), margin, black, FillDraw(palegray));
+
+			object kappa = draw("$\sum u_n$ converge", box, (5, -1.2), margin, cyan, FillDraw(palecyan));
+
+			object zeta = draw("$\sum\,|u_n|$ converge ?", box, (5, -1.8), margin, black, FillDraw(palegray));
+
+			object mu = draw("$\sum u_n$ converge", box, (7, -1.5), margin, cyan, FillDraw(palecyan));
+
+			object eta = draw("\c{On forme un dévelop-\\pement asymptotique\\ de $u_n$}", box, (7.1,-2.1), 0, white, FillDraw(white));
+
+			pair A = (7.8, -2.3);
+			/*pair B = A + (0.3, -0.3);
+			int n = 5;
+			for(real t = 0; t < 1; t += 1/n) {
+				pair M = (1-t) * A + t * B;
+				fill(circle(M, 0.008), black);
+			}*/
+			label("$\ddots$", A);
+
+
+			add(new void(frame f, transform t) {
+					picture pic;
+					draw(pic,"\sc non",point(alpha,E,t)--point(beta,W,t),RightSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc oui",point(alpha,E,t)--point(gamma,W,t),RightSide,Arrow(TeXHead),PenMargin);
+
+					draw(pic,"\sc oui",point(gamma,E,t)--point(delta,W,t),LeftSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc non",point(gamma,E,t)--point(xi,W,t),RightSide,Arrow(TeXHead),PenMargin);
+
+					draw(pic,"",point(delta,E,t * shift((0, 0.2)))--point(sigma,W,t * shift((0, 0.05))),RightSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"",point(delta,E,t * shift((0, 0.05)))--point(tau,W,t * shift((0, 0.05))),RightSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"",point(delta,E,t * shift((-0.1, 0.3)))--point(epsilon,SW,t),RightSide,Arrow(TeXHead),PenMargin);
+
+					draw(pic,"\sc non", point(sigma,W,t*shift((0, -0.05)))--point(delta,E,t*shift((0, 0.1))),LeftSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc oui",point(sigma,E,t)--point(pie,W,t),RightSide,Arrow(TeXHead),PenMargin);
+
+
+					draw(pic,"\sc non", point(tau,W,t*shift((0, -0.05)))--point(delta,E,t*shift((0, -0.05))),LeftSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc oui",point(tau,E,t)--point(iota,W,t),RightSide,Arrow(TeXHead),PenMargin);
+
+					draw(pic,"\sc oui",point(xi,E,t)--point(kappa,W,t),LeftSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc non",point(xi,E,t)--point(zeta,W,t),RightSide,Arrow(TeXHead),PenMargin);
+
+					draw(pic,"\sc oui",point(zeta,E,t)--point(mu,W,t),LeftSide,Arrow(TeXHead),PenMargin);
+					draw(pic,"\sc non",point(zeta,E,t)--point(eta,W,t),RightSide,Arrow(TeXHead),NoMargin);
+
+					add(f,pic.fit());
+				});
+		\end{asy}
+	\end{figure}
+\end{landscape}
+
+\begin{exo}
+	\begin{enumerate}
+		\item $\forall n \in \N^*,\, u_n = \sqrt[n]{n+1} - \sqrt[n]{n}$,
+		\item $\forall n \ge 2,\,u_n = u_n = \ln\left( 1 + \frac{(-1)^n}{n} \right)$,
+		\item $\forall n \in \N^*,\, u_n = \sin \left( \frac{\pi}{2n} \right)$,
+		\item $\forall n \in \N^*, u_n = \frac{1}{\sum_{k=1}^n \frac{1}{k^\alpha}}$.
+	\end{enumerate}
+
+	\begin{enumerate}
+		\item Pour $n \in \N^*$, \[
+				f_n : x \mapsto x^{\frac{1}{n}} = e^{\frac{1}{n} \ln x}
+			\] donc \[
+				\forall x > 0,  f'_n(x)  =  \frac{1}{nx} e^{\frac{1}{n}\ln(x)}  = \frac{1}{nx} e^{\frac{1}{n}\ln x}.
+			\]
+			D'après le théorème des accroissements finis, \[
+				\exists c_n \in [n, n+1], f_n(n+1) - f(n) = f'_n(c_n)
+			\] donc \[
+				u_n = \frac{1}{c_n}e^{\frac{1}{n} \ln c_n}.
+			\]
+
+			\[
+				\forall n, 1 \le \frac{c_n}{n} \le 1 + \frac{1}{n}
+			\] donc $c_n \simi_{n\to +\infty} n$ donc $c_n = n + \po(n)$ :
+			\begin{align*}
+				\ln c_n &= \ln\big(n + \po(n)\big) \\
+				&= \ln\Big(n\big(1 + \po(1)\big)\Big) \\
+				&= \ln n + \ln\big(1 + \po(1)\big) \\
+				&= \ln(n) + \po(1) \\
+				&\sim \ln n
+			\end{align*}
+			donc $\frac{\ln c_n}{n} \sim \frac{\ln n}{n} \tendsto{n\to +\infty} 0$\\
+			donc $e^{\frac{1}{n} \ln c_n} \simi_{n\to +\infty} 1$\\
+			donc $u_n \sim \frac{1}{n^2}$\\
+			donc $\Sigma u_n$ converve.
+		\item \[
+				\forall n \ge 2, u_n = \frac{(-1)^n}{n} + O\left( \frac{1}{n^2} \right)
+			\] $\sum \frac{(-1)^n}{n}$ converge et $\sum O\left( \frac{1}{n^2} \right)$ converge absolument. Donc, $\Sigma u_n$ converge.
+		\item $u_n \simi_{n\to +\infty} \frac{\pi}{2n} \ge 0$ donc $\Sigma u_n$ diverge.
+		\item \[
+				\lim_{n\to +\infty} \sum_{k=1}^n \frac{1}{k^\alpha} = \begin{cases}
+					\underbrace{\zeta(\alpha)}_{>0} &\text{ si } \alpha > 1,\\
+					+\infty &\text{ si } \alpha \le 1,
+				\end{cases}
+			\] donc \[
+				u_n \longrightarrow \begin{cases}
+					\frac{1}{\zeta(\alpha)} \neq 0 &\text{ si } \alpha > 1,\\
+					0 &\text{ si } \alpha \le 1
+				\end{cases}
+			\]
+			Si $\alpha > 1$, alors $\Sigma u_n$ diverge. On suppose $\alpha \le 1$.
+
+			{\itshape Équivalent de $\sum_{k=1}^n \frac{1}{k^\alpha} ?$}
+
+			Si $\alpha < 1$, \[
+				\underbrace{\frac{1}{1-\alpha} \left( (n+1)^{1-\alpha} - 2^{1-\alpha} \right)}_{\frac{n^{1-\alpha}}{1-\alpha}}
+				= \int_{2}^{n+1} \frac{1}{x^{\alpha}}~\mathrm{d}x
+				\le \sum_{k=2}^n \frac{1}{k^\alpha}
+				\le \int_{1}^{n} \frac{1}{x^\alpha}~\mathrm{d}x
+				= \underbrace{\frac{1}{1-\alpha} \left( n^{1-\alpha} - 1 \right)}_
+				{\sim \frac{n^{1-\alpha}}{1-\alpha}}
+			\] donc \[
+				\sum_{k=1}^n \frac{1}{k^\alpha} \sim \frac{n^{1-\alpha}}{1-\alpha}
+			\] donc \[
+				u_n \sim \frac{1-\alpha}{n^{1-\alpha}}
+			\]
+			\begin{align*}
+				\Sigma u_n \text{ converge } \iff& 1 - \alpha > 1\\
+				\iff& \alpha < 0
+			\end{align*}
+
+			Si $\alpha = 1$, $\sum_{k=1}^n \frac{1}{k} \sim \ln n$ et donc $u_n \sim \frac{1}{\ln n}$.
+
+			A-t-on $u_n = \po\left( \frac{1}{n^\beta} \right)$ avec $\beta>1$ ou $\frac{1}{n^\beta} = \po(u_n)$ avec $\beta \le 1$ ?
+
+			Si $\beta \ge 0$, \[
+				n^\beta u_n \sim \frac{n^\beta}{\ln(n)} \longrightarrow +\infty
+			\] En particulier avec $\beta = \frac{1}{2}$ : \[
+				\frac{1}{n^{\frac{1}{2}}} = \po(u_n)
+			\] et $\sum \frac{1}{n^{\frac{1}{2}}}$ diverge car $\frac{1}{2} < 1$. Donc, $\Sigma u_n$ diverge.
+
+			On a donc 
+			\begin{itemize}
+				\item avec $\alpha \le 0$, $\Sigma u_n$ converge,
+				\item avec $\alpha > 0$, $\Sigma u_n$ diverge.
+			\end{itemize}
+	\end{enumerate}
+\end{exo}

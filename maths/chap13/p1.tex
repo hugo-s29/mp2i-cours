@@ -544,6 +544,8 @@
 	Soit $M$ une matrice et $R$ la matrice échelonnée réduite par lignes associée à $M$. Le nombre de lignes non nulles de $R$ (le nombre de pivots) est appelée \underline{rang} de $M$.\\
 	Soit $S$ un système de matrice augmentée $(A \mid B)$. Le \underline{rang} de $S$ est le rang de la matrice $A$.\\
 	Le rang est noté $\rg$.
+	\index{rang (matrice)}
+	\index{rand (système)}
 \end{defn}
 
 \begin{prop}
@@ -565,6 +567,7 @@
 
 \begin{defn}
 	Soit $S$ un système à $n$ équations, $n$ inconnues et de rang $n$. On dit que $S$ est un \underline{système de Cramer} (il a une unique solution)
+	\index{système de Cramer}
 \end{defn}
 
 \begin{prop}
@@ -768,7 +771,7 @@
 				\node[draw, red, above] at (2,0) {diagonale};
 			\end{tikzpicture}
 		\end{pNiceArray}
-	\]
+	\]\index{triangulaire supérieur (matrice)}
 	et \underline{triangulaire inférieure} si les coefficients au-dessus de la diagonale sont nuls:
 	\[
 		T = 
@@ -778,7 +781,7 @@
 			&&&0\\
 			* & \Ldots && * \\
 		\end{pNiceArray}
-	\]
+	\]\index{triangulaire inférieur (matrice)}
 
 	Un \underline{système triangulaire} est de la forme \[ 
 		\left\{\begin{array}
@@ -790,6 +793,7 @@
 						&        &    & 0      &=& \ldots
 		\end{array}\right.
 	\]
+	\index{système triangulaire}
 \end{defn}
 
 \begin{rmk}

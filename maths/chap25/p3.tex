@@ -1,0 +1,136 @@
+\part{Comparaison avec une intégrale}
+
+\begin{thm}
+	Soit $\alpha \in \R$. \[
+		\sum \frac{1}{n^\alpha} \text{ converge } \iff \alpha > 1
+	\] Dans ce cas, on note \[
+		\zeta(\alpha) = \sum_{n = 1}^{+\infty} \frac{1}{n^\alpha}.
+	\]
+\end{thm}
+
+\begin{prv}
+	\[
+		\frac{1}{n^\alpha} \tendsto{n\to +\infty} \begin{cases}
+			0 &\text{ si } \alpha > 0\\
+			1 &\text{ si } \alpha = 0\\
+			+\infty &\text{ si } \alpha < 0
+		\end{cases}
+	\] donc $\sum \frac{1}{n^\alpha}$ diverge pour $\alpha \le 0$.
+
+	On suppose $\alpha > 0$. Soit $f_\alpha : \begin{array}{rcl}
+		\R^+_* &\longrightarrow& \R \\
+		x &\longmapsto& \frac{1}{x^\alpha} = x^{-\alpha}
+	\end{array}$
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import math;
+
+			size(5cm);
+
+			draw((-1, 0) -- (4, 0), Arrow(TeXHead));
+			draw((0, -1) -- (0, 3), Arrow(TeXHead));
+
+			real alpha = 1.3;
+			real f(real x) {return 1/ x^alpha; }
+			bool3 check(real x) { return x != 0 && f(x) < 3; };
+
+			draw(graph(f, 0, 3.8, check), red);
+
+			real k = 1.5;
+			real ak = 0.25;
+			real bk = 2.75;
+
+			dot("\small$k$", (k, 0), align=S);
+			dot("\small$k - 1$", (ak, 0), align=S);
+			dot("\small$k + 1$", (bk, 0), align=S);
+
+			draw(box((ak, f(k)), (bk, 0)));
+			draw((k, 0) -- (k, f(k)));
+			draw((ak, f(k)) -- (-0.05, f(k)), dashed);
+			label("\small$\frac{1}{k^\alpha}$", (0, f(k)), align=W);
+		\end{asy}
+	\end{figure}
+
+	Soit $k \in \N$ avec $k \ge 2$. comme $f_\alpha$ est décroissante, \[
+		\forall k \in [k, k+1], f_{\alpha}(x) \le f_{\alpha}(k)
+	\] et donc \[
+		\int_{k}^{k+1} \frac{1}{x^\alpha}~\mathrm{d}x \le \int_{k}^{k+1} \frac{1}{k^\alpha}~\mathrm{d}x = \frac{1}{k^\alpha}.
+	\] De même, \[
+		\forall k \in [k - 1, k], f_\alpha(x) \ge f_\alpha(k)
+	\] et donc \[
+		\int_{k-1}^{k} \frac{1}{x^\alpha}~\mathrm{d}x \ge \int_{k-1}^{k} \frac{1}{k^\alpha}~\mathrm{d}x = \frac{1}{k^\alpha}.
+	\] Soit $n \in \N$ avec $n \ge 2$. \[
+		\forall k \in \left\llbracket 2,n \right\rrbracket, 
+		\int_{k}^{k+1} \frac{1}{x^\alpha}~\mathrm{d}x \le \frac{1}{k^\alpha} \le \int_{k-1}^{k} \frac{1}{x^\alpha}~\mathrm{d}x
+	\] donc \[
+		\int_{2}^{n+1} x^\alpha~\mathrm{d}x \le \sum_{k=2}^n \frac{1}{k^\alpha} \le \int_{1}^{n} \frac{1}{x^\alpha}~\mathrm{d}x
+	\]
+
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] On suppose $\alpha > 1$. Alors
+			\begin{align*}
+				\forall n \ge 2, \sum_{k=1}^n \frac{1}{k^\alpha} &\le 1 + \int_{1}^{n} \frac{1}{x^\alpha}~\mathrm{d}x = 1 + \left[ \frac{x^{-\alpha + 1}}{-\alpha + 1} \right]^n_1\\
+				&\le 1 + \frac{1}{1-\alpha}\left( \frac{1}{n^{\alpha - 1}} - 1 \right)\\
+				&\le 1 + \frac{1}{\alpha - 1}\left( 1 - \frac{1}{n^{\alpha - 1}} \right)\\
+				&\le 1 + \frac{1}{\alpha - 1}.
+			\end{align*}
+			La suite $\left( \sum_{k=1}^n \frac{1}{k^\alpha} \right)_n$ est croissante et majorée donc elle converge.
+		\item[\underline{\sc Cas 2}] On suppose $\alpha = 1$. \[
+				\forall n \ge 2, \sum_{k=1}^n \frac{1}{k} \ge 1 + \int_{2}^{n+1} \frac{1}{x}~\mathrm{d}x \ge \underbrace{1 + \ln(n+1) - \ln 2}_{\tendsto{n\to +\infty} +\infty}
+			\] Par comparaison, $\sum_{k=1}^n \frac{1}{k} \tendsto{n\to +\infty} +\infty$.
+		\item[\underline{\sc Cas 3}] On suppose $\alpha > 1$.
+			\begin{align*}
+				\forall n \ge 2, \sum_{k=1}^n \frac{1}{k^\alpha} &\ge 1 + \int_{2}^{n+1} \frac{1}{x^\alpha}~\mathrm{d}x\\
+				&\ge 1 + \left[ \frac{x^{-\alpha+1}}{-\alpha + 1} \right]_2^{n+1}\\
+				&\ge \underbrace{1 + \frac{1}{1-\alpha}\left( \frac{1}{(n+1)^{\alpha - 1}} - \frac{1}{2^{\alpha - 1}} \right)}_{\mathclap{\tendsto{n\to +\infty} +\infty \text{ car } \alpha < 1}}
+			\end{align*}
+
+			Donc, $\sum_{k=1}^n \frac{1}{k^\alpha} \tendsto{n\to +\infty} +\infty$.
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	Soit $f : [a, +\infty[ \longrightarrow \R^+$ continue, décroissante de limite nulle, avec $a \in \N$. Alors, \[
+		\sum_{n\ge a}f(n) \text{ converge} \iff \left( \int_{a}^{n} f(x)~\mathrm{d}x \right)_n \text{ converge}.
+	\]
+\end{thm}
+
+\begin{prv}
+	Soit $k \in \N$ tel que $k \ge a + 1$. \[
+		\forall x \in [k, k+1], f(x) \le f(k)
+	\] donc \[
+		\int_{k}^{k+1} f(x)~\mathrm{d}x \le \int_{k}^{k+1} f(k)~\mathrm{d}x = f(k)
+	\] et \[
+		\forall x \in [k-1, k], f(x) \ge f(k)
+	\] et donc \[
+		\int_{k-1}^{k} f(x)~\mathrm{d}x \ge \int_{k-1}^{k} f(k)~\mathrm{d}x = f(k).
+	\]
+
+	Donc, $\forall n \in \N$ avec $n \ge a + 1$ \[
+		\int_{a+1}^{n+1} f(x)~\mathrm{d}x \le \sum_{a+1\le k\le n} f(k) \le \int_{a}^{n} f(x)~\mathrm{d}x.
+	\]
+
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] On suppose que $\left( \int_{a}^{n} f(x)~\mathrm{d}x \right)_n$ converge. Cette suite est croissante, donc majorée. Soit $M$ un majorant donc \[
+				\forall n \ge a+ 1, \sum_{a \le k \le n} f(k) \le f(a) + M.
+			\] donc la série converge.
+		\item On suppose que $\left( \int_{a}^{n} f(x)~\mathrm{d}x \right)_n$ diverge donc, par croissance de cette suire, \[
+			\lim_{n\to +\infty} \int_{a}^{n} f(x)~\mathrm{d}x = +\infty
+		\] et donc
+		\begin{align*}
+			\forall n \ge a + 1, \sum_{k=a}^n f(k) &= f(a) + \sum_{k=a+1}^n f(k) \\
+			&\ge \underbrace{f(a) + \int_{a}^{n} f(x)~\mathrm{d}x - \int_{a}^{a+1} f(x)~\mathrm{d}x}_{\tendsto{n\to +\infty} +\infty}
+		\end{align*} donc la série diverge.
+	\end{itemize}
+\end{prv}
+
+\begin{exo}
+	{\itshape Quelle est la nature de la série $\sum \frac{1}{n \ln(n)}$ ?}
+\end{exo}
+
+\begin{exo}
+	{\itshape Quelle est la nature de la série $\sum \frac{\ln^\alpha(n)}{n^\beta}$ en fonction de $\alpha$ et $\beta$ ?}
+\end{exo}

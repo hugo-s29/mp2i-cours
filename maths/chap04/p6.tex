@@ -1,0 +1,376 @@
+\part{Fonctions trigonométriques réciproques}
+
+\begin{prop-defn}
+	L'application $\begin{array}{rcl}
+		\left[ -\frac{\pi}{2}, \frac{\pi}{2} \right] &\longrightarrow& [-1, 1] \\
+		x &\longmapsto& \sin x
+	\end{array}$ est bijective. On appelle arcsinus la réciproque de cette bijection et on la note $\Arcsin$.
+
+	Pour tout $x \in [-1, 1]$, $\Arcsin x$ est le seul angle \cbox{red}{compris entre $-\frac{\pi}{2}$ et $\frac{\pi}{2}$} donc le sinus vaut $x$.
+	\qed
+	\index{arcsinus (trigonométrie)}
+\end{prop-defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $\Arcsin 0 = 0$,
+		\item $\Arcsin 1 = \frac{\pi}{2}$,
+		\item $\Arcsin\left( \sin \frac{3\pi}{2} \right) \color{red}{\neq \frac{3\pi}{2}}$ car $\Arcsin(-1) = -\frac{\pi}{2}$.
+		\item $\Arcsin\left( \sin \frac{7\pi}{5} \right) = \frac{-2\pi}{5}$ car $\sin \frac{7\pi}{5} = \sin \left( \pi - \frac{7\pi}{5} \right) = \sin\left( -\frac{2\pi}{5} \right)$ et $-\frac{2\pi}{5} \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]$.
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\forall x \in [-1, 1], \Arcsin x \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right] $ 
+		\item $\forall \theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right], \Arcsin(\sin \theta) = \theta$ 
+		\item $\forall x \in [-1, 1], \sin(\Arcsin x) = x$
+		\item $\forall x \in [-1, 1], \cos(\Arcsin x) = \sqrt{1-x^2}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[1.]~\kern-2.5mm, 2. et 3. correspondent à la définition de $\Arcsin$.
+		\item[4.] Soit $x \in [-1, 1]$. On pose $\theta = \Arcsin x \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]$. On sait que $\cos^2 \theta + \sin^2 \theta = 1$ donc $\cos^2 \theta = 1 - \sin^2 \theta = 1 - \sin^2(\Arcsin x) = 1-x^2$. On en déduit que $\big|\cos \theta\big| = \sqrt{1 - x^2}$. Comme $\theta \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]$, $\cos \theta \ge 0$ et donc \[
+			\cos(\Arcsin x) = \sqrt{1-x^2}.
+		\]
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\Arcsin$ est impaire
+		\item $\Arcsin$ est continue sur $[-1,1]$ 
+		\item $\Arcsin$ est dérivable sur $]-1,1[$ et \[
+				\forall x \in ]-1, 1[, \Arcsin' x = \frac{1}{\sqrt{1-x^2}} > 0
+			\]
+		\item $\Arcsin$ n'est pas dérivable en 1 et en -1.
+	\end{enumerate}
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(5cm);
+
+		real f(real x) { return asin(x); }
+
+		draw(graph(f, -1, 1, 300), magenta);
+
+		draw(scale(0.4) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+		draw((-1, -pi/2)--(-1, -pi/2 + 0.7), red, Arrow(TeXHead));
+		draw((1, pi/2)--(1, pi/2 - 0.7), red, Arrow(TeXHead));
+
+		label("$-1$", (-1, 0), align=S);
+		label("$1$", (1, 0), align=S);
+		label("$\sfrac{-\pi}{2}$", (0, -pi/2), align=W);
+		label("$\sfrac{\pi}{2}$", (0, pi/2), align=W);
+
+		real eps = 0.03;
+		draw((-1, -eps)--(-1,eps));
+		draw((1, -eps)--(1,eps));
+		draw((-eps, pi/2)--(eps, pi/2));
+		draw((-eps, -pi/2)--(eps, -pi/2));
+
+		draw((0,-pi/2 - 0.2) -- (0, pi/2 + 0.2), Arrow(TeXHead));
+		draw((-1.2,0) -- (1.2,0), Arrow(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $x \in [-1, 1]$. Alors $-x \in [-1, 1]$. On pose $\theta = \Arcsin(-x)$. $\theta$ est le seul nombre compris entre $-\frac{\pi}{2}$ et $\frac{\pi}{2}$ vérifiant $\sin \theta = -x$.
+
+			$\Arcsin x \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]$ donc $-\Arcsin x \in \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]$. On a \[
+				\sin(-\Arcsin x) = -\sin(\Arcsin x) = -x
+			\] donc \[
+				\theta = \Arcsin(-x) = -\Arcsin x.
+			\]
+		\item $\sin$ est continue et strictement croissante sur $[\sfrac{-\pi}{2}, \sfrac{\pi}{2}]$ à valeurs dans $[-1, 1]$ donc $\Arcsin$ est continue sur $[-1, 1]$.
+		\item Soit $x \in [-1, 1]$. $\sin'(\Arcsin x) = \cos(\Arcsin x) = \sqrt{1-x^2}$ donc \[
+				\forall x \in ]-1,1[, \sin'(\Arcsin x) \neq 0.
+			\] Donc $\Arcsin$ est dérivable sur $]-1, 1[$ et \[
+				\forall x \in ]-1, 1[, \Arcsin' x = \frac{1}{\sqrt{1-x^2}}
+			\]
+		\item $\Arcsin$ est continue sur $[-1, 1]$, dérivable sur $]-1,1[$, et \[
+			\forall x \in ]-1, 1[, \Arcsin' x = \frac{1}{\sqrt{1-x^2}}
+			\tendsto{x\to \pm 1} +\infty.
+		\]
+		
+		D'après le théorème de la limite de la dérivée, $\Arcsin$ n'est pas dérivable en $\pm 1$.
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	Une primitive de $x \mapsto \frac{1}{\sqrt{1-x}}$ est $\Arcsin$.
+\end{rmk}
+
+\begin{prop-defn}
+	L'application $\begin{array}{rcl}
+		[0,\pi] &\longrightarrow& [-1,1] \\
+		x &\longmapsto& \cos x
+	\end{array}$ est bijective. On note sa réciproque $\Arccos$.
+
+	En d'autres termes, pour $x \in [-1, 1]$, $\Arccos x$ est le seul angle \cbox{red}{compris entre $0$ et $\pi$} dont le cosinus vaut $x$.
+	\index{arccosinus (trigonométrie)}
+\end{prop-defn}
+
+\begin{prv}
+	Théorème de la bijection continue.
+\end{prv}
+
+\begin{exm}
+	$\Arccos 0 = \frac{\pi}{2}$, $\Arccos \frac{1}{2} = \frac{\pi}{3}$, $\Arccos \left( -\frac{1}{2} \right) = \frac{2\pi}{3}$,\\
+	$\Arccos\left( \cos \frac{75\pi}{67} \right) = \frac{59\pi}{67} \in [0, \pi]$ car $\cos\frac{75\pi}{67} = \cos\left(\frac{75\pi}{67} - 2\pi\right) = \cos\left( -\frac{59\pi}{67} \right) = \cos \frac{59\pi}{67}$.
+\end{exm}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\forall x \in [-1, 1],\,\Arccos x \in [0,\pi]$,
+		\item $\forall \theta \in [0,\pi],\,\Arccos(\cos\theta) = \theta$,
+		\item $\forall x \in [-1, 1],\,\cos(\Arccos x) = x$,
+		\item $\forall x \in [-1, 1],\, \sin(\Arccos x) = \sqrt{1-x^2}$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item[1.]~\kern-2.5mm, 2. et 3. correspondent à la définition de $\Arccos$.
+		\item[4.] Soit $x \in [-1, 1]$.
+			\begin{align*}
+				&\sin^2(\Arccos x) = 1-\cos^2(\Arccos x) = 1-x^2\\
+				\text{donc }& \big|\sin(\Arccos x)\big| = \sqrt{1-x^2}.
+			\end{align*}
+
+			Or, $\Arccos x \in [0,\pi]$ donc $\sin(\Arccos x) \ge 0$ et donc \[
+				\sin(\Arccos x) = \sqrt{1-x^2}.
+			\] 
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\Arccos$ est continue sur $[-1,1]$,
+		\item $\Arccos$ est dérivable sur $]-1,1[$ et \[
+				\forall x \in ]-1, 1[, \Arccos' x = - \frac{1}{\sqrt{1-x^2}}.
+			\]
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\cos$ est coninue et strictement décroissante sur $[0,\pi]$ à valeurs dans $[-1,1]$ donc $\Arccos$ continue dans $[-1,1]$.
+		\item
+			\begin{align*}
+				\forall x \in ]-1,1[,\,
+				\cos'(\Arccos x) &= -\sin(\Arccos x) \\
+				&= -\sqrt{1-x^2} \neq 0 \\
+			\end{align*}
+
+			donc $\Arccos$ est dérivable sur $]-1,1[$ et \[
+				\Arccos' x = -\frac{1}{\sqrt{1-x^2}} < 0.
+			\]
+	\end{enumerate}
+\end{prv}
+
+\begin{crlr}
+	\[
+		\forall x \in [-1,1],\,\Arccos x + \Arcsin x = \frac{\pi}{2}
+	\] 
+\end{crlr}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Méthode 1}]
+			Soit $f : \begin{array}{rcl}
+				[-1,1] &\longrightarrow& \R \\
+				x &\longmapsto& \Arcsin x + \Arccos x
+			\end{array}$ continue sur $[-1,1]$ et dérivable sur $]-1,1[$.
+			On a \[
+				\forall x \in ]-1,1[,\, f'(x) = \frac{1}{\sqrt{1-x^2}} - \frac{1}{\sqrt{1-x^2}} = 0.
+			\] donc $f$ est constante sur $]-1, 1[$ : \[
+				\exists C \in \R,\, \forall x \in ]-1,1[, f(x) = C.
+			\] En particulier, \[
+				f(0) = \Arccos 0 + \Arcsin 0 = \frac{\pi}{2} + 0 = \frac{\pi}{2}.
+			\] 
+		\item[\underline{\sc Méthode 2}] Soit $x \in [0, 1]$.
+			\begin{align*}
+				\sin(\Arccos x) = \sqrt{1-x^2} &= \cos(\Arcsin x)\\
+				&= \sin\left( \frac{\pi}{2} - \Arcsin x \right) \\
+			\end{align*} donc \[
+				\Arccos x \equiv \frac{\pi}{2} - \Arcsin x \mod {2\pi} \ou \pi - \Arccos x \equiv \frac{\pi}{2} - \Arcsin x \mod{2\pi}
+			\] donc
+			\begin{align*}
+				&\exists k \in \Z,\,\Arccos x + \Arcsin x = \frac{\pi}{2} + 2k\pi\\
+				\ou &\exists  k \in \Z,\, -\Arccos x + \Arcsin x = -\frac{\pi}{2} + 2k\pi.
+			\end{align*}
+
+			Or, $\begin{cases}
+				0 \le  \Arccos x \le \pi\\
+				0 \le \Arcsin x \le \frac{\pi}{2}
+			\end{cases}$ donc $0 \le \Arccos x + \Arcsin x \le  \pi$\\
+			$\iff \begin{cases}
+				-\frac{\pi}{2} \le -\Arccos x \le 0\\
+				0 \le \Arcsin x \le \frac{\pi}{2}
+			\end{cases}$ donc $-\frac{\pi}{2} \le -\Arccos x + \Arcsin x \le \frac{\pi}{2}$ 
+
+			D'où \[
+				\Arccos x + \Arcsin x = \frac{\pi}{2} \ou -\Arccos x + \Arcsin x = -\frac{\pi}{2}
+			\]
+
+			\begin{itemize}
+				\item Si $-\Arccos x > -\frac{\pi}{2}$ ou $\Arcsin x > 0$, alors $-\Arccos x + \Arcsin x > -\frac{\pi}{2}$ et donc \[
+						\Arccos x + \Arcsin x = \frac{\pi}{2}.
+					\]
+				\item Si $-\Arccos x = \frac{\pi}{2}$ et $\Arcsin x = 0$, alors $x = 0$ et donc \[
+						\Arccos x + \Arcsin x = \frac{\pi}{2} + 0 = \frac{\pi}{2}.
+					\]
+			\end{itemize}
+
+			Soit $x \in [-1, 0[$. On pose $y = -x \in [0, 1]$
+			\begin{itemize}
+				\item $\Arcsin x = - \Arcsin y$,
+				\item $\Arccos x = \pi - \Arccos y$ : en effet, $\cos(\pi - \Arccos y) = -\cos(\Arccos y) = -y = x$ et $0 \le \Arccos y \le \pi$ donc $-\pi \le \Arccos y \le 0$ et donc $0 \le \pi - \Arccos y \le \pi$
+			\end{itemize}
+
+			D'où,
+			\begin{align*}
+				\Arccos x + \Arcsin x &= \pi - \Arccos y - \Arcsin y \\
+				&= \pi - (\Arccos y + \Arcsin y) \\
+				&= \pi - \frac{\pi}{2} \\
+				&= \frac{\pi}{2}. \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(5cm);
+
+		real f(real x) { return acos(x); }
+
+		draw(graph(f, -1, 1, 300), magenta);
+
+		draw(shift((0, pi/2)) * scale(0.4) * (dir(-45) -- dir(-45 + 180)), red, Arrows(TeXHead));
+		draw((-1, pi)--(-1, pi - 0.7), red, Arrow(TeXHead));
+		draw((1, 0)--(1, 0.7), red, Arrow(TeXHead));
+
+		label("$-1$", (-1, 0), align=S);
+		label("$1$", (1, 0), align=S);
+		label("$\sfrac{\pi}{2}$", (0, pi/2), align=SW);
+		label("$0$", (0, 0), align=SW);
+		label("$\pi$", (0, pi), align=W);
+
+		real eps = 0.03;
+		draw((-1, -eps)--(-1,eps));
+		draw((1, -eps)--(1,eps));
+		draw((-eps, pi/2)--(eps, pi/2));
+		draw((-eps, pi)--(eps, pi));
+
+		draw((0,-0.2) -- (0, pi + 0.2), Arrow(TeXHead));
+		draw((-1.2,0) -- (1.2,0), Arrow(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prop-defn}
+	L'application $\begin{array}{rcl}
+		\left]-\frac{\pi}{2}, \frac{\pi}{2}\right[ &\longrightarrow& \R \\
+		x &\longmapsto& \tan x
+	\end{array}$ est bijective. On note $\Arctan$ la réciproque de cette bijection.
+
+	C'est à dire, pour tout $x \in \R$, $\Arctan x$ est le seul angle \cbox{red}{compris entre $-\frac{\pi}{2}$ et $\frac{\pi}{2}$ (exclus)} dont la tangente vaut $x$.
+	\index{arctangente (trigonométrie)}
+\end{prop-defn}
+
+\begin{prv}
+	Théorème de la bijection continue.
+\end{prv}
+
+\begin{exm}
+	$\Arctan 0 = 0$, $\Arctan 1 = \frac{\pi}{4}$, $\Arctan \sqrt{3} = \frac{\pi}{3}$,\\
+	$\Arctan(\tan \frac{9\pi}{7}) = \frac{2\pi}{7} \in \left]-\frac{\pi}{2},\frac{\pi}{2}\right[$ car $\tan\frac{9\pi}{7} = \tan\left( \frac{9\pi}{7} - \pi \right) = \tan \frac{2\pi}{7}$.
+\end{exm}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\Arctan$ est dérivable sur $\R$ et \[
+				\forall x \in \R,\, \Arctan' x = \frac{1}{1+x^2},
+			\]
+		\item $\begin{cases}
+				\lim_{x\to +\infty} \Arctan x = \frac{\pi}{2},\\
+				\lim_{x\to -\infty} \Arctan x = -\frac{\pi}{2},
+			\end{cases}$ 
+		\item $\Arctan$ est impaire.
+	\end{enumerate}
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real f(real x) { return atan(x); }
+
+		draw(graph(f, -5, 5, 300), magenta);
+
+		draw(scale(0.8) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+
+		label("$\sfrac{\pi}{2}$", (0, pi/2), align=W);
+		label("$\sfrac{-\pi}{2}$", (0, -pi/2), align=W);
+
+		real eps = 0.1;
+		draw((-eps, pi/2)--(eps, pi/2));
+		draw((-eps, -pi/2)--(eps, -pi/2));
+
+		draw((0,-pi/2-0.4) -- (0, pi/2 + 0.4), Arrow(TeXHead));
+		draw((-5,0) -- (5,0), Arrow(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\forall x \in \R,\,\tan'(\Arctan x) = 1 + \tan^2(\Arctan x) = 1+x^2 \neq 0$ donc $\Arctan$ est dérivable sur $\R$ et \[
+				\forall x \in \R, \Arctan'(x) = \frac{1}{1+x^2}.
+			\]
+		\item On déduit des limites de $\tan$ les limites de $\Arctan$.
+		\item Comme pour $\Arcsin$.
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	\[
+		\forall x \in \R^*,\, \Arctan x + \Arctan \frac{1}{x} = \begin{cases}
+			\frac{\pi}{2} &\text{si } x > 0\\
+			-\frac{\pi}{2}&\text{si } x < 0
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose $f : \begin{array}{rcl}
+		\R^* &\longrightarrow& \R \\
+		x &\longmapsto& \Arctan x + \Arctan \frac{1}{x}
+	\end{array}$ dérivable sur $\R^*$ par
+	\begin{align*}
+		f'(x) &= \frac{1}{1+x^2} - \frac{1}{1+\left( \frac{1}{x} \right)^2} \times \frac{1}{x^2} \\
+		&= \frac{1}{1+x^2} - \frac{1}{1 + x^2} \\
+		&= 0 \\
+	\end{align*}
+
+	\danger $\R^*$ n'est pas un intervalle !
+	\begin{itemize}
+		\item $\R^+_*$ est un intervalle donc $\exists C^+ \in \R, \forall x \in \R^+_*, f(x) =C^+$
+		\item $\R^-_*$ est un intervalle donc $\exists C^- \in \R, \forall x \in \R^-_*, f(x) =C^-$
+	\end{itemize}
+
+	$f(1) = \frac{\pi}{4} + \frac{\pi}{4} = \frac{\pi}{2}$ donc $C^+ = \frac{\pi}{2}$,\\
+	$f(-1) = -\frac{\pi}{4} - \frac{\pi}{4} = -\frac{\pi}{2}$ donc $C^- = -\frac{\pi}{2}$.
+\end{prv}

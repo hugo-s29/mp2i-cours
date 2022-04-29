@@ -1,0 +1,423 @@
+\part{Relations binaires}
+
+\begin{defn}
+	Soit $E$ un ensemble. Un \underline{relation (binaire)} sur $E$ est un prédicat définit sur $E^2$.
+	\index{relation (binaire)}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Avec $E = \C$, $=$ est une relation binaire,
+		\item Avec $E = \R$, $\le$ est une relation binaire,
+		\item Avec $E$ l'humanité et la relation binaire $\wedge$ : \[
+				x\wedge y \iff x \text{ et } y \text{ ont la même mère}.
+			\]
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $E$ un ensemble, $\diamond$ une relation sur $E$. On dit que $\diamond$ est un \underline{relation d'équivalence} si
+	\begin{enumerate}
+		\item $\forall x \in E, x \diamond x$, \hfill (\underline{réflectivité})
+		\item $\forall x,y, \in E, x\diamond y \implies y \diamond x$, \hfill (\underline{symétrie})
+		\item $\forall x,y,z \in E,\quad\begin{rcases*}
+				x \diamond y\\
+				y \diamond z
+			\end{rcases*} \implies x \diamond z$ \hfill (\underline{transitivité})
+	\end{enumerate}
+	\index{relation d'équivalence}
+	\index{réflectivité (relation)}
+	\index{symétrie (relation)}
+	\index{transitivité (relation)}
+\end{defn}
+
+\begin{exm}
+	Avec $E = \Z$ et \[
+		x \diamond y \iff x \equiv y\mod 3
+	\] ``$\diamond$'' est une relation d'équivalence.
+\end{exm}
+
+\begin{rmk}
+	Le but d'une relation d'équivalence est d'identifier des objets différents.
+
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{4cm}
+			\begin{asy}
+				size(4cm);
+				real eps = 0.1;
+				draw((-2,0)--(2,0), dashed);
+
+				// outline
+				draw((-2-eps,-eps)--(-2,eps)--(-2+eps,-eps),white+2);
+				draw((2-eps,eps)--(2,-eps)--(2+eps,eps),white+2);
+				filldraw(circle((0,0), 1.5eps), white, white+2);
+
+				draw((-2-eps,-eps)--(-2,eps)--(-2+eps,-eps));
+				draw((2-eps,eps)--(2,-eps)--(2+eps,eps));
+				
+				draw(box((-2,-1),(2,1)));
+				label("\ding{34}", (0,-0.022));
+
+				guide p1 = (0,-1.5)..(-2,-1.5)..(-2,-0.5)..(0,-0.5)..(2,-0.5)..(2,1.5)..(0,1.5)..(-2,1.5)..(-2,0.5)..(0,0.5)..(2,0.5)..(2,-1.5)..cycle;
+				guide p2 = (0,0.5)..(2,0.5)..(2,-1.5)..(0,-1.5)..(-2,-1.5)..(-2,-0.5)..(0,-0.5)..(2,-0.5)..(2,1.5)..(0,1.5)..(-2,1.5)..(-2,0.5)..cycle;
+				guide p3 = (0,1.5)..(-2,1.5)..(-2,0.5)..(0,0.5)..(2,0.5)..(2,-1.5)..(0,-1.5)..(-2,-1.5)..(-2,-0.5)..(0,-0.5)..(2,-0.5)..(2,1.5)..cycle;
+				guide p4 = (0,-0.5)..(2,-0.5)..(2,1.5)..(0,1.5)..(-2,1.5)..(-2,0.5)..(0,0.5)..(2,0.5)..(2,-1.5)..(0,-1.5)..(-2,-1.5)..(-2,-0.5)..cycle;
+				draw(p1, magenta, Arrow(TeXHead));
+				draw(p2, magenta, Arrow(TeXHead));
+				draw(p3, magenta, Arrow(TeXHead));
+				draw(p4, magenta, Arrow(TeXHead));
+			\end{asy}
+		\end{subfigure}
+			$\qquad\qquad\qquad$
+		\begin{subfigure}{4cm}
+			\begin{asy}
+				import patterns;
+				add("hatch",hatch(2mm,magenta));
+
+				size(4cm);
+				real eps = 0.1;
+				real a = 1/3;
+
+				draw((-2,-a)--(2,-a), dashed);
+				draw((-2,a)--(2,a), dashed);
+				fill(box((-2,-a),(2,a)), pattern("hatch"));
+
+				// outline
+				draw((-2-eps,-eps)--(-2,eps)--(-2+eps,-eps),white+2);
+				draw((2-eps,eps)--(2,-eps)--(2+eps,eps),white+2);
+				filldraw(circle((0,-a), 1.5eps), white, white+2);
+				filldraw(circle((0,a), 1.5eps), white, white+2);
+				label("\ding{34}", (0,-0.022-a), white+fontsize(14pt));
+				label("\ding{34}", (0,-0.022+a), white+fontsize(14pt));
+
+				draw((-2-eps,-eps)--(-2,eps)--(-2+eps,-eps));
+				draw((2-eps,eps)--(2,-eps)--(2+eps,eps));
+				
+				draw(box((-2,-1),(2,1)));
+				label("\ding{34}", (0,-0.022-a));
+				label("\ding{34}", (0,-0.022+a));
+			\end{asy}
+		\end{subfigure}
+	\end{figure}
+\end{rmk}
+
+\begin{defn}
+	Soit $E$ un ensemble et $\diamond$ une relation d'équivalence sur $E$. Soit $x \in E$. La \underline{classe de $x$ (modulo $\diamond$)} est \[
+		\Cl_{\diamond}(x) = \Cl(x) = \overline{x} = \{y \in E  \mid y \diamond x\}.
+	\]
+	\index{classe d'équivalence (relation)}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Avec $E = \C$ et $\diamond = ``="$, \[
+				\forall z \in \C, \overline{z} = \Cl(z) = \{z\}.
+			\]
+		\item Avec $E = \Z$ et $\diamond = \text{congruence modulo } 5$, on a 
+			\begin{align*}
+				&\overline{0} = \{5k \mid k \in \Z\}\qquad\qquad\qquad
+				&\overline{1} = \{5k + 1 \mid k \in \Z\}\\
+				&\overline{2} = \{5k + 2 \mid k \in \Z\}
+				&\overline{3} = \{5k + 3 \mid k \in \Z\}\\
+				&\overline{4} = \{5k + 4 \mid k \in \Z\}
+				&\overline{5} = \overline{0}
+			\end{align*}
+
+			On constate que \[
+				x \equiv y \mod 5 \iff \overline{x} = \overline{y}.
+			\]
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	Soit $E$ un ensemble muni d'une relation d'équivalence $\diamond$. Alors \[
+		\forall x,y \in E, x\diamond y \iff \overline{x} = \overline{y}.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soient $x,y \in E$.
+	\begin{itemize}
+		\item On suppose $x\diamond y$. Soit $z \in \overline{x}$. On sait que $z\diamond x$ et $y\diamond x$. Par transitivité, on en déduit que $z \diamond y$ et donc $z \in \overline{y}$.
+		\item Soit $z \in \overline{y}$, donc $y\diamond z$. Or $x \diamond y$.
+			Comme $\diamond$ est symétrique, on a $y\diamond x$ et par transitivité, on a donc $z \diamond x$. Donc $z \in \overline{x}$.
+		\item On suppose $\overline{x} = \overline{y}$. $\diamond$ réfléctive donc $x\diamond x$ et donc $x \in \overline{x} = \overline{y}$ donc $x \in \overline{y}$ et donc $x\diamond y$.
+	\end{itemize}
+\end{prv}
+
+\begin{mdframed}
+	~\\
+	\centered{\underline{\scshape \LARGE Hors-Programme}}\vspace{4mm}
+
+	\begin{defn}
+		Soit $E$ un ensemble et $\diamond$ une relation d'équivalence.
+
+		L'ensemble \[
+			\{ \overline{x}  \mid x \in E\}  = \sfrac{E}{\diamond}
+		\] est appelé \underline{quotient de $E$ modulo $\diamond$}.
+		\index{quotient (relation, ensemble)}
+	\end{defn}
+
+	\begin{exm}
+		\begin{enumerate}
+			\item $E = \Z$ et $\diamond=$ congruence modulo 5 : \[
+					\sfrac{E}{\diamond} = \left\{ \overline{0}, \overline{1},\overline{2},\overline{3},\overline{4} \right\} = \sfrac{\Z}{5\Z}
+				\]
+			\item {\itshape Construction de $\Q$}
+
+				On suppose avoir déjà construit $\Z$ mais pas $\Q$ :
+				on veut donc donner un définition de $\sfrac{p}{q}$ sans parler de division.
+
+				On pose \[
+					E = \Z\times \N^* = \{(p,q) \mid p \in \Z, q \in \N^*\}.
+				\] Soit $\sim$ la relation définie par \[
+					(p,q) \sim (p', q') \iff pq' = p'q
+				\] Montrons que $\sim$ est une relation d'équivalence.
+				\begin{itemize}
+					\item Soient $(p,q) \in E$. $\sim$ est réfléctive car $(p,q)\sim (p,q) \iff pq = pq$.
+					\item Soient $(p,q),(p',q') \in E$. On suppose $(p,q)\sim(p',q')$.
+						\begin{align*}
+							(p,q)\sim(p',q') \iff& pq' = p'q\\
+							\iff& p'q = pq'\\
+							\iff& (p',q')\sim(p,q)
+						\end{align*}
+						Donc $\sim$ est symétrique.
+					\item Soient $(p,q), (p',q'), (p'', q'') \in E$. On suppose \[
+							\begin{cases}
+								(p,q)\sim(p',q')\\
+								(p',q')\sim(p'',q'')\\
+							\end{cases}
+						\]
+
+						On sait que \[
+							(p,q)\sim(p'',q'') \iff pq'' = p'' q
+						\] Or, \[
+							\begin{cases}
+								pq' = qp'\\
+								p'q'' = p''q'
+							\end{cases} \text{ donc }
+							pq'p'q'' = p'q'p''q'
+						\] Donc \[
+							p' q' (p q'' - p'' q) = 0
+						\] et donc \[
+							p' = 0 \ou pq'' - p'' q = 0
+						\]
+						Si $p' = 0$, alors $\begin{cases}
+							pq' = 0\\
+							p'' q' = 0
+						\end{cases}$ et donc $\begin{cases}
+							p = 0\\
+							p'' = 0
+						\end{cases}$. On a donc \[
+							pq'' = 0 = p'' q
+						\]
+						Si $p' \neq 0$, on a $pq'' - p''q = 0$ et donc \[
+							pq'' = p''q
+						\]
+
+						On a donc $(p,q)\sim(p'',q'')$.
+				\end{itemize}
+
+				On pose $\Q = \sfrac{E}{\sim}$ et \[
+					\forall (p,q) \in E,~\frac{p}{q} = \Cl\big((p,q)\big).
+				\] Ainsi,
+				\begin{align*}
+					\frac{p}{q} = \frac{p'}{q'} \iff& \Cl\big((p,q)\big) = \Cl\big((p',q')\big)\\
+					\iff& (p,q)\sim(p',q')\\
+					\iff& pq' = p'q
+				\end{align*}
+			\item {\itshape Construction de $\Z$ à partir de $\N$}
+
+				On pose $E = \N\times \N^*$ et $\sim$ la relation $(p,q)\sim(p',q') \iff p + q' = p' + q$.
+
+				$\sim$ est une relation d'équivalence. On pose donc $\Z = \sfrac{\N}{\sim}$ et pour $n \in \N$, on définit $n$ par $\Cl\big((n,0)\big)$ et $-n$ par $\Cl\big((0,n)\big)$.
+			\item {\itshape Constrcution de $\C$ à partir de $\R$}
+
+				On pose $E$ l'ensemble des polynômes à coefficients réels ($E = \R[X]$) et $\diamond$ la relation d'équivalence \[
+					P \diamond Q \iff P\equiv Q \mod{x^2 + 1}
+				\]
+				On pose $\C = \sfrac{E}{\diamond}$.
+
+				\missingpart
+		\end{enumerate}
+	\end{exm}
+\end{mdframed}
+
+\begin{defn}
+	Soit $E$ un ensemble et $(A_i)_{i\in I}$ une famille de parties de $E$.
+
+	On dit que $(A_i)_{i\in I}$ est une \underline{partition} de $E$ si \[
+		\begin{cases}
+			E = \bigcup_{i \in I} A_i\\
+			\forall i \neq j, A_i \cap A_j = \O
+		\end{cases}
+	\]
+
+	On a donc \[
+		\forall x \in E, \exists! i \in I, x \in A_i.
+	\]
+	\index{partition (ensemble)}
+\end{defn}
+
+\begin{prop}
+	Soit $E$ un ensemble muni d'une relation d'équivalence $\diamond$. 
+	Les classes d'équivalences de $E$ modulo $\diamond$ forment une partition de $E$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soit $x \in E$. On sait que $x \diamond x$ donc $\overline{x} \ni x$.
+			On a montré $E \subset \bigcup_{y \in E} \overline{y}$.
+		\item $\forall y \in E, \overline{y} \subset E$ donc $ E \supset \left( \bigcup_{y \in E} \overline{y} \right)$.
+		\item Soit $x,y\in E$ tel que $\overline{x} \neq \overline{y}$. Montrons que $\overline{x} \cap \overline{y} = \O$. Soit $z \in \overline{x} \cap \overline{y}$. $z \in \overline{x}$ donc $z\diamond x$. De même, $z \in \overline{y}$ donc $z \diamond y$. Par transitivité, $x\diamond y$ et donc $\overline{x} = \overline{y}$ : une contradiction.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $E$ un ensemble et $(A_i)_{i\in I}$ une partition de $E$ telle que \[
+		\forall i \in I, A_i \neq \O.
+	\] Alors il existe une relation d'équivalence $\diamond$ telle que pour tout $i \in I$, $A_i$ est une classe d'équivalence modulo $\diamond$.
+\end{prop}
+
+\begin{prv}
+	Soit $\diamond$ la relation définie par \[
+		x \diamond y \iff \exists i \in I, \begin{cases}
+			x \in A_i\\
+			y \in A_i
+		\end{cases}
+	\]
+	\begin{itemize}
+		\item Soit $x \in E$. Comme $E = \bigcup_{i \in I} A_i$, il existe $i \in I$ tel que $x \in A_i$ donc $x \diamond x$.
+		\item Soient $x,y \in E$. On suppose $x \diamond y$. Soit $i \in I$ tel que $\begin{cases}
+				x \in A_i\\
+				y \in A_i
+			\end{cases}$ donc $\begin{cases}
+				y \in A_i\\
+				x \in A_i
+			\end{cases}$ et donc $y \diamond x$.
+		\item Soit $x,y,z \in E$. On suppose $x \diamond y$ et $y \diamond z$.\\
+			Soit $i \in I$ tel que $\begin{cases}
+				x \in A_i\\y\in A_i.
+			\end{cases}$\\
+			Soit $j \in I$ tel que $\begin{cases}
+				y \in A_j\\
+				z \in A_j.
+			\end{cases}$
+
+			On a donc $y \in A_i \cap A_j$. Si $i \neq j$, alors $y \in \O$ : une contradiction. Donc $i = j$ et donc $\begin{cases}
+				x \in A_i\\
+				z \in A_i
+			\end{cases}$. On en déduit que $x\diamond z$.
+	\end{itemize}
+
+	Ainsi $\diamond$ est une relation d'équivalence.
+	\begin{itemize}
+		\item Soit $i \in I$ et soit $x \in A_i \neq \O$. \[
+			\overline{x} = \{y \in E  \mid y \diamond x\} = \{y \in E \mid y\in A_i\} = A_i.
+		\]
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $E$ un ensemble et $\diamond$. On dit que $\diamond$ est une \underline{relation d'ordre} sur $E$ si
+	\begin{enumerate}
+		\item $\diamond$ est réfléctive ($\forall x \in E, x \diamond x$),
+		\item $\diamond$ est \underline{anti-symétrique} : \[
+				\forall x,y \in E, \quad \begin{rcases*}
+					x \diamond y\\
+					y\diamond x
+				\end{rcases*} \implies x = y,
+			\]
+		\item $\diamond$ est transitive $\Big(\forall x,y,z \in E, (x \diamond y \et y \diamond z) \implies x \diamond z\Big)$.
+	\end{enumerate}
+
+	En général, la relation $\diamond$ est notée $\le$ ou $\preceq$. On dit aussi que $(E, \diamond)$ est un \underline{ensemble ordonné}.
+	\index{relation d'ordre}
+	\index{anti symétrie (relation)}
+	\index{ensemble ordonné}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $(\R, \le)$ est un ensemble ordonné.
+		\item $\big(\mathcal{P}(E), \subset\!\big)$ est un ensemble ordonné.
+		\item $(\N, \mid)$ est un ensemble ordonné.
+		\item $(\text{\itshape MP2I}, \preceq)$ avec \[x \preceq y \iff \text{ note de }x \le \text{note de } y\] n'est un ensemble ordonné car $\preceq$ n'est pas anti symétrique.
+		\item $E = \N^2$ et $\preceq$ définie par \[
+					(x,y)\preceq(x',y') \iff x < x' \ou \begin{cases}
+						x = x'\\
+						y \le y'
+					\end{cases}
+			\] $(E, \preceq)$ est un ensemble ordonné.
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $(E,\le)$ un ensemble ordonné. Soient $x,y \in E$. On dit que $x$ et $y$ sont \underline{comparables} si \[
+		x \le y \ou y \le x.
+	\] On dit que $\le$ est un \underline{ordre total} si tous les éléments de $E$ sont comparables 2 à 2.
+	\index{ordre total (relation d'ordre)}
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $(\R, \le)$ est totalement ordonné
+		\item $\big(\mathcal{P}(E), \subset\!\big)$ n'est pas totalement ordonné en général : 
+
+			Soient $a,b \in E$ avec $a \neq b$. $\{a\}$ et $\{b\}$ ne sont pas comparables.
+		\item $(\N, \mid)$ n'est pas totalement ordonné :
+
+			$2\nmid 5$ et $5 \nmid 2$ donc $2$ et $5$ ne sont pas comparables.
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $(E, \le)$ un ensemble ordonné, $A \in \mathcal{P}(E)$ et $M \in E$. On dit que \underline{$A$ est majorée par $M$}, que \underline{$M$ majore $A$} ou que \underline{$M$ est un majorant de $A$} si \[
+		\forall a \in A, a \le M.
+	\] Soit $m \in E$. On dit que \underline{$A$ est minorée par $m$}, que \underline{$m$ minore $A$} ou que \underline{$m$ est un minorant de $A$} si \[
+		\forall a \in A, m \le a.
+	\]
+	\index{minorant (ensemble)}
+	\index{minorer (ensemble)}
+	\index{majorant (ensemble)}
+	\index{majorer (ensemble)}
+\end{defn}
+
+\missingpart
+
+\begin{exm}
+	\begin{enumerate}
+		\item $E = \R$ muni de $\le$ et $A = [2,5]$.
+
+			On sait que $\sup A = 5$ car \[
+				\forall x \in A, x \le 5
+			\] et \[
+				\forall y \le 5,\quad 5 > \frac{y+5}{2} > y
+			\] donc $y$ ne majore pas $A$.
+		\item $E = \R$ avec $\le $ et $A = ]2,5[$. $A\not\ni\sup A = 5$ par le même raisonnement.
+		\item $E = \N^*$ avec $\mid$ et $A = \{p,q\}$ avec $p \neq q \in E$. $\sup A = \PPCM(p,q) = p \vee q$ (c.f. chapitre 10 arithmétique)
+		\item $\mathcal{P}(E)$ avec $\subset$ et $A = \{P,Q\}$ avec $P, Q \in \mathcal{P}(E)$ et $P \neq Q$. $\sup A = P \cup Q$.
+		\item $E = \{0,1\} \times \Z$ muni de $\le$ défini par \[
+				(x_1,y_1) \le (x_2,y_2) \iff x_1 < x_2 \ou \begin{cases}
+					x_1 = x_2\\
+					y_1 \le y_2
+				\end{cases}
+		\] et $A = \{0\} \times \Z$. $(x,y)$ majore $A \iff x = 1$ donc $A$ est majorée mais n'a pas de borne supérieure.
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	Soit $(E, \le)$ un ensemble ordonné et $A \in \mathcal{P}(E)$. Si $A$ a une borne supérieure, alors celle-ci est unique. On la note $\sup A$.
+\end{prop}
+
+\begin{prv}
+	Soit $M_1$ et $M_2$ deux bornes supérieures de $A$.
+
+	Donc $M_2$ majore $A$. Comme $M_1$ est une borne supérieure de $A$, on a $M_1\le M_2$.
+
+	De même, on en déduit que $M_2 \le M_1$.
+
+	Comme $\le$ est antisymétrique, $M_1 = M_2$.
+\end{prv}
+

@@ -8,6 +8,7 @@
 		\item $\forall (u,v) \in F^2, u + v \in F$ 
 		\item $\forall \lambda \in \mathbbm{K}, \forall u \in F, \lambda u \in F$
 	\end{enumerate}
+	\index{sous espace vectoriel}
 \end{defn}
 
 \begin{prop}
@@ -66,6 +67,7 @@
 \begin{defn}
 	Soient $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $(u_1, \ldots, u_n) \in E^n$.
 	Une \underline{combinaison linéaire} de $(u_1, \ldots, u_n)$ est un vecteur de $E$ de la forme $\sum_{i=1}^{n} \lambda_i u_i$ où $(\lambda_1, \ldots, \lambda_n) \in \mathbbm{K}^n$
+	\index{combinaison linéaire}
 \end{defn}
 
 \begin{rmk}
@@ -160,6 +162,7 @@
 	Soient $F$ et $G$ deux sous-espaces vectoriels de $E$. On définit leur \underline{somme} $F+G$ par \[
 		F+G = \left\{ x + y  \mid x \in F, y \in G \right\} 
 	\]
+	\index{somme (espaces vectoriels}
 \end{defn}
 
 \begin{prop}
@@ -220,6 +223,7 @@
 		&= \left\{ \sum_{i \in I} x_i  \mid  \left(x_i\right) \in \prod_{i \in I}F_i; \left\{ i \in I  \mid  x_i \neq 0_E \right\} \text{ est fini } \right\} \\
 	\end{align*}
 	$\sum_{i \in I} F_i$ est l'ensemble de sommes \underline{finies} obtenues à partir d'éléments de $\prod _{i \in I}F_i$
+	\index{somme (famille d'espaces vectoriels)}
 \end{defn}
 
 \begin{exm}
@@ -238,6 +242,7 @@
 		\forall u \in F+G, \exists! (x,y)  \in F\times G, u = x+y
 	\]
 	Dans ce cas, l'espace $F+G$ est noté $F \oplus G$
+	\index{somme directe (espaces vectoriels)}
 \end{defn}
 
 \begin{exm}
@@ -451,6 +456,7 @@
 	\] en d'autres termes, \[
 		\forall x \in E, \exists !(y,z) \in F\times G, x = y + z
 	\]
+	\index{supplémentarité (espaces vectoriels)}
 \end{defn}
 
 \begin{exm}
@@ -487,6 +493,7 @@
 		\forall x \in \sum_{i \in I}F_i, \exists! (x_i)_{i \in I} \in \prod_{i \in I} F_i \text{ presque nulle telle que } x = \sum_{i \in I}x_i
 	\]
 	Dans ce cas, on écrit $\bigoplus_{i \in I} F_i$ à la place de $\sum_{i \in I}F_i$
+	\index{somme directe (famille d'espaces vectoriels)}
 \end{defn}
 
 \begin{exm}

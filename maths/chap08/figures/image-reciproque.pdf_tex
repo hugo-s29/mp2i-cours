@@ -57,19 +57,19 @@
     \put(0.26807896,0.40317752){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$E$\end{tabular}}}}%
     \put(0.21718629,0.37187888){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\times$\end{tabular}}}}%
     \put(0.17260706,0.34367491){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$+$\end{tabular}}}}%
-    \put(0.238843,0.33796692){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\circ$\end{tabular}}}}%
+    \put(0.22781868,0.33355726){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\circ$\end{tabular}}}}%
     \put(0.21003288,0.30204042){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\cdot$\end{tabular}}}}%
     \put(0.2326869,0.27887287){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\square$\end{tabular}}}}%
     \put(0.18955326,0.24081561){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\diamond$\end{tabular}}}}%
-    \put(0.40880785,0.41765785){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f$\end{tabular}}}}%
+    \put(0.40880785,0.42206752){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$f$\end{tabular}}}}%
     \put(0.62132231,0.41064269){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$F$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{image-reciproque.pdf}}%
-    \put(0.276771,0.31762021){\color[rgb]{0.88235294,0,0.79607843}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f^{-1}(B)$\end{tabular}}}}%
+    \put(0.26897866,0.31582197){\color[rgb]{0.88235294,0,0.79607843}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f^{-1}(B)$\end{tabular}}}}%
     \put(0.57638613,0.35990194){\color[rgb]{0.88235294,0,0.79607843}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$B$\end{tabular}}}}%
-    \put(0.64944439,0.33549239){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\blacksquare$\end{tabular}}}}%
-    \put(0.56179231,0.35211741){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$*$\end{tabular}}}}%
+    \put(0.64282989,0.32887789){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\blacksquare$\end{tabular}}}}%
+    \put(0.61993516,0.38328679){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$*$\end{tabular}}}}%
     \put(0.56538347,0.31418591){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\odot$\end{tabular}}}}%
-    \put(0.65100466,0.29392408){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\triangle$\end{tabular}}}}%
+    \put(0.64439017,0.28510475){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\triangle$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{image-reciproque.pdf}}%
   \end{picture}%
 \endgroup%

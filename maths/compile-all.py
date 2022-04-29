@@ -26,7 +26,7 @@ def compile_latex_file(file_path):
     return f"{directory}/{file[:-4]}.pdf"
 
 def create_simple_file(file_path):
-    with open(simple_path, 'w+') as f:
+    with open(file_path, 'w+') as f:
         out = r'\AtBeginDocument\simpletrue' + '\n'
         out += r'\input{main.tex}'
         f.write(out)
@@ -59,6 +59,10 @@ questions = [
 ]
 
 answers = inquirer.prompt(questions)
+
+if answers is None:
+    exit()
+
 update_full = False
 
 pdf_files = []
@@ -134,10 +138,11 @@ if update_full:
     os.chdir(f'{cwd}/full')
     os.system('python3 run.py')
     os.system('latexmk -pdf main.tex')
-    os.system('latexmk -pdf simple-main.tex')
+    #os.system('latexmk -pdf simple-main.tex')
     os.chdir(cwd)
     shutil.copyfile('full/main.pdf', f'{out_directory}full.pdf')
-    shutil.copyfile('full/simple-main.pdf', f'{out_directory}full-simple.pdf')
+    #shutil.copyfile('full/simple-main.pdf', f'{out_directory}full-simple.pdf')
 
 with open(f'{out_directory}data.json', 'w') as f:
     json.dump(data, f)
+

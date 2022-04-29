@@ -1,0 +1,183 @@
+\part{Fonctions trigonométriques}
+
+\begin{prop}
+	\[
+		\lim_{x\to 0} \frac{\sin x}{x} = 1
+	\]
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		size(6cm);
+		pair O = (0, 0);
+		
+		draw(circle(O, 1), gray);
+		draw((-1.3, 0) -- (1.3, 0), Arrow(TeXHead));
+		draw((0, -1.3) -- (0, 1.3), Arrow(TeXHead));
+
+		real x = pi/6;
+
+		pair M = expi(x);
+		pair N = (1, tan(x));
+		pair B = (M.x, 0);
+		pair A = (1, 0);
+
+		draw(O -- A -- arc(O, A, M) -- cycle, red);
+		draw(O -- N -- A -- cycle, deepcyan);
+		draw(O -- M -- B -- cycle, magenta);
+		draw(arc(O, A/4, M/4), Arrow(TeXHead));
+		label("$x$", expi(x/2)/4, align=E);
+
+		dot("$A$", A, align=SE);
+		dot("$B$", B, align=SW);
+		dot("$M$", M, align=NW);
+		dot("$N$", N, align=NE);
+		dot("$O$", O, align=SW);
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+		Soit $x \in \left]0, \frac{\pi}{2}\right[$. On pose $M(\cos x, \sin x)$ et $N(1, \tan x)$.
+
+		Le triangle $OBM$ est contenu dans le secteur $OAM$ donc \[
+			\frac{\cos(x) \sin(x)}{2} \le \frac{x}{2}.
+		\]
+
+		Le secteur $OAM$ est contenu dans le triangle $OAN$ donc \[
+			\frac{x}{2} \le \frac{\tan x}{2} = \frac{\sin x}{2\cos x}.
+		\] D'où, \[
+			\cos x \le \frac{\sin x}{x} \le \frac{1}{\cos x}
+		\] Or, $\cos x \tendsto{\substack{x\to 0\\>}} 1$ et $\frac{1}{\cos x} \tendsto{\substack{x\to 0\\>}} 1$.
+
+		Par encadrement, on en déduit que \[
+			\frac{\sin x}{x} \tendsto{\substack{x \to 0\\ >}} 1
+		\] et \[
+			\forall x \in \left]-\frac{\pi}{2}, 0\right[, \frac{\sin x}{x} = \frac{\sin(-x)}{-x} \tendsto{\substack{x \to O\\ >}} 1 \text{ d'après le calcul précédent}.
+		\] 
+\end{prv}
+
+\begin{crlr}
+	$\sin$ et $\cos$ sont dérivables sur $\R$ et $\begin{cases}
+		\sin' = \cos,\\
+		\cos' = -\sin.
+	\end{cases}$
+\end{crlr}
+
+\begin{prv}
+	Soit $x \in \R$ et $h \in \R^*$.
+
+	\begin{align*}
+		\frac{\sin(x + h) - \sin x}{h} &= \frac{\sin(x) \cos(h) + \cos(x) \sin(h) - \sin(x)}{h} \\
+		&= \frac{-1 + \cos h}{h} \sin x + \frac{\sin h}{h} \cos x \\
+		&= \sin x \times \frac{-2\sin^2 \frac{h}{2}}{h} + \cos x \frac{\sin h}{h} \\
+	\end{align*}
+	Or, $\sin^2 \frac{h}{2} \simi_{h\to 0} \left( \frac{h}{2} \right)^2 = \frac{h^2}{4}$. Alors \[
+		\frac{\sin^2 \frac{h}{2}}{h} \simi_{h\to 0} \frac{h}{4}\tendsto{h\to 0} 0.
+	\] Donc, \[
+		\frac{\sin(x+h) - \sin x}{h} \tendsto{h\to 0} \cos x.
+	\]
+
+	Également, $\forall x \in \R, \cos x = \sin\left( \frac{\pi}{2} - x \right) $ donc \[
+		\forall x \in \R, \cos'(x) = \cos\left( \frac{\pi}{2} - x \right) \times (-1) = -\sin x.
+	\]
+\end{prv}
+
+\begin{prop}
+	La fonction $\tan$ est dérivable sur $\left\{x \in \R  \mid x \not\equiv \frac{\pi}{2} \mod \pi\right\} = D$ et \[
+		\forall x \in D, \tan' x = 1 + \tan^2 x = \frac{1}{\cos^2x}.
+	\]
+\end{prop}
+
+\begin{prv}
+	$\forall x \in D, \tan x = \frac{\sin x}{\cos x}$; $\sin$ et $\cos$ sont dérivables sur $\R$ donc $\tan$ est dérivable sur $D$.
+
+	\begin{align*}
+		\forall x \in D, \tan'x = &\frac{\cos^2x + \sin^2x}{\cos^2 x} = \frac{1}{\cos^2 x} \\
+		&\kern 9mm\vrt= \\[-2mm]
+		&\kern 3mm 1 + \tan^2 x
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	$\lim_{\substack{x\to \frac{\pi}{2}\\<}} \tan x = +\infty$ et $\lim_{\substack{x\to \frac{\pi}{2}\\>}} = -\infty$. \qed
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(7cm);
+
+		bool3 checkf(real x) { return x % pi != pi/2 && abs(tan(x)) < 5; }
+		real f(real x) { return tan(x); }
+
+		draw(graph(f, -2pi, 2pi, 500, checkf), magenta);
+
+		draw((0,-5) -- (0,5), Arrow(TeXHead));
+		draw((-2pi,0) -- (2pi,0), Arrow(TeXHead));
+
+		draw((pi/2, -5) -- (pi/2, 5), dashed + gray);
+		draw((-pi/2, -5) -- (-pi/2, 5), dashed + gray);
+		draw((3pi/2, -5) -- (3pi/2, 5), dashed + gray);
+		draw((-3pi/2, -5) -- (-3pi/2, 5), dashed + gray);
+
+		label("\small$\frac{\pi}{2}$", (pi/2, 0), align=S);
+		label("\small$-\frac{\pi}{2}$", (-pi/2, 0), align=S);
+		label("\small$\frac{3\pi}{2}$", (3pi/2, 0), align=S);
+		label("\small$-\frac{3\pi}{2}$", (-3pi/2, 0), align=S);
+
+		draw(scale(1.3) * (dir(45)--dir(45 + 180)), red, Arrows(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prop}
+	$\cotan$ est dérivable sur $D = \{x \in \R  \mid x \equiv 0 \mod \pi\}$ et \[
+		\forall x \in D, \cotan' x = -\frac{1}{\sin^2x} = -1 - \cotan^2x.
+	\]
+\end{prop}
+
+\begin{prv}
+	On a \[
+		\forall x \in D, \cotan x = \frac{\cos x}{\sin x}.
+	\] Donc,
+	\begin{align*}
+		\forall x \in D, \cotan' x = &\frac{-\sin^2 x - \cos^2x}{\sin^2x} = -\frac{1}{\sin^2x}\\
+		&\kern 11mm\vrt= \\[-2mm]
+		&\kern 1mm - 1 - \cotan^2 x.
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	$\lim_{\substack{x\to \pi\\<}} \cotan x = -\infty$ et  $\lim_{\substack{x\to \pi\\>}} \cotan x = +\infty$.
+	\qed
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(6.5cm);
+
+		real f(real x) { return cos(x) / sin(x); }
+		bool3 checkf(real x) { return x % pi != 0 && abs(f(x)) < 5; }
+
+		draw(graph(f, -2pi-1, 2pi+1, 500, checkf), magenta);
+
+		draw((0,-5) -- (0,5), Arrow(TeXHead));
+		draw((-2pi-1,0) -- (2pi+1,0), Arrow(TeXHead));
+
+		draw((pi, -5) -- (pi, 5), dashed + gray);
+		draw((-pi, -5) -- (-pi, 5), dashed + gray);
+		draw((2pi, -5) -- (2pi, 5), dashed + gray);
+		draw((-2pi, -5) -- (-2pi, 5), dashed + gray);
+
+		label("\small$\pi$", (pi, 0), align=S);
+		label("\small$-\pi$", (-pi, 0), align=S);
+		label("\small$2\pi$", (2pi, 0), align=S);
+		label("\small$-2\pi$", (-2pi, 0), align=S);
+		label("\small$0$", (0, 0), align=S);
+	\end{asy}
+\end{figure}

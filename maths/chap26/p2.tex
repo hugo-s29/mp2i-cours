@@ -1,0 +1,103 @@
+\part{Déterminant d'un endomorphisme}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E)$, $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$. Alors, \[
+		\exists ! \lambda \in \mathbbm{K},\, \forall (u_1, \ldots, u_n) \in E,\,
+		\det_\mathcal{B}\big(f(u_1),\ldots,f(u_n)\big) = \lambda \det_\mathcal{B}(u_1, \ldots, u_n).
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $g : \begin{array}{rcl}
+		E^n &\longrightarrow& \mathbbm{K} \\
+		(u_1, \ldots,u_n) &\longmapsto& \det_\mathcal{B}\big(f(u_1),\ldots, f(u_n)\big)
+	\end{array}$.
+	$g$ est clairement alternée.
+
+	Soit $i \in \left\llbracket 1,n \right\rrbracket$, $(u_1, \ldots, u_i, u_{i+1}, \ldots, u_n) \in E^{n-1}$.
+	L'application $u\mapsto g(u_1, \ldots, u_{i-1}, u, u_{i+1}, \ldots, u_n)$ est la composée de $f$ et de $v \mapsto \det_\mathcal{B}\big(f(u_1), \ldots, f(u_{i-1}), v, f(u_{i+1}), \ldots, f(u_n)\big)$ donc elle est linéaire.
+
+	Donc, $g$ est une forme multilinéaire alternée donc colinéaire à $\det_\mathcal{B}$.
+\end{prv}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E)$, $\mathcal{B}$ et $\mathcal{C}$ deux bases de $E$. Soient $(\lambda, \mu) \in \mathbbm{K}^2$ tel que \[
+		\forall (u_1, \ldots, u_n) \in E^n,
+		\begin{cases}
+			\det_\mathcal{B}\big(f(u_1), \ldots, f(u_n)\big) = \lambda \det_\mathcal{B}(u_1, \ldots, u_n),\\
+			\det_\mathcal{C}\big(f(u_1), \ldots, f(u_n)\big) = \mu \det_\mathcal{C}(u_1, \ldots, u_n).
+		\end{cases}
+	\] Alors, $\lambda = \mu$.
+\end{prop}
+
+\begin{prv}
+	On pose $\mathcal{B} = (e_1, \ldots, e_n)$.
+	\begin{align*}
+		\det_\mathcal{C}\big(f(e_1),&\ldots, f(e_n)\big) = \mu \det_\mathcal{C}(e_1, \ldots, e_n) = \mu \det_\mathcal{C}(\mathcal{B})\\
+		&\vrt=\\
+		\det_\mathcal{C}(\mathcal{B})&\,\det_\mathcal{B}\big(f(e_1), \ldots, f(e_n)\big)\\
+		&\vrt=\\
+		\lambda\,\underbrace{\det_\mathcal{C}(\mathcal{B})}_{\neq 0}&\,\underbrace{\det_\mathcal{B}(\mathcal{B})}_{=1}
+	\end{align*}
+	donc $\lambda = \mu$.
+\end{prv}
+
+\begin{defn}
+	Soit $f \in \mathcal{L}(E)$. Le \underline{déterminant} de $f$ est le seul scalaire vérifiant, \[
+		\forall \mathcal{B} \text{ base de } E,\, \forall (u_1, \ldots, u_n), \det_\mathcal{B}\big(f(u_1),\, \ldots, f(u_n)\big) = \lambda \det_\mathcal{B}(u_1, \ldots, u_n)
+	\] et on le note $\lambda = \det(f)$.
+	\index{déterminant (d'une application)}
+\end{defn}
+
+\begin{rmk}
+	Si $n = 2$, \[
+		\mathrm{Aire}\big(f(u_1), f(u_2)\big) = \det(f)\, \mathrm{Aire}(u_1, u_2).
+	\]
+\end{rmk}
+
+\begin{prop}
+	Soient $f$ et $g$ deux endomorphismes de $E$. Alors, \[
+		\det(f \circ g) = \det f \times \det g.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$.
+	\begin{align*}
+		\det_\mathcal{B}\big(f \circ g(e_1),& \ldots, f \circ g(e_n)\big) = \det(f \circ g) \det_\mathcal{B}(e_1, \ldots, e_n) = \det(f \circ g)\\
+			&\vrt=\\
+			\det_\mathcal{B}\Big(f\big(g(e_1)\big)&, \ldots, f\big(g(e_n)\big)\Big)\\
+			&\vrt=\\
+			(\det f)\; \det_\mathcal{B}\big(&g(e_1), \ldots, g(e_n)\big)\\
+			&\vrt=\\
+			(\det f)\,(\det g)&\;\underbrace{\det_\mathcal{B}(e_1, \ldots, e_n)}_{=1}.
+	\end{align*}
+\end{prv}
+
+\begin{crlr}
+	Si $f \in \mathrm{GL}(E)$, alors $\det(f) \neq 0$ et $\det(f^{-1}) = \det(f)^{-1}$.
+\end{crlr}
+
+\begin{prv}
+	On suppose $f \in \mathrm{GL}(E)$ : \[
+		f \circ f^{-1} = \id_E.
+	\] Donc, \[
+		\det(f)\;\det(f^{-1}) = \det(f \circ f^{-1}) = \det(\id_E).
+	\] Soit $\mathcal{B} = (e_1, \ldots, e_{n})$ une base de $E$.
+	\begin{align*}
+		\det_\mathcal{B}\big(\id_E(e_1), \ldots&, \id_E(e_n)\big) = \det(id_E) \times 1\\
+		&\vrt=\\
+		\det_\mathcal{B}&(\mathcal{B}) = 1
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $f \in \mathcal{L}(E)$. On suppose $f\not\in \mathrm{GL}(E)$. Alors $\det(f) = 0$.
+\end{prop}
+
+\begin{prv}
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$. \[
+		\det(f) = \det_\mathcal{B}\big(f(e_1), \ldots, f(e_n)\big).
+	\] $f$ n'est pas surjective donc $\rg\big(f(e_1), \ldots, f(e_n)\big) < n$ donc $\big(f(e_1), \ldots, f(e_n)\big)$ est liée donc $\det_\mathcal{B}\big(f(e_1), \ldots, f(e_n)\big) = 0$.
+\end{prv}
+

@@ -1,0 +1,23 @@
+\part{Exercice 12}
+
+\begin{enumerate}
+	\item Déjà faite dans le TD du chapitre 8.
+	\item On prends $X = \left\llbracket 1,p \right\rrbracket$, $Y = \left\llbracket p+1, p+q \right\rrbracket$. On a $\#E = p + q$.
+
+		On a $X \cupdot Y = \left\llbracket 1, p+q \right\rrbracket$ et on pose \[
+			A_r = \{Z \in \mathcal{P}(E) \mid \#Z = r\}.
+		\] et \begin{align*}
+			f: A_r &\longrightarrow \mathcal{P}(X) \times \mathcal{P}(Y) \\
+			Z &\longmapsto (Z\cap X, Z\cap Y)
+		\end{align*}
+
+		\begin{align*}
+			\#\big\{ (X', Y') \in \mathcal{P}(X) \times \mathcal{P}(Y)  \mid \#X' + \#Y' = r \big\}
+			&= \sum_{\substack{X' \in \mathcal{P}(X)\\ \#Y' \in \mathcal{P}(Y)\\\#X' + \#Y' = r}} 1 \\
+			&= \sum_{X' \in \mathcal{P}(X)} \quad \sum_{\substack{Y' \in \mathcal{P}(Y)\\\#Y' = r - \#X'}} 1\\
+			&= \sum_{k=0}^{p}\;\sum_{\substack{X' \in \mathcal{P}(X)\\ \#X' = k}} \quad \sum_{\substack{Y' \in \mathcal{P}(Y)\\ \#Y' = r - k}} 1\\
+			&= \sum_{k=0}^p \sum_{\substack{X' \in \mathcal{P}(X)\\ \#' = k}} {q \choose r - k} \\
+			&= \sum_{k=0}^p {p\choose k}{q \choose r - k} \\
+			&= \sum_{\substack{i,j\\i + j = r}} {p\choose i}{q \choose j} \\
+		\end{align*}
+\end{enumerate}

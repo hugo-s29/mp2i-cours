@@ -1,0 +1,23 @@
+\part{Exercice 6}
+
+Nature de $\Sigma u_n$ où \[
+	\forall n, u_n = \ln\left( \frac{\sqrt{n} + (-1)^{n}}{\sqrt{n+a}} \right)
+\]
+\begin{align*}
+	u_n &= \ln\left( \frac{1+\frac{(-1)^n}{\sqrt{n}}}{\sqrt{1+\frac{a}{n}}} \right)\\
+	&= \ln\left( 1+ \frac{(-1)^n}{\sqrt{n}} \right) - \frac{1}{2}\ln\left( 1+\frac{a}{n} \right) \\
+	&= \frac{(-1)^n}{\sqrt{n}} - \frac{1}{2n} + \gO\left( \frac{1}{n^{\sfrac{3}{2}}} \right) - \frac{a}{2n} + \frac{a^2}{4n^2} + \gO\left( \frac{1}{n^2} \right)\\
+	&= \frac{(-1)^n}{\sqrt{n}} - \frac{1+a}{2n} + \gO\left( \frac{1}{n^{\sfrac{3}{2}}} \right) \\
+\end{align*}
+
+La série $\sum \frac{(-1)^n}{\sqrt{n}}$ converge (théorème des séries alternées). La série $\sum \frac{1+a}{2n}$ diverge sauf si $a = -1$. La série $\sum \gO\left( \frac{1}{n^{\sfrac{3}{2}}} \right)$ converge absolument (car $\sfrac{3}{2} > 1$).
+
+Donc, \[
+	\Sigma u_n \text{ converge} \iff a = -1
+\]
+
+\begin{align*}
+	u_n &= \frac{(-1)^n}{\sqrt{n}} - \frac{1}{2n} + \frac{1}{3} \times \frac{(-1)^{3n}}{n^{\sfrac{3}{2}}} + \po\left( \frac{1}{n^{\sfrac{3}{2}}} \right) - \frac{1}{2}\left( \frac{a}{n} - \frac{a^2}{2n^2} + \po\left( \frac{1}{n^2} \right) \right)\\
+	&= \frac{(-1)^n}{\sqrt{n}} - \frac{1+a}{2n} + \frac{1}{3} \frac{(-1)^{3n}}{n^{\sfrac{3}{2}}} + \po\left( \frac{1}{n^{\sfrac{3}{2}}} \right) \\
+\end{align*}
+

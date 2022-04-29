@@ -3,6 +3,7 @@
 \begin{defn}
 	Soit $(E,+,\cdot)$ un $\mathbbm{K}$-espace vectoriel et $A \in \mathcal{P}(E)$. Le \underline{sous-espace vectoriel engendré} par $A$ est le plus petit sous espace vectoriel $V$ de $E$ tel que $A \subset  V$.\\
 	On le note $\Vect(A)$
+	\index{sous espace vectoriel engendré}
 \end{defn}
 
 \begin{exm}
@@ -23,6 +24,9 @@
 	La \underline{droite (vectorielle) engendrée} par $u$ est $\mathbbm{K}u = \Vect(u) = \Vect\left( \{u\}  \right)$.
 	Soit $v \in E$. On dit que $u$ et $v$ sont \underline{colinéaires} si $v \in \mathbbm{K}u$.
 	Si $v$ n'est pas colinéaire à $u$ alors,  $\Vect(u,v) = \mathbbm{K}u + \mathbbm{K}v$ est appelé \underline{plan (vectoriel) engendré} par $u$ et $v$.
+	\index{droite (vectorielle, espaces vectoriels)}
+	\index{plan (vectoriel, espaces vectoriels)}
+	\index{colinéarité (espace vectoriel)}
 \end{defn}
 
 \begin{exm}
@@ -70,6 +74,7 @@
 	On dit que $(e_i)_{i\in I}$ est une famille génératrice de $E$ si \[
 		E = \Vect\left( (e_i)_{i \in I} \right) 
 	\]
+	\index{famille génératrice (espace vectoriel)}
 \end{defn}
 
 \begin{exm}
@@ -228,6 +233,8 @@
 	Soit $(e_i)_{i\in I}$ une famille de vecteurs. On dit que $(e_i)_{i\in I}$ est \underline{libre} si aucun vecteur de cette famille n'est une combinaison linéaire des autres vecteurs de cette famille: \[
 		\forall i \in I, e_{i} \not\in \Vect\left( (e_j)_{j\in I \setminus \{i\}} \right) 
 	\] On dit aussi que les  $e_i$ sont \underline{linéairement indépendants}
+	\index{liberté (famille de vecteurs)}
+	\index{indépendance linéaire (vecteurs)}
 \end{defn}
 
 \begin{prop}
@@ -342,6 +349,7 @@
 	\] i.e. si \[
 		\forall u \in E, \exists ! (\lambda_i) \in \mathbbm{K}^I \text{ presque nulle telle que } u = \sum_{i \in I} \lambda_i e_i
 	\] Dans ce cas, on dit que les $\lambda_i$ sont les coordonnées de $u$ dans la base $(e_i)_{i\in I}$
+	\index{base (espace vectoriel)}
 \end{defn}
 
 \begin{exm}

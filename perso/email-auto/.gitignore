@@ -1,2 +1,5 @@
 src/kholles/*.csv
 classroom.py
+
+*/cache.json
+*/counter.txt

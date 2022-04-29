@@ -1,0 +1,59 @@
+\part{Exercice 3}
+
+\begin{enumerate}
+	\item On pose $\sigma = \mat{a&b&c}\mat{b&c&d} \in S_n$.
+
+		\[
+			\forall k \not\in  \{a, b, c, d\}, \sigma(k) = k.
+		\]
+
+		On suppose $a \neq d$. \[
+			\begin{cases}
+				\sigma(a) = b\\
+				\sigma(b) = a\\
+				\sigma(c) = d\\
+				\sigma(d) = c\\
+			\end{cases}
+		\] 
+
+		On suppose $a = d$ : $\sigma = \mat{a&b&c}^2$. Donc, \[
+			\begin{cases}
+				\sigma(a) = c\\
+				\sigma(b) = a\\
+				\sigma(c) = b\\
+			\end{cases}
+		\]
+
+
+		Si $a \neq d$, $\sigma = \mat{a&b}\mat{c&d}$.\\
+		Si $a = d$, $\sigma = \mat{a&c&b}$.
+	\item Soit $\sigma \in A_n$. On pose $\sigma = \tau_1 \cdot \tau_{2p}$ où $\forall i$, $\tau_i$ est un transposition.
+
+		Soit $i$ impaire. Si $\Supp(\tau_i) = \Supp(\tau_{i+1})$, alors $\tau_i = \tau_{i+1}$ et donc $\tau_i \tau_{i+1} = \id$.
+
+		Si $\#\big(\Supp(\tau_i) \cap \Supp(\tau_{i+1})\big) = 1$, alors on peut écrire $\begin{cases}
+			\tau_i = \mat{a&b}\\
+			\tau_{i+1} = \mat{b&c}
+		\end{cases}$ avec $\begin{cases}
+			a \neq b\\
+			b\neq c\\
+			a\neq c
+		\end{cases}$ et alors \[
+			\tau_i \tau_{i+1} \text{ est un 3-cycle}.
+		\]
+
+		Si $\Supp(\tau_i) \cap \Supp(\tau_{i+1}) = \O$, alors on peut écrire $\begin{cases}
+			\tau_i = \mat{a&b}\\
+			\tau_{i+1} = \mat{c&d}
+		\end{cases}$ avec {\small$\begin{cases}
+			a\neq b\\
+			c\neq d\\
+			a\neq c\\
+			a\neq d\\
+			b\neq c\\
+			b\neq d
+		\end{cases}$} et alors $\tau_{i}\tau_{i+1} = \mat{a&b&c}\mat{b&c&d}$.
+		Donc $\sigma$ est un produit de $3$-cycles.
+
+		Réciproquement, comme $\varepsilon$ est un morphisme de groupes, et comme un $3$-cycle est de signature 1, tout produit de 3-cycles appartient à $A_n$.
+\end{enumerate}

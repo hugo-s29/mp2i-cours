@@ -1,0 +1,197 @@
+\part{Fonctions puissances}
+
+\begin{rmk}[Rappel]
+	\[
+		\forall a \in \R, \forall x > 0, x^a = \exp(a \ln x).
+	\] En particulier, en posant $x = e = \exp(1)$, on a donc \[
+		\forall a \in \R, e^a = \exp(a).
+	\]
+\end{rmk}
+
+\begin{rmk}[Notation]
+	Soit $a \in \R$.
+	Pour ce chapitre, on note $p_a : \begin{array}{rcl}
+		\R^*_+ &\longrightarrow& \R \\
+		x &\longmapsto& x^a.
+	\end{array}$
+\end{rmk}
+
+\begin{prop}
+	Soit $a \in \R$. $p_a$ est dérivable sur $\R^+_*$ et \[
+		\forall x > 0, p_a'(x) = ax^{a-1}.
+	\]
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall x \in \R^+_*, p_a(x) = e^{a \ln x}.
+	\] Or, $\ln$, $\exp$, $x \mapsto ax$ sont dérivables sur leur domaine de définition donc $p_a$ aussi et
+	\[
+		\forall x > 0, p_a'(x) = \frac{a}{x} e^{a \ln x} = \frac{a}{x} x^a = a x^{a - 1}.
+	\]
+\end{prv}
+
+\begin{crlr}
+	\begin{enumerate}
+		\item $\forall a \in \R^*_-$, $p_a$ est strictement décroissante.
+		\item $\forall a \in \R^*_+$, $p_a$ est strictement croissante.
+		\item $p_0$ est la fonction constante égale à $1$.
+	\end{enumerate}
+\end{crlr}
+
+\begin{prv}
+	Pour tout $x > 0$, $p'_a(x)$ est du signe de $a$ puisque \[
+		x^{a-1} = e^{(a-1) \ln x} > 0.
+	\]
+\end{prv}
+
+\begin{prop}
+	\begin{enumerate}
+		\item Si $a > 0$, $\begin{cases}
+			p_a(x) \tendsto{x\to +\infty} +\infty,\\
+			p_a(x) \tendsto{\substack{x\to 0\\>}} 0;\\
+		\end{cases}$
+	\item Si $a < 0$, $\begin{cases}
+			p_a(x) \tendsto{x\to +\infty} 0,\\
+			p_a(x) \tendsto{\substack{x\to 0\\>}} +\infty;\\
+		\end{cases}$
+	\item Si $a = 0$, $\begin{cases}
+			p_a(x) \tendsto{x\to +\infty} 1,\\
+			p_a(x) \tendsto{\substack{x\to 0\\>}} 1.\\
+		\end{cases}$
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	À faire
+\end{prv}
+
+\begin{prop}
+	On suppose $a > 0$.
+	\begin{enumerate}
+		\item Si $a > 1$, alors $\frac{p_a(x)}{x}\tendsto{x\to +\infty} +\infty$;
+		\item Si $a < 1$, alors $\frac{p_a(x)}{x} \tendsto{x\to +\infty} 0$;
+		\item Si $a = 1$, alors $\forall x > 0, p_a(x) = x$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\[
+		\forall x > 0, \frac{p_a(x)}{x} = \frac{x^a}{x} = x^{a-1}.
+	\] 
+\end{prv}
+
+\begin{prop}
+	On suppose $a > 0$. On peut prolonger $p_a$ par continuité en $0$ en posant $p_a(0) = 0$.
+
+	\begin{enumerate}
+		\item Si $a > 1$, alors $p_a'(x) \tendsto{\substack{x\to 0\\ >}} 0$;
+		\item Si $a < 1$, alors $p_a'(x) \tendsto{\substack{x\to 0\\ >}} +\infty$;
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item On suppose $a > 1$. Alors, \[
+				\forall x > 0, p_a'(x) = ax^{a-1}\tendsto{\substack{x\to 0\\>}}0.
+			\]
+		\item On suppose $a < 1$. \[
+			\forall x > 0, p_a'(x) = ax^{a-1} \tendsto{\substack{x \to 0\\>}} +\infty.
+		\]
+	\end{enumerate}
+\end{prv}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real a = -1;
+		bool3 checkf(real x) { return x != 0 && x^a < 5; }
+		real f(real x) { return x^a; }
+
+		real b = 1./3.;
+		bool3 checkg(real x) { return x^b < 5; }
+		real g(real x) { return x^b; }
+
+		real c = 3;
+		bool3 checkh(real x) { return x^c < 5; }
+		real h(real x) { return x^c; }
+
+		real i(real x) { return x; }
+		real j(real x) { return 1; }
+
+		draw(graph(f, 0, 5, 300, checkf), magenta); label("$a<1$", (5, f(5)), magenta, align=E);
+		draw(graph(g, 0, 5, 300, checkg), orange); label("$a\in ]0, 1[$", (5, g(5)), orange, align=E);
+		draw(graph(h, 0, 5, 300, checkh), green); label("$a>1$",(5^(1/3),h(5^(1/3))),green,align=N);
+		draw(graph(j, 0, 5, 5), purple); label("$a=0$",(5,1),purple,align=E);
+
+		draw((0,-0.5) -- (0,5), Arrow(TeXHead));
+		draw((-0.5,0) -- (5,0), Arrow(TeXHead));
+
+		real eps = 0.06;
+
+		draw((1, -eps)--(1, 1 +eps), dashed); label("$1$", (1, 0), align=S);
+		draw((-eps, 1)--(1 + eps, 1), dashed); label("$1$", (0, 1), align=W);
+	\end{asy}
+\end{figure}
+
+\begin{prop}[croissances comparées]
+	Soient $a, b \in \R^+_*$. Alors, \[
+		\lim_{x\to +\infty} \frac{\ln^a(x)}{x^b} = 0.
+	\]
+\end{prop}
+
+\begin{exm}
+	Si on ne dispose pas de la formule : \[
+		\lim_{x\to +\infty} \frac{\ln x}{\sqrt{x}} = \text{\Large ?}
+	\]
+	On a \[
+		\frac{\ln x}{\sqrt{x}} = \frac{2\ln\left(\sqrt{x}\right)}{\sqrt{x}} = \underbrace{2\;\frac{\ln u}{u}}_{\tendsto{u\to +\infty}0} \text{ avec } u = \sqrt{x} \tendsto{x\to +\infty} +\infty.
+	\] 
+\end{exm}
+
+\begin{prv}
+	\[
+		\forall x > 1, \frac{\ln^a(x)}{x^b} = \frac{e^{a\ln(\ln x)}}{e^{b\ln x}} = e^{a\ln(\ln x) - b \ln x}.
+	\] Or $\ln(\ln x) = \po_{x\to +\infty}(\ln x)$ car $\frac{\ln(\ln x)}{\ln x} = \underbrace{\frac{\ln u}{u}}_{\tendsto{u\to +\infty} 0} \text{ avec } u = \ln x \tendsto{x\to +\infty} +\infty$.
+
+	Donc, \[
+		\frac{\ln^a(x)}{x^b} = e^{\po(\ln x) - b\ln x} = e^{\ln(x)\big(-b + \po(1)\big)} \tendsto{x \to +\infty} 0.
+	\] car $\begin{cases}
+		-b + \po(1) \tendsto{x\to +\infty} -b < 0\\
+		\ln x \tendsto{x\to +\infty} +\infty.
+	\end{cases}$
+\end{prv}
+
+\begin{crlr}
+	\[
+		x \ln x \tendsto{\substack{x\to 0\\>}} 0.
+	\]
+\end{crlr}
+
+\begin{prv}
+	Pour $x \in ]0,1[$, on pose $u = \frac{1}{x}\tendsto{\substack{x\to 0\\>}} +\infty$.
+
+	Donc,
+	\begin{align*}
+		\forall x \in ]0,1[, x \ln x &= \frac{\ln\left( \frac{1}{u} \right)}{u} \\
+		&= - \frac{\ln u}{u} \tendsto{u\to +\infty} 0.\\
+	\end{align*}
+\end{prv}
+
+\begin{crlr}
+	Soit $a > 0$. Alors \[
+		\lim_{x\to +\infty} \frac{x^a}{e^x} = 0.
+	\]
+\end{crlr}
+
+\begin{prv}
+	On fait le changement de variables $u = e^x \tendsto{x\to +\infty} +\infty$.
+
+	\[
+		\forall x > 0, \frac{x^a}{e^x} = \frac{\ln^a u}{u} \tendsto{u\to +\infty} 0.
+	\]
+\end{prv}

@@ -1,0 +1,47 @@
+\part{Exercice 11}
+
+
+Il existe $4$ dérivées secondes :
+\begin{align*}
+	\frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\left( \frac{\partial f}{\partial x} \right)\\
+	\frac{\partial^2 f}{\partial y^2} = \frac{\partial}{\partial y}\left( \frac{\partial f}{\partial y} \right)\\
+	\frac{\partial^2 f}{\partial x \,\partial y} = \frac{\partial}{\partial x}\left( \frac{\partial f}{\partial y} \right)\\
+	\frac{\partial^2 f}{\partial y\,\partial x} = \frac{\partial}{\partial y}\left( \frac{\partial f}{\partial x} \right)
+\end{align*}
+
+
+On pose \begin{align*}
+	g: \R^2 &\longrightarrow \R \\
+	(u,v) &\longmapsto f\left( \frac{1}{2}(u+v), \frac{1}{2}(u-v) \right).
+\end{align*}Ainsi, $\forall (x,y) \in \R^2, g(x+y, x-y) = f(x,y)$.
+
+Donc,
+\begin{align*}
+	\frac{\partial g}{\partial u}(u,v) &= \frac{\partial f}{\partial x} \times \frac{\partial x}{\partial u} + \frac{\partial f}{\partial y} \times \frac{\partial y}{\partial u} \\
+	&= \frac{\partial f}{\partial x} \times \frac{1}{2} + \frac{\partial f}{\partial y} \times \frac{1}{2} \\
+\end{align*}
+
+On en déduit que
+\begin{align*}
+	\frac{\partial^2 g}{\partial v\,\partial u} &= \frac{1}{2} \left( \frac{\partial^2f}{\partial x^2} \times \frac{\partial x}{\partial v} + \frac{\partial^2f}{\partial y\,\partial x} \times \frac{\partial y}{\partial v} + \frac{\partial^2 f}{\partial x\,\partial y} \frac{\partial x}{\partial v} + \frac{\partial^2f}{\partial y^2} \frac{\partial y}{\partial v} \right)\\
+	&= \frac{1}{2}\left( \frac{1}{2} \cancel{\frac{\partial^2f}{\partial x^2}} - \frac{1}{2}\cancel{\frac{\partial^2f}{\partial y\,\partial x}} + \frac{1}{2} \cancel{\frac{\partial^2f}{\partial x\,\partial y}} - \frac{1}{2} \cancel{\frac{\partial^2f}{\partial y^2}}\right) \\
+\end{align*}
+
+\begin{thm}
+	[Schwarz]
+	Si $f$ est $\mathcal{C}^2$ alors $\frac{\partial^2 f}{\partial x\,\partial y} = \frac{\partial^2 f}{\partial y\,\partial x}$.
+
+	(vu l'année prochaine)
+\end{thm}
+
+Donc $\frac{\partial^2 g}{\partial u\,\partial v} = 0$.
+
+\[
+	\frac{\partial g}{\partial v} = F(v)
+\] \[
+	g(u,v) = G(v) + H(u)
+\] \[
+	f(x,y) = G(x-y) + H(x+y)
+\]
+
+

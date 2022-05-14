@@ -1,0 +1,62 @@
+\part{Récurrence}
+
+\begin{prop}[récurrence double]
+	Soit $P$ un prédicat sur $\N$ et $n_0 \in \N$.
+	Si \[
+		\begin{cases}
+			P(n_0) \text{ vraie}\\
+			P(n_0 + 1)\text{ vraie}\\
+			\forall n \in \N \text{ avec } n \ge n_0,\; P(n)\et P(n+1) \implies P(n+2)
+		\end{cases}
+	\] Alors \[
+		\forall n \in \N \text{ avec } n \ge n_0,\; P(n) \text{ vraie}.
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose, pour tout $n \ge n_0$, \[
+		Q(n): ``P(n)\et P(n+1)".
+	\]
+
+	\begin{itemize}
+		\item $Q(0)$ est vraie.
+		\item Soit $n \ge n_0$. On suppose $Q(n)$ vraie. On sait alors que $P(n+2)$ est vraie. De plus, par hypothèse de récurrence, $P(n+1)$ est vraie. Donc $Q(n+1)$ est vraie.
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	On pose $u_0 = 0$, $u_1 = 1$ et \[
+		\forall n \in \N,\; u_{n+2} = u_{n+1} + u_n
+	\] Montrons que $\forall n \in \N, u_n \ge 0$.
+	\begin{itemize}
+		\item $u_0 = 0 \ge 0$;
+		\item $u_1 = 1 \ge 0$;
+		\item Soit $n \in \N$. On suppose que $u_n \ge 0$ et $u_{n+1} \ge 0$. Alors $u_{n+2} = u_n + u_{n+1} \ge 0$.
+	\end{itemize}
+
+	Par récurrence double, \[
+		\forall n \in \N,\;u_n \ge 0.
+	\]
+\end{exm}
+
+\begin{prop}
+	Soit $P$ un prédicat, $p \in \N^*$ et $n_0 \in \N$. Si \[
+		\begin{cases}
+			\forall k \in \left\llbracket 0, p-1 \right\rrbracket,\,P(n_0 + k) \text{ vraie};\\
+			\forall n \ge n_0,\,\big(P(n) \et P(n + 1) \et \cdots \et P(n+p-1)\big) \implies P(n+p).
+		\end{cases}
+	\] Alors, \[
+		\forall n \ge n_0, P(n) \text{ vraie}.
+	\] \qed
+\end{prop}
+
+\begin{exm}
+	On pose $u_0 = 0$, $u_1 = 1$, $u_2 = 2$, $u_3 = 3$ et \[
+		\forall n \in \N,\, u_{n+4} = u_n + 2u_{n+1} + 3u_{n+2} + u_{n+3}.
+	\] Montrons que $\forall n \in \N,\,u_n \ge 0$.
+	\begin{itemize}
+		\item $u_0 \ge 0$, $u_1 \ge 0$, $u_2 \ge 0$ et $u_3 \ge 0$.
+		\item Soit $n \in \N$. On suppose $u_n \ge 0$, $u_{n+1} \ge 0$, $u_{n+2} \ge 0$ et $u_{n+3} \ge 0$. Comme $u_{n+4}$ est la somme de réels positifs, $u_{n+4} \ge 0$.
+	\end{itemize}
+\end{exm}
+

@@ -1,0 +1,107 @@
+\part{Exercice 12}
+
+\begin{enumerate}
+	\item Soit $f : t \mapsto \frac{\ln t}{t}$. $f$ est dérivable sur $\R^+_*$ et \[
+			\forall x > 0,\, f'(t) = \frac{1}{t^2} - \frac{\ln t}{t} = \frac{1-\ln t}{t^2}
+		\]
+
+		On a $\forall t > e, f'(t) < 0$ et donc $f$ est strictement décroissante sur $[e, +\infty[$.
+
+		Soit $n \in \N,\,n\ge 4$.
+
+		\[
+			\forall k \in \left\llbracket 4,n \right\rrbracket, \int_{k}^{k+1} \frac{\ln t}{t} ~\mathrm{d}t \le \frac{\ln k}{k} \le \int_{k-1}^{k} \frac{\ln t}{t} ~\mathrm{d}t
+		\]
+		 et donc \[
+			 \int_{4}^{n+1} \frac{\ln t}{t}~\mathrm{d}t \le \sum_{k=4}^n \frac{\ln k}{k} \le \int_{3}^{n} \frac{\ln t}{t}~\mathrm{d}t
+		 \] \[
+			\frac{1}{2}\left( \ln^2(n+1) - \ln^2 4 \right) \le \sum_{k=4}^n \frac{\ln k}{k} \le \frac{1}{2}\left( \ln^2 n - \ln^2 3 \right).
+		 \] Donc \[
+			\sum_{k=4}^n \frac{\ln k}{k} = \frac{1}{2} \ln^2 n + \po\left( \ln^2 n \right)
+		 \] et donc \[
+			\sum_{k=1}^n \frac{\ln k}{k} = \frac{1}{2}\ln^2 n + \po\left( \ln^2 n \right).
+		 \] On pose \[
+			\forall n \in \N^*,\, u_n = \sum_{k=1}^n \frac{\ln k}{k} - \frac{1}{2}\ln^2 n
+		 \] Soit $n \in \N^*$.
+		 \begin{align*}
+			u_{n+1}-u_n &= \frac{\ln(n+1)}{n+1} - \frac{1}{2}\ln^2(n+1) + \frac{1}{2}\ln^2(n) \\
+			&= \frac{\ln n + \ln\left( 1+\frac{1}{n} \right)}{n\left( 1+\frac{1}{n} \right)} + \frac{1}{2}\ln^2 n - \frac{1}{2}\left( \ln n + \ln\left( 1+\frac{1}{n} \right) \right)^2 \\
+			&= \,\left( \ln n + \frac{1}{n} + \po\left(\frac{1}{n}\right) \right) \left( \frac{1}{n}-\frac{1}{n^2} + \po\left( \frac{1}{n^2} \right) \right) \\
+			&\phantom{=}\,+ \frac{1}{2}\ln^2 n - \frac{1}{2}\ln^2 n - \ln n\;\left( \frac{1}{n} - \frac{1}{2n^2} + \po\left( \frac{1}{n^2} \right) \right) - \frac{1}{2}\left( \frac{1}{n} + \po\left( \frac{1}{n} \right) \right)^2\\
+			&= \frac{\ln n}{n} - \frac{\ln n}{n^2} - \frac{\ln n}{n} + \frac{1}{2} \frac{\ln n}{n^2} + \po\left( \frac{\ln n}{n^2} \right) \\
+			&= -\frac{1}{2} \frac{\ln n}{n^2} + \po\left( \frac{\ln n}{n^2} \right) \\
+			&\sim \underbrace{-\frac{\ln n}{2n^2}}_{ = \po\left( \frac{1}{n^{3 / 2}} \right)} < 0 \text{ pour } n \ge 2
+		 \end{align*}
+
+		 Donc $\sum \frac{1}{n^{3 / 2}}$ converge et donc $\Sigma(u_{n+1}-u_n)$ converge donc $(u_n)$ converge. On note $\ell = \lim u_n$. D'où \[
+			\boxed{
+				\sum_{k=1}^n \frac{\ln k}{k} = \frac{1}{2} \ln^2 n + \ell + \po(1)
+			}.
+		 \]
+	\item Soit $n \in \N^*$. On pose $N = \left\lfloor \frac{n}{2} \right\rfloor$.
+		\[
+			\sum_{k=1}^n (-1)^k \frac{\ln k}{k} = \sum_{1 \le  i \le N} \frac{\ln 2i}{2i} - \sum_{0 \le i \le N} \frac{\ln(2i+1)}{2i+1}\\
+		\]
+		\begin{align*}
+			\sum_{i=1}^N \frac{\ln 2i}{2i} &= \frac{1}{2} \sum_{i=1}^N \frac{\ln 2 + \ln i}{i}\\
+			&= \frac{1}{2} \left( \ln 2 \sum_{i=1}^N \frac{1}{i} + \sum_{i=1}^N \frac{\ln i}{i} \right) \\
+			&= \frac{1}{2} \left( \ln 2 \times \big(\ln N + \gamma + \po(1)\big) + \frac{1}{2} \ln^2 N + \ell + \po(1) \right) \\
+			&= \frac{1}{4} \ln^2 N + \frac{\ln 2}{2} \ln N + \frac{\gamma \ln 2}{2} + \frac{\ell}{2} + \po(1) \\
+		\end{align*}
+
+		\begin{align*}
+			\sum_{i=0}^N \frac{\ln(2i + 1)}{2i + 1} &= \sum_{k=1}^n \frac{\ln k}{k} - \sum_{i=1}^N \frac{\ln 2i}{2i} \\
+			&= \frac{1}{2}\ln^2 n + \ell + \po(1) - \left( \frac{1}{4} \ln^2 N + \frac{\ln 2}{2} \ln N + \frac{\gamma \ln 2}{2} + \frac{\ell}{2} + \po(1) \right) \\
+		\end{align*}
+
+		D'où
+		\begin{align*}
+			\sum_{k=1}^n (-1)^k \frac{\ln k}{k} = \frac{1}{2} \ln^2 N + \ln 2 \times \ln N + \gamma \ln 2 + \ell - \frac{1}{2}\ln^2 n - \ell + \po(1).
+		\end{align*}
+
+		\[
+			N \le \frac{n}{2}\le N+1
+		\] donc \[
+			\frac{n}{2} - 1 < N \le \frac{n}{2}
+		\] et donc \[
+			N \simi_{n\to +\infty} \frac{n}{2}
+		\]
+
+		\begin{align*}
+			\ln N &= \ln\left( \frac{n}{2} + \po\left( \frac{n}{2} \right) \right) \\
+			&= \ln\left( \left( \frac{n}{2} \right) \big(1 + \po(1)\big) \right) \\
+			&= \ln\left( \frac{n}{2} \right) + \ln\big(1 + \po(1)\big) \\
+			&= \ln\left( \frac{n}{2} \right) + \po(1) \\
+			&\sim \frac{n}{2}
+		\end{align*}
+
+		\[
+			N \le \frac{n}{2}\le N+1
+		\] donc \[
+			\ln(n-2) - \ln 2 = \ln\left( \frac{n}{2} - 1 \right) \le \ln N \le \ln \left( \frac{n}{2} \right) = \ln n - \ln 2
+		\] et donc \[
+			\ln^2\left( \frac{n}{2} - 1 \right)  \le \ln^2 N \le \ln^2 \left(\frac{n}{2}\right)
+		\]
+
+		On a, d'une part,
+		\begin{align*}
+			\sum_{k=1}^n (-1)^k \frac{\ln k}{k} &\le \frac{1}{2}\left( \ln^2 n  - 2\ln n \ln 2 + \ln^2 2 \right) + \ln 2\left( \ln n - \ln 2 \right) + \gamma \ln 2 - \frac{1}{2}\ln^2 n + \po(1)\\
+			&\le -\frac{1}{2} \ln^2 2 + \gamma \ln 2 + \po(1).
+		\end{align*}
+
+		D'autre part, on a
+		\begin{align*}
+			\sum_{k=1}^n (-1)^k \frac{\ln k}{k} &\ge \frac{1}{2}\big(\ln(n- 2) - \ln 2\big)^2 + \ln 2\big(\ln(n-2) - \ln 2\big) + \gamma \ln 2 - \frac{1}{2} \ln^2 n + \po(1)\\
+			&\frac{1}{2}\left( \ln^2(n-2) - \ln^2 n \right) - \frac{1}{2} \ln^2 2 + \gamma \ln 2 + \po(1).
+		\end{align*}
+
+		Or,
+		\begin{align*}
+			\ln^2(n-2) - \ln^2 n &= \left( \ln n + \ln \left( 1 - \frac{2}{n} \right) \right)^2 - \ln^2 n\\
+			&= \underbrace{2 \ln n \ln \left( 1- \frac{2}{n} \right)}_{\sim -4 \frac{\ln n}{n} \longrightarrow 0} + \underbrace{\ln^2\left( 1-\frac{2}{n} \right)}_{\longrightarrow 0}. \\
+		\end{align*}
+
+		Par encadrement, \[
+			\sum_{k=1}^{+\infty} (-1)^k \frac{\ln k}{k} = \gamma \ln 2 - \frac{1}{2} \ln^2 2.
+		\]
+\end{enumerate}

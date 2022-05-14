@@ -72,25 +72,44 @@ for chap in chaps:
         continue
 
     with open(main_path) as f:
-        main_content = f.read()
+        main_content = f.read().split('\n')
 
     inputs = [
-        line[8:-1]
-        for line in main_content.split('\n')
+        (line[8:-1], i)
+        for i, line in enumerate(main_content)
         if line.startswith('\t\\input{')
     ]
 
     title = [
         line[line.index('{', 7)+1:-1]
-        for line in main_content.split('\n')
+        for line in main_content
         if line.startswith('\\title{')
     ][0]
 
-    out += '\n\n\t\\chap[' + num + ']{' + title + '}'
-    out += '\n\t\\renewcommand{\cwd}{../' + chap + '}'
+    out += '\n\n\t{'
+    out += '\n\t\t\\chap[' + num + ']{' + title + '}'
+    out += '\n\t\t\\renewcommand{\cwd}{../' + chap + '}'
 
-    for inp in inputs:
-        out += '\n\t\\input{../' + chap + '/' + inp + '}'
+    min_line = min([ i for _, i in inputs ])
+    toc_line = max([
+        i
+        for i, line in enumerate(main_content)
+        if '\\tableofcontents' in line or '\\begin{document}' in line
+    ])
+
+    lines = [
+        line
+        for line in main_content[toc_line + 1 : min_line]
+        if len(line) != 0 and line not in ('\t', '\t\\vfill', '\t\\pagebreak')
+    ]
+
+    for line in lines:
+        out += '\n\t' + line
+
+    for inp, i in inputs:
+        out += '\n\t\t\\input{../' + chap + '/' + inp + '}'
+
+    out += '\n\t}'
 
 out += r'''
 

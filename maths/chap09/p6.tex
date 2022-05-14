@@ -1,0 +1,35 @@
+\part{Densité}
+
+\begin{defn}
+	Soit $A \in \mathcal{P}(\R)$. On dit que $A$ est \underline{dense dans $\R$}\index{densité (partie de $\R$)} si, pour tout intervalle $I$ ouvert non vide de $\R$, $A \cap I \neq \O$.
+\end{defn}
+
+\begin{thm}
+	$\Q$ est dense dans $\R$.
+\end{thm}
+
+\begin{prv}
+	Soit $I$ un intervalle ouvert non vide. Soient $a < b$ deux éléments de $I$. On cherche $(p,q) \in \Z\times \N^*$ tel que \[
+		a \le \frac{p}{q}\le b.
+	\] Comme $\R$ est archimédien, il existe $q \in \N^*$ tel que \[
+		q (b-a) \ge 2 > 1.
+	\] Donc, l'intervalle $[qa, qb]$ a une longueure supérieure à $1$, il contient donc au moins un entier $p$.
+
+	En effet, sinon on a $\left\lfloor qa \right\rfloor = \left\lfloor qb \right\rfloor$ et alors \[
+		\begin{cases}
+			\left\lfloor qa \right\rfloor \le qb < \left\lfloor qa \right\rfloor + 1\\
+			\left\lfloor qa \right\rfloor \le qa < \left\lfloor qa \right\rfloor + 1
+		\end{cases}
+	\] et alors \[
+		-1 < qb - qa < 1
+	\] une contradiction. On a donc $qa \le p \le qb$ et finalement \[
+		a \le \frac{p}{q} \le b.
+	\]
+\end{prv}
+
+\begin{thm}
+	$\R\setminus\Q$ est dense dans $\R$.
+\end{thm}
+
+\missingpart
+

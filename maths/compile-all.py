@@ -1,4 +1,5 @@
-import os, subprocess, shutil, json, datetime, inquirer
+import os, subprocess, shutil, json, datetime, inquirer, unicodeit
+
 
 directories = sorted([
     entity
@@ -8,6 +9,29 @@ directories = sorted([
 
 cwd = os.getcwd()
 out_directory = f'{cwd}/../web/data/maths/'
+
+def unicode_tex(title):
+    parts = title.split('$')
+    out = ''
+
+    replace = {
+        "\\mathbbm": "\\mathbb",
+        "\\R": "\\mathbb{R}",
+        "\\C": "\\mathbb{C}",
+        "\\Z": "\\mathbb{Z}",
+        "\\Q": "\\mathbb{Q}",
+        "\\N": "\\mathbb{N}",
+    }
+
+    for i, part in enumerate(parts):
+        if i % 2 == 0:
+            out += part
+        else:
+            for old, new in replace.items():
+                part = part.replace(old, new)
+            out += unicodeit.replace(part)
+
+    return out
 
 def clean_up_asymptote_files(chapter):
     asy_directory = f'{cwd}/{chapter}/asy'
@@ -116,7 +140,7 @@ def get_title(chapter):
     start = part_line.find('{', 9) + 1
     end = part_line.find('}', 10)
 
-    title = part_line[start:end]
+    title = unicode_tex(part_line[start:end])
     return f'Chapitre {int(chapter[4:])} : {title}'
 
 
@@ -138,10 +162,10 @@ if update_full:
     os.chdir(f'{cwd}/full')
     os.system('python3 run.py')
     os.system('latexmk -pdf main.tex')
-    #os.system('latexmk -pdf simple-main.tex')
+    os.system('latexmk -pdf simple-main.tex')
     os.chdir(cwd)
     shutil.copyfile('full/main.pdf', f'{out_directory}full.pdf')
-    #shutil.copyfile('full/simple-main.pdf', f'{out_directory}full-simple.pdf')
+    shutil.copyfile('full/simple-main.pdf', f'{out_directory}full-simple.pdf')
 
 with open(f'{out_directory}data.json', 'w') as f:
     json.dump(data, f)

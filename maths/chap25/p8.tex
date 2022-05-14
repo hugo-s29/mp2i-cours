@@ -273,6 +273,45 @@
 	On a $1000 y = 123 + y$ et donc $y = \frac{123}{999}$ et donc $x = \frac{987 + \frac{123}{999}}{1000}$.
 \end{rmk}
 
+\section{Exponentielle}
 
+\begin{prop}
+	\[
+		\forall x \in \R,\, \sum_{n=0}^{+\infty} \frac{x^n}{n!} = e^x
+	\]
+\end{prop}
 
+\begin{prv}
+	(formule de Taylor avec reste intégral)
+
+	\[
+		e^x = \sum_{k=0}^n \frac{x^k}{k!} + \int_{0}^{x} e^t \frac{(x-t)^n}{n}~\mathrm{d}t
+	\]
+
+	\begin{align*}
+		\left| e^x - \sum_{k=0}^n \frac{x^k}{k!} \right| &\le \int_{0}^{x} e^t \frac{|x-t|^n}{n!}~\mathrm{d}t\\
+		&\le \int_{0}^{x} e^x \frac{(x-t)^n}{n!}~\mathrm{d}t\\
+		&\le e^x \left[ -\frac{(x-t)^{n+1}}{(n+1)!} \right]_0^x\\
+		&\le e^x \frac{x^{n+1}}{(n+1)!} \tendsto{n\to +\infty} 0
+	\end{align*}
+	car
+	\begin{itemize}
+		\item[\sc Méthode 1]
+			\begin{align*}
+				\frac{x^n}{n!} \sim \frac{x^n}{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}
+				&= \frac{1}{\sqrt{2\pi n}} \left( \frac{ex}{n} \right)^n \\
+				&= \frac{1}{\sqrt{2\pi n}} e^{n \ln\left( \frac{ex}{n} \right)} \tendsto{n\to +\infty} 0 \\
+			\end{align*}
+		\item[\sc Méthode 2]
+			\[
+				\frac{\frac{x^{n+1}}{(n+1)!}}{\frac{x^n}{n!}} = \frac{x}{n+1}\tendsto{n\to +\infty} 0 < 1.
+			\]
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	\[
+		\forall z \in \C,\, \sum_{n=0}^{+\infty} \frac{z^n}{n!} = e^z
+	\] \qed
+\end{prop}
 

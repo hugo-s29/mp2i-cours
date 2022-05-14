@@ -1,0 +1,20 @@
+\part{Exercice 11}
+
+\[
+	(k_n) = (1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, \ldots, 18, 20, \ldots, ).
+\]
+
+$\forall n, k_n \ge n$ donc $\frac{1}{k_n} \le  \frac{1}{n}$.
+
+Soit $n \in \N^*$. Soit $N \in \N$ tel que \[
+	10^{N-1} \le n < 10^N.
+\]
+
+\begin{align*}
+	\sum_{p=1}^n \frac{1}{k_p} &\le \sum_{p=1}^{10^N} \frac{1}{k^p} = \sum_{i=1}^N \sum_{\substack{p\\10^{i-1}\le k_p < 10^i}} \frac{1}{k^p}\\
+	&\le \sum_{i=1}^N \sum_{\substack{p\\10^{i-1}\le k_p < 10^i}} \frac{1}{k^p}\\
+	&\le \sum_{i=1}^N \frac{8 \times  9^{i-1}}{10^{i-1}} = 8 \sum_{i=1}^N \left( \frac{9}{10} \right)^{i-1}\\
+	&\le 8 \times \frac{1-\left( \frac{9}{10} \right)^N}{1-\frac{9}{10}} \le 80
+\end{align*}
+
+$(S_n)$ croissante et majorée donc elle converge.

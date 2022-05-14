@@ -1,0 +1,157 @@
+\part{Événements indépendants}
+
+\begin{defn}
+	Soient $A$ et $B$ deux événements d'un espace probabilisé $(\Omega, P)$.
+	On dit que $A$ et $B$ sont \underline{indépendants} \index{indépendance (événements d'un espace probabilisé)} si \[
+		P(A \cap B) = P(A)\,P(B).
+	\]
+\end{defn}
+
+\begin{rmk}
+	L'indépendance d'événements au sens mathématique n'est pas la même chose que l'indépendance dans le sens commun : elle dépend de la probabilité utilisé !
+\end{rmk}
+
+\begin{exm}
+	On considère un objet, qui est défectueux avec une probabilité $p \in \;]0,1[$. On effectue deux contrôles indépendants. Chaque contrôle permet de détecter un défaut (s'il y en a un) avec une probabilité $q$ (il n'y a pas de faux positifs : on ne peut pas trouver un défaut s'il n'y en a pas).
+
+	\centered{\itshape Les deux contrôles sont négatifs. Quelle est la probabilité qu'il y ait quand même un défaut ?}
+
+	\underline{\sc Simulation en Python} :
+	\begin{algorithm}
+		\begin{lstlisting}[language=python]
+			import random as rd
+
+			def experience(p, q):
+			  defaut = bernoulli(p)
+			  controles = [False, False]
+			
+			  for i in range(2):
+			    if defaut:
+			      controles[i] = bernoulli(q)
+
+			  return (controles, defaut)
+
+			def proba(p, q, N = 10000):
+			  cpt = 0
+			  pr = 0
+			  while cpt < N:
+			    c, d = experience(p, q)
+			    if not any(c): # deux controles negatifs
+			      cpt += 1
+			
+			      if d:
+			        pr += 1
+			  return pr / N
+		\end{lstlisting}
+	\end{algorithm}
+
+	\begin{mdframed}
+		Pour générer une variable aléatoire de probabilité $p$ en Python, on génère un réel $x \in [0,1]$ et on le compare à $p$ :
+		\begin{lstlisting}[language=python]
+			def bernoulli(p):
+				return rd.random() < p
+		\end{lstlisting}
+	\end{mdframed}
+
+	\underline{\sc Modélisation} : $\Omega = \{0,1\}^3$;\\ $D = \{0,1\}^2 \times \{1\}$ et $P(D) = p$ ;\\ $C_1 = \{1\} \times \{0,1\}^2$ et $P_D(C_1) = q$ ;\\ $C_2 = \{0,1\} \times \{1\} \times \{0,1\}$ et $P_D(C_2) = q$.
+
+	On sait que $P_{\overline{D}}(C_1) = P_{\overline{D}}(C_2) = 0$.
+
+	On suppose que $C_1$ et $C_2$ indépendants relativement à $P_D$.
+
+	\[
+		P_{\overline{C}_1 \cap \overline{C}_2}(D) = \frac{P_D\left( \overline{C}_1 \cap \overline{C}_2 \right) \, P(D)}{P\left( \overline{C}_1 \cap \overline{C}_2 \right)}.
+	\] 
+
+	On a : 
+	\begin{align*}
+		P_D\left( \overline{C}_1 \cap \overline{C}_2 \right) &= P_D\left( \overline{C}_1 \right) P_D\left( \overline{C}_2 \right) \\
+		&= (1-q)^2, \\
+	\end{align*} \[
+		P(D) = p,
+	\] et 
+	\begin{align*}
+		P\left( \overline{C}_1 \cap \overline{C}_2 \right) &= P_D(\overline{C}_1 \cap \overline{C}_2)\,P(D) + P_{\overline{D}}(\overline{C}_1 \cap \overline{C}_2)\,P(\overline{D}).\\
+		&= p(1-q)^2 + 1-p. \\
+	\end{align*}
+	Or, 
+	\begin{align*}
+		P\left( \overline{C}_1 \right) \,P\left( \overline{C}_2 \right) &= \big((1-q)p+1-p\big)^2 \\
+		&\neq P\big(\overline{C}_1 \cap \overline{C}_2\big) \text{ en général}.
+	\end{align*}
+	Finalement, \[
+		P_{\overline{C}_1 \cap \overline{C}_2}(D) = \frac{p(1-q)^2}{p(1-q)^2 + 1 - p}.
+	\] Si $q = 1$, on a $P_{\overline{C}_1 \cap \overline{C}_2}(D) = 0$. Si $q = 0$, on a $P_{\overline{C}_1 \cap \overline{C}_2}(D) = p$.
+\end{exm}
+
+\begin{defn}
+	Soit $(\Omega, P)$ un espace probabilisé et $(A_i)_{i\in I}$ une famille finie d'événements.
+
+	\begin{enumerate}
+		\item On dit que ces événements sont \underline{$2$ à $2$ indépendants}\index{indépendance 2 à 2 (événements d'un espace probabilisé)} si \[
+				\forall i \neq j,\quad P(A_i \cap A_j) = P(A_i)\,P(A_j)
+			\]
+		\item On dit qu'ils sont \underline{mutuellement indépendants}\index{indépendance mutuelle (événements d'un espace probabilisé)} si \[
+			\forall J \in \mathcal{P}(I) \setminus \{ \O \},\quad P\bigg( \bigcap_{j \in J} A_j \bigg) = \prod_{j \in J} P(A_j).
+		\]
+	\end{enumerate}
+\end{defn}
+
+\begin{exm}\relax~
+	\centered{\large \color{red} À faire}
+
+	$\Omega = \ldots$, $P = \ldots$, $A, B, C = \ldots$ tels que \[
+		\begin{cases}
+			P(A\cap B) = P(A)\, P(B)\\
+			P(A\cap C) = P(A)\, P(C)\\
+			P(B\cap C) = P(B)\, P(C)\\
+		\end{cases}
+	\] mais \[
+		P(A \cap B \cap C) \neq P(A) \, P(B) \, P(C).
+	\]
+\end{exm}
+
+\begin{exo}\relax
+	{\itshape
+		Soit $(\Omega, P)$ un espace probabilisé fini, $A$ et $B$ deux événements indépendants (par rapport à $P$).
+		\begin{enumerate}
+			\item Montrer que $A$ et $\overline{B}$ sont indépendants.
+			\item Montrer que $\overline{A}$ et $\overline{B}$ sont indépendants.
+		\end{enumerate}
+	}
+
+	\underline{\sc Solution} :
+
+	\begin{enumerate}
+		\item On suppose $P(A) \neq 0$.
+			\begin{align*}
+				P\left( A \cap \overline{B} \right) &= P_A\left( \overline{B} \right) P(A)\\
+				&= P(A) \left( 1 - P_A(B) \right) \\
+				&= P(A) \big(1 - P(B)\big) \\
+				&= P(A)\,P\left( \overline{B} \right) \\
+			\end{align*}
+
+			On suppose $P(A) = 0$. $A \cap \overline{B} \subset A$ donc \[
+				0 \le P\left( A \cap \overline{B} \right) \le P(A) = 0
+			\] et donc \[
+				P\left( A \cap \overline{B} \right) = 0 = P(A)\,P\left( \overline{B} \right).
+			\]
+		\item C'est une conséquence du 1. : on remplace $B$ par $A$ et $A$ par $\overline{B}$.
+	\end{enumerate}
+\end{exo}
+
+\begin{prop}
+	Soit $(\Omega, P)$ un espace probabilisé et $(A_i)_{i\in I}$ une famille d'événements mutuellement indépendants. Soit $J \in \mathcal{P}(I)$ et on pose \[
+		\forall i \in I,\;B_i = \begin{cases}
+			\overline{A}_i &\text{ si } i \in J\\
+			A_i &\text{ sinon}.
+		\end{cases}
+	\] Alors, $(B_i)_{i\in I}$ est une famille d'événements mutuellement indépendants.
+\end{prop}
+
+\begin{prv}
+	Pour $n \in \N^*$, on pose \[
+		\mathcal{P}(n) : \; ``\,\forall K \subset I \text{ avec } \#K = n,\; P\left( \bigcap_{i \in K} B_i \right) = \prod_{i \in K} P(B_i)\,".
+	\]
+\end{prv}
+

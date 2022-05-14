@@ -39,7 +39,7 @@
 		draw(shift(A) * ((-1.3, 0) -- (1.3, 0)), Arrow(TeXHead));
 
 		draw(circle(A, 1), magenta);
-		
+
 		real theta = 38;
 		pair M = dir(theta) + A;
 		draw(A -- M, red);
@@ -80,4 +80,198 @@
 		draw(shift(B) * ((r, -r)--(-r,r)), gray + dashed);
 	\end{asy}
 \end{figure}
+
+\begin{prop}
+	\[
+		\forall t \in \R, \ch^2 t - \sh^2 t = 1.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $t \in \R$.
+	\begin{align*}
+		\ch^2 t - \sh^2 t &= \left( \frac{e^{t}+e^{-t}}{2} \right)^2 - \left( \frac{e^{t}-e^{-t}}{2} \right)^2 \\
+		&= \frac{\cancel{e^t} + e^{-t} -\cancel{-e^t} + e^{-t}}{2} \times \frac{e^t + \cancel{e^{-t}} + e^t - \cancel{e^{-t}}}{2} \\
+		&= \frac{2e^{-t}}{2} \times \frac{2e^{t}}{2} \\
+		&= e^{-t} \times e^t \\
+		&= 1 \\
+	\end{align*}
+\end{prv}
+
+\begin{exo}\relax
+	{\itshape Expliciter $\ch(a+b)$ avec $(a,b) \in \R^2$.}
+
+	\begin{align*}
+		\ch(a) \ch(b) + \sh(a) \sh(b) &= \frac{2e^{a+b} + e^{b-a} + e^{a-b}}{4} + \frac{2e^{-(a+b)} - e^{a-b} - e^{b-a}}{4}\\
+		&= \frac{1}{4} \left( 2e^{a+b} + 2e^{-(a+b)} \right) \\
+		&= \frac{e^{a+b} + e^{-(a+b)}}{2} \\
+		&= \ch(a+b). \\
+	\end{align*}
+
+	{\itshape Expliciter $\sh(a+b)$ avec $(a,b) \in \R^2$.}
+
+	\begin{align*}
+		\sh(a)\ch(b) + \sh(b)\ch(a) &= \frac{1}{4} \left( 2e^{a+b} + \cancel{e^{a-b}} - \cancel{e^{b-a}} + \cancel{e^{b-a}} - \cancel{e^{a-b}} - 2e^{-(a+b)} \right) \\
+		&= \frac{e^{a+b} - e^{-(a+b)}}{2} \\
+		&= \sh(a+b) \\
+	\end{align*}
+\end{exo}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\ch$ est paire, $\sh$ est impaire;
+		\item $\ch$ et $\sh$ sont dérivables sur $\R$ et $\begin{cases}
+				\ch' = \sh,\\
+				\sh' = \ch;
+			\end{cases}$
+		\item $\sh$ est strictement croissante sur $\R$, $\ch$ est strictement croissante sur $\R^+$;
+		\item $\lim_{x\to +\infty} \ch x = +\infty$, $\lim_{x\to +\infty} \sh x = +\infty$ et $\lim_{x\to -\infty} \sh x = -\infty$;
+		\item $\ch x \simi_{x\to +\infty} \frac{1}{2} e^{x}$ et $\sh \simi_{x\to +\infty} \frac{1}{2} e^{x}$.
+	\end{enumerate}
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real f(real x) { return cosh(x); }
+		real g(real x) { return sinh(x); }
+
+		draw(graph(f, -2.5, 2.5, 300), magenta);
+		draw(graph(g, -2.5, 2.5, 300), deepcyan);
+
+		label("\small$1$", (0, 1), align=SW);
+
+		real eps = 0.3;
+		draw((-eps, 1)--(eps, 1));
+
+		draw((-2.7,0) -- (2.7,0), Arrow(TeXHead));
+		draw((0,g(-2.4)) -- (0,f(2.4)), Arrow(TeXHead));
+
+		draw(scale(0.8) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+		draw((-0.8, 1) -- (0.8, 1), red, Arrows(TeXHead));
+
+		label("\small$\sh$", (-2.4, g(-2.4)), deepcyan, align=E);
+		label("\small$\ch$", (-2.4, f(-2.4)), magenta, align=W);
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\begin{enumerate}
+		\item \[
+				\begin{cases}
+					\ch(-x) = \frac{e^{-x} + e^{-(-x)}}{2} = \frac{e^{x} + e^{-x}}{2} = \ch x;\\
+					\sh(-x) = \frac{e^{-x} - e^{-(-x)}}{2} = \frac{e^{-x} - e^{x}}{2} = -\frac{e^{x}-e^{-x}}{2} = -\sh x.
+				\end{cases}
+			\] 
+		\item $x \mapsto e^x$ et $x \mapsto e^{-x}$ sont dérivables sur $\R$ donc $\ch$ et $\sh$ aussi. On a donc \[
+				\forall x \in \R, \begin{cases}
+					\ch'(x) = \frac{e^{x} - e^{-x}}{2} = \sh(x);\\
+					\sh'(x) = \frac{e^{x}+e^{-x}}{2} = \ch(x).
+				\end{cases}
+			\]
+		\item $\forall x \in \R, \sh' x = \ch x = \frac{e^{x}+e^{-x}}{2} > 0$ donc $\sh$ strictement croissante sur $\R$.\\
+			$\forall x \in \R^+_*, \ch' x = \sh x > \sh 0 = 0$ (car $\sh$ strictement croissante) et $\ch' 0 = \sh 0 = 0$. Donc, $\ch$ est strictement croissante sur $\R^+$.
+		\item~\kern-2.5mm et 5.  \[
+			\forall x \in \R, \begin{cases}
+				\ch x = \frac{1}{2}\left( e^{x} + e^{-x} \right) = \frac{e^{x}}{2}\left( 1 + e^{-2x} \right) \simi_{x\to +\infty} \frac{e^x}{2} \longrightarrow +\infty;\\
+				\sh x = \frac{1}{2}\left( e^{x} - e^{-x} \right) = \frac{e^{x}}{2}\left( 1 - e^{-2x} \right) \simi_{x\to +\infty} \frac{e^x}{2} \longrightarrow +\infty;\\
+			\end{cases}
+		\] 
+	\end{enumerate}
+\end{prv}
+
+\begin{rmk}
+	La courbe représentative de $\ch$ est appelée ``chaînette''.
+\end{rmk}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\th$ est imapire;
+		\item $\th$ est dérivable sur $\R$ et \[
+				\forall x \in \R, \th' x = \frac{1}{\ch^2 x} = 1-\th^2 x;
+			\]
+		\item $\th$ est strictement croissante sur $\R$;
+		\item $\lim_{x\to +\infty} \th x = 1$ et $\lim_{x\to -\infty} \th x = -1$.
+	\end{enumerate}
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+
+		size(8cm);
+
+		real f(real x) { return tanh(x); }
+
+		draw(graph(f, -2.5, 2.5, 300), magenta);
+
+		label("\small$1$", (0, 1), align=SW);
+		label("\small$-1$", (0, -1), align=SW);
+
+		real eps = 0.03;
+		draw((-eps, 1)--(eps, 1));
+		draw((-eps, -1)--(eps, -1));
+
+		draw((-2.7,0) -- (2.7,0), Arrow(TeXHead));
+		draw((0,-1.2) -- (0,1.2), Arrow(TeXHead));
+
+		draw(scale(0.8) * (dir(45) -- dir(45 + 180)), red, Arrows(TeXHead));
+
+		draw((-2.5, -1) -- (-1, -1), dashed + gray);
+		draw((2.5, 1) -- (1, 1), dashed + gray);
+
+		label("\small$\th$", (2.5, 1), magenta, align=SW);
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $x \in \R$. \[
+				\th(-x ) = \frac{\sh(-x)}{\ch(-x)} = -\frac{\sh x}{\ch x} = -\th x.
+			\]
+		\item $\sh$ et $\ch$ sont dérivables sur $\R$ et $\forall x \in \R,\,\ch x \neq 0$ donc $\th$ est dérivable sur $\R$ et
+			\begin{align*}
+				\forall x \in \R, \th' x = \frac{\ch^2 x - \sh^2x}{2} &= \frac{1}{\ch^2 x} \\
+				&= 1-\frac{\sh^2 x}{\ch^2 x} = 1-\th^2 x. \\
+			\end{align*}
+		\item $\forall x \in \R, \th' x = \frac{1}{\ch^2 x} > 0$ donc $\th$ est strictement croissante sur $\R$.
+		\item On a \[
+				\forall x \in \R, \th x = \frac{\sh x}{\ch x} \sim \frac{e^{x} / 2}{e^x / 2} = 1 \tendsto{x\to +\infty} 1
+			\] et, comme $\th$ est impaire, \[
+				\lim_{x\to -\infty} \th x = - \lim_{x\to +\infty} \th x = -1.
+			\]
+	\end{enumerate}
+\end{prv}
+
+\begin{exo}\relax
+	{\itshape Résoudre $\sh x = y$ d'inconnue $x$ et $y$ étant un paramètre réel.}
+
+	Soit $x \in \R$.
+	\begin{align*}
+		\sh x = y \iff& \frac{e^x - e^{-x}}{2} = y\\
+		\iff& \left( e^x \right)^2 - 1 = 2ye^x\\
+		\iff& \left(e^x - y\right)^2  - \overbrace{(y^2 + 1)}^{> 0} = 0\\
+		\iff& \left( e^x - y - \sqrt{y^2 + 1} \right) \left( e^x -y + \sqrt{y^2+1} \right)\\
+		\iff& e^x = y + \sqrt{y^2 + 1} \ou e^x = y - \sqrt{y^2 + 1}\\
+	\end{align*}
+	
+	Or, $\left( y + \sqrt{1+y^2} \right)\left( y - \sqrt{1+y^2} \right) = -1 < 0$ donc $y + \sqrt{1+y^2}$ et $y - \sqrt{1+y^2}$ sont de signes opposés.
+
+	Comme $y + \sqrt{1+y^2} > y - \sqrt{1+y^2}$, on a $\begin{cases}
+		y + \sqrt{1+y^2} > 0\\
+		y - \sqrt{1 + y^2} < 0
+	\end{cases}$ d'où \[
+		\sh x = y \iff e^x = y + \sqrt{1+y^2} \iff x = \ln\left( y + \sqrt{1+y^2} \right).
+	\]
+
+	On a trouvé la réciproque de $\sh$ : \begin{align*}
+		\Argsh: \R &\longrightarrow \R \\
+		x &\longmapsto \ln\left(x + \sqrt{1+x^2}\right)
+	\end{align*}
+\end{exo}
 

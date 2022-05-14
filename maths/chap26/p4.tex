@@ -1,0 +1,306 @@
+\part{Développement suivant une ligne ou une colonne}
+
+\begin{exm}
+	\[
+		\begin{vmatrix}
+			+&-&+&-\\
+			-&+&-&+\\
+			+&-&+&-\\
+			-&+&-&+\\
+		\end{vmatrix}
+	\] 
+
+	\begin{align*}
+		\left|
+		\begin{array}{c|c|cc}
+			\cline{2-2}
+			1&2&3&0\\
+			4&5&6&-1\\
+			7&8&9&-2\\
+			3&2&1&0\\\cline{2-2}
+		\end{array}
+		\right| &= -2 \begin{vmatrix}
+			4&6&-1\\
+			7&9&-2\\
+			3&1&0
+		\end{vmatrix}
+		+ 5
+		\begin{vmatrix}
+			1&3&0\\
+			7&9&-2\\
+			3&1&0
+		\end{vmatrix}
+		-8
+		\begin{vmatrix}
+			1&3&0\\
+			4&6&-1\\
+			3&1&0
+		\end{vmatrix} + 2
+		\begin{vmatrix}
+			1&3&0\\
+			4&6&-1\\
+			7&9&-2
+		\end{vmatrix}\\
+		\left|
+		\begin{array}{ccc|c|}
+			\cline{4-4}
+			1&2&3&0\\
+			4&5&6&-1\\
+			7&8&9&-2\\
+			3&2&1&0\\\cline{4-4}
+		\end{array}
+		\right|
+		&= -1
+		\begin{vmatrix}
+			1&2&3\\
+			7&8&9\\
+			3&2&1
+		\end{vmatrix} + 2
+		\begin{vmatrix}
+			1&2&3\\
+			4&5&6\\
+			3&2&1
+		\end{vmatrix}\\
+		\left|
+		\begin{array}{cccc}
+			1&2&3&0\\
+			4&5&6&-1\\
+			7&8&9&-2\\
+			\cline{1-4}
+			\multicolumn{1}{|c}{3}&2&1&\multicolumn{1}{c|}{0}\\\cline{1-4}
+		\end{array}
+		\right| &= -3
+		\begin{vmatrix}
+			2&3&0\\
+			5&6&-1\\
+			8&9&-1\\
+		\end{vmatrix}
+		+ 2
+		\begin{vmatrix}
+			1&3&0\\
+			4&6&-1\\
+			7&9&-2
+		\end{vmatrix} -
+		\begin{vmatrix}
+			1&2&0\\
+			4&5&-1\\
+			7&8&9
+		\end{vmatrix}\\
+	\end{align*}
+
+	$E = \C^4$ et $\mathcal{B} = (e_1, e_2, e_3, e_4)$ base canonique de $E$.
+
+	On pose $\begin{cases}
+		u_1 = (1,4,7,3),\\
+		u_2 = (2,5,8,2),\\
+		u_3 = (3,6,9,1),\\
+		u_4 = (0,-1,-2,0).
+	\end{cases}$ et $A = \Mat_\mathcal{B}(u_1, u_2, u_3, u_4) = \Mat_\mathcal{B}(u_1, 2e_1 + 5e_2 + 8e_3 + 2e_4, u_3, u_4)$.
+
+	Donc,
+	\begin{align*}
+		\det A &= \det_\mathcal{B}(u_1, 2e_1 + 5e_2 + 8e_3 + 2e_4, u_3, u_4) \\
+		&= \phantom{+}\,2\det_\mathcal{B}(u_1, e_1, u_3, u_4) \\
+		&\phantom{=}+ 5\det_\mathcal{B}(u_1, e_2, u_3, u_4)\\
+		&\phantom{=}+ 9\det_\mathcal{B}(u_1, e_3, u_3, u_4)\\
+		&\phantom{=}+ 2\det_\mathcal{B}(u_1, e_4, u_3, u_4).\\
+	\end{align*}
+
+	\begin{align*}
+		\det_\mathcal{B}(u_1, e_1, u_3, u_4) &= 
+		\begin{vmatrix}
+			1&1&3&0\\
+			4&0&6&-1\\
+			7&0&9&-2\\
+			3&0&1&0
+		\end{vmatrix}\\
+		&= -
+		\begin{vmatrix}
+			\bx 1 & 1 & 3 & 0\\
+			0&4&6&-1\\
+			0&7&9&-2\\
+			0&3&1&0
+		\end{vmatrix}\\
+		&= -
+		\left|\begin{NiceArray}{c|ccc}
+			1&0&0&0\\\hline
+			0&4&6&-1\\
+			0&7&9&-2\\
+			0&3&1&0
+		\end{NiceArray}\right|\\
+		&= \ldots \\
+		&= - \left|
+		\begin{NiceArray}{c|ccc}
+			1&&0&\\\hline
+			 &\Block{3-3}{\diagbox{(0)}{*}}\\
+			0\\
+			\\
+		\end{NiceArray}\right|  \\
+	\end{align*}
+
+	Idem pour $e_2, e_3, e_4$.
+\end{exm}
+
+\begin{prop}[Laplace]
+	Soit $A = (a_{ij}) \in \mathcal{M}_n(\mathbbm{K})$. \[
+		\forall j \in \left\llbracket 1,n \right\rrbracket,\, \det(A) = \sum_{i=1}^n (-1)^{i+j} a_{i,j} m_{i,j}
+	\] où $m_{i,j}$ est le \underline{mineur} d'indices $(i,j)$, i.e. le déterminant de la matrice obtenue en supprimant la ligne $i$ et la colonne $j$ de la matrice $A$. \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket,\,
+		\det(A) = \sum_{j=1}^n (-1)^{i+j} a_{i,j} m_{i,j}.
+	\]\qed
+\end{prop}
+
+\begin{prop}[Vandermonde]
+	Soient $(a_1, \ldots, a_n) \in \mathbbm{K}^n$. \[
+		\begin{vmatrix}
+			1&a_1&a_1^2&\cdots&a_1^{n-1}\\
+			1&a_2&a_2^2&\cdots&a_2^{n-1}\\
+			\vdots&\vdots&\vdots&\ddots&\vdots\\
+			1&a_n&a_n^2&\cdots&a_n^{n-1}
+		\end{vmatrix} = \prod_{j<i} (a_j - a_i)
+	\]
+\end{prop}
+
+\begin{prv}[par récurrence sur $n$]
+	\begin{itemize}
+		\item Soit $n \in \N$. Soient $a_1, \ldots, a_{n+1} \in \mathbbm{K}$. On pose \[
+				\Delta_{n+1} =
+				\begin{vmatrix}
+					1&a_1&\cdots&a_1^n\\
+					\vdots&\vdots&\ddots&\vdots\\
+					1&a_{n+1}&\cdots&a_{n+1}^{n}
+				\end{vmatrix}
+			\] On développe $\Delta_{n+1}$ suivant la dernière ligne et on obtient une expression polynomial en $a_{n+1}$ : \[
+					\Delta_{n+1} = P(a_{n+1}) \text{ avec } P \in \mathbbm{K}_n[X]
+			\] et le coefficent devant $X^n$ est $\Delta_n$.
+			\begin{itemize}
+				\item[\sc Cas 1] On suppose $\Delta_n \neq 0$. D'après l'hypothèse de récurrence : \[
+						\begin{cases}
+							\forall i,j \in \left\llbracket 1,n \right\rrbracket,\, i\neq j \implies a_i \neq a_j\\
+							\dom(P_n) = \Delta_n = \prod_{n\ge j> i\ge 1} (a_j - a_i)\\
+							\deg(P_n) = n\\
+							\forall i \in \left\llbracket 1,n \right\rrbracket, P(a_i) = 0
+						\end{cases}
+					\] donc \[
+						P = \Delta_n (X-a_1) \cdots (X-a_n)
+					\] donc
+					\begin{align*}
+						\Delta_{n+1} &= \prod_{n \ge j > i \ge 1} (a_j - a_i)\;(a_{n+1}-a_1)\cdots(a_{n+1} - a_n)\\
+						&= \prod_{n+1 \ge j > i \ge 1} (a_j - a_i) \\
+					\end{align*}
+				\item[\sc Cas 2] On suppose $\Delta_n = 0$ : \[
+						\exists i,j \in \left\llbracket 1,n \right\rrbracket,\, i\neq j \et a_i = a_j.
+					\] Alors, \[
+						\Delta_{n+1} = 0 = \prod_{n+1\ge j > i \ge 1} (a_j - a_i).
+					\]
+			\end{itemize}
+	\end{itemize}
+\end{prv}
+
+\begin{prop-defn}
+	Soit $A \in \mathcal{M}_n(\mathbbm{K})$, et $\com(A)$ la \underline{comatrice}\index{comatrice} de $A$ : c'est la matrice \[
+		\left( (-1)^{i+j}\; m_{i,j} \right)_{1\le i,j\le n}
+	\] où $m_{i,j}$ est le mineur d'indices $(i,j)$ de $A$.
+
+	On a \[
+		A\;\t\com(A) = \t\com(A)\;A = \det(A)\;I_n.
+	\] Si $\det A \neq 0$, alors \[
+		A^{-1} = \frac{1}{\det(A)} \; \t\com(A).
+	\]
+\end{prop-defn}
+
+\begin{exm}
+	Avec $A = \begin{pmatrix}
+		a&c\\
+		b&d
+	\end{pmatrix}$, on a $\det A = ad - bc$.
+
+	\[
+		\com A = \begin{pmatrix}
+			+d&-b\\
+			-c&+a
+		\end{pmatrix} \text{ donc } \t \com(A) = \begin{pmatrix}
+			d & -c\\
+			-b & a
+		\end{pmatrix}
+	\] Si $\det(A) \neq 0$, \[
+		A^{-1} = \frac{1}{ad - bc} \begin{pmatrix}
+			d&-c\\
+			-b&a
+		\end{pmatrix}
+	\]
+\end{exm}
+
+\begin{exm}
+	Avec $A = \begin{pmatrix}
+		a_1&b_1&c_1\\
+		a_2&b_2&c_2\\
+		a_3&b_3&c_3\\
+	\end{pmatrix}$, on a \[
+		\com A = \begin{pmatrix}
+			b_2c_3-b_3c_2 & a_3c_2-a_2c_3 & a_2b_3-a_3b_2\\[2mm]
+			c_1b_3-b_1c_3 & a_1c_3-a_3c_1 & a_3b_1-a_1 b_3\\[2mm]
+			b_1c_2-b_2c_1 & a_2c_1-a_1c_2 & a_1b_2-a_2b_1
+		\end{pmatrix}
+	\]
+\end{exm}
+
+\begin{prv}
+	On note $C = A\; \t\com(A) = (c_{i,j})$.
+	\begin{align*}
+		\forall i \in \left\llbracket 1,n \right\rrbracket,
+		c_{ii} = \sum_{j=1}^n a_{ij} (-1)^{i+j} m_{ij} = \det(A).
+	\end{align*}
+	Soient $i \in \left\llbracket 1,n \right\rrbracket$, $j \in \left\llbracket 1,n \right\rrbracket$ avec $i \neq j$. \[
+		c_{ij} = \sum_{k=1}^n a_{ik}(-1)^{j+k} m_{jk}.
+	\] C'est le déterminant de la matrice obtenue en remplaçant la $j$-ème ligne de $A$ par la $i$-ème, qui a donc $2$ lignes identiques donc $c_{ij} = 0$.
+
+	L'autre formule ``$\;\t\com(A)\;A = \det(A)I_n$'' se démontre de la même façon.
+\end{prv}
+
+\begin{rmk}
+	En pratique, on n'utilise jamais cette formule pour trouver $A^{-1}$ (sauf si $n = 2$).
+\end{rmk}
+
+\begin{exo}[Formules de Cramer]~
+	\centered{\large\color{red}\sc Inutiles et Hors-Programme}
+
+	Soit $S$ le système $AX = B$ avec $A \in \mathrm{GL}_n(\mathbbm{K})$ et $B \in \mathcal{M}_{n,1}(\mathbbm{K})$.
+
+	L'unique solution du système $S$ est donnée par \[
+		X = \begin{pmatrix}
+			x_1\\\vdots\\x_n
+		\end{pmatrix} \text{ où } \forall i,\; x_i = \frac{\det A_i}{\det A}
+	\] où $A_i$ est obtenue en replaçant la $i$-ème colonne de $A$ par $B$.
+
+	\underline{Solution :} Soit $(x_1, \ldots, x_n)$ l'unique solution de $S$. \[
+		\sum_{i=1}^n x_i C_i(A) = B
+	\] où $C_i(A)$ est la $i$-ème colonne de $A$.
+	\begin{align*}
+		\forall j, \det(A_j) &= \det\big(C_1(A), C_2(A), \ldots, C_{j-1}(A), B, C_{j+1}(A),\ldots, C_n(A)\big)\\
+		&= \sum_{i=1}^n x_i \det\big(C_1(A), \ldots, C_{j-1}(A), C_i(A), C_{j+1}(A), \ldots, c_n(A)\big) \\
+		&= x_j \det(A) \\
+	\end{align*}
+\end{exo}
+
+\centered{Retour sur la diagonalisation}
+
+Soit $A \in \mathcal{M}_n(\mathbbm{K})$. On cherche $P \in \mathrm{GL}_n(\mathbbm{K})$ telle que \[
+	P\;A\;P^{-1} =
+	\begin{pNiceMatrix}
+		\lambda_1&\Block{2-2}{(0)}&\\
+		\Block{2-2}{(0)}&\Ddots\\
+		&&\lambda_n
+	\end{pNiceMatrix}
+\] Soit $f \in \mathcal{L}(\mathbbm{K}^n)$ telle que $\Mat_\mathcal{B}(f) = A$ où $\mathcal{B}$ est la base canonique de $\mathbbm{K}^n$. On cherche $\mathcal{C} = (u_1, \ldots, u_n) \in \mathbbm{K}^n$ telle que \[
+	\exists \lambda_i, f(u_i) = \lambda_i u_i
+\]
+
+\begin{align*}
+	&\exists \lambda \in \mathbbm{K},\,\exists u\neq 0,\,f(u) = \lambda u\\
+	\iff & \exists \lambda \in \mathbbm{K},\,\exists u\neq 0,\, u \in \Ker(f - \lambda \id_{\mathbbm{K}^n})\\
+	\iff & \exists \lambda \in \mathbbm{K},\,f-\lambda \id_{\mathbbm{K}^n} \text{ n'est pas injective}\\
+	\iff & \exists \lambda \in \mathbbm{K},\, f - \lambda \id_{\mathbbm{K}^n} \not\in \mathrm{GL}(\mathbbm{K}^n)\\
+	\iff & \exists \lambda \in \mathbbm{K},\, \det(\lambda - \id_{\mathbbm{K}^n}) = 0\\
+	\iff & \exists \lambda \in \mathbbm{K},\,\underbrace{\det(A - \lambda I_n)}_{\text{polynôme caractéristique de $A$}} = 0
+\end{align*}

@@ -421,3 +421,135 @@
 	Comme $\le$ est antisymétrique, $M_1 = M_2$.
 \end{prv}
 
+\begin{prop-defn}
+	Soit $(E, \le)$ un ensemble ordonné et $A \in \mathcal{P}(E)$ minorée par $m \in E$. On dit que $m$ est une \underline{borne inférieur} \index{borne inférieur} de $A$ si \[
+		\begin{cases}
+			\forall a \in A,\;m\le a,\\
+			\forall x \in E,\;(\forall a \in A,\,x\le a) \implies x \le m.
+		\end{cases}
+	\] Dans ce cas, $m$ est unique et on la note $\inf(A)$.\qed
+\end{prop-defn}
+
+\begin{defn}
+	Soit $(E, \le)$ un ensemble ordonné et $A \in \mathcal{P}(E)$.
+
+	\begin{enumerate}
+		\item Soit $M \in E$. On dit qye $M$ est le \underline{plus grand élément} \index{plus grand élément (ensemble)} de $A$ ou que $M$ est le \underline{maximum} \index{maximum (ensemble)} de $A$ si \[
+				\begin{cases}
+					\forall a \in A,\,a \le M,\\
+					M \in A.
+				\end{cases}
+			\] Dans ce cas, on le note $M = \max(A)$.
+		\item Soit $m \in E$. On dit que $m$ est le \underline{plus petit élément} \index{plus petit élément (ensemble)} de $A$ ou que $m$ est le \underline{minimum} \index{minimum (ensemble)} de $A$ si \[
+				\forall a \in A,\, a \ge m\\
+				m \in A
+			\] Dans ce cas, on le note $m = \min(A)$.
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	En cas d'éxistence, il y a unicité du minimum et du maximum.
+\end{prop}
+
+\begin{prv}
+	Soient $M_1$ et $M_2$ deux maxima. On a $M_1 \in A$ donc $M_1 \le M_2$. Or, $M_2 \in A$ donc $M_2 \le M_1$. On en déduit que $M_1 = M_2$.
+\end{prv}
+
+\begin{prop}
+	Soit $(E, \le)$ un ensemble ordonné, $A \in \mathcal{P}(E)$ et $M \in E$.
+
+	\[
+		M = \max(A) \iff \begin{cases}
+			M = \sup(A),\\
+			M \in A;
+		\end{cases}
+	\] \[
+		M = \min(A) \iff \begin{cases}
+			M = \inf(A),
+			M \in A.
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $M = \max(A)$. On sait déjà que $M \in A$ et que $M$ est un majorant de $A$.
+
+			Soit $M'$ un majorant de $A$. $M \in A$ donc $M' \ge M$. On en déduit que $M = \sup(A).$
+		\item[``$\impliedby$''] On suppose $M = \sup(A) \in A$. Alors $M$ majore $A$ et $M \in A$ donc $M = \max(A)$.
+	\end{itemize}
+\end{prv}
+
+\begin{exm}
+	$E = \N^*$ muni de $\mid$ et $A = \{3, 5\}$. $\sup(A) = 3 \vee 5 = 15 \not\in A$ donc $A$ n'a pas de maximum.
+\end{exm}
+
+\begin{defn}
+	Soit $(E, \le)$ un ensemble ordonné, $A \in \mathcal{P}(E)$ et $M \in A$.
+
+	On dit que $M$ est un \underline{élément maximal}\index{élément maximal (ensemble)} de $A$ si aucun élément de $A$ n'est strictement supérieur à $M$ : \[
+		\nexists\, a \in A, \begin{cases}
+			M \le a,\\
+			M \neq a.
+		\end{cases}
+	\]
+
+	On dit que $M$ est un \underline{élément minimal}\index{élément minimal (ensemble)} de $A$ si aucun élément de $A$ n'est strictement inférieur à $M$ : \[
+		\nexists\, a \in A, \begin{cases}
+			M \ge a,\\
+			M \neq a.
+		\end{cases}
+	\]
+\end{defn}
+
+\begin{exm}
+	$E = \{ n \in \N  \mid  n \ge 2\} = \N \setminus \{0, 1\}$ muni de $\mid$ et $A = E$. Les éléments minimaux de $E$ sont les nombres premiers, il y en a une infinité. Il n'y a donc pas d'élément maximal.
+\end{exm}
+
+\begin{prop}
+	Avec les notations précédentes, si $A$ a un maximum $M$ alors $M$ est le seul élément maximal de $A$.
+\end{prop}
+
+\begin{prv}
+	Soit $M = \max(A)$. Soit $a \in A$ tel que $M \le a$ et $M \neq a$. Comme $a \in A$ et $M = \max(A)$, on sait que $a \le M$. Par antisymétrie, on en déduit que $a = M$ : une contradiction.
+
+	Donc $M$ est un élément maximal de $A$.
+
+	Soit $M'$ un élément maximal de $A$. $M' \in A$ donc $M' \le M$ et donc $M = M'$.
+\end{prv}
+
+\begin{defn}
+	Soient $(E, \le)$ et $(F, \preceq)$ deux ensembles ordonnés et $f : E \to F$. On dit que
+	\begin{enumerate}
+		\item $f$ est \underline{croissante}\index{croissance (application)} si \[
+				\forall (x,y) \in E^2, x \le y \implies f(x) \preceq f(y);
+			\]
+		\item $f$ est \underline{décroissante}\index{décroissance (application)} si \[
+				\forall (x,y) \in E^2, x \le y \implies f(x) \succeq f(y).
+			\]
+	\end{enumerate}
+\end{defn}
+
+\begin{exm}
+	$E = \N^*$ muni de $ \mid$, $F = \N^*$ muni de $\le$ et $f : \begin{array}{rcl}
+		E &\longrightarrow& F \\
+		x &\longmapsto& x.
+	\end{array}$
+
+	Soit $(x,y) \in E^2$ tels que $x  \mid y$. Alors $x \le y$ donc $f$ est croissante.
+
+	On pose \begin{align*}
+		g: F &\longrightarrow E \\
+		n &\longmapsto n.
+	\end{align*}
+
+	$2 \le 3$ mais $2 \nmid 3$ donc $g$ n'est pas croissante et $2 \le 5$ mais $5\nmid 2$ donc $g$ n'est pas décroissante.
+\end{exm}
+
+\begin{defn}
+	Soit $(E, \le)$ un ensemble ordonné et $A \in \mathcal{P}(E)$. On dit que $A$ est \underline{bornée} \index{borné (ensemble)} si $A$ est à la fois majorée et minorée.
+\end{defn}
+
+\begin{defn}
+	Avec les notations précédentes, un \underline{extremum}\index{extremum (ensemble)} de $A$ (sous reserve d'éxistence) est un maximum ou un minimum de $A$.
+\end{defn}

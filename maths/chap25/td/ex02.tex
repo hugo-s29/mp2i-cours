@@ -1,0 +1,29 @@
+\part{Exercice 2}
+
+\begin{align*}
+	\forall n \in \N,\, \frac{1}{1+n+n^2} &= \frac{n+1-n}{1+n(n+1)} \\
+\end{align*}
+
+On pose \[
+	\forall n \in \N,\, u_n = \Arctan n
+\] et alors \[
+	\forall n \in \N,\, \frac{1}{1+n+n^2} = \frac{\tan u_{n+1} - \tan u_n}{1+ \tan(u_{n+1})\tan(u_n)} = \tan(u_{n+1}-u_n).
+\] En effet, \[
+	\begin{cases}
+		0 < u_{n+1} < \frac{\pi}{2}\\
+		-\frac{\pi}{2} < -u_n \le 0
+	\end{cases}
+\] donc \[
+	-\frac{\pi}{2} < u_{n+1} - u_n < \frac{\pi}{2}
+\] et donc $u_{n+1} - u_n \not\equiv \frac{\pi}{2} \mod \pi$ et $\Arctan\big(\tan(u_{n+1}-u_n)\big) = u_{n+1}-u_n$.
+
+\begin{align*}
+	\forall n \in \N, \sum_{k=0}^n \Arctan\left( \frac{1}{1+k+k^2} \right) &= \sum_{k=0}^n (u_{k+1}- u_k) \\
+	&= u_{n+1} - u_n \\
+	&\tendsto{n\to +\infty} \frac{\pi}{2}
+\end{align*}
+
+On a donc \[
+	\frac{\pi}{2} = \sum_{n=0}^{+\infty} \Arctan \left( \frac{1}{1+n+n^2} \right)
+\]
+

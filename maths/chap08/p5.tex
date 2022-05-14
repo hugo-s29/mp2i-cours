@@ -1,0 +1,290 @@
+\part{Divers}
+
+\begin{defn}
+	Soient $E$ et $F$ deux ensembles. Un \underline{couple}\index{couple} $(x,y)$ est la donnée d'un élément $x$ de $E$ et d'un élément $y$ de $F$ où \[
+		\forall x,x' \in E,\,\forall y,y' \in F,\qquad (x,y) = (x',y') \iff \begin{cases}
+			x=x',\\
+			y=y'.
+		\end{cases}
+	\] On note $E \times F$ l'ensemble des couples; c'est le \underline{produit cartésien}\index{produit cartésion (ensembles)} de $E$ et $F$.
+\end{defn}
+
+\begin{exm}
+	$D \times [0,1]$ est un cylindre plein où $D$ est le disque unité fermé i.e. \[
+		D = \Big\{(x,y) \in \R^2 \mid x^2+y^2 \le 1\Big\}.
+	\]
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				draw(unitcircle);
+				draw((0,0)--(1,0), red);
+				label("$1$",(0.5,0), red, align=S);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				label("$\times\; [0,1]\; =$", (0,0), fontsize(10));
+				draw(unitcircle, white+0);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				import solids;
+				size(3cm);
+				draw(shift((0, 0.5)) * unitcircle, white+0);
+				revolution r = cylinder(O, 1, 1.5, Z);
+				draw(r);
+				triple M = (-1/2, sqrt(3)/2, 0);
+				draw((0,0,0) -- M, red);
+				label("$1$", M/2, red, align=S);
+				draw(M*1.1--M*1.1+(0,0,1.5), magenta, Arrows3(TeXHead2));
+				label("$1$", M*1.1+(0,0,0.75), magenta, align=E);
+			\end{asy}
+		\end{subfigure}
+	\end{figure}
+
+	$C \times C$ où $C = \Big\{(x,y) \in \R^2  \mid x^2 + y^2 = 1\Big\}$ est un tore (creu).
+
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				draw(unitcircle);
+				draw((0,0)--(1,0), red);
+				label("$1$",(0.5,0), red, align=S);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{1cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				label("$\times$", (0,0), fontsize(10));
+				dot((0.1, 1), white+0);
+				dot((-0.1, -1), white+0);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				draw(unitcircle);
+				draw((0,0)--(1,0), red);
+				label("$1$",(0.5,0), red, align=S);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{1cm}
+			\centering
+			\begin{asy}
+				size(3cm);
+				label("$=$", (0,0), fontsize(10));
+				dot((0.1, 1), white+0);
+				dot((-0.1, -1), white+0);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				import three;
+				import graph3;
+
+				size(3cm,3cm);
+				surface torus = surface(Circle(c=2Y,normal=X,r=0.5,n=32), c=O, axis=Z, n=32);
+
+				draw(torus, white + opacity(0), meshpen=black + 0.2pt, nolight, render(merge=true));
+			\end{asy}
+			\vspace{0.7cm}
+		\end{subfigure}
+	\end{figure}
+\end{exm}
+
+\begin{defn}
+	Soient $E$ et $F$ deux ensembles. On dit que $E$ et $F$ sont \underline{équipotents} s'il existe une bijection de $E$ dans $F$.
+	\index{équipotence (ensembles)}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $\N$ et $\N^*$ sont équipotents car  $f : \begin{array}{rcl}
+				\N &\longrightarrow& \N^* \\
+				k &\longmapsto& k + 1
+			\end{array}$ est bijective.
+		\item $P = \{n \in \N  \mid n \text{ pair}\}$ et $I= \{n \in \N \mid n \text{ impair}\}$ sont équipotents car $f : \begin{array}{rcl}
+				P &\longrightarrow& I \\
+				x &\longmapsto& x+1
+			\end{array}$ est bijective.
+		\item $\N$ et $P$ sont équipotents car $f : \begin{array}{rcl}
+				\N &\longrightarrow& P \\
+				k &\longmapsto& 2k
+			\end{array}$ est bijective.
+		\item $[0,1]$ et $[0,1[$ sont équipotents car \begin{align*}
+			f: [0,1] &\longrightarrow [0,1[ \\
+			x &\longmapsto \begin{cases}
+				\frac{1}{n+1} &\text{ si } x = \frac{1}{n} \text{ avec } n \in \N^*\\
+				x &\text{ sinon}
+			\end{cases}
+		\end{align*} est bijective.
+		\item De même, $]0,1[$ et $]0,1]$ sont équipotents.
+		\item $]0,1[$ et $[0,1[$ sont équipotents : $f : \begin{array}{rcl}
+					]0,1] &\longrightarrow& [0,1[ \\
+				x &\longmapsto& 1-x
+			\end{array}$ est bijective.
+		\item $\forall a < b$, $[a,b]$ et $[0,1]$ sont équipotents : \begin{align*}
+				f: [0,1] &\longrightarrow [a,b] \\
+				\alpha &\longmapsto \alpha b + (1 - \alpha) a
+			\end{align*} est bijective (interpolation linéaire).
+		\item $\R$ et $]0,1[$ sont équipotents : \begin{align*}
+				f: \R &\longrightarrow ]0,1[ \\
+				x &\longmapsto \frac{1}{2} + \frac{\Arctan x}{\pi}
+			\end{align*} est bijective.
+		\item $[0,1[$ et $\N$ ne sont pas équipotents (argument de Cantor). Soit $f: \N \to [0,1[$ une bijection :
+			\[
+				\begin{array}{c|l}
+					k&\hfill f(k)\hfill~ \\ \hline
+					0&0,\hfill \!0\hfill 0\hfill 0\hfill 0\hfill\ldots\\
+					1&0,\hfill a_1\hfill a_2\hfill a_3\hfill a_4\hfill\ldots\\
+					2&0,\hfill b_1\hfill b_2\hfill b_3\hfill b_4\hfill\ldots\\
+					\vdots&\hfill\vdots\hfill\ddots
+				\end{array}
+			\] On considère le nombre \[
+				x = 0,\,(a_0+1)(b_1+1)(c_2+1)\cdots
+			\] $f(1) \neq x$ car ils n'ont pas le même chiffre des dizaines.\\
+			$f(2) \neq x$ car ils n'ont pas le même chiffre des centaines.
+
+			Par le même raisonement, on en déduit que \[
+				\forall n \in \N, f(n) \neq x
+			\] donc $x$ n'a pas d'antécédant : une contradiction.
+		\item On verra en exercice que $E$ et $\mathcal{P}(E)$ ne sont pas équipotents. $\R$ et $\mathcal{P}(\R)$ ne sont pas équipotents mais $\R$ et $\mathcal{P}(\N)$ le sont (développement dyadique).
+		\item $\R^2$ et $\R$ sont équipotents; $\C$ et $\R$ sont équipotents.
+	\end{enumerate}
+\end{exm}
+
+\begin{exo}
+	Soit $E$ un ensemble. L'application \begin{align*}
+		f: \mathcal{P}(E) &\longrightarrow {0,1}^E \\
+		A &\longmapsto \mathbbm{1}_A
+	\end{align*} est bijective.
+
+	Soit $g : E \to \{0,1\}$.
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $A \in \mathcal{P}(E)$ tel que $f(A) = g$. Alors $g = \mathbbm{1}_A$.
+			donc  \[
+				\forall x \in E,\; g(x) = \mathbbm{1}_A(x)
+			\] et donc \[
+				\begin{cases}
+					\forall x \in A,\, g(x) = 1\\
+					\forall x \in E \setminus A,\,g(x) = 0
+				\end{cases}
+			\] On en déduit que \[
+				A = \{ x \in E  \mid  g(x) = 1\}  = g^{-1}\big(\{1\}\big).
+			\]
+		\item[\underline{\sc Synthèse}] On pose $A = g^{-1}\big(\{1\}\big)$. Montrons que $f(A) = g$.
+			\[
+				\forall x \in E,\,g(x) = \begin{cases}
+					1 &\text{ si } x \in A\\
+					0 &\text{ si } x \not\in A
+				\end{cases} = \mathbbm{1}_A
+			\] donc $g = \mathbbm{1}_A$.
+	\end{itemize}
+
+	On aurait aussi pu rédiger de la façon suivante : on pose \begin{align*}
+		u: \{0,1\}^E &\longrightarrow \mathcal{P}(E) \\
+		g &\longmapsto g^{-1}\big(\{1\}\big).
+	\end{align*} On montre que $u$ est la réciproque de $f$ : \[
+		\begin{cases}
+			f \circ u = \id_{\{0,1\}^E},\\
+			u \circ f = \id_{\mathcal{P}(E)}.
+		\end{cases}
+	\]
+\end{exo}
+
+\begin{defn}
+	Soit $f : E \to F$. L'\underline{image de $f$}\index{image (application)} est \[
+		\mathrm{Im}(f) = f(E) = \big\{f(x) \mid x \in E\big\}.
+	\]
+\end{defn}
+
+\begin{prop}
+	Soit $f: E \to F$. \[
+		f \text{ est surjective } \iff f(E) = F.
+	\]
+\end{prop}
+
+\begin{defn}
+	Une \underline{suite de $E$}\index{suite (ensemble)} est une application de $\N$ dans $E$.
+\end{defn}
+
+\begin{rmk}[Notation]
+	Soit $u \in E^\N$. Pour $n \in \N$, on écrit $u_n$ à la place de $u(n)$.
+\end{rmk}
+
+\begin{defn}
+	Soient $E$ et $I$ deux ensembles. Une \underline{famille de $E$ indéxée par $I$}\index{famille (ensemble)} est une application de $I$ dans $E$.
+
+	À la place de $u(i)$ (avec $i \in I$), on écrit $u_i$.
+\end{defn}
+
+\begin{defn}
+	Soit $E$ un ensemble et $(A_i)_{i \in I}$ une famille de parties de $E$. On suppose $I \neq \O$. On pose \[
+		\bigcup_{i \in  I} A_i = \{x \in E  \mid \exists i \in I,\, x \in A_i\}
+	\] et \[
+		\bigcap_{i \in  I} A_i = \{x \in E  \mid \forall i \in I,\, x \in A_i\}.
+	\] On pose aussi $\bigcup_{i \in \O} A_i = \O$ et $\bigcap_{i \in \O}  A_i = E$.
+\end{defn}
+
+\begin{rmk}
+	De même que pour les sommes et produits de complexes, on peut intervertir des réunions doubles.
+\end{rmk}
+
+\begin{prop}
+	Soit $E$ un ensemble, $(A,B) \in \mathcal{P}(E)^2$. \[
+		A \subset (E \setminus B) \iff A \cap B = \O.
+	\]
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import patterns;
+		add("hatch",hatch(1mm, deepcyan));
+		add("hatch2",hatch(1mm, heavygreen));
+		size(3cm);
+
+		guide main_set = scale(1.3) * ((-1,1)..(-0.8,-0.8)..(0,-0.9)..(0.7,-1.2)..(0.8, 0.9)..cycle);
+		guide set_a = shift((-0.5, -0.2)) * ((-0.6, 0.6)..(0.2,-0.2)..(0.2,-0.4)..(-0.6,-0.2)..cycle);
+		guide set_b = shift((0.3, 0.4)) * ((0.8, -0.6)..(1.1,-0.2)..(0.2,0.5)..(0.2,-0.8)..cycle);
+
+		draw(main_set, magenta); label("$E$", 1.3*(0.8,0.9),magenta, align=NE);
+		draw(set_a, deepcyan); label("$A$", (-0.6,0.6), deepcyan, align=NW);
+		draw(set_b, heavygreen); label("$B$", (0.8,-0.6), heavygreen, align=SE);
+
+		fill(set_a, pattern("hatch"));
+		fill(set_b, pattern("hatch2"));
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] Soit $x \in A \cap B$. Alors $x \in A$ et $x \in B$. Comme $x \in A \subset (E \setminus B)$, alors $x \in E \setminus B$ i.e. $x \not\in B$ : une contradiction. Donc $A \cap B = \O$.
+		\item[``$\impliedby$''] On suppose $A \cap B = \O$. Soit $x \in A$. Si $x \in B$, alors $x \in A \cap B = \O$ : faux.
+			Donc $x \not\in B$ et donc $x \in E \setminus B$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Si $f: E\to F$ et $g: F \to G$ sont bijectives, alors $g \circ f$ est bijective et \[
+		(g \circ f)^{-1} = f^{-1} \circ g^{-1}.
+	\] \qed
+\end{prop}
+
+\begin{rmk}[\danger Attention]
+	$g \circ f$ peut-être bijective alors que $f$ et $g$ ne le sont pas.
+\end{rmk}
+

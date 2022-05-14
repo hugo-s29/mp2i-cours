@@ -1,0 +1,76 @@
+\part{Axiomatique de $\N$}
+
+\begin{axm}
+	$(\N,\le)$ est un ensemble non vide totalement ordonné vérifiant
+	\begin{itemize}
+		\item Toute partie non vide de $\N$ a un plus petit élément;
+		\item Toute partie non vide majorée de $\N$ a un plus grand élément;
+		\item $\N$ n'est pas majoré.
+	\end{itemize}
+\end{axm}
+
+\begin{defn}
+	\begin{itemize}
+		\item $0$ est le plus petit élément de $\N$ : $0 = \min(\N)$. \index{zéro ($\N$)}
+		\item $1 = \min(\N^*) = \min\big(\N\setminus \{0\}\big)$. \index{un ($\N$)}
+		\item Soit $n \in \N$. On pose $n +1 = \min\big(\{k \in \N \mid k > n\}\big)$. On dit que $n+1$ est le \underline{successeur} de $n$.
+			\index{successeur ($\N$)}
+		\item Soit $n \in \N^*$. On pose $n - 1 = \max\big(\{k \in \N \mid k < n\}\big)$. On dit que $n-1$ est le \underline{prédécesseur} de $n$.
+			\index{prédécesseur ($\N$)}
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	\[
+		\begin{cases}
+			\forall n \in \N,\; (n+1)-1 = n;\\
+			\forall n \in \N^*,\; (n-1)+1 = n.\\
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $n \in \N$. On pose $p = n + 1$ et $q = p - 1$. On a donc $n < p$ et $q < p$ et donc $n \le q$ car $q = \max\big(\{k \in \N \mid k < p\} \big)$.
+
+	Si $q > n$, alors $q \ge p$ car $p = \min\big(\{k \in \N \mid k > n\}\big)$ : une contradiction.
+
+	On a donc $q = n$.
+\end{prv}
+
+\begin{prop}
+	Pour tout $n \in \N$, $\N\; \cap \;]n,n+1[\; = \O$.
+\end{prop}
+
+\begin{prv}
+	Soit $n \in \N$. On sait que $n + 1 > n$. Soit $p \in \N$ tel que $n < p < n+1$. Comme $p > n$, $p \ge n + 1$ : une contradiction.
+\end{prv}
+
+\begin{thm}[récurrence]
+	Soit $P$ un prédicat sur $\N$ et $n_0 \in \N$. Si \[
+		\begin{cases}
+			P(n_0) \text{ est vrai },\\
+			\forall n \ge n_0,\; P(n) \implies P(n+1),
+		\end{cases}
+	\] alors \[
+		\forall n \ge n_0,\;P(n) \text{ est vrai}.
+	\] 
+\end{thm}
+
+\begin{prv}
+	Soit $A = \{ n \in \N  \mid n \ge n_0 \et P(n) \text{ faux}\ \}$
+	Supposons $A \neq \O$; $A$ a donc un plus petit élément. On pose $N = \min(A)$.
+
+	\begin{itemize}
+		\item[\sc Cas 1] $N = 0$, alors, comme $N \in A$, on a $n_0 \le 0$ et $P(0)$ fausse. On en déduit que $n_0 = 0$ : une contradiction car $P(n_0) = P(0)$ est vraie.
+		\item[\sc Cas 2] $N \neq 0$. Alors $N - 1 \in \N$ et $N-1 \not\in A$ (car $N-1 < N$). On en déduit que $N-1 < n_0$ ou $P(N-1)$ vraie.
+
+			\begin{itemize}
+				\item Supposons $N-1 < n_0$. $N \in A$ donc $N \ge n_0$ et donc $N - 1 < n_0 \le N$ donc $N  = n_0$. Or, $N \in A$ donc $P(N)$ fausse alors que $P(n_0)$ est vraie.
+
+				\item Supposons $N-1 > n_0$ et $P(N-1)$ vraie. Comme $N-1 \ge n_0$, $P(N-1) \implies P(N)$ et donc $P(N)$ est vraie. Or, $N \in A$ et donc $P(N)$ est fausse.
+			\end{itemize}
+
+			On en déduit que $A = \O$.
+	\end{itemize}
+\end{prv}
+

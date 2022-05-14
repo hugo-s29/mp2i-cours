@@ -1,0 +1,29 @@
+\part{Exercice 7}
+
+\begin{enumerate}
+	\item
+		\begin{itemize}
+			\item On suppose que $\Sigma u_n$ converge. Donc $u_n \tendsto{n\to +\infty} 0$ et donc $v_n \sim u_n > 0$. Donc, $\Sigma v_n$ converge.
+			\item On suppose que $\Sigma v_n$ converge donc $v_n \tendsto{n\to +\infty} 0$. \[
+					\forall n,\, u_n = \frac{v_n}{1-v_n} \sim v_n
+				\] donc $\Sigma u_n$ converge.
+		\end{itemize}
+	\item
+		\begin{itemize}
+			\item
+				On suppose $\Sigma u_n$ convergente. \[
+					0 \le v_n \le \frac{u_n}{u_1} \qquad \left(\; v_n \sim \frac{u_n}{\sum_{k=1}^{+\infty} u_k}\;\right)
+				\] donc $\Sigma v_n$ converge.
+			\item On suppose que $\Sigma u_n$ diverge.
+				\begin{align*}
+					\forall n \in \N,\, \ln(1 - v_n) &= \ln\left( \frac{u_1 + \cdots + u_{n-1}}{u_1 + \cdots + u_n} \right) \\
+					&= \ln\left( \sum_{k=1}^{n-1} u_k \right) - \ln\left( \sum_{k=1}^n u_k \right) \\
+				\end{align*}
+				donc $\Sigma \ln(1 - v_n)$ a même nature que $\left( \ln\left( \sum_{k=1}^n u_k \right)  \right)_n$, donc $\Sigma \ln(1-v_n)$ diverge.
+
+				Si $\Sigma v_n$ converge, alors $v_n\longrightarrow 0$ et donc $\ln(1-v) \simi_{n\to +\infty} -v_n \le 0$ et donc $\Sigma\ln(1-v_n)$ converge $\lightning$.
+
+				Donc $\Sigma v_n$ diverge.
+		\end{itemize}
+\end{enumerate}
+

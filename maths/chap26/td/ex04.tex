@@ -1,0 +1,47 @@
+\part{Exercice 4}
+
+\begin{align*}
+	\Delta_{n+2} &=
+	\begin{vNiceMatrix}
+		a&b&0&\Cdots&0\\
+		c&\Ddots&\Ddots&\Ddots&\Vdots\\
+		0&\Ddots&&&0\\
+		\Vdots&\Ddots&&&b\\
+		0&\Cdots&0&c&a
+	\end{vNiceMatrix}\\
+	&= a\Delta_{n+1} - c
+		\begin{vNiceMatrix}
+			b&0&\Cdots&&&0\\
+			c&a&b&0&\Cdots&0\\
+			0&\Ddots&\Ddots&\Ddots\\
+			\Vdots&\Ddots&&&b\\
+			0&\Cdots&0&c&a
+		\end{vNiceMatrix}
+	\\
+	&= a \Delta_{n+1} - bc \Delta_n \\
+\end{align*}
+
+L'équation caractéristique est \[
+	z^2 = az - bc
+\] Son discriminant vaut \[
+	a^2 - 4bc = 0
+\] L'unique racine est $z = \frac{a}{2}$. \[
+	\exists \alpha, \beta \in \R,\; \forall n \in \N,\; \Delta_n (\alpha n + \beta)\left( \frac{a}{2} \right)^n
+\]
+
+\begin{itemize}
+	\item[\sc Cas 1] $a \neq 0$.
+		\[
+			\Delta_1 = \det\big((a)\big) = a = (\alpha + \beta) \frac{a}{2}
+		\] \[
+			\Delta_2 =
+			\begin{vmatrix}
+				a&b\\
+				c&a
+			\end{vmatrix} = \frac{3}{4} a^2 = (2\alpha + \beta)\frac{a^2}{4}
+		\]
+	\item[\sc Cas 2] $a = 0$. \[
+			\forall n, \Delta_n = 0 = (n+1)\frac{a^n}{2^n}
+		\]
+\end{itemize}
+

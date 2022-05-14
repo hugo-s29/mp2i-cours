@@ -1,0 +1,126 @@
+\part{Bornes supérieures}
+
+\begin{prop}[borne inférieure]
+	Toute partie minorée non vide de $\R$ admet une borne inférieure.
+\end{prop}
+
+\begin{prv}
+	Soit $A \subset \R$ non vide minorée. On pose $B = \{-a  \mid a \in A\} \neq \O$. Soit $m$ un minorant de $A$ : \[
+		\forall a \in A,\; m \le a.
+	\] D'où, \[
+		\forall a \in A,\; -a \le -m
+	\] donc $B$ est majorée par $-m$.
+
+	D'après la propriété de la borne supérieure, $B$ admet une borne supérieure. On pose $\beta = \sup(B)$, donc $\beta$ majore $B$ et donc \[
+		\forall a \in A,\; -a \le \beta
+	\] et donc \[
+		\forall a \in A,\; -\beta \ge a.
+	\] Donc $-\beta$ est un minorant de $A$.
+
+	Soit $x$ un minorant de $A$. Montrons que $x \le -\beta$. On sait que $-x$ majore $B$ et donc $-x \ge \beta$. On en déduit que $x \le -\beta$ et donc $-\beta = \inf(A).$
+\end{prv}
+
+\begin{prop}[caractérisation de la borne supérieure]
+	Soit $A \subset  \R$ non vide majorée et $M \in \R$. \[
+		M = \sup(A) \iff \begin{cases}
+			\forall a \in A,\;a\le M,\\
+			\forall \varepsilon > 0, \exists  a_0 \in A, A_0 > M - \varepsilon.
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $M = \sup(A)$. $M$ est un majorant de a : \[
+				\forall a \in A,\; a \le M.
+			\] Soit $\varepsilon > 0$, comme $M$ est le plus petit majorant de $A$ et que $M - \varepsilon < M$, $M-\varepsilon$ ne majore pas $A$. Donc \[
+				\exists a_0 \in A,\;a_0 > M - \varepsilon.
+			\]
+		\item On suppose \[
+			\begin{cases}
+				\forall a \in A,\; a \le M;\hfill (1)\\
+				\forall \varepsilon > 0, \exists a_0 \in A, M-\varepsilon < a_0.\qquad \hfill(2)
+			\end{cases}
+		\] D'après $(1)$, $M$ est un majorant de $A$. Soit $M'$ un majorant de $A$. Montrons que $M' \ge M$.
+
+		On suppose $M' < M$ et on pose $\varepsilon = M - M' > 0$. D'après $(2)$, il existe $a_0 \in A$ tel que \[
+			a_0 > M - \varepsilon = M' \ge a_0
+		\] une contradiction. Donc $M' \ge M$ et donc $M$ est le plus petit majorant de $A$ : $M = \sup(A)$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}[caractérisation de la borne inférieure]
+	Soit $A \subset \R$, non vide minorée et $m \in \R$. \[
+		m = \inf(A) \iff \begin{cases}
+			\forall a \in A,\;m \le a;\\
+			\forall \varepsilon > 0,\; \exists a_0 \in A,\; a_0 < m + \varepsilon.
+		\end{cases}
+	\] \qed
+\end{prop}
+
+\begin{prop}
+	Soit $A \subset \R$ non vide majorée et $M \in \R$. \[
+		M \ge \sup(A) \iff \forall a \in A,\, a \le M.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $M = \sup(A)$. Soit $a \in A$. On sait que $a \le \sup(A)$ car $\sup(A)$ majore $A$. Donc $a \le M$.
+		\item[``$\impliedby$''] On suppose $\forall a \in A,\, a \le M$. Donc $M$ majore $A$. Or, $\sup(A)$ est le plus petit majorant et donc $M \ge \sup(A)$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $A \subset \R$ non vide minorée et $m \in \R$. \[
+		m \le \inf(A) \iff \forall a \in A,\, m \le a.
+	\]\qed
+\end{prop}
+
+\begin{prop-defn}
+	$\R$ est \underline{archimédien} : \index{archimédien} \[
+		\forall x \in \R^*_+,\, \forall y \in \R,\, \exists n \in \N,\, nx \ge y.
+	\]
+\end{prop-defn}
+
+\begin{prv}
+	Soit $x \in \R^*_+$ et $y \in \R$. Supposons \[
+		(H): \qquad \forall n \in \N,\;nx < y.
+	\] On pose $A = \{nx  \mid n \in \N\} \subset \R$. Comme $0 \in A$, $A \neq \O$. D'après $(H)$, $A$ est majorée par $y$.
+
+	Soit $\alpha = \sup(A)$ et $n \in \N$. On sait que $(n+1) x \in A$ donc $(n+1)x\le \alpha$ et donc $nx \ge \alpha - x$. On remarque que $\alpha-x$ majore $A$ mais que $\alpha -x < \alpha$ : une contradiction car $\alpha$ est le plus petit majorant de $A$. Donc, \[
+		\exists n \in \N,\,nx \ge y.
+	\]
+\end{prv}
+
+\begin{thm}
+	Toute fonction continue sur un segment est bornée et atteint ses bornes : si $f : [a,b] \to \R$ (avec $a < b \in \R$) est continue, alors \[
+		\exists (\alpha, \beta) \in [a,b]^2,\; \forall x \in [a,b],\;f(\alpha) \le f(x) \le f(\beta).
+	\]
+\end{thm}
+
+\begin{prv}
+	c.f. Chapitre 14 : Continuité.
+\end{prv}
+
+\begin{prop}
+	Soit $A \subset \R$ non vide majorée. Il existe une suite $(a_n) \in A^\N$ telle que $\lim_{n\to +\infty} a_n = \sup(A)$.
+\end{prop}
+
+\begin{prv}
+	On sait que \[
+		\forall \varepsilon > 0,\, \exists a \in A,\, a > \sup(A) - \varepsilon.
+	\] Donc, \[
+		\forall n \in \N^*, \exists a_n \in A, a_n > \sup(A) - \frac{1}{n}.
+	\] On a \[
+		\forall n \in \N^*, a_n \in A \et a_n \le \sup(A).
+	\] Or \[
+		\forall n \in \N^*,\ \sup(A) - \frac{1}{n} < a_n \le \sup(A),
+	\] par encadrement, on en déduit que $a_n \tendsto{n\to +\infty} \sup(A)$.
+\end{prv}
+
+\begin{prop}
+	Soit $A \subset \R$ non vide minorée. Il existe une suite $(a_n) \in A^\N$ telle que $\lim_{n\to +\infty} a_n = \inf(A)$.
+	\qed
+\end{prop}
+

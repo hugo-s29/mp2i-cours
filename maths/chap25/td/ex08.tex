@@ -1,0 +1,42 @@
+\part{Exercice 8}
+
+\begin{align*}
+	\forall n \in \N,\, 0 &\le u_n \le \int_{n^2}^{n^2+1} \frac{1}{x^\alpha}~\mathrm{d}x\\
+	&\le \begin{cases}
+		\underbrace{\ln\left( 1 + \frac{1}{n^2} \right)}_{\sim \frac{1}{n^2}} &\text{ si } \alpha = 1\\[3mm]
+		\underbrace{\frac{1}{1-\alpha} \left( \left( n^2 + 1 \right)^{-\alpha + 1} - (n^2)^{-\alpha = 1} \right)}_{v_n} &\text{ si } \alpha \neq 1
+	\end{cases}
+\end{align*}
+
+Pour $\alpha \neq -1$,
+\begin{align*}
+	(n^2+1)^{1-\alpha} &= n^{2(1-\alpha)} \left( 1+ \frac{1}{n^2} \right)^{1-\alpha} \\
+	&= n^{2(1-\alpha)} \left( 1+ \frac{1-\alpha}{n^2} + \po\left( \frac{1}{n^2} \right) \right) \\
+\end{align*}
+
+\[
+	0 < v_n \sim n^{-2\alpha} = \frac{1}{n^{2\alpha}}
+\] Si $\alpha > \frac{1}{2}$, alors $\Sigma v_n$ converge et donc $\Sigma u_n$ converge.
+
+On suppose $0 \le \alpha \le \frac{1}{2}$.
+
+
+\begin{align*}
+	\forall n \in \N,\,
+	u_n &\ge \int_{n^2}^{n^2+1}  \frac{\sin^2(\pi x)}{\left( n^2 + 1 \right)^\alpha} ~\mathrm{d}x\\
+	&\ge \frac{1}{\left( n^2+1 \right)^\alpha} \int_{n^2}^{n^2} \left( \frac{1}{2}\big(1-\cos(2\pi x)\big) \right)~\mathrm{d}x\\
+	&\ge \frac{1}{2(n^2 + 1)^\alpha} \sim \frac{1}{2n^{2\alpha}}
+\end{align*}
+
+$2\alpha < 1$ donv $\sum \frac{1}{2n^{2\alpha}}$ diverge et donc $\Sigma u_n$ diverge.
+
+Si $\alpha = 0$, \[
+	u_n = \int_{n^2}^{n^2+1} \sin^2(\pi x)~\mathrm{d}x = \frac{1}{2}
+\] donc $\Sigma u_n$ diverge.
+
+Si $\alpha < 0$, \[
+	u_n \ge \int_{n^2}^{n^2+1}  \frac{\sin^2(\pi x)}{n^{2\alpha}} ~\mathrm{d}x \ge \frac{1}{2n^{2\alpha}}
+\] donc $\Sigma u_n$ diverge.
+
+En fait, dans tous les cas, $u_n \sim \frac{1}{2n^{2\alpha}}$.
+

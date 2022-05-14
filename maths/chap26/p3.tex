@@ -85,4 +85,127 @@
 	\end{align*}
 \end{prv}
 
+\begin{prop}
+	Soit $A \in \mathcal{M}_n(\mathbbm{K})$, $C$ une opération sur les colonnes et $A'$ la matrice obtenue en appliquant $C$ sur les colonnes $A$.
+
+	\begin{enumerate}
+		\item Si $C = c_i \longleftrightarrow c_j$ (avec $i\neq j$), alors $\det(A') = -\det(A)$.
+		\item Si $C = c_i \longleftrightarrow \lambda c_i$, alors $\det(A') = \lambda \det(A)$.
+		\item Si $C = c_i \longleftrightarrow c_i + \lambda c_j$ (avec $i \neq j$), alors $\det(A') = \det(A)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	Soit $(u_1, \ldots, u_n) \in \left(\mathbbm{K}^n\right)^n$ tel que \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket, c_i = \Mat_\mathcal{B}(u_i)
+	\] où $\mathcal{B}$ est la base canonique de $\mathbbm{K}^n$ et $c_i$ la $i$-ème colonne de $A$.
+
+	\begin{enumerate}
+		\item
+			\begin{align*}
+				-\det(A) = -\det_{\mathcal{B}}(u_1&, \ldots, u_n)\\
+				&\vrt=\\
+				\det(A') = \det_{\mathcal{B}}(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_{j-1}&, u_i, u_{j+1}, \ldots, u_n).
+			\end{align*}
+		\item
+			\begin{align*}
+				\det(A') &= \det_\mathcal{B}(u_1, \ldots, u_{i-1}, \lambda u_i, u_{i+1}, \ldots, u_n) \\
+				&= \lambda \det_\mathcal{B}(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_n) \\
+				&= \lambda\,\det(A). \\
+			\end{align*}
+		\item
+			\begin{align*}
+				\det(A') &= \det_\mathcal{B}(u_1, \ldots, u_{i-1}, u_i + \lambda u_j, u_{i+1}, \ldots, u_n) \\
+				&= \det_\mathcal{B}(u_1, \ldots, u_{i-1}, u_i, u_{i+1}, \ldots, u_n) + \lambda \det_\mathcal{B}(u_1, \ldots, u_{i-1}, u_j, u_{i+1}, \ldots, u_n) \\
+				&= \det(A) \\
+			\end{align*}
+			car, comme $u_j$ apparaît deux fois dans le second détermiant, il vaut $0$.
+	\end{enumerate}
+\end{prv}
+
+\begin{crlr}
+	Le déterminant d'une matrice triangulaire est le produit de ses coefficients diagonaux.
+\end{crlr}
+
+\begin{prv}
+	Soit $T = \begin{pNiceMatrix}
+		\lambda_1 & * & \cdots & *\\
+		&\ddots&\ddots&\vdots\\
+		(0)&&&*\\
+		&&\lambda_n
+	\end{pNiceMatrix}$. S'il existe $i \in \left\llbracket 1,n \right\rrbracket$, avec $\lambda_i = 0$, alors $\rg(T) < n$ et donc $T \not\in \mathrm{GL}_n(\mathbbm{K})$ et donc $\det(T) = 0 = \prod_{k=1}^n \lambda_k$.
+
+	On suppose que $\forall i, \lambda_i \neq 0$. On a \[
+		\frac{1}{\lambda_1} \det(T) = \det \begin{pNiceMatrix}
+			1&*&\cdots&*\\
+			0&\lambda_2&\ddots&\vdots\\
+			\vdots&\ddots&\ddots&*\\
+			0&\cdots&0&\lambda_n
+		\end{pNiceMatrix}
+	\] et \[
+		\frac{1}{\lambda_1 \lambda_2} \det(T) = \det \begin{pmatrix}
+			1&*&\cdots&\cdots&*\\
+			0&1&\ddots&&\vdots\\
+			\vdots&0&\lambda_3&\ddots&\vdots\\
+			\vdots&\vdots&\ddots&\ddots&*\\
+			0&0&\cdots&0&\lambda_n
+		\end{pmatrix}
+	\]
+	D'où
+	\begin{align*}
+		\frac{1}{\lambda_1 \cdots \lambda_n} \det(T) &= \begin{vNiceMatrix}
+			1&&\Block{2-2}{*}&\\
+			&\Ddots&&\\
+			\Block{2-2}{(0)}&&&\\
+			&&&1
+		\end{vNiceMatrix} \\
+		&= \begin{vNiceMatrix}
+			1&&\Block{2-2}{(0)}&\\
+			&\Ddots&&\\
+			\Block{2-2}{(0)}&&&\\
+			&&&1
+		\end{vNiceMatrix}\\
+		&= 1 \\
+	\end{align*}
+	donc $\det(T) = \lambda_1 \cdots \lambda_n$.
+\end{prv}
+
+\begin{prop}
+	Soit $A \in \mathcal{M}_n(\mathbbm{K})$, $L$ une opération sur les lignes, $A'$ la matrice obtenue en appliquant $L$ sur les lignes de $A$.
+
+	\begin{enumerate}
+		\item Si $L = \ell_i \longleftrightarrow \ell_j$ (avec $i \neq j$), $\det(A') = -\det(A)$.
+		\item Si $L = \ell_i \longleftrightarrow \lambda\ell_i$, $\det(A') = \lambda\det(A)$.
+		\item Si $L = \ell_i \longleftrightarrow \ell_i + \lambda \ell_j$ (avec $i \neq j$), $\det(A') = \det(A)$.
+	\end{enumerate}
+	\qed
+\end{prop}
+
+\begin{exm}
+	$(a,b,c) \in \C^3$
+
+	\begin{align*}
+		\begin{vmatrix}
+			a&b&c\\
+			b&a&c\\
+			c&a&b
+		\end{vmatrix} &=
+		\begin{vmatrix}
+			a+b+c & b & c\\
+			a+b+c & a & c\\
+			a+b+c & a & b\\
+		\end{vmatrix}\\
+		&= (a+b+c) \begin{vmatrix}
+			1&b&c\\
+			1&a&c\\
+			1&a&b
+		\end{vmatrix}\\
+		&= (a+b+c) \begin{vmatrix}
+			1&b&c\\
+			0&a-b&0\\
+			0&0&b-c
+		\end{vmatrix}\\
+		&= (a+b+c)(a-b)(b-c) \\
+	\end{align*}
+\end{exm}
 

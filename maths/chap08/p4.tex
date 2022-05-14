@@ -1,0 +1,208 @@
+\part{Lois de composition}
+
+\begin{defn}
+	Une \underline{loi de composition interne} \index{loi de composition interne} est une application $f$ de $E \times E$ dans $E$.
+	
+	On la note $x * y$ au lieu de $f(x,y)$ (on est libre de choisir le symbôle).
+\end{defn}
+
+\begin{defn}
+	Soit $E$ un ensemble muni d'une loi de composition interne $\boxtimes$.
+
+	On dit que $\boxtimes$ est \underline{associative} \index{associativité (loi de composition interne)} si \[
+		\forall (x,y,z) \in E^3,\;(x\boxtimes y)\boxtimes z = x \boxtimes (y \boxtimes z).
+	\] Dans ce cas, on écrit plutôt $x \boxtimes y \boxtimes z$.
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $+$ et $\times $ dans $\C$ sont associatives;
+		\item $ \circ$ est associative;
+		\item  la multiplication matricielle est aussi associative.
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	On dit que $\boxtimes$ est \underline{commutative} \index{commutativité (loi de composition interne)} si \[
+		\forall (x,y) \in E^2, x\boxtimes y = y\boxtimes x.
+	\]
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $+$ et $\times $ dans $\C$ sont commuatives;
+		\item $ \circ $ n'est pas commutative;
+		\item  la multiplication matricielle n'est pas commutative.
+	\end{itemize}
+\end{exm}
+
+\begin{defn}
+	Soit $e \in E$. On dit que $e$ est un
+	\begin{itemize}
+		\item \underline{élément neutre à gauche}\index{élément neutre à gauche (loi de composition interne)} si  \[
+				\forall x \in E,\; e\boxtimes x = x;
+			\]
+		\item \underline{élément neutre à droite}\index{élément neutre à droite (loi de composition interne)} si  \[
+				\forall x \in E,\; x\boxtimes e = x;
+			\]
+		\item \underline{élément neutre}\index{élément neutre (loi de composition interne)} si  \[
+				\forall x \in E,\; e\boxtimes x = x\boxtimes e = x.
+			\]
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	Sous reserve d'existence, il y a unicité de l'élément neutre.
+\end{prop}
+
+\begin{prv}
+	Soient $e$ et $e'$ deux éléments neutre.
+	\begin{itemize}
+		\item $e \boxtimes e' = e'$ car $e$ est neutre,
+		\item $e \boxtimes e' = e$ car $e'$ est neutre.
+	\end{itemize} On a donc $e = e'$.
+\end{prv}
+
+\begin{axm}[axiome du choix]
+	Soit $E$ un ensemble non vide. Il existe $f : \mathcal{P}(E) \setminus \{\O\} \to E$ telle que \[
+		\forall A \in \mathcal{P}(E) \setminus \{\O\},\; f(A) \in A.
+	\]
+\end{axm}
+
+\begin{defn}
+	Soit $f: E \to F$. Le \underline{graphe} \index{graphe (application)} de $f$ est \[
+		\Big\{\big(x,f(x)\big)  \mid x \in E\Big\} \subset E \times F.
+	\]
+\end{defn}
+
+\begin{prop}
+	Soit $G \subset E\times F$. $G$ est le graphe d'une application si et seulement si \[
+		\forall x \in E,\,\exists! y \in F,\, (x,y) \in G.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] par définition d'une application
+		\item[``$\impliedby$''] On pose $f(x)$ le seul élément $y$ de $F$ qui vérifie $(x,y) \in G$. Alors $f \in F^E$ et son graphe vaut $G$.
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $A \in \mathcal{P}(E)$. L'\underline{indicatrice}\index{indicatrice (ensemble)} de $A$ est \begin{align*}
+		\mathbbm{1}_A: E &\longrightarrow \{0,1\} \\
+		x &\longmapsto \begin{cases}
+			1 &\text{ si } x \in A,\\
+			0 & \text{ si } x \not\in A.
+		\end{cases}
+	\end{align*}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Dans $\C$, le neutre de $+$ est $0$ et le neutre de $\times$ est $1$.
+		\item Dans $E^E$, le neutre de $ \circ $ est $\id_E$.
+		\item Dans $\mathcal{M}_n(\C)$ (l'ensemble des matrices carrées $n \times n$ à valeurs dans $\C$), le neutre de $\times $ est $I_n$ : \[
+				I_n =
+				\begin{pNiceMatrix}
+					1&&(0)\\
+					&\Ddots&\\
+					(0)&&1
+				\end{pNiceMatrix}
+			\] 
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $E$ un ensemble muni d'une loi de composition interne $\boxtimes$ et $x \in E$.
+
+	\begin{enumerate}
+		\item On dit que $x$ est \underline{simplifiable à gauche}\index{simplifiabilité à gauche} si \[
+				\forall (y,z) \in E^2,\,(x\boxtimes y = x \boxtimes z) \implies x = z.
+			\] et que $x$ est \underline{simplifiable à droite}\index{simplifiabilité à droite} si \[
+				\forall (y,z) \in E^2,\,(y\boxtimes x = z \boxtimes y) \implies x = z.
+			\]
+		\item On dit que $x$ est \underline{symétrisable à gauche}\index{symétrisabilité à gauche} s'il exiiste $y \in E$ tel que $y\boxtimes x = e$ où $e$ est l'élément neutre de $\boxtimes$.
+
+			De même, on dit que $x$ est \underline{symétrisable à droite}\index{symétrisabilité à droite} s'il existe $y \in E$ tel que $x \boxtimes y = e$.
+
+			On dit que $x$ est \underline{symétrisable}\index{symétrisabilité} s'il est symétrisable à gauche et à droite, donc s'il existe $y \in E$ tel que $x \boxtimes y = y \boxtimes x = e$.
+	\end{enumerate}
+\end{defn}
+
+\begin{exm}
+	$E = \N$ muni de la loi $+$, tous les éléments de $E$ sont simplifiables. $0$ est le seuele élément de $E$ symétrisable.
+\end{exm}
+
+\begin{prop}
+	Avec les notations précédentes, si $\boxtimes$ est associative, et $x$ est symétrisable, alors $x$ est simplifiable.
+\end{prop}
+
+\begin{prv}
+	Soient $y, z \in E$.
+	\begin{itemize}
+		\item On suppose $x \boxtimes y = x \boxtimes z$. Soit $a \in E$ tel que $a\in E$ tel que $a \boxtimes x = e$. Alors \[
+				a \boxtimes (x\boxtimes y) = a \boxtimes (x \boxtimes z).
+			\] Or,
+			\begin{align*}
+				a \boxtimes (x \boxtimes y) &= (a \boxtimes x) \boxtimes y \\
+				&= e \boxtimes y \\
+				&= y. \\
+			\end{align*}
+
+			De même, $a \boxtimes (x \boxtimes z) = z$.
+
+			Donc $y = z$.
+		\item De même, si $y \boxtimes x = z \boxtimes x$, on ``multiplie'' $x$ à droite par $a$ et on obtient $y = z$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop-defn}
+	On suppose $\boxtimes$ associative. Soit $x \in E$ symétrisable. Alors \[
+		\exists ! y \in E,\; x \boxtimes y = y \boxtimes x = e.
+	\] On dit que $y$ est le \underline{symétrique}\index{symétrique (loi de composition interne)} de $x$ et on le note $y = x^*$.
+\end{prop-defn}
+
+\begin{prv}
+	Soeint $x,y,z \in E$ tels que \[
+		\begin{cases}
+			 x \boxtimes y = y \boxtimes x = e\\
+			 x \boxtimes z = z \boxtimes x = e\\
+		\end{cases}
+	\] Alors, $x \boxtimes y = x \boxtimes z$ et, en simplifiant par $x$, on a $y = z$.
+\end{prv}
+
+\begin{exm}
+	Les fonctions symétrisables de $(E^E,  \circ)$ sont les bijections et le symétrique d'une bijection est sa réciproque.
+\end{exm}
+
+\begin{rmk}
+	\begin{enumerate}
+		\item Si la loi est notée $+$, on parle d'\underline{opposé}\index{opposé (loi de composition interne)} plutôt que de symétrique et on le note $-x$ au lieu de $x^*$.
+			L'élément neutre est noté $0_E$.
+		\item Si la loi est notée $\times$, on parle d'élément \underline{inversible}\index{inversibilité (loi de composition interne)} au lieu de symétrisable, d'\underline{inverse}\index{inverse (loi de composition interne)} au lieu de symétrique et on note $x^{-1}$ au lieu de $x^*$. On note le neutre $1_E$.
+	\end{enumerate}
+\end{rmk}
+
+\begin{exo}
+	Soient $x,y \in E = \R^+_*$. On définit la loi de composition interne $\oplus$ : \[
+		x \oplus y = \frac{1}{\frac{1}{x}\oplus \frac{1}{y}}.
+	\] Cette loi peut-être utile en physique pour le calcul de résistances équivalentes en parallèles.
+	\begin{itemize}
+		\item {\sc Associativité} : soient $x,y,z \in E$.
+
+			D'une part, on a \[
+				x \oplus (y \oplus z) = \frac{1}{\frac{1}{x} + \frac{1}{\frac{1}{\frac{1}{x}+ \frac{1}{y}}}} = \frac{1}{\frac{1}{x}+\frac{1}{y}+\frac{1}{z}}.
+			\] D'autre part, on a \[
+			(x \oplus y) \oplus z = \frac{1}{\frac{1}{\frac{1}{\frac{1}{x}+\frac{1}{y}}}+\frac{1}{z}} = \frac{1}{\frac{1}{x}+ \frac{1}{y}+\frac{1}{z}}.
+			\] La loi $\oplus$ est associative.
+		\item {\sc Commutativité} : soient $x, y \in E$. \[
+				x \oplus y = \frac{1}{\frac{1}{x}+\frac{1}{y}} = \frac{1}{\frac{1}{y}+\frac{1}{x}} = y\oplus x.
+			\] Donc la loi $\oplus$ est commutative.
+		\item {\sc Élément neutre} : soit $e$ l'élément neutre de $\oplus$. \[
+				\forall x \in E,\; x \oplus e = e \oplus x = x.
+			\] Comme la loi est commutative, seul l'égalité $x \oplus e = x$ est utile.
+
+			Soit $x \in E$. On a donc $\frac{1}{\frac{1}{x}+\frac{1}{e}}=x$ donc $\frac{ex}{e+x}=x$ donc $ex = x(e+x)$ et donc $\cancel{ex} = \cancel{ex} + x^2$. On en déduit que $x^2 = 0$, ce qui n'est pas possible car $x \in \R^+_*$. Donc, il n'y a pas d'élément neutre pour $\oplus$.
+	\end{itemize}
+\end{exo}

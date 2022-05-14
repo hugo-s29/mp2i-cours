@@ -138,32 +138,28 @@
 \end{thm}
 
 \begin{exm}
-	\begin{minipage}
-		{\linewidth}
-		\begin{wrapfigure}
-			{l}{0.3\linewidth}
-			\centering
-			\begin{asy}
-				import solids;
-				settings.render=0;
-				settings.prc=false;
+	On ne peut pas déduire le passé d'un sceau percé, son équation est non-linéaire. \[
+		h' = -c\sqrt{h} \text{ avec } c \in \R_*^+
+	\]
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import solids;
+			settings.render=0;
+			settings.prc=false;
 
-				size(4cm);
-				revolution r = cylinder(O, 0.5, 1, Z);
+			size(4cm);
+			revolution r = cylinder(O, 0.5, 1, Z);
 
-				draw(r,1);
+			draw(r,1);
 
-				draw(circle((0,0,0), 0.5), cyan);
-				draw(circle((0,0,0.5), 0.5), cyan);
+			draw(circle((0,0,0), 0.5), deepcyan);
+			draw(circle((0,0,0.5), 0.5), deepcyan);
 
-				draw(r.silhouette());
+			draw(r.silhouette());
 
-				draw(circle((0,0), 0.05));
-				draw((0,0.01)--(0,-0.4), cyan, Arrow(TeXHead));
-			\end{asy}
-		\end{wrapfigure}
-		On ne peut pas déduire le passé d'un sceau percé, son équation est non-linéaire. \[
-			h' = -c\sqrt{h} \text{ avec } c \in \R_*^+
-		\] 
-	\end{minipage}
+			draw(circle((0,0), 0.05));
+			draw((0,0.01)--(0,-0.4), deepcyan, Arrow(TeXHead));
+		\end{asy}
+	\end{figure}
 \end{exm}

@@ -1,0 +1,55 @@
+\part{Exercice 1}
+
+\begin{enumerate}
+	\item On a \[
+			\left|
+			\begin{array}{c c c}
+				0&a&b\\
+				a&0&c\\ \cline{1-3}
+				\multicolumn{1}{|c}{b}&c&\multicolumn{1}{c|}{0}\\\cline{1-3}
+			\end{array}
+			\right| = abc + abc = 2abc.
+		\] 
+	\item
+		\begin{align*}
+			\begin{vmatrix}
+				a&b&c\\
+				c&a&b\\
+				b&c&a\\
+			\end{vmatrix} &= a(a^2 - cb) - b(ca - b^2) + c(c^2 - ba)\\
+			&= a^3 - abc - abc + b^3 + c^3 - abc \\
+			&= a^3 -3abc + b^3 + c^3 \\
+		\end{align*}
+	\item{\Large \ding{96}}
+	\item
+		\begin{align*}
+			\begin{vmatrix}
+				a&a&a&a\\
+				a&b&b&b\\
+				a&b&c&c\\
+				a&b&c&d\\
+			\end{vmatrix} &=
+			\begin{vmatrix}
+				a&a&a&a\\
+				0&b-a&b-a&b-a\\
+				0&b-a&c-a&c-a\\
+				0&b-a&c-a&d-a\\
+			\end{vmatrix}\\
+			&= 
+			\begin{vmatrix}
+				a&a&a&a\\
+				0&b-a&b-a&b-a\\
+				0&0&c-b&c-b\\
+				0&0&c-b&d-c\\
+			\end{vmatrix}\\
+			&= 
+			\begin{vmatrix}
+				a&a&a&a\\
+				0&b-a&b-a&b-a\\
+				0&0&c-b&c-b\\
+				0&0&0&d-c
+			\end{vmatrix}\\
+			&= a(b-a)(c-d)(d-c) \\
+		\end{align*}
+\end{enumerate}
+

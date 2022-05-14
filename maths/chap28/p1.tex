@@ -1,0 +1,344 @@
+\part{Espace affine ({\sc Hors Programme})}
+
+\centered{\Large\sc \underline{Motivation géométrique}:}
+
+Dans les petites classes, la géométrie du plan distingue deux types d'objets élémentaires :
+\begin{itemize}
+	\item le point
+	\item le vecteur
+\end{itemize}
+reliés par la notion de translation.
+
+Par exemple, une droite peut être décrite avec un point et un vecteur :
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import math;
+		size(4cm);
+
+		drawline((1,1), (4, 2), deepcyan);
+
+		draw((0,-2) -- (3, -1), magenta, Arrow(TeXHead));
+		draw((1,1) -- (4, 2), magenta, Arrow(TeXHead));
+
+		label("$\vec{u}$", (3,-1)/2, magenta, align=S);
+
+		dot("$A$", (1, 1), align=N);
+
+		dot((-6, -4), white+0);
+		dot((6, 4), white+0);
+	\end{asy}
+\end{figure}
+
+
+Soit $\mathbbm{K}$ un corps.
+\begin{defn}
+	Un $\mathbbm{K}$-\underline{espace affine}\index{espace affine} est un triplet $\left( E, \vec{E}, \tau \right)$ où
+	\begin{itemize}
+		\item $E$ est un ensemble;\\
+		\item $\vec{E}$ est un $\mathbbm{K}$-espace vectoriel;\\
+		\item $\tau : E \times \vec{E} \longrightarrow E$ telle que \[
+				\begin{cases}
+					\forall M \in E,\, \tau\left( M, \vec{0} \right) = M,\\[2mm]
+					\forall M \in E,\,\forall \left( \vec{u}, \vec{v} \right) \in {\vec{E}}^2,
+					\tau\Big(\tau\left( M, \vec{u} \right), \vec{v} \Big) = \tau\left( M, \vec{u} + \vec{v} \right),\\[2mm]
+					\forall (A, B) \in E^2,\, \exists! \vec{u} \in \vec{E}, \tau\left( A, \vec{u} \right) = B.
+				\end{cases}
+			\]
+	\end{itemize}
+
+	Les éléments de $E$ sont appelés \underline{points}\index{point (espace affine)}, ceux de $\vec{E}$ \underline{vecteurs}\index{vecteur (espace affine)}.
+
+	Pour tout $\vec{u} \in \vec{E}$, l'application \[
+		\begin{array}{rcl}
+			E &\longrightarrow& E \\
+			M &\longmapsto& \tau\left( M, \vec{u} \right)
+		\end{array}
+	\] est la \underline{translation} \index{translation (espace affine)} de vecteur $\vec{u}$.
+
+	En général, pour $M \in E$ et $\vec{u} \in \vec{E}$, au lieu d'écrire $\tau\left( M + \vec{u} \right)$, on écrit $M + \vec{u}$. Soient $(A,B) \in E^2$. L'unique vecteur $\vec{u}$ tel que $A + \vec{u} = B$ est noté $\vec{AB} = B - A$.
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item On pose \[
+					(\mathcal{E}):\quad y' = xy + xe^{x}
+			\] Soit $E$ l'ensemble des solutions de $(\mathcal{E})$, $\vec{E}$ le $\R$-espace vectoriel des solutions de \[
+			(\mathcal{H}):\quad y' = xy,
+			\] et \begin{align*}
+				\tau: E\times \vec{E} &\longrightarrow E \\
+				(f, \vec{u}) &\longmapsto f \mathop{\color{red} +} \vec{u}
+			\end{align*} où $\color{red} +$ correspond à l'addition de fonctions.
+
+			\begin{itemize}
+				\item $\forall f \in E,\, \tau\left( f, \vec{0} \right) = f + 0 = f$.
+				\item
+					\begin{align*}
+						\forall f \in E,\, \forall (h_1, h_2) \in {\vec{E}}^2,\,
+						\tau\big(\tau(f, h_1), h_2\big) &= \tau(f + h_1, h_2) \\
+						&= (f + h_1) + h_2 \\
+						&= f + (h_1 + h_2) \\
+						&= \tau\big(f, \tau(h_1, h_2)\big) \\
+					\end{align*}
+				\item Soient $(f_1, f_2) \in E^2$. On pose $h = f_2 \mathop{\color{red} -} f_1 \in \vec{E}$ ($\color{red} -$ est la soustraction de fonctions) et alors $\tau(f_1, h) = f_2$ et $h$ est unique.
+			\end{itemize}
+
+		\item On pose $E = \R^2$, $\vec{E} = \R^2$ et \begin{align*}
+				\tau: E \times \vec{E} &\longrightarrow E \\
+				\big((x,y),(u,v)\big) &\longmapsto (x + u, y + v).
+			\end{align*} $\left( E, \vec{E}, \tau \right)$ est un $\R$-espace affine.
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel. Alors $(E, E, +)$ est un $\mathbbm{K}$-espace affine.\qed
+\end{prop}
+
+\begin{exm}
+	Soit $E$ un $\mathbbm{K}$-espace vectoriel. Un \underline{champ de vecteur}\index{champ de vecteur} est une application  \[
+		X :\;\underset{\mathclap{\substack{~\\\uparrow\\[0.5mm]\text{points}}}}{E}\; \longrightarrow\;\underset{\mathclap{\substack{~\\\uparrow\\[0.5mm]\text{vecteurs}}}}{E}.
+	\]
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			size(7cm);
+
+			defaultpen(fontsize(7pt));
+
+			pair n(pair x) { return x / length(x); }
+
+			for(int i = -4; i < 4; ++i)
+				for(int j = -3; j < 3; ++j) {
+					fill(circle((i + 0.5,j + 0.5), 0.05));
+					draw((i+ 0.5,j+ 0.5) -- n(expi(pi/2) * (i + 0.5,j + 0.5)) * 0.8 + (i + 0.5,j + 0.5), Arrow(TeXHead));
+				}
+
+			draw((0,-3)--(0,3), Arrow);
+			draw((-4,0)--(4,0), Arrow);
+
+			pair v = n(expi(pi/2) * (2.5, 1.5)) * 0.8;
+			pair M = (2.5, 1.5);
+
+			dot("$M$", M, magenta, align=E);
+			draw(M -- v + M, red, Arrow(TeXHead));
+			label("$X(M)$", M + v, red, align=SW);
+		\end{asy}
+	\end{figure}
+\end{exm}
+
+\begin{exm}
+	Avec $F = \R^2$ et $E = \big\{ (x,y) \in F \mid  2x + 3y = 5 \big\}$, $(E, +, \cdot)$ n'est pas un $\R$-espace vectoriel : $(0,0) \not\in E$.
+
+	On pose $\vec{E} = \big\{ (x,y) \in F \mid 2x + 3y = 0 \big\}$, c'est un sous-espace vectoriel de $F$. On pose \begin{align*}
+		\tau: E \times \vec{E} &\longrightarrow E \\
+		\big((x,y), (u,v)\big) &\longmapsto (x+u, y+v).
+	\end{align*}
+	En effet,
+	\begin{align*}
+		\forall (x,y) \in E, \forall (u,v) \in \vec{E}, 2(x + u) + 3(y + v) &= 2x + 3y + 2u + 3v \\
+		&= 5 + 0 = 5 \\
+	\end{align*}
+
+	donc $\tau\big((x,y),(u,v)\big) \in E$.
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			size(5cm);
+			import graph;
+
+			real f(real x) { return -1/3 * x + 3/3; }
+			real g(real x) { return -1/3 * x; }
+
+			draw(graph(f, -2, 2), magenta);
+			draw(graph(g, -2, 2), deepcyan);
+
+			draw((-2, 0) -- (2, 0), Arrow);
+			draw((0,-1.5) -- (0, 1.5), Arrow);
+
+			label("$\vec{E}$", (2, g(2)), deepcyan, align=S);
+			label("$E$", (2, f(2)), magenta, align=S);
+
+			dot((0,0));
+		\end{asy}
+	\end{figure}
+\end{exm}
+
+\begin{exm}
+	Avec $E$ les solutions de $y' = 3y + e^x$, $\vec{E} = \R$, et \begin{align*}
+		\tau: E \times \vec{E} &\longrightarrow E \\
+		(y, \lambda) &\longmapsto \left( x \mapsto y(x) + \lambda e^{3x} \right).
+	\end{align*}
+\end{exm}
+
+\begin{prop}
+	Soit $\left( E, \vec{E}, \tau \right)$ un $\mathbbm{K}$-espace affine. Si $E \neq \O$, \[
+		\vec{E} = \left\{ \vec{AB}  \mid (A,B) \in \vec{E} \right\}.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item $\forall A, B \in E,\;\vec{AB} \in \vec{E}$.
+		\item Soit $\vec{u} \in \vec{E}$. Comme $E \neq \O$, on choisit $A \in E$. On pose $B = A + \vec{u}$. D'où $\vec{u} = \vec{AB}$.
+	\end{itemize}
+\end{prv}
+
+\begin{rmk}
+	On a même démontré que, pour tout $A \in E$, l'application \begin{align*}
+		\varphi_A: \vec{E} &\longrightarrow E \\
+		\vec{u} &\longmapsto A + \vec{u}
+	\end{align*} est bijective. On dit qu'on a \underline{vectorialisé}\index{vectorialiser (espace affine)} $E$ au point $A$ : \[
+		\begin{cases}
+			M + N := A + \vec{AM} + \vec{AN}\\
+			\lambda N := A + \lambda \vec{AM}
+		\end{cases}
+	\]
+\end{rmk}
+
+\begin{prop}
+	Soit $\left( E, \vec{E}, \tau \right)$ un $\mathbbm{K}$-espace affine.
+	\begin{enumerate}
+		\item $\forall A \in E,\; \vec{AA} = \vec{0}$;
+		\item $\forall A,B,C \in E,\;\vec{AB} + \vec{BC} = \vec{AC}$;
+		\item $\forall A,B \in E,\; \vec{BA} = -\vec{AB}$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item Soit $A \in E$. $\tau\left( A, \vec{AA} \right) = A = \tau\left( A, \vec{0} \right)$ donc $\vec{AA} = \vec{0}$.
+		\item Soient $A, B, C \in E$. On pose $\vec{u} = \vec{AB}$ et $\vec{v} = \vec{BC}$.
+			\begin{align*}
+				&\tau\left( \tau\left( A, \vec{u} \right), \vec{v} \right) = \tau\left( B, \vec{v} \right) = C = \tau\left( A, \vec{AC} \right)\\
+				&\kern 8mm\vrt=\\
+				&\tau\left(A, \vec{u} + \vec{v}\right)\\
+			\end{align*}
+		\item Soient $A, B \in E$. D'après 1. $\vec{AA} = \vec{0}$ et, d'après 2. $\vec{AA} = \vec{AB} + \vec{BA}$. Donc $\vec{AB} = -\vec{BA}$.
+	\end{enumerate}
+\end{prv}
+
+\begin{defn}
+	Soit $\left( E, \vec{E}, \tau \right)$ un $\mathbbm{K}$-espace affine et $F \in \mathcal{P}(E) \setminus \{\O\}$.
+
+	Pour tout $A \in F$, on pose $\vec{F_A} = \left\{\vec{AB}  \mid  B \in F\right\}$. On dit que $F$ est un \underline{sous-espace affine}\index{sous-espace affine} de $\left( E, \vec{E}, \tau \right)$ s'il existe $A \in F$ tel que $\vec{F_A}$ est un sous-espace vectoriel de $\vec{E}$.
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, $\left( F, \vec{F_A}, \tau_{\left|F \times \vec{F_A}\right.} \right)$ est un espace affine.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soit $M \in F$, $\vec{u} \in \vec{F_A}$. \[
+				M + \vec{u} = A + \underbrace{\underbrace{\vec{AM}}_{\displaystyle\in \vec{F_A}} \underbrace{\vec{u}}_{\displaystyle\in \vec{F_A}}}_{\displaystyle \in \vec{F_A}} = A + \underbrace{\vec{AB}}_{B \in F} = B \in F.
+			\]
+		\item Soit $M \in F$, $\vec{u}, \vec{v} \in \vec{F_A}$. \[
+					\left(M + \vec{u}\right) + \vec{v} = M + \left(\vec{u} + \vec{v}\right)
+			\] car $M \in E$ et $\vec{u}, \vec{v} \in \vec{E}$.
+		\item Soient $M,N \in F \subset E$. On sait que \[
+				\exists ! \vec{u} \in \vec{E},\, M + \vec{u} = N.
+			\]
+			\begin{align*}
+				\vec{u} = \vec{MN} &= \vec{MA} + \vec{AN}\\
+				&= \underbrace{\vec{AN}}_{\displaystyle\in \vec{F_A}} - \underbrace{\vec{AM}}_{\displaystyle\in  \vec{F_A}} \in \vec{F_A} \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $F$ un sous-espace affine de $\left( E, \vec{E}, \tau \right)$. Alors \[
+		\forall (A,B) \in F^2,\; \vec{F_A} = \vec{F_B}.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $A$ comme dans la définition $\left( \vec{F_A} \text{ sous-espace vectoriel de } \vec{E} \right)$ et $B \in F$. Soit $\vec{u} \in \vec{F_B}$. Alors $\vec{u} = \vec{BM}$ avec $M \in F$. \[
+		\vec{u} = \vec{BA} + \vec{AM} = \vec{AM} - \vec{AB} \in \vec{F_A}.
+	\] Soit $\vec{v} \in \vec{F_A}$. On pose $M = \underbrace{M} + \underbrace{\vec{v}}_{\in \vec{F_A}} \in F$. Donc $\vec{v} = \vec{BM} \in \vec{F_B}$.
+\end{prv}
+
+\begin{defn}
+	Soit $\left( E, \vec{E}, \tau \right)$ un espace affine, $F$ et $G$ deux sous-espaces affines de $E$.
+
+	\begin{enumerate}
+		\item On dit que $F$ et $G$ sont \underline{fortement parallèles}\index{parallélisme fort (espace affine)} si $\vec{F} = \vec{G}$.
+		\item On dit que $F$ et $G$ sont \underline{faiblement parallèles}\index{parallélisme faible (espace affine)} si $\vec{F} \subset \vec{G}$ ou $\vec{G} \subset \vec{F}$.
+	\end{enumerate}
+\end{defn}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			size(5cm);
+	
+			real k = 0.73 * 1.5;
+			triple o1 = (X-Y)/2;
+
+			draw(surface(X+Y -- X-Y -- -X-Y -- -X+Y -- cycle), white);
+			draw(X+Y -- X-Y -- -X-Y -- -X+Y -- cycle, black);
+			draw(o1 -- o1-X*k, magenta, Arrow3(TeXHead2));
+			draw(o1 -- o1+Y*k, magenta, Arrow3(TeXHead2));
+	
+
+			triple off = 2.5Z/3;
+
+			draw(surface(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle), white);
+			draw(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle, black);
+			off += o1;
+			draw(off-- -X*k+off, magenta, Arrow3(TeXHead2));
+			draw(off--Y*k+off, magenta, Arrow3(TeXHead2));
+		\end{asy}
+		\caption{parallélisme fort}
+	\end{subfigure}
+	$\qquad$
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			currentlight = nolight;
+			size(5cm);
+			triple o1 = (X-Y)/2;
+
+			triple off = -2.5Z/3;
+
+			draw(surface(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle), rgb("faf4ed"));
+			draw(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle, black);
+
+			draw(scale3(1.2) * (X-Y -- -X + Y), black);
+	
+			draw(o1 + off-- -X+Y+o1 + off, magenta, Arrow3(TeXHead2));
+			draw(o1-- -X+Y+o1, magenta, Arrow3(TeXHead2));
+		\end{asy}
+		\caption{parallélisme faible}
+	\end{subfigure}
+\end{figure}
+
+\todo{dessins 3D}
+
+\begin{defn}
+	Soit $F$ un sous-espace affine de $\left( E, \vec{E}, \tau \right)$. L'espace \[
+		\vec{F} = \left\{ \vec{AB}  \mid A,B \in F \right\}
+	\] est appelé \underline{direction} de $F$.\index{direction (sous-espace affine)}
+
+	On dit que
+	\begin{itemize}
+		\item $F$ est une \underline{droite affine}\index{droite affine (espace affine)} si $\vec{F}$ est une droite vectorielle,
+		\item $F$ est une \underline{plan affine}\index{plan affine (espace affine)} si $\vec{F}$ est un plan vectorielle,
+		\item $F$ est une \underline{hyperplan affine}\index{hyperplan affine (espace affine)} si $\vec{F}$ est un hyperplan vectorielle.
+	\end{itemize}
+\end{defn}
+
+\begin{rmk}
+	Si $E$ est un $\mathbbm{K}$-espace vectoriel et $F$ un sous-espace affine de $E$, alors \[
+		\begin{cases}
+			\forall A \in F,\, F = A + \vec{F},\\
+			\vec{F} \text{ sous-espace vectoriel de } E.
+		\end{cases}
+	\]
+\end{rmk}
+

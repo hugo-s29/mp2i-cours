@@ -1,0 +1,26 @@
+\part{Exercice 9}
+
+Pour $n \in \N$, on pose \[
+	\mathcal{P}(n) : ``u_n \text{ existe et } u_n > 0".
+\]
+
+\begin{itemize}
+	\item $\mathcal{P}(0)$ est vraie.
+	\item Soit $n \in \N$. On suppose $\mathcal{P}(n)$.
+		$u_n + \frac{a_n}{u_n}$ existe car $u_n \neq 0$ donc $u_{n+1}$ existe. On a $a_n \ge 0$ et $u_n > 0$ donc $u_{n+1} \ge  u_n > 0$.
+\end{itemize}
+
+\begin{align*}
+	(u_n) \text{ converge } \iff& \sum u_{n-1} - u_n \text{ convege}\\
+	\iff& \sum \frac{a_n}{u_n} \text{ converge }
+\end{align*}
+
+\begin{itemize}
+	\item On suppose que $u_n \tendsto{n\to +\infty} \ell > 0$ car $(u_n)$ est \emph{croissante}. Donc \[
+			\frac{a_n}{u_n} \sim \frac{a_n}{\ell}
+		\] donc $a_n \sim \ell \frac{a_n}{u_n}$.
+
+		Par compairaison de séries à termes positifs, $\Sigma u_n$ converge.
+
+	\item On suppose que $u_n \longrightarrow +\infty$ alors $a_n \ge \frac{a_n}{u_n}$ à partir d'un certain rang donc $\Sigma a_n$ diverge.
+\end{itemize}

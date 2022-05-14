@@ -31,7 +31,7 @@
 \usepackage{chngpage}
 \usepackage{cancel}
 \usepackage{parskip}
-\usepackage{esvect}
+\usepackage[f]{esvect}
 \usepackage{wrapfig}
 \usepackage{floatflt}
 \usepackage{calligra}
@@ -44,6 +44,8 @@
 \usepackage{contour}
 \usepackage{soulutf8}
 \usepackage[Rejne]{fncychap}
+\usepackage{listings}
+%\usepackage{cmbright}
 
 \frenchspacing
 \reversemarginpar
@@ -138,12 +140,14 @@
 \DeclareMathOperator{\Arccos}{Arccos}
 \DeclareMathOperator{\Arcsin}{Arcsin}
 \DeclareMathOperator{\Arctan}{Arctan}
+\DeclareMathOperator{\Argsh}{Argsh}
 \DeclareMathOperator{\ch}{ch}
 \DeclareMathOperator{\sh}{sh}
 \let\th\relax
 \let\det\relax
 \DeclareMathOperator{\th}{th}
 \DeclareMathOperator{\Card}{Card}
+\DeclareMathOperator{\com}{com}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\id}{id}
@@ -227,6 +231,7 @@
 % \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Lemme]{lem}
 
 \declaretheorem[style=thmstyle, name=Théorème]{thm}
+\declaretheorem[style=thmstyle, name=Axiome]{axm}
 \declaretheorem[style=thmstyle, name=Proposition]{prop}
 \declaretheorem[style=thmstyle, name=Corollaire]{crlr}
 \declaretheorem[style=thmstyle, name=Lemme]{lem}
@@ -256,9 +261,9 @@
 \fancyhead[L]{\thepart}
 \fancyhead[C]{\parttitle}
 
-\fancyfoot[R]{\thepage}
+\fancyfoot[C]{\thepage}
 \fancyfoot[L]{}
-\fancyfoot[C]{}
+\fancyfoot[R]{}
 
 \newcommand*\parttitle{}
 \let\origpart\part
@@ -334,12 +339,60 @@
 \renewcommand{\diamond}{\ensuremath{\,\olddiamond\,}}
 \newcommand{\missingpart}{\centered{\color{red} \Large Il manque une partie du cours ici}}
 
-% Ajouter une defn au glossaire
-\newcommand{\glunderline}[2]{\underline{#1}\newglossaryentry{#2}{name={#1}}}
-% TODO
-
-
 \newcommand{\cbox}[2]{{\color{#1}{\fbox{\color{black} #2}}}}
 \newcommand{\clrhl}[2]{{\large\sc\color{#1} #2}}
 \newcommand{\mat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
 \newcommand{\mathunderline}[1]{\text{\underline{$#1$}}}
+\let\oldboxtimes\boxtimes
+\renewcommand{\boxtimes}{\raisebox{-0.2mm}{$\;\oldboxtimes\;$}}
+
+
+\definecolor{white}{HTML}{faf4ed}
+\definecolor{black}{HTML}{575279}
+\definecolor{mauve}{HTML}{907aa9}
+\definecolor{blue}{HTML}{286983}
+\definecolor{red}{HTML}{d7827e}
+\definecolor{yellow}{HTML}{ea9d34}
+\definecolor{gray}{HTML}{9893a5}
+\definecolor{grey}{HTML}{9893a5}
+
+\pagecolor{white}
+\color{black}
+
+% code syntax highlighting
+\lstset{ %
+  backgroundcolor=\color{white},    % choose the background color
+  commentstyle=\color{blue},        % comment style
+  keywordstyle=\color{mauve},       % keyword style
+  stringstyle=\color{pink},         % string literal style
+}
+
+
+\begin{asydef}
+	settings.prc = false;
+	settings.render=0;
+
+	white = rgb("faf4ed");
+	black = rgb("575279");
+	blue = rgb("286983");
+	red = rgb("d7827e");
+	yellow = rgb("f6c177");
+	orange = rgb("ea9d34");
+	gray = rgb("9893a5");
+	grey = rgb("9893a5");
+	deepcyan = rgb("56949f");
+	pink = rgb("b4637a");
+	magenta = rgb("eb6f92");
+	green = rgb("a0d971");
+	purple = rgb("907aa9");
+
+	defaultpen(black + fontsize(8pt));
+
+	import three;
+	currentlight = nolight;
+\end{asydef}
+
+\let\sc\scshape
+\let\bf\bfseries
+\let\it\itshape
+

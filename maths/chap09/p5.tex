@@ -1,0 +1,23 @@
+\part{Partie entière}
+
+\begin{prop-defn}
+	Soit $x \in \R$. Il existe un unique entier $n \in \N$ tel que \[
+		n \le x < n + 1.
+	\] Cet entier $n$ est appelé \underline{partie entière de $x$}\index{partie entière} et est noté $\left\lfloor x \right\rfloor$.
+\end{prop-defn}
+
+\begin{prv}
+	Soit $A = \{p \in \Z \mid  p > x\}$. $A \neq \O$ car $\R$ est archimédien.
+
+	Soit $\alpha$ la borne inférieure de $A$. Alors $\alpha \ge x$. Montrons que $\alpha \in A$. Soit $n \ge 2$.
+	On a $\alpha + \frac{1}{n} > \alpha$ donc, il existe $a_n \in A$ tel que \[
+		\alpha < a_n < \alpha + \frac{1}{n}.
+	\] On sait que $\frac{1}{n} < 1$ donc, il y a au plus un entier dans le segment $\left[ \alpha, \alpha + \frac{1}{n} \right]$.
+	Donc, tous les $a_n$ sont égaux et $a_n \tendsto{n\to +\infty} \alpha$. On en déduit que \[
+		\forall n \ge 2,\, a_n = \alpha
+	\] et donc $\alpha \in A$. Ainsi, $\alpha = \min(A)$ et alors $\alpha-1 \not\in A$. On a donc \[
+		\alpha - 1 \le x < \alpha
+	\] et, en posant $n = \alpha - 1$, on en déduit que \[
+		n \le x < n + 1.
+	\] 
+\end{prv}

@@ -1,0 +1,155 @@
+\part{Exercice 5}
+\[
+	\forall n \in \N^*,\, \sum_{k=1}^n k^{\beta} = \sum_{k=1}^n \frac{1}{k^{-\beta}}
+	\tendsto{n\to +\infty} \begin{cases}
+		\zeta(-\beta) &\text{ si } -\beta > 1\\
+		+\infty &\text{ sinon}.
+	\end{cases}
+\]
+
+On suppose $\beta < -1$. Alors, $0 < u_n \sim \frac{\zeta(-\beta)}{n^{\alpha}}$ et donc $\Sigma u_n$ converge si et seulement si $\alpha > 1$.
+
+On suppose $\beta \ge -1$.
+
+\begin{itemize}
+	\item[\sc Cas 1] $\beta > 0$ donc $x \mapsto x^\beta$ est croissante.\\
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import math;
+
+				size(5cm);
+
+				draw((-1, 0) -- (4, 0), Arrow(TeXHead));
+				draw((0, -1) -- (0, 3), Arrow(TeXHead));
+
+				real alpha = 2.3;
+				real f(real x) {return (x/2)^alpha; }
+				bool3 check(real x) { return x != 0 && f(x) < 3; };
+
+				draw(graph(f, 0, 3.8, check), red);
+
+				real k = 1.5;
+				real ak = 0.25;
+				real bk = 2.75;
+
+				dot("\small$k$", (k, 0), align=S);
+				dot("\small$k - 1$", (ak, 0), align=S);
+				dot("\small$k + 1$", (bk, 0), align=S);
+
+				draw(box((ak, f(k)), (bk, 0)));
+				draw((k, 0) -- (k, f(k)));
+				draw((ak, f(k)) -- (-0.05, f(k)), dashed);
+				label("\small$k^\alpha$", (0, f(k)), align=W);
+			\end{asy}
+		\end{figure}
+		Soit $n \in \N^*$. 
+		\begin{align*}
+			\forall k \in \left\llbracket 1,n \right\rrbracket,\, &\int_{k-1}^{k} x^\beta~\mathrm{d}x \le k^\beta \le \int_{k}^{k+1} x^\beta~\mathrm{d}x\\
+			\text{ donc }& \int_{0}^{n} x^\beta~\mathrm{d}x \le \sum_{k=0}^n k^\beta \le \int_{1}^{n+1} x^\beta~\mathrm{d}x\\
+			\text{donc }& \frac{n^{\beta+1}}{\beta+1} \le \sum_{k=1}^n \le \frac{(n+1)^{\beta+1}-1}{\beta + 1} \sim \frac{n^{\beta + 1}}{\beta + 1}\\
+		\end{align*}
+		et donc \[
+			0 < u_n \sim \frac{1}{n^{\alpha}} \times \frac{n^{\beta + 1}}{\beta+1} = \frac{1}{\beta + 1} \times \frac{1}{n^{\alpha - \beta - 1}}.
+		\] Donc,
+		\begin{align*}
+			\Sigma u_n \text{ converge } \iff& \alpha - \beta - 1 > 1\\
+			\iff& \alpha > \beta + 2.
+		\end{align*}
+	\item[\sc Cas 2] $\beta = 0$. \[
+			\forall n,\; u_n = \frac{1}{n^{\alpha}} \sum_{k=1}^n 1 = \frac{1}{n^{\alpha - 1}}
+		\] donc \[
+			\Sigma u_n \text{ converge } \iff \alpha - 1 > 1 \iff \alpha > 2.
+		\]
+	\item[\sc Cas 3] $\beta \in \; ]-1, 0[$.
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import math;
+
+				size(5cm);
+
+				draw((-1, 0) -- (4, 0), Arrow(TeXHead));
+				draw((0, -1) -- (0, 3), Arrow(TeXHead));
+
+				real alpha = 1.3;
+				real f(real x) {return 1/ x^alpha; }
+				bool3 check(real x) { return x != 0 && f(x) < 3; };
+
+				draw(graph(f, 0, 3.8, check), red);
+
+				real k = 1.5;
+				real ak = 0.25;
+				real bk = 2.75;
+
+				dot("\small$k$", (k, 0), align=S);
+				dot("\small$k - 1$", (ak, 0), align=S);
+				dot("\small$k + 1$", (bk, 0), align=S);
+
+				draw(box((ak, f(k)), (bk, 0)));
+				draw((k, 0) -- (k, f(k)));
+				draw((ak, f(k)) -- (-0.05, f(k)), dashed);
+				label("\small$\frac{1}{k^\alpha}$", (0, f(k)), align=W);
+			\end{asy}
+		\end{figure}
+
+		Soit $n \ge 2$. \[
+			\forall k \in \left\llbracket 2,n \right\rrbracket,\, \int_{k}^{k+1} x^\beta~\mathrm{d}x \le k^\beta \le \int_{k-1}^{k} x^\beta~\mathrm{d}x
+		\] donc \[
+			\int_{2}^{n+1} x^\beta~\mathrm{d}x \le \sum_{k=2}^n k^\beta \le \int_{1}^{n} x^\beta~\mathrm{d}x
+		\] et donc \[
+			\frac{(n+1)^{\beta + 1} - 2^{\beta + 1}}{\beta + 1} \le \sum_{k=2}^n k^{\beta} \le \frac{n^{\beta + 1} - 1}{\beta + 1}
+		\] donc \[
+			\sum_{k=2}^n b^\beta \sim \frac{n^{\beta + 1}}{\beta + 1}
+		\] et donc \[
+			\Sigma u_n \text{ converge } \iff \alpha > \beta + 2.
+		\]
+	\item[\sc Cas 4] $\beta = -1$.
+		\begin{align*}
+			\int_{2}^{n+1} \frac{1}{x}~\mathrm{d}x \le \sum_{k=2}^n k^{\beta} \le \int_{1}^{n} \frac{1}{x}~\mathrm{d}x\\
+			\underbrace{\ln(n+1)-\ln 2}_{\sim \ln n} \le \sum_{k=2}^n k^{-1} \le \ln n.
+		\end{align*} \[
+			0 < u_n \sim \frac{1}{n^{\alpha}} \ln n
+		\]
+
+		Pour $n \ge 3$, $\frac{\ln n}{n^\alpha} > \frac{1}{n^\alpha}$.
+
+		Si $\alpha \le 1$, alors $\Sigma u_n$ diverge.
+
+		Si $\alpha > 1$, \[
+			\ln n = \po(n^\gamma) \text{ avec } \gamma = \frac{\alpha - 1}{2} > 0.
+		\] donc \[
+			\frac{\ln n}{n^\alpha} = \po\left( \frac{1}{n^{\alpha - \beta}} \right) = \po\left( \frac{1}{n^{\frac{1+\alpha}{2}}} \right)
+		\] et donc $\sum\frac{\ln n}{n}$ converge.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import patterns;
+
+		size(10cm);
+		add("hatch",hatch(5mm, SE, red));
+
+		draw((-4, 0) -- (4, 0), Arrow(TeXHead));
+		draw((0, -3) -- (0, 3), Arrow(TeXHead));
+
+		label("$\alpha$", (4, 0), align=S);
+		label("$\beta$", (0, 3), align=W);
+
+		real eps = 0.05;
+
+		draw((-eps, -1)--(eps, -1));
+		label("$-1$", (0, -1), align=NW);
+
+		draw((-4, -1)--(1, -1), red);
+		draw((1, -3)--(1, -1), red);
+		draw((4, 2)--(1, -1), red);
+
+		fill((-4, 3) -- (4, 3) -- (4, 2) -- (1, -1) -- (1, -3) -- (-4, -3) -- cycle, pattern("hatch"));
+	\end{asy}
+\end{figure}
+
+

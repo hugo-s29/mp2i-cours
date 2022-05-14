@@ -1,0 +1,28 @@
+\part{Exercice 8}
+
+\begin{enumerate}
+	\item On a : \[
+			\det u =
+			\begin{vNiceArray}[first-row,last-col]{cccccc}
+				f(1)&f(X)&f(X^2)&\cdots&f(X^{n-1})&f(X^n)\\
+				1&1&0&\cdots&0&0&1\\
+				0&1&2&\cdots&0&0&X\\
+				0&0&1&\cdots&0&0&X^2\\
+				\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+				0&0&0&\cdots&1&n&X^{n-1}\\
+				0&0&0&\cdots&0&1&X^n
+			\end{vNiceArray} = 1.
+		\]
+	\item On a $\det u = 0$ car $\Ker u \ni 1$.
+	\item On a \[
+		\det u =
+		\begin{vNiceMatrix}
+			1&1&1&\cdots&1\\
+			0&1&0&\cdots&0\\
+			\vdots&\ddots&2&\ddots&\vdots\\
+			\vdots&\ddots&\ddots&\ddots&\vdots\\
+			\vdots&&\ddots&\ddots&0\\
+			0&\cdots&\cdots&0&n
+		\end{vNiceMatrix} = n!.
+	\]
+\end{enumerate}

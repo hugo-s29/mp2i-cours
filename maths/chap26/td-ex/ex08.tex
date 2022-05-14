@@ -1,0 +1,58 @@
+\part{Exercice 8}
+
+\begin{enumerate}
+	\item On pose \begin{align*}
+			f: \mathbbm{K}_n[X] &\longrightarrow \mathbbm{K}_n[X] \\
+			P &\longmapsto P'.
+		\end{align*}
+		On sait que \[
+			\Mat_\mathcal{B}(u) = \underbrace{\Mat_\mathcal{B}(\id_{\mathbbm{K}_n[X]})}_A + \underbrace{\Mat_\mathcal{B}(f)}_B
+		\] où $\mathcal{B}$ est la base canonique de $\mathbbm{K}_n[X]$.
+
+		On a \[
+			\Mat_\mathcal{B}(f) =
+			\begin{pNiceArray}[first-row,last-col]{cccccc}
+				f(1)&f(X)&f(X^2)&\cdots&f(X^{n-1})&f(X^n)\\
+				0&1&0&\cdots&0&0&1\\
+				0&0&2&\cdots&0&0&X\\
+				0&0&0&\cdots&0&0&X^2\\
+				\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+				0&0&0&\cdots&0&n-1&X^{n-1}\\
+				0&0&0&\cdots&0&0&X^n
+			\end{pNiceArray}
+		\] et donc \[
+			\det u = \det(A + B) = \det(I_n) = 1.
+		\]
+	\item On pose \begin{align*}
+			f: \mathbbm{K}_n[X] &\longrightarrow \mathbbm{K}_n[X] \\
+			P &\longmapsto P(X+1).
+		\end{align*}
+		On sait que \[
+			\Mat_\mathcal{B}(u) = \underbrace{\Mat_\mathcal{B}(f)}_A - \underbrace{\Mat_\mathcal{B}(\id_{\mathbbm{K}_n[X]})}_B
+		\] où $\mathcal{B}$ est la base canonique de $\mathbbm{K}_n[X]$.
+
+		On a \[
+			\Mat_\mathcal{B}(f) =
+			\begin{pNiceArray}[first-row,last-col]{ccccc}
+				f(1)&f(X)&f(X^2)&\cdots&f(X^n)\\[2mm]
+				1&1&1&\cdots&0&1\\[2mm]
+				0&1&2&\cdots&{\textstyle n \choose 1}&X\\[2mm]
+				0&0&1&\cdots&{\textstyle n \choose 2}&X^2\\[2mm]
+				\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\[2mm]
+				0&0&0&\cdots&1&X^n
+			\end{pNiceArray}
+		\] et donc \[
+			\det u = \det(A - B) = \det(0) = 0.
+		\]
+	\item On pose \begin{align*}
+			f: \mathbbm{K}_n[X] &\longrightarrow \mathbbm{K}_n[X] \\
+			P &\longmapsto XP'
+		\end{align*} et \begin{align*}
+			g: \mathbbm{K}_n[X] &\longrightarrow \mathbbm{K}_n[X] \\
+			P &\longmapsto P(1).
+		\end{align*}	
+		On sait que \[
+			\Mat_\mathcal{B}(u) = \underbrace{\Mat_\mathcal{B}(f)}_A - \underbrace{\Mat_\mathcal{B}(\id_{\mathbbm{K}_n[X]})}_B
+		\] où $\mathcal{B}$ est la base canonique de $\mathbbm{K}_n[X]$.
+\end{enumerate}
+

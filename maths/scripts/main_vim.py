@@ -42,7 +42,7 @@ def get_chapter_name(chapter):
         return 'Tous les chapitres'
 
     if not os.path.exists(f'{chapter}/main.tex'):
-        return f'Chapitre {chapter[4:]}'
+        return f'Chapitre {unicode_tex(chapter[4:])}'
     
     else:
         with open(f'{chapter}/main.tex') as f:
@@ -61,7 +61,7 @@ def get_chapter_name(chapter):
         start = part_line.find('{', 9) + 1
         end = part_line.find('}', 10)
 
-        title = part_line[start:end]
+        title = unicode_tex(part_line[start:end])
         return f'Chapitre {int(chapter[4:])} : {title}'
 
 def unicode_tex(title):

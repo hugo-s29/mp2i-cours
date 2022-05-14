@@ -1,0 +1,134 @@
+\part{Définitions}
+
+\begin{defn}
+	Soit $\Omega$ un ensemble fini. Une \underline{probabilité} \index{probabilité} sur $\Omega$ est une application \[
+		P : \mathcal{P}(\Omega) \longrightarrow [0, 1]
+	\] telle que
+	\begin{enumerate}
+		\item $P(\Omega) = 1$,
+		\item $\forall A,B \in \mathcal{P}(W),\; A\cap B = \O \implies P(A\cup B) = P(A) + P(B).$
+	\end{enumerate}
+	
+	Dans ce cas, on dit que $(\Omega, P)$ est un \underline{espace probabilisé}.
+	\index{espace probabilisé}
+\end{defn}
+
+\begin{exm}[équiprobabilité]
+	Soit $\Omega$ un ensemble fini non vide. Soit \begin{align*}
+		P: \mathcal{P}(\Omega) &\longrightarrow [0,1] \\
+		A &\longmapsto \frac{\#A}{\#\Omega}.
+	\end{align*}
+	En effet,
+	\begin{enumerate}
+		\item $P(\Omega) = \frac{\#\Omega}{\#\Omega} = 1$.
+		\item Soient $A, B \in \mathcal{P}(\Omega)$ avec $A \cap B = \O$.
+			\begin{align*}
+				P(A \cup B) &= \frac{\#(A\cup B)}{\#\Omega} \\
+				&= \frac{\#A + \#B}{\#\Omega} \\
+				&= P(A) + P(B) \\
+			\end{align*}
+	\end{enumerate}
+
+	De plus, on pose $n = \#\Omega$. \[
+		\forall \omega \in \Omega, P\big(\{\omega\}\big) = \frac{1}{n} \text{ et ne dépend pas de } \omega.
+	\]
+\end{exm}
+
+\begin{defn}
+	Soit $(\Omega, P)$ un espace probabilisé.
+
+	L'ensemble $\Omega$ est appelé \underline{univers}\index{univers (probabilités)}, les singletons $\{\omega\}$ avec $\omega \in \Omega$ sont appelés \underline{événements élémentaires}\index{événement élémentaire (probabilités)}, les parties de $\Omega$ sont appelées \underline{événements}\index{événement (probabilités)}, $\O$ est appelé \underline{événement impossible}\index{événement impossible (probabilités)} et $\Omega$ est appelé \underline{événement certain}\index{événement certain (probabilités)}.
+
+	Soient $A,B \in \mathcal{P}(\Omega)$. On dit que $A$ et $B$ sont \underline{incompatibles}\index{événements incompatibles (probabilités)} si $A \cap B = \O$.
+\end{defn}
+
+\begin{prop}
+	Soit $\Omega = \{\omega_1,\ldots,\omega_n\}$ un ensemble de cardinal $n$ et $(p_1, \ldots, p_n) \in [0,1]^n$ tel que $\sum_{i=1}^n p_i = 1$. Il existe une unique probabilité $P$ sur $\Omega$ que \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket,\, P\big(\{\omega_i\} \big) = p_i.
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[Éxistence] On pose \begin{align*}
+				P: \mathcal{P}(\Omega) &\longrightarrow [0,1] \\
+				A &\longmapsto \sum_{i \in I_A} p_i
+			\end{align*} où $I_A = \big\{i \in \left\llbracket 1,n \right\rrbracket  \mid \omega_i \in A\big\}$.
+			\begin{itemize}
+				\item Soit $a \in \mathcal{P}(\Omega)$. \[
+						0 \le P(A) = \sum_{i \in I_A} p_i \le \sum_{i = 1}^n p_i = 1
+					\] 
+				\item $P(\Omega) = \sum_{i \in I_\Omega} p_i = \sum_{i=1}^n p_i = 1$.
+				\item Soient $A, B \in \mathcal{P}(\Omega)$ incompatibles.
+					\begin{align*}
+						I_{A\cup B} &= \{ i \in \left\llbracket 1,n \right\rrbracket, \omega_i \in A \cup B\}\\
+						&= I_A \cupdot I_B \\
+					\end{align*} \[
+						P(A \cup B) = \sum_{i \in I_{A\cup B}} p_i = \sum_{i \in I_A} p_i + \sum_{i \in I_B} p_i = P(A) + P(B).
+					\]
+			\end{itemize}
+		\item[Unicité] Soit $Q$ une probabilité sur $\Omega$ tel que \[
+				\forall i \in \left\llbracket 1,n \right\rrbracket, Q\big(\{\omega_i\}\big) = p_i.
+			\] Soit $A \in \mathcal{P}(\Omega)$. \[
+				A = \bigcupdot_{\omega \in A} \{\omega\} = \bigcupdot_{i \in I_A} \{\omega_i\}.
+			\] En utilisant le lemme suivant,
+			\begin{align*}
+				Q(A) &= Q\left( \bigcupdot_{i \in I_A} \{\omega_i\} \right) = \sum_{i \in I_A} Q\big(\{\omega_i\}\big)\\
+				&= \sum_{i \in I_A} p_i = P(A). \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{lem}
+	Soit $P$ une probabilité sur $\Omega$ et $(A_i)_{1\le i \le n}$ une famille d'événements 2 à 2 incompatibles. Alors \[
+		P\left( \bigcup_{i=1}^n A_i \right) = \sum_{i=1}^n P(A_i).
+	\]
+\end{lem}
+
+\begin{prv}
+	par récurrence sur $n$.
+\end{prv}
+
+\begin{prop}
+	Soit $P$ une probabilitésur $\Omega$.
+	\begin{enumerate}
+		\item $P(\O) = 0$;
+		\item $\forall A,B \in \mathcal{P}(\Omega),\; A \subset B \implies P(A) \le P(B)$;
+		\item $\forall A,B \in \mathcal{P}(\Omega),\; P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\Omega = \O \cupdot \Omega$ donc $P(\Omega) = P(\O) + P(\Omega)$ donc $P(\O) = 0$.
+		\item Soient $A, B \in \mathcal{P}(\Omega)$ avec $A \subset  B$.
+			On pose $C = B \setminus A$ : \[
+				\begin{cases}
+					 B = A \cup C;\\
+					 A \cap C = \O.
+				\end{cases}
+			\] Donc, $P(B) = P(A) + \underbrace{P(C)}_{\ge 0} \ge P(A)$.
+		\item On pose $\begin{cases}
+			A' = A \setminus (A \cap B),\\
+			B' = B \setminus (A \cap B),\\
+			C = A \cap B.
+		\end{cases}$ \[
+			\begin{cases}
+				A' \cup B' \cup C = A \cup B\\
+				A' \cap C = B' \cap C = A' \cap B' = \O
+			\end{cases}
+		\] donc \[
+			P(A \cup B) = P(A') + P(B') + P(C).
+		\] De plus, \[
+			\begin{cases}
+				A = A' \cupdot C \text{ donc } P(A) = P(A') + P(C);\\
+				B = B' \cupdot C \text{ donc } P(B) = P(B') + P(C).\\
+			\end{cases}
+		\] D'où
+		\begin{align*}
+			P(A \cup B) &= P(A) - P(C) + P(B) - \cancel{P(C)} + \cancel{P(C)} \\
+			&= P(A) + P(B) - P(A \cap B). \\
+		\end{align*}
+	\end{enumerate}
+\end{prv}
+

@@ -1,0 +1,382 @@
+\part{Probabilité conditionnelle}
+
+\begin{prop-defn}
+	Soit $(\Omega, P)$ un espace probabilisé et $A \in \mathcal{P}(\Omega)$ tel que $P(A) \neq 0$.
+
+	L'application \begin{align*}
+		\mathcal{P}(\Omega) &\longrightarrow [0,1] \\
+		X &\longmapsto \frac{P(A \cap X)}{P(A)}
+	\end{align*} est une probabilité. Elle est notée $P_A$ et est appelée \underline{probabilité sachant $A$}. \index{probabilité sachant $A$}
+\end{prop-defn}
+
+\begin{prv}
+	\begin{itemize}
+		\item Soit $X \in P(\Omega)$. \[
+				0 \le P(A \cap X) \le P(A) \text{ car } A \cap X \subset A
+			\] Comme $P(A) > 0$, \[
+				0 \le \frac{P(A \cap X)}{P(A)} \le 1
+			\]
+		\item \[
+				\frac{P(A \cap \Omega)}{P(A)} = \frac{P(A)}{P(A)} = 1
+			\]
+		\item Soient $X, Y \in P(\Omega)$ avec $X \cap Y = \O$.
+			\begin{align*}
+				\frac{P\big(A \cap (X \cup Y)\big)}{P(A)} &= \frac{P\big((X \cap A)\cupdot (Y \cap A)\big)}{P(A)}\\
+				&= \frac{P(A \cap X) + P(A \cap Y)}{P(A)} \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $(\Omega, P)$ un espace probabilisé et $A \in \mathcal{P}(\Omega)$ tel que $P(A) \neq 0$. \[
+		\forall X \in \mathcal{P}(\Omega),\; P(A \cap X) = P(A)\;P_A(X).
+	\] \qed
+\end{prop}
+
+\begin{prop}
+	Soit $(\Omega, P)$ un espace probabilisé, $A \in \mathcal{P}(\Omega)$ tel que $P(A) \in\; ]0,1[$. \[
+		\forall X \in \mathcal{P}(\Omega),\;P(X) = P(A)\,P_A(X) + P\left( \overline{A} \right)\,P_{\overline{A}}(X).
+	\]
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		size(5cm);
+
+		draw((0,0) -- (1,0.5));
+		draw((0,0) -- (1,-0.5));
+
+		label("$P(A)$", (0.5, 0.4));
+		label("$P(\bar{A})$", (0.5, -0.4));
+		label("$A$", (1.1, 0.5));
+		label("$\bar{A}$", (1.1, -0.5));
+
+		draw((1.2,0.5)--(2.2, 0.8));
+		draw((1.2,0.5)--(2.2, 0.3));
+		draw((1.2,-0.5)--(2.2, -0.3));
+		draw((1.2,-0.5)--(2.2, -0.8));
+
+		label("$P_A(X)$", (1.7, 0.75));
+		label("$P_A(\bar{X})$", (1.7, 0.25));
+		label("$P_{\bar{A}}(X)$", (1.7, -0.3));
+		label("$P_{\bar{A}}(\bar{X})$", (1.7, -0.8));
+
+		label("$X$", (2.4, 0.8));
+		label("$\bar{X}$", (2.4, 0.3));
+		label("$X$", (2.4, -0.3));
+		label("$\bar{X}$", (2.4, -0.8));
+
+		draw((2.75, 0.8) -- (2.55, 0.8), Arrow(TeXHead));
+		draw((2.75, -0.3) -- (2.55, -0.3), Arrow(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	Soit $X \in \mathcal{P}(\Omega)$.
+	\begin{align*}
+		X &= X \cap \Omega \\
+		&= X \cap \left( A \cupdot \overline{A} \right) \\
+		&= (X \cap A) \cupdot \left( X \cap \overline{A} \right) \\
+	\end{align*}
+	donc
+	\begin{align*}
+		P(X) &= P(X \cap A) + P\left( X \cap \overline{A} \right)\\
+		&= P(A)\,P_A(X) + P\left(\overline{A}\right)\,P_{\overline{A}}(X).\\
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $(\Omega, P)$ un espace probabilisé. Un \underline{système complet d'événements}\index{système complet d'événements} est une partition de $\Omega$.
+\end{defn}
+
+\begin{prop}[probabilités totales]
+	Soit $(\Omega, P)$ un espace probabilisé, $(A_i)_{1\le i\le n}$ un système complet d'événements tel que \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket,\,P(A_i) > 0.
+	\] Alors, \[
+		\forall x \in \mathcal{P}(\Omega),\,P(X) = \sum_{i=1}^n P(A_i) P_{A_i}(X).
+	\] 
+\end{prop}
+
+\begin{prv}
+	Soit $X \in \mathcal{P}(\Omega)$.
+	\begin{align*}
+		P(X) &= P(X \cap \Omega) \\
+		&= P\left( X \cap \left( \bigcupdot_{i=1}^n A_i \right) \right) \\
+		&= P\left( \bigcupdot_{i=1}^n (X \cap A_i) \right) \\
+		&= \sum_{i=1}^n P(X \cap A_i) \\
+		&= \sum_{i=1}^n P(A_i) P_{A_i}(X) \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	On dispose de 5 dés : un à 4 faces, un à 6 faces, un à 8 faces, un à 8 faces, un à 12 faces et un à 20 faces que l'on suppose bien équilibré.
+
+	Pour qu'un dé soit bien équilibré, il faut que ce soit un polyèdre régulier, aussi appelé polyèdre de Platon. Il y en a 5 : le tétraèdre, le cube, l'octaèdre, le dodécaèdre, et l'icosaèdre.
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				include "/Users/hugo/Documents/dev/asy-packages/pivaldi/polyhedron_js.asy";
+				currentlight = nolight;
+				currentprojection=orthographic(6,5,4);
+				size(2cm);
+				draw(surface(tetrahedron),white+opacity(.7));
+				draw(tetrahedron,black);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				include "/Users/hugo/Documents/dev/asy-packages/pivaldi/polyhedron_js.asy";
+				currentlight = nolight;
+				currentprojection=orthographic(6,5,4);
+				size(2cm);
+				draw(surface(cube),white+opacity(.7));
+				draw(cube,black);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				include "/Users/hugo/Documents/dev/asy-packages/pivaldi/polyhedron_js.asy";
+				currentlight = nolight;
+				currentprojection=orthographic(6,5,4);
+				size(2cm);
+				draw(surface(octahedron),white+opacity(.7));
+				draw(octahedron,black);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				include "/Users/hugo/Documents/dev/asy-packages/pivaldi/polyhedron_js.asy";
+				currentlight = nolight;
+				size(2cm);
+				draw(surface(dodecahedron),white+opacity(.7));
+				draw(dodecahedron,black);
+			\end{asy}
+		\end{subfigure}
+		\begin{subfigure}[b]{3cm}
+			\centering
+			\begin{asy}
+				include "/Users/hugo/Documents/dev/asy-packages/pivaldi/polyhedron_js.asy";
+				currentlight = nolight;
+				size(2cm);
+				draw(surface(icosahedron),white+opacity(.7));
+				draw(icosahedron,black);
+			\end{asy}
+		\end{subfigure}
+	\end{figure}
+
+	On choisit au hasard l'un de ces dés, on le lance et on note le résultat. \centered{\itshape Quelle est la probabilité que ce résultat soit égal à 7 ?}
+
+	\underline{Modélisation 1} : $\Omega = \left\llbracket 1,20 \right\rrbracket$, $P = ?$.
+
+	\underline{Modélisation 2} : $\Omega = \big\{ (x,y) \mid x \in \{4, 6, 8, 12, 20\} \et y \in \left\llbracket 1,x \right\rrbracket \big\}$ et $P$ une probabilité sur $\Omega$.
+	On pose $\forall x \in \overbrace{\{4, 6, 8, 12, 20\}}^X,\, A_x = \{x\} \times \left\llbracket 1,x \right\rrbracket$. On suppose que \[
+		\forall x \in X,\; P(A_x) = \frac{1}{5}.
+	\] On note \[
+		\forall y \in \left\llbracket 1,20 \right\rrbracket,\, B_y = \big\{ (x,y) \mid x \in X \et y \le x \big\}
+	\] et donc \[
+		\forall x \in X,\,\forall y \in \left\llbracket 1,x \right\rrbracket,\, P_{A_x}(B_y) = \begin{cases}
+			\frac{1}{x} &\text{ si } y \le x,\\
+			0 &\text{ si } y > x.
+		\end{cases}
+	\]
+
+	\centered{\large Implémentation en Python de l'experience : }
+	\begin{algorithm}
+		\begin{lstlisting}[language=python]
+			import random as rd
+
+			def exp():
+			  faces = rd.choice([4, 6, 8, 12, 20])
+			  result = rd.randint(1, faces)
+			  return result == 7
+
+			def proba(N = 1000):
+			  cpt = 0
+			  for _ in range(N):
+			    if exp():
+			      cpt += 1
+			  return cpt / N
+		\end{lstlisting}
+	\end{algorithm}
+	
+	\centered{\large Solution :}
+
+	\begin{align*}
+		P(B_7) &= \sum_{x \in X} P_{A_x}(B_7) P(A_x)\\
+		&= \frac{1}{5}\left( P_{A_8}(B_7) + P_{A_{12}}(B_7) + P_{A_{20}}(B_7) \right)  \\
+		&= \frac{1}{5}\left( \frac{1}{8} + \frac{1}{12}+\frac{1}{20} \right). \\
+	\end{align*}
+\end{exm}
+
+\begin{prop}[probabilités composées]
+	Soit $(\Omega, P)$ un espace probabilisé, $(A_i)_{1 \le i \le n}$ des événements tels que \[
+		P(A_1 \cap \cdots \cap A_{n-1}) \neq 0.
+	\] Alors, \[
+		P(A_1 \cap \cdots \cap A_n) = P(A_1)\,P_{A_1}(A_2)\,P_{A_1 \cap A_2}(A_3) \cdots P_{A_1 \cap \cdots \cap A_{n-1}}(A_n)
+	\]
+\end{prop}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		size(12cm);
+
+		draw((0,0) -- (1,0.5));
+		draw((0,0) -- (1,-0.5));
+
+		label("$P(A_1)$", (0.5, 0.4));
+		label("$P(\bar{A}_1)$", (0.5, -0.4));
+		label("$A_1$", (1.1, 0.5));
+		label("$\bar{A}_1$", (1.1, -0.5));
+
+		draw((1.2,0.5)--(2.2, 1));
+		draw((1.2,0.5)--(2.2, 0));
+
+		label("$P_{A_1}(A_2)$", (1.7, 1));
+		label("$P_{A_1}(\bar{A}_2)$", (1.7, 0));
+
+		label("$A_2$", (2.3, 1));
+		label("$\bar{A}_2$", (2.3, 0));
+		
+		for(real t = 0; t <= 1; t += 0.25) {
+			pair P = (2.5,1.1) * (1 - t) + t * (3.1, 1.4);
+			fill(circle(P, 0.01));
+		}
+
+		label("$A_{n-1}$", (3.3, 1.5));
+
+		draw((3.5,1.5) -- (4.5,2));
+		draw((3.5,1.5) -- (4.5,1));
+
+		label("$P_{A_{n-1}}(A_n)$", (4, 1.95));
+		label("$P_{A_{n-1}}(\bar{A}_n)$", (4, 1.05));
+		label("$A_n$", (4.6, 2));
+		label("$\bar{A}_n$", (4.6, 1));
+
+		draw((5, 2)--(4.8, 2),Arrow(TeXHead));
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	\[
+		\forall i, A_1 \cap \cdots \cap A_i \supset A_1 \cap \cdots \cap A_n \text{ donc } P(A_1 \cap \cdots \cap A_i) > 0.
+	\]
+	\begin{align*}
+		&\phantom{=}\;P(A_1)\,P_{A_1}(A_2)\,P_{A_1 \cap A_2}(A_3) \cdots P_{A_1 \cap \cdots \cap A_{n-1}}(A_n)\\
+		&= P(A_1) \frac{P(A_2 \cap A_1)}{P(A_1)} \frac{P(A_3 \cap A_2 \cap A_1)}{P(A_1 \cap A_2)} \cdots \frac{P(A_n \cap A_{n-1} \cap \cdots \cap A_{1})}{P(A_1 \cap \cdots \cap A_{n-1})} \\
+		&= P(A_1 \cap \cdots \cap A_n) \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	On reprend l'expérience précédente aléatoire précédente. On sait qu'on a obtenu 7.
+	\centered{\itshape Quel dé a été utilisé ?}
+
+	On veut calculer $P_{B_7}(A_x)$ pour tout $x$. Soit $x \in X$.
+	\begin{align*}
+		P_{B_7}(A_x) &= \frac{P(A_x \cap B_7)}{P(B_7)}\\
+		&= \frac{P_{A_x}(B_7)\;P(A_x)}{P(B_7)} \\
+		&= \begin{cases}
+			 0 &\text{ si } x \in \{ 4, 6\}\\[2mm]
+			 \frac{\frac{1}{8} \times \frac{1}{5}}{P(B_7)} & \text{ si } x = 8\\[5mm]
+			 \frac{\frac{1}{2} \times \frac{1}{5}}{P(B_7)} &\text{ si } x = 12\\[5mm]
+			 \frac{\frac{1}{20}\times \frac{1}{5}}{P(B_7)} &\text{ si } x = 20
+		\end{cases} \\
+	\end{align*}
+
+	On a utilisé la formule de Bayes.
+\end{exm}
+
+\begin{prop}[Bayes]
+	Soit $(\Omega, P)$ un espace probabilisé, $A, B \in \mathcal{P}(\Omega)$ tels que $P(A) \neq 0$ et $P(B) \in\;]0,1[$.
+	\[
+		P_A(B) = \frac{P_B(A)\;P(B)}{P(A)} = \frac{P_B(A)\;P(B)}{P_B(A)\,P(B) + P_{\overline{B}}(A)\,P\left( \overline{B} \right)}.
+	\]\qed
+\end{prop}
+
+\begin{rmk}
+	On appèle $P_A(B)$ la \underline{vraissemblance} ({\it likelyhood} en anglais), $P(A)$ la probabilité \underline{a-priori} ({\it prior distribution}), et $P_B(A)$ la probabilité \underline{a-posteriori} ({\it posterior distribution}).
+\end{rmk}
+
+\begin{exm}[filtre bayésien]
+	On peut utiliser cette formule pour filtrer les SPAMs dans les emails. On utilise des données de la forme : 
+	\begin{center}
+		\begin{tabular}{c|c|c|c|c|c}
+			&mot 1&mot 2&$\cdots$&mot $p$&spam ?\\ \hline
+			mail 1&&&&&\\ \hline
+			mail 2&&&&&\\ \hline
+			$\vdots$&&&&&\\ \hline
+			mail $n$&&&&&
+		\end{tabular}.
+	\end{center}
+	
+	On peut donc calculer la probabilité qu'un email soit un SPAM en fonction des mots qu'il contient :
+	\begin{align*}
+		P_{(\text{mot 1},\overlin{\text{mot 2}}, \ldots)}(\text{spam}) &= \frac{P(\text{spam})\, P_{\text{spam}}(\text{mot 1}, \overlin{\text{mot 2}}, \ldots)}{P(\text{mot 1}, \overlin{\text{mot 2}}, \ldots)}\\
+		&\simeq \frac{P_{\text{spam}}(\text{mot 1}) \times P_{\text{spam}}(\overlin{\text{mot 2}}) \times \cdots}{P(\text{mot 1}, \overlin{\text{mot 2}}, \ldots)}.
+	\end{align*}
+\end{exm}
+
+\begin{exm}[Test médical]
+	On estime qu'une personne sur $10\,000$ est atteinte d'une certaine maladie.
+	On invente un test $T$. \[
+		\begin{cases}
+			P_{\text{malade}}(T = \,\text{positif}) = \frac{99}{100},\\
+			P_{\overlin{\text{malade}}}(T = \,\text{positif}) = \frac{1}{1000}.\\
+		\end{cases}
+	\] On fait un test et il revient positif. Quelle est la probabilité d'avoir la maladie : $P_{T^+}(M)$ ?
+
+	\begin{align*}
+		P_{T^+}(M) &= \frac{P_M(T^+)\,P(M)}{P(T)}\\
+		&= \frac{\frac{99}{100} \times \frac{1}{10\,000}}{\frac{99}{100}\times \frac{1}{10\,000} \times \frac{9\,999}{10\,000}} \\
+		&= \frac{990}{990 + 9999} \simeq 9\,\% \\
+	\end{align*}
+
+	On a $9\,\%$ d'avoir la maladie : le test n'est pas très précis.
+\end{exm}
+
+\begin{exm}[QCM]
+	On a un QCM de 20 questions où l'on peut répondre par vrai ou faux (donc c'est pas vraiment un QCM). Si un étudiant connaît la réponse, il réponds correctement. Sinon, il choisit l'une des réponses au hasard.
+
+	Soit $p$ la probabilité qu'il connaisse la réponse à une question. Cela représente le niveau du candidat : un élève ayant travaillé aura une valeur de $p$ plus importante qu'un élève n'ayant pas travaillé.
+
+	L'étudiant obtient $\sfrac{13}{20}$. Estimer $p$.
+
+	Comme $p \in [0,1]$, on découpe l'intervalle en 10 : on pose \[
+		\forall k \in \left\llbracket 0,9 \right\rrbracket,\; A_k : ``\,p = \frac{k+0,5}{10}".
+	\] On pose aussi \[
+	\begin{cases}
+		\forall i \in \left\llbracket 1,20 \right\rrbracket,\, B_i : ``\,\text{la } i\text{-ème réponse est correcte}",\\
+		\forall j \in \left\llbracket 0,20 \right\rrbracket,\, C_j : ``\,\text{l'étudiant a } \sfrac{j}{20}",\\
+	\end{cases}
+	\] On cherche donc $P_{C_{13}}(A_k)$. S'il n'y a pas de ``pic'' de probabilité (en fonction de $k$), il faut changer le QCM : augmenter le nombre de questions, mettre des questions plus faciles / difficiles\ldots
+
+	On utilise la formule de Bayes :
+	\begin{align*}
+		P_{C_{13}}(A_k) = \frac{P_{A_k}(C_{13})\;P(A_k)}{P(C_{13})}.
+	\end{align*}
+
+	On peut choisir $P(A_k)$ : c'est subjectif. On peut avoir une distribution uniforme, ou suivant une courbe de Gauss, \ldots
+
+	On choisit $P(A_k) = \frac{1}{10}$ : distribution uniforme.
+	\[
+		P(C_{13}) = \sum_{k=0}^9 P_{A_k}(C_{13}) \,P(A_k);
+	\] \[
+		P_{A_k}(C_{13}) = {20 \choose 13} \left(\frac{p+1}{2}\right)^{13} \left( 1-\frac{p+1}{2} \right)^7.
+	\]
+\end{exm}
+
+\begin{prop}[Bayes]
+	Soit $(\Omega, P)$ un espace probabilisé et $(A_k)_{k \in K}$ un système complet d'événements tel que \[
+		\forall k \in K,\, P(A_k) \neq 0.
+	\] Soit $X \in \mathcal{P}(\Omega)$ tel que $P(X) \neq 0$. On a \[
+		\forall k \in K,\, P_X(A_k) = \frac{P_{A_k}(X)\,P(A_k)}{\sum_{j \in K}P_{A_j}(X) P(A_j)}.
+	\]\qed
+\end{prop}
+

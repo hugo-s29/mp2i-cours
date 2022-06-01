@@ -1,0 +1,306 @@
+\documentclass[a4paper]{report}
+
+\usepackage[fontsize=10pt]{fontsize}
+\usepackage{wrapfig}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage[f]{esvect}
+\usepackage{array}
+\usepackage{xfrac}
+
+\input{../preamble.tex}
+
+\definecolor{black}{HTML}{575279}
+
+\color{black}
+\setlength\tabcolsep{5mm}
+\setlength{\extrarowheight}{1mm}
+\usepackage{adjustbox}
+
+\newcommand{\tabitem}{~\llap{--}~~}
+\newcommand{\tabnoitem}{~~~}
+
+\begin{asydef}
+	red = rgb("ea9a97");
+	blue = rgb("3e8fb0");
+	grey = rgb("56526e");
+	magenta = rgb("eb6f92");
+	black = rgb("232136");
+	palegray = rgb("908caa");
+	white = rgb("ffffff");
+	purple = rgb("a173d9");
+
+	defaultpen(black);
+\end{asydef}
+
+\let\vec\vv
+
+\fancyhead[R]{Hugo {\sc Salou} \& Iwan {\sc Derouet}}
+\fancyhead[L]{MP2I}
+\fancyhead[C]{Physique TP\,21}
+\renewcommand{\thesection}{\Roman{section}}
+
+%\title{TP\,21}{Mesure du moment d'inertie d'une roue}{Hugo {\sc Salou}\\Iwan {\sc Derouet}}
+
+\setlength{\parindent}{10mm}
+\setlength{\parskip}{5mm}
+\setstretch{1.2}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			~\\
+			\vspace{4cm}
+			{\Large \sc TP\,21}\\
+			\vspace{1cm}
+			{\HUGE \cursive Mesure du moment d'inertie d'une roue}\\
+			\vfill
+			\begin{adjustbox}{center}
+				\begin{asy}
+					import solids;
+					import three;
+					size(6cm);
+
+					//currentprojection = obliqueX;
+					settings.render=64;
+					surface r = shift((-0.05,0,0)) * align(X) * scale(1,1,0.1) * unitcylinder;
+					draw(r, material(blue,shininess=0.5));
+
+					real dtheta = pi / 12;
+					real eps = 0.01;
+					for(int i = 0; i < 12; ++i) {
+						real theta_i = dtheta * i;
+						pair p = expi(theta_i);
+						real s = 1 - eps;
+						draw(s * (0, p.x, p.y) -- -s * (0, p.x, p.y));
+					}
+
+					real theta = pi/6;
+					triple p = (0, cos(theta), sin(theta));
+					triple d = (6.5, 15, 1)/30;
+					surface phone = shift(p) * rotate(90 - degrees(theta), -X) * scale(d.x, d.y, d.z) * shift(-(1, 1, 1)/2) * unitcube;
+
+					draw(phone, material(gray,shininess=0.5));
+
+					draw(-1.5X -- 1.5X, red + dashed);
+				\end{asy}
+			\end{adjustbox}
+			\vfill
+			{Hugo {\sc Salou}\\Iwan {\sc Derouet}}\\
+			\vspace{1.5mm}
+			\rule{4cm}{0.4pt}\\
+			\vspace{3.5mm}
+			MP2I\\
+		\end{center}
+	\end{titlepage}
+
+	\begin{wrapfigure}{r}{5cm}
+		\centering
+		\begin{asy}
+			import solids;
+			import three;
+			size(4cm);
+
+			//currentprojection = obliqueX;
+			settings.render=16;
+			surface r = shift((-0.05,0,0)) * align(X) * scale(1,1,0.1) * unitcylinder;
+			draw(r, material(blue,shininess=0.5));
+
+			real dtheta = pi / 12;
+			real eps = 0.01;
+			for(int i = 0; i < 12; ++i) {
+				real theta_i = dtheta * i;
+				pair p = expi(theta_i);
+				real s = 1 - eps;
+				draw(s * (0, p.x, p.y) -- -s * (0, p.x, p.y));
+			}
+
+			real theta = pi/6;
+			triple p = (0, cos(theta), sin(theta));
+			triple d = (6.5, 15, 1)/30;
+			surface phone = shift(p) * rotate(90 - degrees(theta), -X) * scale(d.x, d.y, d.z) * shift(-(1, 1, 1)/2) * unitcube;
+
+			draw(phone, material(gray,shininess=0.5));
+
+			draw(-1.5X -- 1.5X, red + dashed);
+
+			label("$\Delta$",1.2X, red, align=S);
+		\end{asy}
+	\end{wrapfigure}
+	L'objectif de ce TP est de mesurer le moment d'inertie d'une roue de vélo. Pour cela, on fixe un téléphone sur celle-ci, comme montré dans le schéma ci-contre. Pour modéliser la situation, on considère que l'énergie potentielle de pesanteur $\mathcal{E}_p$ est nulle au point le plus bas de la roue. On suppose que l'énergie mécanique du système roue et téléphone est conservée au cours d'une révolution. On cherche à exprimer $J$, le moment d'inertie de la roue, en fonction des données de l'expérience.
+
+	Comme l'énergie mécanique est conservée, on a \[
+		{\mathcal{E}_m}_{\text{haut}} = {\mathcal{E}_m}_{\text{bas}}
+	\] où ${\mathcal{E}_m}_{\text{haut}}$ représente l'énergie mécanique au point le plus haut de la roue, et ${\mathcal{E}_m}_{\text{bas}}$ l'énergie mécanique au point le plus bas. On sait que l'énergie cinétique $\mathcal{E}_c(\omega)$ peut être exprimée à l'aide de la formule suivante : \[
+		\mathcal{E}_c(\omega) = \frac{1}{2}\, J\, \omega^2.
+	\]
+	
+	\begin{wrapfigure}{l}{5cm}
+		\centering
+		\begin{asy}
+			size(4cm);
+
+			pen grey = rgb("cecacd");
+
+			draw(unitcircle, grey);
+
+			real dtheta = pi / 12;
+			real eps = 0.01;
+
+			for(int i = 0; i < 12; ++i) {
+				real theta_i = dtheta * i;
+				pair p = expi(theta_i);
+				real s = 1 - eps;
+
+				if (i != 6)
+					draw(s * p -- -s * p, p = grey + opacity(0.5));
+				else
+					draw(s * p -- (0, 0), p = grey + opacity(0.5));
+			}
+
+			real theta = pi/3;
+			pair M = expi(theta - pi/2);
+			pair P = (0, -0.8);
+			real u = 0.5;
+
+			draw(M -- M + P, red, Arrow(TeXHead));
+
+			label("$\vec{P}$", M + 2P/3, red, align=W);
+
+			draw(M -- M + u * expi(theta), magenta, Arrow(TeXHead));
+			label("\small$\vec{u_\theta}$", M + u * expi(theta), magenta, align=N);
+			draw(M -- M * (u + 1), magenta, Arrow(TeXHead));
+			label("\small$\vec{u_r}$", M * (u + 1), magenta, align=N);
+
+			draw((0,0) -- (0, -1.3), dashed + blue);
+			draw(arc((0,0), 0.4, -90, degrees(-pi/2 + theta)), blue, Arrow(TeXHead));
+			label("$\theta$", 0.5expi(theta / 2 - pi / 2), blue);
+
+			draw(arc(M, 0.2, -90, degrees(-pi/2 + theta)), blue, Arrow(TeXHead));
+			label("\small$\theta$", M + 0.3expi(theta / 2 - pi / 2), blue);
+
+			draw((0,0) -- M);
+			dot("$M$", M, align=N + W/3);
+
+			draw(circle(M, 0.05), magenta);
+			label("\small$\vec{u_z}$", M, magenta, align=S + 0.9W);
+
+			draw(M -- (-0.2, M.y), purple + dashed);
+			draw((-0.2, -1) -- (0, -1), purple + dashed);
+			draw((-0.2, -1) -- (-0.2, M.y), purple, Arrows(TeXHead));
+			label("$\Delta h$", (-0.3, M.y/2), purple);
+		\end{asy}
+	\end{wrapfigure}
+
+	On sait que l'énergie potentielle de pesanteur $\mathcal{E}_{p}(\Delta h)$ peut s'exprimer de la façon suivante : \[
+		\mathcal{E}_p(\Delta h) = m\, g\, \Delta h
+	\] où $m$ est la masse de l'objet, $g$ est l'accélération gravitationnelle et $\Delta h$ est la difference de hauteur avec le bas de la roue. En effet, en se plaçant dans un repère cylindrique $(\vec{u_r}, \vec{u_\theta}, \vec{u_z})$, on a
+	\begin{align*}
+		\mathrm{d}\mathcal{E}_p &= -\,\delta\,W\!(\vec{P})\\
+		&= -\,\vec{P}\cdot\, \mathrm{d} \vec{O\!M} \\
+		&= -\,m\,g\,(\cos \theta\ \vec{u_r} - \sin \theta\ \vec{u_\theta}) \cdot (\mathrm{d}r\,\vec{u_r} + r\,\mathrm{d}\theta\,\vec{u_{\theta}} + \mathrm{d}z\, \vec{u_z}) \\
+		&= m\,g\,r\,\sin \theta\;\mathrm{d}\theta. \\
+	\end{align*}
+	D'où \[
+		\frac{\mathrm{d}\mathcal{E}_p}{\mathrm{d}\theta} = m\,g\,r\,\sin\theta
+	\] et donc \[
+		\mathcal{E}_p(\theta) = m\,g\,\underbrace{(-r\,\cos \theta)}_{\Delta h} + \underbrace{\mathcal{E}_p(0)}_{=\, 0}.
+	\] A l'aide de ces formules, on peut en déduire l'expression de l'énergie mécanique $\mathcal{E}_m$ : \[
+		\mathcal{E}_m = \frac{1}{2}\,J\,\omega^2 + m\,g\,\Delta h.
+	\] En calculant la différence d'énergie mécanique entre le point le plus haut de la roue et le plus bas, on peut en déduire une expression du moment d'inertie $J$. En effet, comme l'énergie mécanique se conserve, la différence est nulle. D'où \[
+		\frac{1}{2}\,J\,\omega^2_{\text{bas}} + 0 = \frac{1}{2}\,J\,\omega^2_{\text{haut}} - 2\,m\,g\,r
+	\] et donc \[
+		\omega^2_{\text{bas}} - \omega^2_{\text{haut}} = \frac{4\,m\,g\,r}{J} = \Omega^2.
+	\] La valeur de $\Omega$ est constante et peut être mesurée. Avec elle, on peut en déduire une valeur pour $J$.
+
+	On lance la roue et, en utilisant le gyroscope interne au téléphone, on mesure la valeur de $\dot\theta$ jusqu'à ce que la roue s'arrête. On obtient le graph suivant :
+	\begin{figure}[H]
+		\centering
+		\input{data.pgf}
+	\end{figure}
+
+	Entre $t = 0\;\mbox{s}$ et $t = 30\;\text{s}$, le mouvement est révolutif; {\sc a}près $t = 30\; \text{s}$, le mouvement est pendulaire.
+
+	Pour déterminer la valeur du moment d'inertie $J$ de la roue pour le mouvement révolutif, on mesure les ``pics'' de la courbe avant $t = 30\;\text{s}$. Pour les ``pics'' hauts, on mesure $\omega_{\text{haut}}$, pour les ``pics'' bas, on mesure $\omega_{\text{bas}}$. De ces deux mesures, on en déduit une valeur pour $\Omega^2$.
+
+	\begin{center}
+		{\footnotesize
+			\begin{tabular}{c|c|c}
+				$\omega_{\text{haut}}$&$\omega_{\text{bas}}$&$\Omega^2$\\[-2mm]
+				(rad/s)&(rad/s)&(rad/s)\\[1mm] \hline
+				8,411&5,255&43,13\\[1mm]\hline
+				8,224&5,056&42,07\\[1mm]\hline
+				8,154&4,844&43,02\\[1mm]\hline
+				8,061&4,631&43,53\\[1mm]\hline
+				7,921&4,406&43,33\\[1mm]\hline
+				7,828&4,194&43,69\\[1mm]\hline
+				7,688&3,955&43,46\\[1mm]\hline
+				7,571&3,717&43,50
+			\end{tabular}
+		}
+	\end{center}
+
+	D'après ces mesures, on a $\Omega^2 = 43,\!22\,\pm\, 0,\!2\; \text{rad}^2/\,\text{s}^2$. En effet, la principale source d'erreur pour cette mesure est la précision de l'expérimentateur quant à la mesure de détermination d'un minimum ou d'un maximum d'une oscillation. L'écart type experimental vaut $s_{\text{exp}} = 0,5121$ et nous avons estimez l'incertitude en utilisant les incertitudes de type A.
+
+	Cependant, déterminer la valeur du moment d'inertie $J$, en utilisant l'expression trouvée précédemment, nécessite d'avoir la valeur de la masse du téléphone $m$, et le rayon de sa trajectoire circulaire $r$. Pour la mesure de $m$, l'unique source d'erreur provient de la résolution de la balance (précision : $\pm 0,\!1\;\text{g}$). On a mesuré $m = 209,\!2\,\pm\,0,\!1\; \text{g}$. Pour la mesure de $r$, il y a deux potentielles sources d'erreur : le jugement de l'expérimentateur et la résolution de la règle. On estime les incertitudes à $u(r) = 5\,\text{mm}$. On mesure donc $r = 270 \pm 5\,\text{ mm}$. En utilisant l'expression \[
+		J = \frac{4\,m\,g\,r}{\Omega^2},
+	\] on détermine la valeur du moment d'inertie et ses incertitudes associées. De cette expression, on en déduit que
+	\begin{align*}
+		u^2(J) &= \left( \frac{\partial J}{\partial m} \right)^2 u^2(m) + \left( \frac{\partial J}{\partial g} \right)^2 u^2(g) + \left( \frac{\partial J}{\partial r} \right)^2 u^2(r) + \left( \frac{\partial J}{\partial \Omega^2} \right)^2 u^2(\Omega^2)\\
+		&= 16 \left(\frac{g^2r^2}{\Omega^4} u^2(m) + \frac{m^2r^2}{\Omega^4} u^2(g) + \frac{m^2g^2}{\Omega^4} u^2(r) + \frac{m^2g^2r^2}{\Omega^8} u^2(\Omega^2) \right).\\
+	\end{align*}
+	Et, après application numérique, on détermine $u(J) = 0,\!001\,\text{kg}/\text{m}^2$ (nous avons utilisés pour valeur de l'accélération gravitationnelle $g = 9,\!81 \pm 0.02\;\text{m}/\text{s}^2$). On a donc mesuré $J = 0,\!0513 \pm 0,\!001\;\text{kg}\,/\text{m}^2$.
+
+	On peut résumer les valeurs obtenues et les sources d'erreurs associées dans un tableau:
+
+	\begin{adjustbox}{center}
+		\begin{tabular}{|c|c|c|l|}\hline
+			\sc Grandeur&\sc Valeur mesurée&\sc Incertitude associée&\sc Source(s) d'erreur\\ \hline
+			Masse du téléphone $m$&$m = 209,\!2\;\text{g}$&$u(m)= 0,\!1\;\text{g}$&\tabitem Précision de la balance\\ \hline
+			Rayon de la roue $r$&$r = 270\,\text{mm}$&$u(r)= 5\,\text{mm}$&\tabitem Précision du mètre\\ \hline
+			Champ de pesanteur&$g = 9,\!81\,\text{m}/\text{s}^2$&$u(g)= 0,\!02\,\,\text{m}/\text{s}^2$&\tabitem Précision de la valeur\\[-2mm]
+			terrestre $g$&&&\tabnoitem de la constante\\ \hline
+			$\Omega^2$&$\Omega^2 = 43,\!22\; \text{rad}^2/\,\text{s}^2$&$u(\Omega^2)= 0,\!2\,\text{rad}^2/\,\text{s}^2$&\tabitem Jugement de l'expéri--\\[-2mm]
+			&&&\tabnoitem mentateur\\\hline
+		\end{tabular}
+	\end{adjustbox}
+
+	Dans la seconde partie de la mesure, le mouvement est pendulaire. On calcule les moments cinétique des forces s'appliquant au système : \[
+		\begin{cases}
+			\mathcal{M}_\Delta\left( \vec{P_m} \right) = -m\,g\,r \sin \theta,\\[2mm]
+			\mathcal{M}_\Delta\left( \vec{L} \right) = 0.\\[2mm]
+		\end{cases}
+	\] où $\vec{L}$ est la force de la liaison pivot d'axe $\Delta$, et $\vec{P}$ est le poids du téléphone. D'où \[
+		J' \ddot{\theta} = -(m\,g\,r) \sin \theta.
+	\] Par identification avec l'équation différentielle d'un oscillateur harmonique (dans le cas de petites oscillations), on trouve
+	\[
+		\begin{rcases*}
+			\ddot{\theta} + \mathrlap{\;\;\frac{m\,g\,r}{J'}}\phantom{\left( \frac{2\pi}{T} \right)^2\,} \sin \theta &=\; 0\\
+			\ddot{\theta} + \left( \frac{2\pi}{T} \right)^2\,\sin \theta &=\; 0\,
+		\end{rcases*} \qquad
+		\implies\qquad
+		J' = \frac{m\,g\,r\,T^2}{4\pi^2}.
+	\]
+
+	On mesure la période du signal en comptant les oscillations sur un intervalle de temps donné. On trouve, entre $t = 100\;\text{s}$ et $t = 150\;\text{s}$, qu'il y a $27$ oscillations. D'où $T = \sfrac{27}{50} = 0,\!54\;\text{s}^{-1}$. On estime l'incertitude du nombre d'oscillations à $\pm\, 2$ oscillations. On en déduit que $u(T) = 0,\!03\;\text{s}^{-1}$.
+
+	Avec la période du signal, on peut déterminer le moment d'inertie $J'$: on a $J' = 0,\!0640\,\pm\, 0,\!001\;\text{kg}/\text{m}^2$. En effet, l'incertitude associée au moment d'inerte $u(J')$ peut être déterminée par l'expression suivante :
+	\begin{align*}
+		u^2(J') &= \left( \frac{\partial J'}{\partial m} \right)^2 u^2(m) + \left( \frac{\partial J'}{\partial g} \right)^2 u^2(g) + \left( \frac{\partial J'}{\partial r} \right)^2 u^2(r) + \left( \frac{\partial J'}{\partial T} \right)^2 u^2(T)\\
+		&= \frac{1}{16 \pi^4} \left(g^2\,r^2\,T^4\; u^2(m) + m^2\,r^2\,T^4\; u^2(g) + m^2\,g^2\,T^4\; u^2(r) + 4\,m^2\,g^2\,r^2\,T^2\; u^2(T) \right).\\
+	\end{align*}
+	On obtient donc $u(J') = 0,\!001\;\text{kg}/\text{m}^2$. De même, on peut résumer les grandeurs et leurs sources d'erreur dans un tableau :
+
+	\begin{adjustbox}{center}
+		\begin{tabular}{|c|c|c|l|}\hline
+			\sc Grandeur&\sc Valeur mesurée&\sc Incertitude associée&\sc Source(s) d'erreur\\ \hline
+			Masse du téléphone $m$&$m = 209,\!2\;\text{g}$&$u(m)= 0,\!1\;\text{g}$&\tabitem Précision de la balance\\ \hline
+			Rayon de la roue $r$&$r = 270\,\text{mm}$&$u(r)= 5\,\text{mm}$&\tabitem Précision du mètre\\ \hline
+			Champ de pesanteur&$g = 9,\!81\,\text{m}/\text{s}^2$&$u(g)= 0,\!02\,\,\text{m}/\text{s}^2$&\tabitem Précision de la valeur\\[-2mm]
+			terrestre $g$&&&\tabnoitem de la constante\\ \hline
+			Période $T$&$T = 0,\!54\;\text{s}^{-1}$&$u(T) = 0,\!03\;\text{s}^{-1}$&\tabitem Jugement de l'expéri-\\[-2mm]
+		&&&\tabnoitem mentateur\\\hline
+		\end{tabular}
+	\end{adjustbox}
+
+	Pour conclure, grâce à ces deux protocoles, on peut donc mesurer le moment d'inertie d'une roue de vélo en utilisant uniquement le gyroscope à l'intérieur d'un téléphone.
+\end{document}

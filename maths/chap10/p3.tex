@@ -1,0 +1,237 @@
+\part{Divisibilité}
+
+\begin{defn}
+	Soient $a, b \in \Z$. On dit que $a$ \underline{divise} $b$ s'il existe $k \in \Z$ tel que $b = k\times a$. Dans ce cas, on écrit $a \mid b$. On dit aussi que $a$ est un \underline{diviseur} de $b$; et que $b$ est un \underline{multiple} de $a$.
+	\index{division (entiers)}
+	\index{diviseur (entiers)}
+	\index{multiple (entiers)}
+\end{defn}
+
+\begin{exm}
+	\begin{itemize}
+		\item $\forall x \in \Z,\, 1  \mid x$.
+		\item $0 \mid 0$ mais $\forall x \in \Z^*, 0 \nmid x$.
+		\item $\forall x \in \Z$, $x  \mid 0$.
+	\end{itemize}
+\end{exm}
+
+\begin{prop}
+	``\:$\mid$\:'' est une relation d'ordre sur $\Z$. \qed
+\end{prop}
+
+\begin{prop}
+	Soient $(a,b) \in \Z\times \Z^*$. \[
+		a  \mid b \implies \left| a \right| \le \left| b \right|
+	.\]\qed
+\end{prop}
+
+\begin{prop}
+	Soient $a, b, c \in \Z$. \[
+		\begin{rcases*}
+			a  \mid b\\
+			a  \mid c
+		\end{rcases*} \implies \big(\forall (k,\ell) \in \Z^2,\,a  \mid (k b + \ell c)\big)
+	.\]
+\end{prop}
+
+\begin{prv}
+	On pose $u,v \in \Z$ tels que \[
+		\begin{cases}
+			b = au,\\
+			c = av.
+		\end{cases}
+	\] Soient $k, \ell \in \Z$. \[
+		bk + \ell c = a k u + a \ell v = a \underbrace{k u + \ell v}_{\in \Z}.
+	\] et donc $a \mid (k u + \ell v)$.
+\end{prv}
+
+\begin{exm}
+	Soient $n \in \N$. \[
+		\begin{rcases*}
+			a  \mid n\\
+			a  \mid  n +1
+		\end{rcases*} \implies a  \mid \big((n+1)-n\big) \implies a  \mid 1 \implies a = \pm 1
+	.\]
+\end{exm}
+
+\begin{defn}
+	Soient $a, b \in \Z$. On dit que $a$ et $b$ sont \underline{associés} si \[
+		a = b \ou a = -b
+	.\]
+	\index{association (entiers)}
+\end{defn}
+
+\begin{prop}
+	Soient $a, b \in \Z$. \[
+		a  \mid b \iff -a  \mid b \iff a  \mid -b
+	.\]
+\end{prop}
+
+\begin{prop}[division euclidienne dans $\N$]
+	Soient $(a,b) \in \N\times \N^*$.
+	\begin{multicols}{2}
+		\[
+			\exists !\,(q,r) \in \N^2,\,\begin{cases}
+				a = bq + r,\\
+				0 \le r < q.
+			\end{cases}
+		\]
+		\begin{NiceTabular}{D|D}
+			a & b\\ \cline{2-2}
+			\raisesign{-}
+			\quad & q\\ \cline{1-1} \\[\dimexpr-\normalbaselineskip+\jot]
+			r\\
+		\end{NiceTabular}
+	\end{multicols}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Existence] On considère $A = \{q \in \N \mid q b \le a\}$. $A \neq \O$ car $0 \in A$ : $0 \times b = 0 \le a$. $A$ est majoré : \[
+				\forall q \in A,\, a \ge qb \ge q \text{ car } b \ge 1
+			.\] Soit $q = \max(A)$. On pose $r = a - bq$. Comme $a, b$ et $q$ sont des entiers positifs, $r \in \Z$. On sait que $q \in A$, donc $qb \le a$ et donc $r \ge 0$. $q + 1 > \max A$ donc $q+1 \not\in A$ i.e. $(q+1)b > a$ et donc $r < b$.
+		\item[\sc Unicité]
+			Soient $(q', r') \in \N^2$ tels que $\begin{cases}
+				a = q' b + r',\\
+				0 \le r' < b.
+			\end{cases}$ Or, $a = bq + r$ et donc, en soustrayant les deux égalités, on a \[
+				0 = b(q' - q) + r' - r
+			.\] De plus, $0\le r < b$ et $-b < -r' \le 0$, et donc \[
+				r - r' = b \underbrace{(q' - q)}_{\in \Z}
+			.\] On en déduit que $-b < r-r' < b$. Le seul multiple de $b$ dans $ \left\rrbracket -b,b \right\llbracket$ est $0$. Ainsi, $r' = r$ et donc $b(q' -q) = 0$. Or, $b > 0$, donc $q' = q$.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}[division euclidienne dans $\Z$]
+	Soient $a \in \Z$ et $b \in \Z^*$. \[
+		\exists !\:(q,r) \in \Z^2,\;\begin{cases}
+			a = bq + r,\\
+			0 \le r \le \left| b \right|.
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\sc Existence]
+			\begin{itemize}
+				\item[\underline{\sc Cas 1}] $a \in \N$ et $b \in \N^*$. D'après la proposition précédente, \[
+						\exists !(q,r) \in \N^2,\;\begin{cases}
+							a = bq + r\\
+							0 \le r < b.
+						\end{cases}
+					\] Comme $b > 0$, on a bien $0 \le r < \left| b \right| = b$. et $q \in \N\subset \Z$.
+				\item[\underline{\sc Cas 2}] $a \in \Z^-$ et $b \in \N^*$. Comme $-a \in \N$, \[
+						\exists (q',r') \in \N^2,\;\begin{cases}
+							-a = bq' + r',\\
+							0\le r' < b
+						\end{cases}
+					\] donc
+					\begin{align*}
+						a &= b(-q') - r' \\
+						&= b(q'-1) + b - r'. \\
+					\end{align*}
+					En posant,
+					\begin{gather*}
+						q = \begin{cases}
+							-q' - 1 &\text{ si } r' \neq 0,\\
+							-q' &\text{ si } r' = 0;
+						\end{cases}\\
+						r = \begin{cases}
+							b - r' &\text{ si } r' \neq 0,\\
+							-r' &\text{ si } r' = 0;
+						\end{cases}
+					\end{gather*}
+					on a bien \[
+						\begin{cases}
+							a = bq + r,\\
+							q \in \Z,\\
+							0 \le r < b.
+						\end{cases}
+					\]
+				\item[\underline{\sc Cas 3}] $a \in \N$ et $b \in \Z^*_-$. On sait que \[
+						\exists (q',r') \in \N^2,\;\begin{cases}
+							a = (-b) q' + r',\\
+							0 \le r' < -b.
+						\end{cases}
+					\] En posant $q = -q'$ et $r = r'$, on a bien $a = bq + r$ et $0 \le r < |b|$.
+				\item[\underline{\sc Cas 4}] $a \in \Z^-$ et $b \in \Z^*_-$. On sait que \[
+					\exists (q', r') \in \N^2,\,\begin{cases}
+						-a = -bq' + r'\\
+						0\le r' < -b.
+					\end{cases}
+				\] Donc,
+				\begin{align*}
+					a &= bq' - r' \\
+					&= b(q' + 1)-r' - b. \\
+				\end{align*}
+
+				En posant
+				\begin{gather*}
+					q = \begin{cases}
+						q' &\text{ si } r' = 0,\\
+						q' + 1&\text{ si } r' \neq 0;
+					\end{cases}\\
+					r = \begin{cases}
+						r' &\text{ si } r' = 0,\\
+						-r' - b &\text{ si } r' \neq 0;
+					\end{cases}
+				\end{gather*} on a bien \[
+					\begin{cases}
+						a = bq + r\\
+						q \in \Z\\
+						0 \le r < |b|.
+					\end{cases}
+				\]
+			\end{itemize}
+		\item[\sc Unicité] Soient $(q', r') \in \Z^2$ tels que \[
+			\begin{cases}
+				a =  bq' + r'\\
+				° \le r' < |b|.
+			\end{cases}
+		\] Or, on sait qye $a = bq+r$ et $0 \le r < |b|$. D'où \[
+			\begin{cases}
+				b(q' - q) = r' - r\\
+				-|b| < r - r' < |b|
+			\end{cases}
+		\] donc $r - r' = 0$ et donc $q = q'$.
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soient $a \in \Z$ et $b \in \Z^*$. D'après le théorème précédent, il existe un unique couple $(q,r) \in \Z \times \N$ tel que \[
+		\begin{cases}
+			a = bq + r\\
+			0 \le r < |b|.
+		\end{cases}
+	\] On dit que $r$ est le \underline{quotient}, et $r$ le \underline{reste} dans la \underline{division (euclidienne)} de $a$ par $b$.
+	\index{quotient (entiers)}
+	\index{reste (entiers)}
+	\index{division (entiers)}
+	\index{division euclidienne (entiers)}
+\end{defn}
+
+\begin{exm}
+	Soit $n \in \N$ impair. On divise $n$ par $2$ : soient $(q,r) \in \Z \times \N$ tels que $\begin{cases}
+		n = 2q + r\\
+		0 \le r < 2.
+	\end{cases}$
+
+	Si $r = 0$, $n$ est pair : une contradiction. Ainsi, $r \neq 0$ et donc $r = 1$. On a donc $n = 2q + 1$.
+\end{exm}
+
+\begin{prop}
+	Soient $a \in \Z$ et $b \in \Z^*$. On note $r$ le reste de la division euclidienne de $a$ par $b$. \[
+		r = 0 \iff a \mid b
+	.\]
+\end{prop}
+
+\begin{prv}
+	On pose $a = bq + r$ avec $q \in \Z$.
+	\begin{itemize}
+		\item[``$\implies$''] Si $r = 0$, alors $a = bq$ avec $q \in \Z$ et donc $b  \mid a$.
+		\item[``$\impliedby$''] Si $b  \mid a$, il existe $k \in \Z$ tel que $a = bk$.
+			Donc, $a = bk + 0$ et $0 \le 0 < |b|$. Par unicité de la division euclidienne, $r = 0$.
+	\end{itemize}
+\end{prv}
+

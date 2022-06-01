@@ -63,10 +63,34 @@ def get_choices(chapter):
     td_path = f'{cwd}/{chapter}/td/main.tex'
     choices = []
 
+    title = ""
+
     if os.path.exists(main_path):
-        choices.append(f"{chapter} -- main")
+        with open(main_path) as f:
+            file_content = f.readlines()
+
+        part_line_num = [
+            'title' in l
+            for l in file_content
+        ].index(True)
+
+        if part_line_num != -1:
+            part_line = file_content[part_line_num]
+
+            start = part_line.find('{', 9) + 1
+            end = part_line.find('}', 10)
+
+            title = unicode_tex(part_line[start:end])
+
+        if title != "":
+            choices.append(f"{chapter} -- main ({title})")
+        else:
+            choices.append(f"{chapter} -- main")
     if os.path.exists(td_path):
-        choices.append(f"{chapter} -- td")
+        if title != "":
+            choices.append(f"{chapter} -- td   ({title})")
+        else:
+            choices.append(f"{chapter} -- td")
 
     return choices
     
@@ -77,7 +101,7 @@ questions = [
         choices=list(reversed([
             c
             for chapter in directories
-            for c in get_choices(chapter)
+            for c in reversed(get_choices(chapter))
         ]))
     )
 ]
@@ -96,7 +120,7 @@ for choice in answers['target']:
     path = ""
     file = ""
 
-    if part == "main":
+    if part.startswith("main"):
         path = f'{cwd}/{chapter}/main.tex'
         file = f"{chapter}.pdf"
         update_full = True

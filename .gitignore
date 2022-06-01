@@ -352,6 +352,7 @@ web/
 **/__pycache__/
 **/*.o
 **/*.out
+**/*.ist
 **/*.exe
 
 .env

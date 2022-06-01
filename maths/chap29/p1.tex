@@ -1,0 +1,100 @@
+\part{Définitions}
+
+\begin{defn}
+	Un \underline{produit scalaire}\index{produit scalaire} sur $E$ est une \underline{forme bilinéaire symétrique définie positive} : \[
+		f : E\times E \longrightarrow \R
+	\] \index{forme bilinéaire}\index{forme symétrique}\index{forme positive}\index{forme définie}
+	
+	\vspace{-2mm}
+
+	1. $\forall (u_1, u_2, v) \in E^3,\forall (\alpha,\beta) \in \R^2, f(\alpha u_1 + \beta u_2, v) = \alpha f(u_1, v) + \beta f(u_2, v)$, \hfill (bilinéaire)\\[1mm]
+	2. $\forall (u,v) \in E^2,\,f(u,v) = f(v, u)$,\hfill (symétrie)\\[1mm]
+	3. $\forall u \in E,\,f(u,u) \ge 0$,\hfill (positive)\\[1mm]
+	4. $\forall  u \in E,\, \big(f(u,u) = 0 \iff u = 0_E\big)$. \hfill (définie)
+
+	\vspace{2mm}
+	On dit alors que $(E, f)$ est un espace \underline{préhilbertien}\index{espace préhilbertien}. Si, de plus, $E$ est de dimension finie, alors on dit que $(E, f)$ est un \underline{espace euclidien}\index{espace euclidien}.
+
+	En général, on note $\left<u \mid v \right>$, $\left<u,v \right>$ ou $(u \mid v)$ à la place de $f(u,v)$.
+\end{defn}
+
+\begin{rmk}
+	Même si elle est utilisée (notament au lycée), la notation $u \cdot v$ est dangeureuse car elle peut être facilement confondue par la multiplication.
+\end{rmk}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Avec $E = \R^2$, on a $\big<(x,y) \mid (x',y')\big> = xx' + yy'$.
+		\item Avec $E = \R^n$, on a $\big< (x_1, \ldots, x_n)  \mid (y_1, \ldots, y_n) \big> = \sum_{i=1}^n x_i y_i$.
+		\item Avec $E = \mathcal{C}^0\big([a,b], \R\big)$, on a $\left<f \mid g \right> = \int_{a}^{b} f(t) g(t)~\mathrm{d}t$.
+		\item Avec $E = \ell^1(\R) = \{ u \in \R^\N  \mid \Sigma |u_n| \text{ converge}\}$, on a $\left<u \mid v \right> = \sum_{n=0}^{+\infty} u_n v_n$. En effet, $v \in E$ donc $\Sigma |v_n|$ converge et donc $v_n \tendsto{n\to +\infty} 0$. On a donc \[
+				\exists N \in \N,\,\forall n \ge N,\,|v_n| \le 1
+			\] donc \[
+				\exists N \in \N,\,\forall n \ge N,\,|u_nv_n| \le |u_n|
+			.\] Comme $\Sigma |u_n|$ converge, on en déduit que $\Sigma |u_nv_n|$ aussi.
+		\item Avec $E = \R^2$, on a $\big<(x,y) \mid (x',y')\big> = xx' + 2xy' + 2yx' + 5yy'$.
+			\begin{itemize}
+				\item On fixe $(x', y') \in E$. Soient $(x_1, y_1) \in E$, $(x_2, y_2) \in E$ et $(\lambda_1, \lambda_2) \in \R^2$.
+					\begin{align*}
+						\big<\lambda_1(x_1, y_1) + \lambda_2(x_2, y_2)  \mid (x', y') \big>
+						&= \big< (\lambda_1 x_1 + \lambda_2 x_2, \lambda_1 y_1 + \lambda_2 y_2)  \mid (x',y') \big> \\
+						&=\phantom{+}\; (\lambda_1 x_1 + \lambda_2 x_2) x' + 2(\lambda_1 x_1 + \lambda_2 x_2) y'\\
+						&\phantom{=}+ 2 (\lambda y_1 + \lambda_2 y_2) x' + 5(\lambda_1 y_1 + \lambda_2 y_2) y' \\
+						&=\phantom{+}\; \lambda_1(x_1 x' + 2x_1y' + 2y_1 x' + 5 y_1 y')\\
+						&\phantom{=}  + \lambda_2(x_2 x' + 2x_2 y' + 2 y_2x' + 5y_2 y') \\
+						&= \lambda_1\big<(x_1, y_1)  \mid (x', y')\big> + \lambda_2\big<(x_2, y_2)  \mid (x', y')\big>\\
+					\end{align*}
+				\item Soit $(x,y) \in E$ et $(x', y') \in E$.
+					\begin{align*}
+						\big< (x', y')  \mid (x,y) \big> &= x'x + 2x' y + 2y' x  + 3y'y\\
+						&= \big< (x, y)  \mid (x',y') \big> \\
+					\end{align*}
+				\item Soit $(x,y) \in E$.
+					\begin{align*}
+						\big<(x,y) \mid (x,y) \big> &= x^2 + 4xy + 5y^2 \\
+						&= (x + 2y)^2 + y^2 \ge 0 \\
+					\end{align*}
+				\item Soit $(x,y) \in E$.
+					\begin{align*}
+						\big<(x,y) \mid (x,y) \big> = 0 &\iff (x + 2y)^2 + y^2 = 0 \\
+						&\iff \begin{cases}
+							y^2 = 0\\
+							(x+ 2y)^2 = 0
+						\end{cases}\\
+						&\iff \begin{cases}
+							y = 0\\
+							x = 0
+						\end{cases}
+					\end{align*}
+			\end{itemize}
+	\end{enumerate}
+\end{exm}
+
+\begin{defn}
+	Soit $(E, \left<\cdot  \mid \cdot \right>)$ un esapce préhilbertien. Soit $x \in E$.
+
+	La \underline{norme (euclidienne)}\index{norme euclidienne} de $x$ est \[
+		\sqrt{\left<x \mid x \right>} = \|x\|
+	.\]
+\end{defn}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\forall x \in E,\,\|x\| = 0 \iff x = 0_E$ \hfill (séparation)
+		\item $\forall x \in E,\,\forall \lambda \in \R,\,\|\lambda x\| = |\lambda|\, \|x\|$ \hfill (homogénéité positive)
+		\item $\forall (x,y) \in E^2,\, \|x+y\| \le \|x\| + \|y\|$ \hfill (inégalité triangulaire)
+	\end{enumerate}\qed
+\end{prop}
+
+L'inégalité triangulaire sera prouvée dans la suite du chapitre (paragraphe 2.).
+
+\begin{defn}
+	Soit $(x,y) \in E^2$. On dit que $x$ et $y$ sont \underline{orthogonaux}\index{orthogonalité} si $\left<x \mid y \right> = 0$. On note cette situation $x \perp y$.
+\end{defn}
+
+\begin{exm}
+	Avec $E = \mathcal{C}^0\big([-1,1], \R\big)$ et $\left<f \mid g \right> = \int_{-1}^{1} f(t)\,g(t)~\mathrm{d}t$. Soit $f$ paire et $g$ impaire. Alors $f \perp g$. Dans ce cas, on peut appliquer le théorème de Pythagore (vu dans la suite du chapitre) : \[
+		\|f + g\|^2 = \|f\|^2 + \|g\|^2.
+	\]
+\end{exm}
+

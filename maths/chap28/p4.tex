@@ -1,0 +1,41 @@
+\part{Repère affine}
+
+\begin{defn}
+	Soit $F$ un sous-espaca affine de $E$. Un \underline{repère} de $F$ est la donnée d'un point $A \in F$ (``l'origine du repère'') et d'une base $\mathcal{B} = (\vec{e_i})_{i \in I}$ de $\vec{F}$ (``vecteurs direction''). \index{repère (espace affine)}
+\end{defn}
+
+\begin{exm}[mécanique -- physique]
+	On pose $E = (\R^3, \R^3, +)$, un $\R$-espace affine. $(O, \vec{u_x}, \vec{u_y}, \vec{u_z})$ est une base de $E$ : la base carthésienne. Il existe plusieurs bases de $E$ : $(O, \vec{u_r}, \vec{u_\theta}, \vec{u_z})$ (base cylindrique) et $(O, \vec{u_r}, \vec{u_\theta}, \vec{u_\varphi})$ (base sphérique) sont deux autres bases de $E$.
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import three;
+
+			size(5cm);
+
+			texpreamble("\usepackage[f]{esvect}");
+
+			draw(-2.5X -- 2.5X);
+			draw(-2.5Y -- 2.5Y);
+			draw(-2.5Z -- 2.5Z);
+
+			draw(O -- X, magenta, Arrow3(TeXHead2));
+			draw(O -- Y, magenta, Arrow3(TeXHead2));
+			draw(O -- Z, magenta, Arrow3(TeXHead2));
+
+			label("$\vv{u_x}$", X/2, magenta, align=S);
+			label("$\vv{u_y}$", Y/2, magenta, align=S);
+			label("$\vv{u_z}$", Z/2, magenta, align=W);
+
+			dot("$O$", O, deepcyan, align=1.5N + E);
+		\end{asy}
+	\end{figure}
+\end{exm}
+
+\begin{prop-defn}
+	Soit $F$ un sous-espace affine de $E$, et $\mathcal{R} = (A, \vec{e_1}, \ldots, \vec{e_n})$ un repère de $F$. Alors, pour tout $B \in F$, \[
+		\exists ! (\lambda_1, \ldots, \lambda_n) \in \mathbbm{K}^n,\;B = A + \sum_{i=1}^n \lambda_i \vec{e_i}
+	.\] On dit que $(\lambda_1, \ldots, \lambda_n)$ sont les \underline{coordonées} de $B$.\index{coordonnées (espace affine)}
+\end{prop-defn}
+

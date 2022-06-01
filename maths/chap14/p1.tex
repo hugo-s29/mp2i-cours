@@ -1,11 +1,181 @@
-\part{}
-\begin{exm}
-	Soit $f: x \mapsto \begin{cases}
-		\frac{1}{x} &\text{ si } x \neq  0\\
-		0 &\text{ si } x = 0
-	\end{cases}$.\\
+\part{Définition d'une limite de fonctions}
 
-	$\lim_{x \to 0}f(x)$ n'existe pas.
+\begin{defn}
+	Soit $a \in \overline{\R} = \R \cup \{ +\infty, -\infty\}$ et $V \in \mathcal{P}(\R)$.
+
+	\index{voisinage}
+
+	\begin{enumerate}
+		\item Si $a \in \R$, on dit que $V$ est un \underline{voisinage} si \[
+				\exists \eta > 0,\,]a-\eta, a+\eta[ \subset V
+			.\]
+			\begin{figure}[H]
+				\centering
+				\begin{asy}
+					size(5cm);
+
+					draw((-5, 0) -- (5, 0), Arrow(TeXHead));
+					
+					real vmin = -2;
+					real vmax = 3;
+					real epsx = 0.2;
+					real epsy = 0.2;
+					real eta = 1;
+
+					draw((vmin, 0) -- (vmax, 0), magenta);
+					draw((-eta, 0) -- (eta, 0), magenta + 1);
+					draw((-eta, 0) -- (eta, 0), deepcyan);
+					draw((-eta - epsx, epsy) -- (-eta, epsy) -- (-eta, -epsy) -- (-eta - epsx, -epsy), orange);
+					draw((eta + epsx, epsy) -- (eta, epsy) -- (eta, -epsy) -- (eta + epsx, -epsy), orange);
+
+					draw((vmin,epsy) -- (vmin, -epsy), magenta);
+					draw((vmax,epsy) -- (vmax, -epsy), magenta);
+
+					dot("$a$", (0, 0), deepcyan, align=1.3S);
+					label("$\R$", (5, 0), align=SE);
+					label("$V$", (vmax, 0), magenta, align=SW);
+
+					draw((0, 2epsy) -- (eta, 2epsy), orange, Arrows(TeXHead));
+					label("$\eta$", (eta / 2, 2epsy), orange, align=N);
+				\end{asy}
+			\end{figure}
+		\item Si $a = +\infty$, on dit que $V$ est un \underline{voisinage} de $a$ si \[
+				\exists M \in \R,\,]M, +\infty[\;\subset V
+			.\]
+		\item Si $a = -\infty$, on dit que $V$ est un \underline{voisinage} de $a$ si \[
+				\exists m \in \R,\,]\!-\!\infty, m[\;\subset V
+			.\]
+	\end{enumerate}
+
+	On note $\mathcal{V}_a$ l'ensemble des voisinages de $a$.
+\end{defn}
+
+L'utilisation des voisinages permet d'exprimer une limite finie ou infinie plus simplement, sans disjonction de cas.
+
+\begin{exm}
+	Soit $u \in \R^\N$ de limite $a \in \overline{\R}$. 
+
+	\begin{itemize}
+		\item Si $a \in \R$,
+			\begin{align*}
+				&\forall \varepsilon > 0,\,\exists N \in \N,\,\forall n \ge N,\,|u_n - a| \le \varepsilon\\
+				\text{i.e. }&\forall \varepsilon > 0,\,\exists N \in \N,\,\forall n \ge N,\,a - \varepsilon \le u_n \le a + \varepsilon\\
+				\text{i.e. }&\forall V \in \mathcal{V}_a,\,\exists N \in \N,\,\forall n \ge N,\,u_n \in V.
+			\end{align*}
+		\item Si $a = +\infty$,
+			\begin{align*}
+				&\forall M \in \R,\,\exists N \in \N,\,\forall n \ge N,\,u_n \ge M\\
+				\text{i.e. }&\forall M \in \R,\,\exists N \in \N,\,\forall n \ge N,\, u_n \in [M, +\infty[\\
+				\text{i.e. }&\forall V \in \mathcal{V}_a,\,\exists N \in \N,\,\forall n \ge N,\,u_n \in V.
+			\end{align*}
+		\item Si $a = -\infty$,
+			\begin{align*}
+				&\forall m \in \R,\,\exists N \in \N,\,\forall n \ge N,\,u_n \le m\\
+				\text{i.e. }&\forall m \in \R,\,\exists N \in \N,\,\forall n \ge N,\, u_n \in \,]-\infty,m]\\
+				\text{i.e. }&\forall V \in \mathcal{V}_a,\,\exists N \in \N,\,\forall n \ge N,\,u_n \in V.
+			\end{align*}
+	\end{itemize}
+
+	Même si, dans chacun des cas, la définition de limite de la suite $u$ est différente, en utilisant les voisinages, la notation est identique : \[
+		\forall V \in \mathcal{V}_a,\,\exists N \in \N,\,\forall n \ge N,\,u_n \in V
+	.\]
+\end{exm}
+
+En utilisant cette nouvelle notation, on peut redéfinir la limite plus simplement.
+
+\begin{defn}
+	Soit $f$ une fonction définie sur $D \subset \R$ à valeurs réelles.
+	Soit $a \in \overline{D} = \{x \in \overline{\R} \mid \forall V \in \mathcal{V}_x,\,V \cap D \neq \O \}$ (on ``rajoute'' chacune des bornes exclues des intervalles composant $D$) : 
+
+	\begin{figure}[H]
+		\centering
+			\begin{asy}
+				size(5cm);
+
+				draw((-5, 0) -- (5, 0), Arrow(TeXHead));
+				
+				real epsx = 0.2;
+				real epsy = 0.2;
+
+				void drawInterval(real a, real b, pen p, real oa, real ob) {
+					draw((a, 0) -- (b, 0), p + 1);
+					draw((a + oa * epsx, epsy) -- (a, epsy) -- (a, -epsy) -- (a + oa * epsx, -epsy), p);
+					draw((b - ob * epsx, epsy) -- (b, epsy) -- (b, -epsy) -- (b - ob * epsx, -epsy), p);
+				}
+
+				void drawIntervalLine(real a, real b, pen p) {
+					draw((a, 0) -- (b, 0), p);
+				}
+
+				void drawCross(real x, pen p) {
+					draw((x-epsx, -epsy) -- (x+epsx, epsy), p);
+					draw((x+epsx, -epsy) -- (x-epsx, epsy), p);
+				}
+
+				label("$\R$", (5, 0), align=SE);
+				label("$D$", (4, 0), magenta, align=SW);
+				label("$\overline{D}$", (-4, 0), deepcyan, align=SE);
+				drawInterval(-4, -1, magenta, 1, -1);
+				drawInterval(0, 1, magenta, 1, 1);
+				drawInterval(2, 4, magenta, -1, 1);
+
+
+				drawIntervalLine(-4, -1, deepcyan);
+				drawIntervalLine(0, 1, deepcyan);
+				drawIntervalLine(2, 4, deepcyan);
+
+				epsx *= 0.3;
+				epsy *= 0.3;
+
+				drawCross(-1, deepcyan);
+				drawCross(2, deepcyan);
+			\end{asy}
+	\end{figure}
+
+	On dit que $f(x)$ \underline{tends vers} $\ell$ si \[
+		\forall V \in \mathcal{V}_\ell,\,\exists W \in \mathcal{V}_a,\,\forall x \in W \cap D,\,f(x) \in V
+	.\]
+\end{defn}
+
+\begin{exm}
+	Soit $f: \R\to \R$ telle que $f(x) \tendsto{x\to -1} 1$. \[
+		\forall V \in \mathcal{V}_{1},\,\exists W \in \mathcal{V}_{-1},\,\forall x \in W,\,f(x) \in V
+	\] donc \[
+		\forall \varepsilon > 0,\,\exists \eta > 0,\,\forall x \in\; ]-1-\eta,\,-1+\eta[,\, f(x) \in [1-\varepsilon, 1+\varepsilon[
+	\] i.e. \[
+		\forall \varepsilon > 0,\,\exists \eta > 0,\,\forall x \in \R,\,\big(|x-(-1)| < \eta \implies |f(x) - 1| \le \varepsilon\big)
+	.\]
+
+	Si $f(x) \tendsto{x\to -\infty}+\infty$, \[
+		\forall V \in \mathcal{V}_{+\infty},\,\exists W \in \mathcal{V}_{-\infty},\,\forall x \in W,\,f(x) \in V
+	\] i.e. \[
+		\forall M \in \R,\,\exists m \in \R,\,\forall x \in \,]-\infty, m],\,f(x) \in [M,+\infty[
+	\] i.e. \[
+		\forall M \in \R,\,\exists m \in \R,\,\forall x \in \R,\,\big(x \le m \implies f(x) \ge M\big)
+	.\] 
+\end{exm}
+
+\begin{defn}
+	Soit $a \in \R$.
+
+	Un \underline{voisinage à gauche}\index{voisinage à gauche} de $a$ est une partie de $\R$ qui contient un inveralle $]a-\eta,a]$ avec $\eta > 0$.
+
+	Un \underline{voisinage à droite}\index{voisinage à droite} de $a$ est une partie de $\R$ qui contient un inveralle $[a,a+\eta[$ avec $\eta > 0$.
+\end{defn}
+
+\begin{exm}\relax
+	{\it
+		Soit $f: x \mapsto \begin{cases}
+			\frac{1}{x} &\text{ si } x \neq  0,\\
+			0 &\text{ si } x = 0.
+		\end{cases}$
+		\begin{enumerate}
+			\item $\lim_{x\to 0}f(x)$ existe ? Si oui, que vaut elle ?
+			\item $\lim_{\substack{x\to 0\\\le }}f(x)$ existe ? Si oui, que vaut elle ?
+		\end{enumerate}
+	}
+
+	Réponse : $\lim_{x \to 0}f(x)$ n'existe pas. Pour le prouver, on raisonne par l'absurde.
 	\[
 		\ell = \bigcap_{V \in \mathcal{V}_\ell} V
 	\]
@@ -58,21 +228,26 @@
 	\end{center}
 \end{exm}
 
-\begin{prv}
-	[de la proposition 1.10]
+\begin{prop}
+	Si $f$ admet une limite finie en $a \in I$, alors cette limite vaut $f(a)$.
+\end{prop}
 
-	$\ell = \lim_{x \to a}$ et $a \in \mathcal{D}$ \\
+\begin{prv}
+	Soit $\ell = \lim_{x \to a}$ et $a \in \mathcal{D}$.
+
 	On sait que  \[
-		\forall V \in \mathcal{V}_{\ell}, \exists W \in \mathcal{V}_a, \forall x \in W \cap \mathcal{D}, f(x) \in V
+		\forall V \in \mathcal{V}_{\ell}, \exists W \in \mathcal{V}_a, \forall x \in W \cap \mathcal{D}, f(x) \in V.
 	\]
-	Soit $V \in \mathcal{V}_\ell$. Alors, $f(a) \in V$.\\
+
+	Soit $V \in \mathcal{V}_\ell$. Alors, $f(a) \in V$.
+
 	\[
 		f(a) \in \bigcap_{V \in \mathcal{V}_\ell} V = \begin{cases}
-			\{\ell\} &\text{ si } \ell \in \R\\
-			\O &\text{ si } \ell = \pm\infty
+			\{\ell\} &\text{ si } \ell \in \R,\\
+			\O &\text{ si } \ell = \pm\infty.
 		\end{cases}
 	\]
-	Donc $\ell \in \R$ et $\ell = f(a)$
+	Donc $\ell \in \R$ et $\ell = f(a)$.
 \end{prv}
 
 \begin{rmk}
@@ -91,38 +266,38 @@
 	}} f(x)$ )
 \end{rmk}
 
-\begin{exm}
-	\begin{center}
+\begin{exm}\relax
+	\begin{figure}[H]
+		\centering
 		\begin{asy}
 			import graph;
 
 			size(5cm);
 
-			dot((0,1),magenta);
-
+			label("$\delta$", (4, 0), magenta, align=SE);
+			draw((-5.3, 0) -- (5.3, 0), Arrow(TeXHead));
 			draw((-5,0) -- (5,0), magenta);
-
-			axes(EndArrow);
-
-			dot((0,2), white + 0);
+			dot((0,0), white);
+			draw((0, -0.3) -- (0, 1.5), Arrow(TeXHead));
+			dot((0,1), magenta);
 		\end{asy}
-	\end{center}
+	\end{figure}
 
-	$\lim_{x \to 0} \sigma(x)$ n'existe pas\\
-	$\lim_{x \to 0^+} \sigma(x)$ et $\lim_{x \to 0^-}$ n'existent pas non plus.\\
+	$\lim_{x \to 0} \delta(x)$ n'existe pas\\
+	$\lim_{x \to 0^+} \delta(x)$ et $\lim_{x \to 0^-}$ n'existent pas non plus.\\
 
 	$\lim_{\substack{
 		x \to 0\\
 		\neq
-	}} \sigma(x)$\\
+	}} \delta(x)$\\
 
 	$\lim_{\substack{
 		x \to  0\\
 		<
-	}} \sigma(x) = 0$, $\lim_{\substack{
+	}} \delta(x) = 0$, $\lim_{\substack{
 		x \to 0\\
 		>
-	}} \sigma(x) = 0$\\
+	}} \delta(x) = 0$\\
 
 	\[
 		\lim_{x \to a}\frac{f(x) - f(a)}{x-a} = \lim_{\substack{
@@ -133,7 +308,7 @@
 \end{exm}
 
 \begin{defn}
-	Soit $f$ définie sur $\mathcal{D}$ et $a \in \mathcal{D}$. On dit que $f$ est \underline{continue en $a$} si $\lim_{x \to a} f(x)$ existe ou si $\lim_{\substack{
+	Soit $f$ définie sur $D$ et $a \in D$. On dit que $f$ est \underline{continue en $a$} si $\lim_{x \to a} f(x)$ existe ou si $\lim_{\substack{
 		x \to a\\
 		\neq 
 	}}f(x) = f(a)$.

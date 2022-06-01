@@ -1,0 +1,52 @@
+\begin{multicols}{2}
+	\begin{recap-box}[frametitle={Groupe}]
+		On dit que $(G, \diamond)$ est un groupe si
+		\begin{itemize}
+			\item $\diamond$ est associative;
+			\item $\diamond$ a un neutre $e \in G$;
+			\item tout élément $x \in E$ a un inverse $y \in E$ :  \[
+					x\diamond y = y \diamond x = e
+				.\]
+		\end{itemize}
+		\mdfsubtitle{Sous-groupe}~\\[-5mm]
+		On dit que $H \subset G$ est un sous-groupe de $G$ si
+		\begin{itemize}
+			\item $e \in H$;
+			\item $\forall x,y \in H,\;x\diamond y \in H$;
+			\item $\forall x \in H,\;x^{-1} \in H$.
+		\end{itemize}
+	\end{recap-box}
+	\begin{recap-box}
+		Si $\diamond$ est commutative, on dit que $(G, \diamond)$ est un groupe commutatif ou abélien.
+	\end{recap-box}
+	\begin{recap-box}
+		Pour monter que $H$ est un sous-groupe de $G$, on montre
+		\begin{itemize}
+			\item $H \neq \O$;
+			\item $\forall x,y \in H,\;x \diamond y^{-1} \in H$.
+		\end{itemize}
+	\end{recap-box}
+	\begin{recap-box}
+		L'intersection de sous-groupes est un sous-groupe. Attention, l'union de sous-groupes n'est pas forcément un sous-groupe.
+	\end{recap-box}
+	\begin{recap-box}[frametitle={Sous-groupe engendré}]
+		Le sous-groupe engendré par $A$, $\left<A \right>$, est le plus petit sous groupe de $G$ contenant $A$.
+
+		S'il existe $a \in G$ tel que $G = \left<a \right>$, on dit que $G$ est monogène et $a$ est un générateur de $G$.
+
+		Soit $a \in G$. L'ordre de $a$ est $\#\left<a \right>$ i.e. $a^n=e$.
+	\end{recap-box}
+	\begin{recap-box}[frametitle={Morphisme de groupes}]
+		Soit $f : G_1 \to G_2$ où $(G_1, \cdot)$ et $(G_2, \times )$ sont des groupes. $f$ est un morphisme de groupes si \[
+			\forall x,y \in G_1,\;f(x \cdot y) = f(x) \times f(y)
+		.\] L'image directe d'un sous-groupe de $G_1$ est un sous-groupe de $G_2$.
+			L'image réciproque d'un sous-groupe de $G_2$ est un sous-groupe de $G_1$. \[
+				\forall  u\in G_1;\,f\left( u^{-1} \right) = f(u)^{-1}
+			.\]
+	\end{recap-box}
+	\begin{recap-box}
+		\[
+			f \text{ injective} \iff \Ker f = \{e_1\}
+		.\]
+	\end{recap-box}
+\end{multicols}

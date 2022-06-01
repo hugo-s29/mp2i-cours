@@ -1,0 +1,76 @@
+\begin{multicols}{2}
+	\begin{recap-box}
+		\[
+			\#S_n = n!
+		.\]
+	\end{recap-box}
+	\begin{recap-box}
+		\[
+			\sigma = \begin{pmatrix}
+				1&2&3&\cdots&n\\
+				\sigma(1)&\sigma(2)&\sigma(3)&\cdots&\sigma(n)
+			\end{pmatrix}
+		.\]
+	\end{recap-box}
+	\begin{recap-box}
+		On dit que $d$ est l'ordre de $\sigma$ si \[
+			\begin{cases}
+				\sigma^d = \id;\\
+				\forall i \in \left\llbracket 1,d-1 \right\rrbracket,\;\sigma^i \neq \id.
+			\end{cases}
+		\]
+	\end{recap-box}
+	\begin{recap-box}
+		L'orbite de $\sigma$ pour $x \in \left\llbracket 1,n \right\rrbracket$ est \phantom{$\frac{n}{2}$} \[
+			\big\{\,x,\sigma(x),\ldots,\sigma^{d-1}(x)\,\big\}
+		\] où $d$ est l'ordre de $\sigma$.\phantom{$\frac{n}{2}$}
+	\end{recap-box}
+	\begin{recap-box}
+		On dit que $\sigma$ est un $k$-cycle si
+		\begin{itemize}
+			\item $\sigma$ a $n - k$ points fixes;
+			\item les autres éléments sont dans une même orbite.\\
+		\end{itemize}
+
+		Dans ce cas, $\sigma$ est noté \[
+			\sigma = \mat{x&\sigma(x)&\sigma^2(x)&\cdots&\sigma^{k-1}(x)}
+		\] et l'ordre de $\sigma$ est $k$.
+	\end{recap-box}
+	\begin{recap-box}
+		Le support de $\sigma$ est l'ensemble des éléments qui ``changent'' après l'application de $\sigma$ : \[
+			\Supp(\sigma) = \big\{ x \in \left\llbracket 1,n \right\rrbracket  \mid \sigma(x) \neq x \big\}
+		.\]
+	\end{recap-box}
+	\begin{recap-box}
+		Toute permutation peut être décomposée, de manière unique, en cycles à supports disjoints.
+	\end{recap-box}
+	\begin{recap-box}
+		Soit $\gamma$ un $k$-cycle : \[
+			\gamma = \mat{a_1&\cdots&a_n-k}
+		.\] Alors, pour toute permutation $\sigma$, \[
+			\sigma \gamma \sigma^{-1} = \mat{\sigma(a_1) & \cdots & \sigma(a_k)}I
+		\] et c'est un $k$-cycle.
+	\end{recap-box}
+	\begin{recap-box}
+		Une transposition est un cycle de longueur 2.
+	\end{recap-box}
+	\begin{recap-box}
+		Toute permutation se décompose en produit de transpositions mais cette décomposition n'est pas unique.
+	\end{recap-box}
+	\begin{recap-box}
+		Une inversion est un couple $(i,j)$ avec $i <j$ mais $\sigma(i) > \sigma(j)$.
+	\end{recap-box}
+	\begin{recap-box}
+		La signature d'une permutation $\sigma$ est $\varepsilon(\sigma) = (-1)^k$ où $k$ est le nombre d'inversions.
+		C'est un morphisme de groupes donc \[
+			\varepsilon\left( \prod_{i=1}^N \sigma_i \right) = \prod_{i=1}^N \varepsilon(\sigma_i)
+		.\] La signature d'une transposition est $-1$.
+	\end{recap-box}
+	\begin{recap-box}
+		Une permutation paire est une permutation de signature $1$.
+
+		Une permutation impaire est une permutation de signature $-1$.
+
+		L'ensemble des permutations paires forment un sous-groupe : le groupe alterné.
+	\end{recap-box}
+\end{multicols}

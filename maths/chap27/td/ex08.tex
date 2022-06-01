@@ -1,0 +1,61 @@
+\part{Exercice 8}
+
+Soit $(\Omega, P)$ un espace probabilisé qui modélise cette situation, \[
+	\forall i \in \left\llbracket 1,10 \right\rrbracket,\,D_i:``\text{le wagon } i \text{ a un défaut}"
+.\]
+On a \[
+	\forall i \in \left\llbracket 1,10 \right\rrbracket,\,P(D_i)
+.\] 
+
+Les événements $(D_i)_{i\in\left\llbracket 1,10 \right\rrbracket}$ sont mutuellement indépendants pour $P$.
+
+On pose \[
+	\forall i \in \left\llbracket 1,10 \right\rrbracket,\,\forall j \in \{1,2\},\,C_{i,j}: ``\text{le contrôleur } j \text{ détecte un défaut dans le wagon } i",
+\] \[
+	\forall i \in \left\llbracket 1,10 \right\rrbracket,\,\forall j \in \{1,2\},\,P_{D_i}(C_{i,j}) = \frac{7}{10}
+\] et, pour tout $i \in \left\llbracket 1,10 \right\rrbracket$, $C_{i,1}$ et $C_{i,2}$ sont indépendants pour $P_{D_i}$.
+
+\begin{enumerate}
+	\item On note $R : ``\text{le train est retardé}"$. On a \[
+			\overline{R} = \bigcap_{\substack{i \in \left\llbracket 1,10 \right\rrbracket\\j \in \{1,2\}}}\overline{C}_{i,j}
+		.\] On note, pour $I \in \mathcal{P}\big(\left\llbracket 1,10 \right\rrbracket\big)$, \[
+			\mathcal{D}_I = \left( \bigcap_{i \in I} D_i \right) \cap \left( \bigcap_{i \not\in I} \overline{D}_i \right)
+		.\]
+		$(\mathcal{D}_I)_{I\in\mathcal{P}(\left\llbracket 1,10 \right\rrbracket)}$ est un système complet d'événements. \[
+			P(\overline{R}) = \sum_{I \in \mathcal{P}(\left\llbracket 1,10 \right\rrbracket)} P_{\mathcal{D}_I}(\overline{R}) P(\mathcal{D}_I)
+		.\] Soit $I \in \mathcal{P}(\left\llbracket 1,10 \right\rrbracket)$.
+		\begin{align*}
+			P(\mathcal{D}_i) &= \prod_{i \in I} \frac{1}{10}\;\prod_{i\not\in I}\frac{9}{10}\\
+			&= \left( \frac{1}{10} \right)^{\#I}\;\left( \frac{9}{10} \right)^{10 - \#I} \\
+			&= \frac{9^{10-\#I}}{10^{10}} \\
+		\end{align*}
+		\begin{align*}
+			P_{\mathcal{D}_I}(\overline{R}) &= P_{\mathcal{D}_I}\left( \bigcap_{i \in  I} \overline{C}_{i,j} \right) \\
+			&= \left( \left( \frac{3}{10} \right)^{\#I} \right)^2 \\
+			&= \left( \frac{3}{10} \right)^{2\#I}. \\
+		\end{align*}
+		D'où
+		\begin{align*}
+			P(\overline{R}) &= \sum_{I \in \mathcal{P}(\left\llbracket 1,10 \right\rrbracket)} \left( \frac{3}{10} \right)^{2\#I} \frac{9^{10-\#I}}{10^{10}}\\
+			&= \left( \frac{9}{10} \right)^{10} \sum_{I \in \mathcal{P}(\left\llbracket 1,10 \right\rrbracket)} \frac{1}{100^{\#I}} \\
+			&= \left( \frac{9}{10} \right)^{10} \sum_{k=0}^{10}\sum_{\substack{I \in \mathcal{P}(\left\llbracket 1,10 \right\rrbracket)\\\#I = k}} \frac{1}{100^k}\\
+			&= \left( \frac{9}{10} \right)^{10} \sum_{k=0}^{10} \frac{1}{100^k} {10 \choose k}  \\
+			&= \left( \frac{9}{10} \right)^{10} \left( 1+\frac{1}{100} \right)^k \\
+			&= \left( \frac{909}{1000} \right)^{10}. \\
+		\end{align*}
+		On en déduit que
+		\begin{align*}
+			P(R) &= 1 - P(\overline{R})\\
+			&= 1 - \left(\frac{909}{1000}\right)^{10} \\
+			&\simeq 0,\!615 \\
+		\end{align*}
+	\item On pose $\mathcal{D} = \bigcup_{\substack{I \subset \left\llbracket 1,10 \right\rrbracket\\I \neq \O}} \mathcal{D}_I$.
+		\begin{align*}
+			P_{\mathcal{D}}(\overline{R}) &= \frac{P(\overline{R} \cap \mathcal{D})}{P(\mathcal{D})}\\
+			&= \frac{\sum_{I \subset \left\llbracket 1,10 \right\rrbracket} P_{\mathcal{D}_I}(\overline{R} \cap \mathcal{D})\,P(\mathcal{D}_I)}{1 - P(\mathcal{D}_\O)} \\
+			&= \frac{1}{1-\left( \frac{9}{10} \right)^{10}} \sum_{\substack{I \subset \left\llbracket 1,10 \right\rrbracket}} \frac{9^{10 - \#I}}{10^{10}} \times \left( \frac{2}{10} \right)^{2\#I} \\
+			&= \frac{1}{1-\left( \frac{9}{10} \right)^{10}} \times \left( \frac{9}{10} \right)^{10} \sum_{k=1}^{10}{10 \choose k} \left( \frac{1}{100} \right)^k \\
+			&= \frac{9^{10}}{10^{10} - 9^{10}} \left( \left( \frac{101}{100} \right)^{10} - 1 \right) \simeq 0,\!06 \\
+		\end{align*}
+\end{enumerate}
+

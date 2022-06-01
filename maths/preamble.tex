@@ -1,4 +1,7 @@
 \let\mmathcal\mathcal
+\let\sc\scshape
+\let\bf\bfseries
+\let\it\itshape
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -45,6 +48,8 @@
 \usepackage{soulutf8}
 \usepackage[Rejne]{fncychap}
 \usepackage{listings}
+\usepackage{shorttoc}
+%\usepackage{enumitem}
 %\usepackage{cmbright}
 
 \frenchspacing
@@ -66,7 +71,9 @@
 
 \newif\ifsimple
 \newif\iffull
-\simplefalse\fullfalse
+\newif\iftd
+\newif\iftdex
+\simplefalse\fullfalse\tdexfalse\tdfalse
 \let\underline\ul
 \let\underlin\underline
 
@@ -187,6 +194,8 @@
 
 \mdfsetup{skipabove=1em,skipbelow=1em, innertopmargin=6pt, innerbottommargin=6pt,}
 
+\newmdenv[frametitlerule=true,roundcorner=5pt,subtitlebelowline=true,subtitleaboveline=true]{recap-box}
+
 \declaretheoremstyle[
 	mdframed={ },
 	headpunct={:},
@@ -197,7 +206,7 @@
 
 \declaretheoremstyle[
 	mdframed={
-				rightline=false, topline=false, bottomline=false,
+		rightline=false, topline=false, bottomline=false,
 		innerlinewidth=0.4pt,outerlinewidth=0.4pt,
 		middlelinewidth=2pt,
 		linecolor=black,middlelinecolor=white,
@@ -223,6 +232,7 @@
 	qed=\qedsymbol]{prvstyle}
 
 \declaretheorem[style=defnstyle, name=Définition]{defn}
+\declaretheorem[style=defnstyle, name=Algorithme]{algo}
 \declaretheorem[style=defnstyle, name=Proposition -- Définition]{prop-defn}
 
 % \declaretheorem[style=plain, thmbox={style=M, bodystyle=\normalfont}, name=Théorème]{thm}
@@ -250,6 +260,14 @@
 		\declaretheorem[style=rmkstyle, name=Contre-exemple]{cexm}
 		\declaretheorem[style=rmkstyle, name=Exercice]{exo}
 		\declaretheorem[style=prvstyle, name=Preuve]{prv}
+	\fi
+
+	\iftd
+		\renewcommand{\part}[1]{\vspace{2cm}\addcontentsline{toc}{part}{#1}\centered{\Large \bf #1}}
+	\fi
+
+	\iftdex
+		\renewcommand{\part}[1]{\vspace{2cm}\addcontentsline{toc}{part}{#1}\centered{\Large \bf #1}}
 	\fi
 }
 
@@ -299,7 +317,11 @@
 				\vspace{10cm}
 				{\Large \sc Chapitre #1}\\
 				\vspace{1cm}
-				{\HUGE \cursive #2}\\
+				\iftd
+					{\HUGE #2}\\
+				\else
+					{\HUGE \cursive #2}\\
+				\fi
 				\vfill
 				Hugo {\sc Salou} MP2I\\
 				{\ssmall Dernière mise à jour le \@date }
@@ -311,6 +333,7 @@
 \let\bx\boxed
 \newcommand{\s}{\text{\cursive s}}
 \renewcommand{\t}{{}^t\!}
+\newcommand{\T}{{\!\!\,\top}}
 \newcommand{\eme}{\ensuremath{{}^{\text{ème}}}~}
 %\let\oldfract\fract
 %\renewcommand{\fract}[2]{\oldfract{\displaystyle #1}{\displaystyle #2}}
@@ -338,6 +361,7 @@
 \let\olddiamond\diamond
 \renewcommand{\diamond}{\ensuremath{\,\olddiamond\,}}
 \newcommand{\missingpart}{\centered{\color{red} \Large Il manque une partie du cours ici}}
+\renewcommand{\Sigma}{\ensuremath{\textstyle \sum}}
 
 \newcommand{\cbox}[2]{{\color{#1}{\fbox{\color{black} #2}}}}
 \newcommand{\clrhl}[2]{{\large\sc\color{#1} #2}}
@@ -345,6 +369,14 @@
 \newcommand{\mathunderline}[1]{\text{\underline{$#1$}}}
 \let\oldboxtimes\boxtimes
 \renewcommand{\boxtimes}{\raisebox{-0.2mm}{$\;\oldboxtimes\;$}}
+\newcommand{\addrecap}{\ifsimple\else\startrecap\input{\cwd/recap.tex}\fi}
+\newcommand{\startrecap}{
+	\part{Bilan}
+	\setlength{\abovedisplayskip}{0pt}
+	\setlength{\belowdisplayskip}{0pt}
+	\setlength{\abovedisplayshortskip}{0pt}
+	\setlength{\belowdisplayshortskip}{0pt}
+}
 
 
 \definecolor{white}{HTML}{faf4ed}
@@ -395,4 +427,3 @@
 \let\sc\scshape
 \let\bf\bfseries
 \let\it\itshape
-

@@ -1,0 +1,26 @@
+\part{Exercice 1}
+
+\begin{itemize}
+	\item[\sc Analyse] Soient $P$ une probabilité sur $\left\llbracket 1,n \right\rrbracket$ et $\alpha \in \R$ tels que \[
+			\forall k,\,P(\{k\}) = \alpha k
+		.\] D'où,
+		\begin{align*}
+			1 &= P\big(\left\llbracket 1,n \right\rrbracket\big) = P\left( \bigcupdot_{k=1}^n \{k\} \right)\\
+			&= \sum_{k=1}^n P(\{k\}) = \alpha \sum_{k=1}^n k \\
+			&= \alpha \frac{n(n+1)}{2} \\
+		\end{align*}
+		et donc \[
+			\alpha = \frac{2}{n(n+1)}
+		.\]
+	\item[\sc Synthèse] On pose $\alpha = \frac{2}{n(n+1)}$ et \[
+		\forall k \in \left\llbracket 1,n \right\rrbracket, p_k = \alpha k
+	.\] On remarque que \[
+		\forall k \in \left\llbracket 1,n \right\rrbracket, p_k \ge 0
+	\] et \[
+		\sum_{k=1}^n p_k = \frac{2}{n(n+1)} \sum_{k=1}^n k = \frac{2}{n(n+1)} \times \frac{n(n+1)}{2} = 1
+	.\] D'après un résultat du cours, il existe une probabilité $P$ sur $ \left\llbracket 1,n \right\rrbracket $ telle que \[
+		\forall k \in \left\llbracket 1,n \right\rrbracket,\,P(\{k\}) = p_k = \alpha k
+	.\]
+\end{itemize}
+
+

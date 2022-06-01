@@ -1,0 +1,186 @@
+\part{Exercice 7}
+
+On a \[
+	\begin{cases}
+		P = \sum_{i=0}^p a_i X^i\;a_p \neq 0\\
+		Q = \sum_{i=0}^q b_i X^i\;b_p \neq 0\\
+	\end{cases}
+\] et \begin{align*}
+	\varphi: \C_{q-1}[X] \times \C_{p-1}[X] &\longrightarrow \C_{p+q-1}[X] \\
+	(U,V) &\longmapsto UP + VQ.
+\end{align*}
+
+\begin{enumerate}
+	\item[4.] $P = X^3 + aX + b$, $p = 3$; $Q = P' = 3X^2 + a$, $q = 2$.\begin{align*}
+			\varphi: \C_1[X] \times \C_2[X] &\longrightarrow \C_4[X] \\
+			(U, V) &\longmapsto UP + VP'.
+		\end{align*}
+		
+		La base canonique de $\C_4[X]$ est $\big(1, X, X^2, X^3, X^4\big)$.
+		Une base de $\C_1[X] \times \C_2[X]$ est $\Big(\big(1,0\big), \big(X, 0\big), \big(0, 1\big), \big(0, X\big), \big(0, X^2\big) \Big)$.
+		\[
+			\Mat_{\mathcal{B}, \mathcal{C}}(\varphi) = \begin{pmatrix}
+				b&0&a&0&0\\
+				a&b&0&a&0\\
+				0&a&3&0&a\\
+				1&0&0&3&0\\
+				0&1&0&0&3
+			\end{pmatrix}
+		\] car \[
+			\begin{cases}
+				\varphi\big((1,0)\big) &= 1\times P + 0 \times P' = b + aX + X^3,\\
+				\varphi\big((X, 0)\big) &= XP = bX + aX^2 + X^4,\\
+				&\:\vdots
+			\end{cases}
+		\]
+
+		\begin{align*}
+			\begin{vmatrix}
+				b&0&a&0&0\\
+				a&b&0&a&0\\
+				0&a&3&0&a\\
+				1&0&0&3&0\\
+				0&1&0&0&3
+			\end{vmatrix} &= 
+			\begin{vmatrix}
+				b&0&a&0&0\\
+				a&b&0&a&-3b\\
+				0&a&3&0&-2a\\
+				1&0&0&3&0\\
+				0&1&0&0&0
+			\end{vmatrix}
+			\\
+			&= -
+			\begin{vmatrix}
+				b&a&0&0\\
+				a&0&a&-3b\\
+				0&3&0&-2a\\
+				1&0&3&0
+			\end{vmatrix}
+			\\
+			&= -
+			\begin{vmatrix}
+				b&a&-3b&0\\
+				a&0&-2a&-3b\\
+				0&3&0&-2a\\
+				1&0&0&0
+			\end{vmatrix}
+			\\
+			&= 
+			\begin{vmatrix}
+				a&-3b&0\\
+				0&-2a&-3b\\
+				3&0&-2a
+			\end{vmatrix}
+			\\
+			&= a
+			\begin{vmatrix}
+				-2a&-3b\\
+				0&-2a
+			\end{vmatrix} + 3
+			\begin{vmatrix}
+				-3b&0\\-2a&-3b
+			\end{vmatrix}\\
+			&= 4a^3 + 27b^2 \\
+		\end{align*}
+
+		\begin{align*}
+			P \text{ a une racine multiple} \iff& P \text{ et } P'\; \text{ont une racine commune}\\
+			\iff& \text{le resultant de } P \text{ et } P' \text{ est nul}\\
+			\iff& 4a^3 + 27b^2 = 0.
+		\end{align*}
+	\item Soit $(U, V) \in \C_{q-1}[X] \times \C_{p-1}[X]$.
+		\begin{align*}
+			&\deg(U) \le q - 1\\
+			\text{donc}& \deg(UP) = \deg(U) + \deg(P)\\
+			\phantom{\text{donc}}&\phantom{\deg(UP)}\: \le q - 1 + p \\
+		\end{align*}
+		De même, $\deg(V) \le p - 1$ et donc $\deg(VQ) = \deg(V) + \deg(Q) \le p-1+q$.
+		On en déduit que $\deg(UP + VQ) \le p - 1 + q$. Ainsi, $\varphi$ est bien définie.
+
+		Soient $(U_1, V_1) \in \C_{q-1}[X] \times \C_{p-1}[X]$, $(U_2, V_2) \in \C_{q-1}[X] \times \C_{p-1}[X]$,  et $(\lambda_1, \lambda_2) \in \C^2$.
+
+		\begin{align*}
+			\varphi\big(\lambda(U_1, V_1) + \lambda_2(U_2, V_2)\big)
+			&= \varphi\big((\lambda_1 U_1 + \lambda_2 U_2), (\lambda_1 V_1 + \lambda_2 V_2)\big) \\
+			&= (\lambda_1 U_1 + \lambda_2 U_2)\, P + (\lambda_1 V_1 + \lambda_2 V_2)\,Q \\
+			&= \lambda_1 U_1 P + \lambda_2 V_2 P + \lambda_1 V_1 Q + \lambda_2 V_2 Q \\
+			&= \lambda_1(U_1 P + V_1 Q) + \lambda_2 (U_2 P + V_2 Q) \\
+			&= \lambda_1\varphi(U_1, V_1) + \lambda_2 \varphi(U_2, V_2) \\
+		\end{align*} Ainsi $\varphi$ est linéaire.
+
+		On pose, pour $k \in \left\llbracket 0, p+q-1 \right\rrbracket$, \[
+			P_k = \begin{cases}
+				\left( X^k, 0 \right) &\text{ si } k < q,\\[2mm]
+				\left( 0, X^{k-q} \right) &\text{ si } k \ge q.
+			\end{cases}
+		\] Soit $k \in \left\llbracket 0,p+q-1 \right\rrbracket$.
+
+		\begin{align*}
+			\varphi(P_k) &= \begin{cases}
+				X^k P &\text{ si } k < q\\[2mm]
+				X^{k-q}Q &\text{ si } k \ge q
+			\end{cases} \\
+			&= \begin{cases}
+				\sum_{i=0}^p a_i X^{k+i}&\text{ si } k < q\\[2mm]
+				\sum_{i=0}^q b_i X^{k-q+i} &\text{ si } k \ge q
+			\end{cases} \\
+			&= \begin{cases}
+				\sum_{j=k}^{k+q} a_{j-k} X^{j} &\text{ si }k < q\\[2mm]
+				\sum_{j=k-q}^k b_{j-k+q}X^j &\text{ si }k \ge q.
+			\end{cases} \\
+		\end{align*}
+		Donc, \[
+			\Mat_{\mathcal{B}_1, \mathcal{B}_2}(\varphi) =
+			\begin{pNiceMatrix}
+				a_0&0&\Cdots&0&b_0&0\Cdots&&0\\
+				a_1&a_0&\Ddots&\Vdots&b_1&\Ddots&\Ddots&\Vdots\\
+				\Vdots&\Vdots&\Ddots&0&\Vdots&\Ddots&&b_0\\
+				a_p& a_{p-1}&\Cdots&a_0&b_q&\Vdots\\
+				0&a_q&&\Vdots&0\\
+				\Vdots&0&\Ddots&\\
+				&\Vdots&\Ddots&\\
+				0&0&\Cdots 0&a_p&&&b_q
+			\end{pNiceMatrix}
+		\]
+		\item On sait que $P(a) = Q(a) = 0$. Supposons $\varphi$ surjective. $1 \in \C_{p+q-1}[X]$. Soit $(U, V)$ un antécédent de 1 par $\varphi$. Ainsi \[
+			1 = UP + VQ
+		\] En évaluant en $a$ l'égalité précédente fournit
+		\begin{align*}
+			1 &= U(A)P(Aà + V(a) Q(a) \\
+			&= U(a) \times 0 + V(a) \times 0 \\
+			&= 0. \\
+		\end{align*}
+		Donc $1 \not\in \mathrm{Im}(\varphi)$ et donc $\varphi$ n'est pas surjective.
+
+		Enfin,
+		\begin{align*}
+			\dim\left( \C_{q-1}[X]\times \C_{p-1}[X] \right) &= \dim\left( \C_{q-1}[X] \right) + \dim\left( \C_{p-1}[X] \right) \\
+			&= q-1+1+p-1+1 \\
+			&= p+q \\
+			&= \dim\left( \C_{p+q-1}[X] \right) \\
+		\end{align*}
+
+		Ainsi $\Mat_{\mathcal{B}_1, \mathcal{B}_2}(\varphi)$ est carrée.
+
+		Comme $\varphi$	 n'est pas bijective, $\Mat_{\mathcal{B}_1,\mathcal{B}_2}(\varphi) \not\in \mathrm{GL}_{p+q}(\C)$ et donc $\det\big(\Mat_{\mathcal{B}_1, \mathcal{B}_2}(\varphi)\big) = 0.$
+	\item On suppose que le résultant de $P$ et $Q$ est nul. Donc $\varphi$ n'est pas injective et donc $\Ker(\varphi) \neq \big\{(0,0)\big\}$.
+
+		Soit $(U,V) \in \Ker(\varphi) \setminus \big\{(0,0)\big\}$. Ainsi \[
+			UP + VQ = 0
+		\] et donc \[
+			P  \mid VQ.
+		\]
+
+		Supposons $P \wedge Q = 1$. D'après le théorème de Gauss, $P  \mid V$.
+
+		Or $\deg P = p$ (car $a_p \neq 0$) et $\deg V \le p - 1$.
+
+		Donc $V = 0$ et donc $UP = 0$, donc $U = 0$ i.e. $(U,V) = (0, 0)$ : une contradiction.
+
+		On vient de prouver que $P$ et $Q$ ne sont pas premiers entre eux. Soit $D = P \wedge Q$. D'après ce qui précède, $\deg(D) \ge 1$, et donc $D$ a au moins une racine $a \in \C$ par le théorème d'Alambert--Gauss.
+
+		Comme $D \mid P$ et $D(a) = 0$, on peut conclure que $P(a) = 0$. De même $Q(a) = 0$.
+\end{enumerate}
+
+

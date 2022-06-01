@@ -26,6 +26,9 @@ out = r'''\documentclass[a4paper]{report}
 \usepackage{fancyhdr}
 \usepackage[totoc]{idxlayout}
 \usepackage{tocbibind}
+\usepackage{titletoc}
+\usepackage{xpatch}
+
 \pagestyle{fancy}
 
 \fancyhead[R]{\itshape MP2I}
@@ -56,11 +59,7 @@ out = r'''\documentclass[a4paper]{report}
         \end{center}
     \end{titlepage}
 
-    {
-        \lhead{}
-        \renewcommand*\parttitle{Table des matières}
-        \tableofcontents
-    }
+    \tableofcontents
 
 '''.replace('    ', '\t')
 
@@ -108,6 +107,9 @@ for chap in chaps:
 
     for inp, i in inputs:
         out += '\n\t\t\\input{../' + chap + '/' + inp + '}'
+
+    if '\t\\addrecap' in main_content:
+        out += '\n\t\t\\addrecap'
 
     out += '\n\t}'
 

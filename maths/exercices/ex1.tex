@@ -1,0 +1,53 @@
+\documentclass[a4paper]{report}
+
+\input{../preamble.tex}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+
+\begin{document}
+	\paragraph{Partie A.} $\rightarrow$ chapitre 4 / partie 1.\\
+	\paragraph{Partie B.} /\\
+	\paragraph{Partie C.}
+	Pour la question XIII, c'est une somme géométrique de raison $-x$.\\
+	Pour la question XIV, on intègre l'expression de la question précédente mais il faut rédiger correctement.\\
+	Pour les questions XV et XVI, on applique l'inégalité triangulaire mais attention au sens des bornes. On majore ensuite la fraction en majorant le numérateur et/ou en minorant le dénominateur.\\
+	Pour la question XVII, on utilise une somme partielle en montrant que la valeur absolue de l'intégrale de la question précédentes tends vers 0 (à l'aide de croissances comparées). On fait une disjonction de cas car les majorants sont différents en fonction de la valeur de $x$.\\
+	Pour la question XVIII, on montre que le terme général de la série ne tends pas vers 0 quand n tends vers $+\infty$.\\
+	Pour la question XX--1, on évalue l'expression de la question précédente en $x = 1$.\\
+	Pour la question XX--2, attention aux sommes infinies, on ne peut pas regrouper les termes dans l'ordre que l'on veut. Par exemple, \[
+		\underbrace{1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5}-\frac{1}{6} \cdots}_{\text{converge vers} \ln 2} \neq \underbrace{1 + \frac{1}{3} - \frac{1}{2} + \frac{1}{5} + \frac{1}{7} \cdots}_{\text{diverge}}.
+	\]
+	Pour la question XX--3, on dit que $2k + 1 < 2k+2$, on passe à l'inverse et on passe au carré.\\
+	Pour la question XX--4, c'est une comparaison avec une intégrale.\\
+	Pour la question XX--5, on utilise le résultat de la question 4, on l'encadre avec la question 3, on majore la somme de droite avec $a = 1$ et celle de gauche avec $a = 2$, on passe à la limite.\\
+	Pour la question XXI, elle semble indépendante et peut ne pas être faite ou être faite si l'on n'a pas réussi les questions précédentes. On mets au même dénominateur, puis on simplifie les logarithmes, on obtient un système impliquant $\ln 2$ et $\ln 3$ que l'on peut résoudre.\\
+	Pour la question XXII, on utilise la question XIV deux fois, et la deuxième fois, on change $x$ en $-x$. Les bornes changent mais pas l'intérieur de l'intégrale. On fait un changement de variable $u = -t$ pour retrouver les bornes demandées. Les puissances paires se simplifient et impaires ont un signe moins devant.\\
+	Pour la question XXIII, comme la question XV et XVI.\\
+	Pour la question XXIV--2, on utilise la calculatrice (mais on se doute que le résultat sera inférieur à celle trouvée dans la question XXI).\\
+	Pour la question XXV--1, on décompose en nombres premiers, et on simplifie les logarithmes.\\
+	Pour la question XXV--2, on utilise la méthode XVII.\\
+
+	Pour résoudre le problème, il faut se rappeler des questions précédentes (même celles faites bien plus tôt). Il faut bien lire l'énoncer, on peut avoir qu'un seul cas à traiter.
+
+	\bigskip
+	\centered{\sc\Large \underline{Réponses détaillées}}
+	\medskip
+
+	Soit $x \in \;]-1,1[$ et $n \ge 1$.\marginpar{\bf Question XXI}\[
+		\frac{1}{2} \ln\left( \frac{1+x}{1-x} \right) = \frac{1}{2}\big(\ln(1+x) - \ln(1-x)\big).
+	\] Comme $x \in\;]-1,1[$, on sait que $-x \in \;]-1,1[$. En utilisant le résultat de la question XIV, on a
+	\begin{align*}
+		\ln(1-x) &= \sum_{k=0}^{2n-1} (-1)^k \frac{(-x)^{k+1}}{k+1} + \int_{0}^{-x} (-1)^n \frac{t^{2n}}{1+t}~\mathrm{d}t\\
+		&= -\sum_{k=0}^{2n-1} \frac{x^{k+1}}{k+1} -\int_{0}^{x} \frac{u^{2n}}{1-u}~\mathrm{d}u \\
+	\end{align*} où l'on a effectué le changement $u = -t$ dans l'intégrale.
+
+	Donc, \[
+		\ln(1+x) - \ln(1-x) = \sum_{k=0}^{2n-1} \frac{x^{k+1}}{k+1} \underbrace{\left( (-1)^k + 1 \right)}_{\mathrlap{=\begin{cases}
+				0&\text{si } k \text{ pair}\\
+				2&\text{si } k \text{ impair}
+		\end{cases}}} + \int_{0}^{x} t^{2n}\underbrace{\left( \frac{1}{1+t} + \frac{1}{1-t} \right)}_{\mathrlap{\displaystyle= \frac{2}{1-t^2}}}~\mathrm{d}t
+	\] et donc \[
+		\frac{1}{2}\ln\left( \frac{1+x}{1-x} \right) = \sum_{i=0}^{n-1} \frac{x^{2i+1}}{2i+1} + \int_{0}^{x} \frac{t^{2n}}{1-t^2}~\mathrm{d}t
+	.\]
+\end{document}

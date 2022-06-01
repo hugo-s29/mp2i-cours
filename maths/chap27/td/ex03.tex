@@ -1,0 +1,17 @@
+\part{Exercice 3}
+
+\begin{enumerate}
+	\item
+		\begin{align*}
+			P(A \cap B) &= P(A) + P(B) - \overbrace{P(A \cup B)}^{\in [0,1]}\\
+			&\ge P(A) + P(B) - 1 \\
+		\end{align*}
+	\item par récurrence sur $n$:
+		\begin{align*}
+			P\left( \bigcap_{i=1}^{n+1} A_i \right) &= P\left( \bigcap_{i=1}^n A_i \cap A_{n+1} \right) \\
+			&\ge P\left( \bigcap_{i=1}^n a_i \right) + P(A_{n+1}) - 1\\
+			&\ge \sum_{i=1}^n P(A_i) - (n-1) + P(A_{n+1}) - 1\\
+			&\ge \sum_{i=1}^{n+1} P(A_i) - n.
+		\end{align*}
+\end{enumerate}
+

@@ -1,0 +1,17 @@
+\part{Exercice 4}
+
+On pose $\Omega_n = \left\llbracket 1,365 \right\rrbracket^n$, $P_n$ l'équiprobabilité sur $\Omega_n$ et \[
+	\overline{A}_n = \bigl\{(\omega_1,\ldots,\omega_n) \in \Omega_n\mid\forall i \neq j, \omega_i \neq \omega_j\bigr\}
+.\] 
+
+\begin{align*}
+	P_n(A_n) &= 1 - P_n(\overline{A}_n)\\
+	&= 1 - \frac{365!}{(365-n)!\;365^n} \\
+\end{align*}
+
+On a
+\begin{gather*}
+	P_n(A_n) \ge \frac{1}{2} \iff n \ge 23\\
+	P_n(A_n) \ge 0,\!95 \iff n \ge 47.
+\end{gather*}
+

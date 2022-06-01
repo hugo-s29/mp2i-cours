@@ -1,0 +1,5 @@
+#sub asy {return system("cd asy && asy \"$_[0]\" && cd ..");}
+sub asy {return system("bash compile-asy.sh \"$_[0]\"");}
+add_cus_dep("asy","eps",0,"asy");
+add_cus_dep("asy","pdf",0,"asy");
+add_cus_dep("asy","tex",0,"asy");

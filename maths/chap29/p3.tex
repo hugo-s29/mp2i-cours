@@ -1,0 +1,246 @@
+\part{Familles orthogonales}
+
+\begin{thm}[Pythagore]
+	Soit $(x,y) \in E^2$. \[
+		\|x+y\|^2 = \|x\|^2 + \|y\|^2 \iff x \perp y
+	.\]
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			size(4cm);
+			pair u = (1, 0.5);
+			pair v = 1.5 * (0, 1) * u;
+			draw((0,0)--u, Arrow(TeXHead));
+			label("$x$", u/2, align=S);
+			draw(u--v+u, Arrow(TeXHead));
+			label("$y$", u + v/2, align=NE);
+			draw((0,0) -- u + v, Arrow(TeXHead));
+			draw(u + v / 7.5 -- u + v / 7.5 - u / 5 -- u - u / 5 -- u -- cycle);
+		\end{asy}
+	\end{figure}
+\end{thm}
+
+\begin{prv}
+	\[
+		\|x + y\|^2 = \|x\|^2 + \|y\|^2 \iff 2\left<x \mid y \right> = 0 \iff x \perp y
+	.\]
+\end{prv}
+
+\begin{defn}
+	Soit $(e_i)_{i\in I}$ une famille de vecteurs. On dit que cette famille est \underline{orthogonale} si \[
+		\forall i \neq j\, e_i \perp e_j
+	.\] Si, en plus, on a \[
+		\forall i \in I,\,\|e_i\| = 1,
+	\] alors on dit que la famille est \underline{orthonormale} ou \underline{orthonormée}.
+	\index{famille orthogonale}
+	\index{famille orthonormale}
+	\index{famille orthonormée}
+\end{defn}
+
+\begin{prop}[Pythagore]
+	Soit $(e_1, \ldots, e_n)$ une famille orthogonale. Alors \[
+		\left\| \sum_{i=1}^n e_i \right\|^2 = \sum_{i=1}^n \|e_i\|^2
+	.\]
+\end{prop}
+
+\begin{thm}
+	Toute famille orthogonale de vecteurs non nuls est libre.
+\end{thm}
+
+\begin{prv}
+	Soit $(e_i)_{i\in I}$ une famille orthogonale telle que \[
+		\forall i \in I,\,e_i \neq 0_E
+	.\] Soit $n \in \N^*$, $(\lambda_1, \ldots, \lambda_n) \in \R^n$. On suppose \[
+		\sum_{k=1}^n \lambda_k e_{i_k} = 0_E
+	.\] Soit $j \in \left\llbracket 1,n \right\rrbracket$.
+	\begin{align*}
+		0 &= \left<\sum_{k=1}^n \lambda_k e_{i_k}  \mid e_{i_j} \right>\\
+		&= \sum_{k=1}^n \lambda_k \left<e_{i_k}  \mid e_{i_j} \right> \\
+		&= \lambda_j \underbrace{\|e_{i_j}\|^2}_{\neq 0} \\
+	\end{align*}
+	donc $\lambda_j = 0$.
+\end{prv}
+
+\begin{algo}[Orthonormalisation de Gran--Schmidt]
+	On suppose $E$ de dimension finie. Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$.
+
+	\begin{itemize}
+		\item\underline{\it Étape 1}: On pose $v_1 = \frac{e_1}{\|e_1\|}$ de sorte que $\|v_1\| = 1$.
+		\item\underline{\it Étape 2} : On pose \[
+				u_2 = e_2 - \left<e_2  \mid v_1 \right> v_1
+			.\] Ainsi,
+			\begin{align*}
+				\left<u_2 \mid v_1 \right> &= \big<e_2 - \left<e_2 \mid v_1 \right> v_1  \mid v_1 \big>\\
+				&= \left<e_2 \mid v_1 \right> - \left<e_2 \mid v_1 \right> \left<v_1 \mid v_1 \right> \\
+				&= 0. \\
+			\end{align*}
+			On pose $v_2 = \frac{u_2}{\|u_2\|}$ donc $v_2 \perp v_1$ et $\|v_2\| = 1$.
+		\item\underline{\it Étape 3} : On pose \[
+				u_2 = e_3 - \left<e_3 \mid v_1 \right>v_1 - \left<e_3 \mid v_2 \right>v_2
+			.\] Ainsi,
+			\begin{align*}
+				\left<u_3  \mid v_1 \right> &= \left<e_3  \mid v_1 \right> - \left<e_3 \mid v_1 \right>\underbrace{\left<v_1 \mid v_1 \right>}_{=1} - \left<e_3 \mid v_2 \right>\underbrace{\left<v_2 \mid v_1 \right>}_{=0} \\
+				&= 0 \\
+			\end{align*}
+			et 
+			\begin{align*}
+				\left<u_3 \mid v_2 \right> &= \left<e_3  \mid  v_2 \right> - \left<e_3 \mid v_1 \right> \underbrace{\left<v_1 \mid v_2 \right>}_{=0} - \left<e_3 \mid v_2 \right> \underbrace{\left<v_2 \mid v_2 \right>}_{=1}\\
+				&= 0. \\
+			\end{align*}
+			On pose $v_3 = \frac{u_3}{\|u_3\|}$ de sorte que $v_3 \perp v_1$, $v_3 \perp v_2$ et $\|v_3\| = 1$.
+		\item\underline{\it Étape $i+1$}: On pose \[
+			u_{i+1} = e_{i+1} - \sum_{k=1}^i \left<e_{i+1}  \mid v_k \right> v_k
+		.\] Ainsi, pour tout $j \in \left\llbracket 1,i \right\rrbracket,$ on a
+		\begin{align*}
+			\left<u_{i+1}  \mid v_j \right> &= \left<e_{i+1}  \mid v_j \right> - \sum_{k=1}^i \left<e_{i+1} \mid v_k \right> \left<v_k \mid v_j \right> \\
+			&= \left<e_{i+1} \mid v_j \right> - \left<e_{i+1} \mid v_j \right> \|v_j\|^2 \\
+			&= 0. \\
+		\end{align*}
+		On pose $v_{i+1} = \frac{u_{i+1}}{\|u_{i+1}\|}$.
+	\end{itemize}
+\end{algo}
+
+\begin{exm}
+	Avec $E = \R_3[X]$, $\left<P \mid Q \right> = \int_{0}^{1} P(t)\,Q(t)~\mathrm{d}t$ et $\mathcal{B} = (1, X, X^2, X^3)$.
+	\begin{enumerate}
+		\item $\|1\|^2 = \left<1 \mid 1 \right> = \int_{0}^{1} 1~\mathrm{d}t = 1$ et donc $v_1 = 1$.
+		\item $u_2 = X - \left<X  \mid v_1 \right>v_1$. Or, $\left<X \mid v_1 \right> = \int_{0}^{1} t~\mathrm{d}t = \frac{1}{2}$. D'où $u_2 = X - \frac{1}{2}$.
+			\begin{align*}
+				\|u_2\|^2 &= \int_{0}^{1} \left( t - \frac{1}{2} \right)^2~\mathrm{d}t \\
+				&= \int_{0}^{1} \left( t^2 - t + \frac{1}{4} \right)~\mathrm{d}t \\
+				&= \frac{1}{3} - \frac{1}{2} + \frac{1}{4} \\
+				&= \frac{1}{12} \\
+			\end{align*} On en déduit que $v_2 = \sqrt{12}\left( X - \frac{1}{2} \right)$.
+		\item $u_3 = X^2 - \left<X^2 \mid v_1 \right>v_1 - \left<X^2 \mid v_2 \right>v_2$.
+			On a \[
+				\left<X^2 \mid v_1 \right> = \int_{0}^{1} t^2~\mathrm{d}t = \frac{1}{3}
+			\] et
+			\begin{align*}
+				\left<X^2 \mid v_2 \right> &= \sqrt{12} \int_{0}^{1} t^2\left( t - \frac{1}{2} \right)~\mathrm{d}t \\
+				&= \frac{\sqrt{12}}{12}. \\
+			\end{align*}
+			D'où
+			\begin{align*}
+				u_3 &= X^2 - \frac{1}{3} - \frac{\sqrt{12}}{12}\sqrt{12} \left( X - \frac{1}{2} \right)\\
+				&= X^2 - \frac{1}{3} - X + \frac{1}{2} \\
+				&= X^2 - X + \frac{1}{6}. \\
+			\end{align*}
+			\begin{align*}
+				\|u_3\|^2 &= \int_{0}^{1} \left( t^2 - t + \frac{1}{6} \right)~\mathrm{d}t\\
+				&= \int_{0}^{1} \left( t^4 + t^2 + \frac{1}{36} - 2t^3 + \frac{t^2}{3} - \frac{t}{3} \right) ~\mathrm{d}t \\
+				&= \frac{1}{5} + \frac{1}{3} + \frac{1}{36} - \frac{1}{2} + \frac{1}{9} - \frac{1}{6} \\
+				&= \frac{36 + 60 + 5 - 90 + 20 - 30}{180} \\
+				&= \frac{1}{180} \\
+			\end{align*}
+			On en déduit que \[
+				v_3 = 6\sqrt{5}\left( X^2 - X + \frac{1}{6} \right).
+			\]
+		\item Exercice : calculer $v_4$.
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$ et $\mathcal{C}$ la base obtenue par le procédé d'orthonormalisation de Gram--Schmidt. Alors, \[
+		\forall i \in \left\llbracket 1,n \right\rrbracket,\,\Vect(e_1,\ldots, e_i) = \Vect(v_1, \ldots, v_i)
+	.\]\qed
+\end{prop}
+
+\begin{exm}[orthogonalisation]
+	\begin{itemize}
+		\item $u_1 = 1$.
+		\item
+			\begin{align*}
+				\begin{rcases*}
+					u_2 \in \Vect(e_1, e_2)\\
+					u_2 \perp u_1
+				\end{rcases*}
+				\iff& \begin{cases}
+					u_2 = ae_1 + be_2\quad (a,b) \in \R^2\\
+					\left<u_1 \mid u_2 \right> = 0
+				\end{cases}\\
+				\iff& \begin{cases}
+					u_2 = a + bX\\
+					\int_{0}^{1} (a+bt)~\mathrm{d}t = 0.
+				\end{cases}\\
+			\end{align*}
+			\begin{align*}
+				\int_{0}^{1} (a+bt)~\mathrm{d}t = 0 \iff& a + \frac{b}{2} = 0\\
+				\iff& a = -\frac{b}{2}\\
+				\iff& u_2 = -\frac{b}{2} + bX.
+			\end{align*}
+			Par exemple, $u_2 = -1 + 2X$.
+		\item $\begin{cases}
+				u_3 \in \Vect(e_1, e_2, e_3)\\
+				u_3 \perp u_1\\
+				u_3 \perp u_2
+			\end{cases}$
+
+			On pose $u_3 = a + bX + cX^2$ avec $(a,b,c)\in \R^3$.
+			\begin{align*}
+				\begin{rcases*}
+					\int_{0}^{1} \left( a+bt + ct^2 \right)~\mathrm{d}t = 0\\
+					\int_{0}^{1} \left(a + bt+ct^2\right)(2t - 1)~\mathrm{d}t = 0
+				\end{rcases*} \iff& \begin{cases}
+					a + \frac{b}{2} + \frac{c}{3} = 0\\
+					\int_{0}^{1} \left( 2ct^3 + (-c + 2b)t^2 + (2a - b)t - a \right) ~\mathrm{d}t = 0
+				\end{cases}\\
+				\iff& \begin{cases}
+					a + \frac{b}{2} + \frac{c}{3} = 0\\
+					\frac{c}{2} + \frac{2b - c}{3} + \frac{2\cancel{a} - b}{2} - \cancel{a} = 0
+				\end{cases}\\
+				\iff&  \begin{cases}
+					a = -\frac{b}{2} - \frac{c}{3} = \frac{c}{2} - \frac{c}{3} = \frac{c}{6}\\
+					b = -c.
+				\end{cases}
+			\end{align*}
+			On en déduit que \[
+				u_3 = 1 - 6X + 6X^2
+			.\]
+	\end{itemize}
+\end{exm}
+
+\begin{crlr}[théorème de la base orthonormée incomplète] Soit $(e_1, \ldots, e_k)$ une base orthonormée d'un espace euclidien. On peut trouver $e_{k+1},\ldots,e_n$ tels que $(e_1, \ldots, e_k, e_{k+1},\ldots,e_n)$ soit une base orthonormée de $E$.
+\end{crlr}
+
+\begin{prv}
+	On sait que $(e_1, \ldots, e_k)$ est libre. On complète $(e_1, \ldots, e_k)$ en une base $\mathcal{B}$ de $E$. On orthonormalise $\mathcal{B}$ : on obtient une base orthonormée $\mathcal{C}$ de $E$. En détaillant l'algorithme de Gram--Schmidt, on s'aperçoit que les $k$ premiers vecteurs de $\mathcal{C}$ sont ceux de $\mathcal{B}$.
+\end{prv}
+
+\begin{thm}
+	Soit $E$ un espace euclidien et $\mathcal{B} = (e_1, \ldots, e_n)$ une base orthonormée de $E$. Soit $(x,y) \in E^2$. On pose $(x_1, \ldots, x_n) \in \R^n$ et $(y_1, \ldots, y_n) \in \R^n$ tels que \[
+		x = \sum_{i=1}^n x_i e_i \qquad\qquad y = \sum_{i=1}^n y_i e_i
+	.\] Alors \[
+		\left<x \mid y \right> = \sum_{i=1}^n x_i y_i
+	.\]
+	\vspace{3mm}
+	Soit $X = \mat{x_1\\\vdots\\x_n}$ et $Y = \mat{y_1\\ \vdots \\ y_n}$. Alors, \[
+		\left<x \mid y \right> = X^\T\,Y
+	.\]
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		\left<x \mid y \right> &= \left<\sum_{i=1}^n x_ie_i  \mid y \right>\\
+		&= \sum_{i=1}^n x_i \left<e_i  \mid y \right> \\
+		&= \sum_{i=1}^n x_i \left<e_i  \mid \sum_{j=1}^n y_j e_j \right> \\
+		&= \sum_{i=1}^n x_i \sum_{j=1}^n y_j \underbrace{\left<e_i \mid e_j \right>}_{\delta_i^j} \\
+		&= \sum_{i=1}^n x_i y_i. \\
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $E$ un espace euclidien et $\mathcal{B} = (e_1, \ldots, e_n)$ une base orthonormée de $E$. Alors, \[
+		\forall x \in E,\,x = \sum_{i=1}^n \left<x \mid e_i \right>e_i
+	.\]
+\end{prop}
+
+\begin{prv}
+	Soit $x \in E$. On pose \[
+		x = \sum_{i=1}^n x_i e_i
+	\] avec $(x_1, \ldots, x_n) \in \R^n$. Soit $j \in \left\llbracket 1,n \right\rrbracket$. On a
+	\begin{align*}
+		\left<x \mid e_j \right> &= \left<\sum_{i=1}^n x_i e_i  \mid e_j \right>\\
+		&= \sum_{i=1}^n x_i \left<e_i \mid e_j \right> \\
+		&= x_j. \\
+	\end{align*}
+\end{prv}

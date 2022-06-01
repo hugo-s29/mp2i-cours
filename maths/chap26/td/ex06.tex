@@ -1,0 +1,33 @@
+\part{Exercice 6}
+
+\begin{align*}
+	C_n(a_0, \ldots, a_{n-1}) &= \begin{vmatrix}
+		-x & 0 & \cdots & 0 & a_0\\
+		1 & -x & \ddots & \vdots & a_1\\
+		0 & \ddots & \ddots & 0 & \vdots\\
+		\vdots & \ddots & \ddots & -x & \vdots\\
+		0&\cdots&0&1&a_{n-1}-x
+	\end{vmatrix}
+	\\
+	&= -x
+	\begin{vmatrix}
+		-x & 0 & \cdots & 0 & a_1\\
+		1 & -x & \ddots & \vdots & a_1\\
+		0 & \ddots & \ddots & 0 & \vdots\\
+		\vdots & \ddots & \ddots & -x & \vdots\\
+		0&\cdots&0&1&a_{n-1}-x
+	\end{vmatrix} - 
+	\begin{vmatrix}
+		0 & 0 & \cdots & 0 & a_0\\
+		1 & -x & \ddots & \vdots & a_2\\
+		0 & \ddots & \ddots & 0 & \vdots\\
+		\vdots & \ddots & \ddots & -x & \vdots\\
+		0&\cdots&0&1&a_{n-1}-x
+	\end{vmatrix}\\
+	&= -x C_{n-1}(a_1, \ldots, a_{n-1}) + (-1)^n a_0 \\
+	&= -x \big(-x C_{n-2}(a_2, \ldots, a_{n-1}) + (-1)^{n-1}a_1\big) + (-1)^n a_0 \\
+	&= x^2 C_{n-2}(a_2, \ldots, a_{n-1}) + (-1)^n a_1 x + (-1)^n a_0 \\
+	&= \cdots\cdots\cdots \\[-3.5mm]
+	&=(-1)^n x^n + (-1)^{n+1} \sum_{k=0}^{n-1} a_k x^k \\
+\end{align*}
+

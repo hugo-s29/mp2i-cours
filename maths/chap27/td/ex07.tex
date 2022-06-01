@@ -1,0 +1,36 @@
+\part{Exercice 7}
+
+
+\begin{enumerate}
+	\item On pose $\Omega = \big\{ \omega \in \mathcal{P}(\left\llbracket 1,n+m \right\rrbracket)  \mid \#\omega = n \big\}$, $P$ l'équiprobabilité.
+
+		Soit $A \in \mathcal{P}(\Omega)$ qui représente l'événement considéré. On a \[
+			P(A) = \frac{\#A}{\#\Omega} = \frac{\#A}{{n+m\choose n}}.
+		\]
+
+		Par exemple, avec $n = 5$, $m = 4$ et $r = 3$.
+		On cherche \centered{\_\_\_\_\_\_\_\_\_.}
+
+		On place $i_1$ ``L'' avec $i_1 \ge 0$.\\
+		Puis, $j_1$ ``O'' avec $j_1 > 0$.\\
+		Puis, $i_2$ ``L'' avec $i_1 > 0$.\\
+		Puis, $j_2$ ``O'' avec $j_2 > 0$.\\
+		\vdots\\
+		Puis, $j_r$ ``O'' avec $j_r > 0$.\\
+		Enfin, on place $i_{r+1}$ ``L'' avec $i_{r+1} \ge 0$.
+
+		On doit avoir \[
+			\begin{cases}
+				\sum_{k=1}^{r+1} i_{k} = m\\
+				\sum_{k=1}^{r} j_{k} = n\\
+			\end{cases}
+		\]
+		On a \[
+			\#A = {n-1 \choose r - 1}{m +1 \choose r}
+		\] d'où \[
+			P(A) = \frac{{n-1\choose r-1}{m+1\choose r}}{{m + n \choose n}}.
+		\]
+	\item \begin{align*}
+			\frac{{6 \choose 6}{10 \choose 7}}{{16 \choose 7}} &\simeq 0,\!01 \\
+		\end{align*}
+\end{enumerate}

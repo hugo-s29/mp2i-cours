@@ -1,0 +1,50 @@
+\part{Exercice 14}
+
+Pour la question 1, la question est simple donc la rédaction doit être propre.\\
+Pour la question 2, il faut lire l'énoncé. Pour la question 2a, on développe. Pour la question 2b, on passe $(E)$ au carré, donc le membre de droit de l'expression de la question a. D'après la question 1, on sait que les termes sont positifs donc tous les termes sont nuls et donc les coordonées de $V$ sont de même signe.\\
+Pour la question 3, on utilise le même procédé que pour la 2 :
+\begin{align*}
+	\left( \sum_{i=1}^N v_i \right)^2 &= \left( \sum_{i=1}^N v_i \right) \left( \sum_{j=1}^N v_j \right)\\
+	&= \sum_{1 \le i,j \le N} v_i v_j \\
+	&= \sum_{i=1}^N v_i^2 + 2\sum_{1\le i<j < N} v_i v_j. \\
+\end{align*}
+
+Pour la question 4, on a $\frac{1-\rho}{N} > 0$ donc $G_{i,j} > 0$ pour tout $i,j$.\\
+Pour les questions 5 et 6, on a une disjonction de cas.
+Pour la question 5, on utilise la définition de $A_{i,j}$ ce qui annule des termes.
+Pour la question 6, on remplace $A_{i,j}$ et on simplifie.\\
+Pour la question 7, $G$ est une matrice stochastique.\\
+Pour la question 8, on développe la matrice et on utilise la défintion du PageRank.
+
+La notation $P(A \mid B)$ représente $P_B(A)$; $1-\rho$ représente la probabilité de rentrer une nouvelle URL.\\
+Pour la question 9, on utilise les propriétés de la probabilité $P$ et que $A_n^1,\ldots,A_n^N$ représente un système complet d'événements.\\
+Pour la question 10,
+\begin{align*}
+	P(A_n^i \cap A_{n-1}^j) &= P(A_n^i \mid A_{n-1}^j)\,P(A_{n-1}^j) \\
+	&= G_{i,j}(V_{n-1})_j. \\
+\end{align*}
+Pour la question 11, on utilise les probabilités totales et le calcul précédent; on obitient un produit matriciel.\\
+Pour la question 12, pour le faire proprement, on peut faire une récurrence.
+
+On cherche la limite de $V_k$ et donc la limite de $G^n$.
+
+Pour la question 13, on pose $V = \mat{x\\y}$ et on résout le système associé.\\
+Pour la question 14, on trouve parmi les solutions de la question 13 le vecteur de probabilité.\\
+\begin{mdframed}
+	Pour retrouver le résultat de la question 15, on peut utiliser une équation polynomiale. Par exemple, avec \[
+		A = \begin{pmatrix}
+			2&0\\
+			1&3
+		\end{pmatrix},
+	\] on pose \[
+		P = X^2 - 5X + 6.
+	\] En évaluant $X = A$, on a \[
+		A^2 - 5A + 6I_2 = (0)
+	.\] Pour trouver $P$, on a \[
+		P = X^2 - \tr(A) X + \det(A).
+	\] On a \[
+		X^n = (X^2 - 5X + 6) Q_n(X) + (a_n X + b_n).
+	\] et $A^n = a_n A + b_n I_n$.
+\end{mdframed}
+
+

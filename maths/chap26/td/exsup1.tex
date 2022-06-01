@@ -1,0 +1,74 @@
+\part{Exercice}
+
+{\sl On a $2n+1$ cailloux et, à chaque fois qu'on retire un caillou quelconque, on divise le tas de cailloux en deux tas de même masse. Montrer que tous les cailloux ont la même masse.}
+
+\[
+	A = 
+	\begin{pNiceMatrix}
+		0&-1&1&-1&-1&\Cdots&&1\\
+		1&0&-1&1&1&1&\Cdots&-1\\
+		&&\Ddots\\
+		&&\\
+		&&\\
+		&&\\
+		&&\\
+		&&&&&&&0
+	\end{pNiceMatrix} \in \mathcal{M}_{2n+1}(\R).
+\]
+
+\[
+	A \begin{pmatrix}
+		1\\ \vdots\\ 1
+	\end{pmatrix} = \begin{pmatrix}
+	0\\\vdots\\0
+	\end{pmatrix}
+\] \[
+	A \begin{pmatrix}
+		m_1\\
+		\vdots\\
+		m_{2n+1}
+	\end{pmatrix} = \begin{pmatrix}
+		0\\\vdots\\0
+	\end{pmatrix}
+\]
+
+\[
+	\begin{rcases*}
+		\exists B\text{ extraite de }A\\
+		B \in \mathrm{GL}_{2n}(\R).
+	\end{rcases*} \implies \rg A = 2n \implies \dim(\Ker A) = 1 \implies \begin{pmatrix}
+		m_1\\
+		\vdots\\
+		m_{2n+1}
+	\end{pmatrix} \text{ colinéaire à } \begin{pmatrix}
+		1\\
+		\vdots\\
+		1
+	\end{pmatrix}
+\]
+
+\[
+	B = \begin{pNiceMatrix}
+		0&&\Block{2-2}{\pm 1}&\\
+		&\Ddots&&\\
+		\Block{2-2}{\pm 1}&&\\
+		&&&0
+	\end{pNiceMatrix}
+\]
+
+$\det B \in \Z$. Montrons que $\det B \equiv 1\mod 2$.
+
+\begin{align*}
+	\det B &\equiv
+	\begin{vNiceMatrix}
+		0&&\Block{2-2}{1}&\\
+		&\Ddots&&\\
+		\Block{2-2}{-1}&&\\
+		&&&0
+	\end{vNiceMatrix} \mod 2\\
+	&\equiv 1 \mod 2.
+\end{align*}
+
+
+
+

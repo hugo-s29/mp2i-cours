@@ -1,0 +1,55 @@
+\part{Exercice 11}
+
+\begin{enumerate}
+	\item On pose, pour tout $k \in \left\llbracket 1,N \right\rrbracket$, $U_k : ``\text{l'urne } k \text{ a été choisie}"$ ; et, pour tout $n \in \N^*$, $B_n : ``\text{la } n\text{-ième boule tirée est blanche}"$.
+		\[
+			P\left(B_{n+1}\mid{\textstyle \bigcap_{i=1}^n B_i}\right) = \frac{P(B_{n+1} \cap B_1 \cap \cdots \cap B_n)}{P(B_1 \cap \cdots \cap B_n)}
+		.\]
+		\begin{align*}
+			P(B_1 \cap \cdots \cap B_n) &= \sum_{k=0}^N P_{U_k}(B_1 \cap \cdots \cap B_n)\,P_(U_k) \\
+			&= \frac{1}{N+1} \sum_{k=0}^N \left( \frac{k}{N} \right)^n; \\
+		\end{align*}
+		\[
+			P(B_1 \cap \cdots \cap B_{n+1}) = \frac{1}{N+1} \sum_{k=0}^N \left( \frac{k}{N} \right)^{n+1};
+		\] \[
+			P_{B_1 \cap \cdots \cap B_n}(B_{n+1}) = \frac{1}{N} \times \frac{\sum_{k=1}^N k^{n+1}}{\sum_{k=1}^N k^n}
+		.\]
+		On pose $f : x \mapsto x^n$.
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import math;
+
+				size(5cm);
+
+				draw((-1, 0) -- (4, 0), Arrow(TeXHead));
+				draw((0, -1) -- (0, 3), Arrow(TeXHead));
+
+				real alpha = 2.3;
+				real f(real x) {return (x/2)^alpha; }
+				bool3 check(real x) { return x != 0 && f(x) < 3; };
+
+				draw(graph(f, 0, 3.8, check), red);
+
+				real k = 1.5;
+				real ak = 0.25;
+				real bk = 2.75;
+
+				dot("\small$k$", (k, 0), align=S);
+				dot("\small$k - 1$", (ak, 0), align=S);
+				dot("\small$k + 1$", (bk, 0), align=S);
+
+				draw(box((ak, f(k)), (bk, 0)));
+				draw((k, 0) -- (k, f(k)));
+				draw((ak, f(k)) -- (-0.05, f(k)), dashed);
+				label("\small$k^n$", (0, f(k)), align=W);
+			\end{asy}
+		\end{figure}
+		\[
+			\sum_{k=1}^N k^n \simi_{N\to +\infty} \frac{N^{n+1}}{n+1}
+		\] et donc \[
+			P_{B_1 \cap \cdots \cap B_n}(B_{n+1}) \simi_{N\to +\infty} \frac{1}{N} \times  N \times \frac{n+1}{n+2} = \frac{n+1}{n+1} \tendsto{N\to +\infty} \frac{n+1}{n+2}
+		.\] 
+\end{enumerate}
+

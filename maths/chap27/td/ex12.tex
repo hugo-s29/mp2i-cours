@@ -1,0 +1,41 @@
+\part{Exercice 12}
+
+\begin{align*}
+	p_{n+1} &= q(1-p_n) + p p_n \\
+	&= (1-p)(1-p_n) + pp_n \\
+	&= p_n (2p-1) + 1 - p \\
+\end{align*}
+
+On a \[
+	p_n = \alpha (2p-1)^{n} + \frac{1}{2}
+\] car
+\begin{align*}
+	&x = x(2p-1) + 1- p\\
+	\iff& x(2p-2) = p-1\\
+	\iff& x = \frac{1}{2}
+\end{align*}
+
+On a $p_1 = 1$ donc
+\begin{align*}
+	&\alpha(2p-1) + \frac{1}{2} = 1\\
+	\iff& \alpha = \frac{\frac{1}{2}}{2p - 1} = \frac{1}{4p-2} \\
+\end{align*}
+
+On a donc \[
+	p_n = \frac{1}{4p-2}(2p-1)^n + \frac{1}{2} = \frac{1}{2} (2p-1)^{n_1} + \frac{1}{2} \tendsto{n\to +\infty} \frac{1}{2}
+.\]
+
+\begin{mdframed}
+	\centered{\Large Méthode : suites arithmético-géométriques}
+
+	On a \[
+		\forall n,\,u_{n+1} = a u_n + b
+	.\] L'application \begin{align*}
+		\varphi: \C^\N &\longrightarrow \C^\N \\
+		(u_n) &\longmapsto (u_{n+1}-au_n)
+	\end{align*} est linéaire.
+	On a donc, \[
+		\varphi(u) = (b)_{n\in\N} \iff \overset{\substack{\Ker \varphi\\\vrt\in\\~}}{u} + \underbrace{u_0}_{\text{suite constante}}
+	.\] On a $\Ker \varphi = \Vect\big((a^n)\big)$.
+\end{mdframed}
+

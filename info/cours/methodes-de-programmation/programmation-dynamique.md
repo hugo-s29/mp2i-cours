@@ -378,7 +378,7 @@ Temporelle $\to$ polynomiale $n^\alpha$
 
 > Temps nécessaire pour évaluer chaque sous problème
 
-> nombre de sous problèmes $\times$ complexité par sous problèmes (sans compté les appels récursifs)
+> nombre de sous problèmes $\times$ complexité par sous problèmes (sans compter les appels récursifs)
 
 Spatiale
 

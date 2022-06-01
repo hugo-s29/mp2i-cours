@@ -1,0 +1,39 @@
+\part{Exercice 3}
+
+\[
+	\Delta_n(x) =
+	\begin{vNiceMatrix}
+		\lambda_1 + x & a + x & \Cdots & a + x\\
+		b + x & \Ddots & \Ddots & \Vdots\\
+		\Vdots&\Ddots&&a+x\\
+		b+x&\Cdots&b+x&\lambda_n + x
+	\end{vNiceMatrix}
+\]
+
+\begin{enumerate}
+	\item On fixe $x \in \R$. On note $C_1, \ldots, C_n$ les colonnes de la matrice \[
+			\begin{pNiceMatrix}
+				\lambda_1 + x & a + x & \Cdots & a + x\\
+				b + x & \Ddots & \Ddots & \Vdots\\
+				\Vdots&\Ddots&&a+x\\
+				b+x&\Cdots&b+x&\lambda_n + x
+			\end{pNiceMatrix}.
+		\] Le déterminant n'est pas modifié suite aux opérations $C_i \leftarrow C_i - C_1$ pour $i \in \left\llbracket 2,n \right\rrbracket$. Les colonnes 2 à $n$ de la matrice obtenue ne font plus intervenir $x$. En développant le déterminant suivant la première colonne, on obtient alors une expression polynomiale en $x$ de degré au plus 1.
+	\item \[
+			\Delta_n(-a) = 
+			\begin{vNiceMatrix}
+				\lambda_1 & 0 & \Cdots & 0\\
+				&\Ddots& \Ddots & \Vdots\\
+				&*&&0\\
+				&&&\lambda_n - a
+			\end{vNiceMatrix} = \prod_{i=1}^n (\lambda_i - a).
+		\] De même, \[
+			\Delta_n(-b) = \prod_{i=1}^n (\lambda_i - b).
+		\] Or, \[
+			\Delta_n(x) = \Delta_n(-a) + (x+a) \frac{\Delta_n(-b) - \Delta_n(-a)}{-b+a}
+		\] et donc
+		\begin{align*}
+			\Delta_n(0) &= \prod_{i=1}^n (\lambda_i - a) + \frac{a}{a-b}\left( \prod_{i=1}^n (\lambda_i - b) - \prod_{i=1}^n (\lambda_i - a) \right) \\
+			&= \frac{1}{a-b} \left( -b \prod_{i=1}^n (\lambda_i - a) + a\prod_{i=1}^n (\lambda_i - b) \right) \\
+		\end{align*}
+\end{enumerate}

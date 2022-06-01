@@ -18,6 +18,9 @@
 \usepackage{fancyhdr}
 \usepackage[totoc]{idxlayout}
 \usepackage{tocbibind}
+\usepackage{titletoc}
+\usepackage{xpatch}
+
 \pagestyle{fancy}
 
 \fancyhead[R]{\itshape MP2I}
@@ -48,11 +51,7 @@
 		\end{center}
 	\end{titlepage}
 
-	{
-		\lhead{}
-		\renewcommand*\parttitle{Table des matières}
-		\tableofcontents
-	}
+	\tableofcontents
 
 
 
@@ -154,6 +153,9 @@
 		\chap[10]{Nombres entiers - $\N$}
 		\renewcommand{\cwd}{../chap10}
 		\input{../chap10/p1.tex}
+		\input{../chap10/p2.tex}
+		\input{../chap10/p3.tex}
+		\input{../chap10/p4.tex}
 	}
 
 	{
@@ -176,6 +178,7 @@
 		\input{../chap12/p2.tex}
 		\input{../chap12/p3.tex}
 		\input{../chap12/p4.tex}
+		\addrecap
 	}
 
 	{
@@ -269,6 +272,7 @@
 		\input{../chap23/p1.tex}
 		\input{../chap23/p2.tex}
 		\input{../chap23/p3.tex}
+		\addrecap
 	}
 
 	{
@@ -278,6 +282,7 @@
 		\input{../chap24/p1.tex}
 		\input{../chap24/p2.tex}
 		\input{../chap24/p3.tex}
+		\addrecap
 	}
 
 	{
@@ -311,12 +316,27 @@
 		\input{../chap27/p1.tex}
 		\input{../chap27/p2.tex}
 		\input{../chap27/p3.tex}
+		\addrecap
 	}
 
 	{
 		\chap[28]{Sous-espaces affines d'un espace vectoriel}
 		\renewcommand{\cwd}{../chap28}
 		\input{../chap28/p1.tex}
+		\input{../chap28/p2.tex}
+		\input{../chap28/p3.tex}
+		\input{../chap28/p4.tex}
+	}
+
+	{
+		\chap[29]{Produit scalaire}
+		\renewcommand{\cwd}{../chap29}
+		Dans ce chapitre, $E$ désigne un {\large\color{red}$\R$}-espace vectoriel.
+		\par On sait déjà calculer le produit scalaire en dimension 2 et 3 mais l'objectif de ce chapitre est de le généraliser en dimension potentiellement infinie.
+		\input{../chap29/p1.tex}
+		\input{../chap29/p2.tex}
+		\input{../chap29/p3.tex}
+		\input{../chap29/p4.tex}
 	}
 
 	\clearpage

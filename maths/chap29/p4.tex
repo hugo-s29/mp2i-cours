@@ -1,0 +1,102 @@
+\part{Projection orthogonale}
+
+Dans ce paragraphe, $\big(E, \left<\cdot  \mid \cdot  \right>\big)$ est un espace préhilbertien (de dimension quelconque).
+
+\begin{defn}
+	Soit $A \in \mathcal{P}(E)$. L'\underline{orthogonal} de $A$ est \[
+		A^\perp = \{u \in E \mid \forall a\in A,\,a\perp u\}
+	.\]
+	\index{orthognal d'une partie}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item $\O^\perp = E$; $\{0_E\}^\perp = E$; $E^\perp = \{0_E\}$.
+
+			Attention \danger, $\left( \O^\perp \right)^\perp = \{0_E\} \neq \O$.
+		\item Avec $E = \R^3$, et $A = \{e_3\}$.
+			\begin{multicols}{2}
+				\begin{figure}[H]
+					\centering
+					\begin{asy}
+						import three;
+						size(2cm);
+						draw(O--X, Arrow3(TeXHead2));
+						draw(O--Y, Arrow3(TeXHead2));
+						draw(O--Z, Arrow3(TeXHead2));
+						label("$e_1$", X/2, align=S);
+						label("$e_2$", Y/2, align=S);
+						label("$e_3$", Z/2, align=W);
+					\end{asy}
+				\end{figure}
+				\[
+					A^\perp = \Vect(e_1, e_2)
+				\] et \[
+					A^{\perp\perp} = \Vect(e_1, e_2)^\perp = \Vect(e_3) \neq A.
+				\]
+			\end{multicols}
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	\[
+		\forall A \in \mathcal{P}(E),\, A^\perp \text{ est un sous-espace vectoriel de } E.
+	\]
+\end{prop}
+
+\begin{prv}
+	Soit $A \in \mathcal{P}(E)$.
+	\begin{itemize}
+		\item  $\forall a \in A,  \left<a \mid 0_E \right> = 0$ donc $0_E \in A^\perp$ et donc $A^\perp \neq \O$.
+		\item Soient $(u,v) \in A^\perp$, $(\alpha, \beta) \in \R^2$. Soit $a \in A$.
+			\begin{align*}
+				\left<\alpha u + \beta v  \mid a \right> &= \alpha \left<u \mid a \right> + \beta \left<v  \mid a \right> \\
+				&= \alpha \times 0 + \beta \times 0 \\
+				&= 0. \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{thm}
+	Soit $F$ un sous-espace vectoriel de \underline{dimension finie} de $E$. Alors \[
+		F\oplus F^\perp = E.
+	\]
+\end{thm}
+
+\begin{prv}
+	Soit $\mathcal{B} = (e_1, \ldots, e_p)$ une base orthonormée de $F$.
+	\begin{itemize}
+		\item[\underline{\sc Analyse}] Soit $x \in E$. On suppose $x = u + v$ avec $u \in F$ et $v \in F^\perp$. On pose $u = \sum_{i=1}^p u_i e_i$. De plus, \[
+				\forall i \in \left\llbracket 1,p \right\rrbracket,\,\left<v \mid e_i \right> = 0.
+			\] Soit $i \in \left\llbracket 1,p \right\rrbracket$.
+			\begin{align*}
+				\left<x \mid e_i \right> &= \left<u + v  \mid e_i \right> \\
+				&= \left<u \mid e_i \right> + \left<v \mid e_i \right> \\
+				&= \left<\sum_{j=1}^p u_j e_j  \mid e_i \right> \\
+				&= \sum_{j=1}^p u_j \left<e_j \mid e_i \right> \\
+				&= u_i \\
+			\end{align*}
+			D'où \[
+				\begin{cases}
+					u = \sum_{i=1}^p \left<x \mid e_i \right> e_i\\
+					v = x - \sum_{i=1}^p \left<x \mid e_i \right> e_i.
+				\end{cases}
+			\]
+		\item[\underline{\sc Synthèse}] Soit $x \in E$. On pose \[
+				\begin{cases}
+					u = \sum_{i=1}^p \left<x \mid e_i \right>e_i\\
+					v = x - \sum_{i=1}^p \left<x \mid e_i \right>e_i
+				\end{cases}
+			\]
+			On a clairement $u+v = x$ et $u \in F$.
+
+			Soit $a \in F$. On pose $a = \sum_{i=1}^p a_i e_i$.
+			\begin{align*}
+				\left<v \mid a \right> &= \left<x \mid a \right> - \sum_{i=1}^p \left<x \mid e_i \right> \underbrace{\left<e_i  \mid a \right>}_{=a_i}\\
+				&= \sum_{i=1}^p a_i \left<x \mid e_i \right> - \sum_{i=1}^p a_i \left<x \mid e_i \right> \\
+				&= 0 \\
+			\end{align*}
+			donc $v \in F^\perp$.
+	\end{itemize}
+\end{prv}
+

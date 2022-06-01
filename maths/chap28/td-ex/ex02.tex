@@ -1,0 +1,125 @@
+\part{Exercice 2}
+
+%\begin{align*}
+	%\alpha'u + \beta' v = \alpha i + \beta j \iff& \alpha' xi + \alpha'yi + \beta' x'i + \beta' y'j = \alpha i + \beta j  \\
+	%\iff& \begin{cases}
+		%\alpha' x + \beta' x' = \alpha\\
+		%\alpha' y + \beta' y' = \beta
+	%\end{cases}\\
+	%\iff& \begin{pmatrix}
+		%x&x'\\
+		%y&y'
+	%\end{pmatrix} \begin{pmatrix}
+		%\alpha'\\
+		%\beta'
+	%\end{pmatrix} = \begin{pmatrix}
+		%\alpha\\
+		%\beta
+	%\end{pmatrix}\\
+	%\iff& \begin{cases}
+		%\begin{vmatrix}
+			%x&x'\\
+			%y&y'
+		%\end{vmatrix} \neq 0\\
+		%\begin{pmatrix}
+			%\alpha'\\
+			%\beta'
+		%\end{pmatrix} = 
+		%\begin{pmatrix}
+			%x&x'\\
+			%y&y'
+		%\end{pmatrix}^{-1} \begin{pmatrix}
+			%\alpha\\
+			%\beta
+		%\end{pmatrix}
+	%\end{cases}\\
+	%\iff& \begin{cases}
+		%xy' - yx' \neq 0\\
+		%\begin{pmatrix}
+			%\alpha'\\
+			%\beta'
+		%\end{pmatrix} = \frac{1}{xy'-y'x} \begin{pmatrix}
+			%y'&-x'\\
+			%-y&x
+		%\end{pmatrix} \begin{pmatrix}
+			%\alpha\\
+			%\beta
+		%\end{pmatrix}
+	%\end{cases}\\
+	%\implies& \begin{cases}
+		%\alpha' = \frac{y' \alpha - x' \beta}{xy'-y'x}\\
+		%\beta' = \frac{-y \alpha - x \beta}{xy'-y'x}\\
+	%\end{cases}
+%\end{align*}
+
+On pose la matrice du repère $(O, u, v)$ :  \[
+	M = \begin{pmatrix}
+		x&x'&a\\
+		y&y'&b\\
+		0&0&1
+	\end{pmatrix} 
+.\]
+
+On a donc \[
+	\begin{pmatrix}
+		x&x'&a\\
+		y&y'&b\\
+		0&0&1
+	\end{pmatrix} \begin{pmatrix}
+		\alpha'\\
+		\beta'\\
+		0\\
+	\end{pmatrix} = \begin{pmatrix}
+		\alpha\\
+		\beta\\
+		0
+	\end{pmatrix}
+.\]
+
+On cherche donc $\begin{pmatrix}
+	x&x'&a\\
+	y&y'&b\\
+	0&0&1
+\end{pmatrix}^{-1}$.
+
+\begin{align*}
+	\left(
+		\begin{array}{ccc|ccc}
+			x&x'&a&1&0&0\\
+			y&y'&b&0&1&0\\
+			0&0&1&0&0&1
+		\end{array}
+	\right)
+	\begin{array}{c}
+		\sim\\
+		\substack{L_1 \leftarrow L_1 - aL_3\\L_2\leftarrow L_2-bL_3}
+	\end{array}&
+	\left(
+		\begin{array}{ccc|ccc}
+			x&x'&0&1&0&-a\\
+			y&y'&0&0&1&-b\\
+			0&0&1&0&0&1
+		\end{array}
+	\right)
+\end{align*}
+
+On a \[
+	\begin{pmatrix}
+		x&x'\\
+		y&y'
+	\end{pmatrix}^{-1} = \frac{1}{xy'-yx'} \begin{pmatrix}
+		y'&-x'\\
+		-y&x
+	\end{pmatrix}
+.\] D'où \[
+	M^{-1} = \begin{pmatrix}
+		\frac{y'}{xy' - yx'}&-\frac{x'}{xy' - yx'}&-a\\
+		-\frac{y}{xy'-yx'}&\frac{x}{xy'-yx'}&-b\\
+		0&0&1
+	\end{pmatrix} 
+.\] On en déduit que \[
+	\begin{cases}
+		\alpha' = \frac{\alpha y' - \beta x'}{xy' - yx'} - a\\[2mm]
+		\beta' = \frac{\alpha x - \beta y}{xy' - yx'} - b\\
+	\end{cases}
+.\]

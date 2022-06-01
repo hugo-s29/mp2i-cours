@@ -1,0 +1,48 @@
+\part{Exercice 10}
+
+On condisère un espace probabilisé $(\Omega, P)$ qui modélise la situation.
+On pose
+\begin{align*}
+	&A : ``\text{on a caché le trésor}"\\
+	\forall i \in \left\llbracket 1,N \right\rrbracket,\,&T_i : ``\text{le trésor est dans le coffre } i".
+\end{align*}
+
+On suppose que
+\begin{gather*}
+	P(A) = p\\
+	P_A(T_i) = \frac{1}{N}\\
+	P_{\overline{A}} (T_i) = 0.
+\end{gather*}
+
+On cherche $P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}}(T_N)$.
+
+\begin{align*}
+	P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}} &= P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}}(A)\,P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}\cap A}(T_n)
+	+ P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}}(\overline{A}) P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1} \cap \overline{A}}(T_n)\\
+	&= P_{\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}}(A) \\
+	&= \frac{P_A(\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}) P(A)}{P_A(\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}) P(A) P_{\overline{A}}(\overline{T}_1 \cap \cdots \cap \overline{T}_{N-1}) P(\overline{A})} \\
+	&= \frac{p \frac{1}{N}}{p \frac{1}{N} (1-p)} \\
+	&= \frac{p}{p + N (1-p)} \tendsto{N\to +\infty} 0. \\
+\end{align*}
+
+
+\begin{center}
+	\begin{lstlisting}[language=python]
+		def experience(p, N):
+		  coffres = [True] * N
+		  if rd.random() < p:
+		    k = rd.randint(0, N-1)
+		    coffres[k] = True
+		  else:
+		    k = -1
+		  return k == N - 1
+
+		def proba(p, N, n):
+		  cases = 0
+		  for i in range(n):
+		    if experience(p, N):
+		      cases += 1
+		  return cases / n
+	\end{lstlisting}
+\end{center}
+

@@ -1,0 +1,49 @@
+\part{Arithmétique modulaire}
+
+\begin{defn}
+	Soient $a, b \in \Z$ et $c \in \N^*$. On dit que $a$ est \underline{congrus} à $b$ modulo $c$ si $a$ et $b$ ont le même reste dans la division euclidienne par $c$. Dans ce cas, on écrit $a \equiv b \mod c$. \index{congruence (entiers)}
+	\index{entiers congrus}
+\end{defn}
+
+\begin{prop}
+	La congruence modulo $c$ est une relation d'équivalence. \qed
+\end{prop}
+
+\begin{rmk}[Notation]
+	On note $\sfrac{\Z}{c\Z}$ l'ensemble des classes d'équivalences modulo $c$.
+	
+	Par exemple, $\sfrac{\Z}{5\Z} = \left\{ \overline{0},\overline{1},\overline{2},\overline{3},\overline{4} \right\}$.
+\end{rmk}
+
+\begin{prop}
+	Soient $a,b \in \Z$ et $c \in \N^*$. \[
+		a \equiv b \mod c \iff c  \mid (b-a)
+	.\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] Soient $q,q' \in \Z$ et $r \in \N$ tels que \[
+				\begin{cases}
+					a = cq + r\\
+					b = cq' + r
+				\end{cases}
+			\] avec $0 < r < c$.
+			En soustrayant les égalités, on obtient \[
+				b - a = c \underbrace{(q' - q')}_{\in \Z}
+			.\] Ainsi, $c  \mid (b-a)$.
+		\item[``$\impliedby$''] On pose $\begin{cases}
+				a = cq + r\\
+				b = cq' + r'
+			\end{cases}$ avec $(q,q') \in \Z$ et $\begin{cases}
+				0 \le r < c\\
+				0 \le r' < c.
+			\end{cases}$ En soustrayant les égalités et inégalités, on obtient \[
+				\begin{cases}
+					b - a = c (q' - q) + r' - r\\
+					-c < r' - r < c.
+				\end{cases}
+			\]
+	\end{itemize}
+\end{prv}
+

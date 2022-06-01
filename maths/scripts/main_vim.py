@@ -90,6 +90,12 @@ def unicode_tex(title):
 def get_part_name(file, offset=2):
     if file == '--NEW--':
         return 'Nouvelle partie'
+    if file == '--ADD-RECAP--':
+        return 'Ajouter Bilan'
+    if file == 'main.tex':
+        return 'Main'
+    if file == 'recap.tex':
+        return 'Bilan'
 
     with open(file) as f:
         content = f.readlines()[0]
@@ -177,14 +183,21 @@ if section == 'Cours':
     parts = sorted([
         file
         for file in os.listdir('.')
-        if file.startswith('p') and file.endswith('.tex')
+        if (file.startswith('p') and file.endswith('.tex'))
     ])
 
     try:
         last_part = parts[-1][1:-4]
     except:
         last_part = 0
+
     parts.append('--NEW--')
+    parts.append('main.tex')
+
+    if 'recap.tex' in os.listdir('.'):
+        parts.append('recap.tex')
+    else:
+        parts.append('--ADD-RECAP--')
 
     parts_names = [
         get_part_name(file, 1)
@@ -210,7 +223,20 @@ if section == 'Cours':
             f.write(main_file)
 
         file = new_part_file
+    if file == '--ADD-RECAP--':
+        with open('main.tex') as f:
+            main_file = f.readlines()
 
+        end_doc_line = main_file.index('\\end{document}\n')
+        new_part_tex = '\t\\addrecap\n'
+        main_file.insert(end_doc_line, new_part_tex)
+
+        main_file = ''.join(main_file)
+
+        with open('main.tex', 'w') as f:
+            f.write(main_file)
+
+        file = 'recap.tex'
     print(f':e ~/Documents/ecole/maths/{chap}/{file}')
 
 elif section == 'TD':

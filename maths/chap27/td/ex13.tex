@@ -1,0 +1,38 @@
+\part{Exercice 13}
+
+L'\underline{indicatrice d'Euler} $\varphi(n)$ est le nombres de nombres premiers inférieurs à $n$ :
+\[
+	\varphi(n) = \#\{k \in \left\llbracket 1,n \right\rrbracket  \mid k \wedge n = 1\} = \#\{\sfrac{\Z}{n\Z}^\times \}
+.\]
+
+\begin{enumerate}
+	\item On a \[
+			P(A_p) = \frac{\#A_p}{\#\Omega} = \frac{\sfrac{n}{p}}{n} = \frac{1}{p}.
+		\]
+	\item On suppose $p \wedge q = 1$.
+		\[
+			P(A_p \cap A_q) = \frac{\#(A_p \cap A_q)}{\#\Omega} = \frac{\frac{n}{pq}}{n} = \frac{1}{pq} = \frac{1}{p} \times  \frac{1}{q} = P(A_p) \times P(A_q)
+		.\]
+	\item \[
+			\overline{B} = \bigcup_{\mathclap{\substack{p \text{ premier}\\p  \mid n}}} A_p
+		\] donc \[
+			B = \bigcap_{\mathclap{\substack{p \text{ premier}\\p  \mid n}}} \overline{A}_p
+		.\] Montrons que les ${\left(\overline{A}_p\right)}_{\substack{p \text{ premier}\\p\mid n}}$ sont muntuellement indépendants.
+
+		Soient $p_1, \ldots, p_r$ des nombres premiers divisant $n$ distincts 2 à 2.
+		\begin{align*}
+			P(A_{p_1}\cap \cdots \cap A_{p_r}) &= \frac{\frac{n}{p_1 \times \cdots \times p_r}}{n} \\
+			&= \frac{1}{p_1 \times \cdots \times p_r} \\
+			&= \prod_{i=1}^r P(A_{p_i}) \\
+		\end{align*}
+
+		Donc, \[
+			P(B) = \prod_{\mathclap{\substack{p \text{ premier}\\ p\mid n}}}P(\overline{A}_p) = \prod_{\mathclap{\substack{p \text{ premier}\\ p\mid n}}} \left( 1 - \frac{1}{p} \right)
+		.\] 
+
+		On en déduit que
+		\[
+			\#B = \#\Omega\, P(B) = n \prod_{\mathclap{\substack{p \text{ premier}\\ p\mid n}}} \left( 1 - \frac{1}{p} \right)
+		.\]
+\end{enumerate}
+

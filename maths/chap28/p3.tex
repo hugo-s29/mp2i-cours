@@ -1,0 +1,74 @@
+\part{Parallèlisme et hyperplans}
+
+\begin{defn}
+	Soit $\left( E, \vec{E}, \tau \right)$ un espace affine, $F$ et $G$ deux sous-espaces affines de $E$.
+
+	\begin{enumerate}
+		\item On dit que $F$ et $G$ sont \underline{fortement parallèles}\index{parallélisme fort (espace affine)} si $\vec{F} = \vec{G}$.
+		\item On dit que $F$ et $G$ sont \underline{faiblement parallèles}\index{parallélisme faible (espace affine)} si $\vec{F} \subset \vec{G}$ ou $\vec{G} \subset \vec{F}$.
+	\end{enumerate}
+\end{defn}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			size(5cm);
+	
+			real k = 0.73 * 1.5;
+			triple o1 = (X-Y)/2;
+
+			draw(surface(X+Y -- X-Y -- -X-Y -- -X+Y -- cycle), white);
+			draw(X+Y -- X-Y -- -X-Y -- -X+Y -- cycle, black);
+			draw(o1 -- o1-X*k, magenta, Arrow3(TeXHead2));
+			draw(o1 -- o1+Y*k, magenta, Arrow3(TeXHead2));
+	
+
+			triple off = 2.5Z/3;
+
+			draw(surface(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle), white);
+			draw(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle, black);
+			off += o1;
+			draw(off-- -X*k+off, magenta, Arrow3(TeXHead2));
+			draw(off--Y*k+off, magenta, Arrow3(TeXHead2));
+		\end{asy}
+		\caption{parallélisme fort}
+	\end{subfigure}
+	$\qquad$
+	\begin{subfigure}{5cm}
+		\centering
+		\begin{asy}
+			import three;
+			currentlight = nolight;
+			size(5cm);
+			triple o1 = (X-Y)/2;
+
+			triple off = -2.5Z/3;
+
+			draw(surface(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle), rgb("faf4ed"));
+			draw(X+Y+off -- X-Y+off -- -X-Y+off -- -X+Y+off -- cycle, black);
+
+			draw(scale3(1.2) * (X-Y -- -X + Y), black);
+	
+			draw(o1 + off-- -X+Y+o1 + off, magenta, Arrow3(TeXHead2));
+			draw(o1-- -X+Y+o1, magenta, Arrow3(TeXHead2));
+		\end{asy}
+		\caption{parallélisme faible}
+	\end{subfigure}
+\end{figure}
+
+\begin{defn}
+	Soit $F$ un sous-espace affine de $\left( E, \vec{E}, \tau \right)$. L'espace \[
+		\vec{F} = \left\{ \vec{AB}  \mid A,B \in F \right\}
+	\] est appelé \underline{direction} de $F$.\index{direction (sous-espace affine)}
+
+	On dit que
+	\begin{itemize}
+		\item $F$ est une \underline{droite affine}\index{droite affine (espace affine)} si $\vec{F}$ est une droite vectorielle,
+		\item $F$ est une \underline{plan affine}\index{plan affine (espace affine)} si $\vec{F}$ est un plan vectorielle,
+		\item $F$ est une \underline{hyperplan affine}\index{hyperplan affine (espace affine)} si $\vec{F}$ est un hyperplan vectorielle.
+	\end{itemize}
+\end{defn}
+

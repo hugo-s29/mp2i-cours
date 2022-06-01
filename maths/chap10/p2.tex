@@ -60,3 +60,51 @@
 	\end{itemize}
 \end{exm}
 
+\begin{prop}[récurrence forte]
+	Soit $P$ un prédicat sur $\N$ et $n_0 \in \N$. Si $P(n_0)$ est vrai et \[
+		\forall n \ge n_0, \big(P(n_0)\et\ldots\et P(n-1) \et P(n)\big) \implies P(n+1)
+	.\] Alors, \[
+		\forall n \ge n_0,\,P(n) \text{ est vraie}
+	.\]
+\end{prop}
+
+\begin{prv}
+	On pose, pour tout $n \in \N$, \[
+		Q(n) : ``\forall k \in \left\llbracket n_0,n \right\rrbracket, \;P(k) \text{ vraie}"
+	.\]
+	\begin{itemize}
+		\item $Q(n_0)$ est vraie car $P(n_0)$ est vraie.
+		\item Soit $n \ge n_0$. On suppose $Q(n)$ vraie. On sait donc que $\forall k \in \left\llbracket n_0,n \right\rrbracket,\,P(k) \text{ vraie}$. Alors, $P(n+1)$ est vraie et donc \[
+			\forall k \in \left\llbracket n_0,n+1 \right\rrbracket,\;P(k) \text{ est vraie}
+		.\] Ainsi, $Q(n+1)$ est vraie.
+	\end{itemize}
+\end{prv}
+
+\begin{exm}\relax
+	{\it Montrer que tout entier supérieur ou égal à 2 peut s'écrire comme un produit de nombres premiers.} On prouve ce résultat par récurrence forte.
+
+	\begin{itemize}
+		\item Le nombre $2$ est un nombre premier : $2 = 2$.
+		\item Soit $n \ge 2$. On suppose que, tout entier $k \in \left\llbracket 2,n \right\rrbracket$ est un produit de nombres premiers. On pose $N = n+1$.
+			\begin{itemize}
+				\item[\sc Cas 1] $N$ est premier et donc, on peut l'exprimer comme un produit de nombres premiers : $N = N$.
+				\item[\sc Cas 2] $N$ n'est pas un nombre premier. Alors, il existe $p,q$ tels que $N = p \times q$ avec $1 < p < N$ et $1 < q < N$. Comme $p \in \left\llbracket 2,n \right\rrbracket$, $p$ est un produit de nombres premiers. De même pour $q$.
+					Donc, le produit $N = p\times q$ est un produit de nombres premiers.
+			\end{itemize}
+	\end{itemize}
+\end{exm}
+
+\begin{exm}\relax
+	{\it Avec $u_0 = 0$, $u_1 = 1$, $u_2 = 2$, $u_3 = 3$ et, pour tout $n \in \N$, $u_{n+4} = u_n + 2u_{n+1} + 3u_{n+2} + u_{n+3}$, montrer que, pour tout $n \in \N$, $u_n \ge 0$.} On prouve ce résultat par récurrence forte.
+	\begin{itemize}
+		\item $u_0 = 0 \ge 0$.
+		\item Soit $n \in \N$. On suppose que $\forall k \in \left\llbracket 1,n \right\rrbracket,\,u_k \ge 0$.
+			\begin{itemize}
+				\item Si $n = 0$, $u_{n+1} = u_1 = 1 \ge 0$.
+				\item Si $n = 1$, $u_{n+1} = u_2 \ge 0$.
+				\item Si $n = 2$, $u_{n+1} = u_3 \ge 0$.
+				\item Si $n \ge 3$, $u_{n+1} = \underbrace{u_{n-3}}_{\ge 0} + 2\underbrace{u_{n-2}}_{\ge 0} + 2\underbrace{u_{n-1}}_{\ge 0} + 3\underbrace{u_n}_{\ge 0} \ge 0$.
+			\end{itemize}
+	\end{itemize}
+\end{exm}
+

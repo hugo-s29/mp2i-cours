@@ -1,0 +1,66 @@
+\begin{multicols}{2}
+	\begin{recap-box}
+		Une probabilité est une application de la forme \[
+			P : \mathcal{P}(\Omega) \longrightarrow [0,1]
+		\] vérifiant
+		\begin{enumerate}
+			\item $P(\Omega) = 1$;
+			\item $\forall A, B,\;P(A \cupdot B) = P(A) + P(B)$.
+		\end{enumerate}
+	\end{recap-box}
+	\begin{recap-box}[frametitle={Équiprobabilité}]
+		\begin{align*}
+			P: \mathcal{P}(\Omega) &\longrightarrow [0,1] \\
+			A &\longmapsto \frac{\#A}{\#\Omega}.
+		\end{align*}
+	\end{recap-box}
+	\begin{recap-box}
+		Si $A \cap B = \O$, on dit qu'il sont incompatibles.
+	\end{recap-box}
+	\begin{recap-box}
+		Si on associe à chaque événement élémentaire $\omega_i$ une ``valeur'' ($\simeq$ probabilité) $p_i$, alors il existe une unique probabilité $P$ sur $\Omega$ vérifiant $P(\omega_i) = p_i$.
+	\end{recap-box}
+	\begin{recap-box}
+		\[
+			P\left( \bigcupdot_{i=1}^n A_i \right) = \sum_{i=1}^n P(A_i)
+		.\]
+	\end{recap-box}
+	\begin{recap-box}
+		\[
+			\forall A,B,P(A\cup B) = P(A) + P(B) - P(A\cap B)
+		\]
+	\end{recap-box}
+	\begin{recap-box}[frametitle={Probabilité conditionnelle}]
+		Pour tout événement $A$ de $\Omega$ de probabilité non nulle, \begin{align*}
+			P_A: \mathcal{P}(\Omega) &\longrightarrow [0,1] \\
+			X &\longmapsto \frac{P(A\cap X)}{P(A)}.
+		\end{align*}
+	\end{recap-box}
+	\begin{recap-box}
+		Un système complet d'événements est une partition de $\Omega$.
+	\end{recap-box}
+	\begin{recap-box}[frametitle={Probabilités totales}]
+		\[\forall X \in \mathcal{P}(\Omega),\:P(X) = \sum_{i=1}^n P(A_i)\,P_{A_i}(X).\]
+	\end{recap-box}
+	\begin{recap-box}
+		$A$ et $B$ sont deux événements indépendants si \[
+			P(A \cap B) = P(A)\,P(B)
+		.\]~\\
+		$(A_i)_{i \in I}$ est une famille finie d'événements mutuellement indépendants si \[
+			P\left( \bigcap_{i \in  I} A_i \right) = \prod_{i \in I} P(A_i)
+		.\]
+	\end{recap-box}
+\end{multicols}
+
+\begin{recap-box}[frametitle={Probabilités composées}]
+	\[P(A_1 \cap \cdots \cap A_n) = P(A_1)\,P_{A_1}(A_2)\,P_{A_1\cap A_2}(A_3)\cdots P_{A_1\cap\cdots\cap A_{n-1}}(A_n).\]
+\end{recap-box}
+
+\begin{recap-box}[frametitle={Bayes}]
+	\[
+		P_A(B) = \frac{P_B(A)\:P(B)}{P(A)}
+	.\]
+	\mdfsubtitle{Pour plusieurs événements}\[
+		\forall k \in K,\;P_X(A_k) = \frac{P_{A_k}(X)\;P(A_k)}{\sum_{j \in K}P_{A_j}(X)\,P(A_j)}
+	.\]
+\end{recap-box}

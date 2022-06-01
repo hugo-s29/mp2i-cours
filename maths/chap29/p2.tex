@@ -1,0 +1,115 @@
+\part{Quelques formules}
+
+Dans ce paragraphe, $\big(E, \left<\cdot \mid \cdot \right>\big)$ est un espace préhilbertien.
+
+\begin{prop}
+	Soient $x, y \in E$.
+	\begin{enumerate}
+		\item $\|x+y\|^2 = \|x\|^2+\|y\|^2 + 2\left<x \mid y \right>$.
+		\item $\|x+y\|^2 + \|x-y\|^2 = 2\big(\|x\|^2 + \|y\|^2\big)$. \hfill(identité du parallélogramme)
+		\item $\left<x \mid y \right> = \textstyle\frac{1}{4}\left( \|x+y\|^2 - \|x-y\|^2 \right)$. \hfill (polarisation)
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item
+			\begin{align*}
+				\|x + y\|^2 &= \left<x + y  \mid x + y \right> \\
+				&= \left<x \mid x + y \right> + \left< y  \mid x + y \right> \\
+				&= \left<x  \mid x \right> + \left<x \mid y \right> + \left<y \mid x \right> + \left<y  \mid y \right> \\
+				&= \|x\|^2 + \|y\|^2 + 2\left<x  \mid y \right> \\
+			\end{align*}
+		\item
+			\begin{align*}
+				\|x+ y\|^2 + \|x - y\|^2 &= \|x\|^2 + \|y\|^2 + 2\left<x \mid y \right> \\
+				&\phantom{=}\,+\|x\|^2 + \|-y\|^2 + 2\left<x \mid -y \right>\\
+				&= 2\|x\|^2 + 2\|y\|^2 \\
+			\end{align*}
+		\item
+	\end{enumerate}
+\end{prv}
+
+\begin{thm}[inégalité de Cauchy--Schwarz]
+	Soient $x,y \in E$. Alors \[
+		\big|\left<x \mid y \right>\big| \le \|x\|\,\|y\|
+	\] et \[
+		\big|\left<x \mid y \right>\big| = \|x\|\,\|y\| \iff x \et y \text{ sont colinéaires}
+	.\]
+\end{thm}
+
+\begin{prv}
+	On fixe $(x,y) \in E^2$.
+	\begin{itemize}
+		\item On suppose $y \neq 0_E$. Soit \begin{align*}
+				f: \R &\longrightarrow \R \\
+				t &\longmapsto \|x + ty\|.
+			\end{align*}
+			\begin{align*}
+				\forall t \in \R,\,f(t) &= \|x\|^2 + 2\left<x \mid ty \right> + \|ty\|^2 \\
+				&= \|x\|^2 + 2t\left<x \mid y \right> + t^2 \|y\|^2. \\
+			\end{align*}
+
+			Comme $y \neq 0_E$, $\|y\|^2 \neq 0$ et $f$ est donc une fonction polynomiale de degré 2.
+
+			En outre, \[
+				\forall t \in \R,\,f(t) \ge 0.
+			\] Donc le discriminant $\Delta$ de $f$ est négatif ou nul. Or, \[
+				\Delta = 4\left<x \mid y \right>^2 - 4\,\|x\|^2\,\|y\|^2
+			.\] Ainsi \[
+				\left<x \mid y \right>^2 \le \|x\|^2\,\|y\|^2
+			\] et donc  \[
+				\big|\left<x \mid y \right>\big| \le \|x\|\,\|y\|
+			.\] On suppose que $|\left<x \mid y \right>| = \|x\|\,\|y\|$. Dans ce cas, $\Delta = 0$. Soit $\lambda \in \R$ tel que $f(\lambda) = 0$, i.e. $\|x + \lambda y\| = 0$ et donc $x = -\lambda y$, donc $x$ et $y$ sont colinéaires.
+
+			La réciproque est immédiate.
+		\item On suppose $y = 0_E$. \[
+			|\left<x \mid y \right>| = |\left<x \mid 0_E \right>| = 0 \qquad \text{ et }\qquad
+			\|x\|\,\|y\| = \|x\|\times 0 = 0.
+		\] On a bien \[
+			\begin{cases}
+				|\left<x \mid y \right>| \le \|x\|\,\|y\|;\\
+				 y \text{ et } x \text{ sont colinéaires}.
+			\end{cases}
+		\]
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}[inégalité triangulaire]
+	Soi $(x,y) \in E^2$.
+
+	\begin{enumerate}
+		\item $\|x + y\| \le \|x\| + \|y\|$.
+		\item $\|x + y\| = \|x\| + \|y\| \iff \exists \lambda \in \R^+,\,\big(x = \lambda y \ou y = \lambda x\big)$.
+	\end{enumerate}
+\end{crlr}
+
+\begin{prv}
+	\begin{enumerate}
+		\item
+			\begin{align*}
+				\|x + y\|^2 &= \|x\|^2 + \|y\|^2 + 2\left<x \mid y \right> \\
+				&\le \|x\|^2 + \|y\|^2 + 2|\left<x \mid y \right>|\\
+				&\le \|x\|^2 + \|y\|^2 + 2\,\|x\|\,\|y\|\\
+				&\le \big(\|x\|+\|y\|\big)^2.
+			\end{align*}
+			D'où \[
+				\|x + y\| \le \|x\| + \|y\|
+			.\]
+		\item
+			\begin{align*}
+				\|x + y\| = \|x\| + \|y\| \iff& \|x+y\|^2 = \big(\|x\|+\|y\|\big)^2\\
+				\iff& \|x\|^2 + \|y\|^2 + 2\left<x \mid y \right> = \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\|\\
+				\iff& \left<x \mid y \right> = \|x\| + \|y\|\\
+				\iff& \begin{cases}
+					\left<x  \mid y \right> \ge 0\\
+					|\left<x \mid y \right>| = \|x\| + \|y\|
+				\end{cases}\\
+				\iff& \begin{cases}
+					\exists \lambda \in \R,\,x = \lambda y \ou y = \lambda x\\
+					\left<x \mid y \right> \ge 0
+				\end{cases}\\
+				\iff& \exists \lambda \in \R^+,\,x = \lambda y \ou y = \lambda x.
+			\end{align*}
+	\end{enumerate}
+\end{prv}

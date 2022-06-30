@@ -1,0 +1,55 @@
+\part{Exercice 5}
+
+\underline{Conjecture} : $(F \cap G)^\perp = F^\perp + G^\perp$.
+
+\begin{itemize}
+	\item Soit $x \in F^\perp + G^\perp$. Montrons que $x \in (F \cap G)^\perp$.
+		Soit $y \in F \cap G$. On décompose $x$ en $u + v$ avec $u \in F^\perp$ et $g \in G^\perp$.
+		\begin{align*}
+			\left<x \mid y \right> &= \left<u+v \mid y \right>\\
+			&= \left<u \mid y \right> + \left<v \mid y \right> \\
+			&= 0 \\
+		\end{align*}
+		donc $x \perp y$ et donc $x \in (F \cap G)^{\perp}$.
+
+		On a prouvé \[
+			F^\perp + G^{\perp} \subset (F \cap G)^{\perp}
+		.\]
+	\item $E$ est euclidien donc
+		\[
+			\dim\big((F\cap G)^{\perp}\big) = \dim E - \dim (F \cap G)
+		.\]
+
+		\begin{align*}
+			\dim(F^{\perp} + G^{\perp}) &= \dim(F^{\perp}) + \dim(G^{\perp}) - \dim(F^{\perp} \cap G^{\perp}) \\
+		\end{align*}
+\end{itemize}
+
+\underline{Conjecture 2} : $F^\perp \cap G^\perp = (F + G)^\perp$.
+
+
+\begin{itemize}
+	\item  Soit $x \in F^\perp \cap G^\perp$. Soit $y$ un élément de $F + G$ que l'on décompose en $u+v$ avec $u \in F$ et $v \in G$.
+
+		\begin{align*}
+			\left<x \mid y \right> &= \left<x \mid u+v \right> \\
+			&= \left<x \mid u \right> + \left<x \mid v \right> \\
+			&= 0 + 0 \\
+			&= 0 \\
+		\end{align*}
+	\item Soit $x \in (F + G)^\perp$.
+		\begin{itemize}
+			\item $\forall y \in F,\,\left<x \mid y \right> = 0$ ;
+			\item $\forall y \in G,\,\left<x \mid y \right> = 0$.
+		\end{itemize}
+		Donc, $x \in F^\perp \cap G^\perp$.
+\end{itemize}
+
+Retour au calcul précédent :
+\begin{align*}
+	\dim(F^{\perp} + G^{\perp}) &= \dim(F^{\perp}) + \dim(G^{\perp}) - \dim(F^{\perp} \cap G^{\perp}) \\
+	&= \dim E - \dim F + \dim E - \dim G - \big(\dim E - \dim(F+G)\big) \\
+	&= \dim E - \big(\dim F + \dim G - \dim (F+G)\big) \\
+	&= \dim E - \dim(F + G) \\
+\end{align*}
+

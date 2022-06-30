@@ -1,0 +1,23 @@
+\part{Exercice 2}
+
+Soit $(\Omega, P)$ un espace probabilisé modélisant la situation.
+
+\begin{enumerate}
+	\item On a $X(\Omega) = \left\llbracket 2,n-1 \right\rrbracket$.
+		\[
+			\forall k \in \left\llbracket 2,n-1 \right\rrbracket,\, P(X = k) = \frac{(k-1)(n-k)}{{n\choose 3}}
+		.\]
+
+		\underline{Vérification} :
+		\begin{align*}
+			\sum_{k=0}^n P(X = k) &= \frac{3!\:(n-3)!}{n!} \sum_{k=2}^{n-1} \big(-k^2 + (n+1)k - n\big) \\
+			&= \frac{6}{n(n-1)(n-2)} \left( - \frac{(n-1)\,n\,(2n-1)}{6} + 1 + (n+1) \frac{(n-2)(n+1)}{2} - n\,(n-2) \right) \\
+			&= \frac{6}{n(n-1)(n-2)} \times \frac{-n(n-1)(2n-1) + 6 + 3(n+1)^2 + (n-2) - 6n(n-2)}{6} \\
+			&= \frac{1}{n^3 -3n^2 + 2n} \times \left( n^3 - 3n^2 + 2n \right)  \\
+			&= 1. \\
+		\end{align*}
+	\item
+		\begin{align*}
+			E(X) = \sum_{k=2}^{n-1} k \frac{(k-1)(n-k)}{{n\choose 3}} = \cdots\cdots\cdots
+		\end{align*}
+\end{enumerate}

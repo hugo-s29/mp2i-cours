@@ -1,0 +1,51 @@
+\part{Fonctions continues par morceaux}
+
+\begin{defn}
+	Soit $f : [a,b] \longrightarrow \R$. On dit que $f$ est \underline{continue par morceaux}\index{continuité par morceaux} si,
+	\[
+		\exists \sigma = (x_0,\ldots,x_n) \in \mathfrak{S}_{[a,b]}, \begin{cases}
+			\forall i \in \left\llbracket 0,n-1 \right\rrbracket,\,f_{\big|]x_i,x_{i+1}[\big.} \text{ est continue};\\[2mm]
+			\forall i \in \left\llbracket 1,n-1 \right\rrbracket,\,\lim_{\substack{x \to x_i\\<}}f(x) \in \R \text{ et } \lim_{\substack{x \to x_i\\>}}f(x) \in \R;\\
+			\lim_{\substack{x \to a\\>}}f(x) \in \R;
+			\lim_{\substack{x \to b\\<}}f(x) \in \R.
+		\end{cases}
+	\]
+\end{defn}
+
+\begin{thm}
+	Toute fonction continue par morceaux sur un segment est Riemann-intégrable sur ce segment.
+	\qed
+\end{thm}
+
+\begin{defn}
+	Soit $f : I \subset \R\longrightarrow \R$. On dit que $f$ est \underline{continue par morceaux sur $I$}\index{continuité par morceaux sur un intervalle} si $f$ est continue par morceaux sur tout segment inclus dans $I$.
+\end{defn}
+
+\begin{rmk}~\\
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+
+			size(5cm);
+
+			label("$\delta$", (4, 0), magenta, align=SE);
+			draw((-5.3, 0) -- (5.3, 0), Arrow(TeXHead));
+			draw((-5,0) -- (5,0), magenta);
+			dot((0,0), white);
+			draw((0, -0.3) -- (0, 1.5), Arrow(TeXHead));
+			dot((0,1), magenta);
+		\end{asy}
+	\end{figure}
+
+	\begin{align*}
+		\delta: \R &\longrightarrow \R \\
+		x &\longmapsto \begin{cases}
+			0 &\text{ si } x \neq 0,\\
+			1 &\text{ si } x = 0.
+		\end{cases}
+	\end{align*}
+
+	$\delta$ est continue par morceaux sur $\R$. On a $\int_{[0,1]} \delta = 0$, et $\forall x \in [0,1],\;f(x) \ge 0$. Mais, $\delta \neq 0$.
+\end{rmk}
+

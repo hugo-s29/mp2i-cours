@@ -1,0 +1,39 @@
+\part{Exercice 2}
+
+On pose \[
+	I = \{(p,q) \in (\N^*)^2 \mid p \ge q\} \et \forall (p,q) \in I,\:u_{p,q} = \frac{(-1)^p}{q^3}
+.\]
+
+\[
+	\forall (p,q) \in I,\;|u_{p,q}|  = \frac{1}{q^3}
+.\]
+
+\begin{align*}
+	\sum_{(p,q) \in I} |u_{p,q}| &= \sum_{p=1}^{+\infty} \sum_{q=p}^{+\infty} \frac{1}{q^3} \\
+	&= \sum_{q=1}^{+\infty} \sum_{p=1}^{q} \frac{1}{q^3} \\
+	&= \sum_{q=1}^{+\infty} \frac{1}{q^2} = \frac{\pi^2}{6} < +\infty \\
+\end{align*}
+
+Donc $(u_{p,q})_{(p,q)\in I}$ est sommable.
+
+Donc,
+\begin{align*}
+	\sum_{k=0}^{+\infty} \sum_{q=p}^{+\infty} \frac{(-1)^p}{q^3} &= \sum_{q=1}^{+\infty} \sum_{p=1}^{q} \frac{(-1)^p}{q^3} \\
+	&= \sum_{q=1}^{+\infty} \frac{1}{q^3} \underbrace{\sum_{p=1}^{q} (-1)^p}_{= \begin{cases}
+			0&\text{ si } q \text{ pair}\\
+			-1&\text{ si } q \text{ impair}.
+	\end{cases}} \\
+	&= \sum_{k=0}^{+\infty} -\frac{1}{(2k+1)^3} \\
+\end{align*}
+
+Or,
+\[
+	\zeta(3) = \sum_{p=1}^{+\infty} \frac{1}{p^3} = \sum_{\substack{p \in \N^*\\p\text{ pair}}} \frac{1}{p^3} + \sum_{\substack{p \in \N^*\\p \text{ impair}}} \frac{1}{p^3}
+\] et \[
+	\sum_{\substack{p \in \N^*\\p \text{ pair}}} \frac{1}{p^3} = \sum_{k=1}^{+\infty} \frac{1}{(2k)^3} = \frac{1}{8} \zeta(3)
+.\]
+
+On en déduit que \[
+	\sum_{p=1}^{+\infty} \sum_{q=p}^{+\infty} \frac{(-1)^p}{q^3} = -\frac{7}{8} \zeta(3)
+.\]
+

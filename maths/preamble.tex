@@ -4,7 +4,7 @@
 \let\it\itshape
 
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage[OT2,OT1,T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[bookmarks]{hyperref}
 \usepackage[french]{babel}
@@ -115,6 +115,7 @@
 \usepackage{thmtools}
 \usepackage{thm-restate}
 \usepackage{etoolbox}
+\usepackage{footnote}
 %\usepackage{cmbright}
 
 %\setlength{\parindent}{0em}
@@ -128,7 +129,7 @@
 \let\preceq\preccurlyeq
 \let\succeq\succcurlyeq
 
-\newcommand{\C}{\mathbbm{C}}
+\renewcommand{\C}{\mathbbm{C}}
 \newcommand{\R}{\mathbbm{R}}
 \newcommand{\Z}{\mathbbm{Z}}
 \newcommand{\N}{\mathbbm{N}}
@@ -144,14 +145,14 @@
 \fi
 \newcommand{\centered}[1]{\begin{center}#1\end{center}}
 
+\let\th\relax
+\let\det\relax
 \DeclareMathOperator{\Arccos}{Arccos}
 \DeclareMathOperator{\Arcsin}{Arcsin}
 \DeclareMathOperator{\Arctan}{Arctan}
 \DeclareMathOperator{\Argsh}{Argsh}
 \DeclareMathOperator{\ch}{ch}
 \DeclareMathOperator{\sh}{sh}
-\let\th\relax
-\let\det\relax
 \DeclareMathOperator{\th}{th}
 \DeclareMathOperator{\Card}{Card}
 \DeclareMathOperator{\com}{com}
@@ -303,7 +304,7 @@
 \renewcommand{\mod}[1]{~\left[ #1 \right]}
 \newcommand{\todo}[1]{{\color{blue} À faire : #1}}
 \newcommand*{\raisesign}[2][.7\normalbaselineskip]{\smash{\llap{\raisebox{#1}{$#2$\hspace{2\arraycolsep}}}}}
-\newcommand{\vrt}[1]{\rotatebox{90}{$#1$}}
+\newcommand{\vrt}[1]{\rotatebox{-90}{$#1$}}
 
 \DeclareMathOperator{\ou}{\text{ ou }}
 \DeclareMathOperator{\et}{\text{ et }}
@@ -370,6 +371,7 @@
 \let\oldboxtimes\boxtimes
 \renewcommand{\boxtimes}{\raisebox{-0.2mm}{$\;\oldboxtimes\;$}}
 \newcommand{\addrecap}{\ifsimple\else\startrecap\input{\cwd/recap.tex}\fi}
+\newcommand{\indep}{\perp\!\!\!\!\!\:\perp}
 \newcommand{\startrecap}{
 	\part{Bilan}
 	\setlength{\abovedisplayskip}{0pt}
@@ -427,3 +429,21 @@
 \let\sc\scshape
 \let\bf\bfseries
 \let\it\itshape
+
+\newcommand\cyr
+{
+\renewcommand\rmdefault{wncyr}
+\renewcommand\sfdefault{wncyss}
+\renewcommand\encodingdefault{OT2}
+\normalfont
+\selectfont
+}
+\DeclareTextFontCommand{\textcyr}{\cyr}
+\newcommand{\cprime}{\char"7E }
+\newcommand{\cdprime}{\char"7F }
+\newcommand{\eoborotnoye}{\char’013}
+\newcommand{\Eoborotnoye}{\char’003}
+
+\newcommand{\Tchebychev}{\hspace{-4.3mm}\mbox{\textcyr{chebysh\"ev}}}
+\newcommand{\Markov}{\hspace{-4mm}\textcyr{Markov}}
+\newcommand{\Gauss}{Gau\ss}

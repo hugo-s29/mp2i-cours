@@ -1,0 +1,178 @@
+\part{Familles sommables positives}
+
+Dans ce paragraphe, toutes les familles considérées sont positives.
+
+\begin{defn}
+	Soit $(u_i)_{i\in I} \in \left( \R^+ \right)^I$.
+
+	Si $\Bigg\{\:\;\sum_{i \in J} u_i \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\}$ est majorée, alors on dit qu'elle est \underline{sommable}\index{famille sommable (positive)} et on définit la \underline{somme}\index{somme (familles sommables)} des $(u_i)_{i\in I}$ par \[
+		\sum_{i \in I} u_i = \sup_{\substack{J \subset I\\J \text{ fini}}}\: \sum_{j \in J}\:u_j
+	.\]
+
+	Sinon, la famille \underline{n'est pas sommable}\index{famille non sommable} et on définit \[
+		\sum_{i \in I} u_i = +\infty
+	.\]
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Toute famille finie positive est sommable : avec $I = \left\llbracket 1,n \right\rrbracket$, on a \[
+				\sum_{i \in I} u_i = \sum_{i=1}^n u_i
+			.\]
+		\item Soit $(u_n)_{n\in\N} \in \left( \R^+ \right)^\N$.
+			\begin{itemize}
+				\item[\underline{\sc Cas 1}] $\Sigma u_n$ converge. Soit $J \subset I = \N$ finie et \[
+						\sum_{j \in J} u_j \le \sum_{i=0}^{\max(J)}u_i \le \sum_{i=0}^{+\infty} u_i = S
+					.\]
+
+					Or, \[
+						\forall \varepsilon > 0\, \exists N \in \N\,\forall n \ge N,\,S - \varepsilon \le \sum_{i=1}^{n} u_i
+					\]
+					donc $S - \varepsilon$ ne majore pas $\Bigg\{\:\;\sum_{i \in J} u_i \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\}$. Ainsi, \[
+						S = \sup_{\substack{J \subset I\\J\text{ finie}}} \sum_{j \in J} u_j = \sum_{i \in \N} u_i
+					.\]
+				\item[\underline{\sc Cas 2}] $\Sigma u_n$ diverge. Alors $\lim_{N\to +\infty} \sum_{i=0}^Nu_i = +\infty$ et donc $\Bigg\{\:\;\sum_{i \in J} u_i \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\}$ n'est pas majorée et donc $(u_n)_{n\in\N}$ n'est pas sommable et \[
+						\sum_{n \in \N} u_n = +\infty
+					.\]
+			\end{itemize}
+	\end{enumerate}
+\end{exm}
+
+\begin{thm}
+	Soit $(u_i)_{i\in I} \in \left( \R^+ \right)^{I}$ sommable et soit $\sigma : I \to I$ une bijection. Alors \[
+		\sum_{i \in I} u_{\sigma(I)} = \sum_{i \in I} u_i
+	.\]
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		\Bigg\{\:\;\sum_{j \in J} u_{\sigma(j)} \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\} &= \Bigg\{\:\;\sum_{k \in \sigma(J)} u_i \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\} \\
+		&= \Bigg\{\:\;\sum_{k \in K} u_k \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle K \subset I\\[1mm]\displaystyle K \text{ fini}}\:\; \Bigg\} \\
+	\end{align*}
+\end{prv}
+
+\begin{crlr}[sommation par paquets]
+	Soit $(u_i)_{i\in I} \in \left( \R^+ \right)^{I}$ et $(I_j)_{j\in J}$ une partition de $I$ : \[
+		I = \bigcupdot_{j \in J} I_j
+	.\]
+
+	\[
+		(u_i)_{i\in I} \text{ est sommable } \iff \begin{cases}
+			\forall j \in J,\,(u_i)_{i\in I_j} \text{ est sommable},\\
+			\left( \Sigma_{i \in I_j} u_i \right)_{j \in J} \text{ est sommable}.
+		\end{cases}
+	.\]
+
+	Dans ce cas, \[
+		\sum_{i \in I} u_i = \sum_{j \in J} \sum_{i \in I_j} u_i
+	.\]
+	\qed
+\end{crlr}
+
+\begin{crlr}[Fubini positif]
+	Soit $(u_{i,j})_{\substack{i \in I\\j \in J}} \in \left( \R^+ \right)^{I\times J}$.
+	\[
+		\sum_{i \in I} \sum_{j \in J} u_{i,j} = \sum_{j \in J} \sum_{i \in I} u_{i,j}
+	.\]
+\end{crlr}
+
+\begin{prv}
+	\begin{itemize}
+		\item On suppose $(u_{i,j})_{\substack{i \in I\\j\in J}}$ sommable. On pose $I \times J = \bigcupdot_{i \in I} K_i$ où $K_i = \{i\} \times J = \{(i,j)  \mid j \in J\}$.
+			
+			Donc, $\forall i \in I,\,(u_{i,j})_{j \in J}$ est sommable, $\left( \Sigma_{j \in J} u_{i,j} \right)_{i \in I}$ est sommable et \[
+				\sum_{(i,j) \in I\times J} u_{i,j} = \sum_{i \in I} \sum_{j \in J} u_{i,j}
+			.\]
+
+			On a aussi \[
+				I \times J = \bigcup_{j \in J} L_j \qquad \text{ où } L_j = I \times \{j\}
+			.\]
+
+			$\forall j \in J,\,(u_{i,j})_{i\in I}$ est sommable, $\left( \Sigma_{i \in I}u_{i,j} \right)_{j \in J}$ est sommable et \[
+				\sum_{(i,j) \in I\times J} u_{i,j} = \sum_{j \in J} \sum_{i \in I} u_{i,j}
+			.\]
+		\item On suppose $(u_i)_{\substack{i \in I\\j \in J}}$ non sommable et donc \[
+				\sum_{i \in I} \sum_{j \in I} u_{i,j} = +\infty = \sum_{j \in J} \sum_{i \in I} u_{i,j}
+			.\]
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Soient $(a_i)_{i\in I}$ et $(b_j)_{j\in J}$ deux familles sommables de réels positifs.
+	\[
+		\sum_{\substack{i \in I\\j \in J}} a_i b_j = \left( \sum_{i \in I} a_i \right) \left( \sum_{j \in J} b_j \right)
+	.\]
+\end{crlr}
+
+\begin{prv}
+	On pose, pour $i \in I$, pour $j \in J$, $u_{i,j} = a_i b_j$.
+
+	\begin{align*}
+		\sum_{\substack{i \in I\\j \in J}} a_i b_j &= \sum_{(i,j) \in I\times J} u_{i,j} \\
+		&= \sum_{i \in I} \sum_{j \in J} u_{i,j} \\
+		&= \sum_{i \in I} \sum_{j \in J} a_i b_j \\
+		&= \sum_{i \in I} a_i \sum_{j \in J} b_j \\
+	\end{align*}
+\end{prv}
+
+Dans la preuve précédente, on a utilisé la linéarité de la somme :
+
+\begin{prop}
+	Soient $(a_i)_{i\in I} \in \left( \R^+ \right)^I$, $(b_i)_{i\in I} \in \left( \R^+ \right)^I$ et $\lambda \in \R^+$.
+	\begin{enumerate}
+		\item $\sum_{i \in I}(a_i + b_i) = \sum_{i \in I} a_i + \sum_{i \in I} b_i$ ;
+		\item $\sum_{i \in I}(\lambda a_i) = \lambda \sum_{i \in I} a_i$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[\underline{\sc Cas 1}] On suppose $(a_i)$ et $(b_i)$ sommables. Soit $J \subset I$ finie. \[
+				\sum_{i \in J} (a_i + b_i) = \sum_{i \in J} a_i + \sum_{i \in J} b_i \le \sum_{i \in I} a_i + \sum_{i \in I} b_i
+			.\]
+
+			Donc, $S = \sum_{i \in I} a_i + \sum_{i \in I} b_i$ majore $\Bigg\{\:\;\sum_{i \in J} (a_i + b_i) \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\}$ et donc $(a_i + b_i)_{i \in I}$ est sommable.
+
+			Soit $\varepsilon>0$. Il existe $J \subset I$ finie telle que \[
+				\sum_{j \in J} a_j \ge \sum_{i \in I} a_i - \frac{\varepsilon}{2}
+			.\]
+			Également, il existe $J \subset I$ finie telle que \[
+				\sum_{i \in K} b_i \ge \sum_{i \in J} b_i - \frac{\varepsilon}{2}
+			.\]
+
+			On pose $L = J \cup K$. $L \subset I$ et $L$ est un ensemble fini.
+
+			\begin{align*}
+				\sum_{i \in L}(a_i + bi) &= \sum_{i \in L} a_i  + \sum_{i \in L} b_i \\
+				&\ge \sum_{i \in J} a_i + \sum_{i \in K} b_i\\
+				&\ge \sum_{i \in I} a_i - \frac{\varepsilon}{2} + \sum_{i \in I} b_i - \frac{\varepsilon}{2}\\
+				&\ge S - \varepsilon.
+			\end{align*}
+
+			Donc, \[
+				S = \sup_{\substack{J \subset I\\J\text{ finie}}} \sum_{i \in J}(a_i + b_i) = \sum_{i \in I}(a_i + b_i)
+			.\]
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $(a_i)_{i \in I}$ et $(b_i)_{i\in I}$ deux familles de réels positifs telles que  \[
+		\forall i \in I,\,0 \le a_i \le b_i
+	.\] Si $(b_i)_{i\in I}$ est sommable, alors $(a_i)_{i\in I}$ aussi, et, dans ce cas, \[
+		\sum_{i \in I} a_i \le \sum_{i \in I} b_i
+	.\]
+\end{prop}
+
+\begin{prv}
+	Soit $J \subset I$ finie. 
+	\begin{align*}
+		&\sum_{i \in J} a_i \le \sum_{i \in J} b_i \le \sum_{i \in I} b_i\\
+		\text{donc }& \sum_{i \in I} b_i \text{ majore } \Bigg\{\:\;\sum_{i \in J} a_i \:\;\Bigg|\Bigg.\:\;\substack{\displaystyle J \subset I\\[1mm]\displaystyle J \text{ fini}}\:\; \Bigg\}\\
+		\text{donc }& (a_i) \text{ est sommable et}
+	\end{align*}
+	\[
+		\sum_{i \in I} a_i \le \sum_{i \in I} b_i
+	.\]
+\end{prv}
+
+

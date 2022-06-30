@@ -47,6 +47,11 @@ class Student:
   def get_name_id(self):
     return unidecode(self.name)
 
+  def change_group(self):
+    change_map = {"I": "II","II": "I"}
+    self.half_group = change_map[self.half_group]
+    return self
+
 
 groups_data = {}
 with open("src/groups.json", "r") as json_file:

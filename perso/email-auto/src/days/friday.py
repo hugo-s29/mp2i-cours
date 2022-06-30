@@ -1,33 +1,27 @@
 from day import Day
 from subject import Subject
 from meal import Meal
+from tps_info_loader import TPInfoLoader
 
 
 class Friday(Day):
-  def add_tp_info(self, start, end, i):
-    tp = Subject(name="Informatique", room="I204", time=(start, end), optional=True)
+  def get_tp_info_time(self):
+    group = self.student.kholle_group
+    week = self.week_num
+    return TPInfoLoader().get_time(group, week)
 
-    if self.spots[start] is None:
-      return tp
-    else:
-      return None
-  
+
   def generate_subjects(self):
     subjects = [
       Subject(name="EPS", time=(8, 10), room=""),
       Subject(name="Mathématiques", time=(10, 12), room="K201"),
-      self.add_tp_info(13, 14, 0),
-      self.add_tp_info(14, 15, 1),
-      self.add_tp_info(15, 16, 2),
+      Subject(name="Informatique", time=self.get_tp_info_time(), room="I204"),
+      Subject(name="Mathématiques", time=(13,14), optional=True, room="K201"),
+      Subject(name="Mathématiques", time=(14,15), optional=True, room="K201"),
+      Subject(name="Mathématiques", time=(15,16), optional=True, room="K201"),
     ]
 
     return subjects
 
   def get_id(self):
     return 5
-
-  def generate_meals(self):
-    return [
-      Meal(time="12h15"),
-      Meal(time="18h25", meal_type="dinner"),
-    ]

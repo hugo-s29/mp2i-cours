@@ -106,7 +106,10 @@ for chap in chaps:
         out += '\n\t' + line
 
     for inp, i in inputs:
-        out += '\n\t\t\\input{../' + chap + '/' + inp + '}'
+        if 'aubin' in inp:
+            out += '\n\t\t\\ifsimple\\else\\input{../' + chap + '/' + inp + '}\\fi'
+        else:
+            out += '\n\t\t\\input{../' + chap + '/' + inp + '}'
 
     if '\t\\addrecap' in main_content:
         out += '\n\t\t\\addrecap'

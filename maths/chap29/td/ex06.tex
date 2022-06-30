@@ -1,0 +1,73 @@
+\part{Exercice 6}
+
+\begin{enumerate}
+	\item $F^\perp = \Vect\big(\overbrace{(1,1,1,1)}^{v_1},\overbrace{(1,-1,1,-1)}^{v_2}\big)$.
+
+		En effet, soit $u = (x,y,z,t) \in \R^4$.
+		\begin{align*}
+			u \in F \iff& \begin{cases}
+				 x + y + z + t = 0\\
+				 x - y + z - t = 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				\left<u \mid v_1 \right> = 0\\
+				\left<u  \mid v_2 \right> = 0
+			\end{cases}\\
+		\end{align*}
+		D'où $F = \Vect(v_1, v_2)^\perp$.
+	\item
+		\begin{itemize}
+			\item[\underline{\sc Méthode 1}] Soit $u = (x,y,z,t) \in \R^4$.
+				On sait que l'on peut décomposer $u$ en $v + w$ avec $v \in F$ et $w \in F^\perp$.
+				On pose $u = (a, b, c, d)$ avec $\begin{cases}
+					a+b+c+d=0\\
+					a-b+c-d=0.
+				\end{cases}$
+
+				et $w = \alpha v_1 + \beta v_2$ avec $\alpha, \beta \in \R$.
+
+				On calcule les valeurs de $a,b,c,d,\alpha,\beta$ et, on trouve $v$ en fonction de $(x,y,z,t)$ : \[
+					(a,b,c,d) = \underbrace{\begin{pmatrix}
+							\cdot &\cdot &\cdot &\cdot \\
+							\cdot &\cdot &\cdot &\cdot \\
+							\cdot &\cdot &\cdot &\cdot \\
+							\cdot &\cdot &\cdot &\cdot \\
+					\end{pmatrix}}_{\Mat_{\mathcal{B}}(p)} \begin{pmatrix}
+						x\\
+						y\\
+						z\\
+						t
+					\end{pmatrix}
+				.\]
+
+			\item[\underline{\sc Méthode 2}] On orthonormalise une base de $F$ :
+				\begin{itemize}
+					\item on cherche $(u_1,u_2)$ une base de $F$ ;
+					\item on orthonormalise $(u_1,u_2)$ en $(v_1, v_2)$ ;
+					\item $\forall u,\,p_F(u) = \left<u \mid v_1 \right>v_1 + \left<u  \mid v_2 \right> v_2$.
+				\end{itemize}
+
+			\item[\underline{\sc Méthode 3}]
+				\[
+					\begin{rcases*}
+						x+y+z+t = 0\\
+						x-y+z-t = 0
+					\end{rcases*} \iff \begin{cases}
+						x = -z\\
+						y = -t.
+					\end{cases}
+				.\]
+				D'où $F = \Vect\big(\underbrace{(-1, 0, 1, 0)}_{u_1},\underbrace{(0,-1,0,1)}_{u_2}\big)$.
+
+				Donc $\mathcal{C} = (u_1, u_2, v_1, v_2)$ est une base de $\R^4$. On en déduit que \[
+					\Mat_{\mathcal{C}}(p_F) = \begin{pmatrix}
+						1&0&0&0\\
+						0&1&0&0\\
+						0&0&0&0\\
+						0&0&0&0\\
+					\end{pmatrix}
+				.\] On applique les formules de changement de bases\ldots
+		\end{itemize}
+	\item $d(u, F) = \|u - p_F(u)\|$.
+\end{enumerate}
+

@@ -1,0 +1,91 @@
+\part{Couples de variables aléatoires}
+
+\begin{exm}
+	On lance 2 dés bien équilibrés; on note $S$ la somme des points sur ces deux dés et $M$ le maximum.
+
+	\begin{center}
+		\begin{tabular}{c|cccccc|c}
+			\diagbox{$S$}{$M$}&1&2&3&4&5&6&loi de $S$ \\ \hline
+			2 &$\sfrac{1}{36}$&0&0&0&0&0&$\sfrac{1}{36}$\\
+			3 &0&$\sfrac{2}{36}$&0&0&0&0&$\sfrac{2}{36}$\\
+			4 &0&$\sfrac{1}{36}$&$\sfrac{2}{36}$&0&0&0&$\sfrac{3}{36}$\\
+			5 &0&0&$\sfrac{2}{36}$&$\sfrac{2}{36}$&0&0&$\sfrac{4}{36}$\\
+			6 &0&0&$\sfrac{1}{36}$&$\sfrac{2}{36}$&$\sfrac{2}{36}$&0&$\sfrac{5}{36}$\\
+			7 &0&0&0&$\sfrac{0}{36}$&$\sfrac{2}{36}$&$\sfrac{2}{36}$&$\sfrac{6}{36}$\\
+			8 &0&0&0&$\sfrac{1}{36}$&$\sfrac{2}{36}$&$\sfrac{2}{36}$&$\sfrac{5}{36}$\\
+			9 &0&0&0&0&$\sfrac{2}{36}$&$\sfrac{2}{36}$&$\sfrac{4}{36}$\\
+			10&0&0&0&0&$\sfrac{1}{36}$&$\sfrac{2}{36}$&$\sfrac{3}{36}$\\
+			11&0&0&0&0&0&$\sfrac{2}{36}$&$\sfrac{2}{36}$\\
+			12&0&0&0&0&0&$\sfrac{1}{36}$&$\sfrac{1}{36}$\\\hline
+			loi de $M$&$\sfrac{1}{36}$&$\sfrac{3}{36}$&$\sfrac{5}{36}$&$\sfrac{7}{36}$&$\sfrac{9}{36}$&$\sfrac{11}{36}$&
+		\end{tabular}
+	\end{center}
+\end{exm}
+
+\begin{defn}
+	Soient $X : \Omega \to E$ et $Y : \Omega \to F$ deux variables aléatoires.
+
+	La \underline{loi}\index{loi (couple de variables aléatoires)} du couple $(X,Y)$ est $P_Z$ où  \begin{align*}
+		Z: \Omega &\longrightarrow E\times F \\
+		\omega &\longmapsto \big(X(\omega),Y(\omega)\big)
+	\end{align*}
+	i.e. c'est la donnée de \[
+		\forall x \in X(\Omega),\forall y \in Y(\Omega),P(X = x, Y = y) = P\big((X=x)\cap (Y=y)\big)
+	.\]
+\end{defn}
+
+\begin{defn}
+	Soient $X : \Omega \to E$ et $Y : \Omega \to F$. Les \underline{lois marginales}\index{lois marginales (couple de variables aléatoires)} du couple $(X,Y)$ sont $P_X$ et $P_Y$.
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes,
+	\begin{gather*}
+		\forall x \in X(\Omega),\;P(X = x) \;=\; \sum_{y \in Y(\Omega)} P(X = x,Y=y);\\
+		\forall y \in Y(\Omega),\;P(Y = y) \;=\; \sum_{x \in X(\Omega)} P(X = x,Y=y).
+	\end{gather*}
+\end{prop}
+
+\begin{prv}
+	probabilités totales
+\end{prv}
+
+\begin{rmk}
+	Si \[
+		\forall y \in Y(\Omega),\,P(Y=y) \neq 0
+	\] alors \[
+		\forall x \in X(\Omega),\;P(X = x)\;=\;\sum_{y \in Y(\Omega)}P_{(Y=y)}(X =x)\;P(Y=y)
+	.\]
+\end{rmk}
+
+\begin{defn}
+	Soient $X : \Omega \to E$ et $Y : \Omega \to F$ deux variables aléatoires. On dit que $X$ et $Y$ sont \underline{indépendantes} si \[
+		\forall A \subset X(\Omega),\,\forall B \subset Y(\Omega),\,P(X \in A, Y \in B) = P(X \in A)\;P(Y \in B)
+	.\] On note alors $X \indep Y$.
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, \[
+		X \indep Y \iff \forall x \in X(\Omega),\forall y \in Y(\Omega),\,P(X=x,Y=y)=P(X=x)P(Y=y)
+	.\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] immédiat
+		\item[``$\impliedby$''] Soient $A = \{x_1,\ldots,x_n\} \subset X(\Omega)$ et $B = \{y_1,\ldots,y_p\} \subset Y(\Omega)$.
+
+			\begin{align*}
+				P(X \in A,Y\in B) &= P \left( \left( \bigcupdot_{i=1}^n (X = x_i) \right) \cap (Y \in B) \right)\\
+				&= P\left( \bigcupdot_{i=1}^n\left( (X=x_i)\cap (Y \in B) \right) \right) \\
+				&= \sum_{i=1}^n P\big((X = x_i)\cap (Y \in B)\big) \\
+				&= \sum_{i=1}^n P\left( (X =x_i) \cap \left( \bigcupdot_{j=1}^p(Y = y_j) \right) \right) \\
+				&= \sum_{i=1}^n P\left( \bigcupdot_{j=1}^p \big((X=x_i)\cap (Y=y_i)\big) \right) \\
+				&= \sum_{i=1}^n \sum_{j=1}^p P(X = x_i,Y=y_j) \\
+				&= \sum_{i=1}^n \sum_{j=1}^p P(X=x_i)\,P(Y=y_j) \\
+				&= \sum_{i=1}^nP(X=x_i\;\sum_{j=1}^p P(Y = y_j) \\
+				&= P(X \in A)\;P(Y \in B). \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+

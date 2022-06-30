@@ -1,0 +1,34 @@
+\part{Exercice 1}
+
+Soit\begin{align*}
+	\left<\cdot  \mid \cdot \right>: \R_n[X]\times \R_n[X] &\longrightarrow \R \\
+	(P,Q) &\longmapsto \sum_{k=0}^n P(k) Q(k).
+\end{align*}
+
+\begin{itemize}
+	\item[Linéarité] Soient $\lambda, \mu \in \R$ et $U,V, Q \in \R_n[X]$.
+		\begin{align*}
+			\left<\lambda U + \mu V \mid Q \right> &= \sum_{k=0}^n \big(\lambda U(k) + \mu V(k)\big)Q(k) \\
+			&= \sum_{k=0}^n \lambda U(k) Q(k) + \sum_{k=0}^n \mu V(k) Q(k) \\
+			&= \lambda \left<U \mid Q \right> + \mu \left<V \mid Q \right> \\
+		\end{align*}
+	\item[Symétrie] Soit $(P,Q) \in \R_n[X]^2$.
+		On a \[
+			\left<P \mid Q \right> = \sum_{k=0}^n P(k) Q(k) = \sum_{k=0}^n Q(k) P(k) = \left<Q \mid P \right>
+		.\]
+	\item[Positivité] Soit $P \in \R_n[X]$.
+		\[
+			\left<P \mid P \right> = \sum_{k=0}^n \underbrace{P^2(k)}_{\ge 0} \ge 0
+		.\]
+	\item[Définition] Soit $P \in \R_n[X]$.
+		\begin{align*}
+			\left<P \mid P \right> = 0 \iff& \sum_{k=0}^n P^2(k) = 0\\
+			\iff& \forall k \in \left\llbracket 0,n \right\rrbracket,\, P(k) = 0\\
+		\end{align*}
+		Comme $P \in \R_n[X]$, s'il est non nul, il a au plus $n$ racines. On cherche un polynôme qui a $n+1$ racines. Donc, c'est le polynôme nul.
+
+		On a également, \[
+			P = 0 \implies \left<P \mid P \right> = \left<0 \mid 0 \right> = \sum_{k=0}^n 0 = 0
+		.\]
+\end{itemize}
+

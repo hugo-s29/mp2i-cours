@@ -1,0 +1,26 @@
+\part{Exercice 1}
+
+\begin{itemize}
+	\item $\forall P,Q \in \R_n[X],\,\varphi(P,Q) \in \R$;
+	\item
+		\begin{align*}
+			\forall P,Q,R \in \R_n[X],\,\forall \alpha,\beta \in \R,\;
+			\varphi(\alpha P + \beta Q, R) &= \sum_{k=0}^n \big(\alpha P(k) + \beta Q(k)\big)\:R(k) \\
+			&= \alpha \sum_{k=0}^n P(k)\, R(k) + \beta \sum_{k=0}^n Q(k)\,R(k) \\
+			&= \alpha \varphi(P,R) + \beta \varphi(Q,R); \\
+		\end{align*}
+	\item
+		\begin{align*}
+			\forall P,Q \in \R_n[X],\;\varphi(Q, P) &= \sum_{k=0}^n Q(k) P(k) \\
+			&= \sum_{k=0}^n P(k) Q(k) \\
+			&= \varphi(P, Q); \\
+		\end{align*}
+	\item $\forall P \in \R_n[X],\,\varphi(P,P) = \sum_{k=0}^n P(k)^2 \ge 0$;
+	\item
+		\begin{align*}
+			\forall P \in \R_n[X],\;\varphi(P,P) = 0 \iff& \sum_{k=0}^n P(k)^2 = 0\\
+			\iff& \forall k \in \left\llbracket 0,n \right\rrbracket,\,P(k) = 0\\
+			\iff& P = 0 \text{ car } \deg P \le n.
+		\end{align*}
+\end{itemize}
+

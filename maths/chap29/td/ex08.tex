@@ -1,0 +1,64 @@
+\part{Exercice 8}
+
+\begin{enumerate}
+	\item On sait déjà que $E = \mathcal{M}_n(\R)$ est un $\R$-espace vectoriel.
+
+		Soient $A, B \in E^2$.
+		\[
+			\tr(\t B\,A) = \tr\left( \t\left( \t B \,A \right) \right) = \tr\left( \t A\, \t\,\t B \right) = \tr(\t A \, B)
+		.\]
+		La transposée est linéaire, la multiplication matricielle est linéaire et la trace est linéaire; l'application $(A,B)\mapsto \tr(\t A\,B)$ est linéaire.
+
+		$\tr(\t A\,A) \ge 0$ (c'est une somme de carrés) et $\tr(\t A A) = 0 \iff A = 0$.
+	\item Soit $M = (m_{i,j}) \in S_n$.
+		\begin{align*}
+			d(A, M)^2 &= \|M-A\|^2 \\
+			&= \tr\left(\t(M-A)(M-A)\right) \\
+			&= \sum_{i=1}^n \left( \sum_{j=1}^n (m_{ji}-a_{ji})^2 \right) \\
+			&= \sum_{j=1}^n \left( \sum_{i=1}^n (m_{ij}-a_{ij})^2 \right) \\
+			&= \sum_{1\le i,j\le n} (m_{ij}-a_{ij})^2 \\
+		\end{align*}
+
+		D'après le cours, on sait que $d(a, S_n)^2 = \|A - p_{S_n}(A)\|^2$.
+
+		On pose \[
+			A_n = \{M \in \mathcal{M}_n(\R)  \mid \t M = -M\}
+		.\]
+
+		On montre $A_n \subset S_n^\perp$. Soient $M \in A_n$ et $S \in S_n$.
+		\begin{align*}
+			\left<M \mid S \right> &= \tr(\t M \,S) = \tr(-M\,S) = -\tr(MS) \\
+			\left<S \mid M \right> &= \tr(\t S\,M) = \tr(SM) = \tr(MS) \\
+		\end{align*}
+
+		D'où $\left<M \mid S \right> = 0$.
+
+		On sait que $S_n \oplus A_n = \mathcal{M}_n(\R)$ donc $\dim A_n = \dim \mathcal{M}_n(\R) - \dim S_n$.
+		Comme $\dim S_n < +\infty$, \[
+			S_n \oplus S_n^\perp = \mathcal{M}_n(\R)
+		\] donc
+		\begin{align*}
+			\dim S_n^\perp &= \dim \mathcal{M}_n(\R) - \dim S_n \\
+			&= \dim A_n. \\
+		\end{align*}
+		Donc $A_n = S_n^\perp$ et donc \[
+			A - p_{S_n}(A) = \frac{1}{2} \left( A - \t A \right)
+		\] En effet, \[
+			A = \underbrace{\frac{1}{2}\left( A + \t A \right)}_{\in S_n} + \underbrace{\frac{1}{2}\left( A - \t A \right)}_{\in A_n}
+		.\]
+
+		On en déduit que \[
+			\inf_{M \in S_n} \sum_{1\le i,j\le n} (m_{ij} - a_{ij})^2 =  \frac{1}{4} \sum_{i \le i,j \le n}(a_{ij}-a_{ji})^2
+		.\]
+\end{enumerate}
+
+On peut également prouver ce résultat avec les dérivées partielles : soit $f$ telle que \[
+	f(m_{11},\ldots,m_{nn}) = \sum_{1\le i,j\le n} (m_{ij} - a_{ij})^2
+.\]
+
+Soit $i \le j$.
+\[
+	\frac{\partial f}{\partial m_{ij}} = 2(m_{ij}-a_{ij}) + 2(m_{ji}-a_{ji}) = 0 \iff m_{ij} = \frac{a_{ij}+a_{ji}}{2}
+.\]
+D'où $M = \frac{A + \t A}{2}$. On a prouvé que c'est une valeur critique mais pas que c'est un minimum.
+

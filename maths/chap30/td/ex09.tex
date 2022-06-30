@@ -1,0 +1,23 @@
+\part{Exercice 9}
+
+Montrer que \[
+	\forall x \in \left[ 0,\frac{\pi}{2} \right],\, x- \frac{x^3}{6} \le \sin x \le x - \frac{x^3}{6} + \frac{x^5}{120}
+.\]
+
+On sait que $\sin$ est de classe $\mathcal{C}^{\infty}$ d'où $\sin$ est de classe $\mathcal{C}^{5}$.
+
+On a
+\begin{align*}
+	\sin x &= x - \frac{x^3}{6} + \int_{0}^{x} \frac{(x-t)^4}{4!}\sin^{(5)}(t)~\mathrm{d}t\\
+	&= x - \frac{x^3}{6} + \int_{0}^{x} \frac{(x-t)^4}{4!}\underbrace{\cos(t)}_{\in [0,1]}~\mathrm{d}t\\
+\end{align*}
+
+On en déduit que $\sin x \ge x - \frac{x^3}{6}$.
+
+\begin{align*}
+	\sin x &\le x - \frac{x^3}{6} + \int_{0}^{x} \frac{(x-t)^4}{24}~\mathrm{d}t\\
+	&\le x - \frac{x^3}{6} + \left[ -\frac{(x-t)^5}{120} \right]_0^x\\
+	&\le x - \frac{x^3}{6} + \frac{x^5}{120}.
+\end{align*}
+
+

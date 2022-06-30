@@ -1,0 +1,23 @@
+\part{Exercice 10}
+
+C'est la loi trinomiale.
+
+\begin{enumerate}
+	\item $p^2 q r^2$ ; ${5 \choose 2}{3\choose 1} p^2 q r^2$
+	\item
+		\begin{align*}
+			{n\choose i}{n-i\choose j} p^iq^jr^k &= \frac{n!}{i!\:\cancel{(n-i)!}} \times \frac{\cancel{(n-i)!}}{j!\:(n-i-j)!} p^i q^j r^k \\
+				&= \frac{n!}{i!\:j!\:k!} p^i\:q^j\:r^k \\
+		\end{align*}
+	\item {\it Application}
+		On a $p = q = \frac{7}{10} \times \frac{3}{10} = \frac{21}{100}$ ; $r = \left( \frac{3}{10} \right)^2 + \left( \frac{7}{10} \right)^2 = \frac{58}{100}$.
+
+		On note $X$ le nombre de succès de A, et $Y$ le nombre de succès de B.
+
+		\begin{align*}
+			P(X > Y) &= \sum_{x = 0}^5 P(X = x,Y < x) \\
+			&= \sum_{x = 0}^5 \sum_{y=0}^{x-1} P(X = x, Y = y) \\
+			&= \sum_{i = 0}^5 \sum_{j=0}^{i-1} \frac{5!}{i!\:j!\:(5-i-j)!}\left( \frac{21}{100} \right)^{i} \left( \frac{21}{100} \right)^{j} \left( \frac{58}{100} \right)^{5-i-j}. \\
+		\end{align*}
+\end{enumerate}
+

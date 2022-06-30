@@ -1,0 +1,193 @@
+\part{Familles sommables réelles}
+
+\begin{defn}
+	Soit $(u_i)_{i\in I} \in \R^I$. On dit que $(u_i)_{i\in I}$ est \underline{sommable} si $\big(|u_i|\big)_{i \in I}$ est sommable.\index{famille sommable (réelle)}
+\end{defn}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Toute famille finie de réels est sommable.
+		\item Avec $I = \N$ et $(u_n) \in \R^\N$,
+			\begin{align*}
+				(u_n)_{n\in\N} \text{ sommable } \iff& \Sigma |u_n| \text{ converge}\\
+				\iff& \Sigma u_n \text{ converge absolument}.
+			\end{align*}
+	\end{enumerate}
+\end{exm}
+
+\begin{rmk}
+	Une famille sommable n'est pas une famille dont on peut calculer la somme mais la somme des valeurs absolues.
+\end{rmk}
+
+\begin{prop-defn}
+	Soit $(u_i)_{i\in I} \in \R^I$. On pose, pour tout $i \in I$,
+	\begin{gather*}
+		u_i^+ = \begin{cases}
+			u_i &\text{ si } u_i \ge 0,\\
+			0 &\text{ sinon};
+		\end{cases}\\
+		u_i^- = \begin{cases}
+			-u_i &\text{ si } u_i \le 0,\\
+			0 &\text{ sinon}.
+		\end{cases}
+	\end{gather*}
+	Alors, \[
+		(u_i) \text{ sommable } \iff (u_i^+) \text{ et } (u_i^-) \text{ sont sommables}
+	.\]
+	Dans ce cas, on définit \[
+		\sum_{i \in I} u_i = \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^-
+	.\]
+	\index{somme (famille sommable réelle)}
+\end{prop-defn}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] On suppose $(u_i)$ sommable. Par définition, $\big(|u_i|\big)_{i \in I}$ est sommable. \[
+				\forall i \in I,\, 0 \le u_i^+ \le |u_i|
+			.\]
+			On en déduit que $(u_i^+)$ est sommable. De même, \[
+				\forall i \in I,\, 0 \le u_i^- \le |u_i|
+			\] et donc $(u_i^-)$ est sommable.
+		\item[``$\impliedby$''] On suppose $(u_i^+)$ et $(u_i^-)$ sommables. \[
+				\forall i \in I,\,|u_i| = u_i^+ + u_i^-
+			.\]
+
+			Par linéarité, $\big(|u_i|\big)_{i \in I}$ est sommable et donc $(u_i)_{i\in I}$ est sommable.
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soient $(a_i)_{i\in I}$ et $(b_i)_{i\in I}$ deux familles sommables et $\lambda \in \R$. Alors, $(a_i + b_i)_{i \in I}$ est sommable, $(\lambda a_i)_{i \in I}$ aussi et
+	\begin{gather*}
+		\sum_{i \in I} (a_i + b_i) = \sum_{i \in I} a_i + \sum_{i \in I} b_i,\\
+		\sum_{i \in I} \lambda a_i = \lambda \sum_{i \in I} a_i.
+	\end{gather*}
+\end{prop}
+
+En d'autres termes, $\ell^1(I)$ est un sous-espace vectoriel de $\R^I$ et \begin{align*}
+	S: \ell^1(I) &\longrightarrow \R \\
+	(u_i)_{i\in I} &\longmapsto \sum_{i \in I} u_i
+\end{align*} est linéaire où $\ell^1(I) = \{(u_i) \in \R^I \mid (u_i) \text{ sommable}\}$.
+
+\begin{prv}
+	\begin{itemize}
+		\item $\forall i \in I,\,\left| u_i + v_i \right| \le |u_i| + |v_i|$. Or, par hypothèse, $\big(|u_i|\big)_{i \in i}$ et $\big(|v_i|\big)_{i \in i}$ sont sommables et positives donc $\big(|u_i|+|v_i|\big)_{i \in I}$ est sommable donc $\big(|u_i + v_i|\big)_{i \in I}$ est sommable et donc $(u_i + v_i)_{i\in I}$ est sommable.
+			
+			Et,
+			\[
+				\sum_{i \in I}(u_i + v_i) = \sum_{i \in I}(u_i+v_i)^{+} - \sum_{i \in I}(u_i + v_i)^-
+			.\]
+
+			Or,
+			\begin{align*}
+				&\sum_{i \in I}(u_i + v_i) = \sum_{i \in I} u_i + \sum_{i \in I} v_i \\
+				\iff& \sum_{i \in I} (u_i + v_i)^+ - \sum_{i \in I} (u_i + v_i)^-= \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^- + \sum_{i \in I} v_i^+ - \sum_{i \in I} v_i^-\\
+				\iff& \sum_{i \in I}(u_i + v_i)^+ + \sum_{i \in I}u_i^- + \sum_{i \in I} v_i^-= \sum_{i \in I} (u_i + v_i)^- + \sum_{i \in I} u_i^+ + \sum_{i \in I} v_i^+\\
+				\iff& \sum_{i \in I}\big((u_i + v_i)^+ + u_i^- + v_i^-\big) = \sum_{i \in I}\big((u_i + v_i)^- + u_i^+ + v_i^+\big).\\
+			\end{align*}
+
+			On réalise une disjonction de cas : soit $i \in I$.
+			\[
+				\begin{array}{c|c|c|c|c}
+					u_i & v_i & u_i + v_i & (u_i + v_i)^+ + u_i^- + v_i^- & (u_i + v_i)^- + u_i^+ + v_i^+\\[1mm] \hline
+					+&+&+&u_i + v_i & u_i + v_i\\
+					+&-&+&u_i&u_i\\
+					+&-&-&-v_i&-v_i\\
+					-&+&+&v_i&v_i\\
+					-&+&-&-u_i&-u_i\\
+					-&-&-&-u_i-v_i&-u_i-v_i
+				\end{array}
+			\]
+
+			On remarque que, pour tout $i \in I$, \[
+				(u_i + v_i)^+ + u_i^- + v_i^- = (u_i + v_i)^- + u_i^+ + v_i^+
+			.\]
+		\item $\forall i \in I,\,|\lambda u_i| = |\lambda|\:|u_i|$, $\big(|u_i|\big)_{i \in I}$ est sommable, $|\lambda| \ge 0$ et donc $\big(|\lambda u_i|\big)_{i \in I}$ est sommable et donc $(\lambda u_i)_{i \in I}$ est sommable.
+
+			\begin{itemize}
+				\item[\underline{\sc Cas 1}] $\lambda \ge 0$ :
+					\begin{align*}
+						\sum_{i \in I}\lambda u_i &= \sum_{i \in I} (\lambda u_i)^+ - \sum_{i \in I} (\lambda u_i)^- \\
+						&= \sum_{i \in I} \lambda u_i^+ - \sum_{i \in I} \lambda u_i^- \\
+						&= \lambda \left( \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^- \right) \\
+						&= \lambda \sum_{i \in I} u_i. \\
+					\end{align*}
+				\item[\underline{\sc Cas 2}] $\lambda < 0$ :
+					\begin{align*}
+						\sum_{i \in I} \lambda u_i &= \sum_{i \in I} (\lambda u_i)^+ - \sum_{i \in I}^- \\
+						&= \sum_{i \in I} \underbrace{(-\lambda)}_{\ge 0} u_i^- - \sum_{i \in I} \underbrace{(-\lambda)}_{\ge 0} u_i^+ \\
+						&= (-\lambda) \left( \sum_{i \in I} u_i^- - \sum_{i \in I} u_i^+ \right).\\
+					\end{align*}
+
+					Or,
+					\[
+						\lambda \sum_{i \in I} u_i = \lambda \left( \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^- \right) = (-\lambda) \left(\sum_{i \in I} u_i^- - \sum_{i \in I} u_i^+  \right)
+					.\]
+			\end{itemize}
+	\end{itemize}
+\end{prv}
+
+\begin{prop}
+	Soit $(u_i)_{i\in I} \in \R^I$ sommable et $\sigma : I \to I$ une bijection. Alors $(u_{\sigma(i)})_{i\in I}$ est sommable et \[
+		\sum_{i \in I} u_{\sigma(i)} = \sum_{i \in I} u_i
+	.\]
+\end{prop}
+
+\begin{prv}
+	D'après le paragraphe 1, $\big(|u_{\sigma(i)}|\big)_{i\in I}$ est sommable.
+	\begin{align*}
+		\sum_{i \in I} u_{\sigma(i)} &= \sum_{i \in I} u_{\sigma(i)}^+ - \sum_{i \in I} u_{\sigma(i)}^- \\
+		&= \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^- \\
+		&= \sum_{i \in I} u_i \\
+	\end{align*}
+\end{prv}
+
+\begin{crlr}[sommation par paquets]
+	Soit $(u_i)_{i\in I} \in \R^I$ et $(I_j)_{j\in J}$ une partition de $I$.
+	\[
+		(u_i)_{i\in I} \text{ sommable } \implies \begin{cases}
+			\forall j \in J,\,(u_i)_{i\in I_j} \text{ sommable},\\
+			\bigg( \sum_{i \in I_j} u_i \bigg)_{j \in J} \text{ sommable}.
+		\end{cases}
+	\]
+
+	Dans ce cas, \[
+		\sum_{i \in I} u_i = \sum_{j \in J} \sum_{i \in I_j} u_i
+	.\]
+\end{crlr}
+
+\begin{crlr}[Fubini]
+	Soit $(u_{i,j})_{\substack{i \in I\\j \in J}} \in \R^{I\times J}$ sommable. Alors, \[
+		\sum_{i \in I} \sum_{j \in J} u_{i,j} = \sum_{j \in J} \sum_{i \in I} u_{i,j}
+	.\]
+\end{crlr}
+
+\begin{crlr}
+	Soient $(a_i)_{i\in I}$ et $(b_j)_{j\in J}$ deux familles sommables. Alors $(a_i b_j)_{\substack{i \in I\\j \in J}}$ est sommable et \[
+		\sum_{i \in I} \sum_{j \in J} a_i b_j = \bigg( \sum_{i \in I} a_i \bigg) \bigg( \sum_{j \in J} b_j \bigg)
+	.\]
+\end{crlr}
+
+\begin{prv}
+	On a $I \times J = \bigcupdot_{i \in  I} \big(\{i\} \times J\big)$.
+
+	Alors,
+	\begin{align*}
+		(a_ib_j)_{\substack{i \in I\\j \in J}} \text{ sommable } \iff& \begin{cases}
+			\forall i \in I,\,(a_ib_j)_{j \in J} \text{ sommable}\\
+			\bigg( \sum_{j \in J} a_i b_j \bigg)_{i \in I} \text{ sommable}
+		\end{cases}\\
+		\impliedby& \begin{cases}
+			(b_j)_{j \in J} \text{ sommable},
+			(a_i)_{i \in I} \text{ sommable}.
+		\end{cases}
+	\end{align*}
+
+	De plus,
+	\begin{align*}
+		\sum_{(i,j) \in I\times J} &= \sum_{i \in I} \sum_{j \in J} (a_i b_j) \\
+		&= \sum_{i \in I} \bigg( a_i \sum_{j \in J} b_j \bigg) \\
+		&= \bigg( \sum_{i \in I} a_i \bigg) \bigg( \sum_{j \in J} b_j \bigg). \\
+	\end{align*}
+\end{prv}
+

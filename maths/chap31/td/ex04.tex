@@ -1,0 +1,34 @@
+\part{Exercice 4}
+
+\begin{enumerate}
+	\item $T_n(\Omega) = \left\llbracket 1,n \right\rrbracket$. On a
+		\[
+			\forall k \in \left\llbracket 1,n-1 \right\rrbracket,\:P(T_n = k) = q^{k-1}\,p
+		\] et $P(T_n = n) = q^n + q^{n-1} p = q^{n-1}$.
+
+		\underline{Vérification} :
+		\begin{align*}
+			\sum_{k=1}^n P(T_n = k) &= \sum_{k=1}^{n-1} q^{k-1}\,p + q^{n-1} \\
+			&= \cancel p \times \frac{1-q^{n-1}}{\cancel{1-q}} + q^{n-1} \\
+			&= 1. \\
+		\end{align*}
+
+		\begin{align*}
+			E(T_n) &= \sum_{k=1}^n k\,P(T_n = k)\\
+			&= \sum_{k=1}^{n-1} k\,q^{k-1}\,p + nq^{n-1} \\
+			&= p\:\:\frac{\mathrm{d}}{\mathrm{d}q}\left( \sum_{k=0}^{n-1} q^k \right) + nq^{n-1}\\
+			&= p \frac{-nq^{n-1} + (1-q^n)}{(1-q)^2} + nq^{n-1} \\
+			&= \frac{1 - q^n - npq^{n-1}}{p} + nq^{n-1} \\
+			&= \frac{1-q^n}{p}. \\
+		\end{align*}
+	\item $X_n \sim \mathcal{B}(1-q^n)$. $E(X_n) = 1 - q^n$.
+	\item $X_n + Y_n = T_n$ d'où, par linéarité de l'espérance, \[
+			E(X_n) + E(Y_n) = E(T_n)
+		.\] On en déduit que
+		\begin{align*}
+			E(Y_n) &= E(T_n) - E(X_n) \\
+			&= \frac{1-q^n}{p} - (1-q^n) \\
+			&= (1-q^n) \left( \frac{1-p}{p} \right) \\
+			&= \frac{q}{p}(1-q^n). \\
+		\end{align*}
+\end{enumerate}

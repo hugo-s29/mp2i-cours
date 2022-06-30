@@ -1,0 +1,51 @@
+\part{Retour sur les formules de Taylor}
+
+\begin{prop}
+	Soit $f : I \subset \R \longrightarrow \R$ continue et $F$ une primitive de $f$.
+	On suppose \[
+		f(x) = \sum_{i=0}^{n} \alpha_i (x-a)^i + \po_{x\to a}\big((x-a)^n\big)
+	.\] Alors, \[
+		F(x) = F(a) + \sum_{i=0}^{n} \alpha_i \frac{(x-a)^{i+1}}{i+1} + \po_{x\to a}\big((x-a)^{n+1}\big)
+	.\]
+\end{prop}
+
+\begin{prv}
+	Soit $\varepsilon > 0$. On sait qu'il existe $\eta > 0$ tel que \[
+		\forall x \in [a - \eta, a+\eta],\,\left| f(x) - \sum_{i=0}^{n} \alpha_i(x-a)^i \right| \le \varepsilon\;|x - a|^n
+	.\] On considère un tel $\eta > 0$. Soit $x \in [a-\eta, a+\eta]$.
+	\begin{align*}
+		\overbrace{\left| F(x) - F(a) - \sum_{i=0}^{n} \alpha_i \frac{(x-a)^{i+1}}{i+1} \right|}^{(*)}
+		&= \left| \int_{a}^{x} f(t)~\mathrm{d}t - \sum_{i=0}^{n} \alpha_i \int_{a}^{x} (t-a)^i~\mathrm{d}t \right| \\
+		&= \left| \int_{a}^{x} \left( f(t) - \sum_{i=0}^n \alpha_i (t - a)^i \right) ~\mathrm{d}t \right| \\
+	\end{align*}
+
+	On suppose $x \ge a$, donc
+	\begin{align*}
+		(*) &\le \int_{a}^{x} \left| f(t) - \sum_{i=0}^{n}\alpha_i(t-a)^i \right|~\mathrm{d}t\\
+		&\le \int_{a}^{x} \varepsilon |t-a|^n~\mathrm{d}t\\
+		&\le \varepsilon \int_{a}^{x} (t-a)^n~\mathrm{d}t\\
+		&= \frac{\varepsilon}{n+1}(x-a)^{n+1} \\
+	\end{align*}
+
+	On suppose $x < a$.
+	\begin{align*}
+		(*) &= \left|\int_{x}^{a} \left( f(t) - \sum_{i=0}^n \alpha_i (t-a)^i \right)~\mathrm{d}t\right| \\
+		&\le \int_{x}^{a} \left| f(t) - \sum_{i=0}^n \alpha_i (t-a)^i \right| ~\mathrm{d}t\\
+		&\le \int_{x}^{a} \varepsilon |t-a|^n~\mathrm{d}t\\
+		&\le \alpha \int_{x}^{a} (a-t)^n~\mathrm{d}t\\
+		&\le \varepsilon \left[ -\frac{(a-t)^{n+1}}{n+1} \right]^a_x\\
+		&\le \varepsilon \frac{(a-x)^{n+1}}{n+1}\\
+		&= \frac{\varepsilon}{n+1} |x-a|^{n+1} \\
+	\end{align*}
+\end{prv}
+
+\begin{crlr}
+	Soit $f: \overset{\mathclap{\substack{a\\[-1.3mm]\vrt\in}}}I \longrightarrow \R$ de classe $\mathcal{C}^n$. Alors, \[
+		f(x) = \sum_{i=0}^{n} \frac{f^{(i)}(a)}{i!} (x-a)^i + \po_{x\to a}\big((x-a)^n\big)
+	.\]
+\end{crlr}
+
+\begin{prv}
+	par récurrence sur $n$.
+\end{prv}
+

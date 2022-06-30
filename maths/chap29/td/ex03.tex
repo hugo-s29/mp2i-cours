@@ -1,0 +1,59 @@
+\part{Exercice 3}
+
+On pose
+\begin{align*}
+	\varphi: \R^2 \times \R^2 &\longrightarrow \R \\
+	\big((x,y),(x',y')\big) &\longmapsto x'(ax + cy) + y'(bx+dy)\\
+													&\phantom{\longmapsto} \mat{x'&y'}\mat{ax+cy\\bx+dy}\\
+													&\phantom{\longmapsto} \mat{x'&y'}\mat{a&c\\b&d}\mat{x\\y}\\
+\end{align*}
+
+\begin{itemize}
+	\item $\varphi$ est bilinéaire (multiplication matricielle).
+	\item
+		\begin{align*}
+			&\varphi \text{ symétrique }
+			\iff& \forall (x,y),(x',y') \in \R^2,
+			\mat{x'&y'}\mat{a&c\\b&d}\mat{x\\y} =
+			\mat{x&y}\mat{a&c\\b&d}\mat{x'\\y'}\\
+			\iff& \forall (x,y),(x',y') \in \R^2, cx'y + by'x= cxy'+byx'\\
+			\iff& b = c \text{ avec } \begin{cases}
+				x = 1\\
+				y = 0\\
+				x' = 0\\
+				y' = 1\\
+			\end{cases}
+		\end{align*}
+	\item On suppose $b = c$.
+		\begin{align*}
+			\varphi \text{ positive } \iff& \forall (x,y) \in \R^2,\,ax^2 + 2bxy + dy^2 \ge 0\\
+			\iff& \begin{cases}
+				\forall y \in \R,\,4b^2y^2 - 4ady^2 \le 0\\
+				a \ge 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				b^2 - 4ad \le 0\\
+				a \ge 0
+			\end{cases}
+		\end{align*}
+	\item
+		\begin{align*}
+			\varphi \text{ définie positive } \iff& \forall (x,y) \in \R^2,\,\left(ax^2 + 2bxy + dy^2 = 0 \implies x = y = 0\right)\\
+			\iff& \begin{cases}
+				\forall y \neq 0,\,4y^2(b^2 - ad) < 0\\
+				a\neq 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				b^2 - ad < 0\\
+				a \neq 0
+			\end{cases}\\
+		\end{align*}
+\end{itemize}
+
+On en déduit que $\varphi$ est un produit scalaire si et seulement si \[
+	\begin{cases}
+		b = c,\\
+		b^2 - ad < 0,\\
+		a > 0.
+	\end{cases}
+\] 

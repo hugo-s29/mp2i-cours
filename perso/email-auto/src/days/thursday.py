@@ -17,12 +17,11 @@ class Thursday(Day):
     td_phys_time, td_info_time = self.get_td_times()
 
     td_phys = Subject(name="Physique", room="D206", time=td_phys_time)
-    td_info = Subject(name="Informatique", room="K201", time=td_info_time)
+    td_info = Subject(name="TIPE", room="K201", time=td_info_time)
 
     subjects = [
       Subject(name="Mathématiques", time=(8, 10), room="K201"),
-      Subject(name="Informatique", time=(10, 11), room="K201"),
-      Subject(name="Informatique", time=(12, 13), room="K201"),
+      Subject(name="TIPE", time=(10, 12), room="K201"),
       td_phys,
       td_info,
       Subject(name="Français", time=(15, 17), room="K201"),
@@ -52,9 +51,3 @@ class Thursday(Day):
 
   def get_id(self):
     return 4
-
-  def generate_meals(self):
-    return [
-      Meal(time="11h21"),
-      Meal(time="19h06", meal_type="dinner"),
-    ]

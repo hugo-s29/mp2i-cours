@@ -1,0 +1,29 @@
+\part{Exercice 4}
+
+\begin{enumerate}
+	\item
+		\begin{align*}
+			\sum_{(p,q) \in (\N^*)^2} \frac{1}{p^2\,q^2} &= \sum_{p=1}^{\infty} \frac{1}{p^2} \sum_{q=1}^{+\infty} \frac{1}{q^2}\\
+			&= \frac{\pi^4}{36} \\
+		\end{align*}
+	\item
+		\begin{align*}
+			\sum_{\substack{(p,q) \in (\N^*)^2\\p \mid q}} \frac{1}{p^2\,q^2} &= \sum_{p=1}^{+\infty} \sum_{\substack{q \in \N^*\\p \mid q}} \frac{1}{p^2q^2}\\
+			&= \sum_{p=1}^{+\infty} \sum_{k=1}^{+\infty} \frac{1}{p^2(pk)^2} \\
+			&= \sum_{p=1}^{+\infty} \frac{1}{p^4} \sum_{k=1}^{+\infty} \frac{1}{k^2} \\
+			&= \zeta(4) \times \zeta(2) \\
+			&= \frac{\pi^4}{90}\times \frac{\pi^2}{6} \\
+			&= \frac{\pi^6}{540}. \\
+		\end{align*}
+	\item
+		\begin{align*}
+			\sum_{(p,q)\in (\N^*)^2} \frac{1}{p^2\,q^2} &= \sum_{d \in \N^*} \sum_{\substack{(p,q) \in \N^*\\p\wedge q = d}} \frac{1}{p^2\,q^2} \\
+			&= \sum_{d \in \N^*} \sum_{\substack{(p',q') \in (\N^*)^2\\p'\wedge q' = 1}} \frac{1}{(dp')^2 (dq')^2} \\
+			&=\left(\sum_{d=1}^{+\infty} \frac{1}{d^4}\right) \left(\sum_{p'\wedge q' = 1} \frac{1}{p'^2 q'^2}\right) \\
+		\end{align*}
+
+		On en déduit que \[
+			\sum_{p \wedge q = 1} \frac{1}{p^2\,q^2} = \frac{\frac{\pi^4}{36}}{\frac{\pi^4}{90}} = \frac{90}{36} = \frac{5}{2}
+		.\]
+\end{enumerate}
+

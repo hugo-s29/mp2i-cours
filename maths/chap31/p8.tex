@@ -1,0 +1,120 @@
+\part{Loi des grands nombres}
+
+\begin{lem}[inégalité de \Markov\protect\footnote{\Markov : Markov}]
+	Soit $X : \Omega \to \R^+$ une variable aléatoire positive. \[
+		\forall t \in \R^*_+,\,P(X \ge t) \le \frac{E(X)}{t}
+	\] ou encore, \[
+		\forall u \in \R^*_+,\,P\big(X \ge u\,E(X)\big) \le \frac{1}{u}
+	.\]
+\end{lem}
+
+\begin{prv}
+	Soit $t \in \R^*_+$.
+
+	\begin{align*}
+		E(X) &= \sum_{x \in X(\Omega)} x \:P(X = x)\\
+		&= \sum_{\substack{x \in X(\Omega)\\x \ge t}} x\:P(X =x) + \sum_{\substack{x \in X(\Omega)\\x < t}} x\:P(X=x) \\
+		&\ge \sum_{\substack{x \in X(\Omega)\\x\ge t}} t\:P(X = x) + \sum_{\substack{x \in X(\Omega)\\x < t}} 0\\
+		&\ge t\:P(X \ge t). \\
+	\end{align*}
+\end{prv}
+
+\begin{lem}[inégalté de Bienaymé-\Tchebychev\protect\footnote{\Tchebychev : Tchebychev}]
+	Soit $X : \Omega \to \R$ une variable aléatoire réelle. On pose $\mu = E(X)$ et $\sigma = \sigma_X$. Alors, \[
+		\forall t \in \R^*_+,\,P\big(|X-\mu| \ge t\big) \le \frac{\sigma^2}{t^2}
+	\] ou encore \[
+		\forall u \in \R^+_*,\,P\big(|X-\mu|\ge u\sigma\big) \le \frac{1}{u^2}
+	.\]
+\end{lem}
+
+\begin{prv}
+	On pose $Y = |X - \mu|^2$, $Y$ est positive. \[
+		E(Y) = E\left( (X-\mu)^2 \right) = V(X) = \sigma^2
+	.\] Donc, d'après l'inégalité de \Markov : \[
+		\forall y \in \R^*_+,\,P(Y \ge y) \le \frac{\sigma^2}{y}
+	\] donc \[
+		\forall t > 0,\,P\left( (X-\mu)^2 \ge t^2 \right) \le \frac{\sigma^2}{t^2}
+	.\] Or, $\big(|X-\mu|\ge t\big) = \big((X-\mu)^2 \ge t^2\big)$, donc \[
+		P\big(|X-\mu) \ge t\big) \le \frac{\sigma^2}{t^2}
+	.\]
+\end{prv}
+
+\begin{rmk}[Application]
+	On considère une expérience de Bernoulli de paramètre $p \in \:]0,1[$.
+	On répète $n$ fois cette expérience à l'identique et on note $Y_n$ le nombre moyen de succès.
+
+	On pose, pour $i \in \left\llbracket 1,n \right\rrbracket$, \[
+		X_i = \begin{cases}
+			1 &\text{ si la $i$-ème expérience est un succès}\\
+			0 &\text{ sinon}.
+		\end{cases}
+	\]
+	Les $(X_i)$ sont mutuellement indépendants ; d'où \[
+		Y_n = \frac{1}{n} \sum_{i=1}^n X_i
+	.\] Et donc \[
+		E(Y_n) = \frac{1}{n} \sum_{i=1}^n E(X_i) = \frac{1}{n}np = p
+	.\]
+
+	Comme les $(X_i)$ sont deux à deux indépendantes, \[
+		V(Y_n) = \frac{1}{n^2} \sum_{i=1}^n V(X_i) = \frac{1}{n^2}npq = \frac{pq}{n} \text{ où } q = 1 - p
+	.\]
+	D'où, d'après l'inégalité de Bienaymé-\Tchebychev,  \[
+		\forall \varepsilon > 0,\,P(|Y_n - p| \ge \varepsilon) \le \frac{pq}{n \varepsilon^2} \tendsto{n\to +\infty} 0
+	.\] On en déduit que \[
+		\forall \varepsilon > 0,\,P(|Y_n - p| < \varepsilon) \ge \underbrace{1 - \frac{pq}{n\varepsilon^2}}_{\substack{\s\\\text{``seuil''}}}
+	.\]
+
+	\begin{itemize}
+		\item Par exemple, avec $\varepsilon = 10^{-2}$ et $\s = 95\:\%$, on a
+			\begin{align*}
+				\frac{95}{100} = \s = 1 - \frac{pq}{n\times 10^{-4}} \iff&
+				\frac{5}{100} = \frac{pq}{n\:10^{-4}}\\
+				\iff& 20 = \frac{n\:10^{-4}}{pq}\\
+				\iff& n = 20\underbrace{pq}_{\le \frac{1}{4}}10^4 \le 5\times 10^{4}.
+			\end{align*}
+
+			En répétant $50\,000$ fois l'expérience, on est sûr à $95\:\%$ que la valeur observée de $Y_{50\,000}$ est dans l'intervalle $\left[ p-10^{-2},p+10^{-2} \right]$.
+		\item Avec $n = 12$ et $\s = 95\:\%$, on a
+			\begin{align*}
+				\frac{95}{100} = \s = 1 - \frac{pq}{n \varepsilon^2} \iff& \frac{pq}{n\varepsilon^2} = \frac{5}{100}\\
+				\iff& \frac{\varepsilon^2 n}{pq} = 20\\
+				\iff& \varepsilon^2 = \frac{20}{n} pq \le \frac{5}{12}.
+			\end{align*}
+			Donc, $\varepsilon = \sqrt{\frac{5}{12}} \simeq 0,\!65$.
+		\item Avec $n = 12$ et $\varepsilon = 10^{-2}$,
+			\begin{align*}
+				P\big(|Y_{12}-p| < \varepsilon\big) &\ge 1 - \frac{pq}{12\cdot 10^{-4}}\\
+				&\ge 1 - \frac{1}{48\cdot 10^{-4}}\\
+				&\ge \underbrace{1 - \frac{1}{48}\times 10^{4}}_{< 0}
+			\end{align*}
+	\end{itemize}
+\end{rmk}
+
+\begin{thm}[loi faible des grands nombres --- {\sc Hors-programme}]
+	Soit $(X_n)_{n\in\N}$ une suite de varialbe aléatoires indépedantes de même loi définies sur le même espace probabilisé $(\Omega, P)$.
+	On note $\mu$ leur espérance commune.
+
+	\[
+		\forall \varepsilon > 0,\,\lim_{n\to +\infty}P\Big(\big|\bar X_n - \mu\big| > \varepsilon\Big) = 0
+	\] où $\forall n,\,\bar X_n = \frac{1}{n} \sum_{i=1}^n X_i$.
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		\forall n \in \N^*,\,&E\big(\bar X_n\big) = \frac{1}{n} \sum_{i=1}^n E(X_i) = \mu\\
+		&V\big(\bar X_n\big) = \frac{1}{n^2} \sum_{i=1}^n V(X_i) = \frac{n\sigma^2}{n^2} = \frac{\sigma^2}{n}
+	\end{align*}
+	où $\sigma^2$ est la variance commune aux $X_i$.
+
+	Soit $\varepsilon >0$. \[
+		0 \le P\Big(\big|\bar X_n - \mu\big| > \varepsilon\Big) \le \frac{\sigma^2}{n\varepsilon^2} \tendsto{n\to +\infty} 0.
+	.\]
+\end{prv}
+\begin{prop}[lemme des coalitions]
+	Soient $X_1, \ldots, X_n$ des variables aléatoires à valeurs réelles d'un même ensemble probabilisé mutuellement indépendantes. Soient $f : \R^p \to \R$ et $g : \R^{n-p} \to \R$. Alors, $f(X_{i_1}, \ldots, X_{i_p})$ et $g(X_{j_1}, \ldots, X_{j_{n-p}})$ sont indépendantes si \[
+		\begin{cases}
+			\{i_1,\ldots,i_p\} \cap \{j_1,\ldots,j_{n-p}\} = \O\\
+			\forall k \neq \ell,\,i_k \neq i_\ell \text{ et } j_k \neq j_\ell.
+		\end{cases}
+	\]
+\end{prop}

@@ -1,0 +1,269 @@
+\part{Sommes de Darboux}
+
+\begin{defn}
+	Soit $f: [a,b] \longrightarrow \R$. Soit $\sigma = (x_0, x_1, \ldots, x_n) \in \mathfrak{S}_{[a,b]}$. La \underline{somme de Darboux supérieur} de $f$ associé à $\sigma$ est \[
+		S_\sigma^+(f) = \sum_{i=1}^{n-1}(x_{i+1}-x_i)\,M_i
+	\] où $\forall i \in \left\llbracket 0,n-1 \right\rrbracket$, $M_i = \sup_{~~~\mathclap{]x_i,x_{i+1}[}~~~} f$.
+
+	La \underline{somme de Darboux inférieure} de $f$ associé à $\sigma$ est \[
+		S_{\sigma}^-(f) = \sum_{i=0}^{n-1}(x_{i+1}-x_i)\,m_i
+	\] où $m_i = \inf_{~~~\mathclap{]x_i,x_{i+1}[}~~~}f$.
+\end{defn}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+		import patterns;
+
+		add("p1", hatch(2mm, deepcyan));
+		add("p2", hatch(2mm, NW, deepcyan));
+
+		add("q1", hatch(2mm, NW, green));
+		add("q2", hatch(2mm, green));
+
+		size(5cm);
+		draw((-2, 0) -- (17, 0), Arrow(TeXHead));
+		draw((0, -3/2) -- (0, 9.5), Arrow(TeXHead));
+
+		real[] coeffs1 = {-0.028394180582212297,0.27523209017393424,0.24929746599526315,-6.4461353755869855};
+		real[] coeffs2 = {-0.17899213658476887,2.952039286479213,-16.844010647737377};
+		real[] coeffs3 = {0.0685361785931054,-3.4573141100655738,57.5265826584141,-318.3334743273578};
+		real f(real x) {
+			if(x < 8) {
+				real y = 0;
+				for(int i = 0; i < coeffs1.length; ++i) {
+					y -= x^i * coeffs1[coeffs1.length-i-1];
+				}
+				return y;
+			} else if(x < 13) {
+				real y = 0;
+				for(int i = 0; i < coeffs2.length; ++i) {
+					y -= x^i * coeffs2[coeffs2.length-i-1];
+				}
+				return y;
+			} else {
+				real y = 0;
+				for(int i = 0; i < coeffs3.length; ++i) {
+					y -= x^i * coeffs3[coeffs3.length-i-1];
+				}
+				return y;
+			}
+		}
+
+		void drawBox(real a, real b, int type, string p, pen pe) {
+			real y;
+			if(type == 1) {
+				y = min(graph(f, a, b)).y;
+			} else {
+				y = max(graph(f, a, b)).y;
+			}
+
+			filldraw((a,0)--(b,0)--(b,y)--(a,y)--cycle, pattern(p), pe);
+		}
+
+		drawBox(-1, 7.99, 0, "q1", green);
+		drawBox(8, 12.99, 0, "q2", green);
+		drawBox(13, 16, 0, "q1", green);
+
+		drawBox(-1, 7.99, 1, "p1", deepcyan);
+		drawBox(8, 12.99, 1, "p2", deepcyan);
+		drawBox(13, 16, 1, "p1", deepcyan);
+
+		draw(graph(f, -1, 7.99), red);
+		draw(graph(f, 8, 12.99), red);
+		draw(graph(f, 13, 16), red);
+	\end{asy}
+\end{figure}
+
+\begin{prop}
+	Soit $f : [a,b] \longrightarrow \R$ bornée, $\sigma$ et $\sigma'$ deux subdivisions de $[a,b]$ avec $\sigma' \prec \sigma$. Alors \[
+		\begin{cases}
+			S_{\sigma'}^+(f) \le S_\sigma^+(f);\\
+			S_{\sigma'}^-(f) \ge S_\sigma^-(f).\\
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	On pose $\sigma = (x_0, \ldots, x_n)$. \[
+		\forall i \in \left\llbracket 0,n-1 \right\rrbracket,\,]x_i,x_{i+1}[ = \bigcup_{k=0}^{\ell-1}\,]y_k,y_{k+1}[
+	\] avec $y_k \in \sigma'$ pour tout $k$.
+
+	\[
+		\forall x \in \,]y_k,y_{k+1}[,\,f(x) \le M_i
+	.\] donc $M_i$ majore $f\big(]y_k,y_{k+1}[\big)$ et donc $\sup_{]y_k,y_{k+1}[} f \le M_i$. Donc, \[
+		\sum_{k=0}^{\ell - 1}(y_{k+1}-y_k)\sup_{]y_k,y_{k+1}[} \le M_i \sum_{k=0}^{\ell-1}(y_{k+1} - y_k) = M_i (x_{i+1}-x_i)
+	.\] Ainsi, \[
+		S_{\sigma'}^+(f) \le \sum_{i=0}^{n-1}M_i(x_{i+1}-x_i) = S_{\sigma}^+(f)
+	.\]
+
+	De même pour la somme de Darboux inférieure.
+\end{prv}
+
+\begin{defn}
+	Soit $f: [a,b] \longrightarrow \R$ bornée.
+
+	L'\underline{intégrale supérieure} de $f$ est \[
+		I_{[a,b]}^+(f) = \inf_{\sigma \in \mathfrak{S}_{[a,b]}}\big(S^+_\sigma(f)\big)
+	.\]
+	L'\underline{intégrale inférieure} de $f$ est \[
+		I_{[a,b]}^-(f) = \sup_{\sigma \in \mathfrak{S}_{[a,b]}}\big(S^-_\sigma(f)\big)
+	.\]
+\end{defn}
+
+\begin{multicols}{2}
+	\begin{rmk}[justification de l'existence des bornes inférieures et supérieures]
+		Soit $m = \inf_{[a,b]} f$. $\forall  i \in \left\llbracket 0,n-1 \right\rrbracket,\,M_i \ge m$ et donc
+		\begin{align*}
+			S_\sigma^+(f) &= \sum_{i=0}^{n-1} (x_{i+1}-x_i)M_i \\
+			&\ge \sum_{i=0}^{n-1} (x_{i+1}-x_i) m\\
+			&\ge m(b-a).
+		\end{align*}
+		De même, avec $M = \sup_{[a,b]} f$, $\forall \sigma \in \mathfrak{S}_{[a,b]},$~$S_\sigma^-(f) \le M(b-a)$.
+
+		\columnbreak
+		\vfill\null
+
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				import patterns;
+
+				add("p1", hatch(2mm, deepcyan+0.05));
+				add("p2", hatch(2mm, NW, deepcyan+0.05));
+
+				add("q1", hatch(2mm, NW, green+0.05));
+				add("q2", hatch(2mm, green+0.05));
+
+				size(5cm);
+				draw((-2, 0) -- (17, 0), Arrow(TeXHead));
+				draw((0, -3/2) -- (0, 9.5), Arrow(TeXHead));
+
+				real[] coeffs1 = {-0.028394180582212297,0.27523209017393424,0.24929746599526315,-6.4461353755869855};
+				real[] coeffs2 = {-0.17899213658476887,2.952039286479213,-16.844010647737377};
+				real[] coeffs3 = {0.0685361785931054,-3.4573141100655738,57.5265826584141,-318.3334743273578};
+				real f(real x) {
+					if(x < 8) {
+						real y = 0;
+						for(int i = 0; i < coeffs1.length; ++i) {
+							y -= x^i * coeffs1[coeffs1.length-i-1];
+						}
+						return y;
+					} else if(x < 13) {
+						real y = 0;
+						for(int i = 0; i < coeffs2.length; ++i) {
+							y -= x^i * coeffs2[coeffs2.length-i-1];
+						}
+						return y;
+					} else {
+						real y = 0;
+						for(int i = 0; i < coeffs3.length; ++i) {
+							y -= x^i * coeffs3[coeffs3.length-i-1];
+						}
+						return y;
+					}
+				}
+
+				real u = 10;
+				real v = 0;
+
+				void drawBox(real a, real b, int type, string p, pen pe) {
+					real y;
+					if(type == 1) {
+						y = min(graph(f, a, b)).y;
+						u = min(u, y);
+					} else {
+						y = max(graph(f, a, b)).y;
+						v = max(v, y);
+					}
+
+					// filldraw((a,0)--(b,0)--(b,y)--(a,y)--cycle, pattern(p), pe);
+				}
+
+				drawBox(-1, 7.99, 0, "q1", green+0.02);
+				drawBox(8, 12.99, 0, "q2", green+0.02);
+				drawBox(13, 16, 0, "q1", green+0.02);
+
+				drawBox(-1, 7.99, 1, "p1", deepcyan+0.02);
+				drawBox(8, 12.99, 1, "p2", deepcyan+0.02);
+				drawBox(13, 16, 1, "p1", deepcyan+0.02);
+
+				draw(graph(f, -1, 7.99), red);
+				draw(graph(f, 8, 12.99), red);
+				draw(graph(f, 13, 16), red);
+
+				real a = -1;
+				real b = 16;
+
+				path p = graph(f, a, b);
+				draw((a,u)--(b,u), pink);
+				draw((a,v)--(b,v), purple);
+			\end{asy}
+		\end{figure}
+		\vfill\null
+	\end{rmk}
+\end{multicols}
+
+\begin{exm}
+	\begin{enumerate}
+		\item Soit $f : [a,b] \longrightarrow \R$ en escaliers. \[
+				I^+_{[a,b]}(f) = \int_{[a,b]} f = I^-_{[a,b]}(f)
+			.\]
+		\item On pose \begin{align*}
+				f: [0,1] &\longrightarrow \R \\
+				x &\longmapsto \begin{cases}
+					0 &\text{ si } x \not\in \Q\\
+					1&\text{ si } x \in \Q.
+				\end{cases}
+			\end{align*}
+
+			Rappel : on a $f = \mathbbm{1}_{\Q}$.
+
+			On a $I^+_{[0,1]}(f) = 1$ et $I^-_{[0,1]}(f) = 0$.
+		\item On pose \begin{align*}
+				f: [0,1] &\longrightarrow \R \\
+				x &\longmapsto x
+			\end{align*}
+			Soit $\sigma_n = \left( 0, \frac{1}{n}, \frac{2}{n},\ldots, \frac{n-1}{n},1 \right)$.
+			\[
+				S_{\sigma_n}^+(f) = \sum_{i=0}^n \frac{1+1}{n} \times \frac{i}{n} = \frac{1}{n^2} \times \frac{n(n+1)}{2} = \frac{n-1}{2n}
+			.\] On a, pour tout $n$ non nul, $I^+_{[0,1]} f \le \frac{n+1}{n}$ donc $I^+_{[a,b]} \le \frac{1}{2}$.
+
+			De même, \[
+				S_{\sigma_n}^-(f) = \sum_{i=0}^{n-1} \frac{1}{n}\times \frac{i}{n} = \frac{n(n-1)}{2} = \frac{n-1}{2n}
+			.\] D'où, pour tout $n$ non nul, $I_{[0,1]}^-(f) \ge \frac{n-1}{2n}$ et docn $I^-_{[0,1]}(f) \ge \frac{1}{2}$.
+
+			Or, $\frac{1}{2} \le I^-_{[0,1]}(f) \le I^+_{[0,1]}(f) \le \frac{1}{2}$ (voir ci-après). Et donc, \[
+				I^-_{[0,1]}(f) = I^+_{[0,1]}(f) = \frac{1}{2}
+			.\]
+	\end{enumerate}
+\end{exm}
+
+\begin{prop}
+	Soit $f : [a,b] \to \R$ bornée. Alors \[
+		I^-_{[a,b]}(f) \le I^+_{[a,b]}(f)
+	.\]
+\end{prop}
+
+\begin{prv}
+	Soit $\sigma \in \mathfrak{S}_{[a,b]}$. Soit $\sigma' \in \mathfrak{S}_{[a,b]}$. On considère $\sigma'' \in \mathfrak{S}_{[a,b]}$ telle que $\sigma''\prec \sigma$ et $\sigma'' \prec \sigma'$. On a donc \[
+		S_{\sigma'}^-(f) \le S_{\sigma''}^-(f) \le S_{\sigma''}^+(f) \le S_\sigma^+(f)
+	.\]
+
+	\vspace{5mm}
+	On fixe $\sigma \in \mathfrak{S}_{[a,b]}$. \[
+		\forall \sigma' \in \mathfrak{S}_{[a,b]},\,S_{\sigma'}^-(f) \le S_{\sigma}^+(f)
+	\] donc $S_\sigma^+(f)$ majore toutes les sommes de Darboux inférieures de $f$ donc \[
+		I_{[a,b]}^-(f) \le S_{\sigma}(f)
+	\] donc $I^-_{[a,b]}(f)$ minore toutes les sommes de Darboux supérieures de $f$.
+	On a donc  \[
+		I^+_{[a,b]}(f) \ge I^-_{[a,b]}(f)
+	.\]
+\end{prv}
+
+\begin{defn}
+	Soit $f: [a,b] \to \R$ bornée. On dit que $f$ est \underline{Riemann-intégrable}\index{fonction Riemann-intégrable}\index{Riemann-intégrable (fonction)} si $I^-_{[a,b]}(f) = I^+_{[a,b]}(f)$. Dans ce cas, ce nombre est noté $\int_{[a,b]}f$.
+\end{defn}
+

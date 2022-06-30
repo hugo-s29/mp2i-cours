@@ -1,0 +1,35 @@
+\part{Exercice 4}
+
+Soit $f : t \mapsto \begin{cases}
+	\sin\left( \frac{1}{t} \right) &\text{ si } t \neq 0\\
+	0 &\text{ sinon}.
+\end{cases}$
+
+On suppose $f$ continue par morceaux. Soit $I = [-1, 1]$ et $\sigma = (a_0, \ldots, a_n)$ une subdivision de $I$ telle que \[
+	\begin{cases}
+		\forall i \in \left\llbracket 1,n-1 \right\rrbracket,\, f_{\big|]a_i,a_{i+1}[\big.} \text{ continue};\\
+		\forall i \in \left\llbracket 1,n-1 \right\rrbracket,\,f \text{ a une limite réelle à gauche et à droite}.
+	\end{cases}
+\]
+
+Comme $f$ n'est pas continue en $0$, \[
+	\exists i,\,0 = a_i
+.\]
+
+Or, $f$ n'a pas de limite en $0$ à droite : une contradiction.
+
+En effet, les suites $(x_n)_{n\in\N}$ et $(y_n)_{n\in\N}$ ne convergent pas vers la même limite avec \[
+	\forall n \in \N^*,\,\begin{cases}
+		x_n = \frac{1}{n \pi} \tendsto{n\to +\infty} 0^+\\
+		y_n = \frac{1}{2n\pi + \frac{\pi}{2}} \tendsto{n\to +\infty}0^+
+	\end{cases}
+\] car \[
+	\forall n \in \N^*,\,
+	\begin{cases}
+		f(x_n) = \sin(n\pi) = 0\tendsto{n\to +\infty} 0\\
+		f(y_n) = \sin\left( \frac{\pi}{2} + 2n\pi \right) = 1 \tendsto{n\to +\infty} 1 \neq 0.
+	\end{cases}
+\]
+
+Donc $f$ n'a pas de limite en $0^+$.
+

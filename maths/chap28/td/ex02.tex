@@ -1,0 +1,54 @@
+\part{Exercice 2}
+
+{
+	\renewcommand{\i}{\ensuremath{\vec{\imath}}}
+	\renewcommand{\j}{\ensuremath{\vec{\jmath}}}
+
+	On a $\vec{OM} = \alpha \i + \beta \j$ donc $\Mat_\mathcal{B}\left( \vec{OM} \right) = \begin{pmatrix}
+		\alpha\\
+		\beta
+	\end{pmatrix}$ et
+	$\vec{O'M} = \alpha' \vec{u} + \beta' \vec{v}$  donc $\Mat_\mathcal{C}\left( \vec{O'M} \right) =\begin{pmatrix}
+		\alpha'\\
+		\beta'
+	\end{pmatrix}$.
+
+	On a $\vec{O'M} = \vec{O'O} + \vec{OM}$ et $\Mat_\mathcal{C}\left( \vec{O'O} \right) = -\Mat_\mathcal{C}\left( \vec{OO'} \right)$.
+
+	$\vec{OO'} = a \i + b \j$ donc $\Mat_\mathcal{B}\left( \vec{O O'} \right) = \begin{pmatrix}
+		a\\b
+	\end{pmatrix}$.
+
+	On a $P = P_{\mathcal{B} \to \mathcal{C}} = \begin{pmatrix}
+		x&x'\\
+		y&y'
+	\end{pmatrix}$ et donc $P^{-1} = \frac{1}{xy' - yx'} \begin{pmatrix}
+		y'&-x'\\
+		-y&x
+	\end{pmatrix}$.
+
+	Or, \[
+		\forall \vec{w} \in \vec{E},\,\Mat_{\mathcal{C}}\left( \vec{w} \right) = P^{-1} \Mat_{\mathcal{B}}\left( \vec{w} \right)
+	.\]
+
+	Donc,
+	\begin{align*}
+		\begin{pmatrix}
+			\alpha'\\
+			\beta'
+		\end{pmatrix} &= -P^{-1} \begin{pmatrix}
+			a\\b
+		\end{pmatrix} + P^{-1} \begin{pmatrix}
+			\alpha\\\beta
+		\end{pmatrix}\\
+		&= P^{-1} \begin{pmatrix}
+			\alpha - a\\
+			\beta - b
+		\end{pmatrix} \\
+		&= \frac{1}{xy'-yx'} \begin{pmatrix}
+			y'(\alpha - x) - x'(\beta - b)\\
+			-y(\alpha - a)  + x(\beta - b)
+		\end{pmatrix}. \\
+	\end{align*}
+}
+

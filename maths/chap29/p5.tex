@@ -1,0 +1,259 @@
+\part{Annexe}
+
+Dans ce chapitre, beaucoup des résultats ne seront pas prouvés, et sont, en grande majorité, hors-programme (pour l'année de {\it MP2I}).
+
+\section{Produit vectoriel}
+
+\begin{thm}[Riesz]
+	Soit $(E, \left<\cdot  \mid \cdot  \right>)$ un espace euclidien.
+	L'application \begin{align*}
+		\varphi : E &\longrightarrow E^* \\
+		a &\longmapsto \left<a \mid \cdot \right>
+	\end{align*} est un isomorphisme.
+\end{thm}
+
+\begin{prv}
+	Soient $(a, b) \in E^2$ et $(\alpha, \beta) \in \R^2$.
+	\begin{align*}
+		\forall x \in E,\,\varphi(\alpha a + \beta b)(x) &= \left<\alpha a + \beta b \mid x \right>\\
+		&= \alpha \left<a \mid x \right> + \beta \left<b \mid x \right> \\
+		&= \alpha \varphi(a)(x) + \beta \varphi(b)(x) \\
+		&= \big(\alpha \varphi(a) + \beta \varphi(b)\big)(x) \\
+	\end{align*}
+	Donc $\varphi \in \mathcal{L}(E, E^*)$.
+
+	Soit $a \in \Ker(\varphi)$, alors $\varphi(a) = 0_{E^*}$ et donc, \[
+		\forall x \in E,\,\varphi(a)(x) = 0
+	\] donc \[
+		\forall x \in E,\,\left<a \mid x \right> = 0
+	.\] On a donc $\left<a \mid a \right> = 0$ et donc $a = 0_E$.
+	
+	On en déduit que $\varphi$ est injective.
+
+	Comme $\dim(E) = \dim(E^*) < +\infty$ et donc $\varphi \in \mathrm{GL}(E, E^*)$.
+\end{prv}
+
+\begin{exm}
+	Soit $P$ un plan de $\R^3$ et $n \in P^\perp$.
+	\begin{align*}
+		u \in P \iff& u \perp n\\
+		\iff& \left< u  \mid n \right> = 0.
+	\end{align*}
+\end{exm}
+
+Ici, $E = \R^3$ muni de son produit scalaire canonique.
+
+\begin{defn}
+	Soient $u$ et $v$ linéairement indépendants dans $E$. Soit $\mathcal{B} = (e_1, e_2, e_3)$ la base canonique de $E$.
+
+	L'application \begin{align*}
+		f : E &\longrightarrow \R \\
+		w &\longmapsto \det_{\mathcal{B}}(u,v,w)
+	\end{align*} est linéaire. D'après le théorème de Riesz, \[
+		\exists!\,a \in E,\,f = \left<a \mid \cdot \right>
+	.\]
+	On considère un tel vecteur $a \in E$. Donc, \[
+		\forall w \in E,\, \det_{\mathcal{B}}(u,v,w) = \left<a \mid w \right>
+	.\]
+
+	On en déduit que
+	\begin{align*}
+		(u,v,w) \text{ base de } E \iff& \left<a \mid w \right> \neq 0\\
+		\iff& w \not\perp a.
+	\end{align*}
+
+	Comme $a \not\perp a$, $(u,v,a)$ est une base de $E$. $a$ est le \underline{produit vectoriel} de $u$ et $v$ et est noté $u\wedge v$. \index{produit vectoriel}
+
+	\[
+		\forall w \in E,\,\det_{\mathcal{B}}(u,v,w) = \underbrace{\left<u\wedge v  \mid w \right>}_{\substack{\mathclap{\text{produit mixte}}\\\mathclap{\text{noté } [u,v,w]}}}
+	.\]
+\end{defn}
+
+\begin{prop}
+	Soit $(u,v)\in E^2$ avec $u$ et $v$ linéairement indépendants.
+	\begin{enumerate}
+		\item $(u \wedge v ) \perp u$;
+		\item $(u \wedge v ) \perp v$;
+		\item $(u,v,u\wedge v)$ est une base directe (i.e. $\det(u,v,u\wedge v) > 0$);
+		\item $\|u \wedge v\| = \|u\|\, \|v\|\,\sin(\widehat{u,v})$.
+	\end{enumerate}
+\end{prop}
+
+\begin{prv}
+	\begin{enumerate}
+		\item $\left<u\wedge v  \mid u \right> = \det_{\mathcal{B}}(u,v,u) = 0$.
+		\item $\left<u\wedge v  \mid v \right> = \det_{\mathcal{B}}(u,v,v) = 0$.
+		\item $\det_{\mathcal{B}}(u,v,u\wedge v) = \left<u\wedge v  \mid u \wedge v \right> = \|u \wedge v\|^2 > 0$.
+		\item $\|u \wedge v\|^2 = \det_{\mathcal{B}}(u,v,u\wedge v) = \|u\wedge v\|\, \|u\|\, \|v\|\, \sin(\widehat{u,v})$.
+	\end{enumerate}
+\end{prv}
+
+\begin{prop}
+	Soient $u = (a, b, c)$ et $v = (\alpha, \beta, \gamma)$. Alors, \[
+		u \wedge v = (b\gamma - c\beta, \alpha c - \gamma a, a \beta - b \alpha)
+	.\]
+\end{prop}
+
+\begin{prv}
+	On pose $u \wedge v = (x,y,z)$. Comme $(e_1, e_2, e_3)$ est orthonormée, on a
+	\begin{align*}
+		x &= \left<u\wedge v  \mid e_1 \right> = \det_{\mathcal{B}}(u,v,e_1) =
+		\begin{vmatrix}
+			a&\alpha&1\\
+			b&\beta&0\\
+			c&\gamma&0
+		\end{vmatrix} =
+		\begin{vmatrix}
+			b&\beta\\
+			c&\gamma
+		\end{vmatrix};\\
+		y &= \left<u\wedge v  \mid e_2 \right> = 
+		\begin{vmatrix}
+			a&\alpha&0\\
+			b&\beta&1\\
+			c&\gamma&0
+		\end{vmatrix} = -
+		\begin{vmatrix}
+			a&\alpha\\
+			c&\gamma
+		\end{vmatrix};\\
+		z &= \left<u\wedge v  \mid e_3 \right> =
+		\begin{vmatrix}
+			a&\alpha&0\\
+			b&\beta&0\\
+			c&\gamma&1
+		\end{vmatrix} = a \beta - b \alpha.\\
+	\end{align*}
+\end{prv}
+
+\section{Calcul différentiel}
+
+\begin{defn}
+	Soit $f : D \subset \R^n \longrightarrow \R$ où $D$ est un ouvert. Soit $a \in D$. S'il existe $\ell_a \in \mathcal{L}(\R^n, \R)$ telle que \[
+		\forall h \in \R^n \text{ avec } \|h\| \text{ assez petite},\,f(a+h) = f(a) + \ell_a(h) + \po\big(\|h\|\big)
+	\] alors on dit que $f$ est \underline{différentiable} en $a$ et $\ell_a$ est la \underline{différentielle} de $f$ en $a$.
+	\index{différentiable (application)}
+	\index{différentielle}
+	Si c'est le cas, alors \[
+		\exists !\,g_a \in \R^n,\,\forall h,\,\ell_a(h) = \left<g_a  \mid h \right>
+	.\] On dit que $g_a$ est le \underline{gradient}\index{gradient d'une application de $\R^n$} de $f$ au point $a$.
+
+	Donc, \[
+		f(a + h) - f(a) \simeq \left<g_a \mid h \right>
+	.\]
+\end{defn}
+
+Les résultats vus au chapitre 22 peuvent se retrouver avec cette nouvelle définition du gradient.
+
+\section{Séries de Fourier}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+		size(5cm);
+		draw((-1, 0) -- (5, 0), Arrow(TeXHead));
+		draw((0, -1) -- (0, 3), Arrow(TeXHead));
+		real f(real x) {
+			if(x % 2 >= 1) { return 2; }
+			else { return 0; }
+		}
+		real g(real x) {
+			if(x % 1 >= 0.5) { return 2*(2*(x % 1) - 1); }
+			else { return 2*(1-2*(x % 1)); }
+		}
+		draw(graph(f,-0.5, 4.5, 400), magenta);
+		draw(graph(g,-0.5, 4.5, 400), deepcyan);
+	\end{asy}
+\end{figure}
+
+Soit $E$ un $\C$-espace vectoriel de dimension infinie et $\left<\cdot  \mid \cdot  \right>$ une application de $E^2$ dans $\C$ vérifiant
+\begin{enumerate}
+	\item linéarité à gauche;
+	\item $\forall (u,v) \in E^2,\,\left<v \mid u \right> = \overline{\left<u \mid v \right>}$; \hfill (symétrie hermitienne)
+	\item $\forall u \in E,\,\left<u \mid u \right> \ge 0$;
+	\item $\forall u \in E,\,\left<u \mid u \right> = 0 \iff u = 0_E$.
+\end{enumerate}
+
+\begin{prop}
+	$\left<\cdot  \mid \cdot  \right>$ est \underline{semi-linéaire à droite}\index{semi-linéarité (application)} : \[
+		\left<u \mid \alpha v + \beta w \right> = \bar{\alpha} \left<u \mid v \right> + \bar{\beta} \left<u \mid w \right>
+	.\] $\left<\cdot  \mid \cdot  \right>$ est donc \underline{sesquilinéaire}. \index{sesquilinéaire (application)}
+
+	$\left<\cdot  \mid \cdot  \right>$ est dit \underline{produit héermitien}. \index{produit hermitien}
+\end{prop}
+
+\begin{exm}
+	Avec $E = \mathcal{C}^0\big([a,b], \C\big)$, on a $\left<f \mid g \right> = \frac{1}{b-a} \int_{a}^{b} f(t)\,\overline{g(t)}~\mathrm{d}t$.
+\end{exm}
+
+\begin{defn}
+	Soit $\mathcal{B} = (e_n)_{n\in\Z}$ une famille de $E$. On dit que $\mathcal{B}$ est une \underline{base hilbertienne} si \[
+		\begin{cases}
+			\forall x \in E,\,\exists!\,(c_n)_{n\in\Z},\,x = \sum_{n=-\infty}^{+\infty} c_n e_n;\\
+			\forall n \in \Z,\,\|e_n\| = 1;\\
+			\forall p \neq q,\, \left<e_p  \mid e_q \right> = 0.
+		\end{cases}
+	.\] Dans ce cas, $c_n = \left<x \mid e_n \right>$.
+\end{defn}
+
+\begin{exm}
+	On pose \begin{align*}
+		\forall n \in \Z,\qquad e_n: [0, 2\pi] &\longrightarrow \C \\
+		t &\longmapsto e^{int}
+	\end{align*}
+
+
+	\begin{align*}
+		\left<e_p  \mid e_q \right> &= \frac{1}{2\pi} \int_{0}^{2\pi} e^{ipt}\,e^{-iqt}~\mathrm{d}t\\
+		&= \frac{1}{2\pi} \int_{0}^{2\pi} e^{i(p-q)t}~\mathrm{d}t \\
+		&= \begin{cases}
+			1 &\text{ si }  p = q\\
+			\frac{1}{2\pi} \left[ \frac{e^{i(p-q)t}}{i(p-q)} \right]^{2\pi}_{0} = 0 \text{ si } p \neq q
+		\end{cases} \\
+	\end{align*}
+
+	Soit \[
+		F = \left\{ \sum_{n \in \Z}c_n e_n  \mid (c_n) \in \C^\Z \text{ tel que } \forall t,\, \sum c_n e_n(t) \text{ converge} \right\}
+	.\] Soit $f$ $2\pi$-périodique. On a \[
+		p_F(f) = \sum_{n=-\infty}^{+\infty} c_n e_n
+	\] où $c_n = \left<f \mid e_n \right> = \frac{1}{2\pi} \int_{0}^{2\pi} f(t)\, e^{-int}~\mathrm{d}t$.
+
+	On en déduit que \[
+		\Re(c_n) = \frac{1}{2\pi} \int_{0}^{2\pi} f(t)\,\cos(nt)~\mathrm{d}t
+	.\]
+\end{exm}
+
+\section{Espace-temps de Minkowsky}
+
+On modélise l'espace-temps par $E = \R^4$; c'est un espace affine et on y crée un ``produit scalaire'' (en utilisant une ``norme'') : \[
+	q(x,y,z,t) = x^2 + y^2 + z^2 - c^2t^2
+.\] On en déduit que \[
+	\left<(x,y,z, t)  \mid (x',y',z',t') \right> = xx' + yy' + zz' - c^2tt'
+.\] Ce ``produit scalaire'' n'en est pas vraiment un : il est bilinéaire, symétrique {\sc \color{red} mais} pas positif.
+\[
+	(x,y,z,t) \text{ isotrope } \iff x^2 + y^2 + z^2 = c^2  t^2
+.\]
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import solids;
+		size(8cm);
+		label("$t$", 1.2Z, align=2SW);
+		draw(-1.2Z--1.2Z, Arrow3(TeXHead2));
+		revolution upcone=cone(-Z,0.7,1);
+		revolution downcone=cone(Z,0.7,-1);
+		draw(upcone,1,longitudinalpen=nullpen);
+		draw(upcone.silhouette());
+		draw(downcone,1,longitudinalpen=nullpen);
+		draw(downcone.silhouette());
+		dot("présent", O, align=2E);
+		label("futur", 0.8Z+0.4X);
+		label("passé", -1.2Z-0.6X);
+		draw(-0.4*Z+0.8Y--(-0.6)*Z+0.6*0.7*Y, Arrow3(TeXHead2));
+		label("cône de lumière", -0.4Z+0.8Y, align=E+N/4);
+	\end{asy}
+\end{figure}
+
+Toute information contenue dans le cône passé nous est accessible; s'il est sur sa surface, il faut que l'information y voyage à la vitesse de la lumière. Par contre, comme le temps n'est pas symétrique, on ne peut pas voir l'information future.

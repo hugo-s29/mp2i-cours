@@ -1,0 +1,319 @@
+\documentclass[a4paper]{report}
+
+\input{../preamble.tex}
+\usepackage{pdfpages}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+\let\cal\mathcal
+\let\mathcal\mmathcal
+\let\overline\bar
+
+\usetikzlibrary{trees}
+
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [minimum width=3pt, inner sep=0pt]
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			~
+			\vfill
+			{\HUGE Sujet de mathématiques du~baccalauréat général}\\
+			\vspace{1cm}
+			{\LARGE Mercredi 11 mai 2022}\\
+			\vfill
+			\vfill
+			\vfill
+			Hugo {\sc Salou} MP2I\\
+			{\ssmall Dernière mise à jour le \@date }
+		\end{center}
+	\end{titlepage}
+	\part{Sujet}
+	\includepdf[pages={2-5}]{ex2-sujet.pdf}
+	\part{Réponses}
+	\section{Exercice 1 \hfill (7 points)}
+	\subsection{Partie A : Étude du premier protocole}
+	\begin{enumerate}
+		\item
+			\begin{enumerate}
+				\item On a $f = u \times \exp(v)$ avec $\forall t \in [0,10], \begin{cases}
+						u(t) = 3t\\
+						v(t) = -\frac{1}{2}t + 1
+					\end{cases}$.
+
+					De cela, on en déduit que $\forall t \in [0,10], \begin{cases}
+						u'(t) = 3\\
+						v'(t) = -\frac{1}{2}
+					\end{cases}$.
+
+					Or, $f' = u' \exp(v) + uv' \exp(v)$. D'où, \[
+						\forall t \in [0, 10],\,f'(t) = 3e^{-\frac{1}{2}t + 1} - \frac{3}{2}te^{-\frac{1}{2}t+1}
+					.\]
+				\item On cherche pour quelles valeurs de $t$,  $f'(t)$ s'annule.
+					\begin{align*}
+						f'(t) = 0 \iff& \left( 3 - \frac{3}{2}t \right)e^{-\frac{1}{2}t + 1} = 0\\
+						\iff& 3 - \frac{3}{2}t = 0 \text{ car } \forall u \in \R,\,e^{u} > 0\\
+						\iff& t = 2
+					\end{align*}
+					Donc, $f'$ s'annule en $2$.
+
+					Comme dit précédemment,  $\forall u \in \R, \,e^{u} > 0$. Donc, le signe de $f'$ est celui de $t \mapsto 3 - \frac{3}{2}t$.
+					\[
+						f'(t) > 0 \iff 3 - \frac{3}{2}t > 0 \iff t > 2
+					.\]
+					On calcule les valeurs de $f$ pour 0, 2 et 10 : \[
+						\begin{cases}
+							f(0) = 0\\
+							f(2) = 6\\
+							f(10) = \frac{30}{e^4}
+						\end{cases}
+					.\]
+					D'où,
+					\begin{center}
+						\begin{tikzpicture}
+							\tkzTabInit[espcl=1.5]{$x$/0.7,$f'(x)$/1,$f$/2}{$0$,$2$,$10$}
+							\tkzTabLine{,-,z,+,}
+							\tkzTabVar{-/0,+/6,-/$\frac{30}{e^4}$}
+						\end{tikzpicture}
+					\end{center}
+				\item Selon cette modélisation, la quantité de médicament est maximale au bout de 2 jours : le patient présente 5 mg de médicament dans le sang.
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item Sur $[0,2]$, la fonction $f$ est strictement croissante, continue et on a $f(0) \le 5 \le f(2)$. Donc, d'après le corolaire du théorème des valeurs intermédiaires, $f(t) = 5$ admet une unique solution $\alpha \in [0,2]$. On a $\alpha \simeq 1,\!02$ jours (?).
+				\item On a $\forall t \in [\alpha, \beta],\,f(t) \ge 5 \text{ mg}$. La durée efficace du médicament est donc $\beta - \alpha \simeq 2.44 \text{ jours }$. On en déduit que le médicament est efficace pendant environ $3\,514$ minutes.
+			\end{enumerate}
+	\end{enumerate}
+	\subsection{Partie B : Étude du second protocole}
+	\begin{enumerate}
+		\item On a $u_1 = \left( 1 - \frac{30}{100} \right) u_0 + 1,\!8 = 0,\!7u_0 + 1,\!8 = 1,\!4 + 1,\!8 = 3,\!2$ mg.
+		\item On ne conserve que $70$ \% du médicament d'une heure à l'autre et on nous injecte $1,\!8$ mg. D'où \[
+				u_{n+1} = 0,\!7u_n + 1,\!8
+			.\]
+		\item
+			\begin{enumerate}
+				\item On pose, pour tout entier $n$, \[
+						P(n): ``u_n \le u_{n+1} < 6"
+					.\]
+					\begin{itemize}
+						\item Pour $n = 0$, on a bien $u_0 \le u_1 < 6$ car $u_0 = 2$ mg et $u_1 = 3,\!2$ mg.
+						\item Soit $n \in \N$. On suppose $P(n)$ vraie. Montrons que $P(n+1)$ est vraie également.
+							Comme $u_{n+1} < 6$, alors, $u_{n+2} = 0,\!7 u_n + 1,\!8 < 0,\!7 \times 6 + 1,\!8 = 6$.
+							Comme $u_n \le u_{n+1}$, on a $0,\!7u_n \le 0,\!7u_{n+1}$ et donc \[
+								\underbrace{0,\!7u_n + 1,\!8}_{u_{n+1}} \le \underbrace{0,\!7u_{n+1} + 1,\!8}_{u_{n+2}}
+							.\] On a bien vérifié $u_{n+1} \le u_{n+2} < 6$.
+					\end{itemize}
+					On en déduit que \[
+						\forall n \in \N,\,, u_n \le u_{n+1} < 6
+					.\]
+				\item Comme $(u_n)_{n \in \N}$ est croissante et majorée par 6, d'après le théorème de la convergence des suites monotones, $(u_n)$ converge vers $\ell$.
+				\item On cherche un point fixe de la fonction $x\mapsto 0,\!7x + 1,\!8$.
+					\[
+						\frac{7}{10}x + \frac{18}{10} = x \iff \frac{3}{10}x = \frac{18}{10} \iff x = \frac{18}{3} = 6
+					.\]
+					On en déduit que, comme $(u_n)$ converge, elle converge vers 6. Le quantité de médicament va s'approcher progressivement de 6 (mais ne l'atteindra jamais).
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item Soit $n \in \N$. Comme $u_n < 6$, on a $v_n = 6 - v_n > 0$.
+					\begin{align*}
+						\frac{v_{n+1}}{v_n} &= \frac{6 - u_{n+1}}{6 - u_n}\\
+						&= \frac{4,\!2 - 0,\!7u_n}{6 - u_n} \\
+						&= 0,\!7 \times \frac{6 - u_n}{6 - u_n} \\
+						&= 0,\!7 \\
+					\end{align*}
+					Donc, $(v_n)_{n\in\N}$ est une suite géométrique de raison $0,\!7$.
+				\item On a $v_0 = 6 - u_0 = 4$. D'où \[
+						\forall n \in \N,\,v_n = 4 \times (0,\!7)^n
+					.\] On en déduit que, comme $\forall n \in \N,\, u_n = 6 - v_n$, \[
+						\forall n \in \N,\,u_n = 6 - 4 \times (0,\!7)^n
+					.\]
+				\item On cherche $n \in \N$ tel que
+					\begin{align*}
+						u_n \ge 5,\!5 \iff& 6 - 4 \times (0,\!7)^n = 5,\!5\\
+						\iff& 4 \times (0,\!7)^n = 0,\!5\\
+						\iff& (0,\!7)^n = \frac{1}{8}\\
+						\iff& n \ln(0,\!7) = \ln \frac{1}{8}\\
+						\iff& n = \frac{-\ln 8}{\ln 0,\!7} \simeq 5.83 \text{ jours}
+					\end{align*}
+					On peut donc arrêter les injections après 6 jours.
+			\end{enumerate}
+	\end{enumerate}
+	\section{Exercice 2 \hfill (7 points)}
+	\begin{enumerate}
+		\item
+			\begin{enumerate}
+				\item On procède par identification : la droite ayant pour vecteur directeur $\begin{pmatrix}
+						u_x\\u_y\\u_z
+					\end{pmatrix}$ et passant par le point de coordonnées $(M_x, M_y, M_z)$ est donnée par le système \[
+						\begin{cases}
+							x = M_x + u_x\,t\\
+							y = M_y + u_y\,t\\
+							z = M_z + u_z\,t
+						\end{cases} \text{ avec } t \in \R
+					.\] On en déduit donc que $\vec{u}\begin{pmatrix}
+						2\\-1\\2
+					\end{pmatrix}$.
+				\item On a, d'après la première équation du système, $-1 = 1 + 2t \iff t = -1$. En replaçant $t$ par $-1$ dans les autres équations, on obtient bien les coordonnées se de $B$ selon $\vec{\jmath}$ et $\vec{k}$ : \[
+						\begin{cases}
+							y = 2 - (-1) = 3\\
+							z = 2 - 2 = 0
+						\end{cases}
+					.\] Donc, $B$ appartient bien à la droite $\mathcal{D}$.
+				\item On a $\vec{AB}\begin{pmatrix}
+						0\\
+						2\\
+						-3
+					\end{pmatrix}$ et donc \[
+						\vec{AB} \cdot \vec{u} = 0 \times 2 - 1 \times  2 - 3 \times 2 = -8
+					.\]
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item Comme $\mathcal{P}$ est orthogonal à $\mathcal{D}$, un vecteur normal de $\mathcal{P}$ est $\vec{u}$. On sait donc que l'équation de $\mathcal{P}$ est de la forme \[
+						\mathcal{P}:\qquad 2x -y +2z = d
+					.\] Déterminons la valeur de $d$. Comme $A \in \mathcal{P}$, les coordonnées de $A$ vérifient l'équation du plan, d'où \[
+						d = 2\times -1 - 1 + 2 \times 3 = 3
+					.\] On en déduit que $\mathcal{P}$ a pour équation cartésienne \[
+						\mathcal{P} : \qquad 2x - y + 2z - 3 = 0
+					.\]
+				\item En utilisant les expressions de $x$, $y$ et $z$, provenant du système $\mathcal{D}$, dans l'équation de $\mathcal{P}$, on a \[
+						2(1+2t) - 2 + t + 2(2 + 2t) - 3 = 0
+					.\] On résout pour cette valeur de $t$ :
+					\[
+						\cancel2 + 4t - \cancel2 + t + 4 + 4t - 3 = 0 \iff 9t = - 1 \iff t = -\frac{1}{9}
+					.\] On en déduit les coordonnées de $H$ : \[
+						\begin{cases}
+							x = 1 - \frac{2}{9} = \frac{7}{9}\\
+							y = 2  + \frac{1}{9} = \frac{19}{9}\\
+							z = 2 - \frac{2}{9} = \frac{16}{9}
+						\end{cases}
+					.\] On a donc $H\left( \frac{7}{9},\frac{19}{9},\frac{16}{9} \right)$.
+				\item
+					\begin{align*}
+						AH^2 &= \left( \frac{7}{9}+1 \right)^2 + \left( \frac{19}{9}-1 \right)^2 + \left( \frac{16}{9} -3 \right)^2\\
+						&= \left( \frac{16}{9} \right)^2 + \left( \frac{10}{9} \right)^2 + \left( -\frac{11}{9} \right)^2 \\
+						&= \frac{256 + 100 + 121}{9^2} \\
+						&= \frac{477}{9^2} \\
+						&= \left( \frac{\sqrt{53}}{3} \right)^2 \\
+					\end{align*}
+					Ainsi, $AH = \frac{\sqrt{53}}{3}$.
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item On sait que $H$ et $B$ sont tous les deux sur la droite. Donc, $\vec{HB}$ et $\vec{u}$ sont colinéaires. Il existe donc $k \in \R$ tel que $\vec{HB} = k\vec{u}$.
+				\item On a $\vec{AB} \cdot  \vec{u} = \vec{AH} \cdot \vec{u} + \vec{HB} \cdot \vec{u} = \vec{HB} \cdot \vec{u}$ car $\vec{AH}$ et $\vec{u}$ sont colinéaires (donc $\vec{AB} \cdot  \vec{u} = 0$).
+
+					Or, $\vec{HB} = k \vec{u}$. Donc, $\vec{AB} \cdot \vec{u} = k \vec{u} \cdot \vec{u}$. En divisant par $\vec{u}\cdot \vec{u} = \|\vec{u}\|^2$, on obtient \[
+						k = \frac{\vec{AB} \cdot  \vec{u}}{\|\vec{u}\|^2}
+					.\]
+				\item On a $\vec{AB} \cdot \vec{u} = -8$, et $\|\vec{u}\|^2 = 2^2 + 1 + 2^2 = 9$. On en déduit donc la valeur de $k$ : en effet, on a \[
+						k = \frac{\vec{AB} \cdot \vec{u}}{\|\vec{u}\|^2} = -\frac{8}{9}
+					.\] Or, $\vec{HB} = k \vec{u}$, donc $\vec{OH} = -k \vec{u} + \vec{OB}$ et donc \[
+						\vec{OH} = \frac{8}{9}\begin{pmatrix}
+							2\\-1\\2
+						\end{pmatrix} + \begin{pmatrix}
+							-1\\3\\0
+						\end{pmatrix} = \begin{pmatrix}
+							\frac{16}{9} - 1\\
+							3-\frac{8}{9}\\
+							\frac{16}{9}
+						\end{pmatrix} = \begin{pmatrix}
+							\frac{7}{9}\\[2mm]
+							\frac{19}{9}\\[2mm]
+							\frac{16}{9}
+						\end{pmatrix}
+					.\]
+			\end{enumerate}
+			D'où $H\left( \frac{7}{9},\frac{19}{9},\frac{16}{9} \right)$.
+		\item On a $V_{ABCH} = \frac{8}{9}$. Or, $V_{ABCH} = \frac{1}{3}\: A_{ACH}\: B\!\:\!H$. On calcule donc $B\!\;\!H$ :
+			\[
+				B\!\;\!H^2 = k^2 \|\vec{u}\|^2 = \frac{64}{81} (2^2 + 1 + 2^2) = \frac{8^2}{9}
+			.\] On en déduit que $B\!\;\!H = \frac{8}{3}$. Ainsi, \[
+				A_{ACH} = 3\times V_{ABCH}\times B\!\;\!H = 3\times \frac{8}{9}\times \frac{3}{8} = 1
+			.\]
+	\end{enumerate}
+	\section{Exercice 3 \hfill (7 points)}
+	\begin{enumerate}
+		\item
+			\begin{enumerate}
+				\item On a $P(S) = \frac{25}{100}$.
+				\item
+					\begin{tikzpicture}[grow=right, sloped]
+					\node[bag] {}
+							child {
+									node[bag] {$\overline{F}$}
+											child {
+													node[end, label=right:{$\overline{S}$}] {}
+													edge from parent
+											}
+											child {
+													node[end, label=right:{$S$}] {}
+													edge from parent
+											}
+											edge from parent
+											node[below]  {$\frac{48}{100}$}
+							}
+							child {
+									node[bag] {$F$}
+									child {
+													node[end, label=right:{$\overline{S}$}] {}
+													edge from parent
+													node[below]  {$\frac{60}{100}$}
+											}
+											child {
+													node[end, label=right: {$S$}] {}
+													edge from parent
+													node[above] {$\frac{40}{100}$}
+											}
+									edge from parent
+											node[above] {$\frac{52}{100}$}
+							};
+					\end{tikzpicture}
+				\item On cherche $P(F \cap S) = P_F(S) \times P(F) = \frac{40}{100}\times \frac{52}{100} = \frac{208}{1000} = 0,\!208$.
+				\item On cherche $P_S(F) = \frac{P(F \cap S)}{P(S)} = \frac{\sfrac{208}{1000}}{\sfrac{25}{100}} = 0,\!052$.
+				\item On a $P(S) = P_{\overline{F}}(S) \times P(\overline{F}) + P_F(S) \times P(F)$. D'où,
+					\begin{align*}
+						P_{\overline{F}}(S) &= \frac{P(S) - P_F(S) \times P(F)}{P(\overline{F})}\\
+						&= \frac{0,\!25 - 0,\!40 \times 0,\!52}{1 - 0,\!58} \\
+						&= \frac{0,\!25 - 0,\!208}{0,\!42} \\
+						&= \frac{0,\!042}{0,\!42} \\
+						&= 0,\!10. \\
+					\end{align*}
+					Ce qui valide l'affirmation du directeur.
+			\end{enumerate}
+		\item
+			\begin{enumerate}
+				\item La variable aléatoire $X$ suit la loi binomiale $\textstyle\cal{B}\left(20,\;\frac{1}{4}\right)$. En effet, le choix d'un salarié est indépendant des autres (tirage avec remise). De plus, on demande de manière identique à chaque salariés.
+				\item On a \[
+						P(X = 5) = {20\choose 5}\; \frac{1}{4^5}\; \left(\frac{3}{4}\right)^{15} \simeq 0,\!202
+					.\]
+				\item Le programme retourne (environ): \centered{{\tt {>}{>}{>}~~~0.617}.} Cela correspond à $P(X \le 5)$.
+				\item On a $P(X \le 6) = P(X \le 5) + P(X = 6) = 0,\!617 + 0,\!169 = 0,\!786$.
+			\end{enumerate}
+		\item On note $s$ le salaire moyen d'un employé. Le nouveau salaire moyen d'un employé, $s'$, est \[
+			s' = \frac{1}{4} \times (1.05) \times s + \frac{3}{4} \times (1.02) \times s
+			= 1.0275 \times s
+		.\] En moyenne, le salaire augment de $2,\!75$ \%.
+	\end{enumerate}
+	\section{Exercice 4 \hfill (7 points)}
+	\begin{center}
+		\def\arraystretch{2.2}
+		\begin{tabular}{c|l}
+			Question&\hfill Réponse \hfill~\\ \hline
+			1.&c. $y = -2$\\ \hline
+			2.&b. $F(x) = \frac{1}{2}e^{x^2}$ \\ \hline
+			3.&d. Convexe sur $[2, +\infty[$ \\ \hline
+			4.&a. Toutes sont croissantes sur $\R$ \\ \hline
+			5.&d. $0$ \\ \hline
+			6.&c. Une seule solution
+		\end{tabular}
+	\end{center}
+\end{document}
+

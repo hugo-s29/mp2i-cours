@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>algorithmes-gloutons</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><span class="math inline">\Huge \text{Algorithmes
+gloutons}</span></p>
+<p><em>c.f. polycopié</em></p>
+<h1 id="ii.-exemple-choix-dactivités">II. Exemple : choix
+d’activités</h1>
+<p>Sous-structure optimale :</p>
+<blockquote>
+<p>Ajout de <span class="math inline">a_k</span> dans <span
+class="math inline">A_{ij}</span> <span class="math inline">\to</span>
+définition de deux sous-problèmes dans <span
+class="math inline">S_{ij}</span>.</p>
+</blockquote>
+<blockquote>
+<p>On peut définir <span class="math display">\begin{align*}
+A_{jk} = A_{ij} \cap S_{ik}\\
+A_{kj} = A_{ij} \cap S_{kj}
+\end{align*}</span> On a donc <span class="math inline">A_{ij} = A_{ik}
+\cup \{a_k\} \cup A_{kj}</span> avec <span
+class="math inline">A_{ik}</span> avec <span
+class="math inline">|A_{ij}| = |A_{ik}| + |A_{kj}| + 1</span>.</p>
+</blockquote>
+<p>À démontrer : la solution optimale <span
+class="math inline">A_{ij}</span> doit-elle nécessairement inclure les
+solution optimales de <span class="math inline">S_{ik}</span> et <span
+class="math inline">S_{ki}</span> ?</p>
+<blockquote>
+<p>Hypothèse : On peut bâtir <span
+class="math inline">A&#39;_{ik}</span>, sous ensemble d’activités
+mutuellement compatibles dans <span class="math inline">S_{ik}</span>
+tel que <span class="math inline">|A&#39;_{ik}| &gt;
+|A_{ik}|</span>.</p>
+</blockquote>
+<blockquote>
+<p>Alors, on peut trouver un sous-ensemble <span
+class="math inline">A&#39;_{ij}</span> tel que <span
+class="math inline">A&#39;_{ij} = A&#39;_{ik} \cup \{a_k\} \cup
+A_{kj}</span>. On a alors <span class="math inline">|A&#39;_{ij}| =
+|A&#39;_{ik}| + |A_{kj}| + 1 &gt; |A_{ij}| = |A_{ik}| + |A_{kj}| +
+1</span>.</p>
+</blockquote>
+<blockquote>
+<p>Ce qui contredit l’hypothèse initiale affirmant que <span
+class="math inline">A_{ij}</span> est un sous-ensemble de plus grande
+taille d’activités mutuellement compatible de <span
+class="math inline">S_{ij}</span>.</p>
+</blockquote>
+<blockquote>
+<p>Raisonnement similaire pour <span
+class="math inline">A_{kj}</span>.</p>
+</blockquote>
+<p>Conclusion: La solution optimale de <span
+class="math inline">S_{ij}</span> inclut les solutions optimales de
+<span class="math inline">S_{ik}</span> et <span
+class="math inline">S_{kj}</span>.</p>
+<p>Chevauchements de sous-problèmes :</p>
+<blockquote>
+<p>Taille d’une solution optimale pour <span
+class="math inline">S_{ij}</span> contenue dans le tableau à 2
+dimensions : <span class="math inline">|A_{ij}| = c[i,\, j]</span>.</p>
+</blockquote>
+<blockquote>
+<p>Soit <span class="math inline">c[i,\,j] = c[i,\,k] + c[k,\,j] +
+1</span>.</p>
+</blockquote>
+<blockquote>
+<p>En pratique, on ignore si la solution optimale du sous-problème <span
+class="math inline">S_{ij}</span> contient la solution <span
+class="math inline">a_k</span>.</p>
+</blockquote>
+<blockquote>
+<p>Nouvelle formulation : examen de toute les activités de <span
+class="math inline">S_{ij}</span> pour déterminer <span
+class="math inline">k</span> : <span class="math display">
+c[i,\,j] = \begin{cases}
+0&amp;\text{si } S_{ij} = \varnothing,\\
+\displaystyle\max_{a_k \in S_{ij}} \Big\{c[i,\,k] + c[k,\,j] + 1\Big\}
+&amp;\text{si } S_{ij} \neq \varnothing.
+\end{cases}
+</span></p>
+</blockquote>
+<blockquote>
+<p>D’où les chevauchements de sous-problèmes (résoudre <span
+class="math inline">S_{i,m+1}</span> nécessite de résoudre <span
+class="math inline">S_{im}</span>).</p>
+</blockquote>
+<p>Programmation dynamique envisageable mais lourde à mettre en
+œuvre.</p>
+<p><em>c.f. polycopié</em></p>
+<p><em>Est-ce que le choix glouton fait toujours partie de la solution
+optimale ?</em></p>
+<p><strong>Théorème</strong>:</p>
+<blockquote>
+<p>Soit un sous-problème <span class="math inline">S_k</span> non vide.
+Soit <span class="math inline">a_m</span> l’activité de <span
+class="math inline">S_k</span> ayant l’heure d’achèvement la plus
+précoce.</p>
+</blockquote>
+<blockquote>
+<p>Alors, <span class="math inline">a_m</span> est incluse dans un
+certain sous-ensemble de taille maximale d’activités mutuellement
+compatibles de <span class="math inline">S_k</span>.</p>
+</blockquote>
+<p>Démonstration:</p>
+<blockquote>
+<p>Soit <span class="math inline">A_k</span> un sous-ensemble de taille
+maximale d’activités mutuellement compatibles de <span
+class="math inline">S_k</span>. Soit <span
+class="math inline">a_j</span> la première activité de <span
+class="math inline">A_k</span>.</p>
+</blockquote>
+<blockquote>
+<p>Si <span class="math inline">a_j\, =\, a_m</span>, alors le théorème
+est démontré.</p>
+</blockquote>
+<blockquote>
+<p>Si <span class="math inline">a_j \neq a_m</span>, soit <span
+class="math inline">A&#39;_k = \big(A_k \setminus \{a_j\}\big) \cup
+\{a_m\}</span>, <span class="math inline">a_m</span> ayant l’heure
+d’achèvement la plus précoce dans <span class="math inline">S_k</span> :
+<span class="math inline">f_m \leqslant f_j</span>. <span
+class="math inline">A&#39;_k</span> est aussi un sous-ensemble
+d’activités mutuellement compatibles de <span
+class="math inline">S_k</span>. Par ailleurs, <span
+class="math inline">|A&#39;_k| = |A_k|</span>, donc <span
+class="math inline">A_k&#39;</span> est un sous-ensemble de taille
+maximale d’activités mutuellement compatibles de <span
+class="math inline">S_k</span>, contenant <span
+class="math inline">a_m</span>.</p>
+</blockquote>
+<blockquote>
+<p>Le théorème est donc démontré.</p>
+</blockquote>
+<p>Mise en œuvre des algorithmes :</p>
+<ul>
+<li><p>Récursif:</p>
+<pre><code>Fonction ChoixActivitesRecursif(d, f, k, n)
+  Entrée: d, tableau des dates de début des activités;
+          f, tableau des dates de fin des activités;
+          k, indice de l&#39;activité courante (entier);
+          n, longeur du tableau d et f (entier).
+  Sortie: A, combinaison d&#39;activités.
+  Précondition: f et d sont triés par date de fin croissantes.
+  Post-condition: A est un sous-ensemble de taille maximale
+                  d&#39;activités mutuellement compatibles.
+  Début
+    m := k + 1
+
+    Tant que m &lt;= n et d[m] &lt;= f[k] faire
+      m := m + 1
+    Fin Tant que
+
+    Si m &lt;= n alors
+      Retourner Combiner({ m }, ChoixActivitesRecursif(d, f, m, n))
+    Sinon
+      Retourner ø
+    Fin Si
+  Fin</code></pre></li>
+</ul>
+<blockquote>
+<blockquote>
+<p>Complexité en <span class="math inline">\Theta(n)</span></p>
+</blockquote>
+</blockquote>
+<ul>
+<li><p>Itératif:</p>
+<pre><code>Fonction ChoixActivitesIteratif(d, f, k, n)
+  Entrée: d, tableau des dates de début des activités;
+          f, tableau des dates de fin des activités.
+  Sortie: A, combinaison d&#39;activités.
+  Précondition: f et d sont triés par date de fin croissantes.
+  Post-condition: A est un sous-ensemble de taille maximale
+                  d&#39;activités mutuellement compatibles.
+  Début
+    n := d.longueur
+    A := { 1 }
+    k := 1
+
+    Pour m allant de 2 à n faire
+      Si d[m] &gt;= f[k] alors
+        A := Combiner(A, { m })
+        k := m
+      Fin Si
+    Fin Pour
+
+    Retourner A
+  Fin</code></pre></li>
+</ul>
+<blockquote>
+<blockquote>
+<p>Complexité en <span class="math inline">\Theta(n)</span></p>
+</blockquote>
+</blockquote>
+<h2 id="bilan">Bilan</h2>
+<p><em>c.f. polycopié</em></p>
+<ol type="1">
+<li><p>Détermination de la sous-structure optimale : <span
+class="math display">A_{ij} = A_{ik} + \{a_k\} + A_{kj}</span></p></li>
+<li><p>Formulation de la récurrence (mais non exploité pour un algo.
+récursif) <span class="math display">
+     c[i,\,j] = \begin{cases}
+             0&amp;\text{si } S_{ij} = \varnothing,\\
+             \displaystyle\max_{a_k \in S_{ij}} \Big\{c[i,\,k] +
+c[k,\,j] + 1\Big\} &amp;\text{si } S_{ij} \neq \varnothing.
+         \end{cases}
+  </span></p></li>
+<li><p>Le choix glouton conduit à un unique sous-problème: <span
+class="math display"> A_k = \{a_k\} +\, \text{solution optimale au
+sous-problème}\, S_k</span></p></li>
+<li><p>Le choix glouton + théorème</p></li>
+<li><p>Algorithme récursif</p></li>
+<li><p>Algorithme itératif</p></li>
+</ol>
+<h1 id="iii.-codage-huffman">III. Codage Huffman</h1>
+<p>Objectif : Économiser l’espace mémoire; limité aux suites de
+caractères pour le cours MP2I.</p>
+<p>Compression de données: RLE</p>
+<blockquote>
+<p>Code RLE déjà vu au premier semestre, en devoir : codage sans perte
+de données mais peu efficace sur les textes</p>
+</blockquote>
+<p>Encodages au programme (sans perte de données):</p>
+<ul>
+<li>Lempel-Zil-Welch (LZW) <span class="math inline">\to</span> project
+de fin d’année</li>
+<li>Huffman</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\to</span> algorithme glouton</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\to</span> très efficace pour les textes
+(entre <span class="math inline">20\%</span> et <span
+class="math inline">90\%</span> d’économie)</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\to</span> utilisation d’une table de
+fréquences d’apparition pour l’encodage</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\to</span> encodage de chaque caractère par
+une chaîne binaire</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\to</span> utilisé pour les fichiers
+<code>zip</code>, pour la compression <code>JPEG</code> et
+<code>PNG</code>.</p>
+</blockquote>
+<h2 id="exemple">Exemple :</h2>
+<blockquote>
+<p>Texte de 100 000 caractères utilisant uniquement 6 caractères
+distincts: ‘a’, ‘b’, ‘c’, ‘d’, ‘e’, et ‘f’.</p>
+</blockquote>
+<blockquote>
+<p>Fréquence d’apparition des différents caractères connus</p>
+</blockquote>
+<blockquote>
+<p>Encodage de longueur fixe <em>v.s.</em> encodage de longueur
+variable.</p>
+</blockquote>
+<table style="width:96%;">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Caractère</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>e</td>
+<td>f</td>
+</tr>
+<tr class="even">
+<td>Fréquence (<span class="math inline">\times 10^3</span>)</td>
+<td>45</td>
+<td>13</td>
+<td>12</td>
+<td>16</td>
+<td>9</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Encodage (longueur fixe)</td>
+<td>000</td>
+<td>001</td>
+<td>010</td>
+<td>011</td>
+<td>100</td>
+<td>101</td>
+</tr>
+<tr class="even">
+<td>Encodage (longueur variable)</td>
+<td>0</td>
+<td>101</td>
+<td>100</td>
+<td>111</td>
+<td>1101</td>
+<td>1100</td>
+</tr>
+</tbody>
+</table>
+<p>Tailles des fichiers ?</p>
+<ul>
+<li>Encodage de longueur fixe : <span
+class="math inline">300\,000</span> bits</li>
+<li>Encodage de longueur variable : <span
+class="math inline">224\,000</span> bits</li>
+</ul>
+<blockquote>
+<p>On a donc <span class="math inline">25\%</span> d’économie avec
+l’encodage de longueur variable.</p>
+</blockquote>
+<p>Exemple : <code>0 111 101 101</code> <span
+class="math inline">\to</span> <code>a d b b</code></p>
+<p>Pourquoi n’y a-t-il pas d’ambigüité pour le décodage ?</p>
+<blockquote>
+<p>Codage préfixe : aucun mot code n’est le préfixe d’un autre mot
+code.</p>
+</blockquote>
+<blockquote>
+<p>Un codage préfixe peut toujours donner la compression maximale entre
+tous les codages de caractère.</p>
+</blockquote>
+<p>Utilisation d’un arbre binaire :</p>
+<blockquote>
+<p>Feuilles <span class="math inline">\to</span> caractères et
+fréquences d’apparition des caractères</p>
+</blockquote>
+<blockquote>
+<p>Étiquettes des nœuds internes et racines <span
+class="math inline">\to</span> fréquences d’apparition</p>
+</blockquote>
+<blockquote>
+<p>Vers le fils gauche <span class="math inline">\to</span> 0</p>
+</blockquote>
+<blockquote>
+<p>Vers le fils droit <span class="math inline">\to</span> 1</p>
+</blockquote>
+<p>Codage optimal <span class="math inline">\to</span> arbre binaire
+dont les nœuds sont d’arité 2.</p>
+<p>Encodage de longueur fixe:</p>
+<p><embed
+src=".cache/mermaid/18a1e5531dbf69c3b29b11b2af2c93b1.pdf" /></p>
+<p>Encodage de longueur variable:</p>
+<p><embed
+src=".cache/mermaid/61ef394502b6efa1aa872a3c967894ed.pdf" /></p>
+<h2 id="construction-du-codage-de-huffman">Construction du codage de
+Huffman</h2>
+<p>Coût de l’arbre : <span class="math inline">\displaystyle\sum_{i=1}^n
+f_i \times p_i</span> où <span class="math inline">p_i</span> est la
+profondeur du caractère <span class="math inline">i</span>, <span
+class="math inline">f_i</span> la fréquence du caractère <span
+class="math inline">i</span>.</p>
+<p>Utilisation d’une file de priorité min <span
+class="math inline">F</span> contenant les arbres <span
+class="math inline">\to</span> forêt</p>
+<p>Pour chaque arbre de la forêt :</p>
+<blockquote>
+<p>Chaque nœud interne contient une fréquence</p>
+</blockquote>
+<blockquote>
+<p>Chaque feuille contient un caractère et sa fréquence d’apparition</p>
+</blockquote>
+<p>La forêt est ordonnée par ordre de fréquences croissantes.</p>
+<p>État initial de la forêt <span class="math inline">F_0</span> :</p>
+<blockquote>
+<p>Chaque arbre ne contient qu’un seul nœud : un caractère et sa
+fréquence.</p>
+</blockquote>
+<blockquote>
+<p>Donc, <span class="math inline">\mathrm{Card}(F_0) = n =</span>
+nombre de caractères différents dans le texte à encoder.</p>
+</blockquote>
+<p>Construction de l’arbre :</p>
+<ul>
+<li>Extraire le minimum de la file</li>
+<li>Extraire le minimum de la file</li>
+<li>Fusionner les deux arbres extraits dans un nouvel arbre</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\to</span> structure de file min</p>
+</blockquote>
+<ul>
+<li>Insérer le nouvel arbre dans la file</li>
+<li>Rétablir la structure du file min</li>
+</ul>
+<pre><code>Fonction construitHuffman(F)
+    Entrée : F, file de priorité min, forêt d&#39;arbres (files min)
+    Sortie : F, contenant un seul élément, l&#39;abre d&#39;encodage Huffman
+    Pré-condition : F contient les caractères et leurs fréquences (ordre croissant)
+    Post-condition : F, contenant un seul élément, l&#39;abre d&#39;encodage Huffman
+
+    Début
+        Si #F = 1 alors 
+            Returner F
+        Sinon
+            A1 = F.définer // Extraire_min(F)
+            A2 = F.définer // Extraire_min(F)
+            A = A1 + A2 // construction de l&#39;arbre tournoi
+            freq[A] = freq[A1] + freq[A2] // Calcul de la fréquence de A
+            Insérer(A, F) // Insertion à la bonne place de A dans F
+            Retourner construitHuffman(F) // Appel récursif
+        Fin Si
+    Fin</code></pre>
+<h2 id="démonstration-du-lemme-1">Démonstration du lemme 1</h2>
+<p><span class="math inline">a</span> et <span
+class="math inline">b</span> deux feuilles sœurs de profondeur maximale
+pour l’arbre <span class="math inline">T</span>. <span
+class="math display">a.\text{freq} \leqslant b.\text{freq} \quad
+\text{et} \quad x.\text{freq} \leqslant y.\text{freq}</span></p>
+<p>Comme <span class="math inline">x</span> et <span
+class="math inline">y</span> sont de fréquences les plus basses : <span
+class="math display">x.\text{freq} \leqslant a.\text{freq} \quad
+\text{et} \quad y.\text{freq} \leqslant b.\text{freq}</span></p>
+<p>Si <span class="math inline">x.\text{freq}</span> alors <span
+class="math inline">x.\text{freq} = a.\text{freq} = y.\text{freq} =
+b.\text{freq}</span> donc le lemme est démontré.</p>
+<p>Si <span class="math inline">x.\text{freq} \neq b.\text{freq}</span>,
+on a :</p>
+<p><embed
+src=".cache/mermaid/01a2dd760e36fa700a64be0b9ac229f5.pdf" /></p>
+<p>En permutant les feuilles <span class="math inline">a</span> et <span
+class="math inline">x</span>, on obtient <span
+class="math inline">T&#39;</span>:</p>
+<p><embed
+src=".cache/mermaid/5aeebcf3cf4ef04b069bf7e1d2ec657c.pdf" /></p>
+<p>On cherche le signe de <span class="math inline">c(T) -
+c(T&#39;)</span>.</p>
+<p><span class="math display">\begin{align*}
+    c(T) - c(T&#39;) &amp;= x.\text{freq} \times p_x + a.\text{freq}
+\times p_a - x.\text{freq} \times p&#39;_x - a.\text{freq} + p&#39;_a\\
+    &amp;= x.\text{freq} \times p_x + a.\text{freq} \times p_a -
+x.\text{freq}\times p_a - a.\text{freq} \times p_x\\
+    &amp;= \underbrace{(a.\text{freq} - x.\text{freq})}_{\geqslant 0}
+\times \underbrace{(p_a - p_x)}_{\geqslant 0}
+\end{align*}</span></p>
+<p><span class="math display">\begin{align*}
+    c(T&#39;) - c(T&#39;&#39;) &amp;= y.\text{freq} \times p_y&#39; +
+b.\text{freq} \times p_b&#39; - y.\text{freq} \times p&#39;&#39;_y -
+b.\text{freq} + p&#39;&#39;_y\\
+    &amp;= x.\text{freq} \times p&#39;_y + b.\text{freq} \times p&#39;_b
+- y.\text{freq}\times p&#39;_b - b.\text{freq} \times p&#39;_b\\
+    &amp;= \underbrace{(b.\text{freq} - y.\text{freq})}_{\geqslant 0}
+\times \underbrace{(p&#39;_b - p&#39;_y)}_{\geqslant 0}
+\end{align*}</span></p>
+<h2 id="démonstration-du-lemme-2">Démonstration du lemme 2</h2>
+<p>Pour chaque caractère <span class="math inline">c \in A \setminus
+\{x,y\}</span> on a : <span class="math display"> c.\text{freq} \times
+p_c = c.\text{freq} \times p&#39;_c</span> car <span
+class="math inline">T</span> est bâti à partir de <span
+class="math inline">T&#39;</span>.</p>
+<p>Pour les caractères <span class="math inline">x</span>, <span
+class="math inline">y</span> et <span class="math inline">z</span> :</p>
+<blockquote>
+<p><span class="math inline">z</span> est le parent de <span
+class="math inline">x</span> et de <span class="math inline">y</span>
+donc <span class="math inline">p_x = p_y = p&#39;_z + 1</span>.</p>
+</blockquote>
+<blockquote>
+<p>D’où <span class="math display">\begin{align*}
+x.\text{freq} \times p_x + y.\text{freq} \times p_y &amp;=
+(x.\text{freq} + y.\text{freq}) \times (p&#39;_z + 1)\\
+&amp;= z.\text{freq} \times p&#39;_z + (x.\text{freq} + y.\text{freq})\\
+\end{align*}</span></p>
+</blockquote>
+<p>D’où</p>
+<p><span class="math display"> C(T) = C(T&#39;) \times (x.\text{freq} +
+y.\text{freq}) </span> <span class="math display"> C(T&#39;) = C(T) -
+x.\text{freq} - y.\text{freq} </span></p>
+<p>Raisonnement par l’absurde : <span class="math inline">T</span> ne
+représente pas un codage préfixe optimal de <span
+class="math inline">A</span> de coût minimal. Il existe <span
+class="math inline">T&#39;&#39;</span> tel que <span
+class="math inline">C(T&#39;&#39;) &lt; C(T)</span></p>
+<blockquote>
+<p>Dans <span class="math inline">T&#39;&#39;</span>, <span
+class="math inline">x</span> et <span class="math inline">y</span> sont
+frères</p>
+</blockquote>
+<blockquote>
+<p>Soit <span class="math inline">T&#39;&#39;</span>, l’arbre <span
+class="math inline">T&#39;&#39;</span> pour lequel le parent commun à
+<span class="math inline">x</span> et <span class="math inline">y</span>
+a été remplacé par <span class="math inline">z</span>, de fréquence
+<span class="math inline">z.\text{freq} = x.\text{freq} +
+y.\text{freq}</span>.</p>
+</blockquote>
+<blockquote>
+<p>Donc <span class="math inline">C(T&#39;&#39;) - x.\text{freq} -
+y.\text{freq} &lt; C(T) - x.\text{freq} - y.\text{freq}</span>.</p>
+</blockquote>
+<blockquote>
+<p>Soit <span class="math inline">C(T&#39;&#39;&#39;) &lt;
+C(T&#39;)</span>, ce qui contredit l’hypothèse affirmant que <span
+class="math inline">T&#39;</span> représente un codage préfixe optimal
+de coût minimal pour <span class="math inline">A&#39;</span>.</p>
+</blockquote>
+<p>Donc <span class="math inline">T</span> représente bien un codage
+préfixe optimal de coût minimal pour <span
+class="math inline">A</span>.</p>
+</body>
+</html>

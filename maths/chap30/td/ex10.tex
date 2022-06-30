@@ -1,0 +1,24 @@
+\part{Exercice 10}
+
+Soit $x \in \R$. $f$ est de classe $\mathcal{C}^2$ sur $[x, x+1]$. \[
+	f(x+1) = f(x) + f'(x) + \int_{x}^{x+1} f''(t)\;(x+1-t)~\mathrm{d}t
+.\]
+
+\[
+	(*):\qquad\left| \int_{x}^{x+1} f''(t)\:(x+1-t)~\mathrm{d}t \right| \le \int_{x}^{x+1} \big|f''(t)\big|\:|x+1-t|~\mathrm{d}t
+.\]
+
+On note $M(X) = \max_{t \in [x,x+1]} \big|f''(t)\big|$ et donc \[
+	(*) \le M(x) \int_{x}^{x+1}  (x+1-t)~\mathrm{d}t = \frac{M(x)}{2}
+.\]
+
+\[
+	\exists c_x \in [x,x+1],\,M(x) = \big|f''(c_x)\big|
+.\]
+
+Or, $c_x \ge x$ donc $c_x \tendsto{x\to +\infty} +\infty$ et donc $f''(c_x) \tendsto{x\to +\infty} 0$.
+
+Par encadrement, $\int_{x}^{x+1} f''(t)\:(x+1-t)~\mathrm{d}t \tendsto{x\to +\infty} 0$.
+
+Or, $f(x+1) - f(x) \tendsto{n\to +\infty} 0$ donc $f'(x) \tendsto{n\to +\infty} 0$.
+

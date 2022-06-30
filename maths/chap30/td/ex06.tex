@@ -1,0 +1,25 @@
+\part{Exercice 6}
+
+\[
+	\lim_{n\to +\infty} \underbrace{\left( \frac{(2n)!}{n^n\:n!} \right)^{\frac{1}{n}}}_{u_n} =\: ?
+\]
+
+\begin{align*}
+	\forall n \in \N^*,\,\ln(u_n) &= \frac{1}{n} \ln\left( \frac{(2n)!}{n^n\:n!} \right) \\
+	&= \frac{1}{n} \ln\left( \prod_{k=1}^n \frac{n+k}{n} \right) \\
+	&= \frac{1}{n} \sum_{k=1}^n \ln\left( 1 + \frac{k}{n} \right) \\
+\end{align*}
+
+\begin{mdframed}
+	Si $f \in \mathcal{C}_{\text{pm}}^0$ sur $[0,1]$ (continue par morceaux), alors \[
+		\frac{1}{n} \sum_{k=1}^n f\left( \frac{k}{n} \right) \tendsto{n\to +\infty} \int_{0}^{1} f(t)~\mathrm{d}t
+	.\]
+\end{mdframed}
+
+La fonction $t \mapsto \ln(1+t)$ est $\mathcal{C}^0$ sur $[0,1]$ donc,
+\begin{align*}
+	\ln(u_n)\tendsto{n\to +\infty} \int_{0}^{1} \ln(1+t)~\mathrm{d}t &= \left[ (1+t)\,\ln(1+t) - (1+t) \right]_0^1 \\
+	&= 2\ln 2 - 2 + 1 \\
+	&= 2 \ln 2 - 1 \\
+\end{align*}
+

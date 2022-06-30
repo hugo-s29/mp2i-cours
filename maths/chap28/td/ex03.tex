@@ -1,0 +1,58 @@
+\part{Exercice 3}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import math;
+		size(3cm);
+		pair A = (0, 1);
+		pair B = (0.2, 0);
+		pair C = (0.7, 0.5);
+		dot("$A$", A);
+		dot("$B$", B);
+		draw(B--C, Arrow(TeXHead));
+		draw(B--A, Arrow(TeXHead));
+		label("$\vec{v}$", B + A/2, align=W);
+		label("$\vec{u}$", B + C/2, align=S);
+		drawline(B, C);
+		dot((-1,-1), white+0);
+		dot((1,1), white+0);
+	\end{asy}
+\end{figure}
+
+\begin{align*}
+	\begin{rcases*}
+		x - 3y + 2z = 1\\
+		2x+y-3z = -1
+	\end{rcases*} \iff& \begin{cases}
+		x - 3y + 2z = 1\\
+		7y - 7z = -3
+	\end{cases}\\
+	\iff& \begin{cases}
+		y = -\frac{3}{7} + z\\
+		x = -\frac{2}{7} + z
+	\end{cases}\\
+	\iff& (x,y,z) = \left( -\frac{2}{7} + z, -\frac{3}{7} + z, z \right)\\
+	\phantom{\iff}& \phantom{(x,y,z)} = \left( -\frac{2}{7}, -\frac{3}{7}, 0 \right) + z (1, 1, 1)\\
+\end{align*}
+
+On pose $B$ le point de coordonnées $\left( -\frac{2}{7}, -\frac{3}{7}, 0 \right)$ et $\vec{u}$ le vecteur de coordonnées $(1, 1, 1)$. On a $B \in D$. On pose $\vec{D} = \Vect\left( \vec{u} \right)$.
+
+On pose $\vec{v} = \vec{BA}$ : ses coordonnées sont $\left( 1 + \frac{2}{7}, -1+\frac{3}{7}, 1-0 \right) = \left( \frac{9}{7}, -\frac{4}{7}, 1 \right)$.
+
+Soit $M$ de coordonnées $(x,y,z)$.
+
+\begin{align*}
+	M \in P \iff& \vec{AM} \in \Vect\left( \vec{u} + \vec{v} \right)\\
+	\iff& \text{ la famille } \left( \vec{AM}, \vec{u}, \vec{v} \right) \text{ est liée}\\
+	\iff& \det_{\mathcal{B}}\left( \vec{AM}, \vec{u}, \vec{v} \right) = 0\\
+	\iff&
+	\begin{vmatrix}
+		x-1&1&\frac{9}{7}\\
+		y+1&1&-\frac{4}{7}\\
+		z-1&1&1
+	\end{vmatrix} = 0\\
+	\iff& \frac{11}{7}(x-1) + \frac{2}{7}(y+1) - \frac{13}{7}(z-1) = 0\\
+	\iff& 11x + 2y - 13z + 4 = 0
+\end{align*}
+

@@ -1,0 +1,24 @@
+\part{Exercice 14}
+
+\begin{itemize}
+	\item[$G \subset F^\perp$ ] Soit $f \in F$ et $g \in G$.
+		\begin{align*}
+			\left<g \mid f \right> &= \int_{-1}^{1} g(t)f(t)~\mathrm{d}t \\
+			&= \int_{-1}^{0} g(t) f(t)~\mathrm{d}t + \int_{0}^{1} g(t) f(t)~\mathrm{d}x \\
+			&= 0 \\
+		\end{align*}
+	\item[$F^\perp \subset G$] Soit $h \in F^{\perp}$. Montrons que $h \in G$. \[
+			\forall f \in F\,\int_{-1}^{1} h(t)f(t)~\mathrm{d}t = 0
+		.\] Montrons que \[
+			\forall t \in [0,1],\,h(t) = 0
+		.\]
+
+		\[
+			\exists \eta > 0\,\forall t \in\:]t_0-\eta,t_0+\eta[,h(t) > 0
+		\] Or, \[
+			\int_{-1}^{1} f(t) h(t)~\mathrm{d}t = 0
+		.\] Mais, \[
+			\int_{t_0-\eta}^{t_0+\eta} f(t)\underbrace{h(t)}_{> 0}~\mathrm{d}t = 0
+		.\] $\lightning$
+\end{itemize}
+

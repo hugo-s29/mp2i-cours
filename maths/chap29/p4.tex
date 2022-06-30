@@ -100,3 +100,256 @@ Dans ce paragraphe, $\big(E, \left<\cdot  \mid \cdot  \right>\big)$ est un espac
 	\end{itemize}
 \end{prv}
 
+\begin{defn}
+	Dans le conditions précédentes, $F^\perp$ est appelé le \underline{supplémentaire orthogonal} de $F$.
+	\index{supplémentaire orthogonal (espace euclidien)}
+
+	La projection sur $F$ parallèlement à $F^\perp$ est appelé \underline{projection orthogonale} sur $F$. On la note $p_F$.
+	\index{projection orthogonale (espace euclidien)}
+\end{defn}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import math;
+		import three;
+		size(5cm);
+		settings.render = 0;
+		settings.prc = false;
+
+		guide3 p = (-1, 1, 0) -- (1, 1, 0) -- (1, -1, 0) -- (-1, -1, 0) -- cycle;
+		draw(p);
+
+		triple x = (-1, 2, 3) / 4;
+		triple d = (0, 0, 2) / 4;
+		triple a = 1.5d;
+		draw(O -- x, red, Arrow3(TeXHead2));
+		draw(2d -- -2d);
+		draw((x-a) -- x, deepcyan, Arrow3(TeXHead2));
+		draw(O -- x-a, deepmagenta, Arrow3(TeXHead2));
+		draw(O--(x-a)/10--d/10 + (x-a)/10--d/10--cycle);
+		draw(shift((x-a) * 9 / 10) * (O--(x-a)/10--d/10 + (x-a)/10--d/10--cycle));
+		label("$p_F(x)$", (x-a)/2, deepmagenta, align=S);
+		label("$x$", x/2, red, align=N);
+		label("$F$", (-1, 1, 0));
+	\end{asy}
+\end{figure}
+
+\begin{prop}[inégalité de Bessel]
+	Soit $F$ de dimension finie. Alors, \[
+		\forall x \in E,\;\|p_F(x)\|\le \|x\|
+	.\]
+\end{prop}
+
+\begin{prv}
+	Comme $F$ est de dimension finie : \[
+		F \oplus F^\perp = E
+	.\]
+
+	Soit $x \in E$. On a \[
+		x = p_F(x) + \big(x - p_F(x)\big)\\
+		p_F(x) \in F\\
+		x - p_F(x) \in F^\perp
+	.\]
+	Donc, $x - p_F(x) \perp p_F(x)$ car $p_F(x) \in F$ et $x- p_F (x) \in F^\perp$.
+
+	D'après le théorème de Pythagore,
+	\begin{align*}
+		\|x\|^2 &= \|p_F(x)\|^2 + \underbrace{\|x - p_F(x)\|^2}_{\ge 0} \\
+		&\ge \|p_F(x)\|^2.
+	\end{align*}
+\end{prv}
+
+\begin{defn}
+	Soit $A \in \mathcal{P}(E)$ non vide et $x \in E$. La \underline{distance} de $x$ à $A$ est \[
+		d(x, A) = \inf\big(\{\|x-a\ \|\mid a \in A\}\big)
+	.\]
+	\index{distance (espace préhilbertien)}
+	\index{distance (espace euclidien)}
+\end{defn}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import three;
+		triple M = 0.5Z;
+		size(5cm);
+		draw((0.8,-0.6,0)..(1.1,-0.2,0)..(0.2,0.5,0)..(0.2,-0.8,0)..cycle, magenta);
+		label("$A$", (0.2,0.5,0), magenta, align=SE);
+		for(real t = 0; t <= 1; t += 0.1) {
+			real x = (1-t)*0.9 + 0.1 * t - 0.5;
+			real y = (1-t)*0.3 - 0.4 * t - 0.5;
+			draw(M -- (-y, x, 0), gray);
+		}
+		dot(M);
+	\end{asy}
+\end{figure}
+
+\begin{thm}
+	Soit $F$ un sous-espace vectoriel de $E$ de dimension finie et $x \in E$. Alors, \[
+		d(x, F) = \|x - p_F(x)\|
+	.\]
+\end{thm}
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import math;
+		import three;
+		size(5cm);
+		settings.render = 0;
+		settings.prc = false;
+
+		guide3 p = (-1, 1, 0) -- (1, 1, 0) -- (1, -1, 0) -- (-1, -1, 0) -- cycle;
+		draw(shift(Y/3) * p);
+
+		real k = 0.1;
+
+		triple n(triple x) { return k * x / length(x); }
+
+		triple x = (-1, 2, 3) / 4;
+		triple d = (0, 0, 2) / 4;
+		triple a = 1.5d;
+		triple z = x-a;
+		triple y = (0.3, -1, 0)/3;
+		label("$F$", (-1, 4/3, 0), align=SE);
+		draw(x--z--y--cycle);
+		draw(z--n(y-z)+z--n(y-z)+n(x-z)+z--n(x-z)+z);
+		dot("$y$", y, deepcyan, align=W);
+		dot("$x$", x, red);
+		dot("$p_F(x)$", z, magenta);
+	\end{asy}
+\end{figure}
+
+\begin{prv}
+	Soit $y \in F$.
+	\begin{align*}
+		\|x - y\|^2 &= \|\underbrace{x - p_F(x)}_{\in F^\perp} + \underbrace{p_F(x) - y}_{\in F}\|^2 \\
+		&= \|x - p_F(x)\|^2 + \|p_F(x) - y\|^2 \\
+		&\ge \|x-p_F(x)\|^2. \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}[droite des moindres carrés -- régression linéaire]
+	~\\
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			axes(EndArrow);
+			size(5cm);
+
+			real f(real x) { return x + 0.5; }
+
+			real k = 35 / (7 - 0.5);
+
+			for(int i = 0; i < 35; ++i) {
+				real mag = exp(sin(100 * pi/exp(1) * i)) * 0.8 + exp(cos(i*40)/3);
+				real eps = mag * cos(10 * exp(1)/pi * i) / 3;
+				dot((i/k,f(i/k) + eps));
+			}
+
+			draw(graph(f, -1, 7), orange);
+		\end{asy}
+	\end{figure}
+	On cherche $(a,b) \in \R^2$ qui minimise $\sum_{i=1}^n (y_i - (ax_i - b))^2$.
+
+	On pose $y = (y_1, \ldots, y_n) \in \R^n$, $x = (x_1, \ldots, x_n) \in \R^n$ et $\mathbbm{1} = (1, \ldots, 1) \in \R^n$. On suppose que $x$ et $\mathbbm{1}$ ne sont pas colinéaires.
+
+	Soit $\left<\cdot  \mid \cdot  \right>$ le produit scalaire canonique de $\R^n$.
+
+	\[
+		\sum_{i=1}^n (y_i - (ax_i - b))^2 = \|y - \underbrace{(ax - b \mathbbm{1})}_{\mathclap{\in \Vect(x, \mathbbm{1}) = F}}\|^2
+	.\]
+	\[
+		\min_{(a,b) \in \R^2} \sum_{i=1}^n (y_i - (ax_i + b))^2 = \| y - p_F(y)\|^2
+	.\] On veut les coordonnées de $p_F(y)$ dans la base $(x, \mathbbm{1})$ de $F$.
+\end{exm}
+
+\begin{prop}
+	Soit $F$ un sous-espace vectoriel de $E$ de dimension finie et $\mathcal{B} = (e_1, \ldots, e_p)$ une base orthonormée de $F$. Alors, \[
+		\forall x \in E,\,p_F(x) = \sum_{i=1}^p \left<x \mid e_i \right>e_i
+	.\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item $\sum_{i=1}^p \left<x \mid e_i \right>e_i \in F$ car $e_1,\ldots, e_p \in F$.
+		\item On pose $u = x - \sum_{i=1}^p \left<x \mid e_i \right>e_i$. Montrons que $u \in F^\perp$. Soit $a \in F$. On peut écrire $a = \sum_{i=1}^p \left<a \mid e_i \right> e_i$.
+			\begin{align*}
+				\left<u \mid a \right> &=  \left<x  \mid a \right> - \left<p_F(x)  \mid a \right> \\
+				&= \sum_{i=1}^p \left<a \mid e_i \right>\left<x \mid e_i \right> - \sum_{i=1}^p \sum_{j=1}^p \left<a \mid e_i \right> \left<x \mid e_j \right> \left<e_i \mid e_j \right> \\
+				&= \sum_{i=1}^p \left<a \mid e_i \right>\left<x \mid e_i \right> - \sum_{i=1}^p \left<a \mid e_i \right> \left<x \mid e_i \right> \\
+				&= 0. \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{exm}[suite de l'exemple précédent -- régression linéaire]
+	\let\overline\bar
+	On orthonormalise la base $(\mathbbm{1},x)$ de $F$.
+	\[
+		\|\mathbbm{1}\|^2  = \sum_{i=1}^n 1^2 = n
+	.\] On pose donc $v_1 = \frac{\mathbbm{1}}{\|\mathbbm{1}\|} = \frac{1}{\sqrt{n}}(1, \ldots, 1)$.
+
+	Soit $u_2 = x - \left<x \mid v_1 \right>v_1$.
+	\[
+		\left<x \mid v_1\right> = \frac{1}{\sqrt{n}} \sum_{i=1}^n x_i = \sqrt{n} \overline{x} \text{ où } \overline{x} = \frac{1}{n} = \frac{1}{n}\sum_{i=1}^n x_i
+	.\]
+	D'où,
+	\begin{align*}
+		u_2 &= (x_1, \ldots, x_n) - \overline{x} (1, \ldots, 1)\\
+		&= (x_1 - \overline{x},\ldots,x_n - \overline{x}). \\
+	\end{align*}
+	On a $\|u_2\|^2 = \sum_{i=1}^n (x_i - \overline{x})^2 = n \sigma_x^2$. On en déduit donc que \[
+		v_2 = \frac{u_2}{\|u_2\|} = \frac{1}{\sqrt{n}\sigma_x}(x_1-\overline{x},\ldots,x_n-\overline{x})
+	.\]
+
+	\begin{align*}
+		p_F(y) &= \left<y \mid v_1 \right>v_1 + \left<y \mid v_2 \right>v_2\\
+		&= \frac{1}{n} \sum_{i=1}^n y_i (1, \ldots, 1) + \frac{1}{n\sigma_x^2} \sum_{i=1}^n y_i (x_i - \overline{x})(x_1 - \overline{x}, \ldots, x_n - \overline{x}) \\
+		&= (\overline{y}, \ldots, \overline{y}) - \frac{1}{n\sigma_x^2}\left( \sum_{i=1}^n (y_i - \overline{y})(x_i - \overline{x}) + \overline{y} \sum_{i=1}^n (x_i - \overline{x}) \right)(x_1 -\overline{x}, \ldots, x_n - \overline{x}) \\
+		&= (\overline{y}, \ldots, \overline{y}) + \frac{1}{\sigma_x^2}\Cov(x,y)(x_1-\overline{x}, \ldots, x_n - \overline{x}) \\
+		&= \left( \overline{y} - \frac{\Cov(x,y)}{\sigma^2_x}\overline{x} \right) (1, \ldots, 1) + \frac{\Cov(x,y)}{\sigma_x^2}(x_1, \ldots, x_n).
+	\end{align*}
+	Donc, \[
+		\begin{cases}
+			a = \frac{\Cov(x,y)}{\sigma_x^2};\\
+			b = \overline{y} - a\overline{x}.
+		\end{cases}
+	\]
+\end{exm}
+
+\begin{prop}
+	Soit $F$ un sous-espace vectoriel de $E$ de \underline{dimension finie}. Alors, \[
+		\left( F^\perp \right)^\perp = F
+	.\]
+\end{prop}
+
+\begin{prv}
+	Clairement, $F \subset \left( F^\perp \right)^\perp$.
+
+	Soit $\mathcal{B} = (e_1, \ldots, e_p)$ une base orthonormée de $F$ et $x \in \left( F^\perp \right)^\perp$.
+
+	On sait que \[
+		\begin{cases}
+			x = \underbrace{p_F(x)}_{\in F} + \underbrace{x-p_F(x)}_{\in F^\perp}\\
+			p_F(x) = \sum_{i=1}^p \left<x \mid e_i \right> e_i
+		\end{cases}
+	.\]
+
+	\begin{align*}
+		x - p_F(x) \in F^\perp \text{ donc }& x \perp (x - p_F(x))\\
+		\text{ donc }& \left< x  \mid x - p_F(x) \right> = 0\\
+		\text{ donc }& \|x\|^2 - \left<x  \mid p_F(x) \right> = 0\\
+		\text{ donc }& \|x\|^2 = \sum_{i=1}^p \left<x \mid e_i \right>\left<x \mid e_i \right> = \|p_F(x)\|^2
+	\end{align*}
+
+	Or,
+	\begin{align*}
+		&\|x\|^2 = \|p_F(x)\|^2 + \|x - p_F(x)\|^2\\
+		\text{ donc }& \|x - p_F(x)\| = 0\\
+		\text{ donc } x = p_F(x) \in F.
+	\end{align*}
+\end{prv}
+

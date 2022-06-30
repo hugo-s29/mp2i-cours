@@ -1,0 +1,16 @@
+\part{Exercice 3}
+
+Soit $f : [0,1] \to \R$ continue. On suppose $\int_{0}^{1} f(t)~\mathrm{d}t = 0$. On note $m = \min_{[0,1]}f$ et $M = \max_{[0,1]}f$. Montrer que \[
+	\int_{0}^{1} f^2(t)~\mathrm{d}t \le -mM
+.\]
+
+\[
+	\forall t \in [0,1],\,\big(M-f(t)\big)\big(f(t) - m\big) \ge 0
+\] donc \[
+	\int_{0}^{1} \big(M-f(t)\big)\big(f(t)-m\big)~\mathrm{d}t \ge 0
+\] et donc \[
+	-mM - \int_{0}^{1} f^2(t)~\mathrm{d}t \ge 0
+.\] On en déduit que \[
+	\int_{0}^{1} f^2(t)~\mathrm{d}t \le -mM
+.\]
+

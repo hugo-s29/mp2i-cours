@@ -1,0 +1,10 @@
+github.com/carlmjohnson/csv v1.20.0 h1:/QBKcZdJY0FMerK6m+uMgZRwmQ33Uj5NBqkqcitstcY=
+github.com/carlmjohnson/csv v1.20.0/go.mod h1:I2Bsj5YPd8aGaLfXelcf4ANJpFlrPYkgpJnwCsTdNbI=
+github.com/phpdave11/gofpdi v1.0.11/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
+github.com/phpdave11/gofpdi v1.0.13 h1:o61duiW8M9sMlkVXWlvP92sZJtGKENvW3VExs6dZukQ=
+github.com/phpdave11/gofpdi v1.0.13/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
+github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/signintech/gopdf v0.12.0 h1:WxwRsrSqU1j3HAlafDYz4jSvLNUGDd6DAb9IrWbTc3U=
+github.com/signintech/gopdf v0.12.0/go.mod h1:a+E8HlIuBwghPyoo7UaoB5UaL7zklDzmYVIAHoW/Rlw=

@@ -1,0 +1,30 @@
+\part{Exercice 2}
+
+Soit $f : [a,b] \to \R$ continue. Déterminer une condition nécessaire et suffisante poour que \[
+	\left| \int_{a}^{b} f(t)~\mathrm{d}t \right| = \int_{a}^{b} \big|f(t)\big| ~\mathrm{d}t
+.\]
+
+Condition suffisante : $f$ est de signe constant sur $[a,b]$.
+
+On démontre que c'est une condition nécessaire. On suppose donc \[
+	\left| \int_{a}^{b} f(t)~\mathrm{d}t \right| = \int_{a}^{b} \big|f(t)\big| ~\mathrm{d}t
+.\]
+
+\begin{itemize}
+	\item \underline{\sc Cas 1} On suppose $\int_{a}^{b} f(t)~\mathrm{d}t \ge 0$. On sait que \[
+			\int_{a}^{b} f(t)~\mathrm{d}t = \int_{a}^{b} \big|f(t)\big|~\mathrm{d}t
+		\] donc \[
+			\int_{a}^{b} \underbrace{\big(|f(t)| - f(t)\big)}_{\substack{\ge 0\\\text{ de classe } \mathcal{C}^0}} ~\mathrm{d}t = 0
+		.\] On en déduit que \[
+			\forall t \in [a,b],\,f(t) = |f(t)| \ge 0
+		.\]
+	\item \underline{\sc Cas 2} On suppose $\int_{a}^{b} f(t)~\mathrm{d}t \le 0$. On sait que \[
+			-\int_{a}^{b} f(t)~\mathrm{d}t = \int_{a}^{b} \big|f(t)\big|~\mathrm{d}t
+		\] donc \[
+			\int_{a}^{b} \underbrace{\big(|f(t)| + f(t)\big)}_{\substack{\ge 0\\\text{ de classe } \mathcal{C}^0}} ~\mathrm{d}t = 0
+		.\] On en déduit que \[
+			\forall t \in [a,b],\,f(t) = -|f(t)| \le 0
+		.\]
+\end{itemize}
+
+

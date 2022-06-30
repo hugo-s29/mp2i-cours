@@ -1,0 +1,35 @@
+\part{Exercice 15}
+
+\begin{enumerate}
+	\item Soit $t \in [0,1]$.
+		On a $f(t) = \int_{0}^{t} f'(u)~\mathrm{d}u$.
+		D'où, \[
+			f^2(t) = \left( \int_{0}^{t} f'(u)~\mathrm{d}u \right)^2 = \left<f' \mid 1 \right>^2
+		.\] On applique l'inégalité de Cauchy-Schwarz : \[
+			f^2(t) \le \int_{0}^{t} f'(u)^2~\mathrm{d}u \int_{0}^{t} 1^2~\mathrm{d}u \le t \int_{0}^{1} f'(u)^2~\mathrm{d}u
+		.\] Donc, \[
+			\int_{0}^{1} f^2(t)~\mathrm{d}t \le \int_{0}^{1} \left( t \int_{0}^{1}f'(u)^2~\mathrm{d}u \right) ~\mathrm{d}t = \int_{0}^{1} f'(u)^2~\mathrm{d}u \int_{0}^{1} t~\mathrm{d}t = \frac{1}{2} \int_{0}^{1} f'(t)^2~\mathrm{d}t
+		.\]
+	\item On suppose $f(0) = 0$ et $f(1) = 0$.
+		\begin{align*}
+			\forall t \in \left[ \frac{1}{2},1 \right],\,
+			f^2(t) =& \int_{t}^{1} f'(u)~\mathrm{d}u\\
+			\le& \int_{t}^{1} f'(u)^2~\mathrm{d}u \int_{t}^{1} 1^2~\mathrm{d}u\\
+			\le& \int_{0}^{1} f'(u)^2~\mathrm{d}u (1-t).
+		\end{align*}
+
+		\begin{align*}
+			\int_{\frac{1}{2}}^{1} f^2(t)~\mathrm{d}t \le& \int_{\frac{1}{2}}^{1} (1-t)~\mathrm{d}t \int_{0}^{1} f'(u)^2~\mathrm{d}u\\
+			\le& \frac{1}{8} \int_{0}^{1} f'(u)^2~\mathrm{d}u
+		\end{align*}
+
+		\begin{align*}
+			\int_{0}^{\frac{1}{2}} f^2(t)~\mathrm{d}t \le& \int_{0}^{1} f'(u)~\mathrm{d}u \int_{0}^{\frac{1}{2}} t~\mathrm{d}t\\
+			\le& \frac{1}{8} \int_{0}^{1} f'(u)^2~\mathrm{d}u
+		\end{align*}
+
+		On en déduit que \[
+			\int_{0}^{1} f^2(t)~\mathrm{d}t \le \frac{1}{4} \int_{0}^{1} f'(t)^2~\mathrm{d}t
+		.\]
+\end{enumerate}
+

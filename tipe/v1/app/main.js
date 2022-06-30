@@ -17,7 +17,7 @@ const board_height = height - 2 * py;
 const w = board_width / (cols - 1);
 const h = board_height / (rows - 1);
 
-const recovered_probability = 0.8;
+const recovered_probability = 0.9;
 const max_age = 170;
 const emptyness = 0.5;
 
@@ -235,6 +235,17 @@ function stop() {
 }
 
 function drawGraph() {
+	const opts = {
+		modeBarButtonsToRemove: ['toImage', 'sendDataToCloud'],
+		modeBarButtonsToAdd: [{
+			name: 'toImage2',
+			icon: Plotly.Icons.camera,
+			click: function(gd) {
+				Plotly.downloadImage(gd, {format: 'svg'})
+			}
+		}]
+	};
+
 	const s = data.map(([e,s,i,r,d]) => s);
 	const i = data.map(([e,s,i,r,d]) => i);
 	const r = data.map(([e,s,i,r,d]) => r);
@@ -248,7 +259,7 @@ function drawGraph() {
 
 	const graphData = [tr2, tr4, tr3, tr1];
 	const layout = {barmode: "stack"};
-	Plotly.newPlot('graph', graphData, layout);
+	Plotly.newPlot('graph', graphData, layout, opts);
 }
 
 /*

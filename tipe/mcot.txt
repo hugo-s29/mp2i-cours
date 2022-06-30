@@ -1,0 +1,28 @@
+MCOT
+
+Titre :
+Comment la structure de la ville affecte les inégalités comportementales face à une épidémie ?
+
+Positionnement thématique :
+Informatique (pratique)
+Mathématiques (autres domaines)
+
+Mots-clés :
+épidémie, modélisation, inégalités, comportement
+
+Keywords :
+epidemic, modeling, inequalities, behavior
+
+Bibliographie commentée :
+Dans [2], l'auteur décrit le modèle SIR décrivant statistiquement l'évolution d'un virus dans une population. Ce modèle est également utilisé dans [1] mais la notion de pauvreté y est intégrée : les paramètres de contagion diffèrent en fonction de la pauvreté de la personne. Dans [3], on applique le modèle SIR à l'aide d'un automate cellulaire ce qui permet de représenter la dimension spatiale de la maladie.
+
+Problématique :
+Comment la structure de la ville affecte les inégalités comportementales face à une épidémie ?
+
+Objectifs :
+Premièrement, modéliser informatiquement une épidémie (automate cellulaire ou particules). Secondement, analyser l'évolution des « comportements » : par exemple, les personnes ne se faisant pas testées seront-elles plus ou moins infectées ? De cette analyse, on peut en déduire des inégalités de comportements face à la maladie. Troisièmement, faire varier la représentation informatique de la ville. On observe si la structure de la ville a un impact sur ces inégalités comportementales.
+
+Références :
+[1] : Anand Sahasranaman et Henrik Jeldtoft Jensen, « Poverty in the time of epidemic: A modeling perspective »,
+[2] : J.D. Murray, « Mathematical Biology », livres I et II,
+[3] : S. Hoya White, A. Martín del Rey, et G. Rodríguez Sánchez, « Modeling epidemics using cellular automata ».

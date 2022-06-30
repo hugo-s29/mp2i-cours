@@ -12,20 +12,20 @@ class Day:
 
     self.spots = {hour: None for hour in self.generate_hours()}
 
-    kholles = self.kholle_manager.load(self.get_id())
-    student.kholle_count += len(kholles)
-    student.kholles += kholles
+    # kholles = self.kholle_manager.load(self.get_id())
+    # student.kholle_count += len(kholles)
+    # student.kholles += kholles
 
-    self.kholles = kholles
+    # self.kholles = kholles
 
     self.subjects = [
-      *kholles,
+      # *kholles,
       *self.generate_subjects(),
     ]
 
     self.subjects = list(filter(lambda x: x is not None, self.subjects))
 
-    self.meals = self.generate_meals()
+    self.meals = [] # self.generate_meals()
 
     for subject in self.subjects:
       for hour in range(*subject.time):
@@ -41,6 +41,7 @@ class Day:
           print("Exception Data:")
           print("Already have ", self.spots[hour])
           print("Trying to add", subject)
+          print(self.student.name)
 
           raise Exception("Two classes at the same time")
 

@@ -1,0 +1,22 @@
+\part{Exemples de lois}
+
+\begin{defn}
+	Soit $X : \Omega \to  E$ une variable aléatoire. On dit que $X$ suit une \underline{loi uniforme}\index{loi uniforme (variables aléatoires)} si $P_X$ est l'équiprobabilité sur $X(\Omega)$.
+	On note alors $X \sim \mathcal{U}\!\big(X(\Omega)\big)$.
+\end{defn}
+
+\begin{defn}
+	Soit $X : \Omega \to \{0,1\}$. On note $p = P(X = 1) \in [0,1]$. On dit que $X$ suit la \underline{loi de Bernoulli}\index{loi de Bernoulli (variables aléatoires)} de paramètre $p$. On note alors $X \sim \mathcal{B}(p)$.
+\end{defn}
+
+\begin{defn}
+	Soit $X : \Omega \to \left\llbracket 0,n \right\rrbracket$. On dit que $X$ suit la \underline{loi binomiale}\index{loi binomiale (variables aléatoires)} de paramètres $n$ et $p$ si \[
+		\forall k \in \left\llbracket 0,n \right\rrbracket,\,P(X = k) = {n\choose k} p^k (1-p)^{n-k}
+	.\] On note alors $X \sim \mathcal{B}(n,p)$.
+\end{defn}
+
+\begin{thm}
+	On considère une expérience aléatoire qui n'a que deux issues possibles : succès ou échec. On répète $n$ fois à l'identique cette expérience, et on note $X$ le nombre de succès. Alors $X \sim \mathcal{B}(n,p)$ où $P$ est la probabilité de succès.
+	\qed
+\end{thm}
+

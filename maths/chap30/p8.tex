@@ -1,0 +1,78 @@
+\part{Fonctions réglées}
+
+Soit $f : [a,b] \to \R$ continue. Cette fonction est donc uniformément continue (théorème de Heine) : \[
+	\forall \varepsilon > 0,\, \exists \eta > 0,\, \forall (x,y) \in [a,b]^2,\,|x-y|\le \eta \implies \big|f(x) - f(y)\big| \le \varepsilon
+.\]
+
+D'où \[
+	\forall n \in \N^*,\,\exists \eta_n > 0,\,|x-y| \le \eta_n \implies \big|f(x) - f(y)\big| \le \frac{1}{n}
+.\]
+
+\begin{figure}[H]
+	\centering
+	\begin{asy}
+		import graph;
+		import patterns;
+
+		add("hatch", hatch(2mm, magenta));
+
+		real[] coeffs = {-0.028394180582212297,0.27523209017393424,0.24929746599526315,-6.4461353755869855};
+		real f(real x) {
+			x -= 3;
+			real y = 0;
+			for(int i = 0; i < coeffs.length; ++i) {
+				y -= x^i * coeffs[coeffs.length-i-1];
+			}
+			return y;
+		}
+
+		size(5cm);
+		path p = graph(f, 1, 9, 500);
+		draw((-1, 0) -- (11, 0), Arrow(TeXHead));
+		draw((0, min(min(p).y, -1)) -- (0, max(p).y + 1), Arrow(TeXHead));
+		for(int i = 1; i < 9; ++i) {
+			filldraw((i, f(i)) -- (i+1, f(i)) -- (i+1, 0) -- (i, 0) -- cycle, pattern("hatch"), magenta);
+			draw((i, -0.5) -- (i+1, -0.5), Arrows(TeXHead));
+			label("$\eta_n$", (i+0.5, -1), fontsize(6pt));
+		}
+		draw(p, red + 0.6);
+	\end{asy}
+\end{figure}
+
+Cependant, contrairement au sommes de Darboux, cette construction utilise des notions que l'on admet : notamment, la convergence d'une suite de fonctions.
+
+\begin{exm}[convergence d'une suite de fonctions]
+	Pour $n \in \N$, on pose \begin{align*}
+		f_n: [0,1] &\longrightarrow \R \\
+		x &\longmapsto x^n
+	\end{align*}
+
+	\[
+		\forall x \in [0,1],\,f_n(x) \tendsto{n\to +\infty} \begin{cases}
+			0 & \text{ si } x < 1\\
+			1 &\text{ sinon}.
+		\end{cases}
+	\]
+
+	Pour $n \in \N$, $f_n$ est continue mais $\lim_{n\to +\infty} f_n$ ne l'est pas :
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			draw((-0.1, 0) -- (1.1, 0), Arrow(TeXHead));
+			draw((0,-0.1) -- (0, 1.1), Arrow(TeXHead));
+			size(5cm);
+			pen a = orange;
+			pen b = yellow;
+			for(int n = 1; n < 10; ++n) {
+				real f(real x) { return x^n; }
+				real t = n / 9;
+				pen p = b * t + a * (1 - t);
+				draw(graph(f, 0, 1), p);
+			}
+			draw((0,0)--(1,0), magenta);
+			dot((1,1), magenta);
+		\end{asy}
+	\end{figure}
+\end{exm}
+

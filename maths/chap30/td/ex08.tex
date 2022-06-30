@@ -1,0 +1,41 @@
+\part{Exercice 8}
+
+On pose \[
+	f_n : x \mapsto  \sum_{k=1}^n \frac{\sin(kx)}{k}
+.\]
+
+Soit $x \not\equiv 0 \mod {2\pi}$.
+
+\begin{align*}
+	\forall x,\, f'_n(x) = \sum_{k=1}^n \cos(kx) &= \Re\left( \sum_{k=1}^n e^{ikx} \right) \\
+	&= \Re\left( e^{ix}\; \frac{1 - \left( e^{ix} \right)^n}{1-e^{ix}} \right) \\
+	&= \Re\left( e^{ix} \frac{e^{inx/2}}{e^{ix/2}} \frac{\cancel{2i}\sin(nx / 2)}{\cancel{2i}\sin(x/2)} \right) \\
+	&= \frac{\sin(nx/2)}{\sin(x/2)} \cos\left( (n+1)\;\frac{x}{2} \right). \\
+\end{align*}
+
+\todo{Tableau de variations / de signes}
+
+%\begin{center}
+	%\begin{tikzpicture}
+		%\tkzTabInit{$x$/1, $\sin(nx / 2)$/1, $\sin(x/2)$/1, $\cos\left( (n+1) \frac{x}{2} \right)$/1, $f_n$}{0, $\frac{\pi}{n+1}$, $\frac{2\pi}{n}$, $\frac{4\pi}{2}$, $2\pi$}
+		%\tkzTabLine{,+,,+,z,-,z,+,,}
+		%\tkzTabLine{,+,,+,,+,,+,z,}
+		%\tkzTabLine{,+,z,-}
+		%\tkzTabVar{-/{},+/{},-{}}
+	%\end{tikzpicture}
+%\end{center}
+
+Donc $x_n = \frac{\pi}{n+1}$.
+
+\begin{align*}
+	\forall n,\,f_n(x_n) &= \sum_{k=1}^n \frac{\sin\left( \frac{k\pi}{n+1} \right)}{k}\\
+	&= \frac{\pi}{n+1} \sum_{k=1}^n \frac{\sin\left( \frac{k\pi}{n+1} \right)}{\frac{k\pi}{n+1}} \\
+	&= \frac{\pi}{n+1} \sum_{k=1}^{n+1} g\left( \frac{k}{n+1} \right) - \cancel{\frac{\pi}{n+1} \sin(\pi)} \\
+	&\tendsto{n\to +\infty} \pi \int_{0}^{1} g(x)~\mathrm{d}x
+\end{align*}
+où \[
+	g: x \mapsto \begin{cases}
+		\frac{\sin(\pi x)}{\pi x} &\text{ si } x \neq 0\\
+		1 &\text{ si } x = 0.
+	\end{cases}
+\]

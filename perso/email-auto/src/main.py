@@ -9,6 +9,7 @@ from classroom import classroom
 import datetime, os, sys
 from custom.tp_info import get_groups as add_tp_info_groups
 from colors import reset_random_seed
+from tps_info_loader import TPInfoLoader
 
 with open('src/counter.txt') as f:
     week_num, real_week_num = list(map(int, f.read().split(';')))
@@ -21,6 +22,7 @@ directory = f"archive/{date}"
 
 # classroom = add_tp_info_groups(week_num)
 reset_random_seed()
+TPInfoLoader().load_data()
 
 if not os.path.exists(directory):
   os.makedirs(directory)

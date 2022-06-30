@@ -1,0 +1,99 @@
+\part{Gradient automatique}
+
+On considère l'ensemble \[
+	D = \{a + b \varepsilon  \mid  (a,b) \in \R^2\}
+\] où $\varepsilon \not\in \R$ donc $\varepsilon \neq 0$ mais $\varepsilon^2 = 0$ (similaire à $i$ dans les complexes).
+
+Cet ensemble peut existe : avec $D = \sfrac{\R[X]}{\sim}$ où
+\begin{align*}
+	P \sim Q \iff& P \equiv Q \mod {X^2}\\
+	\iff& X^2  \mid P - Q.
+\end{align*}
+On définit donc $\varepsilon = \overline{X} \neq 0$ : $\varepsilon^2 = \overline{X^2} = \overline{0} = 0$. En appliquant la division euclidienne de $P$ par $X^2$, on a $P = X^2 Q + R$ et donc $\overline{P} = \overline{R} = \overline{a + b X} = a + b \varepsilon$.
+
+C'est comme ça que l'on a définit $\C$ : en effet, on a $\C = \sfrac{\R[X]}{(X^2 + 1)}$.
+
+On essaie de multiplier deux {\it duaux} avec la distributivité du produit : \[
+	(1+2\varepsilon)(3+4\varepsilon) = 3 + 4\varepsilon + 6\varepsilon + 8\varepsilon^2 = 3 + 10\varepsilon
+.\]
+
+On considère maintenant une fonction réelle \begin{align*}
+	f: \R &\longrightarrow \R \\
+	x &\longmapsto 3x^2 - 5x^2 + 2x + 6
+\end{align*}
+et on pose $F$ l'extension de $f$ dans l'anneau des nombres duaux.
+
+\begin{align*}
+	F(x + \varepsilon) &= 3(x+\varepsilon)^3 - 5(x+\varepsilon)^2 + 2(x+\varepsilon) + 6 \\
+	&= 3(x^3 + 3x^2 \varepsilon + \cancel{3x\varepsilon^2} + \cancel{\varepsilon^2}) - 5(x^2 + 2x \varepsilon + \cancel{\varepsilon^2}) + 2x + 2\varepsilon + 6 \\
+	&= \underbrace{(3x^3 - 5x^2 + 2x + 6)}_{f(x)} + \varepsilon\underbrace{(9x^2 - 10x + 2)}_{f'(x)} \\
+	&= f(x) + \varepsilon f'(x) \\
+\end{align*}
+
+On généralise : soient $f$ et $g$ deux fonctions définies et dérivables sur $I \subset \R$ à valeurs réelles. On pose \[
+	\forall x \in I,\,\forall y \in \R,\,\begin{cases}
+		F(x+y\varepsilon) = f(x) + y\varepsilon f'(x),\\
+		G(x+y\varepsilon) = g(x) + y\varepsilon g'(x).\\
+	\end{cases}
+\]
+
+Soit $x \in I$ et $y \in \R$.
+
+\begin{align*}
+	F(x+ \varepsilon) + G(x + \varepsilon) &= \big(f(x) + g(x)\big) + \varepsilon \big(f'(x) + g'(x)\big);\\
+	F(x+\varepsilon)\times G(x + \varepsilon) &= \big(f(x) + \varepsilon f'(x)\big)\big(g(x) + \varepsilon g'(x)\big) \\
+	&= f(x)\,g(x) + \varepsilon\big(f'(x)\,g(x) + f(x)\,g'(x)\big) \\
+	&= (f\times g)(x) + \varepsilon (f\times g)'(x) \\
+	F\big(G(x + \varepsilon)\big) &= F\big(g(x) + \varepsilon g'(x)\big) \\
+	&= f\big(g(x)\big) + g'(x)\varepsilon f'\big(g(x)\big) \\
+\end{align*}
+
+Ces opérations sur les fonctions dans l'anneau dual sont compatibles avec les règles de dérivation habituelles.
+
+\begin{exm}
+	On calcule \[
+		\frac{\mathrm{d}}{\mathrm{d}x}\big(e^x \cos x - \cos(\ln x)\big)
+	.\]
+
+	On pose \[
+		\begin{cases}
+			F(x+ y \varepsilon) = e^x + y\varepsilon e^x,\\
+			G(x+ y\varepsilon) = \cos(x) - y\varepsilon \sin x,\\
+			H(x + y \varepsilon) = \ln x + \frac{y\varepsilon}{x}.
+		\end{cases}
+	\]
+
+	\begin{align*}
+		&\phantom{=}\:F(x+ \varepsilon) G(x + \varepsilon) - G(H(x+ \varepsilon))\\
+		&= (e^x + \varepsilon e^x)\big(\cos x - \varepsilon \sin x\big) - G\left(\ln x + \frac{\varepsilon}{x}\right) \\
+		&= e^x \cos x - \varepsilon \sin(x) e^x + \varepsilon \cos(x) e^x - \left( \cos(\ln x) - \frac{\varepsilon}{x} \times \sin(\ln x) \right) \\
+		&= e^x \cos(x) - \cos(\ln x) + \varepsilon\left(-\sin(x) e^x + \cos(x) e^x + \frac{1}{x}\sin(\ln x) \right) \\
+	\end{align*}
+\end{exm}
+
+On peut calculer les dérivées de fonctions. À la main, ça prend autant de temps que d'utiliser les techniques habituelles. Cependant, informatiquement, le calcul de dérivée est simple ; en Python on peut le faire avec :
+
+\begin{algorithm}
+	\begin{lstlisting}[language=python]
+class Dual:
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+
+  def __add__(self, other):
+    return Dual(self.x + other.x, self.y + other.y)
+
+  def __mul__(self, other):
+    return Dual(self.x * other.x, self.x * other.y + self.y * other.x)
+
+  def exp(self):
+    return Dual(exp(self.x), self.y * exp(self.x))
+	\end{lstlisting}
+\end{algorithm}
+
+Par example, pour chercher $\min_{x \in \R}\left( x^4 + 3x^3 -5x^2 + 2 \right)$, on pose $f(x_0) = f(x_0 + \varepsilon f'(x_0)$ et $x_{n+1} = x_n - hf'(x_n)$ où $h > 0$. La suite $(x_n)$ tends vers $x^*$ où $x^*$ est un minimum local.
+
+Ce calcul de dérivée est exact, on ne calcule pas $f'(x) \simeq \frac{f(x+h) - f(x)}{h}$.
+
+Pour le calcul de gradient dans le cas de deux dimensions, on considère deux nombres vérifiant les propriétés de ``$\varepsilon$'' : $\varepsilon_1$ et $\varepsilon_2$.
+

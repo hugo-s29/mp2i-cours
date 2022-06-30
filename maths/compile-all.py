@@ -130,7 +130,7 @@ for choice in answers['target']:
     
     pdf_files.append((compile_latex_file(path), file))
 
-    if part == "main":
+    if 'main ' in part:
         simple_path = f'{cwd}/{chapter}/simple-main.tex'
         simple_file = f'{chapter}-simple.pdf'
 

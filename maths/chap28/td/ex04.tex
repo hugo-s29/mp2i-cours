@@ -1,0 +1,66 @@
+\part{Exercice 4}
+
+\begin{enumerate}
+	\item \[
+			D \text{ et } D' \text{ sont complanaires } \iff \begin{cases}
+				 D \cap D' \neq \O\\
+				 \ou\\
+				 \vec{D} = \vec{D'}.
+			\end{cases}
+		\]
+
+		\begin{align*}
+			D\cap D' \neq \O \iff&
+			\begin{cases}
+				\bx x - 2z = 1\\
+				y-z = 2\\
+				x + y + z = 1\\
+				x - 2y + 2z = a\\
+			\end{cases}\\
+			\iff& \begin{cases}
+				\bx x - 2z = 1\\
+				\bx y - z = 2\\
+				y + 3z = 0\\
+				-2y + 4z = a - 1
+			\end{cases}\\
+			\iff& \begin{cases}
+				 x - 2z = 1\\
+				 y - z = 2\\
+				 z = -\frac{1}{2}\\
+				 0 = a + 4
+			\end{cases}
+		\end{align*}
+
+		Si $a = -4$, $D$ et $D'$ sont sécantes donc coplanaires.
+
+		On suppose maintenant $a \neq -4$. On a \[
+			\vec{D} : \begin{cases}
+				x - 2z = 0\\
+				y - z = 0
+			\end{cases}
+		\] et donc $\vec{D} = \Vect\big(\underbrace{(2,1,1)}_{\vec{u}}\big)$.
+
+		On a \[
+			\vec{D'} : \begin{cases}
+				 x + y + z = 0\\
+				 x - 2y + 2z = 0
+			\end{cases}
+		.\] Or, $\vec{u} \not\in \vec{D'}$ et donc $\vec{D} \neq \vec{D'}$. Les droites ne sont jamais parallèles.
+	\item On suppose $a = -4$. On pose $A$ le point de coordonnées de $\left( 0, \frac{3}{2}, -\frac{1}{2} \right)$. On a $A \in D\cap D'$. On pose $\vec{u}$ le vecteur de coordonnées $(2, 1, 1)$ et $\vec{v}$ le vecteur de coordonnées $(-4, 1, 3)$.
+
+		Soit $M$ un point de coordonnées $(x, y, z)$.
+		\begin{align*}
+			M \in P \iff& \vec{AM} \in \Vect\left( \vec{u}, \vec{v} \right)\\
+			\iff&
+			\begin{vmatrix}
+				x&2&-4\\
+				y-\frac{3}{2}&1&1\\
+				z+\frac{1}{2}&1&3
+			\end{vmatrix} = 0\\
+			\iff& 2x - 10\left( y - \frac{3}{2} \right) + 6 \left( z + \frac{1}{2} \right) = 0\\
+			\iff& 2x - 10y + 6z + 18 = 0.
+		\end{align*}
+\end{enumerate}
+
+
+

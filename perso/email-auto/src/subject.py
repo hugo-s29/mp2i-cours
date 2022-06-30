@@ -7,6 +7,7 @@ class Subject:
     self.room = room
     self.name = name
     self.optional = optional
+    self.removed = False
 
   def get_color(self):
     return colors.hex_to_rgb(self.get_hex_color())
@@ -17,3 +18,6 @@ class Subject:
 
   def __repr__(self):
     return f"{self.name} (hours: {self.time}) in {self.room}"
+
+  def remove(self):
+    self.removed = True

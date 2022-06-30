@@ -1,0 +1,348 @@
+\documentclass[a4paper]{report}
+
+\usepackage[fontsize=10pt]{fontsize}
+\usepackage{wrapfig}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage[f]{esvect}
+\usepackage{array}
+\usepackage{xfrac}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+
+\input{../preamble.tex}
+
+\definecolor{black}{HTML}{575279}
+
+\color{black}
+\setlength\tabcolsep{5mm}
+\setlength{\extrarowheight}{1mm}
+\usepackage{adjustbox}
+\setlength{\columnsep}{15pt}
+
+\newcommand{\tabitem}{~\llap{--}~~}
+\newcommand{\tabnoitem}{~~~}
+\newcommand{\tsup}[1]{\textsuperscript{\underline{#1}}}
+
+\let\vec\vv
+\let\sc\scshape
+\let\bf\bfseries
+\let\it\itshape
+
+\fancyhead[R]{Hugo {\sc Salou} \& Iwan {\sc Derouet}}
+\fancyhead[L]{MP2I}
+\fancyhead[C]{Physique TP\,23\,\&\,24}
+\renewcommand{\thesection}{\clap{\Roman{section}.}}
+
+%\title{TP\,21}{Mesure du moment d'inertie d'une roue}{Hugo {\sc Salou}\\Iwan {\sc Derouet}}
+
+\setlength{\parindent}{7mm}
+\setlength{\parskip}{5mm}
+\setstretch{1.2}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			~\\
+			\vspace{4cm}
+			{\Large \sc TP\,23}\\
+			\vspace{0.5cm}
+			{\Huge \cursive Étude du moteur de Stirling}\\
+			\vspace{1.5cm}
+			{\large et}\\
+			\vspace{1.5cm}
+			{\Large \sc TP\,24}\\
+			\vspace{0.5cm}
+			{\Huge \cursive Refroidissement en convection forcée}\\
+			\vfill
+			\vfill
+			{Hugo {\sc Salou}\\Iwan {\sc Derouet}}\\
+			\vspace{1.5mm}
+			\rule{4cm}{0.4pt}\\
+			\vspace{3.5mm}
+			MP2I\\
+		\end{center}
+	\end{titlepage}
+
+	\vspace{2.5mm}
+	\par\noindent\rule{\textwidth}{0.4pt}
+	{\Large \bf TP 23 \hfill Étude du moteur de Stirling\hfill \phantom{TP 23}}\\[-3mm]
+	\rule{\textwidth}{0.4pt}
+	\vspace{2.5mm}
+
+	\begin{multicols}{2}
+		L'objectif de ce TP est d'analyser le comportement du moteur de Stirling.
+
+		Le moteur de Stirling a un mouvement cyclique qui peut être décomposé en 4 étapes : premièrement, on a une transformation isotherme; puis, une transformation isochore dont le transfert thermique est $-Q_R$; troisièmement, on a une transformation isotherme; et, enfin, une transformation isochore dont le transfert thermique vaut $Q_R$.
+
+		On peut représenter la situation sur un schéma :
+
+		\begin{center}
+			\begin{tikzcd}[row sep=2cm, column sep=2cm]
+				E_1 \rar["\text{isotherme}"]& E_2 \dar["\avrt{\text{isochore}}", "-Q_R"']\\
+				E_4 \uar["\vrt{\text{isochore}}", "Q_R"'] & E_3\lar["\text{isotherme}"]
+			\end{tikzcd}
+		\end{center}
+
+		Le sujet du TP nous donne des valeurs de volume et de température pour les états $E_1$, $E_2$, $E_3$ et $E_4$ :
+
+		\begin{center}
+			\begin{tabular}{c|cccc}
+				État&$E_1$&$E_2$&$E_3$&$E_4$\\ \hline
+				$V$ ($\mspace{0.5mu}\mathrm{m}\ell\mspace{1.5mu}$)&$24,\!5$&$34,\!5$&$34,\!5$&$24,\!5$\\
+				$T$ ($\mathrm{K}$)&$363$&$363$&$316$&$316$\\
+			\end{tabular}
+		\end{center}
+
+		\noindent On nous donne également la pression de l'état 3 : $p_3 = 0,\!80\:\mathrm{bar}$. Le système est fermé, la quantité de matière du gaz est donc constante. En supposant ce gaz parfait et en utilisant les données de l'état $E_3$, on peut déterminer la quantité de matière $n$ du système. En effet, l'équation d'état des gaz parfaits nous donne la relation \[
+			pV = nRT
+		\] et donc, \[
+			n = \frac{p_3V_3}{RT_3}
+		.\] Après application numérique, on trouve $n = 1,\!05\times  10^{-2}\:\mathrm{mol}$.
+
+		En réutilisant l'équation d'état des gaz parfaits pour les états $E_1$, $E_2$ et $E_4$, on en déduit les valeurs de pression :
+
+		\begin{center}
+			\begin{tabular}{c|cccc}
+				État&$E_1$&$E_2$&$E_3$&$E_4$\\ \hline
+				$p$ ($\mathrm{bar}$)&$1,\!29$&$0,\!92$&$0,\!80$&$1,\!13$
+			\end{tabular}
+		\end{center}
+
+		De ces données, on en déduit le diagramme de Clapeyron du moteur de Stirling : on connaît la position des quatre états et les transformations entre ceux-ci.
+		En effet, entre $E_4$ et $E_1$ ainsi qu'entre $E_2$ et $E_3$, la pression varie alors que le volume est constant ; {\sc t}andis qu'entre $E_1$ et $E_2$, et entre $E_3$ et $E_4$, la température reste constante. Or, d'après l'équation des gaz parfais, on obtient une portion d'hyperbole sur le diagramme $(p, V)$ : \[
+			p = \frac{n R T}{V}
+		.\]
+
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+				size(5cm, IgnoreAspect);
+
+				draw((-0.25, 0) -- (2, 0), Arrow(TeXHead));
+				draw((0, -0.25) -- (0, 2), Arrow(TeXHead));
+
+				pair E1 = (0.4, 1.7);
+				pair E2 = (1.6, 1.3);
+				pair E3 = (1.6, 0.8);
+				pair E4 = (0.4, 1.2);
+
+				label("$V$", (2,0), align=S);
+				label("$p$", (0,2), align=W);
+
+				DefaultHead=TeXHead;
+
+				void drawarrowed(path p) {
+					real t = 1/2;
+					draw(p, magenta, Arrow(Relative(t)));
+				}
+
+				void drawhyperbola(pair U, pair V) {
+					real a = (U.y - V.y) / (1/U.x - 1/V.x);
+					real b = U.y - a / U.x;
+					real f(real x) { return a / x + b; }
+					path p = graph(f, U.x, V.x);
+					drawarrowed(p);
+				}
+
+				dot("$E_1$", E1, magenta, align=NW);
+				dot("$E_2$", E2, magenta, align=NE);
+				dot("$E_3$", E3, magenta, align=SE);
+				dot("$E_4$", E4, magenta, align=SW);
+				
+				drawarrowed(E4 -- E1);
+				drawarrowed(E2 -- E3);
+				drawhyperbola(E1, E2);
+				drawhyperbola(E3, E4);
+			\end{asy}
+		\end{figure}
+		
+		\centerline{\footnotesize Le diagramme ci-dessus n'est pas à l'échelle.}
+
+		Maintenant, calculons les transferts thermiques entre les différents états du système. On a
+		\begin{align*}
+			Q_{2\to 3} &= -Q_R & Q_{4\to 1} &= Q_R \\
+		\end{align*}
+		On applique le 1\tsup{er} principe entre l'état $E_1$ et $E_2$ : \[
+			\Delta U = W_{1\to 2} + Q_c = 0 \quad \text{donc}\quad W_{1\to 2} = -Q_c;
+		\] puis, entre $E_3$ et $E_4$ : \[
+			\Delta U = W_{3\to 4} + Q_f = 0 \quad \text{donc} \quad W_{3\to 4} = -Q_f
+		.\]
+
+		Dans les transformations de l'état $E_1$ à $E_2$ et de $E_3$ à $E_4$, les seules force travaillant s'appliquant au système sont les forces de pressions et on a \[
+			W = -\int_{\alpha}^{\beta} p~\mathrm{d}V
+		\] où $(\alpha, \beta)$ est un couple d'états : $(E_1,E_2)$ ou $(E_3, E_4)$. On sait également que le gaz est parfait d'où \[
+			W = -\int_{\alpha}^{\beta} \frac{nRT}{V}~\mathrm{d}V
+		.\] La température reste constante, d'où \[
+			W = -nRT \int_{\alpha}^{\beta} \frac{1}{V}~\mathrm{d}V = -nRT \ln \frac{V_{\alpha}}{V_{\beta}}
+		.\] On en déduit que
+		\begin{align*}
+			Q_c = nRT \ln \frac{V_2}{V_1}\quad \text{ et }\quad Q_f = nRT \ln \frac{V_4}{V_3}.
+		\end{align*}
+
+		On en déduit la formule permettant de calculer l'efficacité $e$ :
+		\begin{align*}
+			e &= \frac{Q_{3\to 4} + Q_{1\to 2}}{Q_{1\to 2}}\\
+				&= \frac{\cancel{nR}\:\big(T_1 \ln(V_2 / V_1) + T_3 \ln(V_4/ V_3)\big)}{\cancel{nR}\:T_1 \ln(V_2 / V_1)} \\
+		\end{align*}
+
+		Or, $V_4 = V_1$ et $V_2 = V_3$, d'où \[
+			\frac{V_4}{V_3} = \frac{V_1}{V_2}\quad\text{ et donc }\quad \ln \frac{V_4}{V_3} = - \ln \frac{V_2}{V_1}
+		.\] On en déduit que \[
+			e = \frac{T_1 - T_3}{T_1} = 1 - \frac{T_3}{T_1}
+		.\] Après application numérique, on trouve $e = 13,\!2\:\%$.
+	\end{multicols}
+
+	\vspace{2.5mm}
+	\par\noindent\rule{\textwidth}{0.4pt}
+	{\Large \bf TP 24 \hfill Refroidissement en convection forcée \hfill \phantom{TP 24}}\\[-3mm]
+	\rule{\textwidth}{0.4pt}
+	\vspace{2.5mm}
+
+	\begin{multicols}{2}
+		L'objectif de ce TP est d'observer expérimentalement la loi de refroidissement de Newton. Pour cela, le dispositif est le suivant : on dispose d'une masse en laiton chaude suspendue à une potence. Le ventilateur est placé devant la masse de telle sorte que la convection soit forcée. On mesure périodiquement la température du cylindre à l'aide d'une caméra thermique.
+
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import three;
+				import solids;
+				import graph3;
+				size(3.5cm);
+
+				draw(-Z--Z);
+				draw(-Z-X/1.5--(-Z)--Y/1.5-Z);
+				draw(Z--Z+(Y-X)/2);
+				draw(Z+(Y-X)/2 -- (Z+Y-X)/2);
+				
+				revolution r = cylinder((Y-X)/2+Z/6, 0.1, 1/3, Z);
+				draw(r.silhouette());
+
+				real n = 2;
+				real dt = 0;
+
+				triple f(real t) {
+					real r = cos(n*t + dt*2 + pi/3) * 0.8;
+					real u = r * cos(t);
+					real v = r * sin(t);
+
+					return (v * Z + u * Y)/3 - 2.5X;
+				}
+
+				draw(shift(-0.1X/2) * (-2.5X + 0.1X/2 -- -2.5X -- -2.5X - 1.3Z));
+				draw(shift(-0.1X/2) * (-(2+1/3)*X - 1.3Z - Y/3 -- -2.5X - 1.3Z -- -(2+1/3)*X - 1.3Z + Y/3));
+
+				revolution r2 = cylinder(-2.5X, 1/3, 0.1, -X);
+				draw(r2,2,longitudinalpen=nullpen);
+				draw(r2.silhouette());
+
+				for(real x = 0.6; x > 0; x -= 0.1) {
+					dt = x;
+					real a = x / 0.6;
+					//draw(graph(f, 0, 2pi, 200), (1-a) * gray + a * white);
+				}
+				dt = 0;
+				draw(graph(f, 0, 2pi, 200) -- cycle);
+			\end{asy}
+		\end{figure}
+
+		\section{Démonstration du résultat théorique}
+
+		La loi de refroidissement de Newton est décrite par l'équation suivante : \[
+			\mathcal{P} = h\,S\,(T - T_{\text{ext}})
+		\] où $S$ est la surface du cylindre en contact avec l'air, $T$ est la température du cylindre et $T_{\text{ext}}$ celle de l'air. Comme on force la convection, le coefficient $h$ est constant.
+
+		On pose $\theta$ la différence de température entre le cylindre et l'air extérieur : \[
+			\theta = T - T_{\text{ext}}
+		.\] Avec ce changement de variable, la loi de Newton devient $\mathcal{P} = h\,S\,\theta$. Le système \{\,cylindre\,\} est fermé et on l'assimile à une phase condensée idéale. On suppose que la masse est immobile dans le référentielle terrestre, donc l'énergie cinétique macroscopique, $\mathcal{E}_{c_M}$, est nulle.
+
+		D'après le 1\tsup{er} principe, on a \[
+			\mathrm{d}H = \delta W' + \delta Q
+		\] où $H$ est l'enthalpie du cylindre, $W'$ est le travail des forces autres que celles de pression et $Q$ est transfert thermique. On suppose connaître la capacité thermique $C$ du laiton. Par définition de la capacité thermique, on a \[
+			C = \frac{\partial H(T,P)}{\partial T} \quad \text{ et donc } \quad \mathrm{d}H = C\,\mathrm{d}T
+		.\] Les seules forces, en dehors des forces de pression, qui travaillent sur le système sont le poids $\vec{P}$ et la tension du fil $\vec{T}$ qui se compensent (la masse est immobile). D'où $\delta W' = 0$. La température extérieure est constante donc $\mathrm{d}T = \mathrm{d}\theta$. On sait également que $\delta Q = \mathcal{P} \mathrm{d}t$ d'après la définition d'un flux thermique.
+
+		On en déduit que \[
+			C\: \mathrm{d}\theta = -\mathcal{P}\,\mathrm{d}t
+		.\] Or, $\mathcal{P} = h\,S\,\theta$, d'après la loi de refroidissement de Newton, et donc \[
+			C \frac{\mathrm{d}\theta}{\mathrm{d}t} = - h S \theta
+		.\] Le temps caractéristique de cette équation différentielle est $\tau = \frac{C}{hS}$ ; la solution de cette équation est donc \[
+			\theta(t) = \theta_0\,e^{-\sfrac{t}{\tau}}
+		\] où $\theta_0 = \theta(0)$ est la différence de température entre le cylindre et l'air extérieur à l'état initial.
+
+		On conclut que \[
+			T(t) = T_\text{ext} \left( 1 - e^{-\sfrac{t}{\tau}}\right) + T_0
+		\] et \[
+			\tau = \frac{mc}{2\pi\,h\,r(L + r)}
+		\] car $S = 2\pi (L + r)$ est la surface d'un cylindre de rayon $r$ et de hauteur $L$ et $C = m c$ où $m$ est la masse du cylindre et $c$ la capacité thermique massique du laiton.
+
+		\section{Résultats expérimentaux}
+
+		On choisit un point du cylindre et on mesure périodiquement la température en ce point. Dans le cadre de ce TP, on choisit une période de mesure de trois minutes. On effectue ces mesures et obtient le graphique suivant :
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				real[] times = {0, 3, 6, 9, 12, 16, 19, 22};
+				real[] temps = {71.9, 61.5, 48.9, 42.4, 34.8, 33.1, 30.9, 28.9};
+
+				size(4cm, 3cm, IgnoreAspect);
+
+				draw((-1,0) -- (24, 0), Arrow(TeXHead));
+				draw((0, -5) -- (0, 75), Arrow(TeXHead));
+
+				label("$T$", (0,75), align=W);
+				label("$t$", (24,0), align=S);
+
+				for(int i = 0; i < times.length; ++i) {
+					dot((times[i] + 0.5, temps[i]), magenta);
+				}
+
+				draw((-1, 23.8) -- (24, 23.8), deepcyan + dashed);
+			\end{asy}
+		\end{figure}
+
+		Expérimentalement, on voit que la température semble bien suivre une exponentielle décroissante avec une asymptote $T = T_\text{ext}$.
+
+		On utilise Regressi pour trouver les coefficients de cette exponentielle. En effet, à l'aide de l'étude théorique, on sait que la température $T$ suit l'équation \[
+			T(t) = T_\text{ext} \left( 1 - e^{-\sfrac{t}{\tau}}\right) + T_0
+		.\]
+
+		\begin{figure}[H]
+			\centering
+			\begin{asy}
+				import graph;
+
+				real[] times = {0, 3, 6, 9, 12, 16, 19, 22};
+				real[] temps = {71.9, 61.5, 48.9, 42.4, 34.8, 33.1, 30.9, 28.9};
+
+				size(4cm, 3cm, IgnoreAspect);
+
+				label("$T$", (0,75), align=W);
+				label("$t$", (24,0), align=S);
+
+				real f(real x) {
+					return 49.7 * exp(-60 * x / 578) + 23.8;
+				}
+
+				draw(graph(f, -0.5, 24), magenta);
+
+				for(int i = 0; i < times.length; ++i) {
+					dot((times[i] + 0.5, temps[i]), magenta);
+				}
+
+				draw((-1, 23.8) -- (24, 23.8), deepcyan + dashed);
+				draw((-1,0) -- (24, 0), Arrow(TeXHead));
+				draw((0, -5) -- (0, 75), Arrow(TeXHead));
+			\end{asy}
+		\end{figure}
+
+		On obtient, après régression, $T_0 = 49,\!7\:{}^\circ\mathrm{C}$ et $\tau = 578\:\mathrm{s}$. Or, d'après l'étude théorique, on sait également que \[
+			\tau = \frac{mc}{2\pi\, h\,r(L + r)}
+		.\] On en déduit que \[
+			h = \frac{mc}{2\pi\,\tau\,r(L+r)}
+		.\] Après application numérique, on trouve \[
+		h = 24,\!8\:\mathrm{W}\cdot\mathrm{m}^{-2}\cdot\mathrm{K}^{-1}.
+		\] En effet, on a $r = 1,\!5\times 10^{-2}\:\mathrm{m}$, $L = 5,\!5\times 10^{-2}\:\mathrm{m}$, $m = 245,\!3\:\mathrm{g}$ et $c = 377\:\mathrm{J}\cdot\mathrm{K}^{-1}\cdot\mathrm{kg}^{-1}$.
+	\end{multicols}
+\end{document}

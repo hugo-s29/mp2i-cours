@@ -1,0 +1,83 @@
+\part{Théorème fondamental de l'Analyse}
+
+\begin{thm}
+	Soit $f : [a,b] \to \R$ continue. Alors $f$ est Riemann-intégrable.
+\end{thm}
+
+\begin{prv}
+	$f$ est continue sur $[a,b]$; elle est donc bornée. Soient \begin{align*}
+		\varphi^-: [a,b] &\longrightarrow \R \\
+		x &\longmapsto I^-_{[a,x]}(f)
+	\end{align*}
+	et \begin{align*}
+		\varphi^+: [a,b] &\longrightarrow \R \\
+		x &\longmapsto I^+_{[a,x]}(f).
+	\end{align*}
+
+	Soit $x \in\; ]a,b[$ et $h > 0$ tel que $x + h \in [a,b]$. \[
+		\varphi^-(x+h) - \varphi^-(x) = I^-_{[x,x+h]}(f) \le I^+_{[x,x+h]}(f) = \varphi^+(x+h) - \varphi^+(x)
+	\] donc \[
+		\begin{cases}
+			\frac{1}{h}\big(\varphi^-(x+h) - \varphi^-(x)\big) = \frac{1}{h}I^-_{[x,x+h]}(f) \ge \frac{1}{h} \inf_{[x,x+h]}f\times(x+h-x);\\
+			\frac{1}{h}\big(\varphi^+(x+h)-\varphi^-(x)\big) = \frac{1}{h}I^+_{[x,x+h]}(f) \le \frac{1}{h}\sup_{[x,x+h]}(f)\times(x+h-x);
+		\end{cases}
+	\] d'où \[
+		\inf_{[x,x+h]}(f) = \frac{1}{h}\,I^-_{[x,x+h]}(f) \le \frac{1}{h} I^+_{[x,x+h]}(f) \le \sup_{[x,x+h]}(f)
+	.\]
+
+	$f$ est continue sur $[x,x+h]$ donc $\inf_{[x,x+h]}(f) = f(c_h)$ avec $c_h \in [x,x+h]$. $x\le c_h \le x + h$ donc $c_h \tendsto{\substack{h \to 0\\>}}x$. Comme $f$ est continue, $f(c_h) \tendsto{\substack{h \to 0\\>}} f(x)$.
+
+	De même, $\sup_{[x,x+h]}(f) = f(d_h)$ avec $d_h \in [x,x+h]$ donc $d_h\tendsto{\substack{h \to 0\\>}} x$ et donc $f(d_h) \tendsto{\substack{h \to 0\\>}} f(x)$.
+
+	On en déduit que \[
+		\begin{cases}
+			\frac{\varphi^-(x+h) - \varphi^-(x)}{h}\tendsto{\substack{h \to 0\\>}} f(x)\\
+			\frac{\varphi^+(x+h) - \varphi^+(x)}{h}\tendsto{\substack{h \to 0\\>}} f(x).
+		\end{cases}
+	\] De même, \[
+		\begin{cases}
+			\frac{\varphi^-(x+h) - \varphi^-(x)}{h}\tendsto{\substack{h \to 0\\<}} f(x)\\
+			\frac{\varphi^+(x+h) - \varphi^+(x)}{h}\tendsto{\substack{h \to 0\\<}} f(x).
+		\end{cases}
+	\] Donc $\varphi^-$ et $\varphi^+$ sont deux primitives de $f$ sur l'intervalle $[a,b]$.
+
+	Donc, \[
+		\exists C \in \R,\,\forall x \in [a,b],\,\varphi^-(x) = \varphi^+(x) + C
+	.\] En évaluant en $x = a$, on a \[
+		\underbrace{\varphi^-(a)}_{=0} = \underbrace{\varphi^+(a)}_{=0}+ C
+	\]  et donc $C = 0$ donc $\varphi^-(b) = \varphi^+(b)$ et donc $f$ est intégrable.
+\end{prv}
+
+On a aussi démontré le théorème suivant :
+\begin{thm}
+	Soit $f: [a,b] \longrightarrow \R$ conitnue. Alors \[
+		x \mapsto \int_{[a,x]}f
+	\] est une primitive de $f$.\qed
+\end{thm}
+
+\begin{rmk}[Notation]
+	Soit $f : [a,b] \longrightarrow \R$ continue. On note plutôt $\int_{a}^{b} f(t)~\mathrm{d}t$ à la place de $\int_{[a,b]}f$.
+
+	On note aussi $\int_{b}^{a} f(t)~\mathrm{d}t = -\int_{[a,b]}f$.
+\end{rmk}
+
+\begin{crlr}
+	Soit $f : [a,b] \longrightarrow \R$ continue et $F$ une primitive de $f$. Alors \[
+		\int_{a}^{b} f(t)~\mathrm{d}t = F(b) - F(a)
+	.\]
+\end{crlr}
+
+\begin{prv}
+	Soit $\varphi : x \mapsto \int_{a}^{x} f(t)~\mathrm{d}t$. On sait que $\varphi$ est une primitive de $f$. Or, \[
+		\varphi' = f = F' \text{ donc }  (\varphi - F)' = 0
+	\] On en déduit que \[
+		\exists C \in \R,\,\forall x \in [a,b],\,\varphi(x) = F(x) + C
+	.\] En particulier, \[
+		0 = \varphi(a) = F(a) + C
+	\] donc $C = -F(a)$.
+
+	D'où \[
+		\int_{a}^{b} f(t)~\mathrm{d}t = \varphi(b) = F(b) + C = F(b) - F(a)
+	.\]
+\end{prv}
+

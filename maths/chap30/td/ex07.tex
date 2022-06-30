@@ -1,0 +1,33 @@
+\part{Exercice 7}
+
+\begin{itemize}
+	\item \[
+			\sum_{k=1}^n \sin \left( \frac{k}{n} \right) \sin\left( \frac{k}{n^2} \right)
+		.\]
+
+		Pour calculer cette somme, on utilise l'encadrement \[
+			\forall x \in \left[ 0,\frac{\pi}{2} \right],\, x - \frac{x^3}{6} \le \sin x \le x
+		.\] D'où, \[
+			\forall n \in \N\,\forall k \in \left\llbracket 1,n \right\rrbracket,\,
+			\frac{k}{n^2} - \frac{k^3}{6n^6} \le \sin \left( \frac{k}{n^2} \right) \le \frac{k}{n^2}
+		\] et donc \[
+			\sum_{k=1}^n \left( \frac{k}{n^2} - \frac{k^3}{6n^6} \right) \sin\left( \frac{k}{n} \right) \le \sum_{k=1}^n \sin\left( \frac{k}{n} \right) \sin\left( \frac{k}{n^2} \right) \le \sum_{k=1}^n \frac{k}{n^2} \sin \left( \frac{k}{n} \right)
+		.\]
+
+		Or,
+		\begin{align*}
+			\sum_{k=1}^n \frac{k}{n^2} \sin\left( \frac{k}{n} \right) &= \frac{1}{n} \sum_{k=1}^n \frac{k}{n} \sin\left( \frac{k}{n} \right)\\
+			&\tendsto{n\to +\infty} \int_{0}^{1} x \sin x~\mathrm{d}x = \left[ -x\cos x \right]_0^1 + \int_{0}^{1} \cos x~\mathrm{d}x\\
+			&\phantom{\tendsto{n\to +\infty} \int_{0}^{1} x \sin x~\mathrm{d}x} \;= -\cos 1 + \sin 1.
+		\end{align*}
+		Et,
+		\begin{align*}
+			\sum_{k=1}^n \frac{k^3}{6n^6} \sin\left( \frac{k}{n} \right) &= \underbrace{\frac{1}{6n^2}}_{\longrightarrow 0} \times \underbrace{\frac{1}{n}\sum_{k=1}^n \left( \frac{k}{n} \right)^3 \sin\left( \frac{k}{n} \right)}_{\text{limite finie}} \\
+		\end{align*}
+
+		Par encadrement, \[
+			\sum_{k=1}^n \sin\left( \frac{k}{n} \right) \sin\left( \frac{k}{n^2} \right) \tendsto{n \to +\infty} \sin 1 - \cos 1
+		.\]
+	\item À essayer
+\end{itemize}
+

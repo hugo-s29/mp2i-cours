@@ -1,0 +1,139 @@
+\part{Espérance d'une variable aléatoire}
+
+Dans ce paragrape, toutes les variables aléatoires sont à valeurs réelles.
+
+\begin{defn}
+	Soit $X : \Omega \to \R$. L'\underline{espérance}\index{espérance (variable aléatoire réelle)} de $X$ est \[
+		E(X) = \sum_{x \in X(\Omega)} x\:P(X=x)
+	.\]
+\end{defn}
+
+\begin{exm}[À connaître]
+	\begin{enumerate}
+		\item Avec $X \sim \mathcal{B}(p)$, on a $E(X) = \sum_{x \in \{0,1\}}xP(X=x) = p$.
+		\item Avec $X \sim \mathcal{B}(n,p)$, on a
+			\begin{align*}
+				E(X) &= \sum_{k=0}^n k\,P(X=k) \\
+				&= \sum_{k=1}^n k {n\choose k} p^k (1-p)^{n-k} \\
+				&= n \sum_{k=1}^n {n-1\choose k-1} p^k (1-p)^{n-k} \\
+				&= n p \sum_{k=0}^{n-1}{n-1\choose k} p^k (1-p)^{n-k-1} \\
+				&= np(p+1-p)^{n-1} \\
+				&= np \\
+			\end{align*}
+	\end{enumerate}
+\end{exm}
+
+\begin{lem}
+	Soit $X : \Omega \to \R$. \[
+		E(X) = \sum_{\omega \in \Omega} X(\omega)\;P\big(\{\omega\}\big)
+	.\]
+\end{lem}
+
+\begin{prv}
+	\begin{align*}
+		\sum_{w \in \Omega} X(\omega)\:P\big(\{\omega\}\big) &= \sum_{x \in X(\Omega)} \sum_{\substack{\omega \in \Omega\\X(\omega) = x}} X(\omega)\:P\big(\{\omega\}\big) \\
+		&= \sum_{x \in X(\Omega)}\sum_{\substack{\omega \in \Omega\\X(\omega) = x}} x P\big(\{\omega\}\big) \\
+		&= \sum_{x \in X(\omega)} x \sum_{\substack{\omega \in \Omega\\X(\omega) = x}} P\big(\{\omega\} \big) \\
+		&= \sum_{x \in X(\Omega)} x P\left(\bigcupdot_{\substack{\omega \in \Omega\\X(\omega) = x}} \{\omega\} \right) \\
+		&= \sum_{x \in X(\Omega)} x\:P(X =x) \\
+	\end{align*}
+\end{prv}
+
+
+\begin{thm}[linéarité de l'espérance]
+	Soient $X$ et $Y$ deux variables aléatoires réelles, et $\alpha, \beta$ deux réels. Alors, \[
+		E(\alpha X + \beta Y) = \alpha E(X) + \beta E(Y)
+	.\]
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		\alpha E(X) + \beta E(Y) &= \alpha \sum_{\omega \in \Omega}X(\omega) P\big(\{\omega\}\big) = \beta \sum_{\omega \in \Omega} Y(\omega)P\big(\{\omega\}\big) \\
+		&= \sum_{\omega \in \Omega}\big(\alpha X(\omega) + \beta Y(\omega)\big) P\big(\{\omega\}\big) \\
+		&= E(\alpha X + \beta Y). \\
+	\end{align*}
+\end{prv}
+
+\begin{crlr}
+	Soit $X$ une variable aléatoire suivant la loi binomiale $\mathcal{B}(n,p)$. On a $E (X) = np$.
+\end{crlr}
+
+\begin{prv}
+	Soient $X_1, \ldots,X_n$ des variables indépendantes suivant toutes $\mathcal{B}(p)$.
+	
+	On a \[
+		X \sim \sum_{i = 1}^n X_i
+	\] donc
+	\begin{align*}
+		E(X) &= E\left( \sum_{i=1}^n X_i \right) \\
+		&= \sum_{i=1}^n E(X_i)\\
+		&= np \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	On pose $\Omega = S_n$ le groupe symétrique ; $P$ l'équiprobabilité sur $\Omega$ et 
+	\begin{align*}
+		X: \Omega &\longrightarrow \left\llbracket 0,n \right\rrbracket \\
+		\omega &\longmapsto \text{le nombre de points fixes de } \omega
+	\end{align*}
+	\centered{\it Que vaut $E(X)$ ?}
+
+	On pose, pour tout $\omega \in \Omega$, pour tout $i \in \left\llbracket 0,n \right\rrbracket$, $X_i(\omega) = \begin{cases}
+		1 &\text{ si } \omega(i) = i\\
+		0 &\text{ sinon}.
+	\end{cases}$
+
+	Ainsi, \[
+		\forall \omega \in \Omega,\,\sum_{i=1}^n X_i(\omega) = X(\omega)
+	.\]
+	D'où
+	\begin{align*}
+		E(X) &= E\left( \sum_{i=1}^n X_i \right)\\
+		&= \sum_{i=1}^n E(X_i) \\
+		&= \sum_{i=1}^n P(X_i = 1) \\
+		&= \sum_{i=1}^n \frac{(n-1)!}{n!} \\
+		&= \sum_{i=1}^n \frac{1}{n} \\
+		&= \frac{n}{n} \\
+		&= 1 \\
+	\end{align*}
+
+	On n'a pas eu besoin de déterminer la loi de $X$ pour déterminer l'espérance de $X$.
+\end{exm}
+
+\begin{defn}
+	Soient $X : \Omega \to \R$ une variable aléatoire et $f : \R \to \R$.
+
+	\begin{center}
+		\begin{tikzcd}
+			\Omega \arrow[r,"X"]\arrow[rd,dashed] & \R\arrow[d, "f"]\\
+			&\R
+		\end{tikzcd}
+	\end{center}
+
+	La composée $f \circ X$ est notée $f(X)$.
+\end{defn}
+
+\begin{thm}[formule de transfert]
+	Avec les notations précédentes, \[
+		E\big(f(X)\big) = \sum_{x \in X(\Omega)}f(x)\,P(X = x)
+	.\]
+\end{thm}
+
+\begin{prv}
+	\begin{align*}
+		E\big(f(X)\big) &= \sum_{\omega \in \Omega}f\big(X(\omega)\big)\,P\big(\{\omega\}\big) \\
+		&= \sum_{x \in X(\Omega)} \sum_{\substack{\omega \in \Omega\\X(\omega) = x}} f\big(X(\omega)\big)\;P\big(\{\omega\}\big) \\
+		&= \sum_{x \in X(\Omega)} f(x)\sum_{\substack{\omega \in \Omega\\X(\omega) = x}} P\big(\{\omega\}\big) \\
+		&= \sum_{x \in X(\Omega)}f(x)\,P(X = x). \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}\relax
+	{\it Avec $X(\Omega) = \{-1, 0, 1\}$, $P(X = -1) = \frac{1}{2}$, $P(X = 0) = \frac{1}{4}$, $P(X = 1) = \frac{1}{4}$, que vaut $E(X^2)$ ?}
+	\begin{itemize}
+		\item Loi de $X^2$ : $X^2(\Omega) = \{0,1\}$ avec $P(X^2 = 0) = \frac{1}{4}$ et $P(X^2 = 1) = \frac{3}{4}$; d'où $E(X^2) = \frac{3}{4}$.
+		\item Formule de transfert : $E(X^2) = \sum_{x=-1}^1 x^2P(X=x) = \frac{3}{4}$.
+	\end{itemize}
+\end{exm}
+

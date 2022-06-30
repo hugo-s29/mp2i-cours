@@ -1,9 +1,9 @@
-import os, subprocess, shutil, json, datetime, inquirer
+import os, shutil, json, datetime, inquirer
 
 directories = sorted([
     entity
     for entity in os.listdir('cours/')
-    if not os.path.isfile(entity)
+    if '.' not in entity
 ])
 
 cwd = os.getcwd()
@@ -23,9 +23,8 @@ questions = [
 answers = inquirer.prompt(questions)
 
 pdf_files = []
-for choice in os.listdir('cours'):
-    if choice != '.DS_Store':
-        pdf_files.append(('./cours/' + choice + '/cours.pdf', choice))
+for choice in directories:
+    pdf_files.append(('./cours/' + choice + '/cours.pdf', choice))
 
 date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 

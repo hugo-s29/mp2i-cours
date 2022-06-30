@@ -23,6 +23,8 @@
 \newif\ifsimple
 \simplefalse
 
+\frenchspacing
+
 \pgfplotsset{compat=1.17}
 
 \everymath{\displaystyle}
@@ -105,6 +107,7 @@
 \newcommand{\ex}{\fbox{ex}\;}
 
 \newcommand{\vrt}[1]{\rotatebox{90}{$#1$}}
+\newcommand{\avrt}[1]{\rotatebox{-90}{$#1$}}
 
 \renewcommand{\title}[3]{
 	\AtBeginDocument{
@@ -124,3 +127,23 @@
 		\end{titlepage}
 	}
 }
+
+\begin{asydef}
+	settings.prc = false;
+	settings.render=0;
+
+	black = rgb("575279");
+	blue = rgb("286983");
+	red = rgb("d7827e");
+	yellow = rgb("f6c177");
+	orange = rgb("ea9d34");
+	gray = rgb("9893a5");
+	grey = rgb("9893a5");
+	deepcyan = rgb("56949f");
+	pink = rgb("b4637a");
+	magenta = rgb("eb6f92");
+	green = rgb("a0d971");
+	purple = rgb("907aa9");
+
+	defaultpen(black);
+\end{asydef}

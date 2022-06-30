@@ -1,0 +1,78 @@
+\part{Définitions}
+
+\begin{defn}
+	Une \underline{variable aléatoire} est une application sur un espace probabilisé $(\Omega, P)$ dans $E$ où $E$ est un ensemble quelconque : \[
+		X : \Omega \longrightarrow E
+	.\]
+	\index{variable aléatoire}
+
+	Si $E \subset \R$, on dit que $X$ est \underline{réelle}. \index{variable aléatoire réelle}
+
+	Si $E$ est un espace vectoriel, on dit que $X$ est un \underline{vecteur aléatoire}. \index{vecteur aléatoire}
+
+	Si $E \subset \mathcal{M}_{n,p}(\mathbbm{K})$, on dit que $X$ est une \underline{matrice aléatoire}. \index{matrice aléatoire}
+\end{defn}
+
+\begin{exm}
+	On lance 2 dés bien équilibrés et on note $S$ la somme des points sur ces deux dés.
+
+	On pose $\Omega = \left\llbracket 1,6 \right\rrbracket^2$, $P$ l'équiprobabilité et
+	\begin{align*}
+		S: \Omega &\longrightarrow \R \\
+		(\omega_1, \omega_2) &\longmapsto \omega_1 + \omega_2.
+	\end{align*}
+
+	$S(\Omega) = \left\llbracket 2,12 \right\rrbracket$.
+
+	\begin{center}
+		\[
+			\begin{array}{c|ccccccccccc}
+				\s&2&3&4&5&6&7&8&9&10&11&12\\ \hline
+				\\[-2mm]
+				P(S = \s)&\frac{1}{36}&\frac{2}{36}&\frac{3}{36}&\frac{4}{36}&\frac{5}{36}&\frac{6}{36}&\frac{5}{36}&\frac{4}{36}&\frac{3}{36}&\frac{2}{36}&\frac{1}{36}\\
+			\end{array}
+		\]
+	\end{center}
+\end{exm}
+
+Dans la suite du chapitre, $(\Omega,P)$ est un espace probabilisé.
+
+\begin{prop}
+	Soit $X : \Omega \to E$ une variable aléatoire avec $E = X(\Omega)$. L'application \begin{align*}
+		P_X: \mathcal{P}(E) &\longrightarrow [0,1] \\
+		A &\longmapsto P\left( X^{-1}(A) \right)
+	\end{align*} est une probabilité sur $E$.
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item $\forall A \in \mathcal{P}(E),\,X^{-1}(A) \in \mathcal{P}(\Omega)$ donc $P\big(X^{-1}(A)\big) \in [0,1]$.
+		\item $P_X(E) = P\big(X^{-1}(E)\big) = P(\Omega) = 1$.
+		\item Soient $A,B \in \mathcal{P}(E)$ avec $A \cap B = \O$.
+			\begin{align*}
+				P_X(A \cup B) &= P\big(X^{-1}(A \cup B)\big) \\
+				&= P\big(X^{-1}(A) \cup X^{-1}(B)\big) \\
+				&= P\big(X^{-1}(A)\big) + P\big(X^{-1}(B)\big) \\
+				&= P_X(A) + P_X(B). \\
+			\end{align*}
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $X : \Omega \to E$ une variable aléatoire. $P_X$ est la \underline{loi} de $X$.
+	\index{loi (variable aléatoire)}
+\end{defn}
+
+\begin{rmk}[Notations]
+	Soit $X : \Omega \to E$ une variable aléatoire.
+	\begin{itemize}
+		\item Soit $A \in \mathcal{P}(E)$. $X^{-1}(A)$ est noté $(X \in A)$. D'où $P_X(A) = P(X \in A)$.
+		\item Soit $x \in E$. $X^{-1}\big(\{x\}\big)$ est noté $(X = x)$; $P_X\big(\{x\}\big) = P(X = x)$.
+		\item Si $E \subset \R$, $X^{-1}\big(]-\infty,x]\big)$ est noté $(X \le x)$ et donc $P\big(X^{-1}\big(]-\infty,x]\big)\big) = P(X \le x)$.\\
+			De même avec les autres inégalités strictes et larges.
+	\end{itemize}
+\end{rmk}
+
+\begin{rmk}[Notation]
+	On note $X \sim Y$ si $X$ et $Y$ suivent la même loi, i.e. $P_X = P_Y$.
+\end{rmk}

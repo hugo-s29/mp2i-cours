@@ -1,0 +1,71 @@
+\part{Covariance ({\sc Hors-Programme})}
+
+On se place dans une optique de Big Data.
+On dispose d'un tableau à $N$ lignes : chaque ligne correspond à une observation et chaque colonne à une ``mesure'' (ou caractéristique).
+
+Ces caractéristiques peuvent être corrélées plus ou moins fortement et contenir plus ou moins d'information.
+
+Plus la variance est grande, plus il y a d'information.
+
+Soient $X$ et $Y$ deux colonnes. D'après l'inégalité de Cauchy-Schwarz : \[
+	\big|\Cov(X,Y)\big| \le \sigma_X\:\sigma_Y \quad \text{ donc } \quad -1 \le \frac{\Cov(X,Y)}{\sigma_X\:\sigma_Y} \le 1
+.\]
+
+Si $Y = \alpha X + \beta$ : \hfill$\left| \frac{\Cov(X,Y)}{\sigma_X,\sigma_Y} \right| = 1$.\hfill~\hfill~
+
+L'objectif est de modifier les colonnes de façon à extraire le plus d'informations possible sur le moins de colonnes possibles.
+
+La \underline{matrice de covariance}\index{matrice de covariance} est \[
+	A = \begin{pmatrix}
+		\Cov(X_i,X_j)
+	\end{pmatrix}_{\substack{1\le i\le N\\1\le j\le N}}
+.\]
+
+On aimerait que la matrice $A$ soit diagonale avec de grands coefficients diagonaux.
+
+L'année prochaine, nous verrons le théorème suivant :
+\begin{thm}[théorème spectral]
+	Toute matrice symétrique réelle est diagonalisable dans une base orthonormée de vecteurs propres.
+\end{thm}
+
+Il existe donc des variables aléatoires $Y_1, \ldots, Y_k$ combinaisons linéaires des $X_1, \ldots, X_k$ telles que \[
+	\begin{pmatrix}
+		\Cov(Y_i,Y_j)
+	\end{pmatrix} =
+	\begin{pNiceMatrix}
+		\lambda_1 &&\Block{3-2}{(0)}&\\
+		&\Ddots&&\\
+		\Block{2-3}{(0)}\\
+		&&&\lambda_k
+	\end{pNiceMatrix}
+.\]
+
+De plus, le maximum de $V(\alpha_1 X_1 + \cdots + \alpha_k X_k)$ avec la condition que $\alpha_1^2 + \cdots + \alpha_k^2 = 1$ est $V(Y_1) = \lambda_1$.
+
+\begin{defn}[Multiplicateurs de Lagrange]
+	Soit $f : U \subset \R^n \longrightarrow \R$ où $U$ est un ouvert de $\R^n$.
+	On cherche $\max_{(x_i)_{i \in \left\llbracket 1,n \right\rrbracket} \in R^n} f(x_1, \ldots, x_n)$ avec la contrainte $g(x_1, \ldots, x_n)$.
+	
+	On pose \begin{align*}
+		F: \R^{n+1} &\longrightarrow \R \\
+		(x_1, \ldots, x_n, \lambda) &\longmapsto f(x_1, \ldots, x_n) + \lambda g(x_1, \ldots, x_n).
+	\end{align*}
+
+	On cherche les points critiques de $F$ :
+	\begin{align*}
+		\nabla F(x_1, \ldots, x_n, \lambda) = 0 \iff& \begin{cases}
+			\forall i,\,\frac{\partial F}{\partial x_i}(x_1, \ldots, x_n, \lambda) = 0\\
+			\frac{\partial F}{\partial \lambda}(x_1, \ldots, x_n, \lambda) = 0
+		\end{cases}\\
+		\iff& \begin{cases}
+			\forall i,\,\frac{\partial f}{\partial x_i}(x_1, \ldots,x_n) + \lambda \frac{\partial g}{\partial x_i}(x_1, \ldots, x_n) = 0\\
+			g(x_1, \ldots, x_n) = 0
+		\end{cases}
+	\end{align*}
+
+	Si $(x_1, \ldots, x_n, \lambda)$ est le maximum de $F$, alors\\
+	$\forall y_1, \ldots,y_n, \mu \in \R^{n+1}$ \hfill $F(x_1, \ldots, x_n, \lambda) \ge F(y_1, \ldots, y_n, \mu)$ \hfill~\\
+	\phantom{e}~\hfill $f(x_1, \ldots, x_n) + \underbrace{\lambda g(x_1, \ldots, x_n)}_{=0} \ge f(y_1, \ldots, y_n)$ \hfill ~
+\end{defn}
+
+

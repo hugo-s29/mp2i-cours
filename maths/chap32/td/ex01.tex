@@ -1,0 +1,25 @@
+\part{Exercice 1}
+
+\begin{align*}
+	\sum_{k=0}^{+\infty} \sum_{k=n}^{+\infty} \frac{1}{k!} &\overset{\substack{\text{\danger}\\~}}{=} \sum_{k=0}^{+\infty} \sum_{n=0}^{k} \frac{1}{k!} \\
+	&= \sum_{k=0}^{+\infty} \frac{k+1}{k!} \\
+	&= \sum_{k=0}^{+\infty} \frac{1}{(k-1)!} + \sum_{k=0}^{+\infty} \frac{1}{k!} \\
+	&= 2e \\
+\end{align*}
+
+On pose \[
+	I = \{(n,k) \in \N^2  \mid k \ge n\} \qquad \text{ et } \qquad
+	\forall (n,k) \in I,\,u_{n,k} = \frac{1}{k!}
+.\]
+
+D'où \[
+	\sum_{k=0}^{+\infty} \sum_{k=n}^{+\infty} \frac{1}{k!} = \sum_{(n,k) \in I} u_{n,k}
+.\]
+
+On pose $I = \bigcup_{k \in \N} I_k$ où $I_k = \{(n,k) \in \N^2 \mid n \le k\}$.
+
+D'après le théorème de sommation par paquets, \[
+	\sum_{(n,k)\in I} u_{n,k} = \sum_{k \in \N} \sum_{(n,k) \in I_k} u_{n,k} = \sum_{k=0}^{+\infty} \sum_{n=0}^{k} \frac{1}{k!}
+.\]
+
+

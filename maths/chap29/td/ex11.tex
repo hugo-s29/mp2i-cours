@@ -1,0 +1,29 @@
+\part{Exercice 11}
+
+Soit $\mathcal{B} = (e_1, \ldots,e_n)$ une base orthonormée de $E$.
+
+\begin{align*}
+	\forall i \neq j,\,
+	\|f(e_i)\|^2 - \|f(e_j)\|^2 &= \left<f(e_i) + f(e_j)  \mid f(e_i) - f(e_j) \right>\\
+	&= \left<f(e_i + e_j)  \mid f(e_i - e_j) \right> \\
+\end{align*}
+
+Or, $\|e_i\|^2 = \|e_j\|^2 = 1$ et donc $\left<e_i+e_j \mid e_i-e_j \right> = 0$ et donc $\left<f(e_i + e_j)  \mid f(e_i-e_j) \right> = 0$.
+D'où \[
+	\forall i \in \left\llbracket 1,n \right\rrbracket,\,\|f(e_i)\| = \|f(e_1)\| =: \lambda
+.\]
+
+Soit $x \in E$. On pose \[
+	x = \sum_{i=1}^n \left<x \mid e_i \right>f(e_i)
+\] d'où \[
+	f(x) = \sum_{i=1}^n \left<x \mid e_i \right>f(e_i)
+.\]
+
+D'après le théorème de Pythagore, \[
+	\|f(x)\|^2 = \sum_{i=1}^n \left<x \mid e_i \right>^2 \|f(e_i)\|^2 = \lambda^2 \sum_{i=1}^n \left<x \mid e_i \right>^2
+.\]
+
+Comme $(e_1, \ldots, e_n)$ est orthonormée, on a \[
+	\|x\|^2 = \sum_{i=1}^n \left<x \mid e_i \right>^2 \text{ donc } \|f(x)\| = \lambda \|x\|.
+\]
+

@@ -1,0 +1,61 @@
+\part{Algorithme de Metropolis-Hastings}
+
+On a un texte à déchiffrer. Il a été codé par substitution : on a remplacé une lettre par une autre (par exemple, ``$A \to W$'' et ``$B \to U$''). L'algorithme de Metropolis-Hastings permet de déchiffrer ce type de message.
+
+Cet algorithme fonctionne itérativement, et, pour chaque lettre, il tente de la permuter avec une autre et il conserve la meilleur.
+
+Pour comparer deux permutations, il utilise des {\it bigrammes} : un couple de deux lettres consécutives (où l'on a supprimé les espaces). Avec un entrainement sur un autre texte de la même langue, l'algorithme determine la {\it plausibilité} de chaque bigramme. Au moment de comparer deux permutations, il compare les plausibilités des bigrammes obtenus à la suite des deux permutations.
+
+On se place dans le groupe symétrique et la fonction qui donne la plausibilité associée à une permutation est une fonction du groupe symétrique dans les réels : $p : S_n \longrightarrow \R$ (en français, $n = 26$).
+
+L'algorithme ressemble donc à :
+
+\begin{mdframed}
+	On choisit une permutation.
+
+	Si, en l'appliquant au texte, la plausibilité augmente, on conserve cette permutation. Sinon, on ne la conserve pas.
+
+	Et on répète.
+\end{mdframed}
+
+Cet algorithme utilise donc une marche aléatoire, il ne teste pas {\it toutes} les permutations (avec $n = 26$, on a $\#S_n \ge 10^{61}$).
+
+\begin{defn}[Chaîne de \Markov]
+	Le système est dans un état $E$ et peut passer dans d'autres états avec des probabilités associées. Ce changement d'état ne dépend {\bf que} de l'état actuel, et n'utilise pas les états passés.
+
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			pair s1 = (0,0);
+			pair s2 = (1,1);
+			pair s3 = (1.3,0);
+			pair s4 = (1, -1);
+			pair s5 = (2, 2);
+
+			size(5cm);
+
+			draw(circle(s1, 0.3)); label("$S_1$", s1);
+			draw(circle(s2, 0.3)); label("$S_2$", s2);
+			draw(circle(s3, 0.3)); label("$S_3$", s3);
+			draw(circle(s4, 0.3)); label("$S_4$", s4);
+			draw(circle(s5, 0.3)); label("$S_5$", s5);
+		\end{asy}
+	\end{figure}
+
+	On associe à une chaîne de \Markov~une matrice de transition : \[
+		\begin{pNiceMatrix}[first-row,last-col]
+			&\substack{i\\\vrt\to}&&\\
+			&\\
+			&P(S_j \mid S_i)&&\leftarrow j\\
+			&\\
+		\end{pNiceMatrix}
+	.\]
+\end{defn}
+
+On souhaite trouver $\max_{x \in S} f(x)$. Pour cela, on considère le changement $x \longrightarrow x'$ et on pose $\textstyle \alpha = \frac{f(x')}{f(x)}$. On ne conserve $x'$ avec une probabilité de $\alpha$, sinon, on revient à $x$.
+
+Mais, la probabilité de transition est proportionnelle à $f(x')$ et donc, pour que ce choix soit marqué, il faut que la fonction $f$ ait une grande variance.
+
+Cette méthode de choix ne peut être appliquée que si la chaîne de \Markov~est symétrique et connexe. La symétrie de la chaîne de \Markov~est assurée par le fait qu'une permutation est bijective, on peut donc appliquer sont inverse pour revenir à un état précédent.
+
+

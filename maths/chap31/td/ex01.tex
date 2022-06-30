@@ -1,0 +1,25 @@
+\part{Exercice 1}
+
+\begin{enumerate}
+	\item On pose $\Omega = S_n$ muni de l'équiprobabilité $P$. On a donc
+		\begin{align*}
+			\forall i \in \left\llbracket 1,n \right\rrbracket,\,(X=i) &= \{\omega \in  \Omega  \mid  X(\omega) = i\}\\
+			&= \bigg\{ \omega = \begin{pmatrix}
+					1 & \cdots & n\\
+					\omega_1 & \cdots & \omega_n
+			\end{pmatrix} \in \Omega\:\:\bigg|\:\:\bigg.\omega_i = 1 \bigg\} \\
+		\end{align*}
+
+		\begin{align*}
+			P(X = i) = \frac{\#(X=i)}{n!} = \frac{(n-1)!}{n!} = \frac{1}{n}.
+		\end{align*}
+	\item $X \sim \mathcal{U}\!\big(\!\left\llbracket 1,n \right\rrbracket\!\big)$.
+\end{enumerate}
+
+\underline{Autre rédaction} :  On note $Y_i = j$ si on a tiré le jeton $j$ lors du tour $i$. D'où \[
+	(X=i) = (Y_1 \neq 1) \cap \cdots \cap (Y_{i-1} \neq i) \cap (Y_i = 1)
+.\] Et donc,
+\[
+	P(X = i) = P(Y_1 \neq 1) P_{(Y_1 \neq 1)}(Y_2 \neq 2) \cdots P_{(Y_1\neq 1,\ldots,Y_{i-2}  \neq 1)}(Y_{i-1} \neq 1) P_{(Y_1 \neq 1,\ldots,Y_{i-1} \neq 1)}(Y_i = 1)
+.\]
+

@@ -640,6 +640,18 @@ Propriétés : cf poly
 		\text{Prédécesseur} : [\text{nil},3,1,0,3].
 	\end{cases}$$
 
+> Autre présentation :
+$$
+	\begin{array}{c|c|c|c|c|c}
+		0&1&2&3&4&\text{ sommet séléctionné }\\ \hline
+		0&\infty&\infty&\infty&\infty&0\\ \hline
+		\varnothing&10_0&\infty&5_0&\infty&3\\ \hline
+		\varnothing&8_3&14_3&\varnothing&7_3&4 \\ \hline
+		\varnothing&8_3&13_4&\varnothing&\varnothing&1 \\ \hline
+		\varnothing&\varnothing&9_1&\varnothing&\varnothing&2 \\
+	\end{array}
+$$
+
 2. Pour `distance`, `prédécesseur`, $M$ et $E$, on utilise des tableaux. Pour le graphe $G$, on utilise une matrice d'adjacence.
 
 2. Pour le graphe, on utilise une liste d'adjacence car ça économise de la mémoire et l'accès aux voisins est plus simple. Pour `distance` et `prédécesseur`, on utilise deux tableaux d'entiers de dimension $\#S$. Pour $M$ et $E$, on utilise un tableau de bouléens de taille $\#S$ où $x \to$ `true` représente $x \in E$ et $x \not\in M$ et $x\to$ `false` représente $x \in M$ et $x \not\in E$.
@@ -696,21 +708,22 @@ $$ 5 \to 1 \to 4 \to 2\qquad\text{coût : 15}$$
 
 Mise en place de deux matrices:
 
-- une matrice contenant les chemins (prédécesseurs)
-- une matrice contenant les distances
+- une matrice contenant les chemins (prédécesseurs) $\to P$
+- une matrice contenant les distances $\to D$
 
 $$
-\rotatebox{90}{~~\clap{\tiny sommet de départ}}
+D =\quad
+\rotatebox{90}{~\clap{\tiny sommet de départ}}
 \overset{\text{sommet d'arrivée}}{
 \begin{bmatrix}
-\infty&8&9&5&7\\
-11&\infty&1&2&4\\
-11&19&\infty&16&4\\
-9&3&4&\infty&2\\
-7&15&6&12&\infty
+0&8&9&5&7\\
+11&0&1&2&4\\
+11&19&0&16&4\\
+9&3&4&0&2\\
+7&15&6&12&0
 \end{bmatrix}}
-$$
-$$
+\qquad
+P =
 \begin{bmatrix}
 1&4&2&1&4\\
 5&2&2&2&4\\
@@ -719,5 +732,267 @@ $$
 5&4&5&1&5\\
 \end{bmatrix}
 $$
+
+#### Structure d'un plus court chemin
+
+Sur un chemin $c = (v_1, v_2, \ldots, v_m)$, on définit les sommets intermédiaires de $c$ comme étant l'ensemble des sommets $\{v2, \ldots, v_{m-1}\}$.
+
+On considère:
+
+- $S = \{1, 2, \ldots, n\}$, les sommets de $G = (S, A, f)$, graphe pondéré sans cycle de longueur strictement négative.
+* Sous-ensemble de $G$ : $\{1, 2, \ldots, k\}$ les sommets pour un $k$ donné
+* Un couple $(i,j)$ de sommets quelconques de $G$ 
+* Tous les chemins allant de $i$ à $j$ dont les sommets intermédiaires sont tous dans $\{1, 2, \ldots k\}$.
+* Parmi ces chemins, $p$ est le chemin de longueur minimale
+
+$k$ est-il visité par $p$ ?
+
+> **Non** $\to$ un plus court chemin de $i$ à $j$ ayant tous ses sommets intermédiaires dans $\{1, 2, \ldots, k-1\}$ est aussi un plus court chemin ayant tous ses sommets intermédiaires dans $\{1, 2, \ldots, k\}$.
+
+> **Oui** $\to$ le chemin $p$ se divise en $i\overset{p_1}{\leadsto}k\overset{p_2}{\leadsto}j$ avec  $p_1$ le plus court chemin de $i$ à $k$ ayant tous ses sommets intermédiaires dans $\{1,2,\ldots, k-1\}$ et $p_2$, plus court chemin de $k$ à $j$ ayant tous ses sommets intermédiaires dans $\{1, 2, \ldots, k-1\}$.
+
+
+Exemple : pour aller de $i = 5$ à $j = 2$, le chemin le plus court $(5, 1, 4, 2)$.
+Les sommets intermédiaires sont $1$ et $4$; $4$ dernier sommet intermédiaire de $p$.
+Les sommets intermédiaires sont dans le sous-ensemble de sommets $\{1, 3, 4\}$.
+
+> Pour $k = 4$, $4$ est sur le chemin $p$; il se décompose donc en un chemin $p_1$ de $5$ à $4$ dont les sommets intermédiaires sont dans $\{1,3\}$, et en un chemin $p_2$ de $4$ à $2$ dont tous les chemins intermédiaires sont dans $\{1, 3\}$.
+
+$p_1$ et $p_2$ sont les chemins de longueur minimale entre $5$ et $4$, d'une part, et entre $4$ et $2$ d'autre part.
+
+Mise en place d'une relation de récurrence en considérant ensuite $p_1$ et $p_2$ avec $k = 3$.
+
+On a donc $D = (d_{i,j})$ avec $$
+	d_{i,j}^{(k)} = \begin{cases}
+		f_{i,j} & \text{ si } k = 0\\
+		\min\left( d_{i,j}^{(k-1)}, d_{i,k}^{(k-1)} + d_{k,j}^{(k-1)}\right) & \text{ si } k > 0.
+	\end{cases}
+$$
+
+Le cas où $k = 0$ correspond à l'initialisation (chemin sans sommet intermédiaire).
+La matrice $D$ correspond alors à la matrice d'adjacence $$
+	d_{i,j} = \begin{cases}
+		0 &\text{ si } i = j\\
+		f_{i,j}&\text{ si } i \neq j \text{ et } (i,j) \in A\\
+		+\infty &\text{ si } i\neq j \text{ et } (i,j)\not\in A.
+	\end{cases}
+$$
+
+Idée de l'algorithme :
+
+- On fixe un sommet $k$.
+- Pour chaque couple de sommets $(i,j)$, on regarde si inclure $k$ dans le chemin permet d'obtenir un chemin plus court.
+- On itère pour chaque sommet $k$ de $S$.
+
+Mise à jour des prédécesseurs : matrice $P$
+
+En pratique, deux manière de procéder
+
+1. Détermination de $D$ puis recherche de $P$ à partir de $D$ 
+2. Détermination simultanée de $D$ et de $P$ $\to$ formulation d'une relation de récurrence entre $P^{(k)}$ et $P^{(k-1)}$.
+
+Initialisation de $P$ $\to$ $P^{(0)}$ : $$
+	p_{i,j} = \begin{cases}
+		\text{nil ou } -1 &\text{ si } i = j \text{ ou } f_{i,j} = \infty\\
+		i &\text{ si } i \neq j \text{ et } f_{i,j} < \infty
+	\end{cases}
+$$
+
+Relation de récurrence pour la matrice $P$ : $$
+	p_{i,j}^{(k)} = \begin{cases}
+		p_{i,j}^{(k-1)} &\text{ si } d_{i,j}^{(k-1)} \leqslant d_{i,k}^{(k-1)} d_{k,j}^{(k-1)}\\[2mm]
+		p_{k,j}^{(k-1)} &\text{ si } d_{i,j}^{(k-1)} > d_{i,k}^{(k-1)} d_{k,j}^{(k-1)}
+	\end{cases}
+$$
+Pour $k=4$, on a $$
+	D =
+	\begin{pmatrix}
+		0&8&9&5&7\\
+		\infty&0&1&2&4\\
+		\infty&\infty&0&\infty&4\\
+		\infty&3&4&0&2\\
+		7&15&6&12&0
+	\end{pmatrix}
+	\qquad
+	P =
+	\begin{pmatrix}
+		&4&2&1&4\\
+		?&&2&2&4\\
+		?&?&&?&3\\
+		?&4&2&&4\\
+		5&4&5&1&\\
+	\end{pmatrix}.
+$$
+
+Avec $k=5$, les matrices deviennent $$
+	D =
+	\begin{pmatrix}
+		0&8&9&5&7\\
+		11&0&1&2&4\\
+		11&19&0&\infty&4\\
+		\infty&3&4&0&2\\
+		7&15&6&12&0
+	\end{pmatrix}
+	\qquad
+	P =
+	\begin{pmatrix}
+		&4&2&1&4\\
+		5&&2&2&4\\
+		5&4&&?&3\\
+		?&4&2&&4\\
+		5&4&5&1&\\
+	\end{pmatrix}
+$$
+En effet, $d_{3,2} = \infty$ et $d_{3,5} + d_{5,2} = 4 + 15 = 19\; \to$ remplacement dans $D$.
+
+Pour le chemin : décomposition de $(3, \ldots, 2)$ en $(3, \ldots, 5)$ et $(5, \ldots, 2)$; et on exclut $5$ du sous-ensemble des sommets intermédiaires, on ne considère plus que le chemin $5$ à $2$.
+
+> $\to$ prédécesseur de $2$ dans le chemin de $3$ à $2$ devient prédécesseur de $2$ dans le chemin de $5$ à $2$ donc $4$.
+
+```
+Algorithme FloydWarsallAscendant(G)
+	Début
+		n = |S|
+		D = G
+		P = créer_tableau(n * n, prédécesseur dans G)
+
+		Pour k = 1 à n faire
+			Pour i = 1 à n faire
+				Pour j = 1 à n faire
+					Si i != j et D(i,j) > D(i,k) + D(k,j) alors
+						D(i,j) = D(i,k) + D(k,j)
+						P(i,j) = P(k,j)
+					Fin Si
+				Fin Pour
+			Fin Pour
+		Fin Pour
+	Fin
+```
+
+
+Évolution des matrices $D$ et $P$ pour le graphe suivant ?
+
+```{.mermaid format=pdf}
+graph LR;
+a((1)) ---> |3| b((2)) ---> |7| c((5)) ---> |6| d((4)) ---> |-5| e((3)) ---> |4| b ---> |1| d ---> |2| a ---> |8| e
+a ---> |-4| c
+```
+
+Pour $k = 0$, on a $$
+	D =
+	\begin{pmatrix}
+		/&3&8&\infty&-4\\
+		\infty&/&\infty&1&7\\
+		\infty&4&/&\infty&\infty\\
+		2&\infty&-5&/&\infty\\
+		\infty&\infty&\infty&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&1&1&?&1\\
+		?&/&?&2&2\\
+		?&3&/&?&?\\
+		4&?&4&/&?\\
+		?&?&?&5&/\\
+	\end{pmatrix}
+$$
+Pour $k = 1$, on a $$
+	D =
+	\begin{pmatrix}
+		/&3&8&\infty&-4\\
+		\infty&/&\infty&1&7\\
+		\infty&4&/&\infty&\infty\\
+		2&5&-5&/&-2\\
+		\infty&\infty&\infty&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&1&1&?&1\\
+		?&/&?&2&2\\
+		?&3&/&?&?\\
+		4&1&4&/&1\\
+		?&?&?&5&/\\
+	\end{pmatrix}
+$$
+Pour $k = 2$, on a $$
+	D =
+	\begin{pmatrix}
+		/&3&8&4&-4\\
+		\infty&/&\infty&1&7\\
+		\infty&4&/&5&11\\
+		2&5&-5&/&-2\\
+		\infty&\infty&\infty&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&1&1&2&1\\
+		?&/&?&2&2\\
+		?&3&/&2&2\\
+		4&1&4&/&1\\
+		?&?&?&5&/\\
+	\end{pmatrix}
+$$ 
+Pour $k = 3$, on a $$
+	D =
+	\begin{pmatrix}
+		/&3&8&4&-4\\
+		\infty&/&\infty&1&7\\
+		\infty&4&/&5&11\\
+		2&-1&-5&/&-2\\
+		\infty&\infty&\infty&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&1&1&2&1\\
+		?&/&?&2&2\\
+		?&3&/&2&2\\
+		4&3&4&/&1\\
+		?&?&?&5&/\\
+	\end{pmatrix}
+$$
+Pour $k = 4$, on a $$
+	D =
+	\begin{pmatrix}
+		/&3&-1&4&-4\\
+		3&/&-4&1&-1\\
+		7&4&/&5&3\\
+		2&-1&-5&/&-2\\
+		8&5&1&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&1&4&2&1\\
+		4&/&4&2&1\\
+		4&3&/&2&1\\
+		4&3&4&/&1\\
+		4&3&4&5&/\\
+	\end{pmatrix}
+$$
+Pour $k = 5$, on a $$
+	D =
+	\begin{pmatrix}
+		/&1&-3&2&-4\\
+		3&/&-4&1&-1\\
+		7&4&/&5&3\\
+		2&-1&-5&/&-2\\
+		8&5&1&6&/
+	\end{pmatrix}
+	\qquad\text{ et }\qquad
+	P =
+	\begin{pmatrix}
+		/&3&4&5&1\\
+		4&/&4&2&1\\
+		4&3&/&2&1\\
+		4&3&4&/&1\\
+		4&3&4&5&/\\
+	\end{pmatrix}
+$$
+
+On implémente $G$ à l'aide d'une matrice d'adjacence. La complexité de cet algorithme est en $\mathcal{O}\big(|S|^3\big)$ ; c'est intéressant pour les graphes de petite taille ou de taille modérée.
 
 

@@ -1,0 +1,29 @@
+\part{Exercice 10}
+
+\begin{enumerate}
+	\item Soit $M = (m_{i,j}) = \Mat_{\mathcal{B}}(f)$.
+
+		$\forall i,j$, $m_{i,j}$ est la $i$-ème coordonnée de $f(e_j)$:
+		\begin{align*}
+			m_{i,j} &= \left<f(e_j)  \mid e_i \right> \\
+			&= \langle e_j  \mid f(e_i)\rangle \\
+			&= \langle f(e_i)  \mid e_j \rangle\\
+			&= m_{j,i} \\
+		\end{align*}
+	\item Soient $u \in \Ker(f)$ et $v \in \mathrm{Im}(f)$. Soit $w \in E$ tel que $v = f(w)$.
+
+		\begin{align*}
+			\left<u \mid v \right> &= \left<u \mid f(w) \right> \\
+			&= \left<f(u) \mid w \right> \\
+			&= \left<0 \mid w \right> \\
+			&= 0 \\
+		\end{align*}
+
+		D'où $\Ker(f) \subset \mathrm{Im}(f)^\perp$.
+		\begin{align*}
+			\dim(\Ker f) &= \dim E - \dim(\mathrm{Im}\;f) \\
+			&= \dim\big((\mathrm{Im}\;f)^\perp\big) \\
+		\end{align*}
+		On en déduit que $\Ker f = (\mathrm{Im}\;f)^\perp$.
+\end{enumerate}
+

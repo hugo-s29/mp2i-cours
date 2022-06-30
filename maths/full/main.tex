@@ -23,9 +23,9 @@
 
 \pagestyle{fancy}
 
-\fancyhead[R]{\itshape MP2I}
-\fancyhead[L]{\arabic{chapter}.\arabic{section}}
-\fancyhead[C]{\parttitle}
+%\fancyhead[R]{\itshape MP2I}
+%\fancyhead[L]{\arabic{chapter}.\arabic{section}}
+%\fancyhead[C]{\parttitle}
 
 \fancyfoot{}
 \fancyfoot[C]{\thepage}
@@ -147,6 +147,7 @@
 		\input{../chap09/p6.tex}
 		\input{../chap09/p7.tex}
 		\input{../chap09/p8.tex}
+		\ifsimple\else\input{../chap09/aubin.tex}\fi
 	}
 
 	{
@@ -156,6 +157,7 @@
 		\input{../chap10/p2.tex}
 		\input{../chap10/p3.tex}
 		\input{../chap10/p4.tex}
+		\ifsimple\else\input{../chap10/aubin.tex}\fi
 	}
 
 	{
@@ -337,10 +339,55 @@
 		\input{../chap29/p2.tex}
 		\input{../chap29/p3.tex}
 		\input{../chap29/p4.tex}
+		\input{../chap29/p5.tex}
+	}
+
+	{
+		\chap[30]{Intégrale de Riemann}
+		\renewcommand{\cwd}{../chap30}
+		\input{../chap30/p1.tex}
+		\input{../chap30/p2.tex}
+		\input{../chap30/p3.tex}
+		\input{../chap30/p4.tex}
+		\input{../chap30/p5.tex}
+		\input{../chap30/p6.tex}
+		\input{../chap30/p7.tex}
+		\input{../chap30/p8.tex}
+	}
+
+	{
+		\chap[31]{Variables aléatoires}
+		\renewcommand{\cwd}{../chap31}
+		\input{../chap31/p1.tex}
+		\input{../chap31/p2.tex}
+		\input{../chap31/p3.tex}
+		\input{../chap31/p4.tex}
+		\input{../chap31/p5.tex}
+		\input{../chap31/p6.tex}
+		\input{../chap31/p7.tex}
+		\input{../chap31/p8.tex}
+	}
+
+	{
+		\chap[32]{Familles sommables}
+		\renewcommand{\cwd}{../chap32}
+		\input{../chap32/p0.tex}
+		\input{../chap32/p1.tex}
+		\input{../chap32/p2.tex}
+		\input{../chap32/p3.tex}
+		\input{../chap32/p4.tex}
+	}
+
+	{
+		\chapter*{Annexe}
+		\renewcommand*\parttitle{Annexe}
+		\renewcommand{\cwd}{../chap33}
+		\input{../chap33/p1.tex}
+		\input{../chap33/p2.tex}
 	}
 
 	\clearpage
-	\lhead{}
-	\renewcommand*\parttitle{Index}
+	%\lhead{}
+	%\renewcommand*\parttitle{Index}
 	\printindex
 \end{document}

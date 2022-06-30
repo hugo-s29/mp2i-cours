@@ -1,0 +1,49 @@
+\part{Exercice 7}
+
+\[
+	X = \sum_{i=1}^{Np} X_i \quad \text{ d'où } \quad E(X) = \sum_{i=1}^{Np} E(X_i)
+.\]
+
+Or, $X_i\textstyle \sim \mathcal{B}\left( \frac{{N-1\choose n-1}}{{N\choose n}} \right)$.
+
+On en déduit que
+\begin{align*}
+	E(X) &= \sum_{i=1}^{Np} \frac{{N-1\choose n-1}}{{N \choose n}}\\
+	&= \frac{n!\:\cancel{(N-n)!}\:(N-1)!\:Np}{N!\:(n-1)!\:\cancel{(N-n)!}} \\
+	&= \frac{n}{N}Np \\
+	&= np. \\
+\end{align*}
+
+\[
+	V(X) = \sum_{i=1}^{Np} V(x_i) + 2\sum_{1\le i<j}\Cov(X_i, X_j)
+\] où \[
+	\Cov(X_i, X_j) = E(X_iX_j) - E(X_i)E(X_j)
+.\]
+
+
+\begin{enumerate}
+	\item $X_i \sim \mathcal{B}\left( \frac{{N-1\choose n-1}}{{N\choose n}} \right)$.
+		\[
+			E(X_i) = \frac{n!\:(N-n)!}{N!} \times \frac{(N-1)!}{(n-1)!\:(N-n)!} = \frac{n}{N}
+		.\]
+		\[
+			V(X_i) = \frac{n}{N}\left( 1-\frac{n}{N} \right) = \frac{n(N-n)}{N^2}
+		.\]
+	\item $\Cov(X_i, X_j) = E(X_iX_j)-E(X_i)E(X_j)$. Or, $X_iX_j \sim \mathcal{B}\big(P(X_i = 1, X_j = 1)\big)$ et
+		\begin{align*}
+			P(X_i = 1, X_j = 1) &= \frac{{N-2\choose n-2}}{{N \choose n}}\\
+			&= \frac{(N-2)!}{(n-2)!\:\cancel{(N-n)!}} \times \frac{n!\:(N-n)!}{N!}\\
+			&= \frac{n(n-1)}{N(N-1)}. \\
+		\end{align*}
+	\item On a $X = \sum_{i=1}^{Np}X_i$ et donc \[
+			E(X) = \sum_{i=1}^{Np}E(X_i) = \frac{n}{N} \times N p = np
+		\] et
+		\begin{align*}
+			V(X) &= \sum_{i=1}^{Np}V(X_i) + \sum_{1\le i \neq j \le Np} \Cov(X_i, X_j) \\
+			&= p \frac{n}{N} (N - n) + \cancel{N}p(Np-1) \frac{n(n-1)}{\cancel{N}(N-1)}. \\
+		\end{align*}
+
+		\underline{Loi de $X$} : \[
+			P(X = k) = \frac{{Np \choose k}{Nq \choose n-k}}{{N \choose n}}
+		.\]
+\end{enumerate}

@@ -1,0 +1,117 @@
+\part{Sommes de Riemann}
+
+\begin{thm}
+	Soit $f : [a,b]\longrightarrow \R$ continue par morceaux.
+	\begin{multicols}{2}
+		\todo{schéma 1}
+		\columnbreak
+		\[
+			\lim_{n\to +\infty}\left( \sum_{i=0}^{n-1} \frac{b-a}{n}f\left(a+ i \frac{b-a}{n} \right) \right) = \int_{a}^{b} f(t)~\mathrm{d}t
+		.\]
+	\end{multicols}
+\end{thm}
+
+\begin{prv}[dans le cas où $f$ est continue]
+	\begin{align*}
+		\forall n \in \N^*,
+		0&\le \Bigg| \int_{a}^{b} f(t)~\mathrm{d}t - \sum_{i=0}^{n-1} \frac{b-a}{n} f\bigg(\overbrace{a+i\frac{b-a}{n}}^{x_i}\bigg)\Bigg|\\
+		&= \left| \sum_{i=0}^{n-1}\int_{x_i}^{x_{i+1}} f(t)~\mathrm{d}t - \sum_{i=0}^{n-1}\frac{b-a}{n} f(x_i) \right| \\
+		&= \left| \sum_{i=0}^{n-1}\left( \int_{x_i}^{x_{i+1}} f(t)~\mathrm{d}t - \frac{b-a}{n}f(x_i) \right) \right| \\
+		&= \left| \sum_{i=0}^{n-1}\left( \int_{x_i}^{x_{i+1}} f(t)~\mathrm{d}t - \int_{x_i}^{x_{i+1}} f(x_i)~\mathrm{d}t \right) \right| \\
+		&= \left| \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} \big(f(t) - f(x_i)\big)~\mathrm{d}t \right| \\
+		&\le \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} \big|f(t) - f(x_i)\big|~\mathrm{d}t.
+	\end{align*}
+
+	$f$ est continue sur $[a,b]$, donc uniformément continue sur $[a,b]$ : \[
+		\forall \varepsilon > 0,\,\exists \eta > 0,\,\forall x,y \in \mathcal{D}_f,\,
+		|x-y| \le \eta \implies \big|f(x) - f(y)\big| \le \varepsilon
+	.\]
+
+	Soit $\varepsilon > 0$. On considère $\eta > 0$ comme ci-dessus. On a $\frac{b-a}{n} \longrightarrow 0$ donc, il existe $N \in \N^*$ tel que \[
+		\forall n \ge N,\,\frac{b-a}{n} \le \eta
+	.\] On considère un tel $N \in \N^*$. On suppose $n \ge N$. \[
+		\forall i \in \left\llbracket 0,n-1 \right\rrbracket,\,\forall x \in [x_i, x_{i+1}],\,|x-x_i|\le x_{i+1}-x_i = \frac{b-a}{n} \le \eta
+	\] et donc \[
+		\big|f(x)-f(x_i)\big| \le \varepsilon
+	.\] Donc, \[
+		\forall n \ge N,\,\left| \int_{a}^{b} f(x)~\mathrm{d}x - \frac{b-a}{n}\sum_{i=0}^{n-1}f(x_i) \right| \le \sum_{i=0}^{n-1}\int_{x_i}^{x_{i+1}} \varepsilon~\mathrm{d}t = \varepsilon (b-a)
+	.\]
+\end{prv}
+
+\begin{prop}
+	Soit $f : [a,b] \to  \R$ continue par morceaux et $n \in \N^*$. \[
+		\frac{b-a}{n} \sum_{i=1}^n f\big(\underbrace{a + i{\textstyle \frac{b-a}{n}}}_{x_i}\big) \tendsto{n\to +\infty} \int_{a}^{b} f(t)~\mathrm{d}t
+	.\]\qed
+\end{prop}
+
+\begin{rmk}
+	On suppose à présent $f$ de classe $\mathcal{C}^1$ sur $[a,b]$. $f'$ est continue sur $[a,b]$ : on considère  \[
+		M = \max_{x \in [a,b]}\big|f'(x)\big| 
+	.\]
+
+	\begin{align*}
+		\forall n \in \N^*,\,\left| \int_{a}^{b} f(t)~\mathrm{d}t - \frac{b-a}{n}\sum_{i=0}^{n-1}f(x_i) \right| &= \left| \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}}\big(f(t) - f(x_i)\big)~\mathrm{d}t \right| \\
+		&\le \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} \big| f(t) - f(x_i) \big|~\mathrm{d}t  \\
+		&\le \sum_{i=0}^{n-1} \int_{x_i}^{x_{i+1}} M |t - x_i|~\mathrm{d}t\\
+		&\le M \sum_{i=0}^{n-1} \frac{(x_{i+1}-x_i)^2}{2}\\
+		&\le \frac{M}{2} \left(\frac{b-a}{n}\right)^2 n \\
+		&= \frac{M(b-a)^2}{2n}.
+	\end{align*}
+
+	Par exemple, on veut calculer une valeur approchée de $\ln 2$ à $10^{-3}$ près : \[
+		\ln 2 = \int_{1}^{2} \frac{1}{t}~\mathrm{d}t
+	.\]
+	Soit $f: t \mapsto \frac{1}{t}$ de classe $\mathcal{C}^1$ sur $[1,2]$. \[
+		\forall t \in [1,2],\,\left| f'(t) \right| = \frac{1}{t^2} \le 1
+	\] d'où $M = 1$.
+
+	On cherche $n \in \N^*$ tel que \[
+		\frac{1(2-1)^2}{2n} \le 10^{-3}
+	\] i.e. $n\ge 500$.
+
+	Donc, $\frac{1}{500} \sum_{i=0}^{499} \frac{1}{1 + \frac{i}{500}} \simeq 0,\!693$ est une valeur approchée de $\ln 2$ à $10^{-3}$ près.
+\end{rmk}
+
+\begin{exm}~
+	\relax \centered{\it Que vaut $\lim_{n\to +\infty} \sum_{i=1}^n \frac{n}{n^2 + k^2}$ ?}
+
+	$\sum_{1\le k\le n} \frac{n}{n^2 + k^2}$ n'est pas une série ! En effet, en passant de $n$ à $n+1$, on modifie les termes précédents.
+
+	\begin{align*}
+		\forall n \in \N^*,\,\sum_{k=1}^n \frac{n}{n^2 + k^2} &= \sum_{k=1}^n \frac{\frac{1}{n}}{1 + \left( \frac{k}{n} \right)^2} \\
+		&= \frac{1}{n} \sum_{k=1}^n \frac{1}{1 + \left( \frac{k}{n} \right)^2} \\
+		&\tendsto{n\to +\infty} \int_{0}^{1} \frac{1}{1+t^2}~\mathrm{d}t = \Arctan 1 - \Arctan 0 = \frac{\pi}{4}.
+	\end{align*}
+\end{exm}
+
+\begin{rmk}[Méthode des trapèzes]~\\
+	\begin{figure}[H]
+		\centering
+		\begin{asy}
+			import graph;
+			import patterns;
+
+			add("hatch", hatch(2mm, magenta));
+
+			real[] coeffs = {-0.028394180582212297,0.27523209017393424,0.24929746599526315,-6.4461353755869855};
+			real f(real x) {
+				real y = 0;
+				for(int i = 0; i < coeffs.length; ++i) {
+					y -= x^i * coeffs[coeffs.length-i-1];
+				}
+				return y;
+			}
+
+			size(5cm);
+			path p = graph(f, -2, 11, 500);
+			draw((-2, 0) -- (11, 0), Arrow(TeXHead));
+			draw((0, min(min(p).y, -2)) -- (0, max(p).y), Arrow(TeXHead));
+			for(int i = 1; i <= 9; ++i) {
+				filldraw((i, f(i)) -- (i+1, f(i+1)) -- (i+1, 0) -- (i, 0) -- cycle, pattern("hatch"), magenta);
+			}
+			draw(p, red + 0.6);
+		\end{asy}
+	\end{figure}
+	Au lieu d'approximer l'intégrale par des rectangles, on utilise des trapèzes.
+\end{rmk}
+

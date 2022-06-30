@@ -1,0 +1,24 @@
+\part{Exercice 12}
+
+Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base orthonormée de $E$.
+
+\[
+	\forall i,j,\;\left<f(e_i) \mid f(e_j) \right> = \left<e_i \mid e_j \right> = \delta_{i,j}
+\]
+
+donc $\big(f(e_1), \ldots,f(e_n)\big)$ est orthonormée, elle est donc libre; c'est donc une base orthonormée.
+
+D'où
+\begin{align*}
+	\forall x \in E,\,f(x) &= \sum_{i=1}^n \left<f(x) \mid f(e_i) \right>f(e_i)\\
+	&= \sum_{i=1}^n \left<x \mid e_i \right>f(e_i). \\
+\end{align*}
+
+Donc,
+\begin{align*}
+	\forall (x,y) \in E^2, \forall (\lambda, \mu) \in \R^2,\,f(\lambda x + \mu y) &= \sum_{i=1}^n \left<\lambda x + \mu y \mid e_i \right>f(e_i) \\
+	&= \sum_{i=1}^n \big(\lambda\left<x \mid e_i \right> + \mu \left<x \mid e_i \right>\big)f(e_i) \\
+	&= \lambda \sum_{i=1}^n \left<x \mid e_i \right> f(e_i) + \mu \sum_{i=1}^n \left<y \mid e_i \right>f(e_i) \\
+	&= \lambda f(x) + \mu f(y). \\
+\end{align*}
+

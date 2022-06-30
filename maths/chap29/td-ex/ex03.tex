@@ -1,0 +1,29 @@
+\part{Exercice 3}
+
+{\sl
+	À quelles conditions sur $a$, $b$, $c$ et $d$, l'application
+	\begin{align*}
+		f: \R^2\times \R^2 &\longrightarrow \R \\
+		\big((x,y),(x',y')\big) &\longmapsto axx' + bxy' + cx'y + dyy'
+	\end{align*}
+	définit-elle un produit scalaire sur $\R^2$ ?
+}
+
+\begin{itemize}
+	\item[Symétrie] Soit $(x,y,x',y') \in \R^4$.
+		\begin{gather*}
+			f\big((x,y),(x',y')\big) = ax x' + bxy' + cx'y + d yy' = axx' + bx'y + cxy' + dyy' = f\big((x',y'),(x,y)\big)\\
+			\iff b = c
+		\end{gather*}
+	\item[Positivité] Soit $(x,y) \in \R^2$.
+		\begin{align*}
+			f\big((x,y),(x,y)\big) = ax^2 + 2bxy + d y^2
+		\end{align*}
+
+		En particulier,
+		\begin{align*}
+			f\big((x,x),(x,x)\big) = ax^2 + 2bx^2 + dx^2 = (a+2b+d)\times x^2 \ge 0 \iff& a+2b+d\ge 0\\
+			\iff& a \ge -2b-d
+		\end{align*}
+\end{itemize}
+

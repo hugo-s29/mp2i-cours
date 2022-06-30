@@ -1,0 +1,32 @@
+\part{Exercice 2}
+
+\begin{itemize}
+	\item $\forall  f, g \in E,\;\varphi(f,g) \in \R$;
+	\item
+		\begin{align*}
+			\forall f,g,h \in E\,\forall \alpha,\beta \in \R,\,
+			\varphi(\alpha f, \beta g, h) &= \big(\alpha f(0) + \beta g(0)\big)h(0)\\
+			&+ \int_{0}^{1} \big(\alpha f'(t) + \beta g'(t)\big)\,h'(t)~\mathrm{d}t\\
+			&= \cdots\cdots\cdots \\
+			&= \alpha \varphi(f,h) + \beta \varphi(g, h); \\
+		\end{align*}
+	\item $\forall f,g \in E,\,\varphi(g, f) = \varphi(f,g)$ ;
+	\item $\forall f \in E,\,\varphi(f,f) = \underbrace{f(0)^2}_{\ge 0} + \underbrace{\int_{0}^{1} f'(t)~\mathrm{d}t}_{\ge 0}$;
+	\item Soit $f \in E$.
+		\begin{align*}
+			\varphi(f, f) = 0 \iff& \begin{cases}
+				f(0)^2 = 0\\
+				\int_{0}^{1} f'(t)^2~\mathrm{d}t = 0
+			\end{cases}\\
+			\iff& \begin{cases}
+				f(0) = 0\\
+				\forall t,\,f'(t) = 0 \mathrlap{\text{ car $(f')^2$ est continue positive}}
+			\end{cases}\\
+			\iff& \begin{cases}
+				f \text{ constante}\\
+				f(0) = 0
+			\end{cases}\\
+			\iff& f = 0
+		\end{align*}
+\end{itemize}
+

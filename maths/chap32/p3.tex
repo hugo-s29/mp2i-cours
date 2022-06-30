@@ -1,0 +1,30 @@
+\part{Familles sommables de nombres complexes}
+
+\begin{defn}
+	Soit $(u_i)_{i\in I} \in \C^I$. On dit qu'elle est \underline{sommable} si $\big(|u_i|\big)_{i \in I}$ est sommable.
+	\index{famille sommable (complexe)}
+\end{defn}
+
+\begin{prop}
+	Soit $(u_i)_{i\in I} \in \C^I$. \[
+		(u_i)_{i\in I} \text{ sommable} \iff \big(\Re(u_i)\big)_{i \in I} \text{ et } \big(\Im(u_i)\big)_{i \in I} \text{ sont sommables}
+	.\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item[``$\implies$''] Pour tout $i \in I$, $|\Re(u_i)| \le |u_i|$ et $|\Im(u_i)| \le |u_i|$ donc $\big(\Re(u_i)\big)_{i \in I}$ et $\big(\Im(u_i)\big)_{i \in I}$ sont sommables.
+		\item[``$\impliedby$''] $\forall i \in I,\, |u_i| \le |\Re(u_i)| + |\Im(u_i)|$ donc $\big(|u_i|\big)_{i \in I}$ est sommable.
+	\end{itemize}
+\end{prv}
+
+\begin{defn}
+	Soit $(u_k)_{k\in I} \in \C^I$ sommable. On définit \[
+		\sum_{k \in I} u_k = \sum_{k \in I} \Re(u_k) + i \sum_{k \in I} \Im(u_k)
+	.\]
+	\index{somme (famille sommable complexe)}
+\end{defn}
+
+On a exactement les mêmes propriétés que pour des familles réelles.
+\qed
+

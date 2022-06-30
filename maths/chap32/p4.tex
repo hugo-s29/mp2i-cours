@@ -1,0 +1,54 @@
+\part{Produit de Cauchy de deux séries}
+
+\begin{rap}
+	Avec $P  = \sum_{k = 0}^p a_k X^k$ et $Q = \sum_{\ell = 0}^q b_\ell X^\ell$, on a
+	\begin{align*}
+		PQ &= \sum_{k = 0}^p \sum_{\ell = 0}^q a_k b_\ell X^{k + \ell}\\
+		&= \sum_{m = 0}^{p + q} \left( \sum_{k = 0}^{\min(p,m)} a_k b_{m-k} \right)X^m. \\
+	\end{align*}
+\end{rap}
+
+\begin{defn}
+	Soient $(u_n),\,(v_n) \in \C^\N$. Le \underline{produit de Cauchy} des séries $\Sigma u_n$ et $\Sigma v_n$ est la série $\Sigma w_n$ où \[
+		\forall n \in \N,\,w_n = \sum_{k = 0}^{n} u_k v_{n-k}
+	.\]\index{produit de Cauchy}
+\end{defn}
+
+\begin{thm}
+	Soient $(u_n),\,(v_n) \in \C^\N$. Si $\Sigma u_n$ et $\Sigma v_n$ convergent absolument, alors leur produit $\Sigma w_n$ converge absolument et \[
+		\sum_{n=0}^{+\infty} w_n = \left( \sum_{n = 0}^{+\infty} u_n \right) \left( \sum_{n = 0}^{+\infty} v_n \right)
+	.\]
+\end{thm}
+
+\begin{prv}
+	On sait que $(u_n)$ et $(v_n)$ sont sommables. On pose \[
+		\forall n \in \N,\, w_n = \sum_{k = 0}^n u_k v_{n-k}
+	.\]
+
+	$(u_n\,v_m)_{(n,m) \in \N^2}$ est donc sommable et
+	\begin{align*}
+		\left( \sum_{k = 0}^{+\infty} u_n \right) \left( \sum_{k = 0}^{+\infty} v_n \right) &= \sum_{(n,m) \in \N^2} u_n v_m \\
+		&= \sum_{n = 0}^{+\infty} \sum_{a = n}^{+\infty} u_n v_{a-n} \\
+		&= \sum_{a = 0}^{+\infty} \sum_{n = 0}^a u_n v_{a-n} \\
+		&= \sum_{n = 0}^{+\infty}\sum_{k = 0}^{n} u_k v_{n-k} \\
+		&= \sum_{n = 0}^{+\infty} w_n. \\
+	\end{align*}
+\end{prv}
+
+\begin{exm}
+	On préfère définir l'\underline{exponentielle} complexe par \[
+		\forall z \in \C,\, e^{z} = \sum_{n=0}^{+\infty} \frac{z^n}{n!}
+	\]
+	(au lieu de la définition du chapitre 4)
+
+	Par définition, $e^0 = \sum_{n=0}^{+\infty} \frac{0^n}{n!} = 1$.
+
+	Soient $(x,y) \in \C^2$. $\left( \frac{x^n}{n!} \right)_{n \in \N}$ et $\left( \frac{y^n}{n!} \right)_{n \in \N}$ sont sommables donc
+	\begin{align*}
+		e^{x} e^{y} &= \sum_{n=0}^{+\infty} \left( \sum_{k = 0}^{n} \frac{x^k}{k!} \times \frac{y^{n-k}}{(n-k)!} \right)\\
+		&= \sum_{n = 0}^{+\infty} \frac{1}{n!} \left( \sum_{k = 0}^{n} {n \choose k} x^k y^{n-k} \right) \\
+		&= \sum_{n=0}^{+\infty} \frac{1}{n!}(x+y)^n \\
+		&= e^{x+y}. \\
+	\end{align*}
+\end{exm}
+

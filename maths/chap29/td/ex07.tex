@@ -1,0 +1,41 @@
+\part{Exercice 7}
+
+On montre que $p$ est une projection : on montre $p \circ p = p$ et on calcule donc $M^2$ :
+\begin{align*}
+	M^2 &= \frac{1}{36} \begin{pmatrix}
+		5&-2&1\\
+		-2&2&2\\
+		1&2&5
+	\end{pmatrix}\\
+	&= \frac{1}{36} \begin{pmatrix}
+		30&-12&6\\
+		-12&12&12\\
+		6&12&30
+	\end{pmatrix}\\
+	&= M \\
+\end{align*}
+
+Donc $p \circ p = p$ et donc $p$ est la projection sur $\mathrm{Im}(p)$ parallèlement à $\Ker(p)$.
+
+\[
+	\rg(p) = \tr(p) = \frac{1}{6}(5+2+5) = 2
+.\]
+
+Donc, $\mathrm{Im}(p) = \Vect\big(p(e_1),p(e_2)\big)$\\
+\phantom{Donc, }$\phantom{\mathrm{Im}(p)}= \Vect\big((5,-2,1),(-1,1,1)\big)$.
+
+On remarque que $p(e_1 + 2e_2 - e_3) = 0$. D'où $\Ker(p) = \Vect(e_1 + 2e_2 - e_3)$.
+
+\begin{gather*}
+	\left<e_1+2e_2-e_3 \mid 5e_1-2e_2+e_3 \right> = 5-4-1 = 0\\
+	\left<e_1+2e_2-e_3 \mid -e_1 + e_2 + e_3 \right> = -1 + 2 - 1 = 0
+\end{gather*}
+
+donc $\underbrace{\Ker p}_{\dim(\cdot) = 1} \subset \underbrace{\left( \mathrm{Im}\, p \right)^\perp}_{\dim(\cdot) = 3 - 2  =1}$ donc $\Ker p = \left( \mathrm{Im}\,p \right)^\perp$.
+
+\begin{align*}
+	(x,y,z) \in \mathrm{Im}\, p \iff& (x,y,z) \in (\Ker p)^\perp\\
+	\iff& (x,y,z) \perp (1,2,-1)\\
+	\iff& x + 2y - z = 0
+\end{align*}
+

@@ -5,16 +5,10 @@ from meal import Meal
 
 class Wednesday(Day):
   def generate_subjects(self):
-    td_math_time = (13, 15) if self.student.half_group == "I" else (15, 17)
-    tp_phys_time = (13, 15) if self.student.half_group == "II" else (15, 17)
-
-    td_math = Subject(name="Mathématiques", room="K201", time=td_math_time)
-    tp_phys = Subject(name="Physique", room="Salles TP", time=tp_phys_time)
-
     subjects = [
       Subject(name="Mathématiques", time=(10, 12), room="K201"),
-      td_math,
-      tp_phys,
+      Subject(name="Mathématiques", time=(13, 15), room="K201"),
+      Subject(name="Physique", time=(15, 17), room="??")
     ]
 
     if self.student.lv2 is not None:

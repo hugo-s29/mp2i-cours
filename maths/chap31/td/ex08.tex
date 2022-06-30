@@ -1,0 +1,28 @@
+\part{Exercice 8}
+
+\begin{enumerate}
+	\item $X(\Omega) = \left\llbracket 1,n+1 \right\rrbracket$.
+		\[
+			\forall k \in \left\llbracket 1,n \right\rrbracket,\, P(X=k) = q^{k-1}\,p
+		.\] (cela correspond, à quelques détails près, à la loi géométrique)
+
+		Également, $P(X = n+1) = q^{n}$.
+
+		\underline{Vérification} : $\sum_{k=1}^n q^{k-1} p + q^{n} = p \frac{1-q^n}{1-q} q^n = 1$.
+	\item
+		\begin{align*}
+			E(X) &= \sum_{k=1}^{n+1} k\:P(X = k)\\
+			&= \sum_{k=1}^n k q^{k-1} p + (n+1)q^n \\
+			&= p\,\frac{\mathrm{d}}{\mathrm{d}q}\left( \sum_{k=0}^n q^k \right) + (n+1)q^n \\
+			&= p\, \frac{\mathrm{d}}{\mathrm{d}q}\left( \frac{1-q^{n}}{1-q} \right) + (n+1)q^n \\
+			&= p \frac{-(n+1)q^n (1-q) + (1-q^{n+1})}{(1-q)^2} + (n+1)q^n \\
+			&= -(n+1)q^n \frac{1-q^{n+1}}{p} + (n+1)q^n \\
+			&= \frac{1-q^{n+1}}{p} \\
+		\end{align*}
+	\item On cherche $p$ tel que
+		\begin{align*}
+			P(X = n+1) \le \frac{1}{2} \iff& q^n \le \frac{1}{2}\\
+			\iff& q \le \frac{1}{\sqrt[n]{2}}
+		\end{align*}
+\end{enumerate}
+

@@ -1,0 +1,232 @@
+\part{Propriétés de l'intégrale}
+
+% Chasles, inégalité triangulaire, croissance, linéarité
+
+\begin{prop}
+	Soient $f$ et $g$ deux fonctions définies de $[a,b]$ à valeurs dans $\R$.
+	Si $f \le g$, alors \[
+		I^-_{[a,b]}(f) \le I^-_{[a,b]}(g)
+	.\]
+\end{prop}
+
+\begin{prv}
+	On suppose $f \le g$.
+	\begin{align*}
+		I^-(f) \le I^-(g) \iff& \sup_{\sigma \in \mathfrak{S}} S_\sigma^-(f) \le \sup_{\sigma \in \mathfrak{S}} S^-_{\sigma}(g)\\
+		\iff& \forall \sigma \in \mathfrak{S},\,S^-_{\sigma}(f) \le \sup_{\sigma' \in \mathcal{S}}I^-_{\sigma'}(g)\\
+	\end{align*}
+
+	Soit $\sigma \in \mathfrak{S}$. On pose $\sigma = (x_0, x_1, \ldots, x_n)$ et, pour tout $i \in \left\llbracket 0,n-1 \right\rrbracket$, $m_i = \inf_{]x_i,x_{i+1}[}f)$. Alors, \[
+		S_\sigma^-(f) = \sum_{i=1}^{n-1}(x_{i+1}-x_i) m_i
+	.\] On pose aussi, pour tout $i \in \left\llbracket 0,n-1 \right\rrbracket$, $m_i' = \inf_{]x_i,x_{i+1}[}(g)$.
+
+	Soit $i \in \left\llbracket 0,n-1 \right\rrbracket$.
+	\begin{align*}
+		m_i \le m_i' \iff& \inf_{]x_i,x_{i+1}[}(f) \le \inf_{]x_i,x_{i+1}[}(g)\\
+		\iff& \forall x \in \;]x_i,x_{i+1}[,\,\inf_{]x_i,x_{i+1}[}(f) \le g(x)
+	\end{align*}
+	Soit $x \in \;]x_i,x_{i+1}[$. On sait que \[
+		\inf_{]x_i,x_{i+1}[}(f) \le f(g) \le g(x)
+	.\] On en déduit que \[
+	S^-_\sigma(f) \le \sum_{i=0}^{n-1} (x_i - x_{i+1})m_i' = S_\sigma^-(g) \le \sup_{\sigma' \in \mathfrak{S}} S_{\sigma'}^-(g)
+	.\]
+\end{prv}
+
+\begin{exo}
+	Démontrer le même résultat avec les sommes de Darboux supérieures : \[
+		I^+_{[a,b]}(f) \le I^+_{[a,b]}(g)
+	.\]
+\end{exo}
+
+\begin{crlr}
+	Soient $f$ et $g$ deux fonctions intégrables définies sur $[a,b]$ à valeurs dans $\R$.
+	Si $f \le g$, alors \[
+		\int_{[a,b]} f \le \int_{[a,b]} g
+	.\] \qed
+\end{crlr}
+
+\begin{prop}[Chasles]
+	Soit $f$ une fonction définie sur $[a,b]$ à valeurs dans $\R$.
+	Soit $c \in\; ]a,b[$. Alors, \[
+		\begin{cases}
+			I_{[a,b]}^-(f) = I_{[a,c]}^-(f) + I_{[c,b]}^-(f)\\
+			I_{[a,b]}^+(f) = I_{[a,c]}^+(f) + I_{[c,b]}^+(f).
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}~
+	\begin{itemize}
+		\item $I_{[a,b]}^-(f) \le I_{[a,c]}^-(f) + I_{[c,b]}^-(f) \iff \forall \sigma \in \mathfrak{S}_{[a,b]},\,S_{\sigma}^-(f) \le I_{[a,c]}^-(f) + I_{[c,b]}^-(f).$
+
+			Soit $\sigma \in \mathfrak{S}_{[a,b]}$. On pose $\sigma = (x_0, x_1, \ldots, x_n)$. On note $k \in \left\llbracket 0,n-1 \right\rrbracket$ tel que $x_k \le c \le x_{k+1}$.
+
+			On pose aussi $\sigma_1 = (x_0, x_1, \ldots, x_k, c) \in \mathfrak{S}_{[a,c]}$ et $\sigma_2 = (c, x_{k+1}, \ldots, x_n) \in \mathfrak{S}_{[c,b]}$.
+
+			$\sigma_1 \cup \sigma_2$ est une subdivision plus fine que $\sigma$. On en déduit que \[
+				S_\sigma^-(f) \le S_{\sigma_1 \cup \sigma_2}^-(f) = \underbrace{S_{\sigma_1}^-(f)}_{\substack{\vrt\le\\I^-_{[a,c]}(f)}} + \underbrace{S^-_{\sigma_2}(f)}_{\substack{\vrt\le\\I^-_{[c,b]}(f)}}
+			.\]
+		\item
+			\begin{align*}
+				I_{[a,b]}^-(f) \ge I^-_{[a,c]}(f) + I^-_{[c,b]}(f)
+				\iff& I^-_{[a,c]}(f) \ge I^-_{[a,b]}(f) - I^-_{[c,b]}(f)\\
+				\iff&\forall \sigma_1 \in \mathfrak{S}_{[a,c]},\,S^-_{\sigma_1} \le I^-_{[a,b]}(f) - I^-_{[c,b]}(f)\\
+				\iff& \forall \sigma_1 \in \mathfrak{S}_{[a,c]},\,I^-_{[c,b]}(f) \le I^-_{[a,b]}(f) - S^-_{\sigma_1}(f)\\
+				\iff& \forall \sigma_1 \in \mathfrak{S}_{[a,c]},\,\forall \sigma_2 \in \mathfrak{S}_{[c,b]},\,S_{\sigma_2}^-(f) \le I^-_{[a,b]}(f) - S^-_{\sigma_1}(f).
+			\end{align*}
+			Soient $\sigma \in \mathcal{S}_{[a,c]}$ et $\sigma_2 \in \mathfrak{S}_{[c,b]}$. \[
+				S_{\sigma_1}^-(f) + S_{\sigma_2}^-(f)  = S_{\sigma_1 \cup \sigma_2}^-(f) \le I^-_{[a,b]}(f)
+			.\]
+	\end{itemize}
+\end{prv}
+
+\begin{crlr}
+	Soit $f$ une fonction définie sur $[a,b]$ à valeurs dans $\R$.
+	Soit $c \in\; ]a,b[$. Alors, \[
+		\int_{[a,b]}f = \int_{[a,c]}f + \int_{[c,b]}f
+	.\]\qed
+\end{crlr}
+
+\begin{prop}
+	Soient $f$ et $g$ deux fonctions intégrables définies sur $[a,b]$ à valeurs dans $\R$.
+	Alors, \[
+		\begin{cases}
+			I^-_{[a,b]}(f+g) \ge I^-_{[a,b]}(f) + I^-_{[a,b]}(f)\\
+			I^+_{[a,b]}(f+g) \le I^+_{[a,b]}(f) + I^+_{[a,b]}(f)
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{prv}
+	\begin{align*}
+		I^-(f+g) \ge I^-(f) + I^-(g)
+		\iff& I^-(f) \le I^-(f+g) - I^-(g)\\
+		\iff& \forall \sigma \in \mathfrak{S}_{[a,b]},S_{\sigma}^-(f) \le I^-(f+g) - I^-(g)\\
+		\iff& \forall \sigma \in \mathfrak{S},\,I^-(g) \le I^-(f+g) - S^-_\sigma(f)\\
+		\iff& \forall \sigma \in \mathfrak{S},\forall \sigma' \in \mathfrak{S},\,S_{\sigma'}^-(g) \le I^-(f+g) - I^-_\sigma(f)\\
+		\iff& \forall \sigma \in \mathfrak{S},\forall \sigma' \in \mathfrak{S},S_{\sigma}^-(f) + S^-_{\sigma'}(g) \le I^-(f+g)
+	\end{align*}
+	Soit $\sigma, \sigma' \in \mathfrak{S}$. On considère $\sigma'' \in \mathfrak{S}$ telle que $\sigma'' \prec \sigma'$ et $\sigma'' \prec \sigma$. On a \[
+		\begin{cases}
+			S_\sigma^-(f) \ge S_{\sigma''}^-(f)\\
+			S^-_{\sigma'}(g) \le S^-_{\sigma''}(g)
+		\end{cases}
+	\] donc \[
+		S^-_{\sigma}(f) + S_{\sigma'}^-(g) \le S_{\sigma''}^-(f) + S_{\sigma''}^-(g)
+	.\] On pose $\sigma'' = (x_0, \ldots, x_n)$ et, pour $i \in \left\llbracket 0,n-1 \right\rrbracket,$ \[
+		\begin{cases}
+			m_i(f) = \inf_{]x_i,x_{i+1}[}(f)\\
+			m_i(g) = \inf_{]x_i,x_{i+1}[}(g)\\
+			m_i(f+g) = \inf_{]x_i,x_{i+1}[}(f+g).
+		\end{cases}
+	\]
+	Alors,
+	\begin{align*}
+		S^-_{\sigma''}(f) + S^-_{\sigma''}(g) &= \sum_{i=0}^{n-1}(x_{i+1}- x_i)m_i(f) + \sum_{i=0}^{n-1}(x_{i+1}-x_i)m_i(g) \\
+		&= \sum_{i=0}^{n-1}(x_{i+1} - x_i)\big(m_i(f) + m_i(g)\big). \\
+	\end{align*}
+
+	Soit $i \in \left\llbracket 0,n-1 \right\rrbracket$.
+	\begin{align*}
+		m_i(f) + m_i(g) \le m_i(f+g)
+		\iff&\inf_{]x_i,x_{i+1}[}(f) + \inf_{]x_i,x_{i+1}[}(g) \le \inf_{]x_i,x_{i+1}[}(f+g)\\
+		\iff& \forall x \in\; ]x_i,x_{i+1}[,\inf_{]x_i,x_{i+1}[}(f) + \inf_{]x_i,x_{i+1}[}(g) \le (f+g)(x)
+	\end{align*}
+	Soit $x \in\;]x_i,x_{i+1}[$.
+	\begin{align*}
+		(f+g)(x) &= f(x) + g(x) \\
+		&\ge \inf_{]x_i,x_{i+1}[}(f) + \inf_{]x_i,x_{i+1}[}(g).
+	\end{align*}
+	D'où
+	\begin{align*}
+		S^-_{\sigma''}(f) + S^-_{\sigma''}(g) \le& \sum_{i=0}^{n-1}(x_{i+1}-x_i)m_i(f+g)\\
+		\le& S^-_{\sigma''}(f+g) \le I^-(f+g).
+	\end{align*}
+\end{prv}
+
+\begin{prop}
+	Soit $\lambda \in \R$. On a \[
+		I^-_{[a,b]}(\lambda f) = \begin{cases}
+			\lambda I^-_{[a,b]}(f) &\text{ si } \lambda \ge 0\\
+			\lambda I^+_{[a,b]}(f) &\text{ si } \lambda \le 0\\
+		\end{cases}
+	\] et \[
+		I^+_{[a,b]}(\lambda f) = \begin{cases}
+			\lambda I^+_{[a,b]}(f) &\text{ si } \lambda \ge 0\\
+			\lambda I^-_{[a,b]}(f) &\text{ si } \lambda \le 0\\
+		\end{cases}
+	.\]
+\end{prop}
+
+\begin{prv}
+	\begin{itemize}
+		\item On suppose $\lambda > 0$.
+			\[
+				I^-(\lambda f) \le \lambda I^-(f) \iff
+				\forall \sigma \in \mathfrak{S},\,S_\sigma^-(\lambda f) \le \lambda I^-(f)
+			.\]
+			Soit $\sigma = (x_0, \ldots, x_n) \in \mathfrak{S}$. On pose, pour $i \in \left\llbracket 0,n-1 \right\rrbracket$, $m_i(f) = \inf_{]x_i,x_{i+1}[}(f)$ et $m_i(\lambda f) = \inf_{]x_i,x_{i+1}[}(\lambda f)$.
+
+			Soit $i \in \left\llbracket 0,n-1 \right\rrbracket$.
+			\begin{align*}
+				m_i(\lambda f) \le \lambda m_i(f) \iff& m_i(f) \ge m_i(f) \ge \frac{1}{\lambda}m_i(\lambda f)\\
+				\iff& \forall x \in\;]x_i,x_{i+1}[,\,\frac{1}{\lambda} m_i(\lambda f) \le f(x)
+			\end{align*}
+			Soit $x \in \,]x_i,x_{i+1}[$. On a \[
+				f(x) = \frac{1}{\lambda}\big(\lambda f(x)\big) \ge \frac{1}{\lambda}m_i(\lambda f)
+			.\] Donc,
+			\begin{align*}
+				S^-_{\sigma}(\lambda f) &= \sum_{i=0}^{n-1}(x_{i+1}-x_i) m_i(\lambda f) \\
+				&\le \sum_{i=0}^{n-1}\lambda(x_{i+1}-x_i)m_i(f)\\
+				&\le \lambda S^-_\sigma(f)\\
+				&\le \lambda I^-(f).
+			\end{align*}
+			En outre,
+			\begin{align*}
+				I^-(f) &= I^- \left( \frac{1}{\lambda}\,\lambda f \right) \\
+				&\le \frac{1}{\lambda}I^-(\lambda f)
+			\end{align*}
+			donc \[
+				\lambda I^-(f) \le I^-(\lambda f)
+			.\]
+		\item On suppose $\lambda < 0$.
+			\[
+				I^-(\lambda f) \le \lambda I^-(f) \iff
+				\forall \sigma \in \mathfrak{S},\,S^-_\sigma(\lambda f) \le \lambda I^+(f)
+			.\]
+
+			Soit $\sigma \in \mathfrak{S}$. On pose $\sigma = (x_0, \ldots, x_n)$. Alors, \[
+				S^-_{\sigma}(\lambda f) = \sum_{i=0}^{n-1}(x_{i+1}-x_i) m_i(\lambda f)
+			.\] Soit $i \in \left\llbracket 0,n-1 \right\rrbracket$. Soit $x \in \,]x_i,x_{i+1}[$.
+%
+			\begin{align*}
+				~&f(x) = \frac{1}{\lambda}\big(\underbrace{\lambda f(x)}_{\ge \inf(\lambda f)}\big) \le \frac{1}{\lambda} m_i(\lambda f)\\
+				\text{donc }& \frac{1}{\lambda}m_i(\lambda f) \text{ majore } f \text{ sur } ]x_i,x_{i+1}[\\
+				\text{ donc }& \frac{1}{\lambda}m_i(\lambda f) \ge \sup_{]x_i,x_{i+1}[}(f) = M_i(f)\\
+				\text{ et donc }& m_i(\lambda f) \le \lambda M_i(f).
+			\end{align*}
+
+			D'où
+			\begin{align*}
+				S^-_{\sigma}(\lambda f) &\le \sum_{i=0}^{n-1}\lambda (x_{i+1}-x_i) M_i(f)\\
+				&\le \lambda S^+_\sigma(f)\\
+				&\le \lambda I^+(f)
+			\end{align*}
+			car $\lambda < 0$ et $I^+(f) \le S_\sigma^+(f)$.
+
+			De plus, \[
+				I^-\left( \frac{1}{\lambda}\,\lambda f \right) \le \frac{1}{\lambda} I^+(\lambda f)
+			\] donc \[
+				\lambda I^-(f) \ge I^+(\lambda f)
+			.\]
+			\vspace{1cm}
+
+			Il reste à prouver (pour $\lambda < 0$) que \[
+				\begin{cases}
+					I^-(\lambda f) \ge \lambda I^+(f)\\
+					I^+(\lambda f) \ge \lambda I^-(f).
+				\end{cases}
+			\]
+	\end{itemize}
+\end{prv}
+

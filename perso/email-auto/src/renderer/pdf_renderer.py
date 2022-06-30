@@ -16,7 +16,10 @@ class PDFRenderer(Renderer):
     if self.pdf is None:
       self.pdf = FPDF(orientation="L", format="A4")
 
+      self.pdf.add_font('LMRoman', '', '/Users/hugo/Library/Fonts/lmroman10-regular.otf')
+
     pdf = self.pdf
+
     width, height = 297, 210
 
     pdf.add_page()
@@ -26,7 +29,7 @@ class PDFRenderer(Renderer):
     name_height = 10
 
     col = float(width - 2 * a) / len(self.week)
-    pdf.set_font("Arial", "B", 16)
+    pdf.set_font("LMRoman", "B", 16)
 
     week_dict = self.get_week()
     week_days = list(week_dict.keys())
@@ -56,6 +59,9 @@ class PDFRenderer(Renderer):
       for subject in day.subjects:
         pdf.set_fill_color(*subject.get_color())
 
+        if subject.removed:
+          continue
+
         offsetY = (subject.time[0] - 8) * base_subject_height
         subject_height = (
           subject.time[1] - subject.time[0]
@@ -73,14 +79,14 @@ class PDFRenderer(Renderer):
 
         # Pour les Khôlles
         if type(subject) == Kholle:
-          pdf.set_font("Arial", "U", 14)
+          pdf.set_font("LMRoman", "U", 14)
           h = 14 * pt_to_mm * k
 
           w1 = pdf.get_string_width(subject.name)
 
           pdf.text(mx - w1 / 2, my - h / 2, subject.name)
 
-          pdf.set_font("Arial", "I", 10)
+          pdf.set_font("LMRoman", "I", 10)
           h = 10 * pt_to_mm * k
 
           w2 = pdf.get_string_width(subject.room)
@@ -94,19 +100,19 @@ class PDFRenderer(Renderer):
         # Cours normaux
 
         if subject.room == "":
-          pdf.set_font("Arial", "", 14)
+          pdf.set_font("LMRoman", "", 14)
           h = 14 * pt_to_mm * 1.5
           w = pdf.get_string_width(subject.name)
 
           pdf.text(mx - w / 2, my + h / 4, subject.name)
         else:
-          pdf.set_font("Arial", "", 14)
+          pdf.set_font("LMRoman", "", 14)
           h = 14 * pt_to_mm * k
 
           w1 = pdf.get_string_width(subject.name)
           pdf.text(mx - w1 / 2, my - h / 3, subject.name)
 
-          pdf.set_font("Arial", "I", 12)
+          pdf.set_font("LMRoman", "I", 12)
           h = 12 * pt_to_mm * k
 
           w2 = pdf.get_string_width(subject.room)
@@ -135,7 +141,7 @@ class PDFRenderer(Renderer):
 
         hh, mm = meal.time.split("h")
         time = int(hh) + int(mm) / 60
-        pdf.set_font("Arial", "", 10)
+        pdf.set_font("LMRoman", "", 10)
         h = 10 * pt_to_mm * k
         pdf.set_xy(0, 0)
         x1 = i * col + a * 2
@@ -152,7 +158,7 @@ class PDFRenderer(Renderer):
         if meal.cold:
           ox = 1.5
           pdf.text(x1 + ox, y + h / 1.85, meal.time)
-          pdf.set_font("Arial", "I", 10)
+          pdf.set_font("LMRoman", "I", 10)
           w = pdf.get_string_width("La Chappelle")
           pdf.text(x2 - w - ox, y + h / 1.85, "La Chappelle")
         else:
@@ -160,7 +166,7 @@ class PDFRenderer(Renderer):
           pdf.text((x1 + x2) / 2 - w / 2, y + h / 1.85, meal.time)
 
     # Ajoute les heures
-    pdf.set_font("Arial", "I", 9)
+    pdf.set_font("LMRoman", "I", 9)
     footer = f"Généré pour {self.student.name} (semaine {self.week_num})"
     footer_width = pdf.get_string_width(footer)
     footer_height = 9 * pt_to_mm * k

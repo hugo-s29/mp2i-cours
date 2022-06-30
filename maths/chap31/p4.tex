@@ -1,0 +1,27 @@
+\part{Familles de variables aléatoires}
+
+\begin{defn}
+	Soit $(X_i)_{i \in I} \in \prod_{i \in I}E_i^\Omega$ une famille de variables aléatoires. On dit que ces variables sont indépendantes si, pour toute partie finie $J$ de $I$, et pour tout $(A_j)_{j\in J} \in \prod_{j \in J}\mathcal{P}(E_j)$, \[
+		P\left( \bigcap_{j \in J} (X_j \in A_j) \right) = \prod_{j \in J}\,P(X_j \in A_j)
+	.\]
+\end{defn}
+
+\begin{prop}
+	Avec les notations précédentes, $(X_i)_{i\in I}$ est une famille de variables aléatoires indédpendantes si et seulement si \[
+		\forall J \subset I,\,J \text{ finie},\,\forall (x_j)_{j\in J} \in \prod_{j \in J}X_j(\Omega),\,
+		P\left( \bigcap_{j \in J} (X_j = x_j) \right) = \prod_{j \in J}P(X_j = x_j)
+	.\]\qed
+\end{prop}
+
+\begin{prop}
+	Soit $(X_i)_{i\in\N}$ une suite de variables aléatoires suivant la même loi de Bernoulli $\mathcal{B}(p)$. Alors, \[
+		\forall n \in \N^*,\,\sum_{i=1}^n X_i \sim \mathcal{B}(n,p)
+	.\]
+\end{prop}
+
+\begin{prop}
+	Soient $X \sim \mathcal{B}(n,p)$ et $Y \sim \mathcal{B}(m,p)$.
+
+	Si $X \indep Y$, alors $X + Y \sim \mathcal{B}(n+m, p)$.
+	\qed
+\end{prop}

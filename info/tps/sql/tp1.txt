@@ -1,0 +1,24 @@
+SELECT nom FROM pokemons WHERE anneemort = 2013;
+SELECT COUNT(*) FROM pokemons WHERE sexe = "M";
+SELECT AVG(poids) FROM pokemons WHERE anneenaissance < 2005;
+SELECT AVG(poids) FROM pokemons WHERE taille > 100;
+SELECT nom, poids, taille FROM pokemons WHERE taille > 150 AND poids < 100;
+SELECT nom, pv FROM pokemons WHERE anneenaissance = 2001 AND anneemort IS NOT NULL;
+SELECT SUM(valeur) FROM pokemons WHERE anneevente < 2000;
+SELECT AVG(valeur) FROM pokemons WHERE anneevente IS NOT NULL;
+SELECT AVG(valeur) FROM pokemons WHERE anneevente > 2010;
+SELECT SUM(valeur) FROM pokemons WHERE anneemort IS NOT NULL AND anneevente IS NULL;
+SELECT SUM(poids) FROM pokemons WHERE anneemort IS NULL AND anneevente IS NULL;
+SELECT nom FROM pokemons ORDER BY taille DESC LIMIT 1;
+SELECT COUNT(*) FROM pokemons WHERE taille > (SELECT taille FROM pokemons WHERE nom = "Pikachu");
+SELECT nom FROM pokemons WHERE id = (SELECT idmere FROM pokemons WHERE  nom = "Blindalys") OR  id = (SELECT idpere FROM pokemons WHERE  nom = "Blindalys");
+SELECT nom FROM pokemons WHERE id = (SELECT idmere FROM pokemons ORDER BY niveau DESC) OR  id = (SELECT idpere FROM pokemons ORDER BY niveau DESC) ;
+SELECT COUNT(*) FROM pokemons WHERE idmere = (SELECT id FROM pokemons WHERE nom = "Ludicolo");
+SELECT nom FROM pokemons WHERE idmere = (SELECT id FROM pokemons WHERE nom = "Ludicolo") ORDER BY poids LIMIT 1;
+SELECT nom FROM pokemons WHERE idmere = (SELECT idmere FROM pokemons WHERE nom = "Crocrodil") AND idpere = (SELECT idpere FROM pokemons WHERE nom = "Crocrodil") AND nom <> "Crocrodil";
+SELECT COUNT(*) FROM pokemons WHERE idpere = (SELECT idpere FROM pokemons WHERE nom = "Korillon") OR idmere = (SELECT idmere FROM pokemons WHERE nom = "Korillon");
+SELECT nom FROM pokemons WHERE id IN (SELECT idmere FROM pokemons WHERE idpere = (SELECT id FROM pokemons WHERE nom = "Armulys"));
+
+
+SELECT * FROM pokemons;
+SELECT nom FROM pokemons ORDER BY MAX((SELECT AVG(taille) FROM pokemons) - taille, taille - (SELECT AVG(taille) FROM pokemons)) ASC LIMIT 1;

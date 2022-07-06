@@ -1,0 +1,11 @@
+TP SQL : 
+
+SELECT nom FROM eleves WHERE entree = 2009;
+SELECT nom FROM professeurs WHERE id IN  (SELECT id FROM professeur_maison WHERE id_maison = (SELECT id FROM maison WHERE nom = "Poufsouffle"));
+SELECT eleves.nom, maison.nom FROM eleves JOIN maison ON maison.id = eleves.id_maison WHERE eleves.id IN (SELECT id_eleve FROM eleves_matieres WHERE id_matiere = (SELECT id FROM matiere WHERE nom = "Soins_Créatures"));
+SELECT COUNT(DISTINCT nom) AS nb FROM eleves WHERE id_maison = (SELECT id FROM maison WHERE nom = "Serdaigle");
+SELECT eleves.nom FROM eleves JOIN maison;
+
+SELECT * FROM maison;
+SELECT * FROM eleves;
+

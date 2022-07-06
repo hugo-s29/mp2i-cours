@@ -561,7 +561,7 @@
 						On a donc $a \leq x \leq z \leq y < b$ donc $z \in [a,b]$
 						Donc $D$ est convexe 
 
-			Les deux autres cas se traitent de la même façon
+			Les deux autres cas se traitent de la même fa\c con
 
 		“$\Longleftarrow$” : On suppose que $D$ est convexe et non vide
 

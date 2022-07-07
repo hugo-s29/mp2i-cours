@@ -159,11 +159,11 @@ func main() {
 		pdf := gopdf.GoPdf{}
 		pdf.Start(gopdf.Config{ PageSize: size })
 
-		pdf.AddTTFFont("lm", "./lmroman10-regular.ttf")
-		pdf.AddTTFFont("sc", "./lmromancaps10-regular.ttf")
-		pdf.AddTTFFont("br", "./lmroman10-bold.ttf")
-		pdf.AddTTFFont("bi", "./lmroman10-bolditalic.ttf")
-		pdf.AddTTFFont("it", "./lmroman10-italic.ttf")
+		pdf.AddTTFFont("lm", "./fonts/lmroman10-regular.ttf")
+		pdf.AddTTFFont("sc", "./fonts/lmromancaps10-regular.ttf")
+		pdf.AddTTFFont("br", "./fonts/lmroman10-bold.ttf")
+		pdf.AddTTFFont("bi", "./fonts/lmroman10-bolditalic.ttf")
+		pdf.AddTTFFont("it", "./fonts/lmroman10-italic.ttf")
 		pdf.AddPage()
 
 

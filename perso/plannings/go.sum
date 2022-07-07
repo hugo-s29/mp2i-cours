@@ -8,3 +8,5 @@ github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/signintech/gopdf v0.12.0 h1:WxwRsrSqU1j3HAlafDYz4jSvLNUGDd6DAb9IrWbTc3U=
 github.com/signintech/gopdf v0.12.0/go.mod h1:a+E8HlIuBwghPyoo7UaoB5UaL7zklDzmYVIAHoW/Rlw=
+github.com/signintech/gopdf v0.13.0 h1:1+pzfg2ll84NHvKvHCiXQ5XOqWaJ6M9xKmboBfyePAw=
+github.com/signintech/gopdf v0.13.0/go.mod h1:a+E8HlIuBwghPyoo7UaoB5UaL7zklDzmYVIAHoW/Rlw=
